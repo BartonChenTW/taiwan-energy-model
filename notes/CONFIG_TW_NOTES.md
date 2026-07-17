@@ -39,7 +39,7 @@ enable:
   build_cutout: true
 
 atlite:
-  default: cutout-2013-era5
+  default: cutout-2013-era5-tw
 ```
 
 The corrected copy is saved as:

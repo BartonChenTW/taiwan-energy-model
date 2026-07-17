@@ -7,7 +7,7 @@
    - `tutorial: false`
    - `enable.retrieve_cutout: false`
    - `enable.build_cutout: true`
-   - `atlite.default: cutout-2013-era5`
+   - `atlite.default: cutout-2013-era5-tw`
 4. make sure CDS/ERA5 credentials exist at `C:\Users\chyi\.cdsapirc`
    - required because Taiwan uses `build_cutout`, which downloads ERA5 data through `cdsapi`
    - expected format:

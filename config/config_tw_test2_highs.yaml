@@ -2,14 +2,8 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-# Working Taiwan configuration.
-# This must be a non-tutorial run because no tutorial cutout bundle exists for TW.
-# The cutout is built locally as cutout-2013-era5-tw instead of retrieved as
-# cutout-2013-era5-tutorial.
-
 version: 0.8.0
 tutorial: false
-
 
 countries: ["TW"]
 
@@ -19,16 +13,20 @@ enable:
   retrieve_cutout: false
   build_cutout: true
   build_natura_raster: true
-  progress_bar: false
+  progress_bar: true
+
+run:
+  name: "tw_test2_highs_2013_fullyear_4h_6b"
+  sector_name: "tw_test2_highs_2013_fullyear_4h_6b"
 
 scenario:
   clusters: [6]
   opts: [Co2L-4H]
 
 snapshots:
-  start: "2013-03-1"
-  end: "2013-03-7"
-
+  start: "2013-01-01"
+  end: "2014-01-01"
+  inclusive: "left"
 
 clean_osm_data_options:
   threshold_voltage: 35000
@@ -37,23 +35,23 @@ base_network:
   min_voltage_substation_offshore: 35000
   min_voltage_rebase_voltage: 35000
 
-
 electricity:
-  co2limit: 1.487e+9
-  co2base: 1.487e+9
+  co2limit: 4.9123e+7
+  co2base: 4.9123e+7
   automatic_emission: true
-
 
 atlite:
   default: cutout-2013-era5-tw
 
 renewable:
   hydro:
-    hydrobasins_level: 4
+    # --- change this to 6 based on ChatGPT's comment:
+    # Taiwan has steep terrain, short rivers and strong spatial variation in rainfall.
+    # Level 4 may aggregate hydrologically distinct catchments too heavily.
+    hydrobasins_level: 6
     hydro_max_hours: "energy_capacity_totals_by_country"
-
 
 solving:
   solver:
-    name: glpk
-    options: glpk-default
+    name: highs
+    options: highs-default
