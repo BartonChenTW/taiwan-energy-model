@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Taiwan PyPSA-Earth Simulation Results</title>
+    <link rel="stylesheet" href="assets/site.css" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <script src="assets/results-data.js"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <div class="eyebrow">PyPSA-Earth Taiwan</div>
+          <h1>Simulation Results Dashboard</h1>
+          <p>
+            A static GitHub Pages summary of the first Taiwan electricity-network
+            run. The workflow reached an optimal solution and produced the solved
+            network listed below.
+          </p>
+        </div>
+        <aside class="status-card">
+          <span>Solver status</span>
+          <strong id="status">Optimal</strong>
+          <span id="completed-at"></span>
+        </aside>
+      </section>
+
+      <section class="metrics" aria-label="Run metrics">
+        <div class="metric">
+          <b>Scenario</b>
+          <span id="scenario"></span>
+        </div>
+        <div class="metric">
+          <b>Objective</b>
+          <span id="objective"></span>
+        </div>
+        <div class="metric">
+          <b>Clusters</b>
+          <span id="clusters"></span>
+        </div>
+        <div class="metric">
+          <b>Input Demand</b>
+          <span id="demand"></span>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <h2>Installed Capacity Mix</h2>
+          <p>Generator and storage-unit capacities assembled before the solved network step.</p>
+          <div id="capacity-pie" class="chart"></div>
+        </article>
+
+        <article class="panel">
+          <h2>IRENA Gap Filling</h2>
+          <p>Renewable capacity targets used to fill missing existing capacity estimates.</p>
+          <div id="irena-bars" class="chart"></div>
+        </article>
+
+        <article class="panel wide">
+          <h2>Taiwan Spatial Overview</h2>
+          <p>Clustered bus regions on an OpenStreetMap basemap. Line segments provide a lightweight corridor sketch for the dashboard.</p>
+          <div id="taiwan-map" class="chart map"></div>
+        </article>
+
+        <article class="panel wide">
+          <h2>Run Notes</h2>
+          <ul id="notes" class="notes"></ul>
+          <p class="footer">
+            Full local analysis notebook:
+            <a href="../pypsa_tw/taiwan_simulation_results.ipynb">pypsa_tw/taiwan_simulation_results.ipynb</a>
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <script>
+      const data = window.TAIWAN_RESULTS;
+      const fmt = new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 });
+
+      document.title = data.run.title;
+      document.getElementById("status").textContent = data.run.status;
+      document.getElementById("completed-at").textContent = `Completed ${data.run.completedAt}`;
+      document.getElementById("scenario").textContent = data.run.scenario;
+      document.getElementById("objective").textContent = data.run.objectiveLabel;
+      document.getElementById("clusters").textContent = `${data.run.clusters} buses`;
+      document.getElementById("demand").textContent = `${fmt.format(data.run.demandGWhHourlyInput)} GWh`;
+
+      const capacityLabels = data.capacityMixGW.map((d) => d.carrier);
+      const capacityValues = data.capacityMixGW.map((d) => d.value);
+      Plotly.newPlot(
+        "capacity-pie",
+        [
+          {
+            type: "pie",
+            labels: capacityLabels,
+            values: capacityValues,
+            hole: 0.42,
+            textinfo: "label+percent",
+            hovertemplate: "%{label}<br>%{value:.2f} GW<extra></extra>"
+          }
+        ],
+        {
+          margin: { t: 20, r: 20, b: 20, l: 20 },
+          legend: { orientation: "h" }
+        },
+        { responsive: true }
+      );
+
+      Plotly.newPlot(
+        "irena-bars",
+        [
+          {
+            type: "bar",
+            name: "Existing",
+            x: data.irenaTargetsGW.map((d) => d.carrier),
+            y: data.irenaTargetsGW.map((d) => d.existing),
+            marker: { color: "#61766f" }
+          },
+          {
+            type: "bar",
+            name: "Gap filled",
+            x: data.irenaTargetsGW.map((d) => d.carrier),
+            y: data.irenaTargetsGW.map((d) => d.gapFilled),
+            marker: { color: "#b88627" }
+          },
+          {
+            type: "scatter",
+            mode: "markers",
+            name: "IRENA target",
+            x: data.irenaTargetsGW.map((d) => d.carrier),
+            y: data.irenaTargetsGW.map((d) => d.target),
+            marker: { color: "#0d6775", size: 13, symbol: "diamond" }
+          }
+        ],
+        {
+          barmode: "stack",
+          yaxis: { title: "GW" },
+          margin: { t: 20, r: 20, b: 70, l: 55 },
+          legend: { orientation: "h" }
+        },
+        { responsive: true }
+      );
+
+      const busById = Object.fromEntries(data.buses.map((bus) => [bus.id, bus]));
+      const mapTraces = data.mapLinks.map(([a, b]) => {
+        const busA = busById[a];
+        const busB = busById[b];
+        return {
+          type: "scattermapbox",
+          lon: [busA.lon, busB.lon],
+          lat: [busA.lat, busB.lat],
+          mode: "lines",
+          line: { color: "rgba(24,32,31,0.45)", width: 2 },
+          hoverinfo: "skip",
+          showlegend: false
+        };
+      });
+
+      mapTraces.push({
+        type: "scattermapbox",
+        lon: data.buses.map((d) => d.lon),
+        lat: data.buses.map((d) => d.lat),
+        text: data.buses.map((d) => d.id),
+        mode: "markers+text",
+        textposition: "top center",
+        marker: {
+          size: 18,
+          color: "#0d6775",
+          opacity: 0.86
+        },
+        hovertemplate: "Bus %{text}<br>%{lat:.3f}, %{lon:.3f}<extra></extra>",
+        name: "Cluster buses"
+      });
+
+      Plotly.newPlot(
+        "taiwan-map",
+        mapTraces,
+        {
+          mapbox: {
+            style: "open-street-map",
+            center: { lat: 23.75, lon: 120.95 },
+            zoom: 6.45
+          },
+          margin: { t: 10, r: 0, b: 0, l: 0 },
+          legend: { orientation: "h" }
+        },
+        { responsive: true }
+      );
+
+      const notes = document.getElementById("notes");
+      data.notes.forEach((note) => {
+        const li = document.createElement("li");
+        li.textContent = note;
+        notes.appendChild(li);
+      });
+    </script>
+  </body>
+</html>
