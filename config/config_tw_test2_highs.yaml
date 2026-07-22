@@ -36,9 +36,15 @@ base_network:
   min_voltage_rebase_voltage: 35000
 
 electricity:
-  co2limit: 4.9123e+7
-  co2base: 4.9123e+7
-  automatic_emission: true
+  co2limit: .inf
+  co2base: 1.2e+8 # unit: kgCO2-eq, year 2025
+  automatic_emission: false
+  # Test 2 represents today's fixed system, so no candidate technologies are investable.
+  extendable_carriers:
+    Generator: []
+    StorageUnit: []
+    Store: []
+    Link: []
 
 atlite:
   default: cutout-2013-era5-tw
