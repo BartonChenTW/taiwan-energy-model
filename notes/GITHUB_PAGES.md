@@ -46,4 +46,4 @@ git checkout -b pypsa-taiwan-dev
 - The page uses Plotly from a CDN, so the browser needs internet access.
 - The map uses an OpenStreetMap basemap through Plotly.
 - The static data is stored in `docs/assets/results-data.js`.
-- For deeper dispatch and energy analysis, use `pypsa_tw/taiwan_simulation_results.ipynb`.
+- For deeper dispatch and energy analysis, use `pypsa_tw/viewer/simulation_viewer.ipynb`.
