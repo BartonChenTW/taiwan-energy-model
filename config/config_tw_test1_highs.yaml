@@ -34,6 +34,14 @@ base_network:
   min_voltage_substation_offshore: 35000
   min_voltage_rebase_voltage: 35000
 
+cluster_options:
+  simplify_network:
+    # Keep isolated subnetworks separate from each other, then fetch small
+    # isolated subnetworks into the nearest backbone network instead of leaving
+    # merged isolated representatives such as TW1 0 and TW2 0.
+    p_threshold_merge_isolated: false
+    s_threshold_fetch_isolated: 0.05
+
 electricity:
   co2limit: .inf
   co2base: 1.2e+8 # unit: kgCO2-eq, year 2025
