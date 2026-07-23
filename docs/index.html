@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Taiwan PyPSA-Earth Simulation Results</title>
+    <title>Taiwan PyPSA-Earth Results | 台灣模擬結果</title>
     <link rel="stylesheet" href="assets/site.css" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <script src="assets/results-data.js"></script>
@@ -12,62 +12,96 @@
     <main class="shell">
       <section class="hero">
         <div>
-          <div class="eyebrow">PyPSA-Earth Taiwan</div>
+          <div class="eyebrow">PyPSA-Earth Taiwan | 台灣</div>
           <h1>Simulation Results Dashboard</h1>
           <p>
-            A static GitHub Pages summary of the first Taiwan electricity-network
-            run. The workflow reached an optimal solution and produced the solved
-            network listed below.
+            Static GitHub Pages summary of the local Taiwan electricity-network runs,
+            including the fixed current-system Test 1 configuration and the isolated-bus
+            diagnosis.
+          </p>
+          <p lang="zh-Hant">
+            本頁整理本機台灣電力網路模擬結果，包含固定當前系統設定的 Test 1，
+            以及 TW1 0、TW2 0 孤立匯流排的診斷。
           </p>
         </div>
         <aside class="status-card">
-          <span>Solver status</span>
-          <strong id="status">Optimal</strong>
-          <span id="completed-at"></span>
+          <span>Latest solved run | 最新已求解</span>
+          <strong id="latest-run"></strong>
+          <span id="updated-at"></span>
         </aside>
       </section>
 
-      <section class="metrics" aria-label="Run metrics">
+      <section class="metrics" aria-label="Latest run metrics">
         <div class="metric">
-          <b>Scenario</b>
-          <span id="scenario"></span>
+          <b>Status | 狀態</b>
+          <span id="status"></span>
         </div>
         <div class="metric">
-          <b>Objective</b>
-          <span id="objective"></span>
+          <b>Solver | 求解器</b>
+          <span id="solver"></span>
         </div>
         <div class="metric">
-          <b>Clusters</b>
-          <span id="clusters"></span>
+          <b>Topology | 拓撲</b>
+          <span id="topology"></span>
         </div>
         <div class="metric">
-          <b>Input Demand</b>
-          <span id="demand"></span>
+          <b>Isolated | 孤立</b>
+          <span id="isolated"></span>
         </div>
       </section>
 
       <section class="grid">
         <article class="panel">
-          <h2>Installed Capacity Mix</h2>
-          <p>Generator and storage-unit capacities assembled before the solved network step.</p>
-          <div id="capacity-pie" class="chart"></div>
+          <h2>Run Inventory</h2>
+          <p>Local Taiwan runs currently available in the workspace.</p>
+          <p lang="zh-Hant">目前工作區中可用的台灣本機模擬。</p>
+          <div class="table-wrap">
+            <table id="run-table">
+              <thead>
+                <tr>
+                  <th>Run | 模擬</th>
+                  <th>Solver | 求解器</th>
+                  <th>Status | 狀態</th>
+                  <th>Network | 網路</th>
+                  <th>Demand | 需求</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
         </article>
 
         <article class="panel">
-          <h2>IRENA Gap Filling</h2>
-          <p>Renewable capacity targets used to fill missing existing capacity estimates.</p>
-          <div id="irena-bars" class="chart"></div>
+          <h2>Capacity Mix</h2>
+          <p>Installed generator and storage capacity from the latest solved Test 1 network.</p>
+          <p lang="zh-Hant">最新已求解 Test 1 網路中的發電與儲能裝置容量。</p>
+          <div id="capacity-pie" class="chart"></div>
         </article>
 
         <article class="panel wide">
-          <h2>Taiwan Spatial Overview</h2>
-          <p>Clustered bus regions on an OpenStreetMap basemap. Line segments provide a lightweight corridor sketch for the dashboard.</p>
+          <h2>Transmission Topology</h2>
+          <p>
+            Physical AC line corridors among the connected TW0 cluster buses. TW1 0 and
+            TW2 0 are intentionally shown as unconnected points.
+          </p>
+          <p lang="zh-Hant">
+            圖中顯示 TW0 連通叢集之間的實體交流線路；TW1 0 與 TW2 0 會刻意顯示為未連線點。
+          </p>
           <div id="taiwan-map" class="chart map"></div>
         </article>
 
         <article class="panel wide">
-          <h2>Run Notes</h2>
-          <ul id="notes" class="notes"></ul>
+          <h2>Isolated-Bus Finding | 孤立匯流排診斷</h2>
+          <div class="finding-grid">
+            <div>
+              <h3>English</h3>
+              <ul id="notes" class="notes"></ul>
+            </div>
+            <div lang="zh-Hant">
+              <h3>繁體中文</h3>
+              <ul id="notes-zh" class="notes"></ul>
+            </div>
+          </div>
           <p class="footer">
             Full local analysis notebook:
             <a href="../pypsa_tw/taiwan_simulation_results.ipynb">pypsa_tw/taiwan_simulation_results.ipynb</a>
@@ -79,24 +113,35 @@
     <script>
       const data = window.TAIWAN_RESULTS;
       const fmt = new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 });
+      const latest = data.runs.find((run) => run.name === data.latestSolvedRun) || data.runs[0];
 
-      document.title = data.run.title;
-      document.getElementById("status").textContent = data.run.status;
-      document.getElementById("completed-at").textContent = `Completed ${data.run.completedAt}`;
-      document.getElementById("scenario").textContent = data.run.scenario;
-      document.getElementById("objective").textContent = data.run.objectiveLabel;
-      document.getElementById("clusters").textContent = `${data.run.clusters} buses`;
-      document.getElementById("demand").textContent = `${fmt.format(data.run.demandGWhHourlyInput)} GWh`;
+      document.getElementById("latest-run").textContent = latest.name;
+      document.getElementById("updated-at").textContent = `Updated ${data.updatedAt}`;
+      document.getElementById("status").textContent = latest.status;
+      document.getElementById("solver").textContent = latest.solver;
+      document.getElementById("topology").textContent = `${latest.buses} buses / ${latest.lines} lines`;
+      document.getElementById("isolated").textContent = latest.isolatedBuses.join(", ");
 
-      const capacityLabels = data.capacityMixGW.map((d) => d.carrier);
-      const capacityValues = data.capacityMixGW.map((d) => d.value);
+      const tbody = document.querySelector("#run-table tbody");
+      data.runs.forEach((run) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><strong>${run.label}</strong><small>${run.labelZh}<br>${run.name}</small></td>
+          <td>${run.solver}</td>
+          <td>${run.status}<small>${run.statusZh}</small></td>
+          <td>${run.buses} buses, ${run.lines} lines<small>components: ${run.componentSizes.join(" / ")}</small></td>
+          <td>${fmt.format(run.demandGWhWeighted)} GWh<small>peak ${fmt.format(run.peakDemandMW)} MW</small></td>
+        `;
+        tbody.appendChild(tr);
+      });
+
       Plotly.newPlot(
         "capacity-pie",
         [
           {
             type: "pie",
-            labels: capacityLabels,
-            values: capacityValues,
+            labels: data.capacityMixGW.map((d) => d.carrier),
+            values: data.capacityMixGW.map((d) => d.value),
             hole: 0.42,
             textinfo: "label+percent",
             hovertemplate: "%{label}<br>%{value:.2f} GW<extra></extra>"
@@ -109,43 +154,8 @@
         { responsive: true }
       );
 
-      Plotly.newPlot(
-        "irena-bars",
-        [
-          {
-            type: "bar",
-            name: "Existing",
-            x: data.irenaTargetsGW.map((d) => d.carrier),
-            y: data.irenaTargetsGW.map((d) => d.existing),
-            marker: { color: "#61766f" }
-          },
-          {
-            type: "bar",
-            name: "Gap filled",
-            x: data.irenaTargetsGW.map((d) => d.carrier),
-            y: data.irenaTargetsGW.map((d) => d.gapFilled),
-            marker: { color: "#b88627" }
-          },
-          {
-            type: "scatter",
-            mode: "markers",
-            name: "IRENA target",
-            x: data.irenaTargetsGW.map((d) => d.carrier),
-            y: data.irenaTargetsGW.map((d) => d.target),
-            marker: { color: "#0d6775", size: 13, symbol: "diamond" }
-          }
-        ],
-        {
-          barmode: "stack",
-          yaxis: { title: "GW" },
-          margin: { t: 20, r: 20, b: 70, l: 55 },
-          legend: { orientation: "h" }
-        },
-        { responsive: true }
-      );
-
       const busById = Object.fromEntries(data.buses.map((bus) => [bus.id, bus]));
-      const mapTraces = data.mapLinks.map(([a, b]) => {
+      const mapTraces = data.mapLinks.map(([a, b, capacity, length]) => {
         const busA = busById[a];
         const busB = busById[b];
         return {
@@ -153,8 +163,8 @@
           lon: [busA.lon, busB.lon],
           lat: [busA.lat, busB.lat],
           mode: "lines",
-          line: { color: "rgba(24,32,31,0.45)", width: 2 },
-          hoverinfo: "skip",
+          line: { color: "rgba(24,32,31,0.48)", width: Math.max(2, capacity / 1800) },
+          hovertemplate: `${a} to ${b}<br>${fmt.format(capacity)} MW<br>${length} km<extra></extra>`,
           showlegend: false
         };
       });
@@ -167,9 +177,9 @@
         mode: "markers+text",
         textposition: "top center",
         marker: {
-          size: 18,
-          color: "#0d6775",
-          opacity: 0.86
+          size: data.buses.map((d) => latest.isolatedBuses.includes(d.id) ? 20 : 16),
+          color: data.buses.map((d) => latest.isolatedBuses.includes(d.id) ? "#b43d33" : "#0d6775"),
+          opacity: 0.9
         },
         hovertemplate: "Bus %{text}<br>%{lat:.3f}, %{lon:.3f}<extra></extra>",
         name: "Cluster buses"
@@ -190,11 +200,30 @@
         { responsive: true }
       );
 
-      const notes = document.getElementById("notes");
-      data.notes.forEach((note) => {
+      const findingNotes = [
+        data.diagnostics.isolateFinding,
+        data.diagnostics.sourceEightyOneBusLayer,
+        data.diagnostics.thresholdVoltageFinding,
+        data.diagnostics.suggestedFix,
+        ...data.notes
+      ];
+      const findingNotesZh = [
+        data.diagnostics.isolateFindingZh,
+        data.diagnostics.sourceEightyOneBusLayerZh,
+        data.diagnostics.thresholdVoltageFindingZh,
+        data.diagnostics.suggestedFixZh,
+        ...data.notesZh
+      ];
+
+      findingNotes.forEach((note) => {
         const li = document.createElement("li");
         li.textContent = note;
-        notes.appendChild(li);
+        document.getElementById("notes").appendChild(li);
+      });
+      findingNotesZh.forEach((note) => {
+        const li = document.createElement("li");
+        li.textContent = note;
+        document.getElementById("notes-zh").appendChild(li);
       });
     </script>
   </body>
