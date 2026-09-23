@@ -48,6 +48,29 @@ key: YOUR_CDS_API_KEY
  - Practical next fix: correct or supplement the Taiwan input transmission topology for the source buses above, or deliberately configure isolated subnetwork handling in `cluster_options.simplify_network` such as `s_threshold_fetch_isolated` or dropping/merging thresholds.
  - Updated the static GitHub Pages dashboard in `docs/` with the latest local Taiwan run inventory and bilingual English/Traditional Chinese notes.
 
+## 2026-09-23
+ - Added the Test 1 isolated-bus fix (`cluster_options.simplify_network.p_threshold_merge_isolated: false`, `s_threshold_fetch_isolated: 0.05`) to `pypsa_tw/config/config_tw_test2_highs.yaml`. Test 2 now differs from Test 1 only in run name and snapshot range.
+ - Stale results found: the stored `tw_test1_highs` (2026-07-22) and `tw_test2_highs` (2026-07-17) results predated the current configs. The old Test 1 HiGHS result had 3 subnetworks and 32,490 MWh of load shedding; the old Test 2 result had 15 subnetworks and extendable generators. The old Test 2 result is archived in `results/_archive/tw_test2_highs_2013_fullyear_4h_6b_2026-07-17/`.
+ - Reran `tw_test1_highs_2013_7d_4h_6b` with the current config:
+   - 6 buses, 1 connected subnetwork, no load shedding, no extendable generators.
+   - Identical to `tw_test1_gurobi_2013_7d_4h_6b`: same buses, generators, `p_nom` and load; objective `8.18958195e+09` for both (relative difference 1.4e-15); dispatch by carrier matches exactly.
+ - Solver performance, Test 1 (7 days, 4H, 6 buses):
+   - Solver-only time: HiGHS IPM `0.06 s` (21 iterations), Gurobi barrier `0.09 s` (17 iterations).
+   - `solve_network` rule wall time: HiGHS `8.5708 s`, Gurobi `9.9515 s`, mostly model build and I/O.
+   - Test 1 is too small to separate the solvers.
+ - Reran `tw_test2_highs_2013_fullyear_4h_6b` with the isolated-bus fix: 1 subnetwork, no load shedding, HiGHS optimal in `6.52 s` (rule `20.7457 s`), objective `5.3769645464e+09`. **The result is invalid** (next point).
+ - **Cutout too short.** `cutouts/cutout-2013-era5-tw.nc` (built 2026-07-16) covers only 2013-03-01 00:00 to 2013-03-06 23:00, 144 hourly steps. Outside that range the renewable profiles are missing, and solar, onwind, offwind and ror get `p_max_pu = 1.0`.
+   - Test 2: 98% of snapshots are affected. Solar capacity factor 98.6% (12.4 GW producing 107 TWh), so the full-year generation mix is meaningless.
+   - Test 1 (03-01 to 03-08): the last 6 of 42 snapshots are affected, so renewables are overstated on the last day.
+   - The archived 2026-07-17 Test 2 result has the same problem.
+   - Fix: build a full-year 2013 cutout, then rerun Test 1 and Test 2. Consider a check that the cutout covers the snapshot range.
+ - **Snapshot weighting.** Test 1's 42 snapshots are weighted `208.57 h` each (sum 8760 h), so its objective is annualised from one March week. That is why the 7-day objective (`8.19e9`) is higher than the full-year one (`5.38e9`): the extrapolated week overstates CCGT (EUR 2.9 bn vs 0.84 bn).
+ - **Lines still extendable.** The Taiwan configs inherit `scenario.ll: ["copt"]` from `config.default.yaml`, so `prepare_network.set_transmission_limit` makes lines extendable. Test 2 expanded line `TW0 0`–`TW0 3` from 13,927 to 18,338 MVA (+4.4 GW in total). To keep today's grid fixed, set `ll: ["v1.0"]`.
+ - Consequence: TODO Phase 1 #5 is not conclusive yet. Connectivity is solved (1 subnetwork, no load shedding), but adequacy needs a full-year cutout and `ll: ["v1.0"]`.
+ - **Environment pitfall.** Running `.venv\python.exe` directly without `conda activate` leaves `GDAL_DATA` and `GDAL_DRIVER_PATH` unset. `build_renewable_profiles` for `offwind-ac` then fails because GDAL cannot load the HDF5 plugin for `data/gebco/GEBCO_2025_sub_ice.nc`, although the plugins exist in `.venv/Library/lib/gdalplugins`. Fix: activate the env, or set `GDAL_DATA=<env>/Library/share/gdal`, `GDAL_DRIVER_PATH=<env>/Library/lib/gdalplugins` and `PROJ_DATA=<env>/Library/share/proj`.
+ - Harmless: `add_electricity` logs a `UnicodeEncodeError` on the Windows console for a `≥` character in the hydro-classification message; the step itself completes.
+ - **File permissions.** Files that Codex created or rewrote were owned by the local account `CodexSandboxOffline`, and `EMPA\chyi` had read-only access (the folders' `CREATOR OWNER` rule gives full control only to the creator). Fixed by renaming `pypsa_tw/` and `docs/` aside and copying them back, so the copies are owned by `EMPA\chyi`. The contents were verified identical.
+
 
 TODO:
  - to run PyPSA-Earth Taiwan!
