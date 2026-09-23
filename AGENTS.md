@@ -45,22 +45,35 @@ Equivalent tutorial dry-run that was previously tried in this repo:
 python -m snakemake -j 1 solve_all_networks --configfile config.tutorial.yaml -n
 ```
 
-If you want to force the repo-local environment without activating it:
+If you want to force the repo-local environment without activating it, set the GDAL/PROJ variables that `conda activate` would set. Without them, `build_renewable_profiles` fails because GDAL cannot load its HDF5 plugin for `data/gebco/GEBCO_2025_sub_ice.nc`:
 
 ```powershell
-& .\.venv\python.exe -m snakemake -j 1 solve_all_networks --configfile config.tutorial.yaml -n
+$env:GDAL_DATA = "$PWD\.venv\Library\share\gdal"
+$env:GDAL_DRIVER_PATH = "$PWD\.venv\Library\lib\gdalplugins"
+$env:PROJ_DATA = "$PWD\.venv\Library\share\proj"
+$env:PATH = "$PWD\.venv;$PWD\.venv\Library\bin;$PWD\.venv\Scripts;$env:PATH"
+& .\.venv\python.exe -m snakemake -j 1 solve_all_networks -n
 ```
 
-## Current Config In Repo
+## Taiwan Configs
 
-`config.yaml` is currently set for Taiwan:
+`config.yaml` is gitignored. Copy one of the Taiwan test configs into it before running:
 
-- `countries: ["TW"]`
-- `tutorial: false`
-- Solver: `glpk`
-- `retrieve_databundle: true`
-- `retrieve_databundle_sector: true`
-- `build_cutout: true`
+```powershell
+Copy-Item pypsa_tw\config\config_tw_test2_highs.yaml config.yaml
+```
+
+| Config | Period | Solver |
+| --- | --- | --- |
+| `config_tw_test1_highs.yaml` | 2013-03-01 to 03-08, 4H | HiGHS |
+| `config_tw_test1_gurobi.yaml` | 2013-03-01 to 03-08, 4H | Gurobi |
+| `config_tw_test2_highs.yaml` | full year 2013, 4H | HiGHS |
+
+All three model today's fixed system on 6 buses: no extendable generators, no load shedding, `ll: ["v1.0"]` (fixed transmission), and small isolated subnetworks fetched into the main grid.
+
+They share the full-year weather cutout `cutouts/cutout-2013-era5-tw.nc` (`atlite.cutouts.cutout-2013-era5-tw.time: 2013-01-01 to 2013-12-31`) with `build_cutout: false`. To rebuild it, move the old file aside and run with a one-off overlay that sets `enable: {build_cutout: true}`. `scripts/add_electricity.py` stops with an error if a profile doesn't cover the snapshots.
+
+After solving, refresh the dashboard data with `python pypsa_tw/viewer/export_dashboard_data.py` (see `pypsa_tw/GITHUB_PAGES.md`).
 
 ## Previously Tried
 

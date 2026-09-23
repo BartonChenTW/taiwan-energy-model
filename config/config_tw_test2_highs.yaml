@@ -22,6 +22,9 @@ run:
 scenario:
   clusters: [6]
   opts: [Co2L-4H]
+  # Keep today's transmission grid fixed. The default "copt" makes lines
+  # extendable (see scripts/prepare_network.py set_transmission_limit).
+  ll: ["v1.0"]
 
 snapshots:
   start: "2013-01-01"
@@ -56,6 +59,14 @@ electricity:
 
 atlite:
   default: cutout-2013-era5-tw
+  cutouts:
+    # Full 2013 weather year, shared by all Taiwan runs. The time range is
+    # set explicitly so it does not depend on each run's snapshots.
+    cutout-2013-era5-tw:
+      module: era5
+      dx: 0.3
+      dy: 0.3
+      time: ["2013-01-01", "2013-12-31"]
 
 renewable:
   hydro:
