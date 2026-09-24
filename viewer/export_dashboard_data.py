@@ -728,6 +728,8 @@ def export_sandbox(repo, out):
             print(f"[skip] sandbox {key}: missing network or outdated spec")
             continue
         costs = pd.read_csv(repo / base["costs"], index_col=0)
+        if set(meta["spec"]["levers"]) & set(levers.SECURITY_LEVERS):
+            continue  # energy-security case: exported by export_security
         variant = meta["spec"].get("variant", "central")
         if variant != "central":
             # Uncertainty variant: metrics only, grouped under its scenario.
@@ -930,6 +932,110 @@ def export_sector_draft(repo, out):
     print(f"wrote sector_draft.json ({', '.join(r['run'] for r in runs)})")
 
 
+# ---------- Energy security (docs/energy-security.html) ----------
+SUPPLY_GROUP = {"CCGT": "gas", "OCGT": "gas", "coal": "coal", "oil": "oil", "nuclear": "nuclear", "solar": "solar",
+                "onwind": "onwind", "offwind-ac": "offwind", "offwind-dc": "offwind", "ror": "hydro", "hydro": "hydro",
+                "PHS": "storage", "battery": "storage", "load shedding": "unserved"}
+
+
+def security_case(n, meta):
+    """Daily series and headline numbers of one blockade case."""
+    w = n.snapshot_weightings.generators
+    ac = n.buses.index[n.buses.carrier == "AC"]
+    supply = {}
+    gen = n.generators[n.generators.bus.isin(ac)]
+    for c, s_ in n.generators_t.p[gen.index].mul(w, axis=0).T.groupby(gen.carrier).sum().T.items():
+        supply[SUPPLY_GROUP.get(c, "other")] = supply.get(SUPPLY_GROUP.get(c, "other"), 0) + s_
+    links = n.links[n.links.bus1.isin(ac)]
+    if len(links):
+        for c, s_ in (-n.links_t.p1[links.index]).mul(w, axis=0).T.groupby(links.carrier).sum().T.items():
+            supply[SUPPLY_GROUP.get(c, "other")] = supply.get(SUPPLY_GROUP.get(c, "other"), 0) + s_
+    for c, s_ in n.storage_units_t.p.clip(lower=0).mul(w, axis=0).T.groupby(n.storage_units.carrier).sum().T.items():
+        supply[SUPPLY_GROUP.get(c, "other")] = supply.get(SUPPLY_GROUP.get(c, "other"), 0) + s_
+    demand = n.loads_t.p_set.sum(axis=1).mul(w)
+    day = lambda s_: s_.resample("D").sum() / 1e3  # GWh per day
+    daily = {g: [_r(v, 1) for v in day(s_)] for g, s_ in supply.items() if s_.abs().sum() > 1}
+    stocks = {}
+    for st in n.stores.index[n.stores.carrier.str.endswith(" stock")]:
+        e = n.stores_t.e[st]
+        e0 = n.stores.at[st, "e_initial"]
+        stocks[st.split()[1]] = [_r(v, 1) for v in (e.resample("D").last() / e0 * 100 if e0 > 0 else e * 0)]
+    unserved = supply.get("unserved", demand * 0)
+    shed_daily = day(unserved)
+    dem_daily = day(demand)
+    empty = {}
+    for fuel, series in stocks.items():
+        first = next((i + 1 for i, v in enumerate(series) if v is not None and v < 1), None)
+        empty[fuel] = first
+    total_d, total_u = float(demand.sum() / 1e3), float(unserved.sum() / 1e3)
+    # Rationed demand is cut before the solve, so add it back to count it as not supplied.
+    r = float(meta["spec"]["levers"].get("rationing_frac", 0) or 0)
+    rationed = total_d * r / (1 - r) if r < 1 else 0.0
+    full_d = total_d + rationed
+    peak = unserved / w
+    return {
+        "dates": [str(d.date()) for d in dem_daily.index],
+        "demand_GWh": [_r(v, 1) for v in dem_daily],
+        "supply_GWh": daily,
+        "stock_pct": stocks,
+        "unserved_GWh": [_r(v, 1) for v in shed_daily],
+        "metrics": {
+            "demand_GWh": _r(total_d, 0), "unserved_GWh": _r(total_u, 0),
+            "unserved_share": _r(total_u / total_d if total_d else 0, 4),
+            "rationed_GWh": _r(rationed, 0), "normal_demand_GWh": _r(full_d, 0),
+            "short_GWh": _r(total_u + rationed, 0), "short_share": _r((total_u + rationed) / full_d if full_d else 0, 4),
+            "worst_day_share": _r(float(((shed_daily + dem_daily * r / (1 - r)) / (dem_daily / (1 - r))).max())
+                                  if len(dem_daily) and r < 1 else 0, 4),
+            "stock_left_pct": {f: v[-1] for f, v in stocks.items() if v},
+            "peak_shortfall_GW": _r(float(peak.max() / 1e3) if len(peak) else 0, 2),
+            "days_until_empty": empty,
+        },
+    }
+
+
+def export_security(repo, out):
+    """Energy-security (blockade) cases from results/sandbox/, with their no-blockade reference."""
+    root = repo / "results" / "sandbox"
+    if not root.exists():
+        return
+    levers = _sandbox_modules(repo)
+    sec_out = out / "security"
+    (sec_out / "cases").mkdir(parents=True, exist_ok=True)
+    rows = []
+    for spec_file in sorted(root.glob("*/spec.json")):
+        meta = json.loads(spec_file.read_text(encoding="utf-8"))
+        lv = meta["spec"]["levers"]
+        if not set(lv) & set(levers.SECURITY_LEVERS) or meta["spec"].get("variant", "central") != "central":
+            continue
+        if levers.spec_hash(meta["spec"]) != meta["hash"]:
+            continue
+        nc = spec_file.parent / "networks" / f"{levers.BASES[meta['spec']['base']]['case']}.nc"
+        case = security_case(pypsa.Network(str(nc)), meta)
+        sec = levers.security(meta["spec"])
+        entry = {"hash": meta["hash"], "label": meta["label"], "levers": lv, "security": sec,
+                 "changed": levers.changed(meta["spec"]), "metrics": case["metrics"], "applied": meta["applied"]}
+        rows.append(entry)
+        (sec_out / "cases" / f"{meta['hash']}.json").write_text(json.dumps({**case, "scenario": entry}, separators=(",", ":")),
+                                                                  encoding="utf-8")
+    # Reference: the same window with normal imports and no other change.
+    for r in rows:
+        ref = next((x for x in rows if x["security"]["blockade_days"] == r["security"]["blockade_days"]
+                    and x["security"]["blockade_season"] == r["security"]["blockade_season"]
+                    and set(x["changed"]) <= {"blockade_days", "blockade_season"}), None)
+        r["reference"] = ref["hash"] if ref else None
+        if ref:
+            r["extra_unserved_GWh"] = _r(r["metrics"]["unserved_GWh"] - ref["metrics"]["unserved_GWh"], 0)
+            r["extra_short_GWh"] = _r(r["metrics"]["short_GWh"] - ref["metrics"]["short_GWh"], 0)
+    meta_levers = {k: {"default": d, "min": lo, "max": hi, "unit": u, "description": desc}
+                   for k, (d, lo, hi, u, desc) in levers.SECURITY_LEVERS.items()}
+    (sec_out / "index.json").write_text(json.dumps({
+        "generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+        "levers": meta_levers, "seasons": levers.BLOCKADE_SEASONS, "damage_sites": levers.DAMAGE_SITES,
+        "standby_units": levers.STANDBY_UNITS, "nuclear_plants": levers.NUCLEAR_PLANTS, "scenarios": rows,
+    }, indent=1, ensure_ascii=False), encoding="utf-8")
+    print(f"wrote {len(rows)} energy-security cases to {sec_out.relative_to(repo)}")
+
+
 def main():
     logging.disable(logging.WARNING)
     warnings.filterwarnings("ignore")
@@ -981,6 +1087,7 @@ def main():
     print(f"wrote {len(index)} cases to {out.relative_to(repo)}")
     export_sandbox(repo, out)
     export_sector_draft(repo, out)
+    export_security(repo, out)
     # Cache busting: give each CSS/JS link a content hash, so browsers load changed files at once.
     from stamp_assets import stamp
 
