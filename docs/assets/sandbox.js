@@ -38,7 +38,7 @@ const I18N = {
     t_cost: "System cost", t_cost_note: (op, inv) => `operating ${op} + investment ${inv} M€/yr`,
     t_cost_restart: "restart costs not included",
     t_co2: "CO₂ emissions", t_re: "Renewable share", t_curtail: "Curtailment", t_unserved: "Unserved demand",
-    range_label: "range", unc_title: "Uncertainty",
+    range_label: "range", unc_title: "Uncertainty", today_gw: (x) => `today ${x} GW`, today_twh: (x) => `today ${x} TWh`,
     unc_note: (v) => `Ranges: the same scenario solved under ${v}, and investment ±30% with a 5–10% discount rate. Changes vs base are paired: each variant is compared with the base case under the same variant.`,
     unc_weather: (y) => `${y} weather`, unc_low: "gas, coal and demand −10%", unc_high: "gas, coal and demand +10%",
     unc_none: "Ranges are not computed for this scenario yet: only technology-cost ranges are shown.",
@@ -70,7 +70,7 @@ const I18N = {
     t_cost: "系統成本", t_cost_note: (op, inv) => `營運 ${op} + 投資 ${inv} 百萬歐元/年`,
     t_cost_restart: "未含重啟成本",
     t_co2: "CO₂ 排放", t_re: "再生能源占比", t_curtail: "棄電量", t_unserved: "未供電量",
-    range_label: "範圍", unc_title: "不確定性",
+    range_label: "範圍", unc_title: "不確定性", today_gw: (x) => `目前 ${x} GW`, today_twh: (x) => `目前 ${x} TWh`,
     unc_note: (v) => `範圍：同一情境在 ${v} 下求解，以及投資成本 ±30%、折現率 5–10%。相對基準的變化為成對比較：每個變體都與同一變體下的基準情境比較。`,
     unc_weather: (y) => `${y} 年氣象`, unc_low: "天然氣、煤價與需求 −10%", unc_high: "天然氣、煤價與需求 +10%",
     unc_none: "此情境尚未計算範圍：僅顯示技術成本範圍。",
@@ -124,18 +124,39 @@ function groupSum(byCarrier) {
 }
 
 // ---------- levers ----------
+// Starting values in today's system (from the base case), shown next to each lever.
+function todayValues(baseCase) {
+  const c = baseCase.results.capacity_GW;
+  return {
+    add_solar_GW: c.solar || 0, add_onwind_GW: c.onwind || 0,
+    add_offwind_GW: (c["offwind-ac"] || 0) + (c["offwind-dc"] || 0), add_battery_GW: c.battery || 0,
+    add_ccgt_GW: c.CCGT || 0, add_nuclear_new_GW: c.nuclear || 0, coal_retire_frac: c.coal || 0,
+    demand_scale: baseCase.summary.demand_TWh,
+  };
+}
 const meta = (k) => state.index.levers[k];
 const defaults = () => Object.fromEntries(Object.entries(state.index.levers).map(([k, m]) => [k, Array.isArray(m.default) ? [] : m.default]));
 
 function leverText(k, v) {
   const c = CONTROLS.find((x) => x[0] === k);
+  const today = state.today || {};
   if (k === "nuclear_restart") return v.length ? v.map((p) => state.index.nuclear_plants[p].name).join(", ") : "–";
   if (k === "co2_cap_frac" && v === null) return t("co2_off");
   if (k.startsWith("add_")) {
     const d = c[2] < 1 ? 1 : 0;
-    return `${v < 0 ? "−" : "+"}${nf(Math.abs(v), d)} GW`;
+    const change = `${v < 0 ? "−" : "+"}${nf(Math.abs(v), d)} GW`;
+    return today[k] === undefined ? change : `${change} → ${nf(Math.max(0, today[k] + v), 1)} GW`;
   }
+  if (k === "coal_retire_frac" && today[k] !== undefined) return `${nf(v * 100, 0)} % → ${nf(today[k] * (1 - v), 1)} GW`;
+  if (k === "demand_scale" && today[k] !== undefined) return `${nf(v, 2)} × → ${nf(today[k] * v, 0)} TWh`;
   return `${nf(v * c[3], c[3] === 100 ? 0 : 2)} ${c[4]}`;
+}
+
+// "today 15.4 GW" under the lever name.
+function todayText(k) {
+  const today = state.today || {};
+  if (today[k] === undefined) return "";
+  return k === "demand_scale" ? t("today_twh")(nf(today[k], 0)) : t("today_gw")(nf(today[k], 1));
 }
 
 function renderControls() {
@@ -150,7 +171,8 @@ function renderControls() {
       }
       const isCap = k === "co2_cap_frac";
       const val = isCap && v === null ? m.max : v;
-      return `<div class="lever"><label class="lever-label" for="lv-${k}">${esc(t(k))} <output id="out-${k}">${esc(leverText(k, v))}</output></label>
+      const today = todayText(k);
+      return `<div class="lever"><label class="lever-label" for="lv-${k}"><span>${esc(t(k))}${today ? `<span class="lever-today">${esc(today)}</span>` : ""}</span> <output id="out-${k}">${esc(leverText(k, v))}</output></label>
         ${isCap ? `<label class="check"><input type="checkbox" id="cap-on" ${v !== null ? "checked" : ""}> ${esc(t("co2_apply"))}</label>` : ""}
         <input type="range" id="lv-${k}" data-lever="${k}" min="${m.min}" max="${m.max}" step="${step}" value="${val}" ${isCap && v === null ? "disabled" : ""}></div>`;
     }).join("")}</fieldset>`).join("");
@@ -442,6 +464,7 @@ async function init() {
     state.index = await res.json();
     state.levers = defaults();
     readUrl();
+    state.today = todayValues(await loadCase(state.index.base));
     renderAll();
   } catch (err) {
     $("match").innerHTML = `<b>${esc(t("loading_error"))}</b><br><small>${esc(err.message)}</small>`;
