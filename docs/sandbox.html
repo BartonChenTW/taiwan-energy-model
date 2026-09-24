@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Taiwan Power Sandbox | 台灣電力情境沙盒</title>
     <meta name="description" content="Explore what-if scenarios for Taiwan's power system with the PyPSA-Earth Taiwan model." />
-    <link rel="stylesheet" href="assets/site.css" />
+    <link rel="stylesheet" href="assets/site.css?v=01c0f52f" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-    <script src="assets/sandbox.js" defer></script>
+    <script src="assets/sandbox.js?v=84893ddb" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -67,6 +67,12 @@
               <div id="sb-chart-map" class="chart tall"></div>
             </article>
           </div>
+
+          <article class="panel">
+            <h3 data-i18n="year_title">Dispatch over the year</h3>
+            <p class="sub" data-i18n="year_sub">National generation by technology and demand (GW), daily averages</p>
+            <div id="sb-chart-year" class="chart tall"></div>
+          </article>
 
           <article class="panel">
             <h3 data-i18n="dispatch_title">Dispatch for one week</h3>

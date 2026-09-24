@@ -6,7 +6,7 @@ Solve the Phase 1 scenario grid: one lever at a time, plus a few combinations.
     python pypsa_tw/sandbox/batch.py --variants low high w2018   # uncertainty variants too
 
 Scenarios are solved one after another (shared workstation: one solve at a
-time, HiGHS). Each takes about 20-35 s, so the full grid of 39 takes about
+time, HiGHS). Each takes about 20-35 s, so the full grid of 42 takes about
 15-20 minutes. Cached scenarios are skipped.
 """
 
@@ -37,7 +37,7 @@ GRID = [
     # Nuclear
     {"nuclear_restart": ["maanshan"]},
     {"nuclear_restart": ["chinshan", "kuosheng", "maanshan"]},
-    {"add_nuclear_new_GW": 2.7},
+    *({"add_nuclear_new_GW": round(n * 1.35, 2)} for n in (1, 2, 3, 5)),  # 1, 2, 3, 5 plants of 1.35 GW
     # Coal retirement and CO2 cap
     *({"coal_retire_frac": v} for v in (0.5, 1.0)),
     *({"co2_cap_frac": v} for v in (0.9, 0.75, 0.6)),

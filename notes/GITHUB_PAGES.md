@@ -101,6 +101,16 @@ Both identifiers are designed to be public. Until `FORM` is set, the page says o
 - The sandbox links to the request page with the current levers, so a request carries the exact spec (`scenario`, JSON) and a sandbox link.
 - To answer one, solve it with `pypsa_tw/sandbox/run_scenario.py --levers '...'`, export, push, and reply with the sandbox link.
 
+## Cache busting
+
+GitHub Pages lets browsers cache files for 10 minutes or longer, so visitors could keep an old script after a change. `pypsa_tw/viewer/stamp_assets.py` gives each CSS/JS link in `docs/*.html` a content hash (`assets/sandbox.js?v=d1d94db0`), so a changed file gets a new URL.
+
+The exporter runs it at the end. After editing only a page's JS or CSS, run it by hand:
+
+```powershell
+python pypsa_tw/viewer/stamp_assets.py
+```
+
 ## Publish
 
 ```powershell

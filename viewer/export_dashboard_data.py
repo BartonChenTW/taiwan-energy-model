@@ -781,12 +781,16 @@ def export_sandbox(repo, out):
         print(f"[{'OK  ' if not r['summary']['warnings'] else 'WARN'}] sandbox {key} {r['meta']['label']} "
               f"(+{len(var)} variants): {text or 'no warnings'}")
 
+    base_costs = rows[base_hash]["costs"]
     lever_meta = {name: {"default": d, "min": lo, "max": hi, "unit": unit, "description": desc}
                   for name, (d, lo, hi, unit, desc) in levers.LEVERS.items()}
     (sb_out / "index.json").write_text(json.dumps({
         "generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
         "base": base_hash, "base_run": rows[base_hash]["meta"]["base_run"], "caveat": SANDBOX_CAVEAT,
         "levers": lever_meta, "nuclear_plants": levers.NUCLEAR_PLANTS, "nuclear_new_site": levers.NUCLEAR_NEW_SITE,
+        # Fuel prices in the base case (technology-data, EUR per MWh of fuel), shown next to the price levers.
+        "fuel_price_EUR_per_MWh": {"gas": _r(float(base_costs.at["CCGT", "fuel"]), 2),
+                                   "coal": _r(float(base_costs.at["coal", "fuel"]), 2)},
         "currency": CURRENCY, "scenarios": index,
         "uncertainty": {"variants": {k: v for k, v in levers.VARIANTS.items() if k != "central"},
                         "fuel_demand_spread": levers.FUEL_DEMAND_SPREAD,
@@ -977,6 +981,11 @@ def main():
     print(f"wrote {len(index)} cases to {out.relative_to(repo)}")
     export_sandbox(repo, out)
     export_sector_draft(repo, out)
+    # Cache busting: give each CSS/JS link a content hash, so browsers load changed files at once.
+    from stamp_assets import stamp
+
+    changed, _ = stamp(repo / "docs")
+    print(f"stamped asset versions in {len(changed)} page(s)")
 
 
 if __name__ == "__main__":

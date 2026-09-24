@@ -343,5 +343,17 @@ Barton asked to try PyPSA-Earth's sector-coupled model. Overlay: `pypsa_tw/confi
    - Solar is too high because the model builds 16.4 GW of rooftop solar (extendable by default); the rooftop setting should be fixed for a reference year.
  - **Draft page:** run selector (2025 reference and 2030 test) and an electricity-mix chart against official 2025 generation.
 
+## 2026-09-24: sandbox usability (Barton's review)
+
+ - **New nuclear** is set as a number of plants (0-5). One plant is one Lungmen-design reactor unit, 1,350 MW; Lungmen was built with 2 × 1,350 MW.
+   - The lever stays in GW (max 6.75), so the existing 2.7 GW scenario is "2 plants" and stays cached.
+   - Added 1, 3 and 5 plants with their uncertainty variants (12 solves, 242 s). One plant still leaves 19 GWh unserved; 2 or more leave none.
+ - **Today's values on every lever:** capacities, coal, demand (251 TWh), fuel prices (gas 24.6 and coal 9.6 EUR/MWh of fuel, technology-data 2030) and line rating (70 %). Each is shown with the resulting value, e.g. "+5 GW → 20.4 GW".
+ - **New chart:** dispatch over the whole year as daily averages (365 points from the 4-hourly results).
+ - **Not computed:** when the levers match no computed scenario, the match box is red, with an icon and the heading "Not computed yet". It lists the differences compactly and links to the request form.
+ - **Cache busting:**
+   - Barton did not see the "today" values after they were pushed. GitHub Pages lets browsers cache assets (`max-age=600`).
+   - `pypsa_tw/viewer/stamp_assets.py` gives every CSS/JS link a content hash (`?v=`); the exporter runs it.
+
 TODO:
  - to run PyPSA-Earth Taiwan!

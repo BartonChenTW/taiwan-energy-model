@@ -62,8 +62,10 @@ NUCLEAR_PLANTS = {
     "kuosheng": {"name": "Kuosheng (核二)", "MW": 1896, "lat": 25.2025, "lon": 121.6627, "osm": "way 203381069"},
     "maanshan": {"name": "Maanshan (核三)", "MW": 1780, "lat": 21.9584, "lon": 120.7512, "osm": "relation 7565672"},
 }
-# New nuclear goes to the Lungmen site (核四, never operated), OSM way 546051675.
-NUCLEAR_NEW_SITE = {"name": "Lungmen site (核四)", "lat": 25.0458, "lon": 121.9282, "osm": "way 546051675"}
+# New nuclear goes to the Lungmen site (核四, never operated), OSM way 546051675. The page counts it
+# in plants of one Lungmen-design reactor unit (ABWR, 1,350 MW; Lungmen was built with two).
+NUCLEAR_NEW_SITE = {"name": "Lungmen site (核四)", "lat": 25.0458, "lon": 121.9282, "osm": "way 546051675",
+                    "unit_MW": 1350, "max_units": 5}
 
 # name: (default, min, max, unit, description)
 LEVERS = {
@@ -77,7 +79,7 @@ LEVERS = {
     "add_battery_GW": (0.0, -0.9, 10.0, "GW", "Battery storage added (+, 4 h, by peak demand) or removed (-)"),
     "add_ccgt_GW": (0.0, -26.0, 10.0, "GW", "Gas CCGT added (+, by peak demand) or removed (-)"),
     "nuclear_restart": ([], None, None, "plants", "Existing nuclear plants restarted: chinshan, kuosheng, maanshan"),
-    "add_nuclear_new_GW": (0.0, 0.0, 5.0, "GW", "New nuclear at the Lungmen site"),
+    "add_nuclear_new_GW": (0.0, 0.0, 6.75, "GW", "New nuclear at the Lungmen site (the page sets it in plants of 1.35 GW, 0-5)"),
     "coal_retire_frac": (0.0, 0.0, 1.0, "fraction", "Share of coal capacity retired (every coal plant scaled down)"),
     "co2_cap_frac": (None, 0.3, 1.0, "fraction", "CO2 cap as a fraction of the base case's emissions; null = no cap"),
     "demand_scale": (1.0, 0.9, 1.3, "x", "Annual demand relative to the base case (hourly shape unchanged)"),

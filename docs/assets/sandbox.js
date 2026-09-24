@@ -28,17 +28,19 @@ const I18N = {
     levers_title: "What if…", levers_sub: "Start from today's system and change one or more levers.",
     g_add: "Add or remove capacity", g_add_note: "Right of zero adds new capacity; left of zero removes existing plants (all plants of that type scaled down by the same share).", g_nuclear: "Nuclear", g_policy: "Coal and CO₂", g_market: "Demand and fuel prices", g_grid: "Transmission",
     add_solar_GW: "Solar PV", add_onwind_GW: "Onshore wind", add_offwind_GW: "Offshore wind", add_battery_GW: "Battery (4 h)",
-    add_ccgt_GW: "Gas (CCGT)", nuclear_restart: "Restart existing plants", add_nuclear_new_GW: "New nuclear (Lungmen site)",
+    add_ccgt_GW: "Gas (CCGT)", nuclear_restart: "Restart existing plants", add_nuclear_new_GW: "New nuclear plants (Lungmen site)", plants: (n) => `${n} ${n === 1 ? "plant" : "plants"}`,
+    plant_size: (gw) => `each plant ${gw} GW (one Lungmen-design reactor)`,
     coal_retire_frac: "Coal retired", co2_cap_frac: "CO₂ cap (share of base emissions)", co2_off: "no cap", co2_apply: "Apply a cap",
     demand_scale: "Demand", gas_price_mult: "Gas price", coal_price_mult: "Coal price",
     line_rating: "Usable line rating", reset: "Reset to base", share: "Copy link", copied: "Link copied.",
     copy_failed: "Copy the address bar to share this scenario.",
-    exact: "Exact match", nearest: "Nearest computed scenario", nearest_note: "Your settings are not computed yet; this is the closest pre-computed scenario. Differences (yours → shown):",
+    exact: "Exact match", nearest: "Showing the nearest computed scenario", not_computed: "Not computed yet: these results are for different settings", nearest_note: "Differences (yours → shown):",
     showing: "Showing", base_label: "base case", request_exact: "Request exactly these settings →",
     t_cost: "System cost", t_cost_note: (op, inv) => `operating ${op} + investment ${inv} M€/yr`,
     t_cost_restart: "restart costs not included",
     t_co2: "CO₂ emissions", t_re: "Renewable share", t_curtail: "Curtailment", t_unserved: "Unserved demand",
     range_label: "range", unc_title: "Uncertainty", today_gw: (x) => `today ${x} GW`, today_twh: (x) => `today ${x} TWh`,
+    today_fuel: (x) => `today ${x} €/MWh of fuel`, today_pct: (x) => `today ${x} % (N-1 margin)`,
     unc_note: (v) => `Ranges: the same scenario solved under ${v}, and investment ±30% with a 5–10% discount rate. Changes vs base are paired: each variant is compared with the base case under the same variant.`,
     unc_weather: (y) => `${y} weather`, unc_low: "gas, coal and demand −10%", unc_high: "gas, coal and demand +10%",
     unc_none: "Ranges are not computed for this scenario yet: only technology-cost ranges are shown.",
@@ -46,6 +48,7 @@ const I18N = {
     week_label: (w, a, b) => `Week ${w} · ${a} – ${b}`,
     cap_title: "Installed capacity", cap_sub: "GW by technology: base case and scenario",
     map_title: "Line loading", map_sub: "Highest flow over the year as a share of the usable line rating: darker and thicker lines are more loaded; hover for the value",
+    year_title: "Dispatch over the year", year_sub: "National generation by technology and demand (GW), daily averages",
     dispatch_title: "Dispatch for one week", dispatch_sub: "National generation by technology and demand (GW), 4-hourly",
     week: "Week", demand_line: "Demand", base_series: "Base case", scenario_series: "Scenario",
     all_title: "All computed scenarios", all_sub: "Select a row to open it",
@@ -60,17 +63,19 @@ const I18N = {
     levers_title: "如果……", levers_sub: "從現有系統出發，調整一個或多個項目。",
     g_add: "增減容量", g_add_note: "零以右為新增容量；零以左為移除既有電廠（該類電廠依相同比例縮減）。", g_nuclear: "核能", g_policy: "燃煤與 CO₂", g_market: "需求與燃料價格", g_grid: "輸電",
     add_solar_GW: "太陽光電", add_onwind_GW: "陸域風電", add_offwind_GW: "離岸風電", add_battery_GW: "電池儲能（4 小時）",
-    add_ccgt_GW: "燃氣複循環", nuclear_restart: "重啟既有電廠", add_nuclear_new_GW: "新核電（龍門廠址）",
+    add_ccgt_GW: "燃氣複循環", nuclear_restart: "重啟既有電廠", add_nuclear_new_GW: "新核電廠（龍門廠址）", plants: (n) => `${n} 座`,
+    plant_size: (gw) => `每座 ${gw} GW（龍門設計的一部機組）`,
     coal_retire_frac: "燃煤除役比例", co2_cap_frac: "CO₂ 上限（基準排放的比例）", co2_off: "不設上限", co2_apply: "設定上限",
     demand_scale: "需求", gas_price_mult: "天然氣價格", coal_price_mult: "煤價",
     line_rating: "線路可用容量", reset: "回到基準", share: "複製連結", copied: "已複製連結。",
     copy_failed: "請複製網址列以分享此情境。",
-    exact: "完全符合", nearest: "最接近的已計算情境", nearest_note: "您的設定尚未計算；以下為最接近的預先計算情境。差異（您的設定 → 顯示的情境）：",
+    exact: "完全符合", nearest: "目前顯示最接近的已計算情境", not_computed: "尚未計算：以下結果對應的是不同的設定", nearest_note: "差異（您的設定 → 顯示的情境）：",
     showing: "顯示", base_label: "基準情境", request_exact: "申請模擬這組設定 →",
     t_cost: "系統成本", t_cost_note: (op, inv) => `營運 ${op} + 投資 ${inv} 百萬歐元/年`,
     t_cost_restart: "未含重啟成本",
     t_co2: "CO₂ 排放", t_re: "再生能源占比", t_curtail: "棄電量", t_unserved: "未供電量",
     range_label: "範圍", unc_title: "不確定性", today_gw: (x) => `目前 ${x} GW`, today_twh: (x) => `目前 ${x} TWh`,
+    today_fuel: (x) => `目前燃料價格 ${x} 歐元/MWh`, today_pct: (x) => `目前 ${x} %（N-1 安全裕度）`,
     unc_note: (v) => `範圍：同一情境在 ${v} 下求解，以及投資成本 ±30%、折現率 5–10%。相對基準的變化為成對比較：每個變體都與同一變體下的基準情境比較。`,
     unc_weather: (y) => `${y} 年氣象`, unc_low: "天然氣、煤價與需求 −10%", unc_high: "天然氣、煤價與需求 +10%",
     unc_none: "此情境尚未計算範圍：僅顯示技術成本範圍。",
@@ -78,6 +83,7 @@ const I18N = {
     week_label: (w, a, b) => `第 ${w} 週 · ${a} – ${b}`,
     cap_title: "裝置容量", cap_sub: "各技術裝置容量（GW）：基準與情境",
     map_title: "線路負載", map_sub: "全年最大潮流占線路可用容量的比例：顏色越深、線越粗表示負載越高；游標移上可看數值",
+    year_title: "全年調度", year_sub: "全國各技術發電量與需求（GW），每日平均",
     dispatch_title: "一週的調度", dispatch_sub: "全國各技術發電量與需求（GW），每 4 小時",
     week: "週次", demand_line: "需求", base_series: "基準情境", scenario_series: "情境",
     all_title: "所有已計算情境", all_sub: "點選一列以開啟",
@@ -124,24 +130,33 @@ function groupSum(byCarrier) {
 }
 
 // ---------- levers ----------
+// New nuclear is set in plants of one Lungmen-design reactor (1,350 MW), 0-5 plants.
+const nuclearSite = () => ({ unit_MW: 1350, max_units: 5, ...((state.index && state.index.nuclear_new_site) || {}) });
 // Starting values in today's system (from the base case), shown next to each lever.
 function todayValues(baseCase) {
   const c = baseCase.results.capacity_GW;
   return {
     add_solar_GW: c.solar || 0, add_onwind_GW: c.onwind || 0,
     add_offwind_GW: (c["offwind-ac"] || 0) + (c["offwind-dc"] || 0), add_battery_GW: c.battery || 0,
-    add_ccgt_GW: c.CCGT || 0, add_nuclear_new_GW: c.nuclear || 0, coal_retire_frac: c.coal || 0,
+    add_ccgt_GW: c.CCGT || 0, coal_retire_frac: c.coal || 0,
     demand_scale: baseCase.summary.demand_TWh,
+    gas_price_mult: (state.index.fuel_price_EUR_per_MWh || {}).gas,
+    coal_price_mult: (state.index.fuel_price_EUR_per_MWh || {}).coal,
+    line_rating: 0.7,
   };
 }
 const meta = (k) => state.index.levers[k];
 const defaults = () => Object.fromEntries(Object.entries(state.index.levers).map(([k, m]) => [k, Array.isArray(m.default) ? [] : m.default]));
 
-function leverText(k, v) {
+function leverText(k, v, compact = false) {
   const c = CONTROLS.find((x) => x[0] === k);
-  const today = state.today || {};
+  const today = compact ? {} : state.today || {};
   if (k === "nuclear_restart") return v.length ? v.map((p) => state.index.nuclear_plants[p].name).join(", ") : "–";
   if (k === "co2_cap_frac" && v === null) return t("co2_off");
+  if (k === "add_nuclear_new_GW" && state.index) {
+    const n = t("plants")(Math.round(v / (nuclearSite().unit_MW / 1e3)));
+    return compact ? n : `${n} → ${nf(v, 2)} GW`;
+  }
   if (k.startsWith("add_")) {
     const d = c[2] < 1 ? 1 : 0;
     const change = `${v < 0 ? "−" : "+"}${nf(Math.abs(v), d)} GW`;
@@ -149,6 +164,7 @@ function leverText(k, v) {
   }
   if (k === "coal_retire_frac" && today[k] !== undefined) return `${nf(v * 100, 0)} % → ${nf(today[k] * (1 - v), 1)} GW`;
   if (k === "demand_scale" && today[k] !== undefined) return `${nf(v, 2)} × → ${nf(today[k] * v, 0)} TWh`;
+  if (k.endsWith("_price_mult") && today[k] !== undefined) return `${nf(v, 2)} × → ${nf(today[k] * v, 1)} €/MWh`;
   return `${nf(v * c[3], c[3] === 100 ? 0 : 2)} ${c[4]}`;
 }
 
@@ -156,7 +172,10 @@ function leverText(k, v) {
 function todayText(k) {
   const today = state.today || {};
   if (today[k] === undefined) return "";
-  return k === "demand_scale" ? t("today_twh")(nf(today[k], 0)) : t("today_gw")(nf(today[k], 1));
+  if (k === "demand_scale") return t("today_twh")(nf(today[k], 0));
+  if (k.endsWith("_price_mult")) return t("today_fuel")(nf(today[k], 1));
+  if (k === "line_rating") return t("today_pct")(nf(today[k] * 100, 0));
+  return t("today_gw")(nf(today[k], 1));
 }
 
 function renderControls() {
@@ -171,6 +190,11 @@ function renderControls() {
       }
       const isCap = k === "co2_cap_frac";
       const val = isCap && v === null ? m.max : v;
+      if (k === "add_nuclear_new_GW") {
+        const site = nuclearSite(), unitGW = site.unit_MW / 1e3;
+        return `<div class="lever"><label class="lever-label" for="lv-${k}"><span>${esc(t(k))}<span class="lever-today">${esc(t("plant_size")(nf(unitGW, 2)))}</span></span> <output id="out-${k}">${esc(leverText(k, v))}</output></label>
+        <input type="range" id="lv-${k}" data-lever="${k}" data-unit-gw="${unitGW}" min="0" max="${site.max_units}" step="1" value="${Math.round(v / unitGW)}"></div>`;
+      }
       const today = todayText(k);
       return `<div class="lever"><label class="lever-label" for="lv-${k}"><span>${esc(t(k))}${today ? `<span class="lever-today">${esc(today)}</span>` : ""}</span> <output id="out-${k}">${esc(leverText(k, v))}</output></label>
         ${isCap ? `<label class="check"><input type="checkbox" id="cap-on" ${v !== null ? "checked" : ""}> ${esc(t("co2_apply"))}</label>` : ""}
@@ -178,7 +202,8 @@ function renderControls() {
     }).join("")}</fieldset>`).join("");
 
   box.querySelectorAll("input[type=range]").forEach((el) => el.addEventListener("input", () => {
-    state.levers[el.dataset.lever] = Number(el.value);
+    // New nuclear: the slider counts plants; the lever is GW.
+    state.levers[el.dataset.lever] = el.dataset.unitGw ? Math.round(Number(el.value) * Number(el.dataset.unitGw) * 100) / 100 : Number(el.value);
     $(`out-${el.dataset.lever}`).textContent = leverText(el.dataset.lever, state.levers[el.dataset.lever]);
     update();
   }));
@@ -265,10 +290,17 @@ function renderMatch(best) {
   const exact = best.d < 1e-9;
   const diffs = Object.keys(state.index.levers)
     .filter((k) => JSON.stringify(state.levers[k]) !== JSON.stringify(s.levers[k]))
-    .map((k) => `${esc(t(k))}: ${esc(leverText(k, state.levers[k]))} → ${esc(leverText(k, s.levers[k]))}`);
-  $("match").innerHTML = `<b>${esc(exact ? t("exact") : t("nearest"))}:</b> ${esc(s.hash === state.index.base ? t("base_label") : s.label)}` +
-    (exact ? "" : `<p class="note">${esc(t("nearest_note"))} ${diffs.join(" · ")}</p>
-      <p class="note"><a href="request.html${esc(location.search)}">${esc(t("request_exact"))}</a></p>`);
+    .map((k) => `${esc(t(k))}: ${esc(leverText(k, state.levers[k], true))} → ${esc(leverText(k, s.levers[k], true))}`);
+  const box = $("match");
+  // Not computed: a red status box (icon and heading too, so it does not rely on colour alone).
+  box.classList.toggle("inexact", !exact);
+  const shown = esc(s.hash === state.index.base ? t("base_label") : s.label);
+  box.innerHTML = exact
+    ? `<b>${esc(t("exact"))}:</b> ${shown}`
+    : `<div class="match-head"><span class="icon" aria-hidden="true">!</span><b>${esc(t("not_computed"))}</b></div>
+       <p class="note">${esc(t("nearest_note"))} ${diffs.join(" · ")}</p>
+       <p class="note"><b>${esc(t("nearest"))}:</b> ${shown}</p>
+       <p class="note"><a href="request.html${esc(location.search)}">${esc(t("request_exact"))}</a></p>`;
 }
 
 function uncertaintyText(s) {
@@ -364,6 +396,39 @@ function renderDispatch(cur) {
   Plotly.react("sb-chart-dispatch", traces, baseLayout({ hovermode: "x unified", yaxis: { title: { text: "GW", font: { size: 11 } } } }), plotConfig);
 }
 
+// Whole year, one point per day: the average of that day's time steps.
+function renderYear(cur) {
+  const time = cur.inputs.time;
+  const days = [];
+  const index = new Map();
+  time.forEach((ts, i) => {
+    const day = ts.slice(0, 10);
+    if (!index.has(day)) { index.set(day, days.length); days.push({ day, idx: [] }); }
+    days[index.get(day)].idx.push(i);
+  });
+  const mean = (series) => days.map((d) => d.idx.reduce((a, i) => a + series[i], 0) / d.idx.length / 1e3);
+  const byGroup = {};
+  for (const [carrier, series] of Object.entries(cur.results.dispatch_MW)) {
+    const g = CARRIER_GROUP[carrier] || "other";
+    byGroup[g] = byGroup[g] ? byGroup[g].map((v, i) => v + series[i]) : series.slice();
+  }
+  const x = days.map((d) => d.day);
+  const traces = [];
+  for (const g of GROUPS) {
+    if (!byGroup[g]) continue;
+    const pos = mean(byGroup[g].map((v) => Math.max(v, 0))), neg = mean(byGroup[g].map((v) => Math.min(v, 0)));
+    const common = { type: "scatter", mode: "lines", x, line: { width: 0 }, fillcolor: cssVar(`--c-${g}`),
+                     name: GROUP_LABEL[state.lang][g], legendgroup: g,
+                     hovertemplate: `${GROUP_LABEL[state.lang][g]}: %{y:.1f} GW<extra></extra>` };
+    if (pos.some((v) => v > 1e-3)) traces.push({ ...common, y: pos, stackgroup: "pos" });
+    if (neg.some((v) => v < -1e-3)) traces.push({ ...common, y: neg, stackgroup: "neg", showlegend: false });
+  }
+  traces.push({ type: "scatter", mode: "lines", x, y: mean(cur.inputs.demand_MW), name: t("demand_line"),
+                line: { color: cssVar("--ink"), width: 1.5 }, hovertemplate: `${t("demand_line")}: %{y:.1f} GW<extra></extra>` });
+  Plotly.react("sb-chart-year", traces, baseLayout({ hovermode: "x unified", xaxis: { type: "date" },
+    yaxis: { title: { text: "GW", font: { size: 11 } } } }), plotConfig);
+}
+
 function renderMap(cur) {
   const buses = Object.fromEntries(cur.results.buses.map((b) => [b.name, b]));
   const ramp = ["#cde2fb", "#86b6ef", "#3987e5", "#1c5cab", "#0d366b"]; // sequential blue, light to dark
@@ -421,6 +486,7 @@ async function update() {
   const [base, cur] = await Promise.all([loadCase(state.index.base), loadCase(best.s.hash)]);
   if (ticket !== pending) return; // a newer update is on its way
   renderCapacity(base, cur);
+  renderYear(cur);
   renderDispatch(cur);
   renderMap(cur);
   renderTable();

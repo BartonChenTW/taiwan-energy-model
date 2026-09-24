@@ -392,3 +392,9 @@ html[lang="zh-Hant"] .t-en { display: none; }
 .scenario-box ul { margin: 6px 0; padding-left: 18px; font-size: 14px; }
 .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .lever-today { display: block; color: var(--muted); font-size: 12px; font-weight: 400; }
+
+/* Sandbox: the settings are not a computed scenario */
+.match.inexact { border: 2px solid var(--critical); background: color-mix(in srgb, var(--critical) 8%, var(--surface)); }
+.match-head { display: flex; align-items: center; gap: 8px; color: var(--ink); font-size: 15px; }
+.match-head .icon { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%;
+                    background: var(--critical); color: #fff; font-weight: 700; flex: none; }
