@@ -104,17 +104,21 @@ def add_ccgt(n, total_mw, record):
         record[name] = round(mw, 1)
 
 
-def add_battery(n, total_mw, record):
-    """New batteries by bus, in proportion to peak demand; efficiencies of the existing battery."""
-    ref = n.storage_units[n.storage_units.carrier == "battery"].iloc[0]
+def add_battery(n, total_mw, costs, record):
+    """New batteries by bus, in proportion to peak demand.
+
+    Charge and discharge efficiency are technology-data's inverter efficiency
+    (0.96 each way). The existing battery in the base network has 1.0, which
+    would make new batteries lossless.
+    """
+    eff = costs.at["battery inverter", "efficiency"]
     add = _share(_peak_load_by_bus(n), total_mw)
     for bus, mw in add.items():
         if mw <= 0:
             continue
         name = f"{bus} battery sandbox"
         n.add("StorageUnit", name, bus=bus, carrier="battery", p_nom=mw, max_hours=NEW_BATTERY_HOURS,
-              efficiency_store=ref.efficiency_store, efficiency_dispatch=ref.efficiency_dispatch,
-              marginal_cost=ref.marginal_cost, cyclic_state_of_charge=True)
+              efficiency_store=eff, efficiency_dispatch=eff, cyclic_state_of_charge=True)
         record[name] = round(mw, 1)
 
 
@@ -157,7 +161,7 @@ def apply_levers(n, spec, base_emissions):
     if lv["add_ccgt_GW"] > 0:
         add_ccgt(n, lv["add_ccgt_GW"] * 1e3, added)
     if lv["add_battery_GW"] > 0:
-        add_battery(n, lv["add_battery_GW"] * 1e3, added)
+        add_battery(n, lv["add_battery_GW"] * 1e3, costs, added)
     for plant in lv["nuclear_restart"]:
         p = NUCLEAR_PLANTS[plant]
         add_nuclear(n, plant, p["MW"], p["lat"], p["lon"], costs, added)
@@ -194,7 +198,8 @@ def run(spec, force=False):
     b = BASES[norm["base"]]
     out_dir = SANDBOX / key
     nc = out_dir / "networks" / f"{b['case']}.nc"
-    if nc.exists() and not force:
+    # spec.json is written last, so a solve that was interrupted is not taken as cached.
+    if nc.exists() and (out_dir / "spec.json").exists() and not force:
         print(f"[cached] {key}: {describe(norm)}")
         return key, nc
 
