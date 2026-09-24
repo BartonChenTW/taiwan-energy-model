@@ -72,6 +72,7 @@ const I18N = {
     exact: "完全符合", nearest: "目前顯示最接近的已計算情境", not_computed: "尚未計算：以下結果對應的是不同的設定", nearest_note: "差異（您的設定 → 顯示的情境）：",
     showing: "顯示", base_label: "基準情境", request_exact: "申請模擬這組設定 →",
     t_cost: "系統成本", t_cost_note: (op, inv) => `營運 ${op} + 投資 ${inv} 百萬歐元/年`,
+    fx_note: (c) => `；匯率 1 歐元 = ${c ? c.eur_twd : 36.185} 新台幣（臺灣銀行，${c ? c.date.slice(0, 10) : "2026-09-24"}）`,
     t_cost_restart: "未含重啟成本",
     t_co2: "CO₂ 排放", t_re: "再生能源占比", t_curtail: "棄電量", t_unserved: "未供電量",
     range_label: "範圍", unc_title: "不確定性", today_gw: (x) => `目前 ${x} GW`, today_twh: (x) => `目前 ${x} TWh`,
@@ -310,6 +311,11 @@ function uncertaintyText(s) {
   return names.length ? t("unc_note")([t("unc_weather")("2013"), ...names].join(", ")) : t("unc_none");
 }
 
+// In Chinese, costs also get an NT$ figure (億元 = 1e8 NT$) at the dashboard's exchange rate.
+const ntdYi = (meur) => (meur === null || meur === undefined ? null : meur * 1e6 * ((state.index.currency || {}).eur_twd || 36.185) / 1e8);
+const ntdNote = (meur, signedValue = false) => (state.lang === "zh" && meur !== null && meur !== undefined
+  ? `（約新台幣 ${signedValue ? signed(ntdYi(meur), 0) : nf(ntdYi(meur), 0)} 億元/年）` : "");
+
 function renderTiles(s) {
   const m = s.metrics, d = s.deltas, rg = s.ranges || {}, dr = s.delta_ranges || {};
   // Value with its range, e.g. "118.4 (112.0–125.1)", shown only when the range is not a single point.
@@ -334,7 +340,9 @@ function renderTiles(s) {
   const costNote = t("t_cost_note")(nf(m.operating_cost_MEUR, 0), nf(m.investment_MEUR, 0)) +
     (m.investment_not_costed.length ? `; ${t("t_cost_restart")}` : "");
   $("sb-tiles").innerHTML = [
-    tile(t("t_cost"), nf(m.system_cost_MEUR, 0), "M€/yr", "system_cost_MEUR", signed(d.system_cost_MEUR, 0) + dspan("system_cost_MEUR", 1, 0), costNote),
+    tile(t("t_cost"), nf(m.system_cost_MEUR, 0), "M€/yr", "system_cost_MEUR",
+         signed(d.system_cost_MEUR, 0) + dspan("system_cost_MEUR", 1, 0) + ntdNote(d.system_cost_MEUR, true),
+         costNote + ntdNote(m.system_cost_MEUR) + (state.lang === "zh" ? t("fx_note")(state.index.currency) : "")),
     tile(t("t_co2"), nf(m.co2_Mt, 1), "Mt", "co2_Mt", signed(d.co2_Mt, 1) + dspan("co2_Mt", 1, 1)),
     tile(t("t_re"), nf(m.re_share * 100, 1), "%", "re_share", `${signed(d.re_share * 100, 1)} pp` + dspan("re_share", 100, 1, " pp")),
     tile(t("t_curtail"), nf(m.curtailment_TWh, 2), "TWh", "curtailment_TWh", signed(d.curtailment_TWh, 2) + dspan("curtailment_TWh", 1, 2)),
@@ -459,7 +467,7 @@ function renderTable() {
   $("sb-table").innerHTML = `<table><thead><tr><th>${esc(t("col_scenario"))}</th><th class="num">${esc(t("col_cost"))}</th>
     <th class="num">${esc(t("col_co2"))}</th><th class="num">${esc(t("col_re"))}</th><th class="num">${esc(t("col_unserved"))}</th></tr></thead><tbody>` +
     rows.map((s) => `<tr class="clickable${s.hash === state.current ? " selected" : ""}" data-hash="${esc(s.hash)}" tabindex="0">
-      <td>${esc(s.hash === state.index.base ? t("base_label") : s.label)}</td><td class="num">${signed(s.deltas.system_cost_MEUR, 0)}</td>
+      <td>${esc(s.hash === state.index.base ? t("base_label") : s.label)}</td><td class="num">${signed(s.deltas.system_cost_MEUR, 0)}${state.lang === "zh" ? `<br><span class="muted">${signed(ntdYi(s.deltas.system_cost_MEUR), 0)} 億元</span>` : ""}</td>
       <td class="num">${signed(s.deltas.co2_Mt, 1)}</td><td class="num">${nf(s.metrics.re_share * 100, 1)}%</td>
       <td class="num">${nf(s.metrics.unserved_GWh, 0)}</td></tr>`).join("") + "</tbody></table>";
   $("sb-table").querySelectorAll("tr[data-hash]").forEach((tr) => {

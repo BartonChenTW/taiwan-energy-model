@@ -1,5 +1,11 @@
 {
- "generated": "2026-09-24 21:48 UTC",
+ "generated": "2026-09-24 21:54 UTC",
+ "currency": {
+  "eur_twd": 36.185,
+  "date": "2026-09-24 17:01",
+  "basis": "Bank of Taiwan spot rate, buy/sell midpoint",
+  "source": "https://rate.bot.com.tw/xrt?Lang=zh-TW"
+ },
  "official_2025": {
   "total_TWh": 289.7,
   "mix_share": {

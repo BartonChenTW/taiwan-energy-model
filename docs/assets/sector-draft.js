@@ -140,7 +140,8 @@ function render() {
     tile(t.co2, nf(d.co2_Mt, 0), "Mt", t.co2_note(nf(d.reference.co2_fuel_combustion_2025_Mt, 1))),
     tile(t.elec, nf(d.electricity_demand_TWh, 0), "TWh", t.elec_note(nf(d.reference.electricity_consumption_2024_TWh, 1), nf(d.reference.taipower_system_generation_2024_TWh, 1))),
     tile(t.final, nf(d.final_demand_TWh, 0), "TWh", t.final_note),
-    tile(t.cost, nf(d.objective_EUR / 1e9, 1), "bn €/yr", t.cost_note(d.planning_year)),
+    tile(t.cost, nf(d.objective_EUR / 1e9, 1), "bn €/yr", t.cost_note(d.planning_year) +
+         (lang() === "zh" ? `（約新台幣 ${nf(d.objective_EUR * (all.currency || {}).eur_twd / 1e8 || d.objective_EUR * 36.185 / 1e8, 0)} 億元/年；匯率 1 歐元 = ${(all.currency || {}).eur_twd || 36.185} 新台幣）` : "")),
   ].join("");
 
   const byUse = {};

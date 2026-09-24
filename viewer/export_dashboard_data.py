@@ -924,7 +924,7 @@ def export_sector_draft(repo, out):
     runs = [r for r in (sector_run_payload(repo, *args) for args in SECTOR_DRAFT_RUNS) if r]
     if not runs:
         return
-    payload = {"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+    payload = {"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "currency": CURRENCY,
                "official_2025": official_mix_2025(repo), "runs": runs}
     (out / "sector_draft.json").write_text(json.dumps(payload, indent=1), encoding="utf-8")
     print(f"wrote sector_draft.json ({', '.join(r['run'] for r in runs)})")
