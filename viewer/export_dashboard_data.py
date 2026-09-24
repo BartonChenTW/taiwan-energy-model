@@ -5,6 +5,7 @@ Reads every solved network under ``results/<run>/networks/*.nc`` and writes
 
 - ``docs/data/index.json``: one summary record per case, with sanity warnings
 - ``docs/data/cases/<run>__<case>.json``: inputs, technology data and results
+- ``docs/data/scenarios.json``: weather-year and future-year scenario comparison
 
 Run from anywhere inside the repository:
 
@@ -431,6 +432,20 @@ def build_comparison(repo, featured_path):
 
 
 SETUP_CONFIG = "pypsa_tw/config/config_tw_test2_highs.yaml"
+SCENARIO_DIR = "pypsa_tw/config/scenarios"
+# Renewable carriers for the renewable share of generation (geothermal and biomass
+# count as renewable, as in Taiwan's statistics).
+RE_SHARE_CARRIERS = ["solar", "onwind", "offwind-ac", "offwind-dc", "ror", "hydro", "geothermal", "biomass"]
+# Scenario groups on the dashboard: (label, run). Each run's case is elec_s_6_ec_lv1.0_Co2L-4H.
+SCENARIO_CASE = "elec_s_6_ec_lv1.0_Co2L-4H"
+SCENARIOS = {
+    "weather": [("2011", "tw_weather2011_highs_fullyear_4h_6b_ls"),
+                ("2013", "tw_test2_highs_2013_fullyear_4h_6b_ls"),
+                ("2018", "tw_weather2018_highs_fullyear_4h_6b_ls")],
+    "future": [("today", "tw_test2_highs_2013_fullyear_4h_6b_ls"),
+               ("2030", "tw_future2030_highs_w2013_4h_6b_ls"),
+               ("2034", "tw_future2034_highs_w2013_4h_6b_ls")],
+}
 
 
 def _deep_update(base, extra):
@@ -439,29 +454,106 @@ def _deep_update(base, extra):
     return base
 
 
-def model_setup(repo):
-    """Which year each model input represents, read from the merged Taiwan config."""
+def _yaml(repo, rel):
     import yaml
 
-    cfg = yaml.safe_load((repo / "config.default.yaml").read_text(encoding="utf-8"))
-    cfg = _deep_update(cfg, yaml.safe_load((repo / SETUP_CONFIG).read_text(encoding="utf-8")))
+    return yaml.safe_load((repo / rel).read_text(encoding="utf-8"))
+
+
+_GEGIS = {}
+
+
+def gegis_total_twh(repo, prediction_year, weather_year):
+    key = (prediction_year, weather_year)
+    if key not in _GEGIS:
+        f = repo / "data" / "ssp2-2.6" / str(prediction_year) / f"era5_{weather_year}" / "Asia.csv"
+        d = pd.read_csv(f, sep=";")
+        _GEGIS[key] = float(d.loc[d.region_code == "TW", "Electricity demand"].sum() / 1e6) if f.exists() else None
+    return _GEGIS[key]
+
+
+def setup_from_config(repo, cfg, label):
     units = sorted((repo / "pypsa_tw/data/official").glob("taipower_units_*.json"))
     fleet_date = json.loads(units[-1].read_bytes().decode("utf-8-sig"))["DateTime"][:10] if units else None
     lo, el, sc = cfg["load_options"], cfg["electricity"], cfg["scenario"]
+    fleet_file = el.get("custom_powerplants_file", "data/custom_powerplants.csv")
+    planned = re.search(r"_tw(\d{4})\.csv$", fleet_file)
+    gegis = gegis_total_twh(repo, lo.get("prediction_year"), lo.get("weather_year"))
     return {
-        "config": SETUP_CONFIG,
+        "config": label,
         "weather_year": str(cfg["snapshots"]["start"])[:4],
         "cutout": cfg["atlite"]["default"],
         "demand_profile_year": lo.get("prediction_year"),
         "demand_profile_weather_year": lo.get("weather_year"),
         "demand_scale": lo.get("scale"),
+        "demand_target_TWh": _r(gegis * lo.get("scale", 1), 1) if gegis else None,
+        "system_year": int(planned.group(1)) if planned else None,
         "fleet": "official Taipower list" if el.get("custom_powerplants") == "replace" else "powerplantmatching",
+        "fleet_file": fleet_file,
         "fleet_date": fleet_date,
         "costs_year": cfg["costs"]["year"],
         "transmission": sc["ll"][0],
         "clusters": sc["clusters"][0],
         "opts": sc["opts"][0],
     }
+
+
+def run_setups(repo):
+    """Setup of every run that has a config in pypsa_tw/config/ (scenario overlays sit on top of Test 2)."""
+    setups = {}
+    for f in sorted((repo / "pypsa_tw/config").glob("config_tw_test*.yaml")):
+        rel = f.relative_to(repo).as_posix()
+        cfg = _deep_update(_yaml(repo, "config.default.yaml"), _yaml(repo, rel))
+        setups[cfg["run"]["name"]] = setup_from_config(repo, cfg, rel)
+    for f in sorted((repo / SCENARIO_DIR).glob("*.yaml")):
+        rel = f.relative_to(repo).as_posix()
+        cfg = _deep_update(_deep_update(_yaml(repo, "config.default.yaml"), _yaml(repo, SETUP_CONFIG)), _yaml(repo, rel))
+        setups[cfg["run"]["name"]] = setup_from_config(repo, cfg, f"{SETUP_CONFIG} + {rel}")
+    return setups
+
+
+def setup_for_run(setups, run):
+    if run in setups:
+        return setups[run]
+    # Diagnostic runs (one-off overlays, see pypsa_tw/log.md) extend a config's run name.
+    base = max((r for r in setups if run.startswith(r)), key=len, default=None)
+    if base is None:
+        return None
+    return {**setups[base], "config": setups[base]["config"] + " + one-off overlay (see pypsa_tw/log.md)"}
+
+
+def model_setup(repo):
+    """Setup of the Test 2 config (the featured run)."""
+    return setup_from_config(repo, _deep_update(_yaml(repo, "config.default.yaml"), _yaml(repo, SETUP_CONFIG)),
+                             SETUP_CONFIG)
+
+
+def build_scenarios(repo, index, details):
+    """Weather-year and future-year scenario comparison."""
+    by_run = {c["run"]: c for c in index if c["case"] == SCENARIO_CASE}
+    out = {}
+    for group, members in SCENARIOS.items():
+        rows = []
+        for label, run in members:
+            c = by_run.get(run)
+            if c is None:
+                rows.append({"label": label, "run": run, "available": False})
+                continue
+            d = details[c["id"]]
+            energy = pd.Series(d["results"]["energy_TWh"])
+            gen = energy.drop(SHED_CARRIERS, errors="ignore")
+            gen = gen[~gen.index.isin(["PHS", "battery"])]
+            rows.append({
+                "label": label, "run": run, "id": c["id"], "available": True,
+                "demand_TWh": c["demand_TWh"], "peak_GW": _r(max(d["inputs"]["demand_MW"]) / 1e3, 2),
+                "unserved_GWh": c["unserved_GWh"], "unserved_peak_GW": c["unserved_peak_GW"],
+                "co2_Mt": c["co2_Mt"], "price_mean": c["price_mean"],
+                "re_share": _r(gen.reindex(RE_SHARE_CARRIERS).fillna(0).sum() / gen.sum(), 4),
+                "energy_TWh": d["results"]["energy_TWh"], "capacity_GW": d["results"]["capacity_GW"],
+                "setup": c.get("setup"),
+            })
+        out[group] = rows
+    return out
 
 
 def export_catalog(repo, out):
@@ -504,12 +596,16 @@ def main():
     out = repo / "docs" / "data"
     (out / "cases").mkdir(parents=True, exist_ok=True)
 
-    index = []
+    index, details = [], {}
+    setups = run_setups(repo)
     for nc in sorted((repo / "results").glob("*/networks/*.nc")):
         run = nc.parent.parent.name
         if run.startswith("_"):  # skip results/_archive
             continue
         summary, detail = export_case(repo, run, nc)
+        summary["setup"] = setup_for_run(setups, run)
+        detail["summary"] = summary
+        details[summary["id"]] = detail
         (out / "cases" / f"{summary['id']}.json").write_text(
             json.dumps(detail, separators=(",", ":")), encoding="utf-8"
         )
@@ -524,6 +620,11 @@ def main():
     if comparison:
         (out / "comparison.json").write_text(json.dumps(comparison, indent=1), encoding="utf-8")
         print("wrote comparison.json (PyPSA-Earth default vs Taiwan data)")
+
+    scenarios = build_scenarios(repo, index, details)
+    (out / "scenarios.json").write_text(json.dumps(scenarios, indent=1), encoding="utf-8")
+    print("wrote scenarios.json (" + ", ".join(f"{g}: {sum(r['available'] for r in rows)}/{len(rows)}"
+                                              for g, rows in scenarios.items()) + ")")
 
     (out / "index.json").write_text(
         json.dumps(

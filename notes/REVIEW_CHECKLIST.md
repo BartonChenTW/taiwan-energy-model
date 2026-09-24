@@ -41,3 +41,13 @@ Items Claude decided or assumed without your confirmation. Tick them off, or not
 - [ ] **Report transcription** (`official/taiwan_projections_targets.csv`): Tables 3-1 and 3-2 of the 2025 supply-demand report were typed in by hand. The consistency checks pass, but a second look at the PDF (`official/moea_power_supply_demand_report_20260609.pdf`, pp. 19–20) would help.
 - [ ] **Which outlook to use for future scenarios:** the 2025 edition (+1.7%/yr, full PDF) or the 2026 edition (+2.5%/yr, press release only).
 - [ ] **2023 night peak (36,146 MW)** is derived: the 2024 value minus the reported increase.
+
+## Future-year scenarios (`pypsa_tw/data/build_future_powerplants.py`, `pypsa_tw/config/scenarios/`)
+
+- [ ] **Figure 3-3 transcription** (`official/moea_thermal_schedule_2024_2034.csv`): typed from the chart image on p. 22 of the report. The totals match, but check the unit names and months, and the `in_base_fleet` flags (which units are already in today's list).
+- [ ] **Sites of the two "新增燃氣電源" units** (2032 and 2033, 1,300 MW each): the report gives no site; they are placed at Tatan.
+- [ ] **Geothermal and biomass locations:** geothermal all at Qingshui (Yilan); biomass split evenly over the six special municipalities. They also run at a capacity factor of about 100%, which is high for geothermal.
+- [ ] **Renewable targets are national** but applied to the Taipower-system fleet and demand. This is one reason the model's renewable share (35.8% in 2030) is above the 30% target.
+- [ ] **Offshore wind growth follows today's farms** (Changhua, Yunlin). Round 3 zones are elsewhere too (e.g. Hsinchu, Miaoli).
+- [ ] **Demand growth:** the 2025 edition's +1.7%/yr is used. The 2026 edition says +2.5%/yr (press release only), which would give about 290 TWh in 2030.
+- [ ] **Model-year rule:** a unit counts if it is in service on 1 July of the model year.

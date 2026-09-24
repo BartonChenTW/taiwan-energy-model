@@ -1,0 +1,29 @@
+# Scenario overlay: the planned system in 2030, under 2013 weather.
+# Use on top of the Test 2 config:
+#   snakemake -j 1 solve_all_networks --configfile pypsa_tw/config/config_tw_test2_highs.yaml pypsa_tw/config/scenarios/future_2030.yaml
+# Fleet: data/custom_powerplants_tw2030.csv from pypsa_tw/data/build_future_powerplants.py
+# (MOEA supply-demand report 2025 edition: thermal schedule of Figure 3-3,
+# renewable targets of Table 3-1). The grid stays as today, nothing is
+# investable, and load shedding is allowed, so any shortfall shows up as
+# unserved energy.
+
+run:
+  name: "tw_future2030_highs_w2013_4h_6b_ls"
+  sector_name: "tw_future2030_highs_w2013_4h_6b_ls"
+
+electricity:
+  custom_powerplants_file: data/custom_powerplants_tw2030.csv
+  powerplants_filter: (DateOut >= 2030 or DateOut != DateOut) and (DateIn <= 2030 or DateIn != DateIn)
+
+load_options:
+  # The report's +1.7%/yr (2025-2034) applied to 251.44 TWh in 2024:
+  # 251.44 x 1.017^6 = 278.2 TWh, i.e. scale 278.2 / 335.7 = 0.8287.
+  scale: 0.8287
+
+costs:
+  # technology-data publishes every 5 years; 2030 is the nearest to 2030.
+  year: 2030
+
+solving:
+  options:
+    load_shedding: true

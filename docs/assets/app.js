@@ -6,7 +6,8 @@ const GROUPS = ["coal", "nuclear", "onwind", "storage", "solar", "offwind", "gas
 const CARRIER_GROUP = {
   coal: "coal", lignite: "coal", nuclear: "nuclear", onwind: "onwind", PHS: "storage",
   battery: "storage", solar: "solar", "offwind-ac": "offwind", "offwind-dc": "offwind",
-  CCGT: "gas", OCGT: "gas", ror: "hydro", hydro: "hydro", oil: "other", load: "unserved", "load shedding": "unserved",
+  CCGT: "gas", OCGT: "gas", ror: "hydro", hydro: "hydro", oil: "other", geothermal: "other", biomass: "other",
+  load: "unserved", "load shedding": "unserved",
 };
 const AVAILABILITY_ORDER = ["solar", "onwind", "offwind-ac", "offwind-dc", "ror"];
 
@@ -23,6 +24,18 @@ const I18N = {
     su_costs: "Costs and fuel prices", su_costs_note: "PyPSA technology-data projections for this year; they set the dispatch order (marginal costs).",
     su_resolution: "Resolution", su_resolution_note: (cl, opts) => `${cl} buses, time steps from ${opts}.`,
     su_summary: (wy, fd) => `In short: today's system (fleet ${fd}, demand at 2024 level) under the weather of ${wy}.`,
+    su_demand_level_future: (sc, twh, sy) => `The profile is scaled by ${sc} to ${twh} TWh: Taipower-system generation in 2024 (251 TWh, still to verify) grown by 1.7%/yr to ${sy}, as in the MOEA outlook (2025 edition).`,
+    su_fleet_future: (f) => `Planned fleet (${f}): today's fleet with the MOEA schedule of new gas units and retirements, and renewables at the government targets.`,
+    su_planned: "planned",
+    su_summary_future: (sy, wy) => `In short: the planned ${sy} system (fleet and demand) under the weather of ${wy}, with today's grid.`,
+    nav_scenarios: "Scenarios", sc_title: "Scenarios: other weather years and future years",
+    sc_intro: "Each scenario changes one thing against the 2013 run with today's system. Load shedding is allowed in all of them, so a shortfall shows up as unserved demand instead of an infeasible run. Select a row to open that run.",
+    sc_weather: "Weather years: today's system", sc_weather_sub: "Same fleet, grid and annual demand (251 TWh); only the weather changes",
+    sc_weather_note: "The weather year sets hourly solar, wind and hydro availability and the shape of the demand profile (GEGIS computes demand with that year's temperatures). Annual demand is rescaled to the same 251 TWh in every year.",
+    sc_future: "Future years: the planned system", sc_future_sub: "Planned fleet and demand, 2013 weather, today's grid",
+    sc_future_note: "Fleet: today's Taipower list plus the MOEA 2025 supply-demand report's unit-by-unit schedule of new gas plants and coal, oil and gas retirements (Figure 3-3; a unit counts if it runs on 1 July), with solar, wind, hydro, geothermal and biomass at the Table 3-1 targets (2032 targets held for 2034). Demand grows 1.7%/yr. The grid is not expanded, and costs are technology-data projections for 2030 and 2035. Sites of two unnamed gas units and of geothermal and biomass are assumptions.",
+    sc_capacity: "Installed capacity: today and planned", sc_capacity_sub: "GW by technology in each future-year run",
+    sc_case: "Scenario", sc_re: "Renewables", sc_pending: "not run yet", sc_today: "today",
     nav_data: "Taiwan energy data →",
     nav_compare: "Data comparison", compare_title: "PyPSA-Earth data vs Taiwan data",
     compare_intro: "PyPSA-Earth's default inputs for Taiwan (power plants from powerplantmatching with an IRENA top-up, and a GEGIS 2030 demand projection) compared with the Taiwan data used now (Taipower's unit list and demand calibrated to the Taipower system), and with reported statistics.",
@@ -94,6 +107,18 @@ const I18N = {
     su_costs: "成本與燃料價格", su_costs_note: "PyPSA technology-data 該年預估值，決定調度順序（邊際成本）。",
     su_resolution: "解析度", su_resolution_note: (cl, opts) => `${cl} 個節點，時間步長依 ${opts}。`,
     su_summary: (wy, fd) => `簡言之：今天的系統（機組 ${fd}、需求為 2024 年水準），套用 ${wy} 年的氣象。`,
+    su_demand_level_future: (sc, twh, sy) => `需求曲線乘以 ${sc}，即 ${twh} TWh：台電系統 2024 年發電量（251 TWh，待查證）依經濟部展望（2025 年版）每年成長 1.7% 至 ${sy} 年。`,
+    su_fleet_future: (f) => `規劃機組（${f}）：現有機組，加上經濟部規劃的新燃氣機組與除役時程，再生能源依政府目標。`,
+    su_planned: "規劃",
+    su_summary_future: (sy, wy) => `簡言之：${sy} 年規劃的系統（機組與需求），套用 ${wy} 年的氣象，電網維持現狀。`,
+    nav_scenarios: "情境", sc_title: "情境：其他氣象年與未來年份",
+    sc_intro: "每個情境只相對於「2013 年氣象、現有系統」改變一件事。所有情境都允許切負載，供電不足時會顯示為未供電量，而不是無可行解。點選一列可開啟該模擬。",
+    sc_weather: "氣象年：現有系統", sc_weather_sub: "機組、電網與年需求（251 TWh）相同，只改變氣象",
+    sc_weather_note: "氣象年決定逐時的太陽光電、風力與水力可用率，以及需求曲線的形狀（GEGIS 以該年氣溫計算需求）。各年的年需求都重新縮放為 251 TWh。",
+    sc_future: "未來年份：規劃的系統", sc_future_sub: "規劃的機組與需求，2013 年氣象，現有電網",
+    sc_future_note: "機組：現有台電清單，加上經濟部 2025 年全國電力資源供需報告的逐機組新燃氣機組與燃煤、燃油、燃氣除役時程（圖 3-3；7 月 1 日在役才計入），太陽光電、風力、水力、地熱與生質能依表 3-1 目標（2034 年沿用 2032 年目標）。需求每年成長 1.7%。電網不擴建，成本採 technology-data 2030 與 2035 年預估。兩部未指定地點的燃氣機組及地熱、生質能的位置為假設。",
+    sc_capacity: "裝置容量：現有與規劃", sc_capacity_sub: "各未來年份模擬的裝置容量（GW）",
+    sc_case: "情境", sc_re: "再生能源", sc_pending: "尚未模擬", sc_today: "現在",
     nav_data: "台灣能源資料 →",
     nav_compare: "資料比較", compare_title: "PyPSA-Earth 資料與台灣資料比較",
     compare_intro: "比較 PyPSA-Earth 對台灣的預設輸入（powerplantmatching 機組資料加上 IRENA 補足，以及 GEGIS 2030 年需求預估）、現在使用的台灣資料（台電機組清單，需求依台電系統校準），以及公開統計。",
@@ -156,22 +181,25 @@ const I18N = {
 
 const GROUP_LABEL = {
   en: { coal: "Coal", nuclear: "Nuclear", onwind: "Onshore wind", storage: "Storage (pumped hydro, battery)",
-        solar: "Solar PV", offwind: "Offshore wind", gas: "Gas", hydro: "Hydro", other: "Other (oil)", unserved: "Unserved demand" },
+        solar: "Solar PV", offwind: "Offshore wind", gas: "Gas", hydro: "Hydro", other: "Other (oil, geothermal, biomass)", unserved: "Unserved demand" },
   zh: { coal: "燃煤", nuclear: "核能", onwind: "陸域風電", storage: "儲能（抽蓄、電池）", solar: "太陽光電",
-        offwind: "離岸風電", gas: "燃氣", hydro: "水力", other: "其他（燃油）", unserved: "未供電量" },
+        offwind: "離岸風電", gas: "燃氣", hydro: "水力", other: "其他（燃油、地熱、生質能）", unserved: "未供電量" },
 };
 const CARRIER_LABEL = {
   en: { CCGT: "Gas (CCGT)", OCGT: "Gas (OCGT)", coal: "Coal", lignite: "Lignite", nuclear: "Nuclear",
         oil: "Oil", solar: "Solar PV", onwind: "Onshore wind", "offwind-ac": "Offshore wind (AC)",
         "offwind-dc": "Offshore wind (DC)", ror: "Run-of-river hydro", hydro: "Reservoir hydro",
-        PHS: "Pumped hydro", battery: "Battery", load: "Load shedding", "load shedding": "Load shedding" },
+        PHS: "Pumped hydro", battery: "Battery", geothermal: "Geothermal", biomass: "Biomass and waste",
+        load: "Load shedding", "load shedding": "Load shedding" },
   zh: { CCGT: "燃氣複循環", OCGT: "燃氣單循環", coal: "燃煤", lignite: "褐煤", nuclear: "核能", oil: "燃油",
         solar: "太陽光電", onwind: "陸域風電", "offwind-ac": "離岸風電（交流）", "offwind-dc": "離岸風電（直流）",
-        ror: "川流式水力", hydro: "水庫式水力", PHS: "抽蓄水力", battery: "電池儲能", load: "切負載", "load shedding": "切負載" },
+        ror: "川流式水力", hydro: "水庫式水力", PHS: "抽蓄水力", battery: "電池儲能", geothermal: "地熱", biomass: "生質能及廢棄物",
+        load: "切負載", "load shedding": "切負載" },
 };
 
 const FINDINGS = {
   en: [
+    "<b>Future years 2030 and 2034.</b> With the government plan (new gas units, coal retirements, renewable targets) and demand growing 1.7%/yr, renewables reach 36% (2030) and 38% (2034) of generation, coal falls from 40% to 30% and 19%, and CO₂ from 134 to 113 and 97 Mt. The model beats the 30% target for 2030 partly because national capacity targets are applied to the smaller Taipower-system demand. Taipei's aggregated corridor still limits supply (0.36 and 0.83 TWh unserved): the new northern gas plants connect on the far side of it in the 6-bus model.",
     "<b>Official Taiwan fleet.</b> Power plants now come from Taipower's own unit list (snapshot 2026-09-24), including independent producers and 3.9 GW of new gas units in trial operation: 64.0 GW in total, no nuclear. Demand is scaled to Taipower-system generation (251 TWh in 2024), giving a 41.4 GW peak against the official 40.9 GW.",
     "<b>Generation mix close to Taipower 2024.</b> Model (full year): gas 46%, coal 40%, renewables 14%. Taipower system 2024: gas 47%, coal 31%, renewables 12%, nuclear 8% (nuclear has been 0 since May 2025). Coal still runs at 100% all year: its availability and emission limits are not modelled yet.",
     "<b>Full year: Taipei transmission is the bottleneck.</b> Without load shedding the full-year run is infeasible. The diagnostic leaves 0.83 TWh (0.33%) unserved, all at the Taipei bus in June–August, because the single aggregated line into Taipei is at its limit (70% of its rating) while spare gas capacity sits elsewhere. With lines allowed their full rating, no demand goes unserved. The 6-bus model lumps Taipei's corridors into one line, so the next step is more buses.",
@@ -180,6 +208,7 @@ const FINDINGS = {
     "<b>Solvers agree.</b> HiGHS and Gurobi give identical results. On the full year Gurobi is about 11× faster (0.8 s vs 9 s).",
   ],
   zh: [
+    "<b>未來年份 2030 與 2034。</b>依政府規劃（新燃氣機組、燃煤除役、再生能源目標）並以每年 1.7% 成長需求，再生能源發電占比達 36%（2030）與 38%（2034），燃煤由 40% 降至 30% 與 19%，CO₂ 由 134 降至 113 與 97 Mt。模型超過 2030 年 30% 目標，部分原因是全國容量目標套用在較小的台電系統需求上。台北的匯總輸電走廊仍限制供電（未供電 0.36 與 0.83 TWh）：在 6 節點模型中，北部新燃氣電廠位於走廊的另一端。",
     "<b>採用台灣官方機組資料。</b>發電機組改用台電機組清單（2026-09-24 快照），包含民營電廠及 3.9 GW 試運轉中的新燃氣機組，共 64.0 GW，無核能。電力需求按台電系統發電量縮放（2024 年 251 TWh），尖峰 41.4 GW，官方為 40.9 GW。",
     "<b>發電結構接近台電 2024 年。</b>模型（全年）：燃氣 46%、燃煤 40%、再生能源 14%。台電系統 2024 年：燃氣 47%、燃煤 31%、再生能源 12%、核能 8%（2025 年 5 月起核能為 0）。燃煤全年滿載運轉，尚未模擬其可用率與排放限制。",
     "<b>全年模擬：瓶頸在台北的輸電。</b>不允許切負載時全年模擬無可行解。診斷結果顯示有 0.83 TWh（0.33%）未供電，全部在 6 至 8 月的台北節點：進入台北的單一匯總線路達到上限（額定容量的 70%），其他地區仍有閒置的燃氣容量。若線路可用滿額定容量，則沒有未供電。6 節點模型把台北的多條輸電走廊合併成一條線，下一步是增加節點數。",
@@ -606,20 +635,107 @@ async function renderComparison() {
 }
 
 
-function renderSetup() {
-  const su = state.index && state.index.setup;
+function renderSetup(summary) {
+  const su = (summary && summary.setup) || (state.index && state.index.setup);
   if (!su) { $("setup-panel").hidden = true; return; }
+  $("setup-panel").hidden = false;
+  const sy = su.system_year;
   const rows = [
     [t("su_weather"), `${su.weather_year} (${su.cutout})`, t("su_weather_note")],
     [t("su_demand_shape"), `${su.demand_profile_year} / ${su.demand_profile_weather_year}`, t("su_demand_shape_note")(su.demand_profile_year, su.demand_profile_weather_year)],
-    [t("su_demand_level"), "2024", t("su_demand_level_note")(su.demand_scale)],
-    [t("su_fleet"), su.fleet_date || "–", t("su_fleet_note")(su.fleet)],
+    sy ? [t("su_demand_level"), `${sy} (${nf(su.demand_target_TWh, 1)} TWh)`, t("su_demand_level_future")(su.demand_scale, nf(su.demand_target_TWh, 1), sy)]
+       : [t("su_demand_level"), "2024", t("su_demand_level_note")(su.demand_scale)],
+    sy ? [t("su_fleet"), `${sy} (${t("su_planned")})`, t("su_fleet_future")(su.fleet_file)]
+       : [t("su_fleet"), su.fleet_date || "–", t("su_fleet_note")(su.fleet)],
     [t("su_grid"), "today", t("su_grid_note")(su.transmission)],
     [t("su_costs"), String(su.costs_year), t("su_costs_note")],
     [t("su_resolution"), `${su.clusters} · ${su.opts}`, t("su_resolution_note")(su.clusters, su.opts)],
   ];
-  $("table-setup").innerHTML = `<p class="note">${esc(t("su_summary")(su.weather_year, su.fleet_date))}</p>` +
-    table([[t("su_input")], [t("su_year")], [t("su_note")]], rows.map((r) => [[esc(r[0])], [`<b>${esc(r[1])}</b>`], [esc(r[2])]]));
+  const summaryText = sy ? t("su_summary_future")(sy, su.weather_year) : t("su_summary")(su.weather_year, su.fleet_date);
+  $("table-setup").innerHTML = `<p class="note">${esc(summaryText)}</p>` +
+    table([[t("su_input")], [t("su_year")], [t("su_note")]], rows.map((r) => [[esc(r[0])], [`<b>${esc(r[1])}</b>`], [esc(r[2])]])) +
+    `<p class="note muted">${esc(su.config)}</p>`;
+}
+
+
+// ---------- Scenarios: other weather years and future years ----------
+async function renderScenarios() {
+  if (state.scenarios === undefined) {
+    try {
+      const res = await fetch("data/scenarios.json");
+      state.scenarios = res.ok ? await res.json() : null;
+    } catch { state.scenarios = null; }
+  }
+  const sc = state.scenarios;
+  if (!sc) { $("scenarios").hidden = true; return; }
+  $("scenarios").hidden = false;
+  const label = (r) => (r.label === "today" ? t("sc_today") : r.label);
+
+  const shareChart = (targetId, rows) => {
+    const ok = rows.filter((r) => r.available);
+    const groups = ok.map((r) => groupSum(r.energy_TWh));
+    const totals = groups.map((g) => Object.values(g).reduce((a, b) => a + b, 0) || 1);
+    const y = ok.map(label);
+    const traces = GROUPS.filter((g) => groups.some((x) => (x[g] || 0) > 1e-6)).map((g) => ({
+      type: "bar", orientation: "h", name: GROUP_LABEL[state.lang][g], y,
+      x: groups.map((x, i) => (100 * (x[g] || 0)) / totals[i]),
+      customdata: groups.map((x) => x[g] || 0),
+      marker: { color: groupColor(g), line: { color: cssVar("--surface"), width: 2 } },
+      hovertemplate: `%{y} · ${GROUP_LABEL[state.lang][g]}: %{x:.1f}% · %{customdata:.1f} TWh<extra></extra>`,
+    }));
+    $(targetId).style.height = `${Math.max(220, 110 + 44 * y.length)}px`;
+    Plotly.react(targetId, traces, baseLayout({
+      barmode: "stack", barcornerradius: 0, xaxis: { range: [0, 100], ticksuffix: "%" }, yaxis: { autorange: "reversed", type: "category" },
+      legend: { orientation: "h", x: 0, y: 1.02, yanchor: "bottom", traceorder: "normal", font: { color: cssVar("--ink-2"), size: 11 } },
+    }), plotConfig);
+  };
+
+  const scenarioTable = (targetId, rows, withDemand) => {
+    const head = [[t("sc_case")], ...(withDemand ? [[`${t("t_demand")} (TWh)`, 1], [t("peak_col"), 1]] : []),
+      [t("sc_re"), 1], [`${GROUP_LABEL[state.lang].unserved} (GWh)`, 1], [t("co2_mt_col"), 1], [`${t("t_price")} (EUR/MWh)`, 1]];
+    const body = rows.map((r) => {
+      if (!r.available) return [[`<b>${esc(label(r))}</b>`], ...head.slice(1).map((_, i) => [i === 0 ? `<span class="muted">${t("sc_pending")}</span>` : "", 1])];
+      return [[`<b>${esc(label(r))}</b>`],
+        ...(withDemand ? [[nf(r.demand_TWh, 1), 1], [nf(r.peak_GW, 1), 1]] : []),
+        [pct(r.re_share, 1), 1], [nf(r.unserved_GWh, 1), 1], [nf(r.co2_Mt, 1), 1],
+        [`${nf(r.price_mean, 1)} <span class="muted">(${nf(ntd(r.price_mean), 2)})</span>`, 1]];
+    });
+    $(targetId).innerHTML = table(head, body);
+    // Make available rows open their run.
+    $(targetId).querySelectorAll("tbody tr").forEach((tr, i) => {
+      const r = rows[i];
+      if (!r.available) return;
+      tr.classList.add("clickable");
+      tr.tabIndex = 0;
+      if (r.id === state.current) tr.classList.add("selected");
+      const go = () => { selectCase(r.id); document.getElementById("results").scrollIntoView(); };
+      tr.addEventListener("click", go);
+      tr.addEventListener("keydown", (e) => { if (e.key === "Enter") go(); });
+    });
+  };
+
+  shareChart("chart-sc-weather", sc.weather);
+  scenarioTable("table-sc-weather", sc.weather, false);
+  shareChart("chart-sc-future", sc.future);
+  scenarioTable("table-sc-future", sc.future, true);
+
+  // Installed capacity by group, one bar per future-year run.
+  const ok = sc.future.filter((r) => r.available);
+  const caps = ok.map((r) => groupSum(r.capacity_GW));
+  const x = ok.map(label);
+  const traces = GROUPS.filter((g) => g !== "unserved" && caps.some((c) => (c[g] || 0) > 1e-6)).map((g) => ({
+    type: "bar", name: GROUP_LABEL[state.lang][g], x, y: caps.map((c) => c[g] || 0),
+    marker: { color: groupColor(g), line: { color: cssVar("--surface"), width: 2 } },
+    hovertemplate: `%{x} · ${GROUP_LABEL[state.lang][g]}: %{y:.1f} GW<extra></extra>`,
+  }));
+  const totals = caps.map((c) => Object.entries(c).filter(([g]) => g !== "unserved").reduce((a, [, v]) => a + v, 0));
+  Plotly.react("chart-sc-capacity", traces, baseLayout({
+    barmode: "stack", barcornerradius: 0, xaxis: { type: "category" }, yaxis: { title: { text: "GW", font: { size: 11 } } },
+    // Category axes read numeric-looking x as an index, so annotate by position.
+    annotations: x.map((xi, i) => ({ x: i, y: totals[i], text: `${nf(totals[i], 1)} GW`, showarrow: false, yanchor: "bottom",
+                                     font: { color: cssVar("--ink-2"), size: 12 } })),
+    legend: { orientation: "h", x: 0, y: 1.02, yanchor: "bottom", traceorder: "normal", font: { color: cssVar("--ink-2"), size: 11 } },
+  }), plotConfig);
 }
 
 function renderFindings() {
@@ -654,8 +770,8 @@ async function loadCase(id) {
 async function renderAll() {
   applyStaticText();
   renderFindings();
-  renderSetup();
   const d = await loadCase(state.current);
+  renderSetup(d.summary);
   renderStatus(d.summary);
   renderTiles(d.summary);
   renderMix(d);
@@ -665,6 +781,7 @@ async function renderAll() {
   renderInputs(d);
   renderRuns();
   await renderCompare();
+  await renderScenarios();
   await renderComparison();
 }
 

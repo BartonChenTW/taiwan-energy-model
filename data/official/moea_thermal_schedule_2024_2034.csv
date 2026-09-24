@@ -1,0 +1,50 @@
+action,year,month,unit_zh,unit_en,mw,fueltype,technology,plant,in_base_fleet,lat,lon,coord_source,note
+add,2024,4,大潭新燃氣#8,Tatan new gas #8,1123.6,CCGT,CCGT,Tatan,yes,,,,in the 2026-09-24 snapshot (大潭CC#8)
+add,2024,12,大潭新燃氣#9,Tatan new gas #9,1123.6,CCGT,CCGT,Tatan,yes,,,,in the snapshot (大潭CC#9)
+retire,2024,9,麥寮#2,Mailiao coal #2,600,Hard Coal,Steam Turbine,,no,,,,IPP; already gone at the snapshot
+add,2025,7,大潭新燃氣#7,Tatan new gas #7,913,CCGT,CCGT,Tatan,yes,,,,in the snapshot (大潭CC#7)
+add,2025,6,興達新燃氣#1,Hsinta new gas #1,1300,CCGT,CCGT,Hsinta new CC,yes,,,,in the snapshot (興達新CC#1)
+add,2025,5,森霸#3,Sun Ba #3,1100,CCGT,CCGT,Sun Ba Fong Der,yes,,,,IPP; in the snapshot (豐德#3)
+retire,2025,12,興達#3,Hsinta coal #3,550,Hard Coal,Steam Turbine,,no,,,,shown as '-' at the snapshot; not in the fleet file
+retire,2025,10,麥寮#3,Mailiao coal #3,600,Hard Coal,Steam Turbine,,no,,,,IPP; already gone at the snapshot
+retire,2025,12,麥寮#1,Mailiao coal #1,600,Hard Coal,Steam Turbine,,no,,,,IPP; already gone at the snapshot
+retire,2025,3,通霄燃氣#4~5,Tunghsiao gas #4-5,772,CCGT,CCGT,,no,,,,already gone at the snapshot
+retire,2025,7,長生#2,Chang Sheng #2,450,CCGT,CCGT,,no,,,,IPP; not in the snapshot
+add,2026,3,台中新燃氣#1,Taichung new gas #1,1300,CCGT,CCGT,Taichung new CC,yes,,,,in the fleet via supplementary_units.csv
+add,2026,5,興達新燃氣#2,Hsinta new gas #2,1300,CCGT,CCGT,Hsinta new CC #2,no,22.8523,120.1973,OSM w226576525,0 MW at the snapshot; excluded from today's fleet
+add,2026,11,台中新燃氣#2,Taichung new gas #2,1300,CCGT,CCGT,Taichung new CC,yes,,,,in the fleet via supplementary_units.csv
+add,2026,11,興達新燃氣#3,Hsinta new gas #3,1300,CCGT,CCGT,Hsinta new CC,yes,,,,in the fleet via supplementary_units.csv
+retire,2026,12,興達#4,Hsinta coal #4,550,Hard Coal,Steam Turbine,Hsinta coal,yes,,,,
+retire,2026,12,台中#2,Taichung coal #2,550,Hard Coal,Steam Turbine,Taichung coal,yes,,,,
+retire,2026,12,台中#1,Taichung coal #1,550,Hard Coal,Steam Turbine,Taichung coal,yes,,,,
+retire,2026,10,長生#1,Chang Sheng #1,450,CCGT,CCGT,,no,,,,IPP; not in the snapshot
+add,2028,12,國光二期,Kuokuang phase 2,1250,CCGT,CCGT,Kuokuang phase 2,no,25.0419,121.3424,OSM w538753336,IPP
+retire,2028,10,國光#1,Kuokuang #1,480,CCGT,CCGT,Kuokuang,yes,,,,IPP
+add,2029,10,大林新燃氣#1,Talin new gas #1,550,CCGT,CCGT,Talin new CC,no,22.5353,120.3337,OSM w204129566,
+add,2029,12,通霄新燃氣#4,Tunghsiao new gas #4,560,CCGT,CCGT,Tunghsiao new CC,no,24.4906,120.6714,OSM w181171613,
+add,2029,12,麥寮CC#1,Mailiao CC #1,1200,CCGT,CCGT,Mailiao CC,no,23.8031,120.1905,OSM w583660049,IPP
+add,2029,12,麥寮CC#2,Mailiao CC #2,1200,CCGT,CCGT,Mailiao CC,no,23.8031,120.1905,OSM w583660049,IPP
+retire,2029,12,通霄燃氣#6,Tunghsiao gas #6,321.2,CCGT,CCGT,Tunghsiao,yes,,,,
+add,2030,2,大林新燃氣#2,Talin new gas #2,550,CCGT,CCGT,Talin new CC,no,22.5353,120.3337,OSM w204129566,
+add,2030,4,通霄新燃氣#5,Tunghsiao new gas #5,560,CCGT,CCGT,Tunghsiao new CC,no,24.4906,120.6714,OSM w181171613,
+add,2030,8,通霄新燃氣#6,Tunghsiao new gas #6,560,CCGT,CCGT,Tunghsiao new CC,no,24.4906,120.6714,OSM w181171613,
+add,2030,12,通霄新燃氣#7,Tunghsiao new gas #7,560,CCGT,CCGT,Tunghsiao new CC,no,24.4906,120.6714,OSM w181171613,
+add,2031,4,台中新燃氣#3,Taichung new gas #3,1300,CCGT,CCGT,Taichung new CC #3-6,no,24.2152,120.4815,OSM w200691649,
+add,2031,4,通霄新燃氣#8,Tunghsiao new gas #8,560,CCGT,CCGT,Tunghsiao new CC,no,24.4906,120.6714,OSM w181171613,
+retire,2031,10,台中#4,Taichung coal #4,550,Hard Coal,Steam Turbine,Taichung coal,yes,,,,
+retire,2031,10,台中#3,Taichung coal #3,550,Hard Coal,Steam Turbine,Taichung coal,yes,,,,
+add,2032,4,台中新燃氣#4,Taichung new gas #4,1300,CCGT,CCGT,Taichung new CC #3-6,no,24.2152,120.4815,OSM w200691649,
+add,2032,4,協和新燃氣#1,Hsieh-ho new gas #1,1300,CCGT,CCGT,Hsieh-ho new CC,no,25.1569,121.7387,OSM r10757938,
+add,2032,6,新增燃氣電源,New gas (site not given),1300,CCGT,CCGT,New gas (unspecified site),no,25.0253,121.0458,assumption: Tatan site,site not given in the report; placed at Tatan (northern load centre) as an assumption
+retire,2032,12,台中#6,Taichung coal #6,550,Hard Coal,Steam Turbine,Taichung coal,yes,,,,
+retire,2032,12,台中#5,Taichung coal #5,550,Hard Coal,Steam Turbine,Taichung coal,yes,,,,
+retire,2032,12,協和#3~4,Hsieh-ho oil #3-4,1000,Oil,Steam Turbine,Hsieh-ho,yes,,,,
+add,2033,4,台中新燃氣#5,Taichung new gas #5,1300,CCGT,CCGT,Taichung new CC #3-6,no,24.2152,120.4815,OSM w200691649,
+add,2033,6,新增燃氣電源,New gas (site not given),1300,CCGT,CCGT,New gas (unspecified site),no,25.0253,121.0458,assumption: Tatan site,site not given in the report; placed at Tatan (northern load centre) as an assumption
+retire,2033,12,台中#8,Taichung coal #8,550,Hard Coal,Steam Turbine,Taichung coal,yes,,,,
+retire,2033,12,台中#7,Taichung coal #7,550,Hard Coal,Steam Turbine,Taichung coal,yes,,,,
+retire,2033,12,南部燃氣#1~4,Nanpu gas #1-4,1117.8,CCGT,CCGT,Nanpu,yes,,,,
+add,2034,4,台中新燃氣#6,Taichung new gas #6,1300,CCGT,CCGT,Taichung new CC #3-6,no,24.2152,120.4815,OSM w200691649,
+retire,2034,12,台中#10,Taichung coal #10,550,Hard Coal,Steam Turbine,Taichung coal,yes,,,,
+retire,2034,12,台中#9,Taichung coal #9,550,Hard Coal,Steam Turbine,Taichung coal,yes,,,,
+retire,2034,12,大林#6,Talin #6,550,CCGT,CCGT,Talin gas,yes,,,,

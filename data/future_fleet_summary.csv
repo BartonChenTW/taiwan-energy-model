@@ -1,0 +1,29 @@
+year,fueltype,capacity_gw
+2030,Battery,0.853
+2030,Bioenergy,0.81
+2030,CCGT,32.396
+2030,Geothermal,1.2
+2030,Hard Coal,9.709
+2030,Hydro,4.742
+2030,OCGT,0.181
+2030,Oil,1.28
+2030,Solar,31.2
+2030,Wind,11.879
+2034,Battery,0.853
+2034,Bioenergy,0.84
+2034,CCGT,42.058
+2034,Geothermal,1.4
+2034,Hard Coal,6.409
+2034,Hydro,4.782
+2034,OCGT,0.181
+2034,Oil,0.28
+2034,Solar,32.7
+2034,Wind,14.879
+today,Battery,0.853
+today,CCGT,26.027
+today,Hard Coal,11.359
+today,Hydro,4.718
+today,OCGT,0.181
+today,Oil,1.28
+today,Solar,15.392
+today,Wind,4.187

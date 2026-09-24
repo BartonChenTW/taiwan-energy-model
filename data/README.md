@@ -119,3 +119,52 @@ The report's Table 3-2 was checked after transcription: each year's reserve marg
 **Checks against the official files:** these confirmed several figures taken earlier from search summaries: national generation 2024 of 289.4 TWh, capacities, emission factors and renewable shares. The key-facts table now marks them as downloaded.
 
 The 2024 Taipower-system figure of 251.44 TWh used for demand calibration is still unconfirmed. The official data puts Taipower + IPPs at 243.2 TWh and the national total at 289.4 TWh. 251.44 fits between them if Taipower's purchases from self-generators are included.
+
+## Future fleets, 2030 and 2034 (`build_future_powerplants.py`)
+
+```powershell
+python pypsa_tw/data/build_future_powerplants.py
+```
+
+This writes `data/custom_powerplants_tw2030.csv` and `data/custom_powerplants_tw2034.csv`. Each starts from today's file and applies the MOEA National Power Supply-Demand Report, 2025 edition ([16437](https://data.gov.tw/dataset/16437)).
+
+**Thermal plan.** `official/moea_thermal_schedule_2024_2034.csv` is Figure 3-3 of the report (p. 22), transcribed unit by unit with the month of each addition or retirement.
+- The transcription adds up to the report's own totals for 2025–2034: +25,163 MW added and −12,941 MW retired. The script checks both.
+- A unit counts for model year Y if it is in service on 1 July of Y, i.e. at the summer peak. A unit retiring in December of Y still counts for Y.
+- Units already in today's fleet (`in_base_fleet = yes`, e.g. Tatan #7–9 and the new Taichung/Hsinta units) are not added again. Retirements of units no longer in the fleet (Mailiao coal, Chang Sheng) are skipped.
+- Coordinates come from OpenStreetMap, as for today's fleet. Mailiao CC uses the Mailiao plant (w583660049).
+- **Assumption:** the two "新增燃氣電源" units (2032 and 2033, 1,300 MW each) have no site in the report. They are placed at Tatan, the northern load centre.
+
+**Renewables.** The Table 3-1 targets apply; the 2032 targets are held for 2034:
+
+| | 2030 | 2034 |
+| --- | --- | --- |
+| Solar | 31.2 GW | 32.7 GW |
+| Offshore wind | 10.9 GW | 13.9 GW |
+| Onshore wind | 0.979 GW | 0.979 GW |
+| Hydro | 2.14 GW | 2.18 GW |
+
+- These targets are national, and they are applied to the Taipower-system fleet.
+- Existing solar, wind and conventional hydro rows are scaled to the targets, so new capacity goes where today's capacity is: solar follows the county approval shares, offshore wind follows today's farms in Changhua and Yunlin.
+- Pumped hydro (2.60 GW) and batteries (0.85 GW) stay as they are.
+
+**Geothermal and biomass** are new rows at the target values: 1.2 and 0.81 GW in 2030, 1.4 and 0.84 GW in 2034.
+- **Assumption:** geothermal sits at Qingshui (Yilan). Biomass and waste are split evenly over the six special municipalities.
+- Their costs come from technology-data: geothermal has zero marginal cost, biomass about 16 EUR/MWh. So both run at base load.
+
+Nuclear stays at 0.
+
+| GW | Today | 2030 | 2034 |
+| --- | --- | --- | --- |
+| Gas (CCGT + OCGT) | 26.21 | 32.58 | 42.24 |
+| Coal | 11.36 | 9.71 | 6.41 |
+| Oil | 1.28 | 1.28 | 0.28 |
+| Solar | 15.39 | 31.20 | 32.70 |
+| Wind (offshore + onshore) | 4.19 | 11.88 | 14.88 |
+| Hydro incl. pumped hydro | 4.72 | 4.74 | 4.78 |
+| Geothermal | 0 | 1.20 | 1.40 |
+| Biomass and waste | 0 | 0.81 | 0.84 |
+| Batteries | 0.85 | 0.85 | 0.85 |
+| **Total** | **64.00** | **94.25** | **104.38** |
+
+`future_fleet_summary.csv` has the same table. To use a file, set `electricity.custom_powerplants_file` (the Snakefile now reads this key, defaulting to `data/custom_powerplants.csv`); see `pypsa_tw/config/scenarios/future_*.yaml`.

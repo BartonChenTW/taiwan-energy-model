@@ -14,6 +14,8 @@ Inputs (``pypsa_tw/data/official/``):
   (https://data.gov.tw/dataset/8307)
 - ``taiwan_projections_targets.csv``: projections and targets transcribed from the
   MOEA National Power Supply-Demand Report (Tables 3-1, 3-2), plus policy targets
+- ``moea_thermal_schedule_2024_2034.csv``: the same report's unit-by-unit plan of
+  thermal additions and retirements (Figure 3-3)
 - GEGIS demand projections shipped with PyPSA-Earth
   (``data/ssp2-2.6/<year>/era5_2013/Asia.csv``)
 
@@ -128,6 +130,18 @@ def main():
                         (r.source_name, r.link if isinstance(r.link, str) else ""), r.evidence,
                         note=" ".join(x for x in [f"{r.locator}." if isinstance(r.locator, str) else "",
                                                   r.note if isinstance(r.note, str) else ""] if x)))
+
+    # Thermal plan by year (Figure 3-3 of the report, transcribed unit by unit).
+    sched = pd.read_csv(OFF / "moea_thermal_schedule_2024_2034.csv")
+    fuel = {"CCGT": ("gas", "gas", "燃氣"), "Hard Coal": ("coal", "coal", "燃煤"), "Oil": ("oil", "oil", "燃油")}
+    report = ("MOEA National Power Supply-Demand Report (2025 edition)", "https://data.gov.tw/dataset/16437")
+    for (action, ft, year), g in sched.groupby(["action", "fueltype", "year"]):
+        sid, en, zh = fuel[ft]
+        verb_en, verb_zh = ("additions", "新增") if action == "add" else ("retirements", "除役")
+        rows.append(row(f"planned_{action}_{sid}", f"Planned {en} {verb_en}", f"{zh}機組{verb_zh}規劃", "projection",
+                        int(year), g.mw.sum() / 1e3, "GW", "Taipower system", report,
+                        note="Figure 3-3. Units: " + ", ".join(f"{u} ({m:g} MW, month {mo})"
+                                                                for u, m, mo in zip(g.unit_en, g.mw, g.month))))
 
     # PyPSA-Earth default demand projection (GEGIS, SSP2-2.6, 2013 weather).
     gegis = ("PyPSA-Earth default: GEGIS demand (SSP2-2.6)", "https://github.com/niclasmattsson/GlobalEnergyGIS")

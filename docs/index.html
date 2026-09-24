@@ -27,6 +27,7 @@
       <nav class="shell tabs" aria-label="Sections">
         <a href="#results" data-i18n="nav_results">Results</a>
         <a href="#inputs" data-i18n="nav_inputs">Inputs</a>
+        <a href="#scenarios" data-i18n="nav_scenarios">Scenarios</a>
         <a href="#compare" data-i18n="nav_compare">Data comparison</a>
         <a href="#runs" data-i18n="nav_runs">All runs</a>
         <a href="#findings" data-i18n="nav_findings">Findings</a>
@@ -110,6 +111,29 @@
           <h3 data-i18n="technology">Technology data</h3>
           <p class="sub" data-i18n="technology_sub">Fleet and cost assumptions used in this run</p>
           <div id="table-technology" class="table-wrap"></div>
+        </article>
+      </section>
+
+      <!-- Scenarios: other weather years, future years -->
+      <section id="scenarios" class="section">
+        <h2 data-i18n="sc_title">Scenarios: other weather years and future years</h2>
+        <p class="sub" data-i18n="sc_intro"></p>
+          <article class="panel">
+            <h3><span data-i18n="sc_weather">Weather years: today's system</span> <span class="info" tabindex="0" role="button" aria-describedby="tip-sc-weather" data-info-label><span aria-hidden="true">i</span><span class="info-tip" role="tooltip" id="tip-sc-weather"><span data-i18n="sc_weather_note"></span></span></span></h3>
+            <p class="sub" data-i18n="sc_weather_sub">Same fleet, grid and annual demand; only the weather changes</p>
+            <div id="chart-sc-weather" class="chart"></div>
+            <div id="table-sc-weather" class="table-wrap"></div>
+          </article>
+          <article class="panel">
+            <h3><span data-i18n="sc_future">Future years: the planned system</span> <span class="info" tabindex="0" role="button" aria-describedby="tip-sc-future" data-info-label><span aria-hidden="true">i</span><span class="info-tip" role="tooltip" id="tip-sc-future"><span data-i18n="sc_future_note"></span></span></span></h3>
+            <p class="sub" data-i18n="sc_future_sub">Planned fleet and demand, 2013 weather, today's grid</p>
+            <div id="chart-sc-future" class="chart"></div>
+            <div id="table-sc-future" class="table-wrap"></div>
+          </article>
+        <article class="panel">
+          <h3 data-i18n="sc_capacity">Installed capacity: today and planned</h3>
+          <p class="sub" data-i18n="sc_capacity_sub">GW by technology in each future-year run</p>
+          <div id="chart-sc-capacity" class="chart"></div>
         </article>
       </section>
 

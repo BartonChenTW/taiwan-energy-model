@@ -192,5 +192,46 @@ Barton's instructions: keep developing; (1) enable the fleet; (2) research the m
    - The 251.44 TWh Taipower-system figure stays unconfirmed. Official data: Taipower + IPPs 243.2 TWh, national 289.4 TWh (2024).
 
 
+## 2026-09-24: scenarios (other weather years, 2030 and 2034)
+
+Barton asked what "2013" means and asked for other years. Chosen: other weather years and future years 2030/2034.
+
+ - **What 2013 means:** only the weather (ERA5 cutout) and the shape of the demand profile (GEGIS computed with 2013 temperatures). The fleet is today's (Taipower list 2026-09-24), the annual demand is 2024's Taipower-system level, and the grid is today's. The dashboard now has a "Model setup" panel per run, read from the config that produced it.
+ - **Scenario overlays** in `pypsa_tw/config/scenarios/`. Each sits on top of `config_tw_test2_highs.yaml` and allows load shedding, as in the 2013 diagnostic:
+   - `weather_2011.yaml`, `weather_2018.yaml`: today's system under 2011 or 2018 weather. Demand is rescaled to 251.44 TWh (GEGIS 2030 profile: 334.3 TWh with 2011 weather, scale 0.752; 331.0 TWh with 2018 weather, scale 0.7596).
+   - `future_2030.yaml`, `future_2034.yaml`: the planned system under 2013 weather. Demand is 251.44 × 1.017^n (278.2 and 297.6 TWh). Costs are technology-data 2030 and 2035 (the nearest published year to 2034). The grid stays fixed, with nothing investable.
+ - **Snakefile:** `build_powerplants` now reads `electricity.custom_powerplants_file` (default `data/custom_powerplants.csv`), so each scenario can use its own fleet file.
+ - **Future fleets** (`pypsa_tw/data/build_future_powerplants.py`, details in `pypsa_tw/data/README.md`):
+   - Figure 3-3 of the MOEA 2025 report (p. 22) transcribed unit by unit into `official/moea_thermal_schedule_2024_2034.csv`. The image was extracted with pypdf and read. The transcription matches the report's totals for 2025–2034 (+25,163 MW, −12,941 MW), and the script asserts both.
+   - A unit counts if it is in service on 1 July of the model year.
+   - Renewables at the Table 3-1 targets (2032 held for 2034). Geothermal and biomass added.
+   - Totals: 94.25 GW (2030) and 104.38 GW (2034), against 64.00 GW today.
+   - 2034 first failed in `add_electricity` (IndexError in `get_grouping_year`): units commissioned 2031–2034 fall outside `existing_capacities.grouping_years_power`, which ends at 2030. `future_2034.yaml` adds a 2035 bin.
+ - **Results** (full year, 4H, 6 buses, HiGHS):
+
+   | | today | 2030 | 2034 |
+   | --- | --- | --- | --- |
+   | Demand | 251.4 TWh | 278.2 TWh | 297.6 TWh |
+   | Peak | 41.4 GW | 45.8 GW | 49.0 GW |
+   | Renewables | 13.9% | 35.8% | 38.4% |
+   | Coal | 40% | 30% | 19% |
+   | Gas | 46% | 34% | 43% |
+   | CO₂ | 134.1 Mt | 113.4 Mt | 96.9 Mt |
+   | Unserved | 834.9 GWh | 364.2 GWh | 826.0 GWh |
+   | Mean price | 87.7 EUR/MWh | 77.9 EUR/MWh | 84.1 EUR/MWh |
+
+   Solve times: 12.8 s (2030) and 13.5 s (2034), solver only.
+ - **Reading the future results:**
+   - The unserved energy is again all at the Taipei bus in June–August, with the aggregated Taipei corridor (13.93 GW × 0.7) at its limit. In 2034 the bus holds only 1.3 GW of gas (Hsieh-ho new #1). Tatan, Kuokuang and the two unsited units connect at the Taoyuan bus, on the far side of the same line. So this is the known 6-bus corridor issue (Phase 3 #9), not a shortage of capacity.
+   - Renewables exceed the 30% target for 2030 in the model. Three reasons: national capacity targets are applied to the smaller Taipower-system demand; geothermal (1.2 GW) and biomass (0.81 GW) run at a capacity factor of about 100%; and there is no curtailment.
+   - Coal still runs at about 99%, because technology-data puts coal (30 EUR/MWh) below gas (47 EUR/MWh). The coal-reduction policy is not modelled (Phase 3 #6).
+   - Pumped hydro starts to be used in 2030 (0.87 TWh), when solar at midday creates a surplus.
+ - **Weather years 2011 and 2018:** cutouts requested from CDS (about 87 MB per request; the queue was slow). Runs follow when the downloads finish.
+ - **Dashboard:**
+   - New "Scenarios" section: generation mix and key results per weather year and per future year, plus installed capacity today / 2030 / 2034. Rows open the run.
+   - Geothermal and biomass are shown under "Other (oil, geothermal, biomass)".
+   - The Taiwan energy data page has a new chart of planned thermal additions and retirements by year, built from the schedule (4 new series in `taiwan_timeseries.csv`, now 850 rows).
+
+
 TODO:
  - to run PyPSA-Earth Taiwan!

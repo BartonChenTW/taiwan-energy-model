@@ -1,0 +1,34 @@
+# Scenario overlay: today's system under the weather of 2018.
+# Use on top of the Test 2 config:
+#   snakemake -j 1 solve_all_networks --configfile pypsa_tw/config/config_tw_test2_highs.yaml pypsa_tw/config/scenarios/weather_2018.yaml
+# Only the weather changes: same fleet (data/custom_powerplants.csv), same
+# grid, same annual demand (251.44 TWh). Load shedding is allowed, so any
+# shortfall shows up as unserved energy instead of an infeasible run.
+
+run:
+  name: "tw_weather2018_highs_fullyear_4h_6b_ls"
+  sector_name: "tw_weather2018_highs_fullyear_4h_6b_ls"
+
+snapshots:
+  start: "2018-01-01"
+  end: "2019-01-01"
+  inclusive: "left"
+
+load_options:
+  # GEGIS 2030 profile computed with 2018 weather (331.0 TWh for Taiwan), scaled to
+  # Taipower-system generation in 2024: 251.44 / 331.0 = 0.7596.
+  weather_year: 2018
+  scale: 0.7596
+
+atlite:
+  default: cutout-2018-era5-tw
+  cutouts:
+    cutout-2018-era5-tw:
+      module: era5
+      dx: 0.3
+      dy: 0.3
+      time: ["2018-01-01", "2018-12-31"]
+
+solving:
+  options:
+    load_shedding: true

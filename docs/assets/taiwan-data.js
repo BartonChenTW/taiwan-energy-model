@@ -13,6 +13,8 @@ const I18N = {
     h_re: "Renewable capacity: history and targets", h_re_sub: "GW. Targets for 2030 and 2032 from the MOEA report (Table 3-1); wind target = offshore + onshore",
     h_share: "Renewable share of generation", h_share_sub: "%. Targets: 20% (Nov 2026), 30% (2030), about 65% (2050 net-zero pathway)",
     h_ef: "Grid emission factor", h_ef_sub: "kg CO2e per kWh of public electricity supply",
+    h_plan: "Planned thermal additions and retirements", h_plan_sub: "GW per year, Taipower system (MOEA report 2025 edition, Figure 3-3, unit by unit). Above zero: new gas units; below zero: retirements. The 2030 and 2034 model scenarios use this plan.",
+    s_add_gas: "Gas added", s_ret_coal: "Coal retired", s_ret_gas: "Gas retired", s_ret_oil: "Oil retired",
     h_table: "All series", filter_series: "Series", filter_kind: "Kind", download_csv: "Download CSV",
     kind_history: "History", kind_projection: "Projection", kind_target: "Target",
     col_kind: "Kind", s_total: "Total", s_forecast: "Official growth path (derived)", s_gegis: "PyPSA-Earth default demand",
@@ -54,6 +56,8 @@ const I18N = {
     h_re: "再生能源裝置容量：歷史與目標", h_re_sub: "GW。2030、2032 年目標取自經濟部報告（表 3-1）；風電目標為離岸加陸域",
     h_share: "再生能源發電占比", h_share_sub: "%。目標：20%（2026 年 11 月）、30%（2030 年）、約 65%（2050 淨零路徑）",
     h_ef: "電力排碳係數", h_ef_sub: "每度公用售電之公斤 CO2e",
+    h_plan: "火力機組新增與除役規劃", h_plan_sub: "每年 GW，台電系統（經濟部 2025 年版報告圖 3-3，逐機組）。零以上：新燃氣機組；零以下：除役。2030 與 2034 年模型情境採用此規劃。",
+    s_add_gas: "燃氣新增", s_ret_coal: "燃煤除役", s_ret_gas: "燃氣除役", s_ret_oil: "燃油除役",
     h_table: "所有數列", filter_series: "數列", filter_kind: "類型", download_csv: "下載 CSV",
     kind_history: "歷史", kind_projection: "預測", kind_target: "目標",
     col_kind: "類型", s_total: "合計", s_forecast: "官方成長路徑（推估）", s_gegis: "PyPSA-Earth 預設需求",
@@ -309,6 +313,21 @@ function renderHistory() {
     { type: "scatter", mode: "lines+markers", x: ef.x, y: ef.y, name: t("s_ef"), line: { color: ink2, width: 2 }, marker: { size: 5, color: ink2 },
       hovertemplate: `${t("s_ef")}: %{y:.3f} kg CO2e/kWh<extra></extra>` },
   ], layoutBase({ showlegend: false, yaxis: { title: { text: "kg CO2e/kWh", font: { size: 11 } } } }), plotCfg);
+
+  // Thermal plan: additions up, retirements down.
+  const planBar = (id, key, color, sign, extra = {}) => {
+    const p = tsSeries(id, ["projection"]);
+    return { type: "bar", x: p.x, y: p.y.map((v) => sign * v), name: t(key),
+             customdata: p.rows.map((r) => r.note.replace(/^Figure 3-3\. Units: /, "").split(", ").join("<br>")),
+             marker: { color, line: { color: cssVar("--surface"), width: 1 } , ...extra},
+             hovertemplate: `${t(key)}: %{y:.2f} GW<br>%{customdata}<extra></extra>` };
+  };
+  Plotly.react("chart-h-plan", [
+    planBar("planned_add_gas", "s_add_gas", cssVar("--c-gas"), 1),
+    planBar("planned_retire_coal", "s_ret_coal", cssVar("--c-coal"), -1),
+    planBar("planned_retire_gas", "s_ret_gas", cssVar("--c-gas"), -1, { opacity: 0.5 }),
+    planBar("planned_retire_oil", "s_ret_oil", cssVar("--c-other"), -1),
+  ], layoutBase({ barmode: "relative", hovermode: "closest", xaxis: { dtick: 1 }, yaxis: { title: { text: "GW", font: { size: 11 } } } }), plotCfg);
 
   renderSeriesTable();
 }

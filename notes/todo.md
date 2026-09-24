@@ -93,7 +93,11 @@ Found while checking the 2026-09-24 results against Taiwan 2024 (gas 42.4%, coal
 
 ## Phase 4: run/test future scenarios
 
-(not started)
+1. [x] future fleets for 2030 and 2034 from the MOEA 2025 supply-demand report (thermal schedule Figure 3-3, renewable targets Table 3-1): `pypsa_tw/data/build_future_powerplants.py`. To review, see `pypsa_tw/REVIEW_CHECKLIST.md`.
+2. [x] scenario configs `pypsa_tw/config/scenarios/future_{2030,2034}.yaml` (2013 weather, demand +1.7%/yr, fixed grid, load shedding allowed) and results on the dashboard (2026-09-24)
+3. [ ] weather-year sensitivity: `pypsa_tw/config/scenarios/weather_{2011,2018}.yaml` written; waiting for the ERA5 cutouts
+4. [ ] future years with the 2026 outlook (+2.5%/yr demand, about 26 GW new gas) once the full report is published
+5. [ ] let the model invest (extendable generators, storage, lines) in future years, instead of the fixed planned fleet
 
 
 NOTE:

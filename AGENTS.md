@@ -73,6 +73,14 @@ All three model today's fixed system on 6 buses: no extendable generators, no lo
 
 They share the full-year weather cutout `cutouts/cutout-2013-era5-tw.nc` (`atlite.cutouts.cutout-2013-era5-tw.time: 2013-01-01 to 2013-12-31`) with `build_cutout: false`. To rebuild it, move the old file aside and run with a one-off overlay that sets `enable: {build_cutout: true}`. `scripts/add_electricity.py` stops with an error if a profile doesn't cover the snapshots.
 
+Scenario overlays in `pypsa_tw/config/scenarios/` go on top of the Test 2 config (other weather years, future years 2030/2034):
+
+```powershell
+& .\.venv\python.exe -m snakemake -j 1 solve_all_networks --configfile pypsa_tw/config/config_tw_test2_highs.yaml pypsa_tw/config/scenarios/future_2030.yaml
+```
+
+Future-year fleets come from `python pypsa_tw/data/build_future_powerplants.py`; a config picks its fleet file with `electricity.custom_powerplants_file`.
+
 After solving, refresh the dashboard data with `python pypsa_tw/viewer/export_dashboard_data.py` (see `pypsa_tw/GITHUB_PAGES.md`).
 
 ## Previously Tried
