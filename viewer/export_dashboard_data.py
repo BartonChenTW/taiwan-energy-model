@@ -798,7 +798,16 @@ def export_sandbox(repo, out):
 
 
 # ---------- Sector-coupled test run (draft page docs/sector-draft.html) ----------
-SECTOR_DRAFT_RUN = "tw_sector_test_2013_6b"
+# (results folder = run.sector_name, label, planning year, overlay)
+SECTOR_DRAFT_RUNS = [
+    ("tw_sector_2025_24h_2013w_6b", "2025 reference, daily steps", 2025, "pypsa_tw/config/scenarios/sector_2025_24h.yaml"),
+    ("tw_sector_test_2013_6b", "2030 test, 6-day steps", 2030, "pypsa_tw/config/scenarios/sector_test.yaml"),
+]
+# Model carriers -> official generation groups (Energy Administration, 發電量年資料)
+MIX_GROUPS = {"CCGT": "gas", "OCGT": "gas", "coal": "coal", "oil": "oil", "nuclear": "nuclear", "solar": "solar",
+              "solar rooftop": "solar", "offwind-ac": "wind", "offwind-dc": "wind", "onwind": "wind", "ror": "hydro",
+              "hydro": "hydro", "PHS": "pumped_storage", "urban central solid biomass CHP": "biomass_waste",
+              "solid biomass": "biomass_waste"}
 
 
 def _demand_use(carrier):
@@ -817,11 +826,11 @@ def _demand_use(carrier):
     return "other"
 
 
-def export_sector_draft(repo, out):
-    """Aggregated numbers of the sector-coupled test for its draft review page."""
-    files = sorted((repo / "results" / SECTOR_DRAFT_RUN / "postnetworks").glob("*.nc"))
+def sector_run_payload(repo, run, label, year, overlay):
+    """Aggregated numbers of one sector-coupled run."""
+    files = sorted((repo / "results" / run / "postnetworks").glob("*.nc"))
     if not files:
-        return
+        return None
     n = pypsa.Network(str(files[0]))
     w = n.snapshot_weightings.generators
 
@@ -870,9 +879,14 @@ def export_sector_draft(repo, out):
     co2_mt = float(n.stores_t.e[co2].iloc[-1].sum() / 1e6) if len(co2) else None
     fleet = pd.read_csv(repo / "data" / "custom_powerplants.csv")
     fleet_gw = (fleet.groupby("Fueltype").Capacity.sum() / 1e3).round(2).to_dict()
-    payload = {
-        "generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
-        "run": SECTOR_DRAFT_RUN, "network": files[0].name,
+    mix = {}
+    for c, v in supply.items():
+        g = MIX_GROUPS.get(c, "other")
+        mix[g] = mix.get(g, 0) + v
+    total = sum(mix.values())
+    return {
+        "run": run, "label": label, "planning_year": year, "overlay": overlay, "network": files[0].name,
+        "mix_share": {g: _r(v / total, 4) for g, v in mix.items()},
         "snapshots": int(len(n.snapshots)), "step_h": _r(float(w.iloc[0]), 1), "objective_EUR": _r(n.objective, 0),
         "co2_Mt": _r(co2_mt, 1), "co2_cap": "none",
         "demand_TWh": [{"carrier": c, "use": _demand_use(c), "TWh": _r(v, 2)} for c, v in demand.items()],
@@ -884,8 +898,32 @@ def export_sector_draft(repo, out):
         "reference": {"co2_fuel_combustion_2025_Mt": 239.5, "electricity_consumption_2024_TWh": 283.8,
                       "taipower_system_generation_2024_TWh": 251.4},
     }
+
+
+def official_mix_2025(repo):
+    """Official national generation shares in 2025 (Energy Administration, via taiwan_timeseries.csv)."""
+    ts = pd.read_csv(repo / "pypsa_tw" / "data" / "taiwan_timeseries.csv", dtype={"year": str})
+    g = ts[(ts.year == "2025") & (ts.kind == "history") & ts.series.str.startswith("generation_")]
+    v = g.set_index("series").value
+    total = v["generation_total"]
+    parts = {"gas": "generation_gas", "coal": "generation_coal", "oil": "generation_oil", "nuclear": "generation_nuclear",
+             "solar": "generation_solar", "wind": "generation_wind", "hydro": "generation_hydro",
+             "pumped_storage": "generation_pumped_storage"}
+    shares = {k: float(v.get(s, 0)) / total for k, s in parts.items()}
+    shares["biomass_waste"] = sum(float(v.get(s, 0)) for s in ("generation_biomass", "generation_waste", "generation_geothermal")) / total
+    return {"total_TWh": _r(float(total), 1), "mix_share": {k: _r(x, 4) for k, x in shares.items()},
+            "source_id": "moeaea_generation_annual"}
+
+
+def export_sector_draft(repo, out):
+    """Sector-coupled runs for the draft review page (docs/sector-draft.html)."""
+    runs = [r for r in (sector_run_payload(repo, *args) for args in SECTOR_DRAFT_RUNS) if r]
+    if not runs:
+        return
+    payload = {"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+               "official_2025": official_mix_2025(repo), "runs": runs}
     (out / "sector_draft.json").write_text(json.dumps(payload, indent=1), encoding="utf-8")
-    print(f"wrote sector_draft.json ({SECTOR_DRAFT_RUN}, {len(n.snapshots)} snapshots)")
+    print(f"wrote sector_draft.json ({', '.join(r['run'] for r in runs)})")
 
 
 def main():

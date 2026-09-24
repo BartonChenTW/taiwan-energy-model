@@ -328,5 +328,20 @@ Barton asked to try PyPSA-Earth's sector-coupled model. Overlay: `pypsa_tw/confi
    - The export now reports link capacity × efficiency.
  - **Draft page:** technology and demand names are translated (EN and ZH) instead of PyPSA-Earth codes in monospace.
 
+## 2026-09-24: sector-coupled 2025 reference, daily steps
+
+ - **Overlay** `pypsa_tw/config/scenarios/sector_2025_24h.yaml`: planning year 2025, `sopts: 24h` (365 steps), 2013 weather, 6 buses. It shares the run name with the test, so the electricity network is reused.
+ - **Config:** 2025 needed its own entries for the road-transport fuel-cell and electric shares and the shipping hydrogen share (PyPSA-Earth only defines 2030 and 2050). Set to 0, 0.5% and 0, as assumptions.
+ - **Found in the log:** PyPSA-Earth has no growth, efficiency, fuel-share or heating data for TW and uses its defaults.
+ - **Solve:**
+   - HiGHS (IPM) failed numerically after 300 s, at a 0.6% gap. The LP has 630k rows and 306k columns; costs range up to 1e6 and RHS up to 2e8.
+   - Re-solved with Gurobi (local test only; the sandbox and any web service stay on HiGHS): optimal, 1.441e10 EUR, about 50 s.
+ - **Results vs official 2025:**
+   - Electricity demand 297.6 TWh (national generation 289.7 TWh).
+   - Mix: gas 41.6% (47.7%), coal 33.4% (35.3%), solar 12.6% (5.8%), wind 4.7% (4.2%), oil 3.8% (1.5%), biomass 3.0% (1.4%), hydro 0.9% (1.9%).
+   - CO2 259 Mt (fuel combustion 239.5 Mt).
+   - Solar is too high because the model builds 16.4 GW of rooftop solar (extendable by default); the rooftop setting should be fixed for a reference year.
+ - **Draft page:** run selector (2025 reference and 2030 test) and an electricity-mix chart against official 2025 generation.
+
 TODO:
  - to run PyPSA-Earth Taiwan!

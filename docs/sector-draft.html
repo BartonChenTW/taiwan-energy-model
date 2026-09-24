@@ -48,8 +48,11 @@
 
       <section class="section">
         <h2><span class="t-en">What was run</span><span class="t-zh">執行內容</span></h2>
-        <p class="prose-inline"><span class="t-en">The sector-coupled model adds heat, transport, industry and hydrogen to the electricity system, each with its own demand, fuels and technologies. This test: one year (2030 costs and demand growth), 6 regions, <b>144-hour</b> time steps (61 steps), 2013 weather, no CO₂ cap, no hydrogen export, load shedding allowed. Non-electric demand comes from the UN energy statistics, where Taiwan is listed as "Other Asia".</span>
-          <span class="t-zh">部門耦合模型在電力系統之外，加入熱能、運輸、工業與氫能，各有其需求、燃料與技術。本次測試：單一年度（2030 年成本與需求成長）、6 個區域、每 <b>144 小時</b>一個時段（共 61 個）、2013 年氣象、不設 CO₂ 上限、無氫氣出口、允許切負載。非電力需求取自聯合國能源統計，其中台灣列為「Other Asia」。</span></p>
+        <div class="filters">
+          <label><span><span class="t-en">Run</span><span class="t-zh">模擬</span></span>
+            <select id="sd-run"></select></label>
+        </div>
+        <p id="sd-what"></p>
         <section class="tiles" id="sd-tiles" aria-label="Key figures"></section>
       </section>
 
@@ -66,6 +69,12 @@
           <div id="sd-chart-supply" class="chart"></div>
         </article>
       </div>
+
+      <article class="panel">
+        <h3><span class="t-en">Electricity mix: model vs official 2025</span><span class="t-zh">發電結構：模型與官方 2025 年比較</span></h3>
+        <p class="sub"><span class="t-en">Share of electricity generation (%). Official: Energy Administration, national generation 2025.</span><span class="t-zh">占發電量比例（%）。官方：能源署 2025 年全國發電量。</span></p>
+        <div id="sd-chart-mix" class="chart"></div>
+      </article>
 
       <article class="panel">
         <h3><span class="t-en">Electricity capacity: sector model vs official fleet</span><span class="t-zh">發電容量：部門耦合模型與官方機組比較</span></h3>

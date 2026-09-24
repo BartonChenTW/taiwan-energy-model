@@ -24,3 +24,14 @@ export:
 solving:
   options:
     load_shedding: true
+
+sector:
+  # These shares are keyed by "{demand}_{planning year}"; PyPSA-Earth only defines 2030 and
+  # 2050, so 2025 needs its own entries. Values for Taiwan 2025 (assumptions, to review):
+  # no hydrogen vehicles or ships yet; electric cars a small share of road transport energy.
+  land_transport_fuel_cell_share:
+    AB_2025: 0.0
+  land_transport_electric_share:
+    AB_2025: 0.005
+  shipping_hydrogen_share:
+    AB_2025: 0.0

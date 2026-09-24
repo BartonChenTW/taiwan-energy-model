@@ -6,36 +6,42 @@ const L = {
     co2: "CO₂ emissions", co2_note: (r) => `all sectors; official fuel combustion 2025: ${r} Mt`,
     elec: "Electricity demand", elec_note: (a, b) => `official consumption 2024: ${a} TWh; electricity model: ${b} TWh`,
     final: "Final energy demand", final_note: "all carriers, incl. non-energy use",
-    cost: "System cost", cost_note: "model objective, EUR 2030 costs",
+    cost: "System cost", cost_note: (y) => `model objective, EUR; sector technologies at ${y} costs, power plants at 2030 costs`,
     use: { electricity: "Electricity", transport: "Transport", industry: "Industry (heat, feedstock)", buildings: "Buildings (heat, fuels)", agriculture: "Agriculture", other: "Other" },
     col_item: "Demand item", col_use: "Use", col_twh: "TWh", col_tech: "Technology", col_official: "Official fleet (GW)",
     col_fixed: "Sector model: existing (GW)", col_built: "Sector model: built (GW)",
     official: "Official fleet", model: "Sector model",
-    meta: (d) => `Run ${d.run}, ${d.snapshots} time steps of ${d.step} h, exported ${d.generated}.`,
+    meta: (d) => `Run ${d.run} (${d.overlay}), ${d.snapshots} time steps of ${d.step} h, exported ${d.generated}.`,
+    what: (d) => `The sector-coupled model adds heat, transport, industry and hydrogen to the electricity system, each with its own demand, fuels and technologies. This run: planning year ${d.planning_year} (costs and demand growth), 6 regions, ${d.step}-hour time steps (${d.snapshots} steps), 2013 weather, no CO₂ cap, no hydrogen export, load shedding allowed. Non-electric demand comes from the UN energy statistics, where Taiwan is listed as "Other Asia".`,
+    mix: { gas: "Gas", coal: "Coal", oil: "Oil", nuclear: "Nuclear", solar: "Solar PV", wind: "Wind", hydro: "Hydro", pumped_storage: "Pumped hydro", biomass_waste: "Biomass and waste", other: "Other" },
+    official_2025: "Official 2025", model_run: "Model",
     issues: (d, f) => [
       `Electricity demand is ${d.electricity_demand_TWh} TWh, against ${d.reference.electricity_consumption_2024_TWh} TWh official national consumption (2024) and ${d.reference.taipower_system_generation_2024_TWh} TWh in the electricity model (Taipower system). It comes from the UN balance with PyPSA-Earth's 2030 growth factors; part may be counted twice.`,
       `CO₂ is ${d.co2_Mt} Mt, about ${Math.round((d.co2_Mt / d.reference.co2_fuel_combustion_2025_Mt - 1) * 100)}% above official fuel-combustion emissions (${d.reference.co2_fuel_combustion_2025_Mt} Mt, 2025), consistent with the too-high demand; coal also runs at full output all year, as in the electricity model.`,
       `The model built ${f.rooftop} GW of rooftop solar, which is extendable by default in the sector model, so this is not "today's fixed system".`,
       "Fossil fuel supply is unlimited and biomass uses PyPSA-Earth's default potential, not checked for Taiwan.",
-      "No CO₂ cap, and 6-day time steps: daily solar and wind patterns are averaged out.",
+      `No CO₂ cap, and ${nf(d.step_h, 0)}-hour time steps: the day–night pattern of solar and demand is averaged out${d.step_h > 24 ? ", and so are several days of wind" : ""}.`,
     ],
   },
   zh: {
     co2: "CO₂ 排放", co2_note: (r) => `所有部門；官方 2025 年燃料燃燒排放：${r} Mt`,
     elec: "電力需求", elec_note: (a, b) => `官方 2024 年用電量：${a} TWh；電力模型：${b} TWh`,
     final: "最終能源需求", final_note: "所有能源載體，含非能源用途",
-    cost: "系統成本", cost_note: "模型目標函數，2030 年成本（歐元）",
+    cost: "系統成本", cost_note: (y) => `模型目標函數（歐元）；部門技術採 ${y} 年成本，電廠採 2030 年成本`,
     use: { electricity: "電力", transport: "運輸", industry: "工業（熱能、原料）", buildings: "建築（熱能、燃料）", agriculture: "農業", other: "其他" },
     col_item: "需求項目", col_use: "用途", col_twh: "TWh", col_tech: "技術", col_official: "官方機組（GW）",
     col_fixed: "部門模型：既有（GW）", col_built: "部門模型：新建（GW）",
     official: "官方機組", model: "部門耦合模型",
-    meta: (d) => `模擬 ${d.run}，共 ${d.snapshots} 個時段、每段 ${d.step} 小時，匯出時間 ${d.generated}。`,
+    meta: (d) => `模擬 ${d.run}（${d.overlay}），共 ${d.snapshots} 個時段、每段 ${d.step} 小時，匯出時間 ${d.generated}。`,
+    what: (d) => `部門耦合模型在電力系統之外，加入熱能、運輸、工業與氫能，各有其需求、燃料與技術。本次模擬：規劃年 ${d.planning_year}（成本與需求成長）、6 個區域、每 ${d.step} 小時一個時段（共 ${d.snapshots} 個）、2013 年氣象、不設 CO₂ 上限、無氫氣出口、允許切負載。非電力需求取自聯合國能源統計，其中台灣列為「Other Asia」。`,
+    mix: { gas: "燃氣", coal: "燃煤", oil: "燃油", nuclear: "核能", solar: "太陽光電", wind: "風力", hydro: "水力", pumped_storage: "抽蓄水力", biomass_waste: "生質能與廢棄物", other: "其他" },
+    official_2025: "官方 2025 年", model_run: "模型",
     issues: (d, f) => [
       `電力需求為 ${d.electricity_demand_TWh} TWh，官方 2024 年全國用電量為 ${d.reference.electricity_consumption_2024_TWh} TWh，電力模型（台電系統）為 ${d.reference.taipower_system_generation_2024_TWh} TWh。此需求來自聯合國能源平衡加上 PyPSA-Earth 的 2030 年成長係數，可能部分重複計算。`,
       `CO₂ 為 ${d.co2_Mt} Mt，比官方燃料燃燒排放（${d.reference.co2_fuel_combustion_2025_Mt} Mt，2025 年）高約 ${Math.round((d.co2_Mt / d.reference.co2_fuel_combustion_2025_Mt - 1) * 100)}%，與需求過高一致；燃煤也與電力模型一樣全年滿載運轉。`,
       `模型新建了 ${f.rooftop} GW 屋頂型太陽光電（部門模型預設可擴建），因此這不是「現有的固定系統」。`,
       "化石燃料供給無上限，生質能使用 PyPSA-Earth 預設潛力，尚未針對台灣核對。",
-      "未設 CO₂ 上限，且每 6 天一個時段：日內的太陽光電與風力變化被平均掉。",
+      `未設 CO₂ 上限，且每 ${nf(d.step_h, 0)} 小時一個時段：太陽光電與需求的日夜變化被平均掉${d.step_h > 24 ? "，數天的風力變化也是" : ""}。`,
     ],
   },
 };
@@ -80,7 +86,7 @@ const NAMES = {
 };
 const name = (c) => NAMES[lang()][c] || NAMES.en[c] || c;
 
-let data = null;
+let all = null, data = null;
 const $ = (id) => document.getElementById(id);
 const lang = () => (window.twLang ? window.twLang() : "en");
 const T = () => L[lang()];
@@ -118,15 +124,23 @@ function capacityFigures(d) {
 }
 
 function render() {
-  if (!data) return;
-  const d = data, t = T();
+  if (!all) return;
+  const t = T();
+  const sel = $("sd-run");
+  if (!sel.options.length) {
+    sel.innerHTML = all.runs.map((r, i) => `<option value="${i}">${esc(r.label)}</option>`).join("");
+    sel.addEventListener("change", () => { data = all.runs[Number(sel.value)]; render(); });
+  }
+  data = data || all.runs[0];
+  const d = { ...data, generated: all.generated };
+  $("sd-what").textContent = t.what({ ...d, step: nf(d.step_h, 0) });
   const tile = (label, value, unit, note) => `<div class="tile"><div class="label">${esc(label)}</div>
     <div class="value">${value}<span class="unit">${esc(unit)}</span></div><div class="note">${esc(note)}</div></div>`;
   $("sd-tiles").innerHTML = [
     tile(t.co2, nf(d.co2_Mt, 0), "Mt", t.co2_note(nf(d.reference.co2_fuel_combustion_2025_Mt, 1))),
     tile(t.elec, nf(d.electricity_demand_TWh, 0), "TWh", t.elec_note(nf(d.reference.electricity_consumption_2024_TWh, 1), nf(d.reference.taipower_system_generation_2024_TWh, 1))),
     tile(t.final, nf(d.final_demand_TWh, 0), "TWh", t.final_note),
-    tile(t.cost, nf(d.objective_EUR / 1e9, 1), "bn €/yr", t.cost_note),
+    tile(t.cost, nf(d.objective_EUR / 1e9, 1), "bn €/yr", t.cost_note(d.planning_year)),
   ].join("");
 
   const byUse = {};
@@ -135,6 +149,19 @@ function render() {
   bars("sd-chart-demand", uses.map((u) => t.use[u] || u), uses.map((u) => byUse[u]), "TWh", 0);
   $("sd-table-demand").innerHTML = `<table><thead><tr><th>${t.col_item}</th><th>${t.col_use}</th><th class="num">${t.col_twh}</th></tr></thead><tbody>` +
     d.demand_TWh.map((r) => `<tr><td title="${esc(r.carrier)}">${esc(name(r.carrier))}</td><td>${esc(t.use[r.use] || r.use)}</td><td class="num">${nf(r.TWh, 1)}</td></tr>`).join("") + "</tbody></table>";
+
+  // Electricity mix: model vs official 2025 (two series: neutral = official, accent = model).
+  const off = all.official_2025.mix_share, mod = d.mix_share;
+  const groups = ["gas", "coal", "oil", "nuclear", "solar", "wind", "hydro", "pumped_storage", "biomass_waste", "other"]
+    .filter((g) => (off[g] || 0) > 0.0005 || (mod[g] || 0) > 0.0005);
+  const gl = groups.map((g) => t.mix[g] || g);
+  $("sd-chart-mix").style.height = `${Math.max(260, 70 + 40 * gl.length)}px`;
+  Plotly.react("sd-chart-mix", [
+    { type: "bar", orientation: "h", name: t.official_2025, y: gl, x: groups.map((g) => 100 * (off[g] || 0)), marker: { color: cssVar("--muted") },
+      hovertemplate: `${t.official_2025}<br>%{y}: %{x:.1f}%<extra></extra>` },
+    { type: "bar", orientation: "h", name: `${t.model_run}: ${d.label}`, y: gl, x: groups.map((g) => 100 * (mod[g] || 0)), marker: { color: cssVar("--accent") },
+      hovertemplate: `${t.model_run}<br>%{y}: %{x:.1f}%<extra></extra>` },
+  ], layout({ barmode: "group", xaxis: { title: { text: "%", font: { size: 11 } }, ticksuffix: "%" } }), cfg);
 
   const sup = Object.entries(d.electricity_supply_TWh);
   bars("sd-chart-supply", sup.map(([k]) => name(k)), sup.map(([, v]) => v), "TWh", 1);
@@ -162,12 +189,13 @@ function render() {
 
   $("sd-issues").innerHTML = t.issues(d, capacityFigures(d)).map((s) => `<li>${esc(s)}</li>`).join("");
   $("sd-meta").textContent = t.meta({ ...d, step: nf(d.step_h, 0) });
+  document.getElementById("sd-run").value = String(all.runs.indexOf(data));
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const res = await fetch("data/sector_draft.json");
-    if (res.ok) data = await res.json();
+    if (res.ok) all = await res.json();
   } catch { /* keep null */ }
   render();
   document.addEventListener("langchange", render);
