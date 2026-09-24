@@ -102,6 +102,7 @@ Results go to `results/sandbox/<hash>/` (the hash of the normalised spec is the 
 
 - The full grid takes about 15 minutes on DDM06479. Tell the other users of the machine before starting it.
 - The exporter picks up `results/sandbox/*` automatically.
+- Blockade (energy security) cases: `batch.py --security` (28 cases, about 2 minutes; `--force` re-solves them after a model change). They solve only the blockade window, with national fuel stocks. The website page is `docs/energy-security.html`.
 - Live solving (Phase 2) is designed in `pypsa_tw/sandbox/PHASE2_LIVE_SOLVING.md`, not built.
 
 ## Previously Tried

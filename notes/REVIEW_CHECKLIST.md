@@ -76,6 +76,23 @@ Items Claude decided or assumed without your confirmation. Tick them off, or not
 - [ ] **New batteries:** 4 h, 0.96 charge and discharge efficiency (technology-data inverter). The base network's existing battery has an efficiency of 1.0 (a pypsa-earth default), i.e. lossless; this is worth fixing in the fleet.
 - [ ] **System cost** = operating cost + annualised investment (technology-data 2030, 7.1% discount rate) of the added capacity. The load-shedding penalty (1,000 EUR/MWh) is in the objective but not in the system cost.
 
+## Energy security (`docs/energy-security.html`, blockade mode)
+
+- [ ] **Fuel stocks.** All from secondary sources, still to verify against official pages:
+  - LNG about 11 days, with a legal minimum of 7 days rising to 14 days from 2027 (S&P Global 2024; Energy Administration page);
+  - coal about 41 days (Taipei Times 2022, quoting Taipower);
+  - oil 146 days in 2022 and over 100 days in 2026 (Taipei Times 2026, Global Taiwan Institute 2022).
+  - The model uses 100 days of oil.
+- [ ] **Stock sharing.** Stock = stock days × the power plants' average daily fuel use, so power gets its proportional share of the national stock. Check whether power has priority, or a separate reserve, in the rules.
+- [ ] **Standby and retired coal units** (`levers.STANDBY_UNITS`):
+  - Hsinta 3 at 550 MW and Mailiao 1–3 at 3 × 600 MW are from the MOEA report, Fig. 3-3.
+  - Hsinta 1–2 at 1,000 MW is to verify.
+  - All are assumed available from day one, which is optimistic.
+- [ ] **Damaged capacity** (`levers.DAMAGE_SITES`):
+  - Tatan CCGT 7,544.5 MW; Taichung coal 5,500 MW plus CCGT 2,600 MW; Hsinta coal 550 MW plus CCGT 4,826 MW.
+  - Each is removed at the nearest of the 6 buses. Check these against the fleet.
+- [ ] **Perfect foresight** inside the window is a best case. A rolling-horizon version that doesn't know the end date would be more realistic.
+
 ## Website pages
 
 - [ ] **About page** (`docs/about.html`):

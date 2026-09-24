@@ -87,6 +87,17 @@ Then open http://127.0.0.1:8765/. Add `?lang=zh` for Traditional Chinese; `dashb
 - System cost = model operating cost + annualised investment in the added capacity (technology-data 2030). Added capacity is fixed, so its cost is not in the model's objective; restarts of closed nuclear plants are not costed.
 - CO2, renewable share, curtailment, unserved demand, capacity added, and peak line loading.
 
+## Energy security page
+
+`docs/energy-security.html` (with `docs/assets/security.js`) shows the blockade cases from the sandbox's blockade mode.
+
+1. Solve them with `python pypsa_tw/sandbox/batch.py --security`: 28 cases, about 2 minutes. After a model change, add `--force`.
+2. Rerun the exporter. `export_security` writes:
+   - `docs/data/security/index.json`: cases, metrics, and each case's no-blockade reference in the same window;
+   - `docs/data/security/cases/<hash>.json`: daily supply by source, stock levels and unmet demand.
+
+The controls select fuel imports, length, start and one option. The page shows the nearest computed case, and the match box turns red when that case is not an exact match. The query string (`?type=full&days=30&season=summer&option=nuclear`) reproduces the view.
+
 ## Request form
 
 `request.html` sends a request in the background to a form service, which emails it to the author. Visitors need no account and stay on the site.

@@ -355,5 +355,41 @@ Barton asked to try PyPSA-Earth's sector-coupled model. Overlay: `pypsa_tw/confi
    - Barton did not see the "today" values after they were pushed. GitHub Pages lets browsers cache assets (`max-age=600`).
    - `pypsa_tw/viewer/stamp_assets.py` gives every CSS/JS link a content hash (`?v=`); the exporter runs it.
 
+## 2026-09-24: energy security, blockade scenarios
+
+Barton asked whether the model considers LNG and coal stocks, and for a wartime scenario tab.
+ - **Before:** neither model limited fuel. Gas, coal and oil plants could burn any amount.
+ - **Blockade mode** in the sandbox (`levers.SECURITY_LEVERS`, `run_scenario.apply_security`):
+   - Only the blockade window is solved (14/30/60 days from 1 July or 7 January), at the base 4-hour steps.
+   - The plants draw from one national fuel bus per fuel. Each stock is a Store that can only be drawn down.
+     - Stock = stock days × the plants' average daily fuel use in the base year: LNG 11 d, coal 41 d, oil 100 d.
+     - Imports = a share of the base case's fuel use in the same window. 100% reproduces the base case: 1.3% of summer demand not met, the same as the base.
+   - Options: 20% rationing, LNG stock 14 d, nuclear restart, solar +10 GW with batteries +5 GW, standby/retired coal restart (Hsinta 1–3, Mailiao 1–3), and damage (Taichung, Tatan, or half of the lines into Taipei).
+   - Old sandbox hashes are unchanged: security levers enter the spec only when set.
+ - **28 cases** (`batch.py --security`): about 2 s each, 110 s in total.
+ - **Main results** (share of demand not met, full blockade):
+
+   | Window | Result |
+   | --- | --- |
+   | 14 d summer | 21.7% |
+   | 30 d summer | 41.4% |
+   | 60 d summer | 59.8% |
+   | 30 d winter | 19.6% |
+   | 60 d winter | 43.2% |
+
+   - Restarting the three nuclear plants brings the 30-day summer case to 28.5% and the 30-day winter case to 2.8%.
+   - Gas is limited by fuel, not plants: losing Tatan or half the Taipei lines changes nothing.
+   - Coal is limited by plants: 27% of the coal stock is left after 30 summer days.
+   - Losing Taichung raises the 30-day summer case to 57.7%.
+   - Rationing does not reduce the total shortfall, because the model already sheds load optimally.
+ - **Caveats:**
+   - The model knows when the blockade ends (perfect foresight), so each stock is spread to zero by the last day.
+   - Transport and industrial fuel use are not modelled.
+   - Stocks are secondary-source figures, still to verify.
+ - **Website:**
+   - New page `docs/energy-security.html` with `assets/security.js`.
+   - Data in `docs/data/security/` (264 KB); the exporter's `export_security` writes it.
+   - Linked from every menu and the home page.
+
 TODO:
  - to run PyPSA-Earth Taiwan!
