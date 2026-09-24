@@ -31,7 +31,7 @@ Rule:
 4. [x] does the gurobi solver work?
    - Answer: yes, `results/tw_test1_gurobi_2013_7d_4h_6b/networks/elec_s_6_ec_lcopt_Co2L-4H.nc` was produced after the Test 1 Gurobi run.
 5. [x] with no RE and load shedding extendable, can bus TW0 meet demand? Check whether the remaining issue is feasibility/capacity rather than physical connectivity.
-   - Answer (2026-09-24): connectivity is solved, but the full year is not feasible. Test 1 (March week) meets demand without load shedding. Test 2 (full year, real weather, fixed grid, demand calibrated to 2024) is infeasible. With load shedding allowed as a diagnostic, 409.7 GWh (0.14%) is unserved over 800 h in June–August, peaking at 2.18 GW, with no line at its limit. So it is a capacity shortfall at summer peaks, driven by input data (see Phase 3).
+   - Answer (2026-09-24, corrected the same day): connectivity is solved. Test 1 (March week) meets demand without load shedding. Test 2 (full year) is infeasible because the aggregated **transmission corridor into Taipei** (line `TW0 1`–`TW0 4`, limit 0.7 × 13.93 GW) cannot carry the summer peak. The limit binds in every shedding snapshot while spare gas capacity sits elsewhere. With `lines.s_max_pu: 1.0` the full year has no unserved energy. An earlier note said "capacity shortfall, no line at its limit"; that check wrongly compared flows with `s_nom` instead of `s_max_pu × s_nom`.
 6. [x] what is the performance difference between Gurobi and Highs?
    - Answer (2026-09-24): identical results. Test 1: both about 0.05 s. Full-year Test 2 diagnostic: Gurobi `0.84 s` vs HiGHS `9.26 s` solver time (about 11×), `16.1 s` vs `24.2 s` for the whole step.
 7. [x] rerun `tw_test2_highs_2013_fullyear_4h_6b` with valid weather data (2026-09-24: infeasible, see #5)
@@ -40,8 +40,8 @@ Rule:
 9. [x] fix the transmission grid for current-system runs: set `scenario.ll: ["v1.0"]` in the Test configs
 10. [x] add a check that the cutout time range covers the snapshots
    - `check_profile_covers_snapshots()` in `scripts/add_electricity.py`
-11. [x] calibrate demand to today: `load_options.scale: 0.86` (GEGIS 2030 profile scaled to 2024's 288.6 TWh)
-12. [ ] make Test 2 feasible with realistic inputs; see Phase 3 #1–#5
+11. [x] calibrate demand to today: `load_options.scale: 0.86` (GEGIS 2030 profile scaled to 2024's 288.6 TWh). Superseded the same day by 0.749 (Taipower system), see Phase 3 #5.
+12. [ ] make Test 2 feasible with realistic inputs: the binding constraint is the Taipei transmission corridor in the 6-bus model (see Phase 3 #9)
 
 
 ## Phase 2: visualise input/output data of today's model
@@ -75,18 +75,20 @@ Found while checking the 2026-09-24 results against Taiwan 2024 (gas 42.4%, coal
 
 1. [x] nuclear: remove or phase out the 5.3 GW (Maanshan 2 shut down in May 2025)
    - 2026-09-24: done in the draft fleet (#2); the Taipower list has no nuclear units.
-2. [ ] fleet capacities: update to 2025 levels. **Draft ready for review.**
+2. [x] fleet capacities: update to 2025 levels. **Enabled 2026-09-24; to review, see `pypsa_tw/REVIEW_CHECKLIST.md`.**
    - 2026-09-24: `data/custom_powerplants.csv` built by `pypsa_tw/data/build_custom_powerplants.py` from Taipower's official unit list (snapshot 2026-09-24), with coordinates from OSM or powerplantmatching and solar spread by Energy Administration county data. Sources and assumptions: `pypsa_tw/data/README.md`.
    - Totals: gas 22.3, coal 11.4, oil 1.3, solar 15.4, offshore wind 3.4, onshore wind 0.8, hydro 2.1, pumped hydro 2.6, batteries 0.85 GW (60.1 GW; Taipower states 59.8 GW for 2025).
-   - To do after review: enable it in the Test configs (`custom_powerplants: replace`, a 2025 `powerplants_filter`, `estimate_renewable_capacities.stats: false`).
+   - Enabled in the Test configs: `custom_powerplants: replace`, `powerplants_filter` up to 2026, `estimate_renewable_capacities.stats: false`. Total 64.0 GW, including 3.9 GW of new gas units (#7).
 3. [x] pumped hydro: set real storage hours (6 h in the draft fleet, source in the README). The draft also fixes the root cause: the old list had no `Duration`, and `add_electricity` only replaces `max_hours == 0`.
 4. [ ] hydro: check run-of-river and reservoir inflow (run-of-river capacity factor was 2.8%; 15% with the draft fleet)
-5. [ ] demand: scale to **Taipower-system** generation, not the national total
+5. [x] demand: scale to **Taipower-system** generation, not the national total (scale 0.749 enabled 2026-09-24; the 251.44 TWh figure is still to confirm)
    - The draft fleet covers Taipower's system only, so demand scaled to 288.6 TWh (national, including self-generation such as Mailiao) is too high. Scale 0.749 gives 250.9 TWh against 251.44 TWh for Taipower 2024 (to confirm), and a 41.4 GW peak against the official 40,882 MW.
-   - Diagnostic with draft fleet and scale 0.749: unserved 0.83 TWh (0.33%), peak 1.6 GW, June–August. Mix: gas 46%, coal 40%, renewables 14% (Taipower 2024: gas 47%, coal 31%, renewables 12%, nuclear 8%).
+   - Diagnostic with the fleet and scale 0.749: unserved 0.83 TWh (0.33%), June–August, all behind the Taipei corridor (#9). Mix: gas 46%, coal 40%, renewables 14% (Taipower 2024: gas 47%, coal 31%, renewables 12%, nuclear 8%).
 6. [ ] costs: move from `costs_2030.csv` to current fuel prices, and consider coal availability or emission limits; coal still runs at a 100% capacity factor
-7. [ ] new units in trial operation (Taichung CC #1–2, Hsinta new CC #2–3) are excluded because Taipower shows "-"; they were generating 3.1 GW at the snapshot and would probably close the summer shortfall. Ratings needed.
+7. [x] new units in trial operation: Taichung CC #1–2 and Hsinta new CC #3 (1,300 MW each, sources in `pypsa_tw/data/supplementary_units.csv`) added 2026-09-24. Hsinta new CC #2 is left out (not generating yet). They did **not** change the unserved energy, because the limit is transmission (#9).
 8. [ ] battery storage hours: currently pypsa-earth's 6 h default; Taiwan's grid batteries are probably shorter
+9. [ ] transmission into Taipei: in the 6-bus model one aggregated line (`TW0 1`–`TW0 4`, 13.93 GW rating, 0.7 usable) carries all imports to the Taipei bus (87 TWh demand, 3.8 GW local generation). Options: check the OSM 345 kV corridors in the base network, run with more buses (SIMULATION_TABLE runs 5–6, 20 buses), or revisit `s_max_pu`.
+10. [ ] pumped hydro is unused in the full-year runs (capacity factor 0%): coal runs at 100%, so there is no cheap surplus to pump with. Linked to #6 (coal constraints).
 
 
 ## Phase 4: run/test future scenarios

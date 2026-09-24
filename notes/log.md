@@ -116,6 +116,52 @@ key: YOUR_CDS_API_KEY
  - **Demand scope mismatch:** a Taipower-system fleet needs Taipower-system demand, 251.44 TWh in 2024 (to confirm), not the national 288.6 TWh.
  - **Remaining gap:** units shown as "-" (new gas units in trial: Taichung CC #1–2, Hsinta new CC #3) were generating 3.1 GW at the snapshot but have no published rating.
 
+## 2026-09-24 (evening): fleet enabled, correction, MOTEL export
+Barton's instructions: keep developing; (1) enable the fleet; (2) research the missing ratings and record them; (3) push, with details here. Items to review later are in `pypsa_tw/REVIEW_CHECKLIST.md`.
+
+ - **New gas units added with sourced ratings** (`pypsa_tw/data/supplementary_units.csv`, read by `build_custom_powerplants.py`):
+   - Taichung new CC #1 and #2: 1,300 MW each. [CNA 2026-09-04](https://www.cna.com.tw/news/afe/202609040200.aspx) gives about 2,600 MW for the pair. Unit 1 has been in dispatch since May 2026, with commercial operation at the end of September 2026. Unit 2 is in test operation, enters dispatch in October 2026, and reaches commercial operation in March 2027.
+   - Hsinta new CC #3: 1,300 MW, in trial grid operation ([e-info.org.tw](https://e-info.org.tw/node/243153); unit 1 is listed at 1,300.0 MW).
+   - Hsinta new CC #2 is listed but excluded: it was not generating at the snapshot and is due by the end of 2026.
+   - The same CNA article says two Taichung coal units will be dismantled from October 2026. This is not yet reflected in the fleet.
+   - Fleet: 98 plants, 64.0 GW (gas 26.2 GW).
+ - **Test configs switched to the official fleet** (all three):
+   - `electricity.custom_powerplants: replace`
+   - `powerplants_filter` up to `DateIn <= 2026`
+   - `estimate_renewable_capacities.stats: false`
+   - `load_options.scale: 0.749` (Taipower-system demand)
+ - **Reruns:**
+   - Test 1 with HiGHS and with Gurobi: optimal, identical objective `7.44479070e+09`, no dashboard warnings.
+   - Test 2: still infeasible (presolve).
+ - **CORRECTION: the full-year shortfall is transmission, not generation capacity.**
+   - Earlier today I wrote "no line at its limit, so it is a capacity shortfall". That check compared line flows with `s_nom`, but pypsa-earth limits lines to `s_max_pu × s_nom` with `s_max_pu = 0.7`.
+   - Rechecked against `s_max_pu × s_nom`, all three diagnostics were transmission-limited in 100% of their shedding snapshots:
+     - old fleet: line `TW0 0`–`TW0 3`
+     - official fleet without the new units: `TW0 1`–`TW0 3`
+     - current fleet: `TW0 1`–`TW0 4`, at 9.75 GW
+     - bus names differ between runs because clustering renumbers them.
+   - Current run: all 834.9 GWh unserved is at `TW0 1`, the Taipei bus (25.04 N 121.70 E; 87 TWh demand, 3.8 GW local generation), while 5.3 GW of gas elsewhere is unused.
+   - This is also why adding 3.9 GW of new gas left unserved energy unchanged at 834.9 GWh.
+ - **Sensitivity** `tw_test2_highs_2013_fullyear_4h_6b_smax1_ls` (overlay `lines.s_max_pu: 1.0`, load shedding allowed):
+   - no unserved energy; the Taipei corridor peaks at 89% of its rating
+   - mix gas 46.6%, coal 39.6%, renewables 13.8%; CO₂ 134.0 Mt; HiGHS 11.21 s
+   - So the full year is feasible once the Taipei corridor is not the bottleneck.
+   - Open question: is it a real constraint, or an artefact of lumping Taipei's 345 kV corridors into one line with 6 buses? That is Phase 3 #9: check the OSM corridors, and run with 20 buses.
+ - **Pumped hydro unused** (capacity factor 0%) in the full-year runs: coal runs at 100%, so there is no cheap surplus to pump with. Coal constraints are Phase 3 #6.
+ - **Archived** superseded diagnostics in `results/_archive/`: old-fleet load shedding with HiGHS and with Gurobi, and the official fleet before the new units.
+ - **MOTEL export** (Barton's request: store the collected data with the [MOTEL](https://github.com/uesl-empa/motel-platform) framework):
+   - `pypsa_tw/data/export_motel.py` writes Step 1 staging records (`unmapped_entity`, `unmapped_carrier_data`, schema 0.2.0) to `pypsa_tw/data/motel/`:
+     - 12 fleet technology records (installed capacity, every plant with location and commissioning year, pumped-hydro hours, new-unit ratings)
+     - 22 county solar-approval records
+     - 5 electricity carrier records (peak load and reserve margin 2020–2025, annual generation, generation mix)
+   - The records pass MOTEL's own validator (`--strict`: 0 errors, 0 warnings). The validator and schemas are vendored unchanged from MOTEL commit `e3c6a976` (MIT / CC BY 4.0).
+   - Headline statistics (`pypsa_tw/data/official/taiwan_electricity_statistics.csv`) came from search summaries, not pages I opened, so they are marked `evidence: search_summary` and `confidence_level: to be verified`.
+ - **Dashboard:**
+   - opens on the full-year diagnostic (`featured` in `docs/data/index.json`)
+   - findings rewritten in English and Traditional Chinese
+   - storage group relabelled "Storage (pumped hydro, battery)"
+ - **Workflow note:** the run wrapper in the earlier batch reported `EXIT=1` for successful runs because `$?` was read after a command substitution. Fixed in later batches.
+
 
 TODO:
  - to run PyPSA-Earth Taiwan!
