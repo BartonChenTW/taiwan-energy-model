@@ -23,7 +23,7 @@ const CONTROLS = [
 const I18N = {
   en: {
     title: "Power system sandbox", nav_home: "← Home", nav_dashboard: "Model dashboard", nav_levers: "Levers", nav_results: "Results",
-    nav_data: "Taiwan energy data →",
+    nav_data: "Taiwan energy data →", nav_sector: "Sector model (draft) →",
     caveat: "Exploration tool, not a forecast: 6 buses, 4-hourly time steps, one weather year (2013), today's grid unless you change line ratings, and fixed capacities (the model dispatches what you add; it does not choose what to build). Costs are technology-data 2030 projections in EUR. Only pre-computed scenarios can be shown: the levers pick the nearest one.",
     levers_title: "What if…", levers_sub: "Start from today's system and change one or more levers.",
     g_add: "Add or remove capacity", g_add_note: "Right of zero adds new capacity; left of zero removes existing plants (all plants of that type scaled down by the same share).", g_nuclear: "Nuclear", g_policy: "Coal and CO₂", g_market: "Demand and fuel prices", g_grid: "Transmission",
@@ -55,7 +55,7 @@ const I18N = {
   },
   zh: {
     title: "電力系統情境沙盒", nav_home: "← 首頁", nav_dashboard: "模型儀表板", nav_levers: "調整項目", nav_results: "結果",
-    nav_data: "台灣能源資料 →",
+    nav_data: "台灣能源資料 →", nav_sector: "部門耦合（草稿）→",
     caveat: "這是探索工具，不是預測：6 個節點、每 4 小時一個時段、單一氣象年（2013），除非調整線路容量否則電網維持現狀，且容量為固定值（模型只調度您加入的容量，不會自行決定要蓋什麼）。成本為 technology-data 2030 年預估值（歐元）。只能顯示預先計算的情境：調整項目會對應到最接近的一個。",
     levers_title: "如果……", levers_sub: "從現有系統出發，調整一個或多個項目。",
     g_add: "增減容量", g_add_note: "零以右為新增容量；零以左為移除既有電廠（該類電廠依相同比例縮減）。", g_nuclear: "核能", g_policy: "燃煤與 CO₂", g_market: "需求與燃料價格", g_grid: "輸電",
