@@ -83,37 +83,37 @@ const I18N = {
 };
 
 const GROUP_LABEL = {
-  en: { coal: "Coal", nuclear: "Nuclear", onwind: "Onshore wind", storage: "Pumped hydro",
+  en: { coal: "Coal", nuclear: "Nuclear", onwind: "Onshore wind", storage: "Storage (pumped hydro, battery)",
         solar: "Solar PV", offwind: "Offshore wind", gas: "Gas", hydro: "Hydro", other: "Other (oil)", unserved: "Unserved demand" },
-  zh: { coal: "燃煤", nuclear: "核能", onwind: "陸域風電", storage: "抽蓄水力", solar: "太陽光電",
+  zh: { coal: "燃煤", nuclear: "核能", onwind: "陸域風電", storage: "儲能（抽蓄、電池）", solar: "太陽光電",
         offwind: "離岸風電", gas: "燃氣", hydro: "水力", other: "其他（燃油）", unserved: "未供電量" },
 };
 const CARRIER_LABEL = {
   en: { CCGT: "Gas (CCGT)", OCGT: "Gas (OCGT)", coal: "Coal", lignite: "Lignite", nuclear: "Nuclear",
         oil: "Oil", solar: "Solar PV", onwind: "Onshore wind", "offwind-ac": "Offshore wind (AC)",
         "offwind-dc": "Offshore wind (DC)", ror: "Run-of-river hydro", hydro: "Reservoir hydro",
-        PHS: "Pumped hydro", load: "Load shedding", "load shedding": "Load shedding" },
+        PHS: "Pumped hydro", battery: "Battery", load: "Load shedding", "load shedding": "Load shedding" },
   zh: { CCGT: "燃氣複循環", OCGT: "燃氣單循環", coal: "燃煤", lignite: "褐煤", nuclear: "核能", oil: "燃油",
         solar: "太陽光電", onwind: "陸域風電", "offwind-ac": "離岸風電（交流）", "offwind-dc": "離岸風電（直流）",
-        ror: "川流式水力", hydro: "水庫式水力", PHS: "抽蓄水力", load: "切負載", "load shedding": "切負載" },
+        ror: "川流式水力", hydro: "水庫式水力", PHS: "抽蓄水力", battery: "電池儲能", load: "切負載", "load shedding": "切負載" },
 };
 
 const FINDINGS = {
   en: [
-    "<b>Full year: today's system falls short at summer peaks.</b> With real 2013 weather, a fixed grid and no load shedding, the full-year run (Test 2) is infeasible. The diagnostic run that allows load shedding leaves 410 GWh unserved (0.14% of demand) over 800 hours in June–August, peaking at 2.2 GW. No line is at its limit then, so this is a shortage of generation capacity, not of transmission.",
-    "<b>Generation mix does not match 2024 yet.</b> Model: coal 55%, gas 21%, nuclear 15%, renewables 9%. Taiwan 2024: gas 42%, coal 39%, nuclear 4%, renewables 12%, pumped storage 1%. Coal is cheaper than gas in the cost data and has no availability or emission limits, so it runs at a 99.5% capacity factor.",
-    "<b>Input data to fix next (Phase 3).</b> The fleet includes 5.3 GW of nuclear, but Taiwan's last reactor shut down in May 2025. Gas (18.3 GW) and solar (12.4 GW) are below 2024 levels (about 20 GW and 14 GW). Pumped hydro has no storage hours, and run-of-river hydro produces almost nothing. The demand profile is a 2030 projection scaled to 2024 (288.6 TWh), and its summer peaks look too high. Costs come from 2030 projections.",
-    "<b>Weather data fixed.</b> Runs before 2026-09-23 used a weather file covering only 2013-03-01 to 03-06, so renewables were treated as fully available the rest of the time (solar capacity factor 99%). Runs now use a full-year 2013 weather file: solar reaches 13% and offshore wind 44%. The workflow now stops if the weather data doesn't cover the run.",
-    "<b>Grid and connectivity fixed.</b> Small disconnected pieces of the OpenStreetMap grid are merged into the main network, and runs marked “v1.0” keep transmission at today's capacity. Earlier “copt” runs let lines expand.",
-    "<b>Solvers agree.</b> HiGHS and Gurobi give the same result for Test 1, and both solve it in well under a second.",
+    "<b>Official Taiwan fleet.</b> Power plants now come from Taipower's own unit list (snapshot 2026-09-24), including independent producers and 3.9 GW of new gas units in trial operation: 64.0 GW in total, no nuclear. Demand is scaled to Taipower-system generation (251 TWh in 2024), giving a 41.4 GW peak against the official 40.9 GW.",
+    "<b>Generation mix close to Taipower 2024.</b> Model (full year): gas 46%, coal 40%, renewables 14%. Taipower system 2024: gas 47%, coal 31%, renewables 12%, nuclear 8% (nuclear has been 0 since May 2025). Coal still runs at 100% all year: its availability and emission limits are not modelled yet.",
+    "<b>Full year: Taipei transmission is the bottleneck.</b> Without load shedding the full-year run is infeasible. The diagnostic leaves 0.83 TWh (0.33%) unserved, all at the Taipei bus in June–August, because the single aggregated line into Taipei is at its limit (70% of its rating) while spare gas capacity sits elsewhere. With lines allowed their full rating, no demand goes unserved. The 6-bus model lumps Taipei's corridors into one line, so the next step is more buses.",
+    "<b>Weather data fixed.</b> Runs before 2026-09-23 used a weather file covering only 2013-03-01 to 03-06, so renewables were treated as fully available the rest of the time. Runs now use a full-year 2013 weather file (solar 13%, offshore wind 42%), and the workflow stops if the weather data doesn't cover the run.",
+    "<b>Grid and connectivity fixed.</b> Small disconnected pieces of the OpenStreetMap grid are merged into the main network, and runs marked “v1.0” keep transmission at today's capacity.",
+    "<b>Solvers agree.</b> HiGHS and Gurobi give identical results. On the full year Gurobi is about 11× faster (0.8 s vs 9 s).",
   ],
   zh: [
-    "<b>全年模擬：現有系統在夏季尖峰時容量不足。</b>使用 2013 年實際氣象、固定電網且不允許切負載時，全年模擬（Test 2）無可行解。允許切負載的診斷模擬顯示，6 至 8 月共 800 小時有 410 GWh 未供電（占需求 0.14%），最高 2.2 GW。當時沒有線路達到容量上限，因此是發電容量不足，而非輸電瓶頸。",
-    "<b>發電結構尚未符合 2024 年實況。</b>模型：燃煤 55%、燃氣 21%、核能 15%、再生能源 9%。台灣 2024 年：燃氣 42%、燃煤 39%、核能 4%、再生能源 12%、抽蓄 1%。成本資料中燃煤比燃氣便宜，且沒有可用率或排放限制，因此容量因數達 99.5%。",
-    "<b>下一步要修正的輸入資料（第三階段）。</b>機組資料包含 5.3 GW 核能，但台灣最後一部核電機組已於 2025 年 5 月停機。燃氣（18.3 GW）與太陽光電（12.4 GW）低於 2024 年水準（約 20 GW 與 14 GW）。抽蓄水力沒有儲能時數，川流式水力幾乎沒有發電。需求曲線是 2030 年預估值按 2024 年總量（288.6 TWh）縮放，夏季尖峰看起來偏高。成本資料採用 2030 年預估值。",
-    "<b>氣象資料已修正。</b>2026-09-23 之前的模擬使用只涵蓋 2013-03-01 至 03-06 的氣象檔，其餘時間再生能源都被視為滿載可用（太陽光電容量因數 99%）。現在改用 2013 全年氣象檔：太陽光電 13%、離岸風電 44%。若氣象資料未涵蓋模擬期間，流程會直接停止。",
-    "<b>電網與連通性已修正。</b>OpenStreetMap 電網中不相連的小區塊已併入主網；標示「v1.0」的模擬維持目前的輸電容量，較早的「copt」模擬允許線路擴建。",
-    "<b>求解器結果一致。</b>HiGHS 與 Gurobi 對 Test 1 得到相同結果，兩者都在一秒內完成。",
+    "<b>採用台灣官方機組資料。</b>發電機組改用台電機組清單（2026-09-24 快照），包含民營電廠及 3.9 GW 試運轉中的新燃氣機組，共 64.0 GW，無核能。電力需求按台電系統發電量縮放（2024 年 251 TWh），尖峰 41.4 GW，官方為 40.9 GW。",
+    "<b>發電結構接近台電 2024 年。</b>模型（全年）：燃氣 46%、燃煤 40%、再生能源 14%。台電系統 2024 年：燃氣 47%、燃煤 31%、再生能源 12%、核能 8%（2025 年 5 月起核能為 0）。燃煤全年滿載運轉，尚未模擬其可用率與排放限制。",
+    "<b>全年模擬：瓶頸在台北的輸電。</b>不允許切負載時全年模擬無可行解。診斷結果顯示有 0.83 TWh（0.33%）未供電，全部在 6 至 8 月的台北節點：進入台北的單一匯總線路達到上限（額定容量的 70%），其他地區仍有閒置的燃氣容量。若線路可用滿額定容量，則沒有未供電。6 節點模型把台北的多條輸電走廊合併成一條線，下一步是增加節點數。",
+    "<b>氣象資料已修正。</b>2026-09-23 之前的模擬使用只涵蓋 2013-03-01 至 03-06 的氣象檔，其餘時間再生能源都被視為滿載可用。現在改用 2013 全年氣象檔（太陽光電 13%、離岸風電 42%），若氣象資料未涵蓋模擬期間，流程會直接停止。",
+    "<b>電網與連通性已修正。</b>OpenStreetMap 電網中不相連的小區塊已併入主網；標示「v1.0」的模擬維持目前的輸電容量。",
+    "<b>求解器結果一致。</b>HiGHS 與 Gurobi 結果相同；全年模擬 Gurobi 約快 11 倍（0.8 秒對 9 秒）。",
   ],
 };
 
@@ -500,6 +500,7 @@ async function selectCase(id) {
 function defaultCase(cases) {
   const requested = new URL(location.href).searchParams.get("case");
   if (requested && cases.some((c) => c.id === requested)) return requested;
+  if (state.index.featured) return state.index.featured;
   // Prefer a full-year run without extendable lines; among those, one that passes every check.
   const current = cases.filter((c) => c.transmission !== "copt");
   const fullYear = current.filter((c) => c.snapshots >= 1000);

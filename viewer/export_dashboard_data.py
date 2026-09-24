@@ -26,6 +26,8 @@ import pypsa
 
 from viewer_helper import resolve_repo
 
+# Case the dashboard opens with: the full-year run with standard settings.
+FEATURED_CASE = "tw_test2_highs_2013_fullyear_4h_6b_ls__elec_s_6_ec_lv1.0_Co2L-4H"
 RENEWABLE_CARRIERS = ["solar", "onwind", "offwind-ac", "offwind-dc", "ror"]
 # Capacity factors above these are not physically plausible for Taiwan.
 # pypsa-earth names the load-shedding carrier "load shedding"; PyPSA-Eur uses "load".
@@ -359,7 +361,9 @@ def main():
 
     (out / "index.json").write_text(
         json.dumps(
-            {"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "cases": index},
+            {"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+             "featured": FEATURED_CASE if any(c["id"] == FEATURED_CASE for c in index) else None,
+             "cases": index},
             indent=1,
         ),
         encoding="utf-8",
