@@ -324,3 +324,10 @@ td.note-cell { min-width: 220px; max-width: 420px; color: var(--ink-2); }
   .sandbox { grid-template-columns: 1fr; }
   .levers { position: static; max-height: none; }
 }
+
+/* Uncertainty range under a sandbox number: the band spans the range, the dot is the central case. */
+.range-bar { position: relative; height: 8px; margin: 6px 2px 2px; }
+.range-fill { position: absolute; inset: 2px 0; border-radius: 4px; background: var(--grid); }
+.range-dot { position: absolute; top: 0; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%;
+             background: var(--accent); box-shadow: 0 0 0 2px var(--surface); }
+.unc-note { grid-column: 1 / -1; margin: 0; }

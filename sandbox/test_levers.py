@@ -19,7 +19,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from levers import BASES, normalise, spec_hash  # noqa: E402
+from levers import BASES, normalise, scenario_key, spec_hash  # noqa: E402
 from run_scenario import REPO, emissions_t, run  # noqa: E402
 
 logging.disable(logging.WARNING)
@@ -29,6 +29,12 @@ SHED = "load shedding"
 @lru_cache(maxsize=None)
 def solved(**levers):
     _, nc = run({"base": "today", "levers": {k: list(v) if isinstance(v, tuple) else v for k, v in levers.items()}})
+    return pypsa.Network(str(nc))
+
+
+@lru_cache(maxsize=None)
+def solved_variant(variant, **levers):
+    _, nc = run({"base": "today", "levers": levers, "variant": variant})
     return pypsa.Network(str(nc))
 
 
@@ -185,6 +191,27 @@ def test_line_rating():
     n, b = solved(line_rating=1.0), solved()
     assert (n.lines.s_max_pu == 1.0).all()
     assert energy(n, [SHED]) < energy(b, [SHED])
+
+
+# ---------- uncertainty variants ----------
+def test_variant_hashes():
+    assert spec_hash({"variant": "central"}) == spec_hash({})
+    assert spec_hash({"variant": "low"}) != spec_hash({})
+    assert scenario_key({"variant": "low", "levers": {"add_solar_GW": 5}}) == spec_hash({"levers": {"add_solar_GW": 5}})
+    with pytest.raises(ValueError):
+        normalise({"variant": "w1999"})
+
+
+def test_low_high_variants_scale_demand():
+    lo, hi, b = solved_variant("low"), solved_variant("high"), solved()
+    assert demand(lo) == pytest.approx(0.9 * demand(b), rel=1e-9)
+    assert demand(hi) == pytest.approx(1.1 * demand(b), rel=1e-9)
+
+
+def test_weather_variant_uses_other_weather():
+    w, b = solved_variant("w2018"), solved()
+    assert demand(w) == pytest.approx(demand(b), rel=1e-3)  # same annual demand ...
+    assert float(w.loads_t.p_set.sum(axis=1).max()) < float(b.loads_t.p_set.sum(axis=1).max())  # ... flatter 2018 peak
 
 
 if __name__ == "__main__":

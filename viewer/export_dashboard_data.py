@@ -633,7 +633,7 @@ def sandbox_metrics(n, meta, costs, battery_hours=4.0):
     # Investment in the added capacity: annualised technology-data costs. Fixed additions are
     # not in the model's objective, so this is an estimate shown next to it, not optimised.
     added = meta.get("applied", {}).get("added_MW", {})
-    invest, added_by_carrier, not_costed = 0.0, {}, []
+    invest, added_by_carrier, invest_by_carrier, not_costed = 0.0, {}, {}, []
     for name, mw in added.items():
         if name in g.index:
             carrier = g.at[name, "carrier"]
@@ -650,6 +650,7 @@ def sandbox_metrics(n, meta, costs, battery_hours=4.0):
         invest += mw * cc
         key = {"offwind-ac": "offwind", "offwind-dc": "offwind"}.get(carrier, carrier)
         added_by_carrier[key] = added_by_carrier.get(key, 0.0) + mw / 1e3
+        invest_by_carrier[key] = invest_by_carrier.get(key, 0.0) + mw * cc
 
     removed = {k.replace("offwind-ac+offwind-dc", "offwind"): v
                for k, v in meta.get("applied", {}).get("removed_MW", {}).items()}
@@ -664,6 +665,7 @@ def sandbox_metrics(n, meta, costs, battery_hours=4.0):
         "investment_MEUR": _r(invest / 1e6, 1),
         "system_cost_MEUR": _r((operating + invest) / 1e6, 1),
         "investment_not_costed": not_costed,
+        "investment_by_carrier_MEUR": {k: _r(v / 1e6, 2) for k, v in invest_by_carrier.items()},
         "co2_Mt": _r(sum((p[i] * w).sum() / g.at[i, "efficiency"] * n.carriers.co2_emissions.get(g.at[i, "carrier"], 0)
                          for i in g.index[~shed]) / 1e6, 2),
         "re_share": _r(gen.reindex(re_carriers).fillna(0).sum() / gen.sum(), 4),
@@ -681,6 +683,31 @@ def sandbox_metrics(n, meta, costs, battery_hours=4.0):
     }
 
 
+# technology-data row used for each carrier's lifetime and fixed O&M (battery: the storage part)
+COST_ROW = {"solar": "solar", "onwind": "onwind", "offwind": "offwind", "CCGT": "CCGT", "nuclear": "nuclear",
+            "battery": "battery storage"}
+
+
+def _annuity(r, years):
+    return r / (1 - (1 + r) ** -years)
+
+
+def investment_range(metrics, costs, levers, base_rate=0.071):
+    """Annualised investment of the added capacity with investment +-X% and discount rate low/high.
+
+    capital_cost = (annuity(r, lifetime) + FOM%) * investment, so a different discount rate
+    scales each technology's annualised cost by the ratio of the two factors.
+    """
+    lo = hi = 0.0
+    for carrier, inv in metrics["investment_by_carrier_MEUR"].items():
+        row = costs.loc[COST_ROW.get(carrier, carrier)]
+        life, fom = float(row["lifetime"]), float(row["FOM"]) / 100
+        base = _annuity(base_rate, life) + fom
+        lo += inv * (1 - levers.INVESTMENT_SPREAD) * (_annuity(levers.DISCOUNT_RATES[0], life) + fom) / base
+        hi += inv * (1 + levers.INVESTMENT_SPREAD) * (_annuity(levers.DISCOUNT_RATES[1], life) + fom) / base
+    return lo, hi
+
+
 def export_sandbox(repo, out):
     """Sandbox scenarios: case JSON (same format as the runs) plus spec, metrics and deltas."""
     root = repo / "results" / "sandbox"
@@ -691,7 +718,7 @@ def export_sandbox(repo, out):
     sb_out = out / "sandbox"
     (sb_out / "cases").mkdir(parents=True, exist_ok=True)
 
-    rows = {}
+    rows, variants = {}, {}
     for spec_file in sorted(root.glob("*/spec.json")):
         meta = json.loads(spec_file.read_text(encoding="utf-8"))
         key = meta["hash"]
@@ -701,23 +728,48 @@ def export_sandbox(repo, out):
             print(f"[skip] sandbox {key}: missing network or outdated spec")
             continue
         costs = pd.read_csv(repo / base["costs"], index_col=0)
+        variant = meta["spec"].get("variant", "central")
+        if variant != "central":
+            # Uncertainty variant: metrics only, grouped under its scenario.
+            m = sandbox_metrics(pypsa.Network(str(nc)), meta, costs, battery_hours=4.0)
+            variants.setdefault(levers.scenario_key(meta["spec"]), {})[variant] = m
+            continue
         summary, detail = export_case(repo, f"sandbox/{key}", nc)
         summary.update({"id": f"sandbox__{key}", "run": f"sandbox/{key}", "solve_rule_s": meta.get("solve_wall_s")})
         n = pypsa.Network(str(nc))
-        rows[key] = {"meta": meta, "summary": summary, "detail": detail,
+        rows[key] = {"meta": meta, "summary": summary, "detail": detail, "costs": costs,
                      "metrics": sandbox_metrics(n, meta, costs, battery_hours=4.0)}
 
     if base_hash not in rows:
         print("[skip] sandbox: the base case (empty spec) is not solved yet")
         return
     base_m = rows[base_hash]["metrics"]
+    base_v = variants.get(base_hash, {})
     numeric = [k for k, v in base_m.items() if isinstance(v, (int, float)) and v is not None]
     index = []
     for key, r in rows.items():
         m = r["metrics"]
         deltas = {k: _r(m[k] - base_m[k], 4) for k in numeric if m.get(k) is not None}
+        # Ranges over the central solve and its variants; deltas are paired (each variant
+        # against the base case solved under the same variant).
+        var = variants.get(key, {})
+        ranges, delta_ranges = {}, {}
+        for k in numeric:
+            vals = [m[k]] + [v[k] for v in var.values() if v.get(k) is not None]
+            ranges[k] = [_r(min(vals), 4), _r(max(vals), 4)]
+            dv = [deltas[k]] + [var[name][k] - base_v[name][k] for name in var if name in base_v]
+            delta_ranges[k] = [_r(min(dv), 4), _r(max(dv), 4)]
+        inv_lo, inv_hi = investment_range(m, r["costs"], levers)
+        ops = [m["operating_cost_MEUR"]] + [v["operating_cost_MEUR"] for v in var.values()]
+        ranges["investment_MEUR"] = [_r(inv_lo, 1), _r(inv_hi, 1)]
+        ranges["system_cost_MEUR"] = [_r(min(ops) + inv_lo, 1), _r(max(ops) + inv_hi, 1)]
+        d_ops = [m["operating_cost_MEUR"] - base_m["operating_cost_MEUR"]] + [
+            var[name]["operating_cost_MEUR"] - base_v[name]["operating_cost_MEUR"] for name in var if name in base_v]
+        delta_ranges["investment_MEUR"] = ranges["investment_MEUR"]
+        delta_ranges["system_cost_MEUR"] = [_r(min(d_ops) + inv_lo, 1), _r(max(d_ops) + inv_hi, 1)]
         entry = {"hash": key, "label": r["meta"]["label"], "levers": r["meta"]["spec"]["levers"],
                  "changed": levers.changed(r["meta"]["spec"]), "metrics": m, "deltas": deltas,
+                 "ranges": ranges, "delta_ranges": delta_ranges, "variants": sorted(var),
                  "warnings": r["summary"]["warnings"], "solver_status": r["summary"]["solver_status"],
                  "solve_s": r["summary"]["solver_s"], "objective": r["summary"]["objective"]}
         index.append(entry)
@@ -726,7 +778,8 @@ def export_sandbox(repo, out):
         detail["sandbox"] = {**entry, "applied": r["meta"]["applied"], "base_run": r["meta"]["base_run"]}
         (sb_out / "cases" / f"{key}.json").write_text(json.dumps(detail, separators=(",", ":")), encoding="utf-8")
         text = "; ".join(describe_warning(w) for w in r["summary"]["warnings"])
-        print(f"[{'OK  ' if not r['summary']['warnings'] else 'WARN'}] sandbox {key} {r['meta']['label']}: {text or 'no warnings'}")
+        print(f"[{'OK  ' if not r['summary']['warnings'] else 'WARN'}] sandbox {key} {r['meta']['label']} "
+              f"(+{len(var)} variants): {text or 'no warnings'}")
 
     lever_meta = {name: {"default": d, "min": lo, "max": hi, "unit": unit, "description": desc}
                   for name, (d, lo, hi, unit, desc) in levers.LEVERS.items()}
@@ -735,6 +788,10 @@ def export_sandbox(repo, out):
         "base": base_hash, "base_run": rows[base_hash]["meta"]["base_run"], "caveat": SANDBOX_CAVEAT,
         "levers": lever_meta, "nuclear_plants": levers.NUCLEAR_PLANTS, "nuclear_new_site": levers.NUCLEAR_NEW_SITE,
         "currency": CURRENCY, "scenarios": index,
+        "uncertainty": {"variants": {k: v for k, v in levers.VARIANTS.items() if k != "central"},
+                        "fuel_demand_spread": levers.FUEL_DEMAND_SPREAD,
+                        "investment_spread": levers.INVESTMENT_SPREAD, "discount_rates": levers.DISCOUNT_RATES,
+                        "base_discount_rate": 0.071},
     }, indent=1, ensure_ascii=False), encoding="utf-8")
     size = sum(f.stat().st_size for f in sb_out.rglob("*.json")) / 1e6
     print(f"wrote {len(index)} sandbox scenarios to {sb_out.relative_to(repo)} ({size:.1f} MB)")

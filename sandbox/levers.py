@@ -31,8 +31,29 @@ BASES = {
         "overrides": {"solving": {"options": {"load_shedding": True}}},
         "costs": "resources/tw_test2_highs_2013_fullyear_4h_6b/costs_2030_elec.csv",
         "case": "elec_s_6_ec_lv1.0_Co2L-4H",
+        # Same system under other weather years (Snakemake runs of pypsa_tw/config/scenarios/weather_*.yaml),
+        # used for the uncertainty ranges.
+        "weather_variants": {
+            "2011": "networks/tw_weather2011_highs_fullyear_4h_6b_ls/elec_s_6_ec_lv1.0_Co2L-4H.nc",
+            "2018": "networks/tw_weather2018_highs_fullyear_4h_6b_ls/elec_s_6_ec_lv1.0_Co2L-4H.nc",
+        },
     },
 }
+
+# Uncertainty variants: each scenario is also solved under these, and the page shows the
+# range. "low"/"high" multiply the scenario's own gas price, coal price and demand.
+FUEL_DEMAND_SPREAD = 0.10
+VARIANTS = {
+    "central": {},
+    "w2011": {"weather": "2011"},
+    "w2018": {"weather": "2018"},
+    "low": {"mult": 1 - FUEL_DEMAND_SPREAD},
+    "high": {"mult": 1 + FUEL_DEMAND_SPREAD},
+}
+# Technology-cost uncertainty, applied to the annualised investment of added capacity
+# without extra solves: investment +-30%, discount rate 5-10% (base 7.1%).
+INVESTMENT_SPREAD = 0.30
+DISCOUNT_RATES = (0.05, 0.10)
 
 # Existing nuclear plants that could restart, at their OpenStreetMap sites
 # (osm_power_plants_tw_20260924.json; capacity = plant:output:electricity).
@@ -60,8 +81,8 @@ LEVERS = {
     "coal_retire_frac": (0.0, 0.0, 1.0, "fraction", "Share of coal capacity retired (every coal plant scaled down)"),
     "co2_cap_frac": (None, 0.3, 1.0, "fraction", "CO2 cap as a fraction of the base case's emissions; null = no cap"),
     "demand_scale": (1.0, 0.9, 1.3, "x", "Annual demand relative to the base case (hourly shape unchanged)"),
-    "gas_price_mult": (1.0, 0.5, 2.0, "x", "Gas fuel price multiplier (O&M unchanged)"),
-    "coal_price_mult": (1.0, 0.5, 2.0, "x", "Coal fuel price multiplier (O&M unchanged)"),
+    "gas_price_mult": (1.0, 0.0, 2.0, "x", "Gas fuel price multiplier (O&M unchanged)"),
+    "coal_price_mult": (1.0, 0.0, 2.0, "x", "Coal fuel price multiplier (O&M unchanged)"),
     "line_rating": (0.7, 0.5, 1.0, "s_max_pu", "Usable share of each line's rating (0.7 = N-1 margin in the base)"),
 }
 
@@ -69,7 +90,7 @@ LEVERS = {
 def normalise(spec):
     """Return a complete, validated copy of a spec (defaults filled, values checked)."""
     spec = dict(spec or {})
-    unknown = set(spec) - {"base", "levers", "label", "version"}
+    unknown = set(spec) - {"base", "levers", "label", "version", "variant"}
     if unknown:
         raise ValueError(f"unknown spec keys: {sorted(unknown)}")
     if spec.get("version", SPEC_VERSION) != SPEC_VERSION:
@@ -98,7 +119,22 @@ def normalise(spec):
                 raise ValueError(f"{name}={value} outside [{lo}, {hi}]")
             value = round(value, 6)
         levers[name] = value
-    return {"version": SPEC_VERSION, "base": base, "levers": levers}
+    out = {"version": SPEC_VERSION, "base": base, "levers": levers}
+    # The variant is only part of the spec (and its hash) when it is not the central case,
+    # so central scenarios keep the hashes they had before variants existed.
+    variant = spec.get("variant", "central")
+    if variant not in VARIANTS:
+        raise ValueError(f"unknown variant {variant!r}; choose from {sorted(VARIANTS)}")
+    if variant != "central":
+        out["variant"] = variant
+    return out
+
+
+def scenario_key(spec):
+    """Hash of the scenario without its variant: groups a scenario with its uncertainty variants."""
+    norm = normalise(spec)
+    norm.pop("variant", None)
+    return spec_hash(norm)
 
 
 def spec_hash(spec):

@@ -35,7 +35,7 @@ REPO = HERE.parents[1]
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(REPO / "scripts"))
 
-from levers import BASES, NUCLEAR_NEW_SITE, NUCLEAR_PLANTS, describe, normalise, spec_hash  # noqa: E402
+from levers import BASES, NUCLEAR_NEW_SITE, NUCLEAR_PLANTS, VARIANTS, describe, normalise, spec_hash  # noqa: E402
 
 SANDBOX = REPO / "results" / "sandbox"
 NEW_BATTERY_HOURS = 4.0  # storage duration of added batteries
@@ -237,9 +237,18 @@ def run(spec, force=False):
     opts = b["case"].split("_")[-1].split("-")  # e.g. ["Co2L", "4H"], as the {opts} wildcard
     sn = load_solve_module(cfg, opts)
 
+    # A CO2 cap is a fraction of the central base case's emissions, the same absolute cap in every variant.
     base_emissions = emissions_t(pypsa.Network(str(REPO / b["solved"])))
-    n = pypsa.Network(str(REPO / b["prepared"]))
-    applied = apply_levers(n, norm, base_emissions)
+    variant = VARIANTS[norm.get("variant", "central")]
+    prepared = REPO / (b["weather_variants"][variant["weather"]] if "weather" in variant else b["prepared"])
+    if not prepared.exists():
+        raise FileNotFoundError(f"{prepared} is missing: run the Snakemake scenario for that weather year first")
+    n = pypsa.Network(str(prepared))
+    effective = norm
+    if "mult" in variant:  # fuel prices and demand scaled on top of the scenario's own levers
+        effective = {**norm, "levers": {**norm["levers"], **{
+            k: norm["levers"][k] * variant["mult"] for k in ("gas_price_mult", "coal_price_mult", "demand_scale")}}}
+    applied = apply_levers(n, effective, base_emissions)
 
     log_dir = REPO / "logs" / "sandbox" / key / "solve_network"
     log_dir.mkdir(parents=True, exist_ok=True)
@@ -251,6 +260,7 @@ def run(spec, force=False):
     nc.parent.mkdir(parents=True, exist_ok=True)
     n.export_to_netcdf(str(nc))
     meta = {"hash": key, "label": (spec or {}).get("label") or describe(norm), "spec": norm, "applied": applied,
+            "variant": norm.get("variant", "central"), "prepared": str(prepared.relative_to(REPO)).replace("\\", "/"),
             "base_run": b["run"], "base_emissions_t": round(base_emissions), "objective": n.objective,
             "solve_wall_s": round(wall, 2), "solver": cfg["solving"]["solver"]["name"],
             "solved": time.strftime("%Y-%m-%d %H:%M:%S")}

@@ -38,6 +38,10 @@ const I18N = {
     t_cost: "System cost", t_cost_note: (op, inv) => `operating ${op} + investment ${inv} M€/yr`,
     t_cost_restart: "restart costs not included",
     t_co2: "CO₂ emissions", t_re: "Renewable share", t_curtail: "Curtailment", t_unserved: "Unserved demand",
+    range_label: "range", unc_title: "Uncertainty",
+    unc_note: (v) => `Ranges: the same scenario solved under ${v}, and investment ±30% with a 5–10% discount rate. Changes vs base are paired: each variant is compared with the base case under the same variant.`,
+    unc_weather: (y) => `${y} weather`, unc_low: "gas, coal and demand −10%", unc_high: "gas, coal and demand +10%",
+    unc_none: "Ranges are not computed for this scenario yet: only technology-cost ranges are shown.",
     t_added: "Capacity change", t_added_note: (a, r) => `added ${a} · removed ${r} GW`, vs_base: "vs base",
     week_label: (w, a, b) => `Week ${w} · ${a} – ${b}`,
     cap_title: "Installed capacity", cap_sub: "GW by technology: base case and scenario",
@@ -66,6 +70,10 @@ const I18N = {
     t_cost: "系統成本", t_cost_note: (op, inv) => `營運 ${op} + 投資 ${inv} 百萬歐元/年`,
     t_cost_restart: "未含重啟成本",
     t_co2: "CO₂ 排放", t_re: "再生能源占比", t_curtail: "棄電量", t_unserved: "未供電量",
+    range_label: "範圍", unc_title: "不確定性",
+    unc_note: (v) => `範圍：同一情境在 ${v} 下求解，以及投資成本 ±30%、折現率 5–10%。相對基準的變化為成對比較：每個變體都與同一變體下的基準情境比較。`,
+    unc_weather: (y) => `${y} 年氣象`, unc_low: "天然氣、煤價與需求 −10%", unc_high: "天然氣、煤價與需求 +10%",
+    unc_none: "此情境尚未計算範圍：僅顯示技術成本範圍。",
     t_added: "容量變化", t_added_note: (a, r) => `新增 ${a} · 移除 ${r} GW`, vs_base: "相對基準",
     week_label: (w, a, b) => `第 ${w} 週 · ${a} – ${b}`,
     cap_title: "裝置容量", cap_sub: "各技術裝置容量（GW）：基準與情境",
@@ -240,22 +248,43 @@ function renderMatch(best) {
     (exact ? "" : `<p class="note">${esc(t("nearest_note"))} ${diffs.join(" · ")}</p>`);
 }
 
+function uncertaintyText(s) {
+  const names = (s.variants || []).map((v) => (v.startsWith("w") ? t("unc_weather")(v.slice(1)) : t(`unc_${v}`)));
+  return names.length ? t("unc_note")([t("unc_weather")("2013"), ...names].join(", ")) : t("unc_none");
+}
+
 function renderTiles(s) {
-  const m = s.metrics, d = s.deltas;
-  const tile = (label, value, unit, delta, note = "") => `<div class="tile"><div class="label">${esc(label)}</div>
-    <div class="value">${value}<span class="unit">${esc(unit)}</span></div>
-    <div class="note">${esc(delta)} ${esc(t("vs_base"))}${note ? `<br>${esc(note)}` : ""}</div></div>`;
+  const m = s.metrics, d = s.deltas, rg = s.ranges || {}, dr = s.delta_ranges || {};
+  // Value with its range, e.g. "118.4 (112.0–125.1)", shown only when the range is not a single point.
+  const span = (k, scale, digits) => {
+    const r = rg[k];
+    return r && Math.abs(r[1] - r[0]) > 10 ** -(digits + 1) ? `${t("range_label")} ${nf(r[0] * scale, digits)}–${nf(r[1] * scale, digits)}` : "";
+  };
+  const dspan = (k, scale, digits, unit = "") => {
+    const r = dr[k];
+    return r && Math.abs(r[1] - r[0]) > 10 ** -(digits + 1) ? ` (${signed(r[0] * scale, digits)} … ${signed(r[1] * scale, digits)}${unit})` : "";
+  };
+  const bar = (k) => {
+    const r = rg[k], v = m[k];
+    if (!r || r[1] - r[0] <= 0) return "";
+    const lo = Math.min(r[0], v), hi = Math.max(r[1], v), pos = hi > lo ? ((v - lo) / (hi - lo)) * 100 : 50;
+    return `<div class="range-bar" aria-hidden="true"><span class="range-fill"></span><span class="range-dot" style="left:${pos}%"></span></div>`;
+  };
+  const tile = (label, value, unit, k, delta, extra = "") => `<div class="tile"><div class="label">${esc(label)}</div>
+    <div class="value">${value}<span class="unit">${esc(unit)}</span></div>${bar(k)}
+    <div class="note">${esc(span(k, k === "re_share" ? 100 : 1, k === "re_share" || k === "co2_Mt" ? 1 : 0))}</div>
+    <div class="note">${esc(delta)} ${esc(t("vs_base"))}${extra ? `<br>${esc(extra)}` : ""}</div></div>`;
   const costNote = t("t_cost_note")(nf(m.operating_cost_MEUR, 0), nf(m.investment_MEUR, 0)) +
     (m.investment_not_costed.length ? `; ${t("t_cost_restart")}` : "");
   $("sb-tiles").innerHTML = [
-    tile(t("t_cost"), nf(m.system_cost_MEUR, 0), "M€/yr", signed(d.system_cost_MEUR, 0), costNote),
-    tile(t("t_co2"), nf(m.co2_Mt, 1), "Mt", signed(d.co2_Mt, 1)),
-    tile(t("t_re"), nf(m.re_share * 100, 1), "%", `${signed(d.re_share * 100, 1)} pp`),
-    tile(t("t_curtail"), nf(m.curtailment_TWh, 2), "TWh", signed(d.curtailment_TWh, 2)),
-    tile(t("t_unserved"), nf(m.unserved_GWh, 0), "GWh", signed(d.unserved_GWh, 0)),
-    tile(t("t_added"), signed(m.capacity_change_GW ?? m.capacity_added_GW, 1), "GW", signed(d.capacity_change_GW ?? d.capacity_added_GW, 1),
-         t("t_added_note")(nf(m.capacity_added_GW, 1), nf(m.capacity_removed_GW ?? 0, 1))),
-  ].join("");
+    tile(t("t_cost"), nf(m.system_cost_MEUR, 0), "M€/yr", "system_cost_MEUR", signed(d.system_cost_MEUR, 0) + dspan("system_cost_MEUR", 1, 0), costNote),
+    tile(t("t_co2"), nf(m.co2_Mt, 1), "Mt", "co2_Mt", signed(d.co2_Mt, 1) + dspan("co2_Mt", 1, 1)),
+    tile(t("t_re"), nf(m.re_share * 100, 1), "%", "re_share", `${signed(d.re_share * 100, 1)} pp` + dspan("re_share", 100, 1, " pp")),
+    tile(t("t_curtail"), nf(m.curtailment_TWh, 2), "TWh", "curtailment_TWh", signed(d.curtailment_TWh, 2) + dspan("curtailment_TWh", 1, 2)),
+    tile(t("t_unserved"), nf(m.unserved_GWh, 0), "GWh", "unserved_GWh", signed(d.unserved_GWh, 0) + dspan("unserved_GWh", 1, 0)),
+    tile(t("t_added"), signed(m.capacity_change_GW ?? m.capacity_added_GW, 1), "GW", "capacity_change_GW",
+         signed(d.capacity_change_GW ?? d.capacity_added_GW, 1), t("t_added_note")(nf(m.capacity_added_GW, 1), nf(m.capacity_removed_GW ?? 0, 1))),
+  ].join("") + `<p class="note muted unc-note">${esc(uncertaintyText(s))}</p>`;
 }
 
 function renderCapacity(base, cur) {
