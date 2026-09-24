@@ -6,6 +6,7 @@
     <title>Taiwan Energy Data | 台灣能源資料</title>
     <meta name="description" content="Key figures and data sources for Taiwan's electricity system, with evidence status and links." />
     <link rel="stylesheet" href="assets/site.css" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <script src="assets/taiwan-data.js" defer></script>
   </head>
   <body>
@@ -25,6 +26,7 @@
       </div>
       <nav class="shell tabs" aria-label="Sections">
         <a href="index.html" data-i18n="nav_dashboard">← Model dashboard</a>
+        <a href="#history" data-i18n="nav_history">History and projections</a>
         <a href="#facts" data-i18n="nav_facts">Key figures</a>
         <a href="#sources" data-i18n="nav_sources">Data sources</a>
       </nav>
@@ -33,6 +35,52 @@
     <main class="shell">
       <p class="sub intro" data-i18n="intro"></p>
       <section class="tiles" id="tiles" aria-label="Summary"></section>
+
+      <section id="history" class="section">
+        <h2 data-i18n="history_title">History and projections</h2>
+        <p class="sub" data-i18n="history_intro"></p>
+        <div class="grid two">
+          <article class="panel">
+            <h3 data-i18n="h_gen">Generation by source</h3>
+            <p class="sub" data-i18n="h_gen_sub"></p>
+            <div id="chart-h-gen" class="chart tall"></div>
+          </article>
+          <article class="panel">
+            <h3 data-i18n="h_cap">Installed capacity by source</h3>
+            <p class="sub" data-i18n="h_cap_sub"></p>
+            <div id="chart-h-cap" class="chart tall"></div>
+          </article>
+          <article class="panel">
+            <h3 data-i18n="h_peak">Peak load and supply capability</h3>
+            <p class="sub" data-i18n="h_peak_sub"></p>
+            <div id="chart-h-peak" class="chart tall"></div>
+          </article>
+          <article class="panel">
+            <h3 data-i18n="h_re">Renewable capacity: history and targets</h3>
+            <p class="sub" data-i18n="h_re_sub"></p>
+            <div id="chart-h-re" class="chart tall"></div>
+          </article>
+          <article class="panel">
+            <h3 data-i18n="h_share">Renewable share of generation</h3>
+            <p class="sub" data-i18n="h_share_sub"></p>
+            <div id="chart-h-share" class="chart"></div>
+          </article>
+          <article class="panel">
+            <h3 data-i18n="h_ef">Grid emission factor</h3>
+            <p class="sub" data-i18n="h_ef_sub"></p>
+            <div id="chart-h-ef" class="chart"></div>
+          </article>
+        </div>
+        <article class="panel">
+          <h3 data-i18n="h_table">All series</h3>
+          <div class="filters">
+            <label><span data-i18n="filter_series">Series</span> <select id="ts-series"></select></label>
+            <label><span data-i18n="filter_kind">Kind</span> <select id="ts-kind"></select></label>
+            <a class="download" href="data/taiwan_timeseries.csv" download data-i18n="download_csv">Download CSV</a>
+          </div>
+          <div id="table-ts" class="table-wrap"></div>
+        </article>
+      </section>
 
       <section id="facts" class="section">
         <h2 data-i18n="facts_title">Key figures</h2>

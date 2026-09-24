@@ -14,6 +14,11 @@ into MOTEL's controlled vocabularies. This script writes:
 - ``motel/unmapped_carrier_data/unmapped_carrier_data_taiwan_electricity.yaml``:
   carrier-bound records for Taiwan electricity (peak load, annual generation,
   generation mix).
+- ``motel/unmapped_entity/unmapped_entities_taiwan_capacity_history.yaml``:
+  national capacity per technology by year, 2005-2025, plus 2030/2032 targets.
+- ``motel/unmapped_carrier_data/unmapped_carrier_data_taiwan_history_projections.yaml``:
+  generation by source (history), demand and peak outlook, emissions and
+  indicators, from ``taiwan_timeseries.csv``.
 
 Run from the repository root after ``build_custom_powerplants.py``, then check
 the output with MOTEL's validator (vendored in ``motel/tools``):
@@ -269,6 +274,127 @@ def electricity_carrier_records():
     return records
 
 
+# National capacity series (build_timeseries.py) -> MOTEL technology description.
+CAPACITY_SERIES = {
+    "capacity_coal": ("Hard coal steam turbine", "conversion", "fossil_fuel"),
+    "capacity_gas": ("Natural gas power plants (CCGT and OCGT)", "conversion", "fossil_fuel"),
+    "capacity_oil": ("Fuel oil power plants", "conversion", "fossil_fuel"),
+    "capacity_nuclear": ("Nuclear power plants", "conversion", "nuclear"),
+    "capacity_solar": ("Solar photovoltaic", "conversion", "renewable"),
+    "capacity_wind": ("Wind turbines (onshore and offshore)", "conversion", "renewable"),
+    "capacity_offshore_wind": ("Offshore wind turbine", "conversion", "renewable"),
+    "capacity_onshore_wind": ("Onshore wind turbine", "conversion", "renewable"),
+    "capacity_hydro": ("Conventional hydropower", "conversion", "renewable"),
+    "capacity_pumped_storage": ("Pumped hydro storage", "storage", "renewable"),
+    "capacity_geothermal": ("Geothermal power", "conversion", "renewable"),
+    "capacity_biomass": ("Biomass power", "conversion", "renewable"),
+    "capacity_waste": ("Waste-to-energy", "conversion", "renewable"),
+    "capacity_biomass_waste": ("Biomass and waste power", "conversion", "renewable"),
+    "capacity_renewables": ("Renewable power (all technologies)", "conversion", "renewable"),
+}
+
+EVIDENCE_METHOD = {
+    "downloaded": "Official file downloaded and read",
+    "page_opened": "Source page opened and read",
+    "search_summary": "Search result summary; to be verified",
+    "model_input": "Read from PyPSA-Earth input data",
+    "derived": "Derived from official figures (see attribute notes)",
+}
+
+
+def _ts_sources(group):
+    out, seen = [], set()
+    for _, r in group.iterrows():
+        if r.source_name in seen:
+            continue
+        seen.add(r.source_name)
+        src = {
+            "source_name": r.source_name.replace(" ", "_").replace(":", "")[:80],
+            "source_description": r.source_name,
+            "source_type": "dataset" if "dataset" in str(r.link) else "report",
+            "access_date": ACCESS_DATE,
+            "assessment_method": EVIDENCE_METHOD.get(r.evidence, r.evidence),
+            "linked_attribute": sorted(set(group.loc[group.source_name == r.source_name, "series"])),
+        }
+        if isinstance(r.link, str) and r.link:
+            src["link"] = r.link
+        out.append(src)
+    return out
+
+
+def _ts_attributes(group):
+    attrs = []
+    for _, r in group.sort_values(["series", "year"]).iterrows():
+        note = f"{r.kind.capitalize()}. Unit {r.unit}."
+        if isinstance(r.note, str) and r.note:
+            note += " " + r.note
+        attrs.append({"attribute_name": r.series, "value": f"{r.value:g} {r.unit}",
+                      "time_index": str(r.year), "attribute_notes": note})
+    return attrs
+
+
+def timeseries_records():
+    """History (2005-2025), projections and targets from taiwan_timeseries.csv."""
+    ts = pd.read_csv(HERE / "taiwan_timeseries.csv", dtype={"year": str})
+    tech, carrier = [], []
+    for series, (name, ttype, category) in CAPACITY_SERIES.items():
+        g = ts[ts.series == series]
+        if g.empty:
+            continue
+        kinds = sorted(set(g.kind))
+        years = sorted(g.year)
+        tech.append({
+            "schema_version": SCHEMA_VERSION,
+            "technology_name": f"{name} - Taiwan national capacity {years[0]}-{years[-1]} ({', '.join(kinds)})",
+            "technology": {"technology_description": f"Installed capacity of {name.lower()} in Taiwan by year.",
+                           "technology_type": ttype, "technology_category": category, "process_category": "power"},
+            "scope": {"geographic_scope": "TW", "geographic_scope_description": g.scope.iloc[0],
+                      "temporal_scope": f"{years[0]}-{years[-1]}",
+                      "temporal_scope_description": "History: end-of-year statistics. Target: government target for that year.",
+                      "capacity_scope": "national fleet", "system_boundary": "installed capacity",
+                      "scope_notes": "National totals include self-generation (e.g. Mailiao)."},
+            "sources": _ts_sources(g),
+            "attributes": _ts_attributes(g.assign(series="installed_capacity")),
+            "metadata": metadata(["capacity", "history" if "history" in kinds else "target",
+                                  series.replace("capacity_", "")],
+                                 "Built from pypsa_tw/data/taiwan_timeseries.csv."),
+            "harmonisation_record": {"mapping_status": "to_be_mapped"},
+        })
+    groups = [
+        ("demand", "Electricity generation by source, Taiwan national (history)",
+         ts.series.str.startswith("generation_") & (ts.kind == "history"), "annual gross generation"),
+        ("demand", "Electricity demand and peak load: history and outlook",
+         ts.series.isin(["peak_load", "reserve_margin", "night_peak_load", "night_capability", "night_reserve_margin",
+                         "generation_forecast", "gegis_demand", "gegis_peak"]), "annual peak and demand"),
+        ("emission_intensity", "Electricity emissions: history",
+         ts.series.isin(["grid_emission_factor", "co2_fuel_combustion"]),
+         "grid emission factor of public supply; CO2 from fuel combustion (all sectors)"),
+        ("other", "Electricity system indicators: history and targets",
+         ts.series.isin(["re_share", "re_capacity_share", "load_factor", "line_losses", "import_dependence", "storage_grid"]),
+         "national indicators and policy targets"),
+    ]
+    for category, label, mask, boundary in groups:
+        g = ts[mask]
+        if g.empty:
+            continue
+        years = sorted(g.year)
+        carrier.append({
+            "schema_version": SCHEMA_VERSION,
+            "carrier_name": "Electricity",
+            "carrier": {"carrier_description": f"Grid electricity, Taiwan: {label}", "carrier_type": "electricity",
+                        "carrier_category": "other"},
+            "data_category": category,
+            "scope": {"geographic_scope": "TW", "geographic_scope_description": "; ".join(sorted(set(g.scope))),
+                      "temporal_scope": f"{years[0]}-{years[-1]}", "system_boundary": boundary,
+                      "scope_notes": "Attribute notes say whether each value is history, projection or target."},
+            "sources": _ts_sources(g),
+            "attributes": _ts_attributes(g),
+            "metadata": metadata(["history_projection", category], "Built from pypsa_tw/data/taiwan_timeseries.csv."),
+            "harmonisation_record": {"mapping_status": "to_be_mapped"},
+        })
+    return tech, carrier
+
+
 class NoAliasDumper(yaml.SafeDumper):
     """Write shared dicts (e.g. a source used by many records) in full, without &id anchors."""
 
@@ -292,6 +418,9 @@ def main():
     write(OUT / "unmapped_entity" / "unmapped_entities_taiwan_solar_approvals.yaml", solar_approval_records(), header)
     write(OUT / "unmapped_carrier_data" / "unmapped_carrier_data_taiwan_electricity.yaml",
           electricity_carrier_records(), header)
+    tech, carrier = timeseries_records()
+    write(OUT / "unmapped_entity" / "unmapped_entities_taiwan_capacity_history.yaml", tech, header)
+    write(OUT / "unmapped_carrier_data" / "unmapped_carrier_data_taiwan_history_projections.yaml", carrier, header)
 
 
 if __name__ == "__main__":

@@ -5,6 +5,22 @@
 const I18N = {
   en: {
     title: "Taiwan energy data", nav_dashboard: "← Model dashboard", nav_facts: "Key figures", nav_sources: "Data sources",
+    nav_history: "History and projections", history_title: "History and projections",
+    history_intro: "Official annual statistics (2005-2025; peak load from 1982), the government's 10-year outlook, policy targets, and PyPSA-Earth's default demand projection. Solid lines and areas are history; dashed lines and open markers are projections or targets.",
+    h_gen: "Generation by source", h_gen_sub: "TWh per year, national (incl. self-generation). Dashed: 1.7%/yr official growth applied to 2024 (derived); diamonds: PyPSA-Earth default demand (GEGIS).",
+    h_cap: "Installed capacity by source", h_cap_sub: "GW, national, end of year",
+    h_peak: "Peak load and supply capability", h_peak_sub: "GW. Day peak history (Taipower); night peak and night net peak capability forecast (MOEA report, Table 3-2)",
+    h_re: "Renewable capacity: history and targets", h_re_sub: "GW. Targets for 2030 and 2032 from the MOEA report (Table 3-1); wind target = offshore + onshore",
+    h_share: "Renewable share of generation", h_share_sub: "%. Targets: 20% (Nov 2026), 30% (2030), about 65% (2050 net-zero pathway)",
+    h_ef: "Grid emission factor", h_ef_sub: "kg CO2e per kWh of public electricity supply",
+    h_table: "All series", filter_series: "Series", filter_kind: "Kind", download_csv: "Download CSV",
+    kind_history: "History", kind_projection: "Projection", kind_target: "Target",
+    col_kind: "Kind", s_total: "Total", s_forecast: "Official growth path (derived)", s_gegis: "PyPSA-Earth default demand",
+    s_day_peak: "Day peak (history)", s_night_peak: "Night peak", s_night_cap: "Night net peak capability (forecast)",
+    s_solar: "Solar PV", s_wind: "Wind", s_re_total: "All renewables", s_target: "target", s_re_share: "Renewable share",
+    s_ef: "Grid emission factor",
+    g_coal: "Coal", g_nuclear: "Nuclear", g_wind: "Wind", g_pumped_storage: "Pumped storage", g_solar: "Solar PV",
+    g_other_re: "Geothermal, biomass, waste", g_gas: "Gas", g_hydro: "Hydro", g_oil: "Oil",
     intro: "Key figures about Taiwan's electricity system and the data sources behind them, collected for the PyPSA-Earth Taiwan model. Every figure shows how it was obtained, so you can see what is confirmed and what still needs checking.",
     facts_title: "Key figures", sources_title: "Data sources",
     filter_topic: "Topic", filter_evidence: "Evidence", filter_search: "Search", filter_category: "Category", filter_use: "Use in model",
@@ -16,7 +32,7 @@ const I18N = {
     topic_price: "Prices", topic_policy: "Policy targets", topic_resource: "Renewable resource",
     cat_electricity: "Electricity (Taipower)", cat_statistics: "Official statistics", cat_policy: "Policy and plans",
     cat_weather: "Weather", cat_geography: "Geography", cat_international: "International and open data", cat_other: "Other",
-    ev_downloaded: "Downloaded", ev_page_opened: "Page checked", ev_search_summary: "To verify", ev_model_output: "Model output",
+    ev_downloaded: "Downloaded", ev_page_opened: "Page checked", ev_search_summary: "To verify", ev_model_output: "Model output", ev_model_input: "Model input", ev_derived: "Derived",
     ev_legend: "Downloaded: official file downloaded and read. Page checked: source page opened and read. To verify: taken from a search-result summary; check the source before reuse. Model output: computed by the model.",
     use_used: "Used", use_candidate: "Candidate", use_reference: "Reference",
     use_legend: "Used: feeds the model or this dashboard. Candidate: would improve the model (see todo). Reference: background or cross-check.",
@@ -30,6 +46,22 @@ const I18N = {
   },
   zh: {
     title: "台灣能源資料", nav_dashboard: "← 模型儀表板", nav_facts: "關鍵數據", nav_sources: "資料來源",
+    nav_history: "歷史與預測", history_title: "歷史與預測",
+    history_intro: "官方年度統計（2005-2025 年；尖峰負載自 1982 年起）、政府 10 年展望、政策目標，以及 PyPSA-Earth 預設的需求預估。實線與面積為歷史；虛線與空心標記為預測或目標。",
+    h_gen: "各能源別發電量", h_gen_sub: "每年 TWh，全國（含自用發電）。虛線：以 2024 年為基準套用官方年增 1.7%（推估）；菱形：PyPSA-Earth 預設需求（GEGIS）。",
+    h_cap: "各能源別裝置容量", h_cap_sub: "GW，全國，年底",
+    h_peak: "尖峰負載與供電能力", h_peak_sub: "GW。日尖峰歷史（台電）；夜尖峰與夜間淨尖峰能力預測（經濟部報告表 3-2）",
+    h_re: "再生能源裝置容量：歷史與目標", h_re_sub: "GW。2030、2032 年目標取自經濟部報告（表 3-1）；風電目標為離岸加陸域",
+    h_share: "再生能源發電占比", h_share_sub: "%。目標：20%（2026 年 11 月）、30%（2030 年）、約 65%（2050 淨零路徑）",
+    h_ef: "電力排碳係數", h_ef_sub: "每度公用售電之公斤 CO2e",
+    h_table: "所有數列", filter_series: "數列", filter_kind: "類型", download_csv: "下載 CSV",
+    kind_history: "歷史", kind_projection: "預測", kind_target: "目標",
+    col_kind: "類型", s_total: "合計", s_forecast: "官方成長路徑（推估）", s_gegis: "PyPSA-Earth 預設需求",
+    s_day_peak: "日尖峰（歷史）", s_night_peak: "夜尖峰", s_night_cap: "夜間淨尖峰能力（預測）",
+    s_solar: "太陽光電", s_wind: "風力", s_re_total: "再生能源合計", s_target: "目標", s_re_share: "再生能源占比",
+    s_ef: "電力排碳係數",
+    g_coal: "燃煤", g_nuclear: "核能", g_wind: "風力", g_pumped_storage: "抽蓄水力", g_solar: "太陽光電",
+    g_other_re: "地熱、生質能、廢棄物", g_gas: "燃氣", g_hydro: "水力", g_oil: "燃油",
     intro: "為 PyPSA-Earth 台灣模型整理的台灣電力系統關鍵數據與資料來源。每筆數據都標示取得方式，方便分辨哪些已確認、哪些仍待查證。",
     facts_title: "關鍵數據", sources_title: "資料來源",
     filter_topic: "主題", filter_evidence: "證據", filter_search: "搜尋", filter_category: "類別", filter_use: "模型使用",
@@ -41,7 +73,7 @@ const I18N = {
     topic_price: "電價", topic_policy: "政策目標", topic_resource: "再生能源資源",
     cat_electricity: "電力（台電）", cat_statistics: "官方統計", cat_policy: "政策與計畫",
     cat_weather: "氣象", cat_geography: "地理", cat_international: "國際與開放資料", cat_other: "其他",
-    ev_downloaded: "已下載", ev_page_opened: "已查頁面", ev_search_summary: "待查證", ev_model_output: "模型結果",
+    ev_downloaded: "已下載", ev_page_opened: "已查頁面", ev_search_summary: "待查證", ev_model_output: "模型結果", ev_model_input: "模型輸入", ev_derived: "推估",
     ev_legend: "已下載：已下載並讀取官方檔案。已查頁面：已開啟並閱讀來源頁面。待查證：取自搜尋結果摘要，引用前請查核原始來源。模型結果：由模型計算。",
     use_used: "使用中", use_candidate: "可採用", use_reference: "參考",
     use_legend: "使用中：用於模型或本儀表板。可採用：可改善模型（見待辦事項）。參考：背景資料或交叉比對。",
@@ -55,9 +87,9 @@ const I18N = {
   },
 };
 
-const EVIDENCE = { downloaded: "good", page_opened: "good", search_summary: "warning", model_output: "neutral" };
+const EVIDENCE = { downloaded: "good", page_opened: "good", search_summary: "warning", model_output: "neutral", model_input: "neutral", derived: "neutral" };
 const EVIDENCE_ICON = { good: "✓", warning: "!", neutral: "◆" };
-const state = { lang: "en", data: null };
+const state = { lang: "en", data: null, ts: null };
 
 const $ = (id) => document.getElementById(id);
 const t = (key) => I18N[state.lang][key] ?? key;
@@ -155,6 +187,152 @@ function renderSources() {
     "</tbody></table>";
 }
 
+
+// ---------- History and projections ----------
+// Stack order and colours follow the dashboard's validated carrier palette.
+const STACK = [
+  { g: "coal", color: "--c-coal", parts: ["coal"] },
+  { g: "nuclear", color: "--c-nuclear", parts: ["nuclear"] },
+  { g: "wind", color: "--c-onwind", parts: ["wind"] },
+  { g: "pumped_storage", color: "--c-storage", parts: ["pumped_storage"] },
+  { g: "solar", color: "--c-solar", parts: ["solar"] },
+  { g: "other_re", color: "--c-offwind", parts: ["geothermal", "biomass", "waste"] },
+  { g: "gas", color: "--c-gas", parts: ["gas"] },
+  { g: "hydro", color: "--c-hydro", parts: ["hydro"] },
+  { g: "oil", color: "--c-other", parts: ["oil"] },
+];
+
+function tsSeries(id, kinds) {
+  const rows = state.ts.filter((r) => r.series === id && (!kinds || kinds.includes(r.kind)) && /^\d{4}$/.test(r.year))
+    .sort((a, b) => Number(a.year) - Number(b.year));
+  return { x: rows.map((r) => Number(r.year)), y: rows.map((r) => Number(r.value)), rows };
+}
+
+function layoutBase(extra = {}) {
+  const axis = { gridcolor: cssVar("--grid"), linecolor: cssVar("--axis"), zerolinecolor: cssVar("--axis"),
+                 tickfont: { color: cssVar("--muted"), size: 11 }, automargin: true };
+  return {
+    paper_bgcolor: cssVar("--surface"), plot_bgcolor: cssVar("--surface"),
+    font: { family: cssVar("--font"), color: cssVar("--ink-2"), size: 12 },
+    margin: { l: 8, r: 12, t: 8, b: 8 }, hovermode: "x unified",
+    legend: { orientation: "h", x: 0, y: 1.02, yanchor: "bottom", traceorder: "normal", font: { color: cssVar("--ink-2"), size: 11 } },
+    hoverlabel: { bgcolor: cssVar("--surface"), bordercolor: cssVar("--border"), font: { color: cssVar("--ink"), family: cssVar("--font") } },
+    ...extra,
+    xaxis: { ...axis, ...(extra.xaxis || {}) },
+    yaxis: { ...axis, ...(extra.yaxis || {}) },
+  };
+}
+const plotCfg = { displaylogo: false, responsive: true, modeBarButtonsToRemove: ["select2d", "lasso2d"] };
+
+function stacked(prefix, unit, digits) {
+  const traces = [];
+  for (const st of STACK) {
+    const parts = st.parts.map((p) => tsSeries(`${prefix}_${p}`, ["history"])).filter((s) => s.x.length);
+    if (!parts.length) continue;
+    const x = parts[0].x;
+    const y = x.map((_, i) => parts.reduce((a, s) => a + (s.y[i] || 0), 0));
+    if (y.every((v) => v < 1e-6)) continue;
+    traces.push({ type: "scatter", mode: "lines", x, y, name: t(`g_${st.g}`), stackgroup: "one",
+                  line: { width: 0 }, fillcolor: cssVar(st.color),
+                  hovertemplate: `${t(`g_${st.g}`)}: %{y:.${digits}f} ${unit}<extra></extra>` });
+  }
+  return traces;
+}
+
+function renderHistory() {
+  if (!state.ts) return;
+  const ink = cssVar("--ink"), ink2 = cssVar("--ink-2");
+  const dash = (name, s, color, extra = {}) => ({ type: "scatter", mode: "lines+markers", x: s.x, y: s.y, name,
+    line: { color, width: 2, dash: "dash" }, marker: { size: 7, color: cssVar("--surface"), line: { color, width: 2 } }, ...extra });
+
+  // Generation: stacked history + total, derived official path, GEGIS default.
+  const gen = stacked("generation", "TWh", 1);
+  const tot = tsSeries("generation_total", ["history"]);
+  gen.push({ type: "scatter", mode: "lines", x: tot.x, y: tot.y, name: t("s_total"), line: { color: ink, width: 2 },
+             hovertemplate: `${t("s_total")}: %{y:.1f} TWh<extra></extra>` });
+  const fc = tsSeries("generation_forecast", ["projection"]);
+  gen.push(dash(t("s_forecast"), fc, ink, { hovertemplate: `${t("s_forecast")}: %{y:.1f} TWh<extra></extra>` }));
+  const gg = tsSeries("gegis_demand", ["projection"]);
+  gen.push({ type: "scatter", mode: "markers", x: gg.x, y: gg.y, name: t("s_gegis"),
+             marker: { symbol: "diamond-open", size: 10, color: ink2, line: { width: 2 } },
+             hovertemplate: `${t("s_gegis")}: %{y:.1f} TWh<extra></extra>` });
+  Plotly.react("chart-h-gen", gen, layoutBase({ yaxis: { title: { text: "TWh", font: { size: 11 } } } }), plotCfg);
+
+  Plotly.react("chart-h-cap", stacked("capacity", "GW", 2),
+    layoutBase({ yaxis: { title: { text: "GW", font: { size: 11 } } } }), plotCfg);
+
+  // Peak load: day peak history, night peak history + forecast, night capability forecast.
+  const day = tsSeries("peak_load", ["history"]);
+  const nh = tsSeries("night_peak_load", ["history"]);
+  const nf_ = tsSeries("night_peak_load", ["projection"]);
+  const cap = tsSeries("night_capability", ["projection"]);
+  const accent = cssVar("--accent");
+  Plotly.react("chart-h-peak", [
+    { type: "scatter", mode: "lines", x: day.x, y: day.y, name: t("s_day_peak"), line: { color: ink, width: 2 },
+      hovertemplate: `${t("s_day_peak")}: %{y:.1f} GW<extra></extra>` },
+    { type: "scatter", mode: "lines+markers", x: nh.x, y: nh.y, name: `${t("s_night_peak")} (${t("kind_history")})`,
+      line: { color: accent, width: 2 }, marker: { size: 6, color: accent }, hovertemplate: `${t("s_night_peak")}: %{y:.1f} GW<extra></extra>` },
+    dash(`${t("s_night_peak")} (${t("kind_projection")})`, nf_, accent, { hovertemplate: `${t("s_night_peak")}: %{y:.1f} GW<extra></extra>` }),
+    dash(t("s_night_cap"), cap, cssVar("--muted"), { hovertemplate: `${t("s_night_cap")}: %{y:.1f} GW<extra></extra>` }),
+  ], layoutBase({ yaxis: { title: { text: "GW", font: { size: 11 } } } }), plotCfg);
+
+  // Renewable capacity history + targets (same colour, dashed).
+  const sumSeries = (ids, kinds) => {
+    const ss = ids.map((id) => tsSeries(id, kinds)).filter((s) => s.x.length);
+    if (!ss.length) return { x: [], y: [] };
+    const years = [...new Set(ss.flatMap((s) => s.x))].sort();
+    return { x: years, y: years.map((yr) => ss.reduce((a, s) => a + (s.y[s.x.indexOf(yr)] || 0), 0)) };
+  };
+  const reHist = sumSeries(["capacity_hydro", "capacity_solar", "capacity_wind", "capacity_geothermal", "capacity_biomass", "capacity_waste"], ["history"]);
+  const reTarget = tsSeries("capacity_renewables", ["target"]);
+  const solH = tsSeries("capacity_solar", ["history"]), solT = tsSeries("capacity_solar", ["target"]);
+  const windH = tsSeries("capacity_wind", ["history"]), windT = sumSeries(["capacity_offshore_wind", "capacity_onshore_wind"], ["target"]);
+  const bridge = (h, tg) => ({ x: [h.x[h.x.length - 1], ...tg.x], y: [h.y[h.y.length - 1], ...tg.y] });
+  const cSolar = cssVar("--c-solar"), cWind = cssVar("--c-onwind");
+  Plotly.react("chart-h-re", [
+    { type: "scatter", mode: "lines", x: reHist.x, y: reHist.y, name: t("s_re_total"), line: { color: ink, width: 2 }, hovertemplate: `${t("s_re_total")}: %{y:.1f} GW<extra></extra>` },
+    dash(`${t("s_re_total")} ${t("s_target")}`, bridge(reHist, reTarget), ink, { hovertemplate: `${t("s_re_total")} ${t("s_target")}: %{y:.1f} GW<extra></extra>` }),
+    { type: "scatter", mode: "lines", x: solH.x, y: solH.y, name: t("s_solar"), line: { color: cSolar, width: 2 }, hovertemplate: `${t("s_solar")}: %{y:.1f} GW<extra></extra>` },
+    dash(`${t("s_solar")} ${t("s_target")}`, bridge(solH, solT), cSolar, { hovertemplate: `${t("s_solar")} ${t("s_target")}: %{y:.1f} GW<extra></extra>` }),
+    { type: "scatter", mode: "lines", x: windH.x, y: windH.y, name: t("s_wind"), line: { color: cWind, width: 2 }, hovertemplate: `${t("s_wind")}: %{y:.1f} GW<extra></extra>` },
+    dash(`${t("s_wind")} ${t("s_target")}`, bridge(windH, windT), cWind, { hovertemplate: `${t("s_wind")} ${t("s_target")}: %{y:.1f} GW<extra></extra>` }),
+  ], layoutBase({ yaxis: { title: { text: "GW", font: { size: 11 } } } }), plotCfg);
+
+  const shH = tsSeries("re_share", ["history"]), shT = tsSeries("re_share", ["target"]);
+  Plotly.react("chart-h-share", [
+    { type: "scatter", mode: "lines", x: shH.x, y: shH.y, name: t("s_re_share"), line: { color: cWind, width: 2 }, hovertemplate: `${t("s_re_share")}: %{y:.1f}%<extra></extra>` },
+    dash(`${t("s_re_share")} ${t("s_target")}`, bridge(shH, shT), cWind, { hovertemplate: `${t("s_target")}: %{y:.0f}%<extra></extra>` }),
+  ], layoutBase({ yaxis: { title: { text: "%", font: { size: 11 } }, rangemode: "tozero" } }), plotCfg);
+
+  const ef = tsSeries("grid_emission_factor", ["history"]);
+  Plotly.react("chart-h-ef", [
+    { type: "scatter", mode: "lines+markers", x: ef.x, y: ef.y, name: t("s_ef"), line: { color: ink2, width: 2 }, marker: { size: 5, color: ink2 },
+      hovertemplate: `${t("s_ef")}: %{y:.3f} kg CO2e/kWh<extra></extra>` },
+  ], layoutBase({ showlegend: false, yaxis: { title: { text: "kg CO2e/kWh", font: { size: 11 } } } }), plotCfg);
+
+  renderSeriesTable();
+}
+
+function renderSeriesTable() {
+  const zh = state.lang === "zh";
+  const ids = [...new Set(state.ts.map((r) => r.series))];
+  const label = (id) => { const r = state.ts.find((x) => x.series === id); return r ? (zh ? r.indicator_zh : r.indicator_en) : id; };
+  fillSelect("ts-series", ids.sort((a, b) => label(a).localeCompare(label(b))), label);
+  fillSelect("ts-kind", ["history", "projection", "target"], (v) => t(`kind_${v}`));
+  if (!$("ts-series").value) $("ts-series").value = "peak_load";
+  const id = $("ts-series").value, kind = $("ts-kind").value;
+  const rows = state.ts.filter((r) => (!id || r.series === id) && (!kind || r.kind === kind))
+    .sort((a, b) => String(a.year).localeCompare(String(b.year)));
+  if (!rows.length) { $("table-ts").innerHTML = `<p class="muted">${esc(t("none"))}</p>`; return; }
+  const head = [t("col_indicator"), t("col_year"), t("col_value"), t("col_kind"), t("col_scope"), t("col_evidence"), t("col_source"), t("col_note")];
+  $("table-ts").innerHTML = `<table><thead><tr>${head.map((h, i) => `<th${i === 2 ? ' class="num"' : ""}>${esc(h)}</th>`).join("")}</tr></thead><tbody>` +
+    rows.map((r) => `<tr><td>${esc(zh ? r.indicator_zh : r.indicator_en)}</td><td>${esc(r.year)}</td>
+      <td class="num"><b>${esc(Number(r.value).toLocaleString(zh ? "zh-TW" : "en-US", { maximumFractionDigits: 3 }))}</b> ${esc(r.unit)}</td>
+      <td>${esc(t(`kind_${r.kind}`))}</td><td>${esc(r.scope)}</td><td>${evidenceBadge(r.evidence)}</td>
+      <td>${esc(r.source_name)}${r.link ? `<br>${linkCell(r.link)}` : ""}</td><td class="note-cell">${esc(r.note)}</td></tr>`).join("") +
+    "</tbody></table>";
+}
+
 function applyStaticText() {
   document.documentElement.lang = state.lang === "zh" ? "zh-Hant" : "en";
   document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
@@ -165,6 +343,7 @@ function renderAll() {
   applyStaticText();
   if (!state.data) return;
   renderTiles();
+  renderHistory();
   renderFacts();
   renderSources();
 }
@@ -180,15 +359,21 @@ async function init() {
   $("theme-toggle").addEventListener("click", () => {
     const next = cssVar("color-scheme") === "dark" ? "light" : "dark";
     document.documentElement.dataset.theme = next; storageSet("tw-theme", next);
+    renderHistory();
   });
   for (const id of ["fact-topic", "fact-evidence"]) $(id).addEventListener("change", renderFacts);
   for (const id of ["src-category", "src-use"]) $(id).addEventListener("change", renderSources);
   $("fact-search").addEventListener("input", renderFacts);
+  for (const id of ["ts-series", "ts-kind"]) $(id).addEventListener("change", renderSeriesTable);
   $("src-search").addEventListener("input", renderSources);
   try {
     const res = await fetch("data/taiwan_catalog.json");
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     state.data = await res.json();
+    try {
+      const r2 = await fetch("data/taiwan_timeseries.json");
+      state.ts = r2.ok ? (await r2.json()).rows : null;
+    } catch { state.ts = null; }
     renderAll();
   } catch (err) {
     applyStaticText();

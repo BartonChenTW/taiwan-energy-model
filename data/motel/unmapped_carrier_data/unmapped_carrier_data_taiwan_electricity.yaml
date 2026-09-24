@@ -455,141 +455,6 @@
     carrier_description: Grid electricity, Taiwan
     carrier_type: electricity
     carrier_category: other
-  data_category: demand
-  scope:
-    geographic_scope: TW
-    geographic_scope_description: Taiwan (national)
-    temporal_scope: 2024-2025
-    system_boundary: annual generation
-    scope_notes: Taipower system excludes industrial self-generation; national totals include it.
-  sources:
-  - source_name: EIA_Taiwan_Analysis_Brief
-    source_type: report or website
-    access_date: '2026-09-24'
-    assessment_method: Search result summary; page not opened
-    confidence_level: to be verified
-    linked_attribute:
-    - generation_total
-    link: https://www.eia.gov/international/content/analysis/countries_short/Taiwan/Taiwan.pdf
-  - source_name: MOENV_energy_information_platform
-    source_type: report or website
-    access_date: '2026-09-24'
-    assessment_method: Search result summary; page not opened
-    confidence_level: to be verified
-    linked_attribute:
-    - generation_total
-    link: https://energy.moenv.gov.tw/energy/electricity-generation-mix/2408.html
-  attributes:
-  - attribute_name: generation_total
-    value: 288.6 TWh
-    time_index: '2024'
-    attribute_notes: Unit TWh. National total generation including self-generation
-  - attribute_name: generation_total
-    value: 288.9 TWh
-    time_index: '2025'
-    attribute_notes: 'Unit TWh. From search summary: about 0.2 TWh less than 2024'
-  metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
-    tags:
-    - taiwan
-    - generation
-    - taiwan
-    other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Values were taken from search summaries; verify against the source before reuse.
-  harmonisation_record:
-    mapping_status: to_be_mapped
-- schema_version: 0.2.0
-  carrier_name: Electricity
-  carrier:
-    carrier_description: Grid electricity, Taiwan
-    carrier_type: electricity
-    carrier_category: other
-  data_category: other
-  scope:
-    geographic_scope: TW
-    geographic_scope_description: Taiwan (national)
-    temporal_scope: 2024-2025
-    system_boundary: share of annual generation
-    scope_notes: Taipower system excludes industrial self-generation; national totals include it.
-  sources:
-  - source_name: EIA_Taiwan_Analysis_Brief
-    source_type: report or website
-    access_date: '2026-09-24'
-    assessment_method: Search result summary; page not opened
-    confidence_level: to be verified
-    linked_attribute:
-    - share_coal
-    - share_gas
-    - share_nuclear
-    - share_pumped_storage
-    - share_renewables
-    link: https://www.eia.gov/international/content/analysis/countries_short/Taiwan/Taiwan.pdf
-  - source_name: MOENV_energy_information_platform
-    source_type: report or website
-    access_date: '2026-09-24'
-    assessment_method: Search result summary; page not opened
-    confidence_level: to be verified
-    linked_attribute:
-    - share_coal
-    - share_gas
-    - share_nuclear
-    - share_renewables
-    link: https://energy.moenv.gov.tw/energy/electricity-generation-mix/2408.html
-  attributes:
-  - attribute_name: share_gas
-    value: 42.4 %
-    time_index: '2024'
-    attribute_notes: Unit %.
-  - attribute_name: share_coal
-    value: 39.3 %
-    time_index: '2024'
-    attribute_notes: Unit %.
-  - attribute_name: share_nuclear
-    value: 4.2 %
-    time_index: '2024'
-    attribute_notes: Unit %.
-  - attribute_name: share_renewables
-    value: 11.6 %
-    time_index: '2024'
-    attribute_notes: Unit %.
-  - attribute_name: share_pumped_storage
-    value: 1.1 %
-    time_index: '2024'
-    attribute_notes: Unit %.
-  - attribute_name: share_coal
-    value: 35.4 %
-    time_index: '2025'
-    attribute_notes: Unit %. From search summary
-  - attribute_name: share_gas
-    value: 47.8 %
-    time_index: '2025'
-    attribute_notes: Unit %. From search summary
-  - attribute_name: share_renewables
-    value: 13.1 %
-    time_index: '2025'
-    attribute_notes: Unit %. From search summary
-  - attribute_name: share_nuclear
-    value: 1.1 %
-    time_index: '2025'
-    attribute_notes: Unit %. From search summary; Maanshan 2 shut down in May 2025
-  metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
-    tags:
-    - taiwan
-    - generation
-    - taiwan
-    other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Values were taken from search summaries; verify against the source before reuse.
-  harmonisation_record:
-    mapping_status: to_be_mapped
-- schema_version: 0.2.0
-  carrier_name: Electricity
-  carrier:
-    carrier_description: Grid electricity, Taiwan
-    carrier_type: electricity
-    carrier_category: other
   data_category: other
   scope:
     geographic_scope: TW
@@ -636,6 +501,135 @@
     - taiwan
     - generation
     - taipower
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Values were taken from search summaries; verify against the source before reuse.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  carrier_name: Electricity
+  carrier:
+    carrier_description: Grid electricity, Taiwan
+    carrier_type: electricity
+    carrier_category: other
+  data_category: demand
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taiwan (national)
+    temporal_scope: 2024-2025
+    system_boundary: annual generation
+    scope_notes: Taipower system excludes industrial self-generation; national totals include it.
+  sources:
+  - source_name: Energy_Administration:_generation_by_source_(annual)
+    source_type: report or website
+    access_date: '2026-09-24'
+    assessment_method: Search result summary; page not opened
+    confidence_level: to be verified
+    linked_attribute:
+    - generation_total
+    link: https://data.gov.tw/dataset/16481
+  attributes:
+  - attribute_name: generation_total
+    value: 289.39 TWh
+    time_index: '2024'
+    attribute_notes: Unit TWh.
+  - attribute_name: generation_total
+    value: 289.71 TWh
+    time_index: '2025'
+    attribute_notes: Unit TWh.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - generation
+    - taiwan
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Values were taken from search summaries; verify against the source before reuse.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  carrier_name: Electricity
+  carrier:
+    carrier_description: Grid electricity, Taiwan
+    carrier_type: electricity
+    carrier_category: other
+  data_category: other
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taiwan (national)
+    temporal_scope: 2024-2025
+    system_boundary: share of annual generation
+    scope_notes: Taipower system excludes industrial self-generation; national totals include it.
+  sources:
+  - source_name: Energy_Administration:_generation_by_source_(annual)
+    source_type: report or website
+    access_date: '2026-09-24'
+    assessment_method: Search result summary; page not opened
+    confidence_level: to be verified
+    linked_attribute:
+    - share_coal
+    - share_gas
+    - share_nuclear
+    - share_oil
+    - share_pumped_storage
+    - share_renewables
+    link: https://data.gov.tw/dataset/16481
+  attributes:
+  - attribute_name: share_coal
+    value: 39.16 %
+    time_index: '2024'
+    attribute_notes: Unit %.
+  - attribute_name: share_gas
+    value: 42.33 %
+    time_index: '2024'
+    attribute_notes: Unit %.
+  - attribute_name: share_nuclear
+    value: 4.21 %
+    time_index: '2024'
+    attribute_notes: Unit %.
+  - attribute_name: share_pumped_storage
+    value: 1.06 %
+    time_index: '2024'
+    attribute_notes: Unit %.
+  - attribute_name: share_oil
+    value: 1.45 %
+    time_index: '2024'
+    attribute_notes: Unit %.
+  - attribute_name: share_renewables
+    value: 11.79 %
+    time_index: '2024'
+    attribute_notes: Unit %.
+  - attribute_name: share_coal
+    value: 35.29 %
+    time_index: '2025'
+    attribute_notes: Unit %.
+  - attribute_name: share_gas
+    value: 47.69 %
+    time_index: '2025'
+    attribute_notes: Unit %.
+  - attribute_name: share_nuclear
+    value: 1.12 %
+    time_index: '2025'
+    attribute_notes: Unit %.
+  - attribute_name: share_pumped_storage
+    value: 1.07 %
+    time_index: '2025'
+    attribute_notes: Unit %.
+  - attribute_name: share_oil
+    value: 1.51 %
+    time_index: '2025'
+    attribute_notes: Unit %.
+  - attribute_name: share_renewables
+    value: 13.32 %
+    time_index: '2025'
+    attribute_notes: Unit %.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - generation
+    - taiwan
     other_notes:
     - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
     - Values were taken from search summaries; verify against the source before reuse.

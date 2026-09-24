@@ -1,5 +1,5 @@
 link,http_status,checked
-https://cds.climate.copernicus.eu/,000,2026-09-24
+https://cds.climate.copernicus.eu/,0,2026-09-24
 https://codis.cwa.gov.tw/,200,2026-09-24
 https://data.gov.tw/dataset/16423,200,2026-09-24
 https://data.gov.tw/dataset/17141,200,2026-09-24
@@ -42,4 +42,9 @@ https://www.thewindpower.net/,200,2026-09-24
 https://www.twreporter.org/a/data-reporter-taiwan-freezing-electricity-rates,200,2026-09-24
 https://www3.moeaea.gov.tw/ele102/Content/Messagess/contents.aspx?MmmID=654246034110677254&MSID=1307764723234424610,200,2026-09-24
 https://www.irena.org/Data,403,2026-09-24
-https://data.gov.tw/dataset/157114,200,2026-09-24
+https://data.gov.tw/dataset/112650,200,2026-09-24
+https://data.gov.tw/dataset/16437,200,2026-09-24
+https://data.gov.tw/dataset/16480,200,2026-09-24
+https://data.gov.tw/dataset/16481,200,2026-09-24
+https://data.gov.tw/dataset/8308,200,2026-09-24
+https://data.gov.tw/dataset/8309,200,2026-09-24

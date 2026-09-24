@@ -284,3 +284,6 @@ input[type="search"] {
 .link-mark.ok { color: var(--good); }
 .link-mark.bad { color: var(--muted); }
 td.note-cell { min-width: 220px; max-width: 420px; color: var(--ink-2); }
+
+.download { align-self: end; padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; text-decoration: none; }
+.download:hover { background: var(--wash); }

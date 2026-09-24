@@ -181,6 +181,16 @@ Barton's instructions: keep developing; (1) enable the fleet; (2) research the m
      - Candidates worth adding next: Taipower daily supply-demand (19995) for the demand shape, unit historical generation (37331) and daily solar generation (29938) for validation, electricity use by county (38959) for spatial demand, and the Energy Administration statistics database to replace the search-summary figures.
    - Links: 42/44 reachable by script on 2026-09-24 (`official/link_check_20260924.csv`). Copernicus CDS timed out and IRENA returned 403 (bot protection); both are known sites. data.nat.gov.tw/dataset/157114 returned 502 and was replaced by data.gov.tw/dataset/157114.
 
+ - **History and projections** (Barton's request: the data should cover history and projections, not only today):
+   - Downloaded official annual data (Energy Administration): generation by source (16481), capacity by source (16480) and 33 energy indicators (8308), all for 2005–2025. Also the MOEA National Power Supply-Demand Report PDF (16437, 2025 edition, 28 pages). Text extracted with pypdf installed into the scratchpad only, not into `.venv`.
+   - Transcribed from the report: Table 3-2 (night peak 36.9 → 46.0 GW, night capability and reserve margin, 2025–2034; the reserve margins recompute exactly) and Table 3-1 (renewable targets for 2030 and 2032, which sum to the stated totals). Also 1.7%/yr demand growth, gas +25.2 GW with 12.9 GW retired, the 1 GW grid-storage target, and Taipower's capacity-credit rules (solar 25% day / 0% night, offshore wind 11% night).
+   - `pypsa_tw/data/build_timeseries.py` → `taiwan_timeseries.csv`: 826 rows, 45 series (762 history, 46 projection, 18 target). It includes the PyPSA-Earth default GEGIS demand for 2030/2040/2050: 335.7 / 411.2 / 528.9 TWh with 2013 weather. That is about 7% above the official 1.7%/yr path in 2030.
+   - Taiwan energy data page: new "History and projections" section with 6 charts (generation by source, capacity by source, peak load and capability, renewable capacity vs targets, renewable share vs targets, grid emission factor) and a filterable series table with CSV download.
+   - MOTEL: 15 new technology records (national capacity by year plus targets) and 4 carrier records (generation history, demand and peak outlook, emissions, indicators). All 5 files pass the validator with `--strict`.
+   - **Key facts upgraded:** 14 figures that came from search summaries are now marked downloaded after checking them against the official files, so 12 remain to verify (was 26). New figures: emission factor 2025 of 0.467, the 2025–2034 outlook, and the 2030 targets.
+   - **Correction:** the catalogue listed `data.gov.tw/dataset/157114` as the capacity dataset, but it is an unrelated de-listed dataset. The link check passed only because the page exists. Replaced with 16480, and every data.gov.tw link was then checked against its page title.
+   - The 251.44 TWh Taipower-system figure stays unconfirmed. Official data: Taipower + IPPs 243.2 TWh, national 289.4 TWh (2024).
+
 
 TODO:
  - to run PyPSA-Earth Taiwan!

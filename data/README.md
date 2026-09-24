@@ -94,3 +94,28 @@ An earlier note said "no line at its limit, so it is a capacity shortfall". That
 - **沃南風** is assumed to be Greater Changhua 2b.
 - **Onshore wind** is 0.81 GW in Taipower's list; IRENA's 2023 figure is higher. To use the official list only, set `electricity.estimate_renewable_capacities.stats: false`. Otherwise pypsa-earth adds the difference to IRENA, spread evenly across buses.
 - **Snapshot date:** the list is a live snapshot (2026-09-24), not a 2025 annual figure. Refresh it by downloading the JSON again and rerunning the script.
+
+## History, projections and targets (`taiwan_timeseries.csv`)
+
+`build_timeseries.py` builds one table of Taiwan electricity data by year. Each row has `kind` = `history`, `projection` or `target`, plus its source, link and evidence. It has 826 rows in 45 series:
+
+| Kind | Content | Source (in `official/`) |
+| --- | --- | --- |
+| history | Generation by source, 2005–2025 (national; Taipower + IPPs) | `moeaea_generation_by_source_annual.csv` ([16481](https://data.gov.tw/dataset/16481)) |
+| history | Capacity by source, 2005–2025 (national) | `moeaea_capacity_by_source_annual.csv` ([16480](https://data.gov.tw/dataset/16480)) |
+| history | Renewable shares, grid emission factor, CO₂, load factor, line losses, import dependence, 2005–2025 | `moeaea_energy_indicators_annual.csv` ([8308](https://data.gov.tw/dataset/8308)) |
+| history | Peak load and reserve margin, 1982–2025 | `taipower_peak_load_by_year.csv` ([8307](https://data.gov.tw/dataset/8307)) |
+| projection | Night peak, night net peak capability, night reserve margin, 2025–2034; demand growth; new gas capacity | `taiwan_projections_targets.csv`, from the MOEA report PDF ([16437](https://data.gov.tw/dataset/16437), Table 3-2) |
+| target | Renewable capacity by technology for 2030 and 2032; renewable share 20% (Nov 2026), 30% (2030), about 65% (2050); grid storage | same, Table 3-1, plus the NDC 2050 pathway |
+| projection | PyPSA-Earth default demand (GEGIS SSP2-2.6) for 2030, 2040 and 2050 | `data/ssp2-2.6/<year>/era5_2013/Asia.csv` |
+| projection (derived) | The report's 1.7%/yr growth applied to 2024 generation | computed |
+
+The report's Table 3-2 was checked after transcription: each year's reserve margin equals capability ÷ peak − 1. The Table 3-1 renewable targets add up to the stated totals.
+
+**Two editions of the supply-demand report:**
+- The downloaded PDF is the 2025 edition: 2024 actuals, 2025–2034 outlook, demand +1.7%/yr, night peak +2.1%/yr.
+- The 2026 edition (press release only, 2026-06) raises this to +2.5%/yr for 2026–2035, with night peak +2.7%/yr and about 26 GW of new gas.
+
+**Checks against the official files:** these confirmed several figures taken earlier from search summaries: national generation 2024 of 289.4 TWh, capacities, emission factors and renewable shares. The key-facts table now marks them as downloaded.
+
+The 2024 Taipower-system figure of 251.44 TWh used for demand calibration is still unconfirmed. The official data puts Taipower + IPPs at 243.2 TWh and the national total at 289.4 TWh. 251.44 fits between them if Taipower's purchases from self-generators are included.

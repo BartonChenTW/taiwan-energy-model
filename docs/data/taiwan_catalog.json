@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-24 09:43 UTC",
+ "generated": "2026-09-24 10:39 UTC",
  "links_checked": "2026-09-24",
  "link_status": {
-  "https://cds.climate.copernicus.eu/": "000",
+  "https://cds.climate.copernicus.eu/": "0",
   "https://codis.cwa.gov.tw/": "200",
   "https://data.gov.tw/dataset/16423": "200",
   "https://data.gov.tw/dataset/17141": "200",
@@ -45,7 +45,12 @@
   "https://www.twreporter.org/a/data-reporter-taiwan-freezing-electricity-rates": "200",
   "https://www3.moeaea.gov.tw/ele102/Content/Messagess/contents.aspx?MmmID=654246034110677254&MSID=1307764723234424610": "200",
   "https://www.irena.org/Data": "403",
-  "https://data.gov.tw/dataset/157114": "200"
+  "https://data.gov.tw/dataset/112650": "200",
+  "https://data.gov.tw/dataset/16437": "200",
+  "https://data.gov.tw/dataset/16480": "200",
+  "https://data.gov.tw/dataset/16481": "200",
+  "https://data.gov.tw/dataset/8308": "200",
+  "https://data.gov.tw/dataset/8309": "200"
  },
  "facts": [
   {
@@ -199,10 +204,10 @@
    "unit": "GW",
    "year": "2024",
    "scope": "Taiwan (national)",
-   "source_name": "Energy Administration capacity overview",
-   "link": "https://www.moeaea.gov.tw/ECW/populace/content/Content.aspx?menu_id=14438",
-   "evidence": "search_summary",
-   "note": "National totals include self-generation"
+   "source_name": "Energy Administration: capacity by source (annual)",
+   "link": "https://data.gov.tw/dataset/16480",
+   "evidence": "downloaded",
+   "note": "19.885 GW; national totals include self-generation. 2025: 19.3 GW"
   },
   {
    "topic": "capacity",
@@ -212,10 +217,10 @@
    "unit": "GW",
    "year": "2024",
    "scope": "Taiwan (national)",
-   "source_name": "Energy Administration capacity overview",
-   "link": "https://www.moeaea.gov.tw/ECW/populace/content/Content.aspx?menu_id=14438",
-   "evidence": "search_summary",
-   "note": ""
+   "source_name": "Energy Administration: capacity by source (annual)",
+   "link": "https://data.gov.tw/dataset/16480",
+   "evidence": "downloaded",
+   "note": "20.096 GW. 2025: 22.8 GW"
   },
   {
    "topic": "capacity",
@@ -225,10 +230,10 @@
    "unit": "GW",
    "year": "2024",
    "scope": "Taiwan (national)",
-   "source_name": "Energy Administration capacity overview",
-   "link": "https://www.moeaea.gov.tw/ECW/populace/content/Content.aspx?menu_id=14438",
-   "evidence": "search_summary",
-   "note": "Solar 67.8%, wind 18.5%, hydro incl. pumped 10.1%, biomass and waste 3.6%"
+   "source_name": "Energy Administration: capacity by source (annual)",
+   "link": "https://data.gov.tw/dataset/16480",
+   "evidence": "downloaded",
+   "note": "21.067 GW (solar 14.3, wind 3.9, hydro 2.1, biomass and waste 0.75). 2025: 22.8 GW"
   },
   {
    "topic": "capacity",
@@ -277,9 +282,9 @@
    "unit": "TWh",
    "year": "2024",
    "scope": "Taiwan (national)",
-   "source_name": "Energy Administration energy consumption overview",
-   "link": "https://www.moeaea.gov.tw/ECW/populace/content/Content.aspx?menu_id=14436",
-   "evidence": "search_summary",
+   "source_name": "MOEA National Power Supply-Demand Report (2025 edition), Figure 2-1",
+   "link": "https://data.gov.tw/dataset/16437",
+   "evidence": "downloaded",
    "note": "Record high"
   },
   {
@@ -290,9 +295,9 @@
    "unit": "%",
    "year": "2024",
    "scope": "Taiwan (national)",
-   "source_name": "Energy Administration energy consumption overview",
-   "link": "https://www.moeaea.gov.tw/ECW/populace/content/Content.aspx?menu_id=14436",
-   "evidence": "search_summary",
+   "source_name": "MOEA National Power Supply-Demand Report (2025 edition), Figure 2-1",
+   "link": "https://data.gov.tw/dataset/16437",
+   "evidence": "downloaded",
    "note": "156.6 TWh"
   },
   {
@@ -303,9 +308,9 @@
    "unit": "%",
    "year": "2024",
    "scope": "Taiwan (national)",
-   "source_name": "Energy Administration energy consumption overview",
-   "link": "https://www.moeaea.gov.tw/ECW/populace/content/Content.aspx?menu_id=14436",
-   "evidence": "search_summary",
+   "source_name": "MOEA National Power Supply-Demand Report (2025 edition), Figure 2-1",
+   "link": "https://data.gov.tw/dataset/16437",
+   "evidence": "downloaded",
    "note": "53.4 TWh"
   },
   {
@@ -316,9 +321,9 @@
    "unit": "%",
    "year": "2024",
    "scope": "Taiwan (national)",
-   "source_name": "Energy Administration energy consumption overview",
-   "link": "https://www.moeaea.gov.tw/ECW/populace/content/Content.aspx?menu_id=14436",
-   "evidence": "search_summary",
+   "source_name": "MOEA National Power Supply-Demand Report (2025 edition), Figure 2-1",
+   "link": "https://data.gov.tw/dataset/16437",
+   "evidence": "downloaded",
    "note": "50.0 TWh"
   },
   {
@@ -329,9 +334,9 @@
    "unit": "%",
    "year": "2024",
    "scope": "Taiwan (national)",
-   "source_name": "Energy Administration energy consumption overview",
-   "link": "https://www.moeaea.gov.tw/ECW/populace/content/Content.aspx?menu_id=14436",
-   "evidence": "search_summary",
+   "source_name": "MOEA National Power Supply-Demand Report (2025 edition), Figure 2-1",
+   "link": "https://data.gov.tw/dataset/16437",
+   "evidence": "downloaded",
    "note": "18.5 TWh"
   },
   {
@@ -342,9 +347,9 @@
    "unit": "%",
    "year": "2025",
    "scope": "Taiwan (national)",
-   "source_name": "MOEA national power supply-demand report 2025",
+   "source_name": "MOEA National Power Supply-Demand Report (2026 edition, press release)",
    "link": "https://www.moea.gov.tw/Mns/populace/news/News.aspx?kind=1&menu_id=40&news_id=123066",
-   "evidence": "search_summary",
+   "evidence": "page_opened",
    "note": "About -0.84 TWh"
   },
   {
@@ -355,36 +360,36 @@
    "unit": "%/yr",
    "year": "2026-2035",
    "scope": "Taiwan (national)",
-   "source_name": "MOEA national power supply-demand report 2025",
+   "source_name": "MOEA National Power Supply-Demand Report (2026 edition, press release)",
    "link": "https://www.moea.gov.tw/Mns/populace/news/News.aspx?kind=1&menu_id=40&news_id=123066",
-   "evidence": "search_summary",
+   "evidence": "page_opened",
    "note": "AI data centres included as a separate driver for the first time"
   },
   {
    "topic": "generation",
    "indicator_en": "Total generation",
    "indicator_zh": "總發電量",
-   "value": "288.6",
+   "value": "289.4",
    "unit": "TWh",
    "year": "2024",
    "scope": "Taiwan (national)",
-   "source_name": "EIA Taiwan Analysis Brief",
-   "link": "https://www.eia.gov/international/content/analysis/countries_short/Taiwan/Taiwan.pdf",
-   "evidence": "search_summary",
-   "note": "Gas 42.4%, coal 39.3%, nuclear 4.2%, renewables 11.6%, pumped storage 1.1%"
+   "source_name": "Energy Administration: generation by source (annual)",
+   "link": "https://data.gov.tw/dataset/16481",
+   "evidence": "downloaded",
+   "note": "Coal 39.2%, gas 42.3%, oil 1.4%, nuclear 4.2%, renewables 11.8%, pumped storage 1.1% (EIA brief: 288.6 TWh)"
   },
   {
    "topic": "generation",
    "indicator_en": "Total generation",
    "indicator_zh": "總發電量",
-   "value": "288.9",
+   "value": "289.7",
    "unit": "TWh",
    "year": "2025",
    "scope": "Taiwan (national)",
-   "source_name": "MOENV energy information platform",
-   "link": "https://energy.moenv.gov.tw/energy/electricity-generation-mix/2408.html",
-   "evidence": "search_summary",
-   "note": "Coal 35.4%, gas 47.8%, renewables 13.1%, nuclear 1.1%"
+   "source_name": "Energy Administration: generation by source (annual)",
+   "link": "https://data.gov.tw/dataset/16481",
+   "evidence": "downloaded",
+   "note": "Coal 35.3%, gas 47.7%, oil 1.5%, nuclear 1.1%, renewables 13.3%, pumped storage 1.1%"
   },
   {
    "topic": "generation",
@@ -420,10 +425,10 @@
    "unit": "kg CO2e/kWh",
    "year": "2024",
    "scope": "Taipower system (public supply)",
-   "source_name": "Energy Administration",
-   "link": "https://ea01.moeaea.gov.tw/e0406/01/News/Show?id=8ac752a793534a1e8ad17e3804b51969",
-   "evidence": "search_summary",
-   "note": "Published 2025-04-14; 2023: 0.494"
+   "source_name": "Energy Administration: energy indicators (annual)",
+   "link": "https://data.gov.tw/dataset/8308",
+   "evidence": "downloaded",
+   "note": "Published 2025-04-14"
   },
   {
    "topic": "emissions",
@@ -433,9 +438,9 @@
    "unit": "kg CO2e/kWh",
    "year": "2023",
    "scope": "Taipower system (public supply)",
-   "source_name": "Energy Administration",
-   "link": "https://www.moeaea.gov.tw/ecw/populace/content/ContentDesc.aspx?menu_id=26391",
-   "evidence": "search_summary",
+   "source_name": "Energy Administration: energy indicators (annual)",
+   "link": "https://data.gov.tw/dataset/8308",
+   "evidence": "downloaded",
    "note": ""
   },
   {
@@ -501,7 +506,7 @@
    "source_name": "Presidential Office",
    "link": "https://www.president.gov.tw/NEWS/20654",
    "evidence": "search_summary",
-   "note": "Reported 2025 national share: 13.1%"
+   "note": "Moved to November 2026 in the 2025 report; 30% by 2030. Reported 2025 share: 13.3%"
   },
   {
    "topic": "policy",
@@ -632,6 +637,97 @@
    "link": "",
    "evidence": "model_output",
    "note": "Existing farms"
+  },
+  {
+   "topic": "emissions",
+   "indicator_en": "Grid emission factor",
+   "indicator_zh": "電力排碳係數",
+   "value": "0.467",
+   "unit": "kg CO2e/kWh",
+   "year": "2025",
+   "scope": "Taipower system (public supply)",
+   "source_name": "Energy Administration: energy indicators (annual)",
+   "link": "https://data.gov.tw/dataset/8308",
+   "evidence": "downloaded",
+   "note": ""
+  },
+  {
+   "topic": "demand",
+   "indicator_en": "Forecast demand growth 2025-2034",
+   "indicator_zh": "2025-2034 年用電成長率預估",
+   "value": "1.7",
+   "unit": "%/yr",
+   "year": "2025-2034",
+   "scope": "Taiwan (national)",
+   "source_name": "MOEA National Power Supply-Demand Report (2025 edition)",
+   "link": "https://data.gov.tw/dataset/16437",
+   "evidence": "downloaded",
+   "note": "2025 edition; previous 10 years 1.23%/yr. Night peak +2.1%/yr"
+  },
+  {
+   "topic": "demand",
+   "indicator_en": "Night peak load (forecast)",
+   "indicator_zh": "夜尖峰負載（預測）",
+   "value": "46.0",
+   "unit": "GW",
+   "year": "2034",
+   "scope": "Taipower system",
+   "source_name": "MOEA National Power Supply-Demand Report (2025 edition)",
+   "link": "https://data.gov.tw/dataset/16437",
+   "evidence": "downloaded",
+   "note": "From 36.9 GW (2025); Table 3-2"
+  },
+  {
+   "topic": "policy",
+   "indicator_en": "Solar PV target",
+   "indicator_zh": "太陽光電目標",
+   "value": "31.2",
+   "unit": "GW",
+   "year": "2030",
+   "scope": "Taiwan (national)",
+   "source_name": "MOEA National Power Supply-Demand Report (2025 edition)",
+   "link": "https://data.gov.tw/dataset/16437",
+   "evidence": "downloaded",
+   "note": "32.7 GW by 2032; Table 3-1"
+  },
+  {
+   "topic": "policy",
+   "indicator_en": "Offshore wind target",
+   "indicator_zh": "離岸風電目標",
+   "value": "10.9",
+   "unit": "GW",
+   "year": "2030",
+   "scope": "Taiwan (national)",
+   "source_name": "MOEA National Power Supply-Demand Report (2025 edition)",
+   "link": "https://data.gov.tw/dataset/16437",
+   "evidence": "downloaded",
+   "note": "13.9 GW by 2032, subject to Round 3.3; Table 3-1"
+  },
+  {
+   "topic": "policy",
+   "indicator_en": "Renewable share target",
+   "indicator_zh": "再生能源發電占比目標",
+   "value": "30",
+   "unit": "%",
+   "year": "2030",
+   "scope": "Taiwan (national)",
+   "source_name": "MOEA National Power Supply-Demand Report (2025 edition)",
+   "link": "https://data.gov.tw/dataset/16437",
+   "evidence": "downloaded",
+   "note": "20% by November 2026"
+  },
+  {
+   "topic": "capacity",
+   "indicator_en": "New gas capacity 2025-2034",
+   "indicator_zh": "2025-2034 年新增燃氣機組",
+   "value": "25.2",
+   "unit": "GW",
+   "year": "2025-2034",
+   "scope": "Taipower system",
+   "source_name": "MOEA National Power Supply-Demand Report (2025 edition)",
+   "link": "https://data.gov.tw/dataset/16437",
+   "evidence": "downloaded",
+   "note": "Retirements 12.9 GW (coal, oil, gas): net +12.2 GW"
   }
  ],
  "catalog": [
@@ -809,13 +905,13 @@
    "name_en": "Generating capacity (annual)",
    "name_zh": "經濟部能源局_發電裝置容量年資料",
    "provider": "Energy Administration",
-   "content": "National installed capacity by source and year",
+   "content": "National, Taipower, IPP and self-generation capacity by source, 2005-2025",
    "format": "CSV",
    "update": "annual",
    "license": "Government Open Data License v1",
-   "link": "https://data.gov.tw/dataset/157114",
-   "model_use": "candidate",
-   "note": "National totals include self-generation"
+   "link": "https://data.gov.tw/dataset/16480",
+   "model_use": "used",
+   "note": "History series on the Taiwan energy data page (dataset 157114, listed here before, is an unrelated de-listed dataset)"
   },
   {
    "category": "statistics",
@@ -1089,6 +1185,71 @@
    "link": "https://github.com/uesl-empa/motel-platform",
    "model_use": "used",
    "note": "Taiwan data exported as MOTEL staging records (pypsa_tw/data/motel/)"
+  },
+  {
+   "category": "statistics",
+   "name_en": "Generation by source (annual)",
+   "name_zh": "發電量年資料",
+   "provider": "Energy Administration",
+   "content": "National, Taipower, IPP and self-generation output by source, 2005-2025",
+   "format": "CSV",
+   "update": "annual",
+   "license": "Government Open Data License v1",
+   "link": "https://data.gov.tw/dataset/16481",
+   "model_use": "used",
+   "note": "History series on the Taiwan energy data page; confirms the 2024-2025 generation mix"
+  },
+  {
+   "category": "statistics",
+   "name_en": "Energy indicators (annual)",
+   "name_zh": "能源指標年資料",
+   "provider": "Energy Administration",
+   "content": "33 indicators: energy intensity, import dependence, reserve margin, load factor, line losses, renewable shares, CO2 emissions, grid emission factor, 2005-2025",
+   "format": "CSV",
+   "update": "annual",
+   "license": "Government Open Data License v1",
+   "link": "https://data.gov.tw/dataset/8308",
+   "model_use": "used",
+   "note": "History series (renewable share, emission factor, load factor, line losses)"
+  },
+  {
+   "category": "policy",
+   "name_en": "National power supply-demand report (open data)",
+   "name_zh": "全國電力資源供需報告（開放資料）",
+   "provider": "Energy Administration",
+   "content": "Full report PDF: demand forecast, night peak and reserve margin 10 years ahead, renewable targets, gas additions",
+   "format": "PDF",
+   "update": "annual",
+   "license": "Government Open Data License v1",
+   "link": "https://data.gov.tw/dataset/16437",
+   "model_use": "used",
+   "note": "2025 edition transcribed (Tables 3-1, 3-2) into official/taiwan_projections_targets.csv"
+  },
+  {
+   "category": "statistics",
+   "name_en": "Generation by source (monthly)",
+   "name_zh": "發電量月資料",
+   "provider": "Energy Administration",
+   "content": "Monthly generation by source",
+   "format": "CSV",
+   "update": "monthly",
+   "license": "Government Open Data License v1",
+   "link": "https://data.gov.tw/dataset/112650",
+   "model_use": "candidate",
+   "note": "Could check seasonal patterns in the model"
+  },
+  {
+   "category": "statistics",
+   "name_en": "Energy supply",
+   "name_zh": "能源供給資料",
+   "provider": "Energy Administration",
+   "content": "Energy supply by source",
+   "format": "CSV",
+   "update": "annual",
+   "license": "Government Open Data License v1",
+   "link": "https://data.gov.tw/dataset/8309",
+   "model_use": "reference",
+   "note": ""
   }
  ]
 }

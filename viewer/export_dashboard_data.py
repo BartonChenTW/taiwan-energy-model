@@ -452,6 +452,16 @@ def export_catalog(repo, out):
     (out / "taiwan_catalog.json").write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"wrote taiwan_catalog.json ({len(facts)} facts, {len(catalog)} sources)")
 
+    # History, projections and targets by year (built by pypsa_tw/data/build_timeseries.py).
+    ts_file = data / "taiwan_timeseries.csv"
+    if ts_file.exists():
+        ts = pd.read_csv(ts_file, dtype={"year": str}).fillna("")
+        (out / "taiwan_timeseries.json").write_text(
+            json.dumps({"generated": payload["generated"], "rows": ts.to_dict(orient="records")},
+                       ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        ts.to_csv(out / "taiwan_timeseries.csv", index=False, encoding="utf-8")
+        print(f"wrote taiwan_timeseries.json/.csv ({len(ts)} rows, {ts.series.nunique()} series)")
+
 
 def main():
     logging.disable(logging.WARNING)

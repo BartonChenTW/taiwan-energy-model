@@ -50,21 +50,6 @@
  },
  "actual_mix": [
   {
-   "label": "Taiwan (national) 2024",
-   "scope": "Taiwan (national)",
-   "year": 2024,
-   "mix_share": {
-    "gas": 0.424,
-    "coal": 0.393,
-    "nuclear": 0.042,
-    "renewables": 0.116,
-    "storage": 0.011,
-    "other": 0.014
-   },
-   "source": "EIA Taiwan Analysis Brief",
-   "evidence": "search_summary"
-  },
-  {
    "label": "Taipower system 2024",
    "scope": "Taipower system",
    "year": 2024,
@@ -80,25 +65,43 @@
    "evidence": "search_summary"
   },
   {
+   "label": "Taiwan (national) 2024",
+   "scope": "Taiwan (national)",
+   "year": 2024,
+   "mix_share": {
+    "coal": 0.3916,
+    "gas": 0.4233,
+    "nuclear": 0.0421,
+    "storage": 0.0106,
+    "oil": 0.0145,
+    "renewables": 0.1179,
+    "other": 0.0
+   },
+   "source": "Energy Administration: generation by source (annual)",
+   "evidence": "downloaded"
+  },
+  {
    "label": "Taiwan (national) 2025",
    "scope": "Taiwan (national)",
    "year": 2025,
    "mix_share": {
-    "coal": 0.354,
-    "gas": 0.478,
-    "renewables": 0.131,
-    "nuclear": 0.011,
-    "other": 0.026
+    "coal": 0.3529,
+    "gas": 0.4769,
+    "nuclear": 0.0112,
+    "storage": 0.0107,
+    "oil": 0.0151,
+    "renewables": 0.1332,
+    "other": 0.0
    },
-   "source": "MOENV energy information platform",
-   "evidence": "search_summary"
+   "source": "Energy Administration: generation by source (annual)",
+   "evidence": "downloaded"
   }
  ],
  "reference": {
   "peak_GW_2024": 40.88,
   "demand_TWh_2024": {
    "Taipower system": 251.44,
-   "Taiwan (national)": 288.6
+   "Taiwan (national)": 289.39
   }
  }
 }

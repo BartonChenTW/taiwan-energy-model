@@ -36,5 +36,8 @@ Items Claude decided or assumed without your confirmation. Tick them off, or not
 
 ## Taiwan energy data page (`docs/taiwan-data.html`)
 
-- [ ] **26 key figures marked "To verify"** in `pypsa_tw/data/taiwan_key_facts.csv` come from search summaries. Check them against the linked source (ideally the Energy Administration statistics database) and change `evidence` to `page_opened` or `downloaded`.
+- [ ] **12 key figures marked "To verify"** (14 confirmed from official downloads on 2026-09-24) in `pypsa_tw/data/taiwan_key_facts.csv` come from search summaries. Check them against the linked source (ideally the Energy Administration statistics database) and change `evidence` to `page_opened` or `downloaded`.
 - [ ] **Catalogue content and notes are in English only**; dataset names are bilingual.
+- [ ] **Report transcription** (`official/taiwan_projections_targets.csv`): Tables 3-1 and 3-2 of the 2025 supply-demand report were typed in by hand. The consistency checks pass, but a second look at the PDF (`official/moea_power_supply_demand_report_20260609.pdf`, pp. 19–20) would help.
+- [ ] **Which outlook to use for future scenarios:** the 2025 edition (+1.7%/yr, full PDF) or the 2026 edition (+2.5%/yr, press release only).
+- [ ] **2023 night peak (36,146 MW)** is derived: the 2024 value minus the reported increase.
