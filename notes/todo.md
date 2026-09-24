@@ -30,15 +30,18 @@ Rule:
    - Verified after rerunning `tw_test1_gurobi_2013_7d_4h_6b`: `elec_s.nc`, `elec_s_6.nc`, and the prepared solve network each have one connected component and no isolated buses.
 4. [x] does the gurobi solver work?
    - Answer: yes, `results/tw_test1_gurobi_2013_7d_4h_6b/networks/elec_s_6_ec_lcopt_Co2L-4H.nc` was produced after the Test 1 Gurobi run.
-5. [ ] with no RE and load shedding extendable, can bus TW0 meet demand? Check whether the remaining issue is feasibility/capacity rather than physical connectivity.
-   - 2026-09-23: after the isolated-bus fix, `tw_test1_highs` and `tw_test1_gurobi` both solve on 1 connected subnetwork with no load shedding, so the earlier problem was connectivity. Not yet conclusive: the cutout ends 2013-03-06, so 6 of 42 snapshots have renewables at full availability, and lines are still extendable (`ll: copt`). Rerun with a full-year cutout and `ll: ["v1.0"]`.
-6. [ ] what is the performance difference between Gurobi and Highs?
-   - Test 1 (2026-09-23): identical results (objective `8.18958195e+09`). Solver-only time HiGHS `0.06 s` vs Gurobi `0.09 s`; rule wall time `8.57 s` vs `9.95 s`. Too small to separate them, so compare on the full-year Test 2.
-7. [ ] rerun `tw_test2_highs_2013_fullyear_4h_6b` with valid weather data
-   - 2026-09-23: rerun with the isolated-bus fix completed (1 subnetwork, no load shedding, `20.7 s`), but the result is invalid. `cutouts/cutout-2013-era5-tw.nc` covers only 2013-03-01 to 03-06, so 98% of snapshots have renewable `p_max_pu = 1.0` (solar capacity factor 98.6%).
-8. [ ] build a full-year 2013 Taiwan cutout (ERA5 via CDS), then rerun Test 1 (both solvers) and Test 2
-9. [ ] fix the transmission grid for current-system runs: set `scenario.ll: ["v1.0"]` in the Test configs. The default `copt` lets lines expand, and Test 2 added 4.4 GW.
-10. [ ] add a check that the cutout time range covers the snapshots, so a short cutout can't silently set renewables to full availability again
+5. [x] with no RE and load shedding extendable, can bus TW0 meet demand? Check whether the remaining issue is feasibility/capacity rather than physical connectivity.
+   - Answer (2026-09-24): connectivity is solved, but the full year is not feasible. Test 1 (March week) meets demand without load shedding. Test 2 (full year, real weather, fixed grid, demand calibrated to 2024) is infeasible. With load shedding allowed as a diagnostic, 409.7 GWh (0.14%) is unserved over 800 h in June–August, peaking at 2.18 GW, with no line at its limit. So it is a capacity shortfall at summer peaks, driven by input data (see Phase 3).
+6. [x] what is the performance difference between Gurobi and Highs?
+   - Answer (2026-09-24): identical results. Test 1: both about 0.05 s. Full-year Test 2 diagnostic: Gurobi `0.84 s` vs HiGHS `9.26 s` solver time (about 11×), `16.1 s` vs `24.2 s` for the whole step.
+7. [x] rerun `tw_test2_highs_2013_fullyear_4h_6b` with valid weather data (2026-09-24: infeasible, see #5)
+8. [x] build a full-year 2013 Taiwan cutout (ERA5 via CDS), then rerun Test 1 (both solvers) and Test 2
+   - 2026-09-24: `cutouts/cutout-2013-era5-tw.nc`, 8,760 hourly steps, 374 MB. Its time range is fixed in the Test configs.
+9. [x] fix the transmission grid for current-system runs: set `scenario.ll: ["v1.0"]` in the Test configs
+10. [x] add a check that the cutout time range covers the snapshots
+   - `check_profile_covers_snapshots()` in `scripts/add_electricity.py`
+11. [x] calibrate demand to today: `load_options.scale: 0.86` (GEGIS 2030 profile scaled to 2024's 288.6 TWh)
+12. [ ] make Test 2 feasible with realistic inputs; see Phase 3 #1–#5
 
 
 ## Phase 2: visualise input/output data of today's model
@@ -47,29 +50,35 @@ Rule:
    - Completed 2026-07-23: `pypsa_tw/viewer/raw_input_viewer.ipynb` now shows raw OSM inputs, base-network CSVs, PyPSA network elements, renewable profiles, busmaps, isolated-bus counts, and per-network bus maps.
    - Helper functions are consolidated in `pypsa_tw/viewer/viewer_helper.py`.
 2. [x] update the GitHub Page to show the latest results (in both English and Traditional Chinese for Taiwan)
-   - Completed 2026-07-23: refreshed `docs/index.html` and `docs/assets/results-data.js`.
-3. [ ] run more runs and check the results, then put them on the GitHub Page!
-4. [ ] review input data, time series
-   - demand profiles per bus (annual total, peak, daily and seasonal shape)
-   - renewable availability `p_max_pu` for solar, onwind, offwind and ror, with capacity factors
-   - hydro inflow and storage
-   - check that the cutout time range covers the snapshots (see Phase 1 #10)
-5. [ ] review input data, technology
-   - cost data: capital cost, marginal cost, efficiency, lifetime, CO2 intensity per carrier
-   - power plant fleet: capacity by carrier and bus, commissioning year
-   - transmission lines: capacity, length, voltage
-6. [ ] review results data
-   - installed capacity, generation mix and capacity factors by carrier
-   - dispatch time series
-   - electricity prices by bus
-   - line loading and expansion
-   - emissions and system cost
-   - side-by-side comparison between runs
+   - 2026-09-24: rebuilt `docs/`. The page reads `docs/data/`, generated by `pypsa_tw/viewer/export_dashboard_data.py`; nothing is typed in by hand. See `pypsa_tw/GITHUB_PAGES.md`.
+3. [x] run more runs and check the results, then put them on the GitHub Page
+   - 2026-09-24: Test 1 (both solvers), Test 2 and the Test 2 load-shedding diagnostics (both solvers). The exporter flags each case automatically.
+4. [x] review input data, time series. Dashboard "Inputs" section:
+   - demand: national time series, plus annual total and peak per bus
+   - renewable availability `p_max_pu` for solar, onwind, offwind and ror, with mean capacity factors
+   - hydro inflow and storage: storage hours are in the technology table (reveals pumped hydro `max_hours = 0`)
+   - cutout coverage: automatic warning, plus the check in `add_electricity.py`
+5. [x] review input data, technology. Dashboard technology table: units, capacity, marginal and capital cost, efficiency, CO₂ intensity, lifetime, storage hours, mean build year, extendable; line table with capacity, length and loading
+6. [x] review results data. Dashboard "Results" and "All runs" sections:
+   - key figures (demand, CO₂, mean price, unserved demand, solve time)
+   - generation mix and installed capacity, with capacity factors in the table
+   - dispatch time series, with storage charging below zero and unserved demand
+   - national electricity price
+   - network map with line loading
+   - run inventory and generation mix by run
+   - not yet: prices per bus over time, and system cost broken down by component
 
 
 ## Phase 3: implement updated/customised input data
 
-(not started)
+Found while checking the 2026-09-24 results against Taiwan 2024 (gas 42.4%, coal 39.3%, nuclear 4.2%, renewables 11.6%, pumped storage 1.1%; model: coal 55%, gas 21%, nuclear 15%, renewables 9%):
+
+1. [ ] nuclear: remove or phase out the 5.3 GW (Maanshan 2 shut down in May 2025)
+2. [ ] fleet capacities: update gas (model 18.3 GW, about 20 GW real), solar (12.4, about 14 GW) and offshore wind (2.2, about 3 GW) to 2024/2025 levels
+3. [ ] pumped hydro: set real storage hours (currently `max_hours = 0`)
+4. [ ] hydro: check run-of-river and reservoir inflow (run-of-river capacity factor is 2.8%)
+5. [ ] demand: check the profile shape against Taipower hourly load (peak/mean 1.44 looks too high)
+6. [ ] costs: move from `costs_2030.csv` to current fuel prices, and consider coal availability or emission limits, so coal no longer runs at a 99.5% capacity factor
 
 
 ## Phase 4: run/test future scenarios

@@ -71,6 +71,33 @@ key: YOUR_CDS_API_KEY
  - Harmless: `add_electricity` logs a `UnicodeEncodeError` on the Windows console for a `≥` character in the hydro-classification message; the step itself completes.
  - **File permissions.** Files that Codex created or rewrote were owned by the local account `CodexSandboxOffline`, and `EMPA\chyi` had read-only access (the folders' `CREATOR OWNER` rule gives full control only to the creator). Fixed by renaming `pypsa_tw/` and `docs/` aside and copying them back, so the copies are owned by `EMPA\chyi`. The contents were verified identical.
 
+## 2026-09-24
+ - **Full-year cutout built.** `cutouts/cutout-2013-era5-tw.nc`: 2013-01-01 00:00 to 2013-12-31 23:00 (8,760 steps), same 0.3° grid as before (113.7–123.9°E, 16.8–27.3°N), no missing values, 374 MB. It took 2 h 14 min, mostly waiting in the Copernicus queue. The time range is now set explicitly in `atlite.cutouts.cutout-2013-era5-tw.time`. The old 6-day file is in `cutouts/_archive/`.
+ - **Coverage check.** `scripts/add_electricity.py` now raises if a wind, solar or hydro profile does not cover the snapshots, instead of silently using `p_max_pu = 1.0`.
+ - **Fixed grid.** The Test configs set `scenario.ll: ["v1.0"]`. Result files are now `elec_s_6_ec_lv1.0_Co2L-4H.nc`; the old `lcopt` files stay alongside.
+ - **Demand calibrated to 2024.** GEGIS demand exists only as a projection (2030, 2040, 2050, 2100), and the default is 2030 (335.7 TWh). The Test configs set `load_options.scale: 0.86` to match Taiwan's 2024 total generation of 288.6 TWh (Taipower/EIA). The profile shape is unchanged: peak/mean is 1.44, and the 4H-average peak is 47.5 GW.
+ - **Test 1 (week) with real weather:** optimal with both solvers and no dashboard warnings. Objective `7.06520467e+09` for both; solver time HiGHS `0.05 s`, Gurobi `0.04 s`.
+ - **Test 2 (full year) is infeasible** (HiGHS presolve). Answer to Phase 1 #5: no. Today's fixed system as modelled cannot meet demand at summer peaks.
+   - National adequacy check on the prepared network: generator availability falls below demand in 80 of 2,190 snapshots (max 2.4 GW short), and in 17 even with reservoir hydro at full power (max 1.0 GW). Before demand scaling it was 345 and 282 snapshots.
+   - Pumped hydro (2.7 GW) has `max_hours = 0`, so it cannot store energy and does not help at peak.
+   - After the infeasibility, `solve_network` crashes in `compute_infeasibilities`, which only supports Gurobi. That is a secondary error.
+ - **Test 2 diagnostic with load shedding** (one-off overlay with `solving.options.load_shedding: true` under run names `tw_test2_{highs,gurobi}_2013_fullyear_4h_6b_ls`; the config is unchanged):
+   - Unserved: 409.7 GWh (0.14% of demand) in 200 of 2,190 snapshots (800 h), all in June to August, peak 2.18 GW (2013-08-08 08:00). 97% at `TW0 0`, the largest demand bus. No line is at ≥ 99% loading during shedding, so the gap is generation capacity, not transmission.
+   - Generation mix: coal 55.1%, gas 20.7%, nuclear 14.9%, renewables 9.3%, pumped storage 0%. Taiwan 2024: gas 42.4%, coal 39.3%, nuclear 4.2%, renewables 11.6%, pumped storage 1.1% (Taipower/EIA).
+   - Capacity factors: coal 99.5%, CCGT 37.1%, nuclear 92%, solar 13.1%, offshore wind 43.5%, onshore wind 17.3%, run-of-river 2.8%.
+   - Coal is dispatched before gas because its marginal cost (30.1 EUR/MWh) is below CCGT (46.8), and the model has no coal availability, maintenance or emission limits.
+   - CO₂: 170.4 Mt; mean price 81.1 EUR/MWh, including 1,000 EUR/MWh scarcity prices during shedding.
+ - **Solver comparison, full year** (answers Phase 1 #6): identical objective `8.59217309e+09`. Solver time Gurobi `0.84 s` (26 barrier iterations) vs HiGHS `9.26 s`, about 11× faster. `solve_network` step: `16.1 s` vs `24.2 s`. Gurobi uses the shared token server `du-lic-gurobi`.
+ - **Input data to fix in Phase 3** (to make the reference year realistic):
+   - Nuclear: 5.3 GW in the fleet, but Taiwan's last reactor (Maanshan 2) shut down in May 2025.
+   - Gas 18.3 GW and solar 12.4 GW are below 2024 levels (about 20 GW and about 14 GW); offshore wind is 2.2 GW against about 3 GW.
+   - Pumped hydro: `max_hours = 0`.
+   - Run-of-river hydro: capacity factor 2.8%, which looks far too low.
+   - Demand: the summer peak looks too high for the 2024 total (peak/mean 1.44).
+   - Costs: `costs_2030.csv` (2030 projections), and no coal dispatch constraints.
+ - **Dashboard rebuilt** (`docs/`, data from `pypsa_tw/viewer/export_dashboard_data.py`), with automatic sanity warnings per case. Checked in headless Edge screenshots, in English and Traditional Chinese and in light and dark mode.
+ - `pypsa_tw/SIMULATION_TABLE.md` was found reverted to its pre-2026-09-23 content at 02:54:55, probably by a stale editor buffer. It was restored from git and updated.
+
 
 TODO:
  - to run PyPSA-Earth Taiwan!
