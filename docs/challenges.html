@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Taiwan Energy Challenges</title>
+    <meta name="title-en" content="Taiwan Energy Challenges" />
+    <meta name="title-zh" content="台灣的能源挑戰" />
+    <meta name="description" content="The main challenges of Taiwan's electricity system, with official figures and what the model shows." />
+    <link rel="stylesheet" href="assets/site.css" />
+    <script src="assets/pages.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <div>
+          <div class="eyebrow">PyPSA-Earth · Taiwan</div>
+          <h1><span class="t-en">Taiwan's energy challenges</span><span class="t-zh">台灣的能源挑戰</span></h1>
+        </div>
+        <div class="toolbar">
+          <div class="segmented" role="group" aria-label="Language">
+            <button type="button" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" data-lang="zh" aria-pressed="false">繁中</button>
+          </div>
+          <button type="button" id="theme-toggle" class="ghost" aria-label="Toggle dark mode">◐</button>
+        </div>
+      </div>
+      <nav class="shell tabs" aria-label="Pages">
+        <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a>
+        <a href="challenges.html" aria-current="page"><span class="t-en">Challenges</span><span class="t-zh">挑戰</span></a>
+        <a href="sandbox.html"><span class="t-en">Sandbox</span><span class="t-zh">情境沙盒</span></a>
+        <a href="dashboard.html"><span class="t-en">Model dashboard</span><span class="t-zh">模型儀表板</span></a>
+        <a href="taiwan-data.html"><span class="t-en">Taiwan energy data</span><span class="t-zh">台灣能源資料</span></a>
+        <a href="request.html"><span class="t-en">Request a run</span><span class="t-zh">申請模擬</span></a>
+        <a href="about.html"><span class="t-en">About</span><span class="t-zh">關於</span></a>
+      </nav>
+    </header>
+
+    <main class="shell prose">
+      <p class="lead">
+        <span class="t-en">Taiwan's power system has to do three things at once: stay reliable on an island with no neighbours to help, supply fast-growing demand from its chip industry, and cut emissions from a system that still runs mostly on imported gas and coal. The figures below are official statistics or targets unless marked as a model result; sources are listed under each section.</span>
+        <span class="t-zh">台灣的電力系統必須同時做到三件事：在沒有鄰國支援的孤島上維持穩定供電、滿足半導體產業快速成長的用電，並讓仍以進口天然氣與燃煤為主的系統減少排放。以下數據除標示為模型結果者外，皆為官方統計或目標；各節下方列出資料來源。</span>
+      </p>
+
+      <article class="challenge">
+        <h2><span class="num">1</span><span class="t-en">Almost all energy is imported</span><span class="t-zh">能源幾乎全部仰賴進口</span></h2>
+        <p><span class="t-en"><b>99.0%</b> of Taiwan's energy supply was imported in 2025. Gas arrives as LNG by ship and coal by sea, so supply depends on shipping routes and on how much fuel can be stored on the island. Renewables are, in effect, the only large domestic source.</span>
+          <span class="t-zh">2025 年台灣 <b>99.0%</b> 的能源供給仰賴進口。天然氣以液化天然氣船運、燃煤經海運抵達，供應取決於航運與島內燃料儲存能力。再生能源實際上是唯一大規模的自產能源。</span></p>
+        <p class="src"><span class="t-en">Source:</span><span class="t-zh">來源：</span> <a href="https://data.gov.tw/dataset/8308">Energy Administration, 能源指標年資料</a> (2025).</p>
+      </article>
+
+      <article class="challenge">
+        <h2><span class="num">2</span><span class="t-en">An island grid</span><span class="t-zh">孤島電網</span></h2>
+        <p><span class="t-en">Taiwan's grid has no links to other countries. Every hour, supply must match demand on the island itself; there is no neighbour to import from in a heatwave or after a plant failure. Planners therefore keep a reserve: the official outlook puts the night-time reserve margin at 14.2% in 2025, dipping to about 11% in 2028–2029 before new gas units arrive.</span>
+          <span class="t-zh">台灣電網沒有與其他國家聯網。每個小時的供需都必須在島內平衡；遇到熱浪或機組故障時，沒有鄰國可以支援。因此規劃上必須保留備用容量：官方展望中 2025 年夜間備用容量率為 14.2%，在新燃氣機組上線前的 2028–2029 年降至約 11%。</span></p>
+        <p class="src"><span class="t-en">Source:</span><span class="t-zh">來源：</span> <a href="https://data.gov.tw/dataset/16437">MOEA, 全國電力資源供需報告 113年度</a>, Table 3-2, p. 20.</p>
+      </article>
+
+      <article class="challenge">
+        <h2><span class="num">3</span><span class="t-en">A system built on gas and coal</span><span class="t-zh">以燃氣與燃煤為主的系統</span></h2>
+        <p><span class="t-en">In 2025, gas produced <b>47.7%</b> and coal <b>35.3%</b> of Taiwan's electricity (289.7 TWh in total), and renewables <b>13.3%</b>. Each kWh from the grid emitted 0.467 kg of CO₂ equivalent. Replacing coal cuts emissions, but only if enough other supply, and the grid to carry it, is in place.</span>
+          <span class="t-zh">2025 年燃氣發電占台灣電力的 <b>47.7%</b>、燃煤 <b>35.3%</b>（總發電量 289.7 TWh），再生能源 <b>13.3%</b>。電網每度電排放 0.467 公斤 CO₂ 當量。以其他電源取代燃煤可以減排，但前提是有足夠的替代電源，以及輸送它們的電網。</span></p>
+        <p class="finding"><b><span class="t-en">In the model:</span><span class="t-zh">模型結果：</span></b> <span class="t-en">retiring all coal without replacing it leaves 7.4 TWh of demand unserved; adding 5 GW of gas at the same time brings that back to today's level.</span><span class="t-zh">燃煤全部除役而不補充電源，會有 7.4 TWh 無法供電；同時增加 5 GW 燃氣機組，則回到目前的水準。</span>
+          <a href="sandbox.html?coal_retire_frac=1&add_ccgt_GW=5"><span class="t-en">Try it →</span><span class="t-zh">試試看 →</span></a></p>
+        <p class="src"><span class="t-en">Sources:</span><span class="t-zh">來源：</span> <a href="https://data.gov.tw/dataset/16481">Energy Administration, 發電量年資料</a>; <a href="https://data.gov.tw/dataset/8308">能源指標年資料</a> (2025).</p>
+      </article>
+
+      <article class="challenge">
+        <h2><span class="num">4</span><span class="t-en">Nuclear phase-out</span><span class="t-zh">非核家園</span></h2>
+        <p><span class="t-en">Taiwan's last reactor, Maanshan 2, stopped in May 2025; nuclear produced only 1.1% of electricity that year. Whether to restart the existing plants is an open political question. The restart would add low-carbon supply, and the two northern plants sit close to Taipei's demand.</span>
+          <span class="t-zh">台灣最後一部運轉中的反應爐（核三廠二號機）於 2025 年 5 月停機，當年核能僅占發電量 1.1%。是否重啟既有電廠仍是尚未定論的政治議題。重啟可增加低碳電力，且北部兩座電廠靠近台北的用電中心。</span></p>
+        <p class="finding"><b><span class="t-en">In the model:</span><span class="t-zh">模型結果：</span></b> <span class="t-en">restarting Chinshan, Kuosheng and Maanshan cuts CO₂ by about 13 Mt a year and removes the Taipei supply shortfall (restart costs not included).</span><span class="t-zh">重啟核一、核二、核三每年約減少 13 Mt CO₂，並消除台北的供電缺口（未含重啟成本）。</span>
+          <a href="sandbox.html?nuclear_restart=chinshan,kuosheng,maanshan"><span class="t-en">Try it →</span><span class="t-zh">試試看 →</span></a></p>
+        <p class="src"><span class="t-en">Source:</span><span class="t-zh">來源：</span> <a href="https://data.gov.tw/dataset/16481">Energy Administration, 發電量年資料</a> (2025).</p>
+      </article>
+
+      <article class="challenge">
+        <h2><span class="num">5</span><span class="t-en">Demand keeps growing</span><span class="t-zh">用電持續成長</span></h2>
+        <p><span class="t-en">Semiconductor fabs and AI data centres drive demand up. The government's 2025 outlook expected <b>+1.7% a year</b> to 2034 (above the 1.23% of the previous decade), with the night peak rising from 36.9 GW in 2025 to 46.0 GW in 2034. The 2026 outlook raised this to about <b>+2.5% a year</b> for 2026–2035.</span>
+          <span class="t-zh">半導體廠與 AI 資料中心推升用電。政府 2025 年的展望預估至 2034 年每年成長 <b>1.7%</b>（高於前十年的 1.23%），夜尖峰負載由 2025 年的 36.9 GW 增至 2034 年的 46.0 GW。2026 年的展望將 2026–2035 年的成長率上修至每年約 <b>2.5%</b>。</span></p>
+        <p class="finding"><b><span class="t-en">In the model:</span><span class="t-zh">模型結果：</span></b> <span class="t-en">with today's plants and grid, 10% more demand raises unserved demand from 0.8 to 2.5 TWh.</span><span class="t-zh">以現有電廠與電網，需求增加 10% 會使未供電量由 0.8 TWh 增至 2.5 TWh。</span>
+          <a href="sandbox.html?demand_scale=1.1"><span class="t-en">Try it →</span><span class="t-zh">試試看 →</span></a></p>
+        <p class="src"><span class="t-en">Sources:</span><span class="t-zh">來源：</span> <a href="https://data.gov.tw/dataset/16437">MOEA, 全國電力資源供需報告 113年度</a>, Section 3.1, p. 7 and Table 3-2, p. 20; <a href="https://www.moea.gov.tw/Mns/populace/news/News.aspx?kind=1&amp;menu_id=40&amp;news_id=123066">MOEA news release on the 114年度 report</a>.</p>
+      </article>
+
+      <article class="challenge">
+        <h2><span class="num">6</span><span class="t-en">Power flows north</span><span class="t-zh">北部用電、中南部發電</span></h2>
+        <p><span class="t-en">Much of the demand is in the north around Taipei, while many large power plants are in central and southern Taiwan. Power has to travel north over a few high-voltage corridors, and how much they can carry limits what the rest of the system can deliver.</span>
+          <span class="t-zh">大部分用電集中在北部的台北一帶，而許多大型電廠位於中南部。電力必須經由少數幾條超高壓輸電走廊往北送，這些走廊的輸送能力限制了整個系統能供應的電力。</span></p>
+        <p class="finding"><b><span class="t-en">In the model:</span><span class="t-zh">模型結果：</span></b> <span class="t-en">this is the main bottleneck. In summer the line into Taipei is at its limit while gas plants elsewhere sit idle. Letting lines use their full rating removes the shortfall; so does new supply inside Taipei. The 6-region model simplifies the real grid, so treat this as an indication, not a grid study.</span><span class="t-zh">這是最主要的瓶頸。夏季進入台北的線路達到上限，其他地區的燃氣機組卻閒置。讓線路使用全部額定容量可消除缺口，在台北境內增加電源也可以。6 區域模型簡化了實際電網，此結果僅供參考，並非電網研究。</span>
+          <a href="sandbox.html?line_rating=1"><span class="t-en">Try it →</span><span class="t-zh">試試看 →</span></a></p>
+      </article>
+
+      <article class="challenge">
+        <h2><span class="num">7</span><span class="t-en">Scaling up renewables</span><span class="t-zh">擴大再生能源</span></h2>
+        <p><span class="t-en">The targets for 2030 are 31.2 GW of solar (15.4 GW today in the model's fleet) and 10.9 GW of offshore wind (3.4 GW), aiming at a 30% renewable share. Solar and wind vary with the weather, so more of them also means more need for storage, flexible plants and grid.</span>
+          <span class="t-zh">2030 年目標為太陽光電 31.2 GW（模型中目前為 15.4 GW）與離岸風電 10.9 GW（目前 3.4 GW），再生能源占比目標 30%。太陽光電與風電隨天氣變動，因此愈多再生能源，也愈需要儲能、彈性電廠與電網。</span></p>
+        <p class="finding"><b><span class="t-en">In the model:</span><span class="t-zh">模型結果：</span></b> <span class="t-en">10 GW more offshore wind lifts the renewable share from 14% to 31% and cuts CO₂ by about 16 Mt a year, for about 170 M€ a year extra system cost.</span><span class="t-zh">增加 10 GW 離岸風電，再生能源占比由 14% 提高到 31%，每年約減少 16 Mt CO₂，系統成本每年約增加 1.7 億歐元。</span>
+          <a href="sandbox.html?add_offwind_GW=10"><span class="t-en">Try it →</span><span class="t-zh">試試看 →</span></a></p>
+        <p class="src"><span class="t-en">Source:</span><span class="t-zh">來源：</span> <a href="https://data.gov.tw/dataset/16437">MOEA, 全國電力資源供需報告 113年度</a>, Table 3-1, p. 19 and Section 3.2, p. 11.</p>
+      </article>
+
+      <article class="challenge">
+        <h2><span class="num">8</span><span class="t-en">Net zero by 2050</span><span class="t-zh">2050 淨零排放</span></h2>
+        <p><span class="t-en">Taiwan's 2050 net-zero pathway (National Development Council, 2022) foresees about 60–70% of electricity from renewables, with the rest from hydrogen and fossil plants with carbon capture. Getting there means building renewables, storage and grid far faster than today. <i>This figure is still to be verified against the original document.</i></span>
+          <span class="t-zh">台灣 2050 淨零排放路徑（國家發展委員會，2022）預期約 60–70% 的電力來自再生能源，其餘來自氫能與搭配碳捕捉的火力電廠。要達成這個目標，再生能源、儲能與電網的建置速度必須遠快於現在。<i>此數據仍待與原始文件核對。</i></span></p>
+        <p class="src"><span class="t-en">Source:</span><span class="t-zh">來源：</span> <a href="https://ncsd.ndc.gov.tw/Fore/nsdn/about0/2050Path">NDC, 臺灣2050淨零排放路徑及策略總說明</a>.</p>
+      </article>
+
+      <p class="note muted"><span class="t-en">Model results: today's system (2024 demand, 2013 weather), PyPSA-Earth with 6 regions and 4-hour steps. See the</span><span class="t-zh">模型結果：現有系統（2024 年需求、2013 年氣象），PyPSA-Earth，6 個區域、每 4 小時一個時段。詳見</span> <a href="sandbox.html"><span class="t-en">sandbox</span><span class="t-zh">情境沙盒</span></a> <span class="t-en">and</span><span class="t-zh">與</span> <a href="about.html"><span class="t-en">About</span><span class="t-zh">關於</span></a>.</p>
+    </main>
+
+    <footer class="shell footer">
+      <span class="t-en">Built with PyPSA-Earth and official Taiwanese open data.</span><span class="t-zh">以 PyPSA-Earth 與台灣官方開放資料建置。</span>
+      <a href="https://github.com/BartonChenTW/pypsa-earth/tree/pypsa-taiwan-dev">GitHub</a>
+    </footer>
+  </body>
+</html>

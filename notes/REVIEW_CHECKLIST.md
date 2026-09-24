@@ -75,3 +75,12 @@ Items Claude decided or assumed without your confirmation. Tick them off, or not
   - new nuclear at the Lungmen site; restarts at their own sites.
 - [ ] **New batteries:** 4 h, 0.96 charge and discharge efficiency (technology-data inverter). The base network's existing battery has an efficiency of 1.0 (a pypsa-earth default), i.e. lossless; this is worth fixing in the fleet.
 - [ ] **System cost** = operating cost + annualised investment (technology-data 2030, 7.1% discount rate) of the added capacity. The load-shedding penalty (1,000 EUR/MWh) is in the objective but not in the system cost.
+
+## Website pages
+
+- [ ] **About page** (`docs/about.html`):
+  - The text is drafted from the public GitHub profile (bio "Scientist for Energy Systems Modelling", Empa, Zurich/Taipei) and the parts of LinkedIn visible without login ("postdoctoral researcher … energy system analysis and energy storage", University of Birmingham 2016–2021, University of Exeter).
+  - Titles and dates behind the LinkedIn login were not used.
+  - Check the wording, add a degree or role if you want, and replace the GitHub avatar if you prefer another photo.
+- [ ] **Request form:** create a Formspree or Web3Forms form and set `FORM` in `docs/assets/request.js`. Until then, the form shows "not switched on yet".
+- [ ] **Challenges page:** the model results quoted there are from the central sandbox scenarios (2013 weather). Update them if the model changes.

@@ -13,7 +13,7 @@ const AVAILABILITY_ORDER = ["solar", "onwind", "offwind-ac", "offwind-dc", "ror"
 
 const I18N = {
   en: {
-    title: "Taiwan electricity model", nav_results: "Results", nav_inputs: "Inputs",
+    title: "Taiwan electricity model", nav_home: "← Home", nav_results: "Results", nav_inputs: "Inputs",
     setup_title: "Model setup: which year does each input represent?",
     su_input: "Input", su_year: "Year / basis", su_note: "What it means",
     su_weather: "Weather (solar, wind, hydro availability)", su_weather_note: "Hourly ERA5 reanalysis weather of this year. It sets when the sun shines and the wind blows, not how much capacity exists.",
@@ -97,7 +97,7 @@ const I18N = {
     loading_error: "Could not load the data. If you opened this file directly, serve the folder instead: python -m http.server -d docs",
   },
   zh: {
-    title: "台灣電力系統模型", nav_results: "結果", nav_inputs: "輸入資料", nav_runs: "所有模擬",
+    title: "台灣電力系統模型", nav_home: "← 首頁", nav_results: "結果", nav_inputs: "輸入資料", nav_runs: "所有模擬",
     setup_title: "模型設定：各項輸入代表哪一年？",
     su_input: "輸入", su_year: "年份／依據", su_note: "意義",
     su_weather: "氣象（太陽光電、風力、水力可用率）", su_weather_note: "該年的 ERA5 逐時再分析氣象資料，決定何時有日照與風，而不是裝置容量。",

@@ -22,7 +22,7 @@ const CONTROLS = [
 
 const I18N = {
   en: {
-    title: "Power system sandbox", nav_dashboard: "← Model dashboard", nav_levers: "Levers", nav_results: "Results",
+    title: "Power system sandbox", nav_home: "← Home", nav_dashboard: "Model dashboard", nav_levers: "Levers", nav_results: "Results",
     nav_data: "Taiwan energy data →",
     caveat: "Exploration tool, not a forecast: 6 buses, 4-hourly time steps, one weather year (2013), today's grid unless you change line ratings, and fixed capacities (the model dispatches what you add; it does not choose what to build). Costs are technology-data 2030 projections in EUR. Only pre-computed scenarios can be shown: the levers pick the nearest one.",
     levers_title: "What if…", levers_sub: "Start from today's system and change one or more levers.",
@@ -34,7 +34,7 @@ const I18N = {
     line_rating: "Usable line rating", reset: "Reset to base", share: "Copy link", copied: "Link copied.",
     copy_failed: "Copy the address bar to share this scenario.",
     exact: "Exact match", nearest: "Nearest computed scenario", nearest_note: "Your settings are not computed yet; this is the closest pre-computed scenario. Differences (yours → shown):",
-    showing: "Showing", base_label: "base case",
+    showing: "Showing", base_label: "base case", request_exact: "Request exactly these settings →",
     t_cost: "System cost", t_cost_note: (op, inv) => `operating ${op} + investment ${inv} M€/yr`,
     t_cost_restart: "restart costs not included",
     t_co2: "CO₂ emissions", t_re: "Renewable share", t_curtail: "Curtailment", t_unserved: "Unserved demand",
@@ -54,7 +54,7 @@ const I18N = {
     loading_error: "Could not load the sandbox data. If you opened the file directly, serve it instead: python -m http.server -d docs",
   },
   zh: {
-    title: "電力系統情境沙盒", nav_dashboard: "← 模型儀表板", nav_levers: "調整項目", nav_results: "結果",
+    title: "電力系統情境沙盒", nav_home: "← 首頁", nav_dashboard: "模型儀表板", nav_levers: "調整項目", nav_results: "結果",
     nav_data: "台灣能源資料 →",
     caveat: "這是探索工具，不是預測：6 個節點、每 4 小時一個時段、單一氣象年（2013），除非調整線路容量否則電網維持現狀，且容量為固定值（模型只調度您加入的容量，不會自行決定要蓋什麼）。成本為 technology-data 2030 年預估值（歐元）。只能顯示預先計算的情境：調整項目會對應到最接近的一個。",
     levers_title: "如果……", levers_sub: "從現有系統出發，調整一個或多個項目。",
@@ -66,7 +66,7 @@ const I18N = {
     line_rating: "線路可用容量", reset: "回到基準", share: "複製連結", copied: "已複製連結。",
     copy_failed: "請複製網址列以分享此情境。",
     exact: "完全符合", nearest: "最接近的已計算情境", nearest_note: "您的設定尚未計算；以下為最接近的預先計算情境。差異（您的設定 → 顯示的情境）：",
-    showing: "顯示", base_label: "基準情境",
+    showing: "顯示", base_label: "基準情境", request_exact: "申請模擬這組設定 →",
     t_cost: "系統成本", t_cost_note: (op, inv) => `營運 ${op} + 投資 ${inv} 百萬歐元/年`,
     t_cost_restart: "未含重啟成本",
     t_co2: "CO₂ 排放", t_re: "再生能源占比", t_curtail: "棄電量", t_unserved: "未供電量",
@@ -245,7 +245,8 @@ function renderMatch(best) {
     .filter((k) => JSON.stringify(state.levers[k]) !== JSON.stringify(s.levers[k]))
     .map((k) => `${esc(t(k))}: ${esc(leverText(k, state.levers[k]))} → ${esc(leverText(k, s.levers[k]))}`);
   $("match").innerHTML = `<b>${esc(exact ? t("exact") : t("nearest"))}:</b> ${esc(s.hash === state.index.base ? t("base_label") : s.label)}` +
-    (exact ? "" : `<p class="note">${esc(t("nearest_note"))} ${diffs.join(" · ")}</p>`);
+    (exact ? "" : `<p class="note">${esc(t("nearest_note"))} ${diffs.join(" · ")}</p>
+      <p class="note"><a href="request.html${esc(location.search)}">${esc(t("request_exact"))}</a></p>`);
 }
 
 function uncertaintyText(s) {

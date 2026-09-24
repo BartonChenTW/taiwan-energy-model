@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PyPSA-Earth Taiwan | 台灣電力模型</title>
+    <meta name="description" content="Inputs and results of the PyPSA-Earth Taiwan electricity model runs." />
+    <link rel="stylesheet" href="assets/site.css" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <script src="assets/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <div>
+          <div class="eyebrow">PyPSA-Earth · Taiwan</div>
+          <h1 data-i18n="title">Taiwan electricity model</h1>
+        </div>
+        <div class="toolbar">
+          <div class="segmented" role="group" aria-label="Language">
+            <button type="button" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" data-lang="zh" aria-pressed="false">繁中</button>
+          </div>
+          <button type="button" id="theme-toggle" class="ghost" aria-label="Toggle dark mode">◐</button>
+        </div>
+      </div>
+      <nav class="shell tabs" aria-label="Sections">
+        <a href="index.html" data-i18n="nav_home">← Home</a>
+        <a href="#results" data-i18n="nav_results">Results</a>
+        <a href="#inputs" data-i18n="nav_inputs">Inputs</a>
+        <a href="#scenarios" data-i18n="nav_scenarios">Scenarios</a>
+        <a href="#compare" data-i18n="nav_compare">Data comparison</a>
+        <a href="#runs" data-i18n="nav_runs">All runs</a>
+        <a href="#findings" data-i18n="nav_findings">Findings</a>
+        <a href="sandbox.html" data-i18n="nav_sandbox">Sandbox →</a>
+        <a href="taiwan-data.html" data-i18n="nav_data">Taiwan energy data →</a>
+      </nav>
+    </header>
+
+    <main class="shell">
+      <section class="case-bar" aria-label="Selected run">
+        <label for="case-select" data-i18n="select_case">Run</label>
+        <select id="case-select"></select>
+        <span class="muted" id="generated"></span>
+      </section>
+
+      <section id="case-status" class="status-list" aria-live="polite"></section>
+
+      <section class="tiles" id="tiles" aria-label="Key figures"></section>
+
+      <details class="panel setup" id="setup-panel" open>
+        <summary><b data-i18n="setup_title">Model setup: which year does each input represent?</b></summary>
+        <div id="table-setup" class="table-wrap"></div>
+      </details>
+
+      <!-- Results -->
+      <section id="results" class="section">
+        <h2 data-i18n="results">Results</h2>
+        <div class="grid two">
+          <article class="panel">
+            <h3 data-i18n="energy_mix">Generation mix</h3>
+            <p class="sub" data-i18n="energy_mix_sub">Annual energy by technology (TWh)</p>
+            <div id="chart-energy" class="chart"></div>
+            <details><summary data-i18n="show_table">Show table</summary><div id="table-energy"></div></details>
+          </article>
+          <article class="panel">
+            <h3 data-i18n="capacity">Installed capacity</h3>
+            <p class="sub" data-i18n="capacity_sub">Capacity by technology (GW); capacity factor in the table</p>
+            <div id="chart-capacity" class="chart"></div>
+            <details><summary data-i18n="show_table">Show table</summary><div id="table-capacity"></div></details>
+          </article>
+        </div>
+
+        <article class="panel">
+          <h3 data-i18n="dispatch">Dispatch</h3>
+          <p class="sub" data-i18n="dispatch_sub">National generation by technology and demand (GW). Storage charging is shown below zero. Drag to zoom.</p>
+          <div id="chart-dispatch" class="chart tall"></div>
+        </article>
+
+        <div class="grid two">
+          <article class="panel">
+            <h3><span data-i18n="price">Electricity price</span> <span class="info" tabindex="0" role="button" aria-describedby="tip-price" data-info-label><span aria-hidden="true">i</span><span class="info-tip" role="tooltip" id="tip-price"><span id="price-note"></span><span id="fx-note" class="tip-muted"></span></span></span></h3>
+            <p class="sub" data-i18n="price_sub">Modelled wholesale price, national average, EUR/MWh; hover the line for NT$/kWh</p>
+            <div id="chart-price" class="chart"></div>
+          </article>
+          <article class="panel">
+            <h3 data-i18n="map">Network</h3>
+            <p class="sub" data-i18n="map_sub">Buses sized by demand; line width by capacity. Hover for loading.</p>
+            <div id="chart-map" class="chart"></div>
+            <details><summary data-i18n="show_lines">Show line table</summary><div id="table-lines"></div></details>
+          </article>
+        </div>
+      </section>
+
+      <!-- Inputs -->
+      <section id="inputs" class="section">
+        <h2 data-i18n="inputs">Inputs</h2>
+        <div class="grid two">
+          <article class="panel">
+            <h3 data-i18n="demand">Demand</h3>
+            <p class="sub" data-i18n="demand_sub">National electricity demand (GW)</p>
+            <div id="chart-demand" class="chart tall"></div>
+            <details><summary data-i18n="show_buses">Show demand by bus</summary><div id="table-buses"></div></details>
+          </article>
+          <article class="panel">
+            <h3><span data-i18n="availability">Renewable potential (weather)</span> <span class="info" tabindex="0" role="button" aria-describedby="tip-availability" data-info-label><span aria-hidden="true">i</span><span class="info-tip" role="tooltip" id="tip-availability"><span id="availability-note"></span></span></span></h3>
+            <p class="sub" data-i18n="availability_sub">Available output per MW installed, hour by hour (0–1), capacity-weighted per technology</p>
+            <div id="chart-availability" class="chart tall"></div>
+            <div id="table-potential" class="table-wrap"></div>
+          </article>
+        </div>
+        <article class="panel">
+          <h3 data-i18n="technology">Technology data</h3>
+          <p class="sub" data-i18n="technology_sub">Fleet and cost assumptions used in this run</p>
+          <div id="table-technology" class="table-wrap"></div>
+        </article>
+      </section>
+
+      <!-- Scenarios: other weather years, future years -->
+      <section id="scenarios" class="section">
+        <h2 data-i18n="sc_title">Scenarios: other weather years and future years</h2>
+        <p class="sub" data-i18n="sc_intro"></p>
+        <p class="sources" id="sc-sources"></p>
+          <article class="panel">
+            <h3><span data-i18n="sc_weather">Weather years: today's system</span> <span class="info" tabindex="0" role="button" aria-describedby="tip-sc-weather" data-info-label><span aria-hidden="true">i</span><span class="info-tip" role="tooltip" id="tip-sc-weather"><span data-i18n="sc_weather_note"></span></span></span></h3>
+            <p class="sub" data-i18n="sc_weather_sub">Same fleet, grid and annual demand; only the weather changes</p>
+            <div id="chart-sc-weather" class="chart"></div>
+            <div id="table-sc-weather" class="table-wrap"></div>
+          </article>
+          <article class="panel">
+            <h3><span data-i18n="sc_future">Future years: the planned system</span> <span class="info" tabindex="0" role="button" aria-describedby="tip-sc-future" data-info-label><span aria-hidden="true">i</span><span class="info-tip" role="tooltip" id="tip-sc-future"><span data-i18n="sc_future_note"></span></span></span></h3>
+            <p class="sub" data-i18n="sc_future_sub">Planned fleet and demand, 2013 weather, today's grid</p>
+            <div id="chart-sc-future" class="chart"></div>
+            <div id="table-sc-future" class="table-wrap"></div>
+          </article>
+        <article class="panel">
+          <h3 data-i18n="sc_capacity">Installed capacity: today and planned</h3>
+          <p class="sub" data-i18n="sc_capacity_sub">GW by technology in each future-year run</p>
+          <div id="chart-sc-capacity" class="chart"></div>
+        </article>
+      </section>
+
+      <!-- PyPSA-Earth default data vs Taiwan data -->
+      <section id="compare" class="section">
+        <h2 data-i18n="compare_title">PyPSA-Earth data vs Taiwan data</h2>
+        <p class="sub" data-i18n="compare_intro"></p>
+        <div class="grid two">
+          <article class="panel">
+            <h3 data-i18n="cmp_capacity">Installed capacity</h3>
+            <p class="sub" data-i18n="cmp_capacity_sub">GW per technology</p>
+            <div id="chart-cmp-capacity" class="chart tall"></div>
+          </article>
+          <article class="panel">
+            <h3 data-i18n="cmp_params">Key inputs</h3>
+            <p class="sub" data-i18n="cmp_params_sub">What changed and why</p>
+            <div id="table-cmp-params" class="table-wrap"></div>
+          </article>
+        </div>
+        <article class="panel">
+          <h3><span data-i18n="cmp_mix">Generation mix: model vs reported statistics</span> <span class="info" tabindex="0" role="button" aria-describedby="tip-cmp-mix" data-info-label><span aria-hidden="true">i</span><span class="info-tip" role="tooltip" id="tip-cmp-mix"><span data-i18n="cmp_mix_note"></span></span></span></h3>
+          <p class="sub" data-i18n="cmp_mix_sub">Share of annual generation (%)</p>
+          <div id="chart-cmp-mix" class="chart"></div>
+        </article>
+      </section>
+
+      <!-- All runs -->
+      <section id="runs" class="section">
+        <h2 data-i18n="all_runs">All runs</h2>
+        <article class="panel">
+          <h3 data-i18n="inventory">Run inventory</h3>
+          <p class="sub" data-i18n="inventory_sub">Select a row to view that run</p>
+          <div id="table-runs" class="table-wrap"></div>
+        </article>
+        <article class="panel">
+          <h3 data-i18n="compare_mix">Generation mix by run</h3>
+          <p class="sub" data-i18n="compare_mix_sub">Share of annual generation (%)</p>
+          <div id="chart-compare" class="chart"></div>
+        </article>
+      </section>
+
+      <!-- Findings -->
+      <section id="findings" class="section">
+        <h2 data-i18n="findings">Findings</h2>
+        <article class="panel">
+          <ul id="findings-list" class="findings"></ul>
+          <p class="sub">
+            <span data-i18n="details_in">Details:</span>
+            <a href="https://github.com/BartonChenTW/pypsa-earth/blob/pypsa-taiwan-dev/pypsa_tw/log.md">pypsa_tw/log.md</a>
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="shell footer">
+      <span data-i18n="footer">Generated from local model results by pypsa_tw/viewer/export_dashboard_data.py.</span>
+    </footer>
+  </body>
+</html>

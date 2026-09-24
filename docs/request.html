@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Request a Simulation</title>
+    <meta name="title-en" content="Request a Simulation" />
+    <meta name="title-zh" content="申請新模擬" />
+    <meta name="description" content="Ask for a scenario that is not in the sandbox yet; results are added to the site." />
+    <link rel="stylesheet" href="assets/site.css" />
+    <script src="assets/pages.js" defer></script>
+    <script src="assets/request.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <div>
+          <div class="eyebrow">PyPSA-Earth · Taiwan</div>
+          <h1><span class="t-en">Request a simulation</span><span class="t-zh">申請新模擬</span></h1>
+        </div>
+        <div class="toolbar">
+          <div class="segmented" role="group" aria-label="Language">
+            <button type="button" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" data-lang="zh" aria-pressed="false">繁中</button>
+          </div>
+          <button type="button" id="theme-toggle" class="ghost" aria-label="Toggle dark mode">◐</button>
+        </div>
+      </div>
+      <nav class="shell tabs" aria-label="Pages">
+        <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a>
+        <a href="challenges.html"><span class="t-en">Challenges</span><span class="t-zh">挑戰</span></a>
+        <a href="sandbox.html"><span class="t-en">Sandbox</span><span class="t-zh">情境沙盒</span></a>
+        <a href="dashboard.html"><span class="t-en">Model dashboard</span><span class="t-zh">模型儀表板</span></a>
+        <a href="taiwan-data.html"><span class="t-en">Taiwan energy data</span><span class="t-zh">台灣能源資料</span></a>
+        <a href="request.html" aria-current="page"><span class="t-en">Request a run</span><span class="t-zh">申請模擬</span></a>
+        <a href="about.html"><span class="t-en">About</span><span class="t-zh">關於</span></a>
+      </nav>
+    </header>
+
+    <main class="shell prose">
+      <p class="lead">
+        <span class="t-en">Is the scenario you want not in the sandbox? Describe it here. Requests are run by hand on the model, usually within a few days, and the results are added to the sandbox; you get an email with the link.</span>
+        <span class="t-zh">沙盒裡沒有您想要的情境嗎？請在此描述。申請會以人工方式在模型上執行，通常在幾天內完成，結果會加到情境沙盒，並以電子郵件寄送連結給您。</span>
+      </p>
+
+      <form id="request-form" class="panel request-form" novalidate>
+        <div id="scenario-box" class="scenario-box" hidden>
+          <p class="label"><span class="t-en">Scenario from the sandbox</span><span class="t-zh">來自情境沙盒的設定</span></p>
+          <ul id="scenario-list"></ul>
+          <p class="note"><a id="scenario-link" href="sandbox.html"><span class="t-en">Open it in the sandbox</span><span class="t-zh">在情境沙盒中開啟</span></a></p>
+        </div>
+
+        <label class="field"><span><span class="t-en">What should be simulated?</span><span class="t-zh">想模擬什麼？</span> *</span>
+          <textarea id="f-question" name="question" rows="6" required maxlength="4000"></textarea>
+          <span class="hint"><span class="t-en">E.g. "Offshore wind +12 GW and Maanshan restarted, with 2018 weather", or a question you want answered.</span><span class="t-zh">例如「離岸風電增加 12 GW 並重啟核三，採用 2018 年氣象」，或您想得到解答的問題。</span></span>
+        </label>
+        <label class="field"><span><span class="t-en">Your email (for the reply)</span><span class="t-zh">您的電子郵件（用於回覆）</span> *</span>
+          <input id="f-email" name="email" type="email" required maxlength="200" autocomplete="email" />
+        </label>
+        <div class="field-row">
+          <label class="field"><span><span class="t-en">Name (optional)</span><span class="t-zh">姓名（選填）</span></span>
+            <input id="f-name" name="name" type="text" maxlength="200" autocomplete="name" />
+          </label>
+          <label class="field"><span><span class="t-en">Organisation (optional)</span><span class="t-zh">單位（選填）</span></span>
+            <input id="f-org" name="organisation" type="text" maxlength="200" autocomplete="organization" />
+          </label>
+        </div>
+        <!-- Spam trap: people do not see this field; bots fill it in. -->
+        <label class="hp" aria-hidden="true">Leave empty <input type="text" name="website" id="f-website" tabindex="-1" autocomplete="off" /></label>
+        <label class="check"><input id="f-consent" type="checkbox" required />
+          <span><span class="t-en">I agree that my request and email are sent to the author through a form service and used only to answer this request.</span><span class="t-zh">我同意申請內容與電子郵件經由表單服務寄給作者，且僅用於回覆此申請。</span></span>
+        </label>
+        <div class="lever-actions">
+          <button type="submit" class="button primary" id="f-submit"><span class="t-en">Send request</span><span class="t-zh">送出申請</span></button>
+        </div>
+        <div id="f-status" class="status-list" aria-live="polite"></div>
+      </form>
+
+      <p class="note muted"><span class="t-en">Requests are kept only as long as needed to run them. Results that are added to the site are public, without your name or email.</span><span class="t-zh">申請內容僅在執行所需期間保留。加到網站上的結果為公開資料，不含您的姓名與電子郵件。</span></p>
+    </main>
+
+    <footer class="shell footer">
+      <span class="t-en">Built with PyPSA-Earth and official Taiwanese open data.</span><span class="t-zh">以 PyPSA-Earth 與台灣官方開放資料建置。</span>
+      <a href="https://github.com/BartonChenTW/pypsa-earth/tree/pypsa-taiwan-dev">GitHub</a>
+    </footer>
+  </body>
+</html>

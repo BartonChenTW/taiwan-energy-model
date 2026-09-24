@@ -3,18 +3,23 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>PyPSA-Earth Taiwan | 台灣電力模型</title>
-    <meta name="description" content="Inputs and results of the PyPSA-Earth Taiwan electricity model runs." />
+    <title>Taiwan Power Model</title>
+    <meta name="title-en" content="Taiwan Power Model" />
+    <meta name="title-zh" content="台灣電力模型" />
+    <meta name="description" content="An open model of Taiwan's electricity system: results, what-if scenarios and the data behind them." />
+    <script>
+      // Old dashboard links (index.html?case=...) now live at dashboard.html.
+      if (new URLSearchParams(location.search).has("case")) location.replace("dashboard.html" + location.search + location.hash);
+    </script>
     <link rel="stylesheet" href="assets/site.css" />
-    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-    <script src="assets/app.js" defer></script>
+    <script src="assets/pages.js" defer></script>
   </head>
   <body>
     <header class="topbar">
       <div class="shell topbar-inner">
         <div>
           <div class="eyebrow">PyPSA-Earth · Taiwan</div>
-          <h1 data-i18n="title">Taiwan electricity model</h1>
+          <h1><span class="t-en">Taiwan power model</span><span class="t-zh">台灣電力模型</span></h1>
         </div>
         <div class="toolbar">
           <div class="segmented" role="group" aria-label="Language">
@@ -24,174 +29,85 @@
           <button type="button" id="theme-toggle" class="ghost" aria-label="Toggle dark mode">◐</button>
         </div>
       </div>
-      <nav class="shell tabs" aria-label="Sections">
-        <a href="#results" data-i18n="nav_results">Results</a>
-        <a href="#inputs" data-i18n="nav_inputs">Inputs</a>
-        <a href="#scenarios" data-i18n="nav_scenarios">Scenarios</a>
-        <a href="#compare" data-i18n="nav_compare">Data comparison</a>
-        <a href="#runs" data-i18n="nav_runs">All runs</a>
-        <a href="#findings" data-i18n="nav_findings">Findings</a>
-        <a href="sandbox.html" data-i18n="nav_sandbox">Sandbox →</a>
-        <a href="taiwan-data.html" data-i18n="nav_data">Taiwan energy data →</a>
+      <nav class="shell tabs" aria-label="Pages">
+        <a href="index.html" aria-current="page"><span class="t-en">Home</span><span class="t-zh">首頁</span></a>
+        <a href="challenges.html"><span class="t-en">Challenges</span><span class="t-zh">挑戰</span></a>
+        <a href="sandbox.html"><span class="t-en">Sandbox</span><span class="t-zh">情境沙盒</span></a>
+        <a href="dashboard.html"><span class="t-en">Model dashboard</span><span class="t-zh">模型儀表板</span></a>
+        <a href="taiwan-data.html"><span class="t-en">Taiwan energy data</span><span class="t-zh">台灣能源資料</span></a>
+        <a href="request.html"><span class="t-en">Request a run</span><span class="t-zh">申請模擬</span></a>
+        <a href="about.html"><span class="t-en">About</span><span class="t-zh">關於</span></a>
       </nav>
     </header>
 
     <main class="shell">
-      <section class="case-bar" aria-label="Selected run">
-        <label for="case-select" data-i18n="select_case">Run</label>
-        <select id="case-select"></select>
-        <span class="muted" id="generated"></span>
-      </section>
-
-      <section id="case-status" class="status-list" aria-live="polite"></section>
-
-      <section class="tiles" id="tiles" aria-label="Key figures"></section>
-
-      <details class="panel setup" id="setup-panel" open>
-        <summary><b data-i18n="setup_title">Model setup: which year does each input represent?</b></summary>
-        <div id="table-setup" class="table-wrap"></div>
-      </details>
-
-      <!-- Results -->
-      <section id="results" class="section">
-        <h2 data-i18n="results">Results</h2>
-        <div class="grid two">
-          <article class="panel">
-            <h3 data-i18n="energy_mix">Generation mix</h3>
-            <p class="sub" data-i18n="energy_mix_sub">Annual energy by technology (TWh)</p>
-            <div id="chart-energy" class="chart"></div>
-            <details><summary data-i18n="show_table">Show table</summary><div id="table-energy"></div></details>
-          </article>
-          <article class="panel">
-            <h3 data-i18n="capacity">Installed capacity</h3>
-            <p class="sub" data-i18n="capacity_sub">Capacity by technology (GW); capacity factor in the table</p>
-            <div id="chart-capacity" class="chart"></div>
-            <details><summary data-i18n="show_table">Show table</summary><div id="table-capacity"></div></details>
-          </article>
-        </div>
-
-        <article class="panel">
-          <h3 data-i18n="dispatch">Dispatch</h3>
-          <p class="sub" data-i18n="dispatch_sub">National generation by technology and demand (GW). Storage charging is shown below zero. Drag to zoom.</p>
-          <div id="chart-dispatch" class="chart tall"></div>
-        </article>
-
-        <div class="grid two">
-          <article class="panel">
-            <h3><span data-i18n="price">Electricity price</span> <span class="info" tabindex="0" role="button" aria-describedby="tip-price" data-info-label><span aria-hidden="true">i</span><span class="info-tip" role="tooltip" id="tip-price"><span id="price-note"></span><span id="fx-note" class="tip-muted"></span></span></span></h3>
-            <p class="sub" data-i18n="price_sub">Modelled wholesale price, national average, EUR/MWh; hover the line for NT$/kWh</p>
-            <div id="chart-price" class="chart"></div>
-          </article>
-          <article class="panel">
-            <h3 data-i18n="map">Network</h3>
-            <p class="sub" data-i18n="map_sub">Buses sized by demand; line width by capacity. Hover for loading.</p>
-            <div id="chart-map" class="chart"></div>
-            <details><summary data-i18n="show_lines">Show line table</summary><div id="table-lines"></div></details>
-          </article>
+      <section class="hero">
+        <p class="hero-kicker"><span class="t-en">An open model of Taiwan's electricity system</span><span class="t-zh">台灣電力系統的開放模型</span></p>
+        <h2 class="hero-title">
+          <span class="t-en">What does it take to keep Taiwan's lights on, and cut its emissions?</span>
+          <span class="t-zh">要讓台灣穩定供電、同時減少排放，需要什麼？</span>
+        </h2>
+        <p class="hero-lead">
+          <span class="t-en">Taiwan imports 99% of its energy, runs an island grid with no links to its neighbours, and must grow its supply for a booming chip industry while moving away from coal. This site uses an open-source model (PyPSA-Earth) with official Taiwanese data to explore these questions: hour by hour, over a full year.</span>
+          <span class="t-zh">台灣 99% 的能源仰賴進口，電網是無對外聯網的孤島，還要在減少燃煤的同時，為蓬勃發展的半導體產業增加供電。本網站以開源模型（PyPSA-Earth）與台灣官方資料，逐時模擬一整年，探討這些問題。</span>
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="sandbox.html"><span class="t-en">Try the sandbox</span><span class="t-zh">試用情境沙盒</span></a>
+          <a class="button" href="challenges.html"><span class="t-en">Read the challenges</span><span class="t-zh">了解挑戰</span></a>
         </div>
       </section>
 
-      <!-- Inputs -->
-      <section id="inputs" class="section">
-        <h2 data-i18n="inputs">Inputs</h2>
-        <div class="grid two">
-          <article class="panel">
-            <h3 data-i18n="demand">Demand</h3>
-            <p class="sub" data-i18n="demand_sub">National electricity demand (GW)</p>
-            <div id="chart-demand" class="chart tall"></div>
-            <details><summary data-i18n="show_buses">Show demand by bus</summary><div id="table-buses"></div></details>
-          </article>
-          <article class="panel">
-            <h3><span data-i18n="availability">Renewable potential (weather)</span> <span class="info" tabindex="0" role="button" aria-describedby="tip-availability" data-info-label><span aria-hidden="true">i</span><span class="info-tip" role="tooltip" id="tip-availability"><span id="availability-note"></span></span></span></h3>
-            <p class="sub" data-i18n="availability_sub">Available output per MW installed, hour by hour (0–1), capacity-weighted per technology</p>
-            <div id="chart-availability" class="chart tall"></div>
-            <div id="table-potential" class="table-wrap"></div>
-          </article>
+      <section class="tiles" aria-label="Key figures">
+        <div class="tile"><div class="label"><span class="t-en">Imported energy</span><span class="t-zh">進口能源依存度</span></div>
+          <div class="value">99.0<span class="unit">%</span></div><div class="note"><span class="t-en">of energy supply, 2025</span><span class="t-zh">能源供給，2025 年</span></div></div>
+        <div class="tile"><div class="label"><span class="t-en">Electricity from gas and coal</span><span class="t-zh">燃氣與燃煤發電占比</span></div>
+          <div class="value">83<span class="unit">%</span></div><div class="note"><span class="t-en">gas 47.7%, coal 35.3%, 2025</span><span class="t-zh">燃氣 47.7%、燃煤 35.3%，2025 年</span></div></div>
+        <div class="tile"><div class="label"><span class="t-en">Renewable share</span><span class="t-zh">再生能源發電占比</span></div>
+          <div class="value">13.3<span class="unit">%</span></div><div class="note"><span class="t-en">of generation, 2025; target 30% in 2030</span><span class="t-zh">2025 年；2030 年目標 30%</span></div></div>
+        <div class="tile"><div class="label"><span class="t-en">Demand growth</span><span class="t-zh">用電成長</span></div>
+          <div class="value">1.7–2.5<span class="unit">%/yr</span></div><div class="note"><span class="t-en">official outlooks, 2025–2035</span><span class="t-zh">官方展望，2025–2035 年</span></div></div>
+      </section>
+      <p class="note muted source-line"><span class="t-en">Sources: Energy Administration annual statistics (data.gov.tw 8308, 16481); MOEA supply-demand report 113年度 and its 114年度 news release. Details on the</span><span class="t-zh">資料來源：能源署年度統計（data.gov.tw 8308、16481）；經濟部 113 年度全國電力資源供需報告及 114 年度新聞稿。詳見</span> <a href="taiwan-data.html#refs"><span class="t-en">Taiwan energy data page</span><span class="t-zh">台灣能源資料頁</span></a>.</p>
+
+      <section class="section">
+        <h2><span class="t-en">Explore</span><span class="t-zh">開始探索</span></h2>
+        <div class="cards">
+          <a class="card" href="sandbox.html">
+            <h3><span class="t-en">Sandbox: what if…?</span><span class="t-zh">情境沙盒：如果……？</span></h3>
+            <p><span class="t-en">Add offshore wind, restart nuclear, retire coal, cap CO₂ or change prices, and see cost, emissions and supply security, with uncertainty ranges.</span><span class="t-zh">增加離岸風電、重啟核電、燃煤除役、設定 CO₂ 上限或改變價格，查看成本、排放與供電安全，並附不確定性範圍。</span></p>
+          </a>
+          <a class="card" href="challenges.html">
+            <h3><span class="t-en">Taiwan's energy challenges</span><span class="t-zh">台灣的能源挑戰</span></h3>
+            <p><span class="t-en">Import dependence, an island grid, the north–south imbalance, nuclear phase-out, growing demand and the path to net zero.</span><span class="t-zh">進口依賴、孤島電網、北電南送的不平衡、非核、用電成長，以及邁向淨零之路。</span></p>
+          </a>
+          <a class="card" href="dashboard.html">
+            <h3><span class="t-en">Model dashboard</span><span class="t-zh">模型儀表板</span></h3>
+            <p><span class="t-en">Every model run in detail: generation mix, hourly dispatch, prices, the grid, inputs, and 2030/2034 plans.</span><span class="t-zh">每次模擬的詳細結果：發電結構、逐時調度、電價、電網、輸入資料，以及 2030／2034 年規劃。</span></p>
+          </a>
+          <a class="card" href="taiwan-data.html">
+            <h3><span class="t-en">Taiwan energy data</span><span class="t-zh">台灣能源資料</span></h3>
+            <p><span class="t-en">History since 2005, official projections and targets, key figures, and every source with its page and checksum.</span><span class="t-zh">2005 年以來的歷史、官方預測與目標、關鍵數據，以及每個來源的頁碼與檢查碼。</span></p>
+          </a>
+          <a class="card" href="request.html">
+            <h3><span class="t-en">Request a simulation</span><span class="t-zh">申請新模擬</span></h3>
+            <p><span class="t-en">A scenario that is not in the sandbox yet? Send a request; results are added to the site.</span><span class="t-zh">沙盒裡還沒有的情境？送出申請，結果會加到網站上。</span></p>
+          </a>
+          <a class="card" href="about.html">
+            <h3><span class="t-en">About</span><span class="t-zh">關於</span></h3>
+            <p><span class="t-en">Who builds this, how the model works, and what it can and cannot tell you.</span><span class="t-zh">誰在做這個、模型如何運作，以及它能與不能回答什麼。</span></p>
+          </a>
         </div>
-        <article class="panel">
-          <h3 data-i18n="technology">Technology data</h3>
-          <p class="sub" data-i18n="technology_sub">Fleet and cost assumptions used in this run</p>
-          <div id="table-technology" class="table-wrap"></div>
-        </article>
       </section>
 
-      <!-- Scenarios: other weather years, future years -->
-      <section id="scenarios" class="section">
-        <h2 data-i18n="sc_title">Scenarios: other weather years and future years</h2>
-        <p class="sub" data-i18n="sc_intro"></p>
-        <p class="sources" id="sc-sources"></p>
-          <article class="panel">
-            <h3><span data-i18n="sc_weather">Weather years: today's system</span> <span class="info" tabindex="0" role="button" aria-describedby="tip-sc-weather" data-info-label><span aria-hidden="true">i</span><span class="info-tip" role="tooltip" id="tip-sc-weather"><span data-i18n="sc_weather_note"></span></span></span></h3>
-            <p class="sub" data-i18n="sc_weather_sub">Same fleet, grid and annual demand; only the weather changes</p>
-            <div id="chart-sc-weather" class="chart"></div>
-            <div id="table-sc-weather" class="table-wrap"></div>
-          </article>
-          <article class="panel">
-            <h3><span data-i18n="sc_future">Future years: the planned system</span> <span class="info" tabindex="0" role="button" aria-describedby="tip-sc-future" data-info-label><span aria-hidden="true">i</span><span class="info-tip" role="tooltip" id="tip-sc-future"><span data-i18n="sc_future_note"></span></span></span></h3>
-            <p class="sub" data-i18n="sc_future_sub">Planned fleet and demand, 2013 weather, today's grid</p>
-            <div id="chart-sc-future" class="chart"></div>
-            <div id="table-sc-future" class="table-wrap"></div>
-          </article>
-        <article class="panel">
-          <h3 data-i18n="sc_capacity">Installed capacity: today and planned</h3>
-          <p class="sub" data-i18n="sc_capacity_sub">GW by technology in each future-year run</p>
-          <div id="chart-sc-capacity" class="chart"></div>
-        </article>
-      </section>
-
-      <!-- PyPSA-Earth default data vs Taiwan data -->
-      <section id="compare" class="section">
-        <h2 data-i18n="compare_title">PyPSA-Earth data vs Taiwan data</h2>
-        <p class="sub" data-i18n="compare_intro"></p>
-        <div class="grid two">
-          <article class="panel">
-            <h3 data-i18n="cmp_capacity">Installed capacity</h3>
-            <p class="sub" data-i18n="cmp_capacity_sub">GW per technology</p>
-            <div id="chart-cmp-capacity" class="chart tall"></div>
-          </article>
-          <article class="panel">
-            <h3 data-i18n="cmp_params">Key inputs</h3>
-            <p class="sub" data-i18n="cmp_params_sub">What changed and why</p>
-            <div id="table-cmp-params" class="table-wrap"></div>
-          </article>
-        </div>
-        <article class="panel">
-          <h3><span data-i18n="cmp_mix">Generation mix: model vs reported statistics</span> <span class="info" tabindex="0" role="button" aria-describedby="tip-cmp-mix" data-info-label><span aria-hidden="true">i</span><span class="info-tip" role="tooltip" id="tip-cmp-mix"><span data-i18n="cmp_mix_note"></span></span></span></h3>
-          <p class="sub" data-i18n="cmp_mix_sub">Share of annual generation (%)</p>
-          <div id="chart-cmp-mix" class="chart"></div>
-        </article>
-      </section>
-
-      <!-- All runs -->
-      <section id="runs" class="section">
-        <h2 data-i18n="all_runs">All runs</h2>
-        <article class="panel">
-          <h3 data-i18n="inventory">Run inventory</h3>
-          <p class="sub" data-i18n="inventory_sub">Select a row to view that run</p>
-          <div id="table-runs" class="table-wrap"></div>
-        </article>
-        <article class="panel">
-          <h3 data-i18n="compare_mix">Generation mix by run</h3>
-          <p class="sub" data-i18n="compare_mix_sub">Share of annual generation (%)</p>
-          <div id="chart-compare" class="chart"></div>
-        </article>
-      </section>
-
-      <!-- Findings -->
-      <section id="findings" class="section">
-        <h2 data-i18n="findings">Findings</h2>
-        <article class="panel">
-          <ul id="findings-list" class="findings"></ul>
-          <p class="sub">
-            <span data-i18n="details_in">Details:</span>
-            <a href="https://github.com/BartonChenTW/pypsa-earth/blob/pypsa-taiwan-dev/pypsa_tw/log.md">pypsa_tw/log.md</a>
-          </p>
-        </article>
+      <section class="status-list" aria-label="Caveat">
+        <div class="status warning"><span class="icon" aria-hidden="true">!</span>
+          <span><span class="t-en">A research model, not an official forecast: 6 regions, 4-hour time steps and a few weather years. Use it to compare options, not to predict exact numbers.</span><span class="t-zh">這是研究模型，不是官方預測：6 個區域、每 4 小時一個時段、少數幾個氣象年。適合用來比較方案，而不是預測精確數字。</span></span></div>
       </section>
     </main>
 
     <footer class="shell footer">
-      <span data-i18n="footer">Generated from local model results by pypsa_tw/viewer/export_dashboard_data.py.</span>
+      <span class="t-en">Built with PyPSA-Earth and official Taiwanese open data.</span><span class="t-zh">以 PyPSA-Earth 與台灣官方開放資料建置。</span>
+      <a href="https://github.com/BartonChenTW/pypsa-earth/tree/pypsa-taiwan-dev">GitHub</a>
     </footer>
   </body>
 </html>

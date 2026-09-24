@@ -293,5 +293,18 @@ Barton's choices: all four lever groups plus nuclear (restart Chinshan, Kuosheng
    - The levers are kept in the URL.
    - Checked when served locally at desktop width and in a 375 px frame: no page overflow. Edge headless has a minimum window of about 496 px, so the phone check used a frame.
 
+## 2026-09-24: landing page, challenges, about, request form
+
+Barton asked for a landing page, an About page, a page on the challenges of the energy system, and a way to request a simulation run.
+
+ - **Structure:** `docs/index.html` is now the landing page and the dashboard moved to `docs/dashboard.html`. Old `index.html?case=...` links redirect there.
+ - **New pages:** `challenges.html` (8 challenges, each with official figures and sources, a model finding and a "Try it" link to the matching sandbox scenario), `about.html` and `request.html`. All are bilingual. The top navigation is shared.
+ - **Request method:**
+   - GitHub issues need a visitor account and show GitHub's interface; Barton wanted requests sent in the background.
+   - So the form posts to a form service (Formspree or Web3Forms) with `fetch`; the visitor stays on the page and the author gets an email. The form has a spam trap and a consent box.
+   - The service is not configured yet (checklist).
+   - In the sandbox, when the levers match no computed scenario exactly, a "Request exactly these settings" link pre-fills the form with the levers.
+ - **About text** comes from public sources only: GitHub profile (name, Empa, bio, location, projects) and the public part of LinkedIn. For Barton to review (checklist).
+
 TODO:
  - to run PyPSA-Earth Taiwan!

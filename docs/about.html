@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About This Model</title>
+    <meta name="title-en" content="About This Model" />
+    <meta name="title-zh" content="關於本模型" />
+    <meta name="description" content="Who builds the Taiwan power model, how it works and what it can and cannot tell you." />
+    <link rel="stylesheet" href="assets/site.css" />
+    <script src="assets/pages.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <div>
+          <div class="eyebrow">PyPSA-Earth · Taiwan</div>
+          <h1><span class="t-en">About</span><span class="t-zh">關於</span></h1>
+        </div>
+        <div class="toolbar">
+          <div class="segmented" role="group" aria-label="Language">
+            <button type="button" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" data-lang="zh" aria-pressed="false">繁中</button>
+          </div>
+          <button type="button" id="theme-toggle" class="ghost" aria-label="Toggle dark mode">◐</button>
+        </div>
+      </div>
+      <nav class="shell tabs" aria-label="Pages">
+        <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a>
+        <a href="challenges.html"><span class="t-en">Challenges</span><span class="t-zh">挑戰</span></a>
+        <a href="sandbox.html"><span class="t-en">Sandbox</span><span class="t-zh">情境沙盒</span></a>
+        <a href="dashboard.html"><span class="t-en">Model dashboard</span><span class="t-zh">模型儀表板</span></a>
+        <a href="taiwan-data.html"><span class="t-en">Taiwan energy data</span><span class="t-zh">台灣能源資料</span></a>
+        <a href="request.html"><span class="t-en">Request a run</span><span class="t-zh">申請模擬</span></a>
+        <a href="about.html" aria-current="page"><span class="t-en">About</span><span class="t-zh">關於</span></a>
+      </nav>
+    </header>
+
+    <main class="shell prose">
+      <section class="panel author">
+        <img class="avatar" src="https://avatars.githubusercontent.com/u/100357623?v=4" alt="Barton Chen" width="112" height="112" loading="lazy" />
+        <div>
+          <h2>Barton Chen</h2>
+          <p class="role"><span class="t-en">Scientist for energy systems modelling, Empa (Swiss Federal Laboratories for Materials Science and Technology)</span><span class="t-zh">Empa（瑞士聯邦材料科學與技術實驗室）能源系統建模科學家</span></p>
+          <p class="muted">Zurich, Switzerland · Taipei, Taiwan</p>
+          <p>
+            <span class="t-en">Researcher in energy system analysis and energy storage, previously at the University of Birmingham and the University of Exeter in the UK. Research topics include energy system modelling, harmonising energy data with ontologies, and using large language models to speed up data processing. This site is a personal project to make Taiwan's energy transition easier to explore with open data and open models.</span>
+            <span class="t-zh">能源系統分析與儲能研究者，曾任職於英國伯明罕大學與艾希特大學。研究領域包括能源系統建模、以本體論整合能源資料，以及運用大型語言模型加速資料處理。本網站是個人計畫，希望以開放資料與開放模型，讓台灣的能源轉型更容易被探索。</span>
+          </p>
+          <p class="links">
+            <a href="https://www.linkedin.com/in/bartonchen/">LinkedIn</a> ·
+            <a href="https://github.com/BartonChenTW">GitHub</a>
+          </p>
+        </div>
+      </section>
+
+      <h2><span class="t-en">What this site is</span><span class="t-zh">本網站是什麼</span></h2>
+      <p><span class="t-en">A model of Taiwan's electricity system built with <a href="https://github.com/pypsa-meets-earth/pypsa-earth">PyPSA-Earth</a>, an open-source energy system model. It takes Taiwan's power plants (from Taipower's own unit list), the transmission grid (from OpenStreetMap), hourly weather (ERA5) and demand, and finds the lowest-cost way to run the system for every 4-hour step of a year. The results, the inputs and every data source are published here.</span>
+        <span class="t-zh">以開源能源系統模型 <a href="https://github.com/pypsa-meets-earth/pypsa-earth">PyPSA-Earth</a> 建置的台灣電力系統模型。模型使用台灣的電廠（取自台電機組清單）、輸電網路（取自 OpenStreetMap）、逐時氣象（ERA5）與需求，計算一整年中每 4 小時最低成本的系統運轉方式。結果、輸入資料與所有資料來源都公開在本網站。</span></p>
+
+      <h2><span class="t-en">What it can and cannot tell you</span><span class="t-zh">能與不能回答的問題</span></h2>
+      <ul>
+        <li><span class="t-en"><b>Good for:</b> comparing options, e.g. whether more offshore wind or a nuclear restart cuts more CO₂, or where the grid limits supply.</span><span class="t-zh"><b>適合：</b>比較方案，例如增加離岸風電或重啟核電哪個減碳較多，或電網在哪裡限制供電。</span></li>
+        <li><span class="t-en"><b>Not a forecast:</b> 6 regions instead of the real grid, 4-hour time steps, a few weather years, and costs from international projections in euros.</span><span class="t-zh"><b>不是預測：</b>以 6 個區域代表實際電網、每 4 小時一個時段、少數幾個氣象年，成本採國際預估值（歐元）。</span></li>
+        <li><span class="t-en"><b>Not official:</b> this is independent research, not a product of Taipower or any government agency. Official figures are quoted with their sources.</span><span class="t-zh"><b>非官方：</b>這是獨立研究，並非台電或任何政府機關的產品。引用的官方數據皆註明來源。</span></li>
+      </ul>
+
+      <h2><span class="t-en">Data and code</span><span class="t-zh">資料與程式碼</span></h2>
+      <p><span class="t-en">All code is on <a href="https://github.com/BartonChenTW/pypsa-earth/tree/pypsa-taiwan-dev">GitHub</a>. Official data comes from Taiwan's open-data platform (Government Open Data License v1); every source, with its page and file checksum, is listed on the <a href="taiwan-data.html#refs">Taiwan energy data</a> page. Map data © OpenStreetMap contributors (ODbL); weather data from ERA5 (Copernicus Climate Change Service).</span>
+        <span class="t-zh">所有程式碼都在 <a href="https://github.com/BartonChenTW/pypsa-earth/tree/pypsa-taiwan-dev">GitHub</a>。官方資料取自政府資料開放平臺（政府資料開放授權條款第 1 版）；每個來源及其頁碼與檔案檢查碼列於<a href="taiwan-data.html#refs">台灣能源資料</a>頁。地圖資料 © OpenStreetMap 貢獻者（ODbL）；氣象資料來自 ERA5（哥白尼氣候變遷服務）。</span></p>
+
+      <h2><span class="t-en">Contact</span><span class="t-zh">聯絡</span></h2>
+      <p><span class="t-en">For a new scenario, use the <a href="request.html">request form</a>. For anything else, reach out on <a href="https://www.linkedin.com/in/bartonchen/">LinkedIn</a>.</span><span class="t-zh">申請新情境請使用<a href="request.html">申請表單</a>；其他事項請透過 <a href="https://www.linkedin.com/in/bartonchen/">LinkedIn</a> 聯絡。</span></p>
+    </main>
+
+    <footer class="shell footer">
+      <span class="t-en">Built with PyPSA-Earth and official Taiwanese open data.</span><span class="t-zh">以 PyPSA-Earth 與台灣官方開放資料建置。</span>
+      <a href="https://github.com/BartonChenTW/pypsa-earth/tree/pypsa-taiwan-dev">GitHub</a>
+    </footer>
+  </body>
+</html>

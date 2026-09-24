@@ -6,11 +6,19 @@ This repo now has a simple static GitHub Pages site in:
 docs/
 ```
 
-The site entry point is:
+The site entry point is `docs/index.html`, the landing page. The pages are:
 
-```text
-docs/index.html
-```
+| Page | File | Script |
+| --- | --- | --- |
+| Home (landing) | `docs/index.html` | `assets/pages.js` |
+| Taiwan's energy challenges | `docs/challenges.html` | `assets/pages.js` |
+| Sandbox | `docs/sandbox.html` | `assets/sandbox.js` |
+| Model dashboard | `docs/dashboard.html` (was `index.html`; old `index.html?case=...` links redirect) | `assets/app.js` |
+| Taiwan energy data | `docs/taiwan-data.html` | `assets/taiwan-data.js` |
+| Request a simulation | `docs/request.html` | `assets/request.js` |
+| About | `docs/about.html` | `assets/pages.js` |
+
+The text pages hold both languages in the HTML (`.t-en` / `.t-zh`), and `pages.js` switches them. The language and theme choices are shared across all pages.
 
 ## Enable GitHub Pages
 
@@ -62,7 +70,7 @@ The page loads its data with `fetch`, which browsers block for files opened dire
 python -m http.server 8765 --bind 127.0.0.1 -d docs
 ```
 
-Then open http://127.0.0.1:8765/. Add `?lang=zh` for Traditional Chinese and `?case=<id>` to open a specific case.
+Then open http://127.0.0.1:8765/. Add `?lang=zh` for Traditional Chinese; `dashboard.html?case=<id>` opens a specific case.
 
 ## Sandbox page
 
@@ -78,6 +86,20 @@ Then open http://127.0.0.1:8765/. Add `?lang=zh` for Traditional Chinese and `?c
 **Metrics shown:**
 - System cost = model operating cost + annualised investment in the added capacity (technology-data 2030). Added capacity is fixed, so its cost is not in the model's objective; restarts of closed nuclear plants are not costed.
 - CO2, renewable share, curtailment, unserved demand, capacity added, and peak line loading.
+
+## Request form
+
+`request.html` sends a request in the background to a form service, which emails it to the author. Visitors need no account and stay on the site.
+
+**To switch it on:** create a free form and fill in `FORM` at the top of `docs/assets/request.js`:
+- **Formspree:** `{provider: "formspree", endpoint: "https://formspree.io/f/<id>"}`.
+- **Web3Forms:** `{provider: "web3forms", accessKey: "<key>"}`.
+
+Both identifiers are designed to be public. Until `FORM` is set, the page says online requests are not open yet.
+
+**How a request flows:**
+- The sandbox links to the request page with the current levers, so a request carries the exact spec (`scenario`, JSON) and a sandbox link.
+- To answer one, solve it with `pypsa_tw/sandbox/run_scenario.py --levers '...'`, export, push, and reply with the sandbox link.
 
 ## Publish
 
