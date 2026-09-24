@@ -83,6 +83,26 @@ Future-year fleets come from `python pypsa_tw/data/build_future_powerplants.py`;
 
 After solving, refresh the dashboard data with `python pypsa_tw/viewer/export_dashboard_data.py` (see `pypsa_tw/GITHUB_PAGES.md`).
 
+## Sandbox (what-if scenarios)
+
+`pypsa_tw/sandbox/` solves "what if" scenarios without Snakemake:
+- It loads the base case's prepared network (`networks/tw_test2_highs_2013_fullyear_4h_6b/elec_s_6_ec_lv1.0_Co2L-4H.nc`).
+- It applies a lever spec in memory (`levers.py`: capacity additions, nuclear restart or new build, coal retirement, CO2 cap, demand, fuel prices, line rating).
+- It solves with `scripts/solve_network.py`'s own `prepare_network` and `solve_network`, with HiGHS only.
+
+Results go to `results/sandbox/<hash>/` (the hash of the normalised spec is the cache key) and solver logs to `logs/sandbox/<hash>/`. With the GDAL/PROJ variables above set:
+
+```powershell
+& .\.venv\python.exe pypsa_tw\sandboxun_scenario.py --levers '{"add_offwind_GW": 10, "co2_cap_frac": 0.5}'
+& .\.venv\python.exe pypsa_tw\sandboxatch.py --list   # the Phase 1 grid (33 scenarios)
+& .\.venv\python.exe pypsa_tw\sandboxatch.py          # solve what is not cached (about 20 s each, one at a time)
+& .\.venv\python.exe -m pytest pypsa_tw\sandbox	est_levers.py -q
+```
+
+- The full grid takes about 15 minutes on DDM06479. Tell the other users of the machine before starting it.
+- The exporter picks up `results/sandbox/*` automatically.
+- Live solving (Phase 2) is designed in `pypsa_tw/sandbox/PHASE2_LIVE_SOLVING.md`, not built.
+
 ## Previously Tried
 
 From `my_note.md`:

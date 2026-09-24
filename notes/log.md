@@ -264,5 +264,34 @@ Barton: "in the projection, where is it from? Identifying the source is importan
    - The dashboard's Scenarios section cites the report's figure, table and pages.
  - **Also updated:** the key facts from the report now carry pages, and the MOTEL records use the registry (full citation plus locations; all 5 files pass `--strict`).
 
+## 2026-09-24: energy-planning sandbox, Phase 1
+
+Barton's choices: all four lever groups plus nuclear (restart Chinshan, Kuosheng or Maanshan, or new build at the Lungmen site); today's system as the base; fixed additions only (no expansion mode).
+
+ - **Code** in `pypsa_tw/sandbox/`:
+   - `levers.py`: spec format, ranges, validation and hash.
+   - `run_scenario.py`: runner. It uses the prepared Test 2 network, applies the levers in memory, and calls `scripts/solve_network.py`'s `prepare_network` and `solve_network` through a stand-in `snakemake` object. HiGHS only.
+   - `batch.py`: grid of 33 scenarios.
+   - `test_levers.py`: 20 tests.
+   - `PHASE2_LIVE_SOLVING.md`: design for live solving, not built.
+ - **Acceptance:**
+   - The empty spec reproduces the base objective: 9.4118907280e+09 in both, relative difference under 1e-6 (tested).
+   - Every lever moves the network in the expected direction (tested).
+   - 33 scenarios solved one at a time in 692 s (17–38 s each).
+ - **Found:** the base network's existing battery has charge and discharge efficiency 1.0 (lossless, a pypsa-earth default). Added batteries use technology-data's 0.96 (checklist).
+ - **Exporter:** `docs/data/sandbox/` (9.3 MB for 33 scenarios) holds the case JSON plus spec, metrics and deltas.
+   - System cost = operating cost + annualised investment (technology-data 2030) of the added capacity.
+   - The load-shedding warnings are the known Taipei corridor. They vanish where supply lands inside Taipei (CCGT +5 GW, restarting Chinshan and Kuosheng, new nuclear at Lungmen) or the line limit is lifted (85% or 100% rating).
+ - **Selected results:**
+   - Offshore +10 GW: renewables 31%, −15.8 Mt CO2, system cost +169 M€/yr.
+   - Coal −100% without replacement: 7.4 TWh unserved.
+   - CO2 caps are met exactly (at 60%: 80.5 Mt).
+   - Gas ×0.5 and coal ×2 both switch coal to gas: CO2 80.6 Mt.
+   - Restarting all three nuclear plants: −13.3 Mt, no unserved energy.
+ - **Page:** `docs/sandbox.html`.
+   - Levers, nearest computed scenario (with differences shown as yours → shown), tiles with deltas, capacity chart, week dispatch, line-loading map, scenario table.
+   - The levers are kept in the URL.
+   - Checked when served locally at desktop width and in a 375 px frame: no page overflow. Edge headless has a minimum window of about 496 px, so the phone check used a frame.
+
 TODO:
  - to run PyPSA-Earth Taiwan!

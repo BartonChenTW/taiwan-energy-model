@@ -29,18 +29,18 @@ const I18N = {
     g_add: "Add capacity", g_nuclear: "Nuclear", g_policy: "Coal and CO₂", g_market: "Demand and fuel prices", g_grid: "Transmission",
     add_solar_GW: "Solar PV", add_onwind_GW: "Onshore wind", add_offwind_GW: "Offshore wind", add_battery_GW: "Battery (4 h)",
     add_ccgt_GW: "Gas (CCGT)", nuclear_restart: "Restart existing plants", add_nuclear_new_GW: "New nuclear (Lungmen site)",
-    coal_retire_frac: "Coal retired", co2_cap_frac: "CO₂ cap (share of base emissions)", co2_off: "no cap",
+    coal_retire_frac: "Coal retired", co2_cap_frac: "CO₂ cap (share of base emissions)", co2_off: "no cap", co2_apply: "Apply a cap",
     demand_scale: "Demand", gas_price_mult: "Gas price", coal_price_mult: "Coal price",
     line_rating: "Usable line rating", reset: "Reset to base", share: "Copy link", copied: "Link copied.",
     copy_failed: "Copy the address bar to share this scenario.",
-    exact: "Exact match", nearest: "Nearest computed scenario", nearest_note: "Your settings are not computed yet; this is the closest pre-computed scenario. Differences:",
+    exact: "Exact match", nearest: "Nearest computed scenario", nearest_note: "Your settings are not computed yet; this is the closest pre-computed scenario. Differences (yours → shown):",
     showing: "Showing", base_label: "base case",
     t_cost: "System cost", t_cost_note: (op, inv) => `operating ${op} + investment ${inv} M€/yr`,
     t_cost_restart: "restart costs not included",
     t_co2: "CO₂ emissions", t_re: "Renewable share", t_curtail: "Curtailment", t_unserved: "Unserved demand",
     t_added: "Capacity added", vs_base: "vs base",
     cap_title: "Installed capacity", cap_sub: "GW by technology: base case and scenario",
-    map_title: "Line loading", map_sub: "Highest flow over the year as a share of the usable line rating",
+    map_title: "Line loading", map_sub: "Highest flow over the year as a share of the usable line rating: darker and thicker lines are more loaded; hover for the value",
     dispatch_title: "Dispatch for one week", dispatch_sub: "National generation by technology and demand (GW), 4-hourly",
     week: "Week", demand_line: "Demand", base_series: "Base case", scenario_series: "Scenario",
     all_title: "All computed scenarios", all_sub: "Select a row to open it",
@@ -56,18 +56,18 @@ const I18N = {
     g_add: "增加容量", g_nuclear: "核能", g_policy: "燃煤與 CO₂", g_market: "需求與燃料價格", g_grid: "輸電",
     add_solar_GW: "太陽光電", add_onwind_GW: "陸域風電", add_offwind_GW: "離岸風電", add_battery_GW: "電池儲能（4 小時）",
     add_ccgt_GW: "燃氣複循環", nuclear_restart: "重啟既有電廠", add_nuclear_new_GW: "新核電（龍門廠址）",
-    coal_retire_frac: "燃煤除役比例", co2_cap_frac: "CO₂ 上限（基準排放的比例）", co2_off: "不設上限",
+    coal_retire_frac: "燃煤除役比例", co2_cap_frac: "CO₂ 上限（基準排放的比例）", co2_off: "不設上限", co2_apply: "設定上限",
     demand_scale: "需求", gas_price_mult: "天然氣價格", coal_price_mult: "煤價",
     line_rating: "線路可用容量", reset: "回到基準", share: "複製連結", copied: "已複製連結。",
     copy_failed: "請複製網址列以分享此情境。",
-    exact: "完全符合", nearest: "最接近的已計算情境", nearest_note: "您的設定尚未計算；以下為最接近的預先計算情境。差異：",
+    exact: "完全符合", nearest: "最接近的已計算情境", nearest_note: "您的設定尚未計算；以下為最接近的預先計算情境。差異（您的設定 → 顯示的情境）：",
     showing: "顯示", base_label: "基準情境",
     t_cost: "系統成本", t_cost_note: (op, inv) => `營運 ${op} + 投資 ${inv} 百萬歐元/年`,
     t_cost_restart: "未含重啟成本",
     t_co2: "CO₂ 排放", t_re: "再生能源占比", t_curtail: "棄電量", t_unserved: "未供電量",
     t_added: "新增容量", vs_base: "相對基準",
     cap_title: "裝置容量", cap_sub: "各技術裝置容量（GW）：基準與情境",
-    map_title: "線路負載", map_sub: "全年最大潮流占線路可用容量的比例",
+    map_title: "線路負載", map_sub: "全年最大潮流占線路可用容量的比例：顏色越深、線越粗表示負載越高；游標移上可看數值",
     dispatch_title: "一週的調度", dispatch_sub: "全國各技術發電量與需求（GW），每 4 小時",
     week: "週次", demand_line: "需求", base_series: "基準情境", scenario_series: "情境",
     all_title: "所有已計算情境", all_sub: "點選一列以開啟",
@@ -138,7 +138,7 @@ function renderControls() {
       const isCap = k === "co2_cap_frac";
       const val = isCap && v === null ? m.max : v;
       return `<div class="lever"><label class="lever-label" for="lv-${k}">${esc(t(k))} <output id="out-${k}">${esc(leverText(k, v))}</output></label>
-        ${isCap ? `<label class="check"><input type="checkbox" id="cap-on" ${v !== null ? "checked" : ""}> ${esc(t("co2_cap_frac"))}</label>` : ""}
+        ${isCap ? `<label class="check"><input type="checkbox" id="cap-on" ${v !== null ? "checked" : ""}> ${esc(t("co2_apply"))}</label>` : ""}
         <input type="range" id="lv-${k}" data-lever="${k}" min="${m.min}" max="${m.max}" step="${step}" value="${val}" ${isCap && v === null ? "disabled" : ""}></div>`;
     }).join("")}</fieldset>`).join("");
 
@@ -230,7 +230,7 @@ function renderMatch(best) {
   const exact = best.d < 1e-9;
   const diffs = Object.keys(state.index.levers)
     .filter((k) => JSON.stringify(state.levers[k]) !== JSON.stringify(s.levers[k]))
-    .map((k) => `${esc(t(k))}: ${esc(leverText(k, s.levers[k]))}`);
+    .map((k) => `${esc(t(k))}: ${esc(leverText(k, state.levers[k]))} → ${esc(leverText(k, s.levers[k]))}`);
   $("match").innerHTML = `<b>${esc(exact ? t("exact") : t("nearest"))}:</b> ${esc(s.hash === state.index.base ? t("base_label") : s.label)}` +
     (exact ? "" : `<p class="note">${esc(t("nearest_note"))} ${diffs.join(" · ")}</p>`);
 }

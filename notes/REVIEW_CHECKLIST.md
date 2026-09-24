@@ -58,3 +58,20 @@ Items Claude decided or assumed without your confirmation. Tick them off, or not
 - [ ] **Night-peak growth 2026–2035 (2.7%/yr):** from a secondary article (Science Media Center Taiwan), not MOEA. Replace it with the MOEA 114年度 report when it is published on data.gov.tw/dataset/16437.
 - [ ] **Titles of the MOEA news release and the SMC article** are not recorded (left empty rather than guessed). Add them from the pages.
 - [ ] **Publication date of the 113年度 report:** the text cites data of 2025-08-15, and the open-data file was updated 2026-06-09. The exact publication date is not in the PDF.
+
+## Sandbox (`pypsa_tw/sandbox/`)
+
+- [ ] **Levers and ranges** (`levers.py`):
+  - add 0–20 GW solar/offshore, 0–10 GW onshore/battery/CCGT;
+  - new nuclear 0–5 GW;
+  - coal retired 0–100%;
+  - CO2 cap 30–100% of base emissions;
+  - demand 0.9–1.3×; gas/coal price 0.5–2×;
+  - line rating 0.5–1.0.
+- [ ] **Nuclear restart capacities** come from OpenStreetMap `plant:output:electricity`: Chinshan 1,208 MW, Kuosheng 1,896 MW, Maanshan 1,780 MW. Check them against Taipower's ratings. Other assumptions: availability 0.9 (constant), technology-data marginal cost, and no restart cost in the system cost.
+- [ ] **Where additions go:**
+  - solar and wind in proportion to each bus's remaining technical potential;
+  - batteries and CCGT in proportion to peak demand by bus (which favours Taipei);
+  - new nuclear at the Lungmen site; restarts at their own sites.
+- [ ] **New batteries:** 4 h, 0.96 charge and discharge efficiency (technology-data inverter). The base network's existing battery has an efficiency of 1.0 (a pypsa-earth default), i.e. lossless; this is worth fixing in the fleet.
+- [ ] **System cost** = operating cost + annualised investment (technology-data 2030, 7.1% discount rate) of the added capacity. The load-shedding penalty (1,000 EUR/MWh) is in the objective but not in the system cost.

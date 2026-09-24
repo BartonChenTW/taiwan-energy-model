@@ -64,6 +64,21 @@ python -m http.server 8765 --bind 127.0.0.1 -d docs
 
 Then open http://127.0.0.1:8765/. Add `?lang=zh` for Traditional Chinese and `?case=<id>` to open a specific case.
 
+## Sandbox page
+
+`docs/sandbox.html` (with `docs/assets/sandbox.js`) lets visitors explore what-if scenarios. In Phase 1 every scenario is pre-computed:
+
+1. Solve the grid: `python pypsa_tw/sandbox/batch.py`, or one scenario with `python pypsa_tw/sandbox/run_scenario.py --levers '{...}'`. See `AGENTS.md`.
+2. Rerun the exporter. It writes `docs/data/sandbox/index.json` (scenarios, lever ranges, metrics and deltas against the base case) and `docs/data/sandbox/cases/<hash>.json` (the usual case format plus the spec). That is about 0.3 MB per scenario, about 10 MB for the grid.
+
+**How the page works:**
+- It maps the levers to the nearest computed scenario (each lever normalised by its range) and says when it is not an exact match.
+- It puts the levers in the query string, e.g. `sandbox.html?add_offwind_GW=10&co2_cap_frac=0.5&nuclear_restart=maanshan`, so a link reproduces the view.
+
+**Metrics shown:**
+- System cost = model operating cost + annualised investment in the added capacity (technology-data 2030). Added capacity is fixed, so its cost is not in the model's objective; restarts of closed nuclear plants are not costed.
+- CO2, renewable share, curtailment, unserved demand, capacity added, and peak line loading.
+
 ## Publish
 
 ```powershell
