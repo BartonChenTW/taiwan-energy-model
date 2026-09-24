@@ -73,12 +73,20 @@ Rule:
 
 Found while checking the 2026-09-24 results against Taiwan 2024 (gas 42.4%, coal 39.3%, nuclear 4.2%, renewables 11.6%, pumped storage 1.1%; model: coal 55%, gas 21%, nuclear 15%, renewables 9%):
 
-1. [ ] nuclear: remove or phase out the 5.3 GW (Maanshan 2 shut down in May 2025)
-2. [ ] fleet capacities: update gas (model 18.3 GW, about 20 GW real), solar (12.4, about 14 GW) and offshore wind (2.2, about 3 GW) to 2024/2025 levels
-3. [ ] pumped hydro: set real storage hours (currently `max_hours = 0`)
-4. [ ] hydro: check run-of-river and reservoir inflow (run-of-river capacity factor is 2.8%)
-5. [ ] demand: check the profile shape against Taipower hourly load (peak/mean 1.44 looks too high)
-6. [ ] costs: move from `costs_2030.csv` to current fuel prices, and consider coal availability or emission limits, so coal no longer runs at a 99.5% capacity factor
+1. [x] nuclear: remove or phase out the 5.3 GW (Maanshan 2 shut down in May 2025)
+   - 2026-09-24: done in the draft fleet (#2); the Taipower list has no nuclear units.
+2. [ ] fleet capacities: update to 2025 levels. **Draft ready for review.**
+   - 2026-09-24: `data/custom_powerplants.csv` built by `pypsa_tw/data/build_custom_powerplants.py` from Taipower's official unit list (snapshot 2026-09-24), with coordinates from OSM or powerplantmatching and solar spread by Energy Administration county data. Sources and assumptions: `pypsa_tw/data/README.md`.
+   - Totals: gas 22.3, coal 11.4, oil 1.3, solar 15.4, offshore wind 3.4, onshore wind 0.8, hydro 2.1, pumped hydro 2.6, batteries 0.85 GW (60.1 GW; Taipower states 59.8 GW for 2025).
+   - To do after review: enable it in the Test configs (`custom_powerplants: replace`, a 2025 `powerplants_filter`, `estimate_renewable_capacities.stats: false`).
+3. [x] pumped hydro: set real storage hours (6 h in the draft fleet, source in the README). The draft also fixes the root cause: the old list had no `Duration`, and `add_electricity` only replaces `max_hours == 0`.
+4. [ ] hydro: check run-of-river and reservoir inflow (run-of-river capacity factor was 2.8%; 15% with the draft fleet)
+5. [ ] demand: scale to **Taipower-system** generation, not the national total
+   - The draft fleet covers Taipower's system only, so demand scaled to 288.6 TWh (national, including self-generation such as Mailiao) is too high. Scale 0.749 gives 250.9 TWh against 251.44 TWh for Taipower 2024 (to confirm), and a 41.4 GW peak against the official 40,882 MW.
+   - Diagnostic with draft fleet and scale 0.749: unserved 0.83 TWh (0.33%), peak 1.6 GW, June–August. Mix: gas 46%, coal 40%, renewables 14% (Taipower 2024: gas 47%, coal 31%, renewables 12%, nuclear 8%).
+6. [ ] costs: move from `costs_2030.csv` to current fuel prices, and consider coal availability or emission limits; coal still runs at a 100% capacity factor
+7. [ ] new units in trial operation (Taichung CC #1–2, Hsinta new CC #2–3) are excluded because Taipower shows "-"; they were generating 3.1 GW at the snapshot and would probably close the summer shortfall. Ratings needed.
+8. [ ] battery storage hours: currently pypsa-earth's 6 h default; Taiwan's grid batteries are probably shorter
 
 
 ## Phase 4: run/test future scenarios

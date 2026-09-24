@@ -98,6 +98,24 @@ key: YOUR_CDS_API_KEY
  - **Dashboard rebuilt** (`docs/`, data from `pypsa_tw/viewer/export_dashboard_data.py`), with automatic sanity warnings per case. Checked in headless Edge screenshots, in English and Traditional Chinese and in light and dark mode.
  - `pypsa_tw/SIMULATION_TABLE.md` was found reverted to its pre-2026-09-23 content at 02:54:55, probably by a stale editor buffer. It was restored from git and updated.
 
+## 2026-09-24 (afternoon): official power plant data
+ - **Sources collected** (details in `pypsa_tw/data/README.md`):
+   - Taipower real-time unit list, including IPPs ([data.gov.tw/dataset/8931](https://data.gov.tw/dataset/8931)), snapshot 2026-09-24 15:10: 215 rows with installed capacity per unit.
+   - Energy Administration solar approvals by county, 2015–2025 ([data.gov.tw/dataset/16423](https://data.gov.tw/dataset/16423)): transcribed from PDFs, every yearly sum matches the published total.
+   - OpenStreetMap power plants (Overpass) and GADM counties, for coordinates.
+   - Taipower annual peak load ([data.gov.tw/dataset/8307](https://data.gov.tw/dataset/8307)): 40,882 MW in 2024, 40,752 MW in 2025.
+ - **Draft fleet** `data/custom_powerplants.csv` (97 plants, 60.1 GW), built by `pypsa_tw/data/build_custom_powerplants.py` from `pypsa_tw/data/taipower_plant_mapping.csv`. No nuclear; gas 22.3, coal 11.4, solar 15.4, offshore wind 3.4, pumped hydro 2.6 GW at 6 h, batteries 0.85 GW. Not yet enabled in the Test configs; awaiting review.
+ - **Pitfalls found while testing it:**
+   - custom plants need `DateIn`, or `add_electricity` stops ("Could not fill 'datein'").
+   - The default `powerplants_filter` (`DateIn <= 2023`) silently drops newer plants, so use a 2025 filter.
+   - With `estimate_renewable_capacities.stats: irena`, pypsa-earth tops solar and wind up to IRENA 2023 and spreads the difference evenly over buses.
+ - **Pumped hydro 0 h explained:** the powerplantmatching entries had no `Duration`, and `add_electricity` replaces only `max_hours == 0` with `PHS_max_hours`, not NaN.
+ - **Diagnostics** (Test 2 with load shedding, one-off overlays, configs unchanged):
+   - draft fleet, demand scale 0.86: mix gas 51%, coal 35%, renewables 12%; unserved 4.6 TWh, peak 8.4 GW. Firm capacity fell from 41.8 GW (old list, with nuclear and Mailiao) to 34.9 GW.
+   - draft fleet, demand scale 0.749 (Taipower system): 250.9 TWh, peak 41.4 GW; mix gas 46%, coal 40%, renewables 14%; unserved 0.83 TWh (0.33%), peak 1.6 GW, June–August, no line at its limit.
+ - **Demand scope mismatch:** a Taipower-system fleet needs Taipower-system demand, 251.44 TWh in 2024 (to confirm), not the national 288.6 TWh.
+ - **Remaining gap:** units shown as "-" (new gas units in trial: Taichung CC #1–2, Hsinta new CC #3) were generating 3.1 GW at the snapshot but have no published rating.
+
 
 TODO:
  - to run PyPSA-Earth Taiwan!
