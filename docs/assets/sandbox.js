@@ -12,8 +12,8 @@ const CARRIER_GROUP = {
 
 // Lever controls: [lever, group, step, display scale, unit shown]. Ranges come from the data.
 const CONTROLS = [
-  ["add_solar_GW", "g_add", 1, 1, "GW"], ["add_onwind_GW", "g_add", 1, 1, "GW"], ["add_offwind_GW", "g_add", 1, 1, "GW"],
-  ["add_battery_GW", "g_add", 1, 1, "GW"], ["add_ccgt_GW", "g_add", 1, 1, "GW"],
+  ["add_solar_GW", "g_add", 1, 1, "GW"], ["add_onwind_GW", "g_add", 0.1, 1, "GW"], ["add_offwind_GW", "g_add", 0.1, 1, "GW"],
+  ["add_battery_GW", "g_add", 0.1, 1, "GW"], ["add_ccgt_GW", "g_add", 1, 1, "GW"],
   ["nuclear_restart", "g_nuclear"], ["add_nuclear_new_GW", "g_nuclear", 0.1, 1, "GW"],
   ["coal_retire_frac", "g_policy", 0.1, 100, "%"], ["co2_cap_frac", "g_policy", 0.05, 100, "%"],
   ["demand_scale", "g_market", 0.05, 1, "×"], ["gas_price_mult", "g_market", 0.1, 1, "×"], ["coal_price_mult", "g_market", 0.1, 1, "×"],
@@ -26,7 +26,7 @@ const I18N = {
     nav_data: "Taiwan energy data →",
     caveat: "Exploration tool, not a forecast: 6 buses, 4-hourly time steps, one weather year (2013), today's grid unless you change line ratings, and fixed capacities (the model dispatches what you add; it does not choose what to build). Costs are technology-data 2030 projections in EUR. Only pre-computed scenarios can be shown: the levers pick the nearest one.",
     levers_title: "What if…", levers_sub: "Start from today's system and change one or more levers.",
-    g_add: "Add capacity", g_nuclear: "Nuclear", g_policy: "Coal and CO₂", g_market: "Demand and fuel prices", g_grid: "Transmission",
+    g_add: "Add or remove capacity", g_add_note: "Right of zero adds new capacity; left of zero removes existing plants (all plants of that type scaled down by the same share).", g_nuclear: "Nuclear", g_policy: "Coal and CO₂", g_market: "Demand and fuel prices", g_grid: "Transmission",
     add_solar_GW: "Solar PV", add_onwind_GW: "Onshore wind", add_offwind_GW: "Offshore wind", add_battery_GW: "Battery (4 h)",
     add_ccgt_GW: "Gas (CCGT)", nuclear_restart: "Restart existing plants", add_nuclear_new_GW: "New nuclear (Lungmen site)",
     coal_retire_frac: "Coal retired", co2_cap_frac: "CO₂ cap (share of base emissions)", co2_off: "no cap", co2_apply: "Apply a cap",
@@ -38,7 +38,8 @@ const I18N = {
     t_cost: "System cost", t_cost_note: (op, inv) => `operating ${op} + investment ${inv} M€/yr`,
     t_cost_restart: "restart costs not included",
     t_co2: "CO₂ emissions", t_re: "Renewable share", t_curtail: "Curtailment", t_unserved: "Unserved demand",
-    t_added: "Capacity added", vs_base: "vs base",
+    t_added: "Capacity change", t_added_note: (a, r) => `added ${a} · removed ${r} GW`, vs_base: "vs base",
+    week_label: (w, a, b) => `Week ${w} · ${a} – ${b}`,
     cap_title: "Installed capacity", cap_sub: "GW by technology: base case and scenario",
     map_title: "Line loading", map_sub: "Highest flow over the year as a share of the usable line rating: darker and thicker lines are more loaded; hover for the value",
     dispatch_title: "Dispatch for one week", dispatch_sub: "National generation by technology and demand (GW), 4-hourly",
@@ -53,7 +54,7 @@ const I18N = {
     nav_data: "台灣能源資料 →",
     caveat: "這是探索工具，不是預測：6 個節點、每 4 小時一個時段、單一氣象年（2013），除非調整線路容量否則電網維持現狀，且容量為固定值（模型只調度您加入的容量，不會自行決定要蓋什麼）。成本為 technology-data 2030 年預估值（歐元）。只能顯示預先計算的情境：調整項目會對應到最接近的一個。",
     levers_title: "如果……", levers_sub: "從現有系統出發，調整一個或多個項目。",
-    g_add: "增加容量", g_nuclear: "核能", g_policy: "燃煤與 CO₂", g_market: "需求與燃料價格", g_grid: "輸電",
+    g_add: "增減容量", g_add_note: "零以右為新增容量；零以左為移除既有電廠（該類電廠依相同比例縮減）。", g_nuclear: "核能", g_policy: "燃煤與 CO₂", g_market: "需求與燃料價格", g_grid: "輸電",
     add_solar_GW: "太陽光電", add_onwind_GW: "陸域風電", add_offwind_GW: "離岸風電", add_battery_GW: "電池儲能（4 小時）",
     add_ccgt_GW: "燃氣複循環", nuclear_restart: "重啟既有電廠", add_nuclear_new_GW: "新核電（龍門廠址）",
     coal_retire_frac: "燃煤除役比例", co2_cap_frac: "CO₂ 上限（基準排放的比例）", co2_off: "不設上限", co2_apply: "設定上限",
@@ -65,7 +66,8 @@ const I18N = {
     t_cost: "系統成本", t_cost_note: (op, inv) => `營運 ${op} + 投資 ${inv} 百萬歐元/年`,
     t_cost_restart: "未含重啟成本",
     t_co2: "CO₂ 排放", t_re: "再生能源占比", t_curtail: "棄電量", t_unserved: "未供電量",
-    t_added: "新增容量", vs_base: "相對基準",
+    t_added: "容量變化", t_added_note: (a, r) => `新增 ${a} · 移除 ${r} GW`, vs_base: "相對基準",
+    week_label: (w, a, b) => `第 ${w} 週 · ${a} – ${b}`,
     cap_title: "裝置容量", cap_sub: "各技術裝置容量（GW）：基準與情境",
     map_title: "線路負載", map_sub: "全年最大潮流占線路可用容量的比例：顏色越深、線越粗表示負載越高；游標移上可看數值",
     dispatch_title: "一週的調度", dispatch_sub: "全國各技術發電量與需求（GW），每 4 小時",
@@ -121,14 +123,17 @@ function leverText(k, v) {
   const c = CONTROLS.find((x) => x[0] === k);
   if (k === "nuclear_restart") return v.length ? v.map((p) => state.index.nuclear_plants[p].name).join(", ") : "–";
   if (k === "co2_cap_frac" && v === null) return t("co2_off");
-  if (k.startsWith("add_")) return `+${nf(v, k === "add_nuclear_new_GW" ? 1 : 0)} GW`;
+  if (k.startsWith("add_")) {
+    const d = c[2] < 1 ? 1 : 0;
+    return `${v < 0 ? "−" : "+"}${nf(Math.abs(v), d)} GW`;
+  }
   return `${nf(v * c[3], c[3] === 100 ? 0 : 2)} ${c[4]}`;
 }
 
 function renderControls() {
   const box = $("lever-controls");
   const groups = [...new Set(CONTROLS.map((c) => c[1]))];
-  box.innerHTML = groups.map((g) => `<fieldset class="lever-group"><legend>${esc(t(g))}</legend>${
+  box.innerHTML = groups.map((g) => `<fieldset class="lever-group"><legend>${esc(t(g))}</legend>${g === "g_add" ? `<p class="note muted">${esc(t("g_add_note"))}</p>` : ""}${
     CONTROLS.filter((c) => c[1] === g).map(([k, , step]) => {
       const m = meta(k), v = state.levers[k];
       if (k === "nuclear_restart") {
@@ -248,7 +253,8 @@ function renderTiles(s) {
     tile(t("t_re"), nf(m.re_share * 100, 1), "%", `${signed(d.re_share * 100, 1)} pp`),
     tile(t("t_curtail"), nf(m.curtailment_TWh, 2), "TWh", signed(d.curtailment_TWh, 2)),
     tile(t("t_unserved"), nf(m.unserved_GWh, 0), "GWh", signed(d.unserved_GWh, 0)),
-    tile(t("t_added"), nf(m.capacity_added_GW, 1), "GW", signed(d.capacity_added_GW, 1)),
+    tile(t("t_added"), signed(m.capacity_change_GW ?? m.capacity_added_GW, 1), "GW", signed(d.capacity_change_GW ?? d.capacity_added_GW, 1),
+         t("t_added_note")(nf(m.capacity_added_GW, 1), nf(m.capacity_removed_GW ?? 0, 1))),
   ].join("");
 }
 
@@ -264,12 +270,21 @@ function renderCapacity(base, cur) {
 
 function renderDispatch(cur) {
   const sel = $("week");
-  if (!sel.options.length) {
-    sel.innerHTML = Array.from({ length: 52 }, (_, i) => `<option value="${i + 1}">${i + 1}</option>`).join("");
+  const perWeek = 42; // 7 days x 6 four-hour steps
+  const fmt = new Intl.DateTimeFormat(state.lang === "zh" ? "zh-TW" : "en-GB", { day: "numeric", month: "short" });
+  const day = (i) => fmt.format(new Date(cur.inputs.time[Math.min(i, cur.inputs.time.length - 1)].replace(" ", "T")));
+  const weeks = Math.floor(cur.inputs.time.length / perWeek);
+  const opts = Array.from({ length: weeks }, (_, i) =>
+    `<option value="${i + 1}">${esc(t("week_label")(i + 1, day(i * perWeek), day((i + 1) * perWeek - 1)))}</option>`).join("");
+  if (sel.dataset.lang !== state.lang || sel.options.length !== weeks) {
+    sel.innerHTML = opts;
+    sel.dataset.lang = state.lang;
+  }
+  if (!sel.dataset.bound) {
     sel.addEventListener("change", () => { state.week = Number(sel.value); update(); });
+    sel.dataset.bound = "1";
   }
   sel.value = String(state.week);
-  const perWeek = 42; // 7 days x 6 four-hour steps
   const start = (state.week - 1) * perWeek, end = start + perWeek;
   const x = cur.inputs.time.slice(start, end);
   const byGroup = {};

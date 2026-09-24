@@ -64,7 +64,7 @@ def test_hash_ignores_defaults_order_and_label():
     assert spec_hash(x) == spec_hash(y) != a
 
 
-@pytest.mark.parametrize("levers", [{"add_solar_GW": -1}, {"demand_scale": 2}, {"co2_cap_frac": 0.1},
+@pytest.mark.parametrize("levers", [{"add_solar_GW": -16}, {"demand_scale": 2}, {"co2_cap_frac": 0.1},
                                     {"nuclear_restart": ["lungmen"]}, {"no_such_lever": 1}])
 def test_invalid_specs_are_rejected(levers):
     with pytest.raises(ValueError):
@@ -109,6 +109,32 @@ def test_add_ccgt():
     n, b = solved(add_ccgt_GW=5), solved()
     assert capacity(n, ["CCGT"]) == pytest.approx(capacity(b, ["CCGT"]) + 5e3, rel=1e-9)
     assert energy(n, [SHED]) <= energy(b, [SHED]) + 1e-3
+
+
+def test_remove_solar():
+    n, b = solved(add_solar_GW=-5), solved()
+    assert capacity(n, ["solar"]) == pytest.approx(capacity(b, ["solar"]) - 5e3, rel=1e-9)
+    assert energy(n, ["solar"]) < energy(b, ["solar"])
+    assert emissions_t(n) > emissions_t(b)
+
+
+def test_remove_all_offwind():
+    n = solved(add_offwind_GW=-3.4)  # more than the 3.38 GW that exists: removes all
+    assert capacity(n, ["offwind-ac", "offwind-dc"]) == pytest.approx(0, abs=1e-6)
+
+
+def test_remove_ccgt():
+    n, b = solved(add_ccgt_GW=-5), solved()
+    assert capacity(n, ["CCGT"]) == pytest.approx(capacity(b, ["CCGT"]) - 5e3, rel=1e-9)
+    # About 5 GW of gas is unused in the base (the shortfall is the Taipei corridor), so
+    # unserved energy does not fall, and the remaining plants cost a little more to run.
+    assert energy(n, [SHED]) >= energy(b, [SHED]) - 1e-3
+    assert n.objective > b.objective
+
+
+def test_remove_battery():
+    n = solved(add_battery_GW=-0.9)
+    assert capacity(n, ["battery"]) == pytest.approx(0, abs=1e-6)
 
 
 def test_nuclear_restart():

@@ -130,6 +130,22 @@ def add_nuclear(n, name, mw, lat, lon, costs, record):
     record[gen] = mw
 
 
+def remove_capacity(n, component, carriers, total_mw, record):
+    """Remove existing capacity: every unit of these carriers scaled down by the same share.
+
+    A removal larger than what exists (the lever bounds are rounded to the slider
+    step) removes all of it. Returns the MW actually removed.
+    """
+    df = getattr(n, component)
+    i = df.index[df.carrier.isin(carriers)]
+    existing = float(df.loc[i, "p_nom"].sum())
+    removed = min(total_mw, existing)
+    if existing > 0:
+        df.loc[i, "p_nom"] *= 1 - removed / existing
+    record["+".join(carriers)] = round(removed, 1)
+    return removed
+
+
 def scale_fuel_price(n, carriers, mult, vom):
     """Multiply the fuel part of the marginal cost: VOM + mult * (marginal_cost - VOM)."""
     i = n.generators.index[n.generators.carrier.isin(carriers)]
@@ -152,6 +168,18 @@ def apply_levers(n, spec, base_emissions):
         i = n.generators.index[n.generators.carrier == "coal"]
         applied["coal_retired_MW"] = round(float(n.generators.loc[i, "p_nom"].sum() * lv["coal_retire_frac"]), 1)
         n.generators.loc[i, "p_nom"] *= 1 - lv["coal_retire_frac"]
+
+    # Negative capacity levers remove existing capacity (before anything is added).
+    removed = {}
+    for lever, component, carriers in [("add_solar_GW", "generators", ["solar"]),
+                                       ("add_onwind_GW", "generators", ["onwind"]),
+                                       ("add_offwind_GW", "generators", ["offwind-ac", "offwind-dc"]),
+                                       ("add_ccgt_GW", "generators", ["CCGT"]),
+                                       ("add_battery_GW", "storage_units", ["battery"])]:
+        if lv[lever] < 0:
+            remove_capacity(n, component, carriers, -lv[lever] * 1e3, removed)
+    if removed:
+        applied["removed_MW"] = removed
 
     added = {}
     for lever, carriers in [("add_solar_GW", ["solar"]), ("add_onwind_GW", ["onwind"]),

@@ -5,7 +5,7 @@ Solve the Phase 1 scenario grid: one lever at a time, plus a few combinations.
     python pypsa_tw/sandbox/batch.py --list     # print the grid and exit
 
 Scenarios are solved one after another (shared workstation: one solve at a
-time, HiGHS). Each takes about 20-35 s, so the full grid of 33 takes about
+time, HiGHS). Each takes about 20-35 s, so the full grid of 39 takes about
 15-20 minutes. Cached scenarios are skipped.
 """
 
@@ -26,6 +26,12 @@ GRID = [
     *({"add_onwind_GW": v} for v in (2, 5)),
     *({"add_battery_GW": v} for v in (2, 5)),
     *({"add_ccgt_GW": v} for v in (2, 5)),
+    # Capacity removals (negative values take existing capacity away)
+    {"add_solar_GW": -5},
+    {"add_offwind_GW": -3.4},
+    {"add_onwind_GW": -0.8},
+    {"add_battery_GW": -0.9},
+    *({"add_ccgt_GW": v} for v in (-2, -5)),
     # Nuclear
     {"nuclear_restart": ["maanshan"]},
     {"nuclear_restart": ["chinshan", "kuosheng", "maanshan"]},

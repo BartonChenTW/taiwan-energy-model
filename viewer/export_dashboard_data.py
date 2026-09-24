@@ -651,6 +651,10 @@ def sandbox_metrics(n, meta, costs, battery_hours=4.0):
         key = {"offwind-ac": "offwind", "offwind-dc": "offwind"}.get(carrier, carrier)
         added_by_carrier[key] = added_by_carrier.get(key, 0.0) + mw / 1e3
 
+    removed = {k.replace("offwind-ac+offwind-dc", "offwind"): v
+               for k, v in meta.get("applied", {}).get("removed_MW", {}).items()}
+    removed_total = sum(removed.values())
+
     loading = []
     for name, line in n.lines.iterrows():
         cap = line.s_nom * line.s_max_pu
@@ -667,6 +671,11 @@ def sandbox_metrics(n, meta, costs, battery_hours=4.0):
         "unserved_GWh": _r(energy.reindex(SHED_CARRIERS).fillna(0).sum() / 1e3, 1),
         "capacity_added_GW": _r(sum(added_by_carrier.values()), 2),
         "capacity_added_by_carrier_GW": {k: _r(v, 2) for k, v in added_by_carrier.items()},
+        # Removals of existing capacity (negative capacity levers): no investment is saved,
+        # since the plants are already built; only operating costs change.
+        "capacity_removed_GW": _r(removed_total / 1e3, 2),
+        "capacity_removed_by_carrier_GW": {k: _r(v / 1e3, 2) for k, v in removed.items()},
+        "capacity_change_GW": _r(sum(added_by_carrier.values()) - removed_total / 1e3, 2),
         "max_line_loading": _r(max(loading) if loading else None, 3),
         "demand_TWh": _r(float(n.loads_t.p_set.sum(axis=1).mul(w).sum()) / 1e6, 1),
     }

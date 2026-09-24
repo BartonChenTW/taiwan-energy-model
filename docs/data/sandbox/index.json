@@ -1,43 +1,43 @@
 {
- "generated": "2026-09-24 14:02 UTC",
+ "generated": "2026-09-24 14:30 UTC",
  "base": "d161cb737b89",
  "base_run": "tw_test2_highs_2013_fullyear_4h_6b_ls",
  "caveat": "Exploration tool, not a forecast: 6 buses, 4-hourly time steps, one weather year (2013), today's grid, fixed capacities (the model does not choose what to build). Costs are technology-data 2030 projections in EUR.",
  "levers": {
   "add_solar_GW": {
    "default": 0.0,
-   "min": 0.0,
+   "min": -15.0,
    "max": 20.0,
    "unit": "GW",
-   "description": "Solar PV added, spread over buses by remaining technical potential"
+   "description": "Solar PV added (+) or removed (-); additions by remaining technical potential"
   },
   "add_onwind_GW": {
    "default": 0.0,
-   "min": 0.0,
+   "min": -0.8,
    "max": 10.0,
    "unit": "GW",
-   "description": "Onshore wind added, spread by remaining potential"
+   "description": "Onshore wind added (+) or removed (-); additions by remaining potential"
   },
   "add_offwind_GW": {
    "default": 0.0,
-   "min": 0.0,
+   "min": -3.4,
    "max": 20.0,
    "unit": "GW",
-   "description": "Offshore wind added, spread by remaining potential (AC and DC sites)"
+   "description": "Offshore wind added (+) or removed (-); additions by remaining potential (AC and DC sites)"
   },
   "add_battery_GW": {
    "default": 0.0,
-   "min": 0.0,
+   "min": -0.9,
    "max": 10.0,
    "unit": "GW",
-   "description": "Battery storage added (4 h), spread by peak demand"
+   "description": "Battery storage added (+, 4 h, by peak demand) or removed (-)"
   },
   "add_ccgt_GW": {
    "default": 0.0,
-   "min": 0.0,
+   "min": -26.0,
    "max": 10.0,
    "unit": "GW",
-   "description": "Gas CCGT added, spread by peak demand"
+   "description": "Gas CCGT added (+, by peak demand) or removed (-)"
   },
   "nuclear_restart": {
    "default": [],
@@ -166,6 +166,9 @@
     "capacity_added_by_carrier_GW": {
      "offwind": 10.0
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 10.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -178,6 +181,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -33.7,
     "capacity_added_GW": 10.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 10.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -224,6 +229,9 @@
     "unserved_GWh": 834.9,
     "capacity_added_GW": 0.0,
     "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 0.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -236,6 +244,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": 0.0,
     "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 0.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -282,6 +292,9 @@
     "unserved_GWh": 0.0,
     "capacity_added_GW": 0.0,
     "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 0.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -294,6 +307,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -834.9,
     "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 0.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -336,6 +351,9 @@
     "capacity_added_by_carrier_GW": {
      "onwind": 2.0
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 2.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -348,6 +366,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -44.1,
     "capacity_added_GW": 2.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 2.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -394,6 +414,9 @@
     "unserved_GWh": 834.9,
     "capacity_added_GW": 0.0,
     "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 0.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -406,6 +429,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": 0.0,
     "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 0.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -419,6 +444,71 @@
    "solver_status": "Optimal",
    "solve_s": 13.34,
    "objective": 10341281123.0
+  },
+  {
+   "hash": "1da6131f1496",
+   "label": "offwind -3.4 GW",
+   "levers": {
+    "add_solar_GW": 0.0,
+    "add_onwind_GW": 0.0,
+    "add_offwind_GW": -3.4,
+    "add_battery_GW": 0.0,
+    "add_ccgt_GW": 0.0,
+    "nuclear_restart": [],
+    "add_nuclear_new_GW": 0.0,
+    "coal_retire_frac": 0.0,
+    "co2_cap_frac": null,
+    "demand_scale": 1.0,
+    "gas_price_mult": 1.0,
+    "coal_price_mult": 1.0,
+    "line_rating": 0.7
+   },
+   "changed": {
+    "add_offwind_GW": -3.4
+   },
+   "metrics": {
+    "operating_cost_MEUR": 9157.9,
+    "investment_MEUR": 0.0,
+    "system_cost_MEUR": 9157.9,
+    "investment_not_costed": [],
+    "co2_Mt": 138.38,
+    "re_share": 0.089,
+    "curtailment_TWh": 0.0,
+    "unserved_GWh": 834.9,
+    "capacity_added_GW": 0.0,
+    "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 3.38,
+    "capacity_removed_by_carrier_GW": {
+     "offwind": 3.38
+    },
+    "capacity_change_GW": -3.38,
+    "max_line_loading": 1.0,
+    "demand_TWh": 251.4
+   },
+   "deltas": {
+    "operating_cost_MEUR": 580.9,
+    "investment_MEUR": 0.0,
+    "system_cost_MEUR": 580.9,
+    "co2_Mt": 4.24,
+    "re_share": -0.0495,
+    "curtailment_TWh": 0.0,
+    "unserved_GWh": 0.0,
+    "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 3.38,
+    "capacity_change_GW": -3.38,
+    "max_line_loading": 0.0,
+    "demand_TWh": 0.0
+   },
+   "warnings": [
+    {
+     "code": "load_shedding",
+     "severity": "critical",
+     "gwh": 834.9
+    }
+   ],
+   "solver_status": "Optimal",
+   "solve_s": 10.85,
+   "objective": 9992764509.0
   },
   {
    "hash": "1f3d15b11ae4",
@@ -454,6 +544,9 @@
     "capacity_added_by_carrier_GW": {
      "offwind": 5.0
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 5.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -466,6 +559,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -17.0,
     "capacity_added_GW": 5.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 5.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -514,6 +609,9 @@
     "capacity_added_by_carrier_GW": {
      "solar": 20.0
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 20.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -526,6 +624,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -340.8,
     "capacity_added_GW": 20.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 20.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -574,6 +674,9 @@
     "capacity_added_by_carrier_GW": {
      "nuclear": 2.7
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 2.7,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -586,6 +689,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -834.9,
     "capacity_added_GW": 2.7,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 2.7,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -626,6 +731,9 @@
     "unserved_GWh": 834.9,
     "capacity_added_GW": 0.0,
     "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 0.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -638,6 +746,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": 0.0,
     "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 0.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -692,6 +802,9 @@
     "capacity_added_by_carrier_GW": {
      "nuclear": 1.78
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 1.78,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -704,6 +817,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": 0.0,
     "capacity_added_GW": 1.78,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 1.78,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -752,6 +867,9 @@
     "capacity_added_by_carrier_GW": {
      "offwind": 15.0
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 15.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -764,6 +882,8 @@
     "curtailment_TWh": 0.07,
     "unserved_GWh": -50.3,
     "capacity_added_GW": 15.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 15.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -824,6 +944,9 @@
     "capacity_added_by_carrier_GW": {
      "nuclear": 4.88
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 4.88,
     "max_line_loading": 0.984,
     "demand_TWh": 251.4
    },
@@ -836,6 +959,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -834.9,
     "capacity_added_GW": 4.88,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 4.88,
     "max_line_loading": -0.016,
     "demand_TWh": 0.0
    },
@@ -876,6 +1001,9 @@
     "unserved_GWh": 2457.6,
     "capacity_added_GW": 0.0,
     "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 0.0,
     "max_line_loading": 1.0,
     "demand_TWh": 276.6
    },
@@ -888,6 +1016,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": 1622.7,
     "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 0.0,
     "max_line_loading": 0.0,
     "demand_TWh": 25.2
    },
@@ -901,6 +1031,71 @@
    "solver_status": "Optimal",
    "solve_s": 12.45,
    "objective": 12260746039.0
+  },
+  {
+   "hash": "3ead61c95161",
+   "label": "ccgt -2 GW",
+   "levers": {
+    "add_solar_GW": 0.0,
+    "add_onwind_GW": 0.0,
+    "add_offwind_GW": 0.0,
+    "add_battery_GW": 0.0,
+    "add_ccgt_GW": -2.0,
+    "nuclear_restart": [],
+    "add_nuclear_new_GW": 0.0,
+    "coal_retire_frac": 0.0,
+    "co2_cap_frac": null,
+    "demand_scale": 1.0,
+    "gas_price_mult": 1.0,
+    "coal_price_mult": 1.0,
+    "line_rating": 0.7
+   },
+   "changed": {
+    "add_ccgt_GW": -2.0
+   },
+   "metrics": {
+    "operating_cost_MEUR": 8577.0,
+    "investment_MEUR": 0.0,
+    "system_cost_MEUR": 8577.0,
+    "investment_not_costed": [],
+    "co2_Mt": 134.14,
+    "re_share": 0.1385,
+    "curtailment_TWh": 0.0,
+    "unserved_GWh": 834.9,
+    "capacity_added_GW": 0.0,
+    "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 2.0,
+    "capacity_removed_by_carrier_GW": {
+     "CCGT": 2.0
+    },
+    "capacity_change_GW": -2.0,
+    "max_line_loading": 1.0,
+    "demand_TWh": 251.4
+   },
+   "deltas": {
+    "operating_cost_MEUR": 0.0,
+    "investment_MEUR": 0.0,
+    "system_cost_MEUR": 0.0,
+    "co2_Mt": 0.0,
+    "re_share": 0.0,
+    "curtailment_TWh": 0.0,
+    "unserved_GWh": 0.0,
+    "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 2.0,
+    "capacity_change_GW": -2.0,
+    "max_line_loading": 0.0,
+    "demand_TWh": 0.0
+   },
+   "warnings": [
+    {
+     "code": "load_shedding",
+     "severity": "critical",
+     "gwh": 834.9
+    }
+   ],
+   "solver_status": "Optimal",
+   "solve_s": 12.05,
+   "objective": 9411898031.0
   },
   {
    "hash": "5254b26720da",
@@ -934,6 +1129,9 @@
     "unserved_GWh": 7422.9,
     "capacity_added_GW": 0.0,
     "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 0.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -946,6 +1144,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": 6588.0,
     "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 0.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -992,6 +1192,9 @@
     "unserved_GWh": 0.0,
     "capacity_added_GW": 0.0,
     "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 0.0,
     "max_line_loading": 0.889,
     "demand_TWh": 251.4
    },
@@ -1004,6 +1207,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -834.9,
     "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 0.0,
     "max_line_loading": -0.111,
     "demand_TWh": 0.0
    },
@@ -1044,6 +1249,9 @@
     "unserved_GWh": 834.9,
     "capacity_added_GW": 0.0,
     "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 0.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -1056,6 +1264,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": 0.0,
     "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 0.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -1104,6 +1314,9 @@
     "capacity_added_by_carrier_GW": {
      "onwind": 5.0
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 5.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -1116,6 +1329,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -105.7,
     "capacity_added_GW": 5.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 5.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -1164,6 +1379,9 @@
     "capacity_added_by_carrier_GW": {
      "solar": 5.0
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 5.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -1176,6 +1394,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -87.2,
     "capacity_added_GW": 5.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 5.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -1224,6 +1444,9 @@
     "capacity_added_by_carrier_GW": {
      "CCGT": 5.0
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 5.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -1236,6 +1459,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -834.9,
     "capacity_added_GW": 5.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 5.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -1280,6 +1505,9 @@
      "solar": 10.0,
      "battery": 5.0
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 15.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -1292,6 +1520,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -586.1,
     "capacity_added_GW": 15.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 15.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -1305,6 +1535,71 @@
    "solver_status": "Optimal",
    "solve_s": 28.36,
    "objective": 8298154260.0
+  },
+  {
+   "hash": "9276ace0609a",
+   "label": "onwind -0.8 GW",
+   "levers": {
+    "add_solar_GW": 0.0,
+    "add_onwind_GW": -0.8,
+    "add_offwind_GW": 0.0,
+    "add_battery_GW": 0.0,
+    "add_ccgt_GW": 0.0,
+    "nuclear_restart": [],
+    "add_nuclear_new_GW": 0.0,
+    "coal_retire_frac": 0.0,
+    "co2_cap_frac": null,
+    "demand_scale": 1.0,
+    "gas_price_mult": 1.0,
+    "coal_price_mult": 1.0,
+    "line_rating": 0.7
+   },
+   "changed": {
+    "add_onwind_GW": -0.8
+   },
+   "metrics": {
+    "operating_cost_MEUR": 8650.8,
+    "investment_MEUR": 0.0,
+    "system_cost_MEUR": 8650.8,
+    "investment_not_costed": [],
+    "co2_Mt": 134.68,
+    "re_share": 0.1322,
+    "curtailment_TWh": 0.0,
+    "unserved_GWh": 834.9,
+    "capacity_added_GW": 0.0,
+    "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 0.8,
+    "capacity_removed_by_carrier_GW": {
+     "onwind": 0.8
+    },
+    "capacity_change_GW": -0.8,
+    "max_line_loading": 1.0,
+    "demand_TWh": 251.4
+   },
+   "deltas": {
+    "operating_cost_MEUR": 73.8,
+    "investment_MEUR": 0.0,
+    "system_cost_MEUR": 73.8,
+    "co2_Mt": 0.54,
+    "re_share": -0.0063,
+    "curtailment_TWh": 0.0,
+    "unserved_GWh": 0.0,
+    "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 0.8,
+    "capacity_change_GW": -0.8,
+    "max_line_loading": 0.0,
+    "demand_TWh": 0.0
+   },
+   "warnings": [
+    {
+     "code": "load_shedding",
+     "severity": "critical",
+     "gwh": 834.9
+    }
+   ],
+   "solver_status": "Optimal",
+   "solve_s": 11.06,
+   "objective": 9485629532.0
   },
   {
    "hash": "95b1bacbaffa",
@@ -1338,6 +1633,9 @@
     "unserved_GWh": 1549.1,
     "capacity_added_GW": 0.0,
     "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 0.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -1350,6 +1648,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": 714.2,
     "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 0.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -1398,6 +1698,9 @@
     "capacity_added_by_carrier_GW": {
      "battery": 2.0
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 2.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -1410,6 +1713,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -173.1,
     "capacity_added_GW": 2.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 2.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -1423,6 +1728,71 @@
    "solver_status": "Optimal",
    "solve_s": 18.54,
    "objective": 9238532366.0
+  },
+  {
+   "hash": "990a24d3fbdb",
+   "label": "battery -0.9 GW",
+   "levers": {
+    "add_solar_GW": 0.0,
+    "add_onwind_GW": 0.0,
+    "add_offwind_GW": 0.0,
+    "add_battery_GW": -0.9,
+    "add_ccgt_GW": 0.0,
+    "nuclear_restart": [],
+    "add_nuclear_new_GW": 0.0,
+    "coal_retire_frac": 0.0,
+    "co2_cap_frac": null,
+    "demand_scale": 1.0,
+    "gas_price_mult": 1.0,
+    "coal_price_mult": 1.0,
+    "line_rating": 0.7
+   },
+   "changed": {
+    "add_battery_GW": -0.9
+   },
+   "metrics": {
+    "operating_cost_MEUR": 8577.0,
+    "investment_MEUR": 0.0,
+    "system_cost_MEUR": 8577.0,
+    "investment_not_costed": [],
+    "co2_Mt": 134.14,
+    "re_share": 0.1385,
+    "curtailment_TWh": 0.0,
+    "unserved_GWh": 834.9,
+    "capacity_added_GW": 0.0,
+    "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 0.85,
+    "capacity_removed_by_carrier_GW": {
+     "battery": 0.85
+    },
+    "capacity_change_GW": -0.85,
+    "max_line_loading": 1.0,
+    "demand_TWh": 251.4
+   },
+   "deltas": {
+    "operating_cost_MEUR": 0.0,
+    "investment_MEUR": 0.0,
+    "system_cost_MEUR": 0.0,
+    "co2_Mt": 0.0,
+    "re_share": 0.0,
+    "curtailment_TWh": 0.0,
+    "unserved_GWh": 0.0,
+    "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 0.85,
+    "capacity_change_GW": -0.85,
+    "max_line_loading": 0.0,
+    "demand_TWh": 0.0
+   },
+   "warnings": [
+    {
+     "code": "load_shedding",
+     "severity": "critical",
+     "gwh": 834.9
+    }
+   ],
+   "solver_status": "Optimal",
+   "solve_s": 8.88,
+   "objective": 9411890728.0
   },
   {
    "hash": "9c4a04376eea",
@@ -1458,6 +1828,9 @@
     "capacity_added_by_carrier_GW": {
      "CCGT": 2.0
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 2.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -1470,6 +1843,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -622.2,
     "capacity_added_GW": 2.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 2.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -1516,6 +1891,9 @@
     "unserved_GWh": 2.4,
     "capacity_added_GW": 0.0,
     "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 0.0,
     "max_line_loading": 1.0,
     "demand_TWh": 226.3
    },
@@ -1528,6 +1906,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -832.5,
     "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 0.0,
     "max_line_loading": 0.0,
     "demand_TWh": -25.1
    },
@@ -1574,6 +1954,9 @@
     "unserved_GWh": 5335.9,
     "capacity_added_GW": 0.0,
     "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 0.0,
     "max_line_loading": 1.0,
     "demand_TWh": 301.7
    },
@@ -1586,6 +1969,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": 4501.0,
     "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 0.0,
     "max_line_loading": 0.0,
     "demand_TWh": 50.3
    },
@@ -1632,6 +2017,9 @@
     "unserved_GWh": 834.9,
     "capacity_added_GW": 0.0,
     "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 0.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -1644,6 +2032,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": 0.0,
     "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 0.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -1690,6 +2080,9 @@
     "unserved_GWh": 834.9,
     "capacity_added_GW": 0.0,
     "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 0.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -1702,6 +2095,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": 0.0,
     "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 0.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -1748,6 +2143,9 @@
     "unserved_GWh": 11446.5,
     "capacity_added_GW": 0.0,
     "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 0.0,
     "max_line_loading": 1.0,
     "demand_TWh": 326.9
    },
@@ -1760,6 +2158,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": 10611.6,
     "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 0.0,
     "max_line_loading": 0.0,
     "demand_TWh": 75.5
    },
@@ -1773,6 +2173,71 @@
    "solver_status": "Optimal",
    "solve_s": 20.43,
    "objective": 23622690798.0
+  },
+  {
+   "hash": "bba5bf38c02e",
+   "label": "solar -5 GW",
+   "levers": {
+    "add_solar_GW": -5.0,
+    "add_onwind_GW": 0.0,
+    "add_offwind_GW": 0.0,
+    "add_battery_GW": 0.0,
+    "add_ccgt_GW": 0.0,
+    "nuclear_restart": [],
+    "add_nuclear_new_GW": 0.0,
+    "coal_retire_frac": 0.0,
+    "co2_cap_frac": null,
+    "demand_scale": 1.0,
+    "gas_price_mult": 1.0,
+    "coal_price_mult": 1.0,
+    "line_rating": 0.7
+   },
+   "changed": {
+    "add_solar_GW": -5.0
+   },
+   "metrics": {
+    "operating_cost_MEUR": 8852.3,
+    "investment_MEUR": 0.0,
+    "system_cost_MEUR": 8852.3,
+    "investment_not_costed": [],
+    "co2_Mt": 136.13,
+    "re_share": 0.1152,
+    "curtailment_TWh": 0.0,
+    "unserved_GWh": 929.2,
+    "capacity_added_GW": 0.0,
+    "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 5.0,
+    "capacity_removed_by_carrier_GW": {
+     "solar": 5.0
+    },
+    "capacity_change_GW": -5.0,
+    "max_line_loading": 1.0,
+    "demand_TWh": 251.4
+   },
+   "deltas": {
+    "operating_cost_MEUR": 275.3,
+    "investment_MEUR": 0.0,
+    "system_cost_MEUR": 275.3,
+    "co2_Mt": 1.99,
+    "re_share": -0.0233,
+    "curtailment_TWh": 0.0,
+    "unserved_GWh": 94.3,
+    "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 5.0,
+    "capacity_change_GW": -5.0,
+    "max_line_loading": 0.0,
+    "demand_TWh": 0.0
+   },
+   "warnings": [
+    {
+     "code": "load_shedding",
+     "severity": "critical",
+     "gwh": 929.2
+    }
+   ],
+   "solver_status": "Optimal",
+   "solve_s": 10.49,
+   "objective": 9781546594.0
   },
   {
    "hash": "c2f6f6c6a2fb",
@@ -1809,6 +2274,9 @@
     "capacity_added_by_carrier_GW": {
      "CCGT": 5.0
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 5.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -1821,6 +2289,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": 4.5,
     "capacity_added_GW": 5.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 5.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -1870,6 +2340,9 @@
     "capacity_added_by_carrier_GW": {
      "offwind": 10.0
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 10.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -1882,6 +2355,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -33.7,
     "capacity_added_GW": 10.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 10.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -1926,6 +2401,9 @@
     "unserved_GWh": 834.9,
     "capacity_added_GW": 0.0,
     "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 0.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -1938,6 +2416,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": 0.0,
     "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 0.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -1986,6 +2466,9 @@
     "capacity_added_by_carrier_GW": {
      "solar": 10.0
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 10.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -1998,6 +2481,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -174.2,
     "capacity_added_GW": 10.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 10.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -2046,6 +2531,9 @@
     "capacity_added_by_carrier_GW": {
      "battery": 5.0
     },
+    "capacity_removed_GW": 0.0,
+    "capacity_removed_by_carrier_GW": {},
+    "capacity_change_GW": 5.0,
     "max_line_loading": 1.0,
     "demand_TWh": 251.4
    },
@@ -2058,6 +2546,8 @@
     "curtailment_TWh": 0.0,
     "unserved_GWh": -424.7,
     "capacity_added_GW": 5.0,
+    "capacity_removed_GW": 0.0,
+    "capacity_change_GW": 5.0,
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
@@ -2071,6 +2561,71 @@
    "solver_status": "Optimal",
    "solve_s": 19.81,
    "objective": 8992854728.0
+  },
+  {
+   "hash": "e0a6d54889e8",
+   "label": "ccgt -5 GW",
+   "levers": {
+    "add_solar_GW": 0.0,
+    "add_onwind_GW": 0.0,
+    "add_offwind_GW": 0.0,
+    "add_battery_GW": 0.0,
+    "add_ccgt_GW": -5.0,
+    "nuclear_restart": [],
+    "add_nuclear_new_GW": 0.0,
+    "coal_retire_frac": 0.0,
+    "co2_cap_frac": null,
+    "demand_scale": 1.0,
+    "gas_price_mult": 1.0,
+    "coal_price_mult": 1.0,
+    "line_rating": 0.7
+   },
+   "changed": {
+    "add_ccgt_GW": -5.0
+   },
+   "metrics": {
+    "operating_cost_MEUR": 8585.0,
+    "investment_MEUR": 0.0,
+    "system_cost_MEUR": 8585.0,
+    "investment_not_costed": [],
+    "co2_Mt": 134.2,
+    "re_share": 0.1384,
+    "curtailment_TWh": 0.0,
+    "unserved_GWh": 834.9,
+    "capacity_added_GW": 0.0,
+    "capacity_added_by_carrier_GW": {},
+    "capacity_removed_GW": 5.0,
+    "capacity_removed_by_carrier_GW": {
+     "CCGT": 5.0
+    },
+    "capacity_change_GW": -5.0,
+    "max_line_loading": 1.0,
+    "demand_TWh": 251.4
+   },
+   "deltas": {
+    "operating_cost_MEUR": 8.0,
+    "investment_MEUR": 0.0,
+    "system_cost_MEUR": 8.0,
+    "co2_Mt": 0.06,
+    "re_share": -0.0001,
+    "curtailment_TWh": 0.0,
+    "unserved_GWh": 0.0,
+    "capacity_added_GW": 0.0,
+    "capacity_removed_GW": 5.0,
+    "capacity_change_GW": -5.0,
+    "max_line_loading": 0.0,
+    "demand_TWh": 0.0
+   },
+   "warnings": [
+    {
+     "code": "load_shedding",
+     "severity": "critical",
+     "gwh": 834.9
+    }
+   ],
+   "solver_status": "Optimal",
+   "solve_s": 18.34,
+   "objective": 9419869881.0
   }
  ]
 }

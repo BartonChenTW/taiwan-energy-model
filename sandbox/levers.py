@@ -46,11 +46,15 @@ NUCLEAR_NEW_SITE = {"name": "Lungmen site (核四)", "lat": 25.0458, "lon": 121.
 
 # name: (default, min, max, unit, description)
 LEVERS = {
-    "add_solar_GW": (0.0, 0.0, 20.0, "GW", "Solar PV added, spread over buses by remaining technical potential"),
-    "add_onwind_GW": (0.0, 0.0, 10.0, "GW", "Onshore wind added, spread by remaining potential"),
-    "add_offwind_GW": (0.0, 0.0, 20.0, "GW", "Offshore wind added, spread by remaining potential (AC and DC sites)"),
-    "add_battery_GW": (0.0, 0.0, 10.0, "GW", "Battery storage added (4 h), spread by peak demand"),
-    "add_ccgt_GW": (0.0, 0.0, 10.0, "GW", "Gas CCGT added, spread by peak demand"),
+    # Capacity levers: positive adds, negative removes existing capacity (every plant of that
+    # type scaled down by the same share). The lower bound is today's capacity, rounded to the
+    # slider step; a removal larger than what exists removes all of it.
+    # Today (base network): solar 15.39, onshore 0.81, offshore 3.38, battery 0.85, CCGT 26.03 GW.
+    "add_solar_GW": (0.0, -15.0, 20.0, "GW", "Solar PV added (+) or removed (-); additions by remaining technical potential"),
+    "add_onwind_GW": (0.0, -0.8, 10.0, "GW", "Onshore wind added (+) or removed (-); additions by remaining potential"),
+    "add_offwind_GW": (0.0, -3.4, 20.0, "GW", "Offshore wind added (+) or removed (-); additions by remaining potential (AC and DC sites)"),
+    "add_battery_GW": (0.0, -0.9, 10.0, "GW", "Battery storage added (+, 4 h, by peak demand) or removed (-)"),
+    "add_ccgt_GW": (0.0, -26.0, 10.0, "GW", "Gas CCGT added (+, by peak demand) or removed (-)"),
     "nuclear_restart": ([], None, None, "plants", "Existing nuclear plants restarted: chinshan, kuosheng, maanshan"),
     "add_nuclear_new_GW": (0.0, 0.0, 5.0, "GW", "New nuclear at the Lungmen site"),
     "coal_retire_frac": (0.0, 0.0, 1.0, "fraction", "Share of coal capacity retired (every coal plant scaled down)"),
@@ -115,7 +119,7 @@ def describe(spec):
     parts = []
     for k, v in changed(spec).items():
         if k.startswith("add_") and k.endswith("_GW"):
-            parts.append(f"{k[4:-3].replace('_', ' ')} +{v:g} GW")
+            parts.append(f"{k[4:-3].replace('_', ' ')} {v:+g} GW")
         elif k == "nuclear_restart":
             parts.append("restart " + " + ".join(v))
         elif k == "coal_retire_frac":
