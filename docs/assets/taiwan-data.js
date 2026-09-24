@@ -4,7 +4,7 @@
 
 const I18N = {
   en: {
-    title: "Taiwan energy data", nav_dashboard: "← Model dashboard", nav_facts: "Key figures", nav_sources: "Data sources",
+    title: "Taiwan energy data", nav_dashboard: "← Model dashboard", nav_sandbox: "Sandbox →", nav_facts: "Key figures", nav_sources: "Data sources",
     nav_history: "History and projections", history_title: "History and projections",
     history_intro: "Official annual statistics (2005-2025; peak load from 1982), the government's 10-year outlook, policy targets, and PyPSA-Earth's default demand projection. Solid lines and areas are history; dashed lines and open markers are projections or targets.",
     h_gen: "Generation by source", h_gen_sub: "TWh per year, national (incl. self-generation). Dashed: 1.7%/yr official growth applied to 2024 (derived); diamonds: PyPSA-Earth default demand (GEGIS).",
@@ -53,7 +53,7 @@ const I18N = {
     loading_error: "Could not load the data. If you opened this file directly, serve the folder instead: python -m http.server -d docs",
   },
   zh: {
-    title: "台灣能源資料", nav_dashboard: "← 模型儀表板", nav_facts: "關鍵數據", nav_sources: "資料來源",
+    title: "台灣能源資料", nav_dashboard: "← 模型儀表板", nav_sandbox: "情境沙盒 →", nav_facts: "關鍵數據", nav_sources: "資料來源",
     nav_history: "歷史與預測", history_title: "歷史與預測",
     history_intro: "官方年度統計（2005-2025 年；尖峰負載自 1982 年起）、政府 10 年展望、政策目標，以及 PyPSA-Earth 預設的需求預估。實線與面積為歷史；虛線與空心標記為預測或目標。",
     h_gen: "各能源別發電量", h_gen_sub: "每年 TWh，全國（含自用發電）。虛線：以 2024 年為基準套用官方年增 1.7%（推估）；菱形：PyPSA-Earth 預設需求（GEGIS）。",

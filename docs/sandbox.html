@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Taiwan Power Sandbox | 台灣電力情境沙盒</title>
+    <meta name="description" content="Explore what-if scenarios for Taiwan's power system with the PyPSA-Earth Taiwan model." />
+    <link rel="stylesheet" href="assets/site.css" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <script src="assets/sandbox.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <div>
+          <div class="eyebrow">PyPSA-Earth · Taiwan</div>
+          <h1 data-i18n="title">Power system sandbox</h1>
+        </div>
+        <div class="toolbar">
+          <div class="segmented" role="group" aria-label="Language">
+            <button type="button" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" data-lang="zh" aria-pressed="false">繁中</button>
+          </div>
+          <button type="button" id="theme-toggle" class="ghost" aria-label="Toggle dark mode">◐</button>
+        </div>
+      </div>
+      <nav class="shell tabs" aria-label="Sections">
+        <a href="index.html" data-i18n="nav_dashboard">← Model dashboard</a>
+        <a href="#levers" data-i18n="nav_levers">Levers</a>
+        <a href="#sb-results" data-i18n="nav_results">Results</a>
+        <a href="taiwan-data.html" data-i18n="nav_data">Taiwan energy data →</a>
+      </nav>
+    </header>
+
+    <main class="shell">
+      <section class="status-list" aria-label="Caveat">
+        <div class="status warning"><span class="icon" aria-hidden="true">!</span><span id="caveat" data-i18n="caveat"></span></div>
+      </section>
+
+      <div class="sandbox">
+        <aside class="panel levers" id="levers" aria-label="Levers">
+          <h2 data-i18n="levers_title">What if…</h2>
+          <p class="sub" data-i18n="levers_sub"></p>
+          <div id="lever-controls"></div>
+          <div class="lever-actions">
+            <button type="button" id="reset" class="ghost" data-i18n="reset">Reset to base</button>
+            <button type="button" id="share" class="ghost" data-i18n="share">Copy link</button>
+          </div>
+          <p class="note muted" id="share-status" aria-live="polite"></p>
+        </aside>
+
+        <div class="sb-main" id="sb-results">
+          <div class="panel match" id="match" aria-live="polite"></div>
+          <section class="tiles" id="sb-tiles" aria-label="Key numbers"></section>
+
+          <div class="grid two">
+            <article class="panel">
+              <h3 data-i18n="cap_title">Installed capacity</h3>
+              <p class="sub" data-i18n="cap_sub">GW by technology: base case and scenario</p>
+              <div id="sb-chart-capacity" class="chart tall"></div>
+            </article>
+            <article class="panel">
+              <h3 data-i18n="map_title">Line loading</h3>
+              <p class="sub" data-i18n="map_sub">Highest flow over the year as a share of the usable line rating</p>
+              <div id="sb-chart-map" class="chart tall"></div>
+            </article>
+          </div>
+
+          <article class="panel">
+            <h3 data-i18n="dispatch_title">Dispatch for one week</h3>
+            <div class="filters">
+              <label><span data-i18n="week">Week</span>
+                <select id="week"></select></label>
+            </div>
+            <p class="sub" data-i18n="dispatch_sub">National generation by technology and demand (GW), 4-hourly</p>
+            <div id="sb-chart-dispatch" class="chart tall"></div>
+          </article>
+
+          <article class="panel">
+            <h3 data-i18n="all_title">All computed scenarios</h3>
+            <p class="sub" data-i18n="all_sub">Select a row to open it</p>
+            <div id="sb-table" class="table-wrap"></div>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer class="shell footer">
+      <span data-i18n="footer">Scenarios solved with pypsa_tw/sandbox/ (HiGHS) and exported by pypsa_tw/viewer/export_dashboard_data.py.</span>
+    </footer>
+  </body>
+</html>
