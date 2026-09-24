@@ -9,17 +9,17 @@ const FORM = { provider: "", endpoint: "", accessKey: "" };
 
 const TEXT = {
   en: {
-    off: "Online requests are not switched on yet. Please get in touch on LinkedIn (see About) in the meantime.",
+    off: "Online requests are not switched on yet. In the meantime, please email barton.chen.energy@gmail.com.",
     invalid: "Please describe the scenario, give a valid email address and tick the consent box.",
     sending: "Sending…", sent: "Thank you. Your request has been sent; you will get an email when the results are online.",
-    failed: "Sending failed. Please try again later, or get in touch on LinkedIn (see About).",
+    failed: "Sending failed. Please try again later, or email barton.chen.energy@gmail.com.",
     none: "no cap", base: "today's system",
   },
   zh: {
-    off: "線上申請尚未開放。在此之前，請透過 LinkedIn 聯絡（見「關於」頁）。",
+    off: "線上申請尚未開放。在此之前，請寄信至 barton.chen.energy@gmail.com。",
     invalid: "請描述情境、填寫有效的電子郵件，並勾選同意。",
     sending: "送出中……", sent: "謝謝！申請已送出；結果上線時會以電子郵件通知您。",
-    failed: "送出失敗，請稍後再試，或透過 LinkedIn 聯絡（見「關於」頁）。",
+    failed: "送出失敗，請稍後再試，或寄信至 barton.chen.energy@gmail.com。",
     none: "不設上限", base: "現有系統",
   },
 };
