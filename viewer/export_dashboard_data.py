@@ -6,6 +6,9 @@ Reads every solved network under ``results/<run>/networks/*.nc`` and writes
 - ``docs/data/index.json``: one summary record per case, with sanity warnings
 - ``docs/data/cases/<run>__<case>.json``: inputs, technology data and results
 - ``docs/data/scenarios.json``: weather-year and future-year scenario comparison
+- ``docs/data/sandbox/index.json`` and ``docs/data/sandbox/cases/<hash>.json``:
+  sandbox scenarios from ``results/sandbox/<hash>/`` (see ``pypsa_tw/sandbox/``),
+  with their spec and deltas against the sandbox base case
 
 Run from anywhere inside the repository:
 
@@ -595,6 +598,139 @@ def export_catalog(repo, out):
         print(f"wrote taiwan_timeseries.json/.csv ({len(ts)} rows, {ts.series.nunique()} series)")
 
 
+# ---------- Sandbox scenarios (pypsa_tw/sandbox/) ----------
+VRE_CARRIERS = ["solar", "onwind", "offwind-ac", "offwind-dc", "ror"]
+SANDBOX_CAVEAT = ("Exploration tool, not a forecast: 6 buses, 4-hourly time steps, one weather year (2013), "
+                  "today's grid, fixed capacities (the model does not choose what to build). Costs are "
+                  "technology-data 2030 projections in EUR.")
+
+
+def _sandbox_modules(repo):
+    import sys
+
+    sys.path.insert(0, str(repo / "pypsa_tw" / "sandbox"))
+    import levers
+
+    return levers
+
+
+def sandbox_metrics(n, meta, costs, battery_hours=4.0):
+    """Key numbers for the sandbox view. Costs in million EUR per year."""
+    w, w_obj = n.snapshot_weightings.generators, n.snapshot_weightings.objective
+    g = n.generators
+    shed = g.carrier.isin(SHED_CARRIERS)
+    p = n.generators_t.p
+    energy = p.mul(w, axis=0).sum().groupby(g.carrier).sum()
+    gen = energy.drop(SHED_CARRIERS, errors="ignore")
+    hydro_res = n.storage_units_t.p.clip(lower=0).mul(w, axis=0).sum().groupby(n.storage_units.carrier).sum()
+    gen = gen.add(hydro_res.reindex(["hydro"]).fillna(0), fill_value=0)
+    re_carriers = RENEWABLE_CARRIERS + ["hydro", "geothermal", "biomass"]
+    vre = g.index[g.carrier.isin(VRE_CARRIERS)]
+    pmax = n.get_switchable_as_dense("Generator", "p_max_pu")[vre]
+    curtail = ((pmax * g.loc[vre, "p_nom"] - p[vre]).clip(lower=0).mul(w, axis=0).sum().sum())
+    operating = float((p.loc[:, ~shed].mul(w_obj, axis=0) * g.loc[~shed, "marginal_cost"]).sum().sum())
+
+    # Investment in the added capacity: annualised technology-data costs. Fixed additions are
+    # not in the model's objective, so this is an estimate shown next to it, not optimised.
+    added = meta.get("applied", {}).get("added_MW", {})
+    invest, added_by_carrier, not_costed = 0.0, {}, []
+    for name, mw in added.items():
+        if name in g.index:
+            carrier = g.at[name, "carrier"]
+            if carrier == "nuclear" and not name.endswith("nuclear new"):
+                not_costed.append(name)  # restart of a closed plant: no cost data
+                cc = 0.0
+            elif carrier in ("nuclear", "CCGT"):
+                cc = costs.at[carrier, "capital_cost"]
+            else:
+                cc = g.at[name, "capital_cost"]
+        else:
+            carrier = n.storage_units.at[name, "carrier"]
+            cc = costs.at["battery inverter", "capital_cost"] + battery_hours * costs.at["battery storage", "capital_cost"]
+        invest += mw * cc
+        key = {"offwind-ac": "offwind", "offwind-dc": "offwind"}.get(carrier, carrier)
+        added_by_carrier[key] = added_by_carrier.get(key, 0.0) + mw / 1e3
+
+    loading = []
+    for name, line in n.lines.iterrows():
+        cap = line.s_nom * line.s_max_pu
+        loading.append(float(n.lines_t.p0[name].abs().max() / cap) if cap else 0.0)
+    return {
+        "operating_cost_MEUR": _r(operating / 1e6, 1),
+        "investment_MEUR": _r(invest / 1e6, 1),
+        "system_cost_MEUR": _r((operating + invest) / 1e6, 1),
+        "investment_not_costed": not_costed,
+        "co2_Mt": _r(sum((p[i] * w).sum() / g.at[i, "efficiency"] * n.carriers.co2_emissions.get(g.at[i, "carrier"], 0)
+                         for i in g.index[~shed]) / 1e6, 2),
+        "re_share": _r(gen.reindex(re_carriers).fillna(0).sum() / gen.sum(), 4),
+        "curtailment_TWh": _r(curtail / 1e6, 2),
+        "unserved_GWh": _r(energy.reindex(SHED_CARRIERS).fillna(0).sum() / 1e3, 1),
+        "capacity_added_GW": _r(sum(added_by_carrier.values()), 2),
+        "capacity_added_by_carrier_GW": {k: _r(v, 2) for k, v in added_by_carrier.items()},
+        "max_line_loading": _r(max(loading) if loading else None, 3),
+        "demand_TWh": _r(float(n.loads_t.p_set.sum(axis=1).mul(w).sum()) / 1e6, 1),
+    }
+
+
+def export_sandbox(repo, out):
+    """Sandbox scenarios: case JSON (same format as the runs) plus spec, metrics and deltas."""
+    root = repo / "results" / "sandbox"
+    if not root.exists():
+        return
+    levers = _sandbox_modules(repo)
+    base_hash = levers.spec_hash({})
+    sb_out = out / "sandbox"
+    (sb_out / "cases").mkdir(parents=True, exist_ok=True)
+
+    rows = {}
+    for spec_file in sorted(root.glob("*/spec.json")):
+        meta = json.loads(spec_file.read_text(encoding="utf-8"))
+        key = meta["hash"]
+        base = levers.BASES[meta["spec"]["base"]]
+        nc = spec_file.parent / "networks" / f"{base['case']}.nc"
+        if not nc.exists() or levers.spec_hash(meta["spec"]) != key:
+            print(f"[skip] sandbox {key}: missing network or outdated spec")
+            continue
+        costs = pd.read_csv(repo / base["costs"], index_col=0)
+        summary, detail = export_case(repo, f"sandbox/{key}", nc)
+        summary.update({"id": f"sandbox__{key}", "run": f"sandbox/{key}", "solve_rule_s": meta.get("solve_wall_s")})
+        n = pypsa.Network(str(nc))
+        rows[key] = {"meta": meta, "summary": summary, "detail": detail,
+                     "metrics": sandbox_metrics(n, meta, costs, battery_hours=4.0)}
+
+    if base_hash not in rows:
+        print("[skip] sandbox: the base case (empty spec) is not solved yet")
+        return
+    base_m = rows[base_hash]["metrics"]
+    numeric = [k for k, v in base_m.items() if isinstance(v, (int, float)) and v is not None]
+    index = []
+    for key, r in rows.items():
+        m = r["metrics"]
+        deltas = {k: _r(m[k] - base_m[k], 4) for k in numeric if m.get(k) is not None}
+        entry = {"hash": key, "label": r["meta"]["label"], "levers": r["meta"]["spec"]["levers"],
+                 "changed": levers.changed(r["meta"]["spec"]), "metrics": m, "deltas": deltas,
+                 "warnings": r["summary"]["warnings"], "solver_status": r["summary"]["solver_status"],
+                 "solve_s": r["summary"]["solver_s"], "objective": r["summary"]["objective"]}
+        index.append(entry)
+        detail = r["detail"]
+        detail["summary"] = r["summary"]
+        detail["sandbox"] = {**entry, "applied": r["meta"]["applied"], "base_run": r["meta"]["base_run"]}
+        (sb_out / "cases" / f"{key}.json").write_text(json.dumps(detail, separators=(",", ":")), encoding="utf-8")
+        text = "; ".join(describe_warning(w) for w in r["summary"]["warnings"])
+        print(f"[{'OK  ' if not r['summary']['warnings'] else 'WARN'}] sandbox {key} {r['meta']['label']}: {text or 'no warnings'}")
+
+    lever_meta = {name: {"default": d, "min": lo, "max": hi, "unit": unit, "description": desc}
+                  for name, (d, lo, hi, unit, desc) in levers.LEVERS.items()}
+    (sb_out / "index.json").write_text(json.dumps({
+        "generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+        "base": base_hash, "base_run": rows[base_hash]["meta"]["base_run"], "caveat": SANDBOX_CAVEAT,
+        "levers": lever_meta, "nuclear_plants": levers.NUCLEAR_PLANTS, "nuclear_new_site": levers.NUCLEAR_NEW_SITE,
+        "currency": CURRENCY, "scenarios": index,
+    }, indent=1, ensure_ascii=False), encoding="utf-8")
+    size = sum(f.stat().st_size for f in sb_out.rglob("*.json")) / 1e6
+    print(f"wrote {len(index)} sandbox scenarios to {sb_out.relative_to(repo)} ({size:.1f} MB)")
+
+
 def main():
     logging.disable(logging.WARNING)
     warnings.filterwarnings("ignore")
@@ -644,6 +780,7 @@ def main():
         encoding="utf-8",
     )
     print(f"wrote {len(index)} cases to {out.relative_to(repo)}")
+    export_sandbox(repo, out)
 
 
 if __name__ == "__main__":
