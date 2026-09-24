@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Taiwan Energy Security</title>
+    <meta name="title-en" content="Taiwan Energy Security" />
+    <meta name="title-zh" content="台灣能源安全" />
+    <meta name="description" content="What happens to Taiwan's electricity supply if fuel imports stop: blockade scenarios with LNG, coal and oil stocks." />
+    <link rel="stylesheet" href="assets/site.css?v=62398dfe" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <script src="assets/pages.js?v=b03ff9c1" defer></script>
+    <script src="assets/security.js?v=1be79099" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <div>
+          <div class="eyebrow">PyPSA-Earth · Taiwan</div>
+          <h1><span class="t-en">Energy security: blockade scenarios</span><span class="t-zh">能源安全：封鎖情境</span></h1>
+        </div>
+        <div class="toolbar">
+          <div class="segmented" role="group" aria-label="Language">
+            <button type="button" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" data-lang="zh" aria-pressed="false">繁中</button>
+          </div>
+          <button type="button" id="theme-toggle" class="ghost" aria-label="Toggle dark mode">◐</button>
+        </div>
+      </div>
+      <nav class="shell tabs" aria-label="Pages">
+        <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a>
+        <a href="challenges.html"><span class="t-en">Challenges</span><span class="t-zh">挑戰</span></a>
+        <a href="sandbox.html"><span class="t-en">Sandbox</span><span class="t-zh">情境沙盒</span></a>
+        <a href="energy-security.html" aria-current="page"><span class="t-en">Energy security</span><span class="t-zh">能源安全</span></a>
+        <a href="dashboard.html"><span class="t-en">Model dashboard</span><span class="t-zh">模型儀表板</span></a>
+        <a href="taiwan-data.html"><span class="t-en">Taiwan energy data</span><span class="t-zh">台灣能源資料</span></a>
+        <a href="sector-draft.html"><span class="t-en">Sector model (draft)</span><span class="t-zh">部門耦合（草稿）</span></a>
+        <a href="request.html"><span class="t-en">Request a run</span><span class="t-zh">申請模擬</span></a>
+        <a href="about.html"><span class="t-en">About</span><span class="t-zh">關於</span></a>
+      </nav>
+    </header>
+
+    <main class="shell">
+      <section class="status-list" aria-label="Caveat">
+        <div class="status warning"><span class="icon" aria-hidden="true">!</span>
+          <span><span class="t-en">A research exercise on the power system only, not a military or official assessment. The model knows how long the blockade lasts and rations fuel perfectly over that period (a best case); transport fuel and industrial gas use are not modelled; each fuel is one national stock (no individual terminals or ships); 6 regions, 4-hour steps, 2013 weather.</span><span class="t-zh">這是僅針對電力系統的研究演練，並非軍事或官方評估。模型事先知道封鎖持續多久，並在期間內完美分配燃料（最佳情況）；未模擬運輸燃料與工業用天然氣；每種燃料為單一全國存量（未區分個別接收站或船運）；6 個區域、每 4 小時一個時段、2013 年氣象。</span></span></div>
+      </section>
+
+      <section class="section prose-wide">
+        <h2><span class="t-en">Why this matters</span><span class="t-zh">為什麼重要</span></h2>
+        <p><span class="t-en">Taiwan imports almost all its fuel by sea. Gas makes nearly half of its electricity but has the smallest buffer: LNG is stored for about 11 days of use. If ships stop arriving, gas runs out first, then oil and coal. These scenarios show how much electricity demand could still be met, for how long, and what helps.</span><span class="t-zh">台灣幾乎所有燃料都經海運進口。燃氣提供近一半的電力，緩衝卻最小：液化天然氣存量約 11 天。若船隻無法抵達，天然氣最先耗盡，接著是燃油與燃煤。這些情境顯示還能滿足多少用電需求、能撐多久，以及哪些措施有幫助。</span></p>
+        <div id="stock-facts" class="table-wrap"></div>
+      </section>
+
+      <div class="sandbox">
+        <aside class="panel levers" aria-label="Scenario">
+          <h2><span class="t-en">Scenario</span><span class="t-zh">情境</span></h2>
+          <div id="sec-controls"></div>
+        </aside>
+
+        <div class="sb-main">
+          <div class="panel match" id="sec-match" aria-live="polite"></div>
+          <section class="tiles" id="sec-tiles" aria-label="Key numbers"></section>
+
+          <article class="panel">
+            <h3><span class="t-en">Electricity supply by day</span><span class="t-zh">每日電力供給</span></h3>
+            <p class="sub"><span class="t-en">GWh per day by source; the "Demand not met" band fills the gap up to demand</span><span class="t-zh">各來源每日 GWh；「未能供應的需求」一層補足到需求線的缺口</span></p>
+            <div id="sec-chart-supply" class="chart tall"></div>
+          </article>
+
+          <div class="grid two">
+            <article class="panel">
+              <h3><span class="t-en">Fuel stocks remaining</span><span class="t-zh">剩餘燃料存量</span></h3>
+              <p class="sub"><span class="t-en">% of the stock at the start, end of each day</span><span class="t-zh">占起始存量的 %，每日結束時</span></p>
+              <div id="sec-chart-stocks" class="chart"></div>
+            </article>
+            <article class="panel">
+              <h3><span class="t-en">Demand not met</span><span class="t-zh">未能供應的需求</span></h3>
+              <p class="sub"><span class="t-en">Share of each day's demand</span><span class="t-zh">占每日需求的比例</span></p>
+              <div id="sec-chart-unserved" class="chart"></div>
+            </article>
+          </div>
+
+          <article class="panel">
+            <h3><span class="t-en">All computed cases</span><span class="t-zh">所有已計算情境</span></h3>
+            <p class="sub"><span class="t-en">Select a row to open it</span><span class="t-zh">點選一列以開啟</span></p>
+            <div id="sec-table" class="table-wrap"></div>
+          </article>
+        </div>
+      </div>
+
+      <section class="section prose-wide">
+        <h2><span class="t-en">Reading the results</span><span class="t-zh">如何解讀結果</span></h2>
+        <ul>
+          <li><span class="t-en">The model knows when the blockade ends, so it spreads each stock to exactly zero on the last day. In reality operators would not know, and would likely run short earlier or keep more in reserve.</span><span class="t-zh">模型知道封鎖何時結束，因此會把每種存量剛好在最後一天用完。現實中調度者無從得知，可能更早短缺，或保留更多存量。</span></li>
+          <li><span class="t-en">In a full blockade gas is limited by the fuel left, not by the plants: losing the Tatan gas plant or half of the lines into Taipei changes almost nothing. Coal is the opposite: after 30 summer days about a quarter of the coal stock is still there because the coal plants already run flat out, so losing the Taichung coal plant hurts most.</span><span class="t-zh">完全封鎖時，燃氣受限於剩餘燃料而非電廠：失去大潭電廠或進入台北的一半線路幾乎沒有影響。燃煤則相反：夏季 30 天後仍剩約四分之一的煤，因為燃煤機組已全力運轉，所以失去台中電廠的影響最大。</span></li>
+          <li><span class="t-en">Rationing 20% of demand does not reduce the total shortfall here, because the model already sheds load in the least harmful way. Its real value is planned cuts instead of sudden blackouts, which this model does not capture. Rationed demand is counted as "not met".</span><span class="t-zh">在此配給 20% 需求並未減少總缺口，因為模型本來就會以代價最小的方式切除負載。配給的實際價值在於以計畫性限電取代突然停電，這點本模型無法呈現。配給減少的需求計入「未能供應」。</span></li>
+          <li><span class="t-en">Even with normal imports, today's fixed system cannot meet about 1% of summer demand in this model (the same shortfall as the base case); "Caused by the blockade" subtracts it.</span><span class="t-zh">即使進口正常，在本模型中現有固定系統夏季仍有約 1% 需求無法滿足（與基準情境相同）；「封鎖造成」已扣除此部分。</span></li>
+        </ul>
+      </section>
+
+      <section class="section prose-wide">
+        <h2><span class="t-en">How it is modelled</span><span class="t-zh">模擬方式</span></h2>
+        <ul>
+          <li><span class="t-en">Gas, coal and oil plants draw from one national stock per fuel instead of unlimited supply. Each stock starts at "stock days × the power plants' average daily fuel use" in the normal model year, i.e. the stock is assumed to be shared in proportion between power and other users.</span><span class="t-zh">燃氣、燃煤與燃油電廠改由每種燃料的全國存量供應，而非無限供給。起始存量＝「存量天數 × 一般年度電廠平均每日燃料用量」，即假設存量依比例由電力與其他用戶分享。</span></li>
+          <li><span class="t-en">During the blockade, imports arrive at a chosen share of the normal fuel use in the same weeks (0% = full blockade; 100% reproduces normal operation), spread evenly over time.</span><span class="t-zh">封鎖期間，進口量為同期一般燃料用量的某個比例（0% 為完全封鎖；100% 即重現正常運轉），平均分布於期間內。</span></li>
+          <li><span class="t-en">Only the blockade window is solved (from 1 July or 7 January), with today's plants and grid; demand that cannot be met is shed at 1,000 EUR/MWh.</span><span class="t-zh">只計算封鎖期間（自 7 月 1 日或 1 月 7 日起），採用現有電廠與電網；無法供應的需求以每 MWh 1,000 歐元的代價切除。</span></li>
+          <li><span class="t-en">Damage removes a plant site's capacity at its region, or halves the lines into Taipei. Restarted standby or retired coal units are assumed available from day one (optimistic).</span><span class="t-zh">受損情境會移除該電廠所在區域的容量，或使進入台北的線路容量減半。重啟的備用或已除役燃煤機組假設自第一天起即可運轉（樂觀假設）。</span></li>
+        </ul>
+        <p class="note muted" id="sec-meta"></p>
+      </section>
+    </main>
+
+    <footer class="shell footer">
+      <span class="t-en">Solved with pypsa_tw/sandbox/ (blockade mode, HiGHS).</span><span class="t-zh">以 pypsa_tw/sandbox/（封鎖模式，HiGHS）求解。</span>
+    </footer>
+  </body>
+</html>

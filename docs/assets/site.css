@@ -210,6 +210,7 @@ td:first-child { white-space: nowrap; }
 #table-cmp-params td:last-child { color: var(--ink-2); min-width: 180px; }
 tr.clickable { cursor: pointer; }
 tr.clickable:hover { background: var(--wash); }
+tr.current { background: var(--wash); box-shadow: inset 3px 0 0 var(--accent); }
 tr.selected { background: var(--wash); }
 .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
 .badge { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
@@ -398,3 +399,8 @@ html[lang="zh-Hant"] .t-en { display: none; }
 .match-head { display: flex; align-items: center; gap: 8px; color: var(--ink); font-size: 15px; }
 .match-head .icon { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%;
                     background: var(--critical); color: #fff; font-weight: 700; flex: none; }
+
+/* Energy security: one radio option per line. */
+#sec-controls .check { display: flex; gap: 8px; align-items: flex-start; margin: 6px 0; line-height: 1.35; }
+#sec-controls .check input { margin-top: 2px; flex: none; }
+#sec-table td:first-child { white-space: normal; min-width: 180px; }
