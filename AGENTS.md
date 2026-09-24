@@ -93,10 +93,11 @@ After solving, refresh the dashboard data with `python pypsa_tw/viewer/export_da
 Results go to `results/sandbox/<hash>/` (the hash of the normalised spec is the cache key) and solver logs to `logs/sandbox/<hash>/`. With the GDAL/PROJ variables above set:
 
 ```powershell
-& .\.venv\python.exe pypsa_tw\sandboxun_scenario.py --levers '{"add_offwind_GW": 10, "co2_cap_frac": 0.5}'
-& .\.venv\python.exe pypsa_tw\sandboxatch.py --list   # the Phase 1 grid (33 scenarios)
-& .\.venv\python.exe pypsa_tw\sandboxatch.py          # solve what is not cached (about 20 s each, one at a time)
-& .\.venv\python.exe -m pytest pypsa_tw\sandbox	est_levers.py -q
+& .\.venv\python.exe pypsa_tw\sandbox\run_scenario.py --levers '{"add_offwind_GW": 10, "co2_cap_frac": 0.5}'
+& .\.venv\python.exe pypsa_tw\sandbox\batch.py --list   # the Phase 1 grid (39 scenarios)
+& .\.venv\python.exe pypsa_tw\sandbox\batch.py          # solve what is not cached (about 20 s each, one at a time)
+& .\.venv\python.exe pypsa_tw\sandbox\batch.py --variants low high w2018   # uncertainty variants (about 45 min)
+& .\.venv\python.exe -m pytest pypsa_tw\sandbox\test_levers.py -q
 ```
 
 - The full grid takes about 15 minutes on DDM06479. Tell the other users of the machine before starting it.
