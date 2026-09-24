@@ -1,0 +1,247 @@
+## updated date: 2026-08-24
+# NOTE:
+#  - remove unit and description for attribute, to make it more flexible for ingestion of raw data
+#    the unit could be included in the value field (e.g. 5 kW) or notes
+
+$schema: "http://json-schema.org/draft-07/schema#"
+schema_version: "0.2.0"
+title: UnmappedEntityTechnology
+type: object
+description: Staging schema for raw, unstructured data ingestion. All fields capture free-text inputs before data normalization.
+required:
+  - technology_name
+properties:
+  schema_version:
+    type: string
+    description: Version of the MOTEL schema release this record was authored against (e.g. 0.2.0). Lets an ingesting repository pin a contract and lets validation report a mismatch instead of failing obscurely.
+
+  technology_name:
+    type: string
+    description: The literal unparsed common name or label of the technology as specified in the raw source material.
+
+  technology:
+    type: object
+    description: Contains raw descriptive properties detailing the engineering, structural, and hardware context of the unmapped entity.
+    properties:
+      technology_description:
+        type: string
+        description: Free-text engineering parameters describing the technical baseline of the asset.
+      technology_type:
+        type: string
+        description: The structural archetype classifying how the physical asset interacts with energy streams.
+        examples: [conversion, storage, distribution, consumption]
+      technology_category:
+        type: string
+        description: Broad domain or energy paradigm grouping for the hardware.
+        examples: [renewable, fossil_fuel, nuclear, synthetic]
+      technology_notes:
+        type: string
+        description: Free-text technology context, including explicit technical constraints, design variations, baseline modifications, or other source-specific notes.
+      process_name:
+        type: string
+        description: The raw action-oriented label identifying the conversion or functional service taking place.
+      process_type:
+        type: string
+        description: The engineering classification of the operational flow dynamics.
+        examples: [conversion, storage, distribution, consumption, other]
+      process_category:
+        type: string
+        description: The sector or technical thematic domain the flow processes belong to.
+        examples: [power, low_temp_heat, heavy_industry]
+      process_notes:
+        type: string
+        description: Free-text process context, which may include assumptions, thermodynamic constraints, input/output structures, conversion limits, definitions, or other source-specific notes.
+
+  scope:
+    type: object
+    description: Defines the specific contextual boundaries where the unmapped raw data point remains operationally valid.
+    properties:
+      geographic_scope:
+        type: string
+        description: Literal raw geographic scope value from the source, such as a region code, market zone, or country label.
+      geographic_scope_description:
+        type: string
+        description: Human-readable explanation of the geographic scope value, including its semantic meaning, classification context, or market-zone reading.
+      temporal_scope:
+        type: string
+        description: Literal raw year, period, or time-horizon value from the source.
+      temporal_scope_description:
+        type: string
+        description: Human-readable explanation of the temporal scope value when extra context is needed.
+      capacity_scope:
+        type: string
+        description: Literal raw capacity, size-threshold, consumption band, or volume tier the value applies to, such as a minimum installation size or a household consumption band for a tariff.
+      capacity_scope_description:
+        type: string
+        description: Human-readable explanation of the capacity, consumption band, or volume tier value when extra context is needed.
+      system_boundary:
+        type: string
+        description: Literal raw system- or accounting-boundary label from the source, such as the equipment included in a cost figure, the life-cycle stage covered by an emission factor, or the cost components included in a price.
+      system_boundary_description:
+        type: string
+        description: Human-readable explanation of the boundary value, including inclusion rules and exclusions, for example plant ready to operate versus complete installation, combustion only versus cradle-to-gate, or taxes and levies included versus excluded.
+      scenario:
+        type: string
+        description: The specific modelled narrative, price track, or sensitivity path from the source.
+      scope_notes:
+        type: string
+        description: Free-text metadata or provenance notes for scope fields, such as source column details or parsing caveats.
+
+  sources:
+    type: array
+    description: Only source_name is required; all other fields preserve optional provenance before source harmonisation.
+    items:
+      type: object
+      required:
+        - source_name
+      properties:
+        source_name:
+          type: string
+          description: Concise source label or citation key. Prefer a short, human-readable name rather than a full title.
+        source_description:
+          type: string
+          description: Longer citation string, full title, or document reference as found in the raw material.
+        link:
+          type: string
+          description: URL, DOI, or other resolvable locator as recorded in the raw material.
+        source_type:
+          type: string
+          description: Free-text medium classification, such as report, dataset, article, standard, website, or expert input.
+        access_date:
+          type: string
+          description: Date when an online source was accessed or checked, preferably ISO 8601 when available.
+        confidence_level:
+          type: string
+          description: Optional source-quality or trust rating carried from the source register when available.
+        reference_year:
+          type:
+            - integer
+            - string
+          description: Optional publication or release year for the source material, ideally as a four-digit year.
+        assessment_method:
+          type: string
+          description: Short note on how the source was assessed or how values were derived.
+        source_locator:
+          type: string
+          description: Page numbers, table references, section names, sheet names, or other location hints showing where the evidence can be found within the source.
+        linked_attribute:
+          type: array
+          description: Free-text list of attribute names this source supports; no foreign key enforcement at this stage.
+          items:
+            type: string
+        source_notes:
+          type: string
+          description: Additional free-text source context, caveats, extraction notes, or provenance remarks not captured by the other source fields.
+
+  attributes:
+    type: array
+    description: Array of technical, financial, or operational metrics populated directly from the unstructured raw intake profile. A metric reported for several periods contributes one entry per period.
+    items:
+      type: object
+      required:
+        - attribute_name
+        - value
+      properties:
+        attribute_name:
+          type: string
+          description: Target metric descriptive identifier.
+        value:
+          type: any
+          description: The raw data value, number, string, or range, exactly as found in the source. May include the unit (e.g. 5 kW, 0.21 EUR/kWh). One value per attribute entry; a multi-period series becomes one entry per period, each with its own time_index.
+        uncertainty_notes:
+          type: string
+          description: Free-text description of any stated uncertainty, range, or confidence bounds.
+        time_index:
+          type: string
+          description: Chronological anchor string for this value, e.g. a single year. For a series across multiple periods, use one attribute entry per period rather than combining years here.
+        attribute_notes:
+          type: string
+          description: Any additional raw context, caveats, or parsing flags noted during ingestion. The unit could be defined here (e.g. Unit kW, Unit EUR/kWh).
+
+  balancing:
+    type: object
+    description: Defines the raw conversion ratios and multi-carrier mass or energy balances for multi-input/multi-output processes.
+    properties:
+      inputs:
+        type: array
+        description: Array listing incoming resource vectors and their relative share proportions.
+        items:
+          type: object
+          required:
+            - carrier_name
+          properties:
+            carrier_name:
+              type: string
+              description: Literal name of the unmapped input commodity flow.
+            carrier_notes:
+              type: string
+              description: Additional free-text context for the carrier, which may include description, carrier type, purity, phase, usage assumptions, or other source-specific notes.
+            share:
+              type: number
+              description: Proportional numeric value tracking this specific carrier's fraction of total cumulative feedstocks.
+            unit:
+              type: string
+              description: Measurement reference indicator bounding how the feedstock share value is quantified.
+              examples: [energy, mass, volume, fraction, percentage]
+      main_input:
+        type: string
+        description: The designated baseline input carrier used as the denominator anchor for sizing efficiency conversion equations.
+      outputs:
+        type: array
+        description: Array listing outgoing resource vectors and their relative share proportions.
+        items:
+          type: object
+          required:
+            - carrier_name
+          properties:
+            carrier_name:
+              type: string
+              description: Literal name of the unmapped output commodity flow.
+            carrier_notes:
+              type: string
+              description: Additional free-text context for the carrier, which may include description, carrier type, purity, phase, usage assumptions, or other source-specific notes.
+            share:
+              type: number
+              description: Proportional numeric value tracking this specific carrier's fraction of total output yield.
+            unit:
+              type: string
+              description: Measurement reference indicator bounding how the product yield share value is quantified.
+              examples: [energy, mass, volume, fraction, percentage]
+      main_output:
+        type: string
+        description: The primary target product carrier used by energy modeling solvers to define overall technology capacity limits.
+      balancing_notes:
+        type: string
+        description: Free-text balancing context, including engineering assumptions, reference environmental or thermodynamic operating states, or other source-specific notes.
+
+  metadata:
+    type: object
+    description: Metadata grouping flags used to sort and locate the entity within project directories.
+    properties:
+      related_project:
+        type: string
+        description: Name of the overarching study consortium, database cluster, or project framework.
+      tags:
+        type: array
+        description: Arbitrary categorical tag index strings for filtering.
+        items:
+          type: string
+      other_notes:
+        type: [string, array]
+        description: Any additional free-text notes or flags for project-level context. A single note or a list of notes; ingestion pipelines commonly append one provenance line per stage.
+
+  harmonisation_record:
+    type: object
+    description: Operational tracking fields created and updated by the harmonisation pipeline after ingestion.
+    properties:
+      mapping_status:
+        type: string
+        enum: [to_be_mapped, mapped]
+        description: Lifecycle state set to to_be_mapped during ingestion and changed to mapped after successful harmonisation.
+      linked_entity_id:
+        type: string
+        description: Linked entity identifier assigned after successful harmonisation.
+      date_mapped:
+        type: string
+        format: date
+        description: ISO 8601 date on which harmonisation completed successfully.

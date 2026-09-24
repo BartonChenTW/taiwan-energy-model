@@ -1,0 +1,643 @@
+# MOTEL unmapped staging records (schema 0.2.0), exported by pypsa_tw/data/export_motel.py on 2026-09-24.
+# Raw values with provenance, before MOTEL harmonisation. See pypsa_tw/data/README.md.
+
+- schema_version: 0.2.0
+  carrier_name: Electricity
+  carrier:
+    carrier_description: Grid electricity, Taiwan
+    carrier_type: electricity
+    carrier_category: other
+  data_category: demand
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taipower system
+    temporal_scope: 1982-2025
+    system_boundary: net peak load (尖峰負載)
+    scope_notes: From 2022 (ROC 111) the reserve margin is the night-time reserve margin.
+  sources:
+  - source_name: Taipower_peak_load_by_year
+    source_description: 台灣電力公司歷年尖峰負載及備用容量率, government open data dataset 8307.
+    link: https://data.gov.tw/dataset/8307
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official operator data)
+    source_locator: pypsa_tw/data/official/taipower_peak_load_by_year.csv
+    linked_attribute:
+    - peak_load
+    - reserve_margin
+  attributes:
+  - attribute_name: peak_load
+    value: 6918 MW
+    time_index: '1982'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 26.8 %
+    time_index: '1982'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 7808 MW
+    time_index: '1983'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 29.2 %
+    time_index: '1983'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 8517 MW
+    time_index: '1984'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 22.1 %
+    time_index: '1984'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 8716 MW
+    time_index: '1985'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 55.1 %
+    time_index: '1985'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 9900 MW
+    time_index: '1986'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 48.3 %
+    time_index: '1986'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 11113 MW
+    time_index: '1987'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 35.0 %
+    time_index: '1987'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 12331 MW
+    time_index: '1988'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 21.7 %
+    time_index: '1988'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 13422 MW
+    time_index: '1989'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 14.0 %
+    time_index: '1989'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 14511 MW
+    time_index: '1990'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 7.4 %
+    time_index: '1990'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 15321 MW
+    time_index: '1991'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 4.8 %
+    time_index: '1991'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 16704 MW
+    time_index: '1992'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 6.7 %
+    time_index: '1992'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 17666 MW
+    time_index: '1993'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 4.2 %
+    time_index: '1993'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 18610 MW
+    time_index: '1994'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 4.8 %
+    time_index: '1994'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 19933 MW
+    time_index: '1995'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 4.7 %
+    time_index: '1995'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 21762 MW
+    time_index: '1996'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 5.6 %
+    time_index: '1996'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 22237 MW
+    time_index: '1997'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 11.0 %
+    time_index: '1997'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 23830 MW
+    time_index: '1998'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 7.7 %
+    time_index: '1998'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 24206 MW
+    time_index: '1999'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 12.5 %
+    time_index: '1999'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 25854 MW
+    time_index: '2000'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 12.6 %
+    time_index: '2000'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 26290 MW
+    time_index: '2001'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 13.2 %
+    time_index: '2001'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 27117 MW
+    time_index: '2002'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 16.0 %
+    time_index: '2002'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 28594 MW
+    time_index: '2003'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 14.6 %
+    time_index: '2003'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 29034 MW
+    time_index: '2004'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 20.2 %
+    time_index: '2004'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 30943 MW
+    time_index: '2005'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 16.3 %
+    time_index: '2005'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 32060 MW
+    time_index: '2006'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 16.1 %
+    time_index: '2006'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 32791 MW
+    time_index: '2007'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 16.2 %
+    time_index: '2007'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 31320 MW
+    time_index: '2008'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 21.1 %
+    time_index: '2008'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 31011 MW
+    time_index: '2009'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 28.1 %
+    time_index: '2009'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 33023 MW
+    time_index: '2010'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 23.4 %
+    time_index: '2010'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 33787 MW
+    time_index: '2011'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 20.6 %
+    time_index: '2011'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 33081 MW
+    time_index: '2012'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 22.7 %
+    time_index: '2012'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 33957 MW
+    time_index: '2013'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 17.5 %
+    time_index: '2013'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 34821 MW
+    time_index: '2014'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 14.7 %
+    time_index: '2014'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 35248 MW
+    time_index: '2015'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 11.5 %
+    time_index: '2015'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 35864 MW
+    time_index: '2016'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 10.4 %
+    time_index: '2016'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 36259 MW
+    time_index: '2017'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 9.8 %
+    time_index: '2017'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 37057 MW
+    time_index: '2018'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 10.0 %
+    time_index: '2018'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 37067 MW
+    time_index: '2019'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 16.8 %
+    time_index: '2019'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 37715 MW
+    time_index: '2020'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 16.4 %
+    time_index: '2020'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 38701 MW
+    time_index: '2021'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 13.5 %
+    time_index: '2021'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 40593 MW
+    time_index: '2022'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 12.2 %
+    time_index: '2022'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 39489 MW
+    time_index: '2023'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 14.7 %
+    time_index: '2023'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 40882 MW
+    time_index: '2024'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 11.0 %
+    time_index: '2024'
+    attribute_notes: Unit %.
+  - attribute_name: peak_load
+    value: 40752 MW
+    time_index: '2025'
+    attribute_notes: Unit MW.
+  - attribute_name: reserve_margin
+    value: 14.2 %
+    time_index: '2025'
+    attribute_notes: Unit %.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - peak_load
+    - demand
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used to check the calibrated demand profile.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  carrier_name: Electricity
+  carrier:
+    carrier_description: Grid electricity, Taiwan
+    carrier_type: electricity
+    carrier_category: other
+  data_category: demand
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taipower system
+    temporal_scope: 2023-2024
+    system_boundary: annual generation
+    scope_notes: Taipower system excludes industrial self-generation; national totals include it.
+  sources:
+  - source_name: Taipower_(via_search_summary)
+    source_type: report or website
+    access_date: '2026-09-24'
+    assessment_method: Search result summary; page not opened
+    confidence_level: to be verified
+    linked_attribute:
+    - generation_total
+  - source_name: e-info.org.tw_238379
+    source_type: report or website
+    access_date: '2026-09-24'
+    assessment_method: Search result summary; page not opened
+    confidence_level: to be verified
+    linked_attribute:
+    - generation_coal
+    - generation_gas
+    - sales_total
+    link: https://e-info.org.tw/node/238379
+  attributes:
+  - attribute_name: generation_total
+    value: 251.44 TWh
+    time_index: '2024'
+    attribute_notes: Unit TWh. Taipower-system generation excluding wheeling; I could not open a Taipower
+      page stating it. Consistent with 2023's implied 247.3 TWh
+  - attribute_name: sales_total
+    value: 233.0 TWh
+    time_index: '2023'
+    attribute_notes: Unit TWh. Taipower electricity sales in 2023
+  - attribute_name: generation_coal
+    value: 83.6 TWh
+    time_index: '2023'
+    attribute_notes: Unit TWh. 33.8% of Taipower-system generation in 2023
+  - attribute_name: generation_gas
+    value: 108.3 TWh
+    time_index: '2023'
+    attribute_notes: Unit TWh. 43.8% of Taipower-system generation in 2023
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - generation
+    - taipower
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Values were taken from search summaries; verify against the source before reuse.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  carrier_name: Electricity
+  carrier:
+    carrier_description: Grid electricity, Taiwan
+    carrier_type: electricity
+    carrier_category: other
+  data_category: demand
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taiwan (national)
+    temporal_scope: 2024-2025
+    system_boundary: annual generation
+    scope_notes: Taipower system excludes industrial self-generation; national totals include it.
+  sources:
+  - source_name: EIA_Taiwan_Analysis_Brief
+    source_type: report or website
+    access_date: '2026-09-24'
+    assessment_method: Search result summary; page not opened
+    confidence_level: to be verified
+    linked_attribute:
+    - generation_total
+    link: https://www.eia.gov/international/content/analysis/countries_short/Taiwan/Taiwan.pdf
+  - source_name: MOENV_energy_information_platform
+    source_type: report or website
+    access_date: '2026-09-24'
+    assessment_method: Search result summary; page not opened
+    confidence_level: to be verified
+    linked_attribute:
+    - generation_total
+    link: https://energy.moenv.gov.tw/energy/electricity-generation-mix/2408.html
+  attributes:
+  - attribute_name: generation_total
+    value: 288.6 TWh
+    time_index: '2024'
+    attribute_notes: Unit TWh. National total generation including self-generation
+  - attribute_name: generation_total
+    value: 288.9 TWh
+    time_index: '2025'
+    attribute_notes: 'Unit TWh. From search summary: about 0.2 TWh less than 2024'
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - generation
+    - taiwan
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Values were taken from search summaries; verify against the source before reuse.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  carrier_name: Electricity
+  carrier:
+    carrier_description: Grid electricity, Taiwan
+    carrier_type: electricity
+    carrier_category: other
+  data_category: other
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taiwan (national)
+    temporal_scope: 2024-2025
+    system_boundary: share of annual generation
+    scope_notes: Taipower system excludes industrial self-generation; national totals include it.
+  sources:
+  - source_name: EIA_Taiwan_Analysis_Brief
+    source_type: report or website
+    access_date: '2026-09-24'
+    assessment_method: Search result summary; page not opened
+    confidence_level: to be verified
+    linked_attribute:
+    - share_coal
+    - share_gas
+    - share_nuclear
+    - share_pumped_storage
+    - share_renewables
+    link: https://www.eia.gov/international/content/analysis/countries_short/Taiwan/Taiwan.pdf
+  - source_name: MOENV_energy_information_platform
+    source_type: report or website
+    access_date: '2026-09-24'
+    assessment_method: Search result summary; page not opened
+    confidence_level: to be verified
+    linked_attribute:
+    - share_coal
+    - share_gas
+    - share_nuclear
+    - share_renewables
+    link: https://energy.moenv.gov.tw/energy/electricity-generation-mix/2408.html
+  attributes:
+  - attribute_name: share_gas
+    value: 42.4 %
+    time_index: '2024'
+    attribute_notes: Unit %.
+  - attribute_name: share_coal
+    value: 39.3 %
+    time_index: '2024'
+    attribute_notes: Unit %.
+  - attribute_name: share_nuclear
+    value: 4.2 %
+    time_index: '2024'
+    attribute_notes: Unit %.
+  - attribute_name: share_renewables
+    value: 11.6 %
+    time_index: '2024'
+    attribute_notes: Unit %.
+  - attribute_name: share_pumped_storage
+    value: 1.1 %
+    time_index: '2024'
+    attribute_notes: Unit %.
+  - attribute_name: share_coal
+    value: 35.4 %
+    time_index: '2025'
+    attribute_notes: Unit %. From search summary
+  - attribute_name: share_gas
+    value: 47.8 %
+    time_index: '2025'
+    attribute_notes: Unit %. From search summary
+  - attribute_name: share_renewables
+    value: 13.1 %
+    time_index: '2025'
+    attribute_notes: Unit %. From search summary
+  - attribute_name: share_nuclear
+    value: 1.1 %
+    time_index: '2025'
+    attribute_notes: Unit %. From search summary; Maanshan 2 shut down in May 2025
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - generation
+    - taiwan
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Values were taken from search summaries; verify against the source before reuse.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  carrier_name: Electricity
+  carrier:
+    carrier_description: Grid electricity, Taiwan
+    carrier_type: electricity
+    carrier_category: other
+  data_category: other
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taipower system
+    temporal_scope: 2024-2024
+    system_boundary: share of annual generation
+    scope_notes: Taipower system excludes industrial self-generation; national totals include it.
+  sources:
+  - source_name: Taipower_(via_search_summary)
+    source_type: report or website
+    access_date: '2026-09-24'
+    assessment_method: Search result summary; page not opened
+    confidence_level: to be verified
+    linked_attribute:
+    - share_coal
+    - share_gas
+    - share_nuclear
+    - share_oil
+    - share_renewables
+  attributes:
+  - attribute_name: share_gas
+    value: 47.2 %
+    time_index: '2024'
+    attribute_notes: Unit %.
+  - attribute_name: share_coal
+    value: 31.1 %
+    time_index: '2024'
+    attribute_notes: Unit %.
+  - attribute_name: share_oil
+    value: 1.4 %
+    time_index: '2024'
+    attribute_notes: Unit %.
+  - attribute_name: share_nuclear
+    value: 8.2 %
+    time_index: '2024'
+    attribute_notes: Unit %.
+  - attribute_name: share_renewables
+    value: 11.9 %
+    time_index: '2024'
+    attribute_notes: Unit %. Includes hydro and waste/biogas from cogeneration
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - generation
+    - taipower
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Values were taken from search summaries; verify against the source before reuse.
+  harmonisation_record:
+    mapping_status: to_be_mapped

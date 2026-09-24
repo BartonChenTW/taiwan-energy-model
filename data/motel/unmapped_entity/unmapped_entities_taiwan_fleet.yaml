@@ -1,0 +1,1181 @@
+# MOTEL unmapped staging records (schema 0.2.0), exported by pypsa_tw/data/export_motel.py on 2026-09-24.
+# Raw values with provenance, before MOTEL harmonisation. See pypsa_tw/data/README.md.
+
+- schema_version: 0.2.0
+  technology_name: Natural gas combined cycle (CCGT) - Taiwan fleet 2026-09-24
+  technology:
+    technology_description: Natural gas combined cycle (CCGT) plants in the Taiwan power system.
+    technology_type: conversion
+    technology_category: fossil_fuel
+    technology_notes: PyPSA-Earth fuel type 'CCGT', technology 'CCGT'.
+    process_name: natural gas to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taiwan main-island grid (Taipower system including IPPs); outlying islands
+      (Penghu, Kinmen, Matsu) excluded.
+    temporal_scope: '2026-09-24'
+    temporal_scope_description: Taipower real-time snapshot 2026-09-24T15:10:00
+    capacity_scope: national fleet
+    capacity_scope_description: All plants of this technology counted in the Taipower system
+    system_boundary: net installed capacity as counted by Taipower
+    system_boundary_description: Capacity figure published by Taipower per unit; excludes industrial self-generation
+      not sold to Taipower (e.g. Mailiao).
+  sources:
+  - source_name: Taipower_realtime_units_2026-09-24
+    source_description: Taiwan Power Company, real-time generation by unit including purchased power (台灣電力公司各機組發電量即時資訊(含外購電力)),
+      government open data dataset 8931.
+    link: https://data.gov.tw/dataset/8931
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official operator data)
+    reference_year: 2026
+    assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
+      except new units added with sourced ratings.
+    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+  - source_name: e-info.org.tw_243153
+    link: https://e-info.org.tw/node/243153
+    source_type: article
+    access_date: '2026-09-24'
+    confidence_level: medium (secondary, news)
+    assessment_method: Search result summary
+    linked_attribute:
+    - unit_rating
+  - source_name: www.cna.com.tw_202609040200
+    link: https://www.cna.com.tw/news/afe/202609040200.aspx
+    source_type: article
+    access_date: '2026-09-24'
+    confidence_level: medium (secondary, news)
+    assessment_method: Search result summary
+    linked_attribute:
+    - unit_rating
+  attributes:
+  - attribute_name: installed_capacity
+    value: 26027.1 MW
+    time_index: '2026-09-24'
+    attribute_notes: Unit MW. Sum over 14 plants or plant groups in the fleet file.
+  - attribute_name: number_of_plants
+    value: 14
+    time_index: '2026-09-24'
+    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+  - attribute_name: installed_capacity_plant
+    value: 7544.5 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Tatan; location 25.0253 N, 121.0458 E (OSM r18726493); commissioning year
+      2006 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 2999.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Tunghsiao; location 24.4906 N, 120.6714 E (OSM w181171613); commissioning
+      year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 2600.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Taichung new CC; location 24.2152 N, 120.4815 E (OSM w200691649); commissioning
+      year 2026 (CNA 2026-09-04 (commercial operation 2026-2027)).'
+  - attribute_name: installed_capacity_plant
+    value: 2600.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Hsinta new CC; location 22.8523 N, 120.1973 E (OSM w226576525); commissioning
+      year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 2226.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Hsinta CC; location 22.8523 N, 120.1973 E (OSM w226576525); commissioning
+      year 1998 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 2113.8 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Sun Ba Fong Der; location 23.0822 N, 120.3564 E (OSM w151212447); commissioning
+      year 2004 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 1210.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Chiahui; location 23.5332 N, 120.4732 E (OSM w507020797); commissioning year
+      2003 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 1117.8 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Nanpu; location 22.6005 N, 120.3005 E (OSM r6358152); commissioning year
+      1995 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 900.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Hai-Fu (Ever Power); location 25.1159 N, 121.2567 E (OSM w114411959); commissioning
+      year 1999 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 630.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Hsintao; location 24.8141 N, 121.1979 E (OSM w365285231); commissioning year
+      2002 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 550.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Talin gas; location 22.5353 N, 120.3337 E (OSM w204129566); commissioning
+      year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 549.1 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Star Yuan (Changbin); location 24.1287 N, 120.4214 E (OSM w915269327); commissioning
+      year 2004 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 506.9 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Star Buck (Changbin); location 24.1271 N, 120.4317 E (OSM w915288818); commissioning
+      year 2009 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 480.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Kuokuang; location 25.0419 N, 121.3424 E (OSM w538753336); commissioning
+      year 2003 (powerplantmatching).'
+  - attribute_name: unit_rating
+    value: 1300 MW
+    time_index: '2026-09-04'
+    attribute_notes: 'Unit 台中CC#1(註10) (not yet counted by Taipower): Taichung new gas units 1-2 total
+      about 2,600 MW; unit 1 in dispatch since May 2026, commercial operation end of September 2026; 1,274.8
+      MW net at the Taipower snapshot'
+  - attribute_name: unit_rating
+    value: 1300 MW
+    time_index: '2026-09-04'
+    attribute_notes: 'Unit 台中CC#2(註10) (not yet counted by Taipower): in test operation, dispatch from
+      October 2026, commercial operation March 2027; 1,284.9 MW net at the snapshot'
+  - attribute_name: unit_rating
+    value: 1300 MW
+    time_index: '2026'
+    attribute_notes: 'Unit 興達新CC#3(註10) (not yet counted by Taipower): 1,300 MW per new Hsinta unit (unit
+      1 is listed at 1,300.0 MW); in trial grid operation; 570.5 MW net at the snapshot'
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - power_plant_fleet
+    - ccgt
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Natural gas open cycle gas turbine (OCGT) - Taiwan fleet 2026-09-24
+  technology:
+    technology_description: Natural gas open cycle gas turbine (OCGT) plants in the Taiwan power system.
+    technology_type: conversion
+    technology_category: fossil_fuel
+    technology_notes: PyPSA-Earth fuel type 'OCGT', technology 'OCGT'.
+    process_name: natural gas to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taiwan main-island grid (Taipower system including IPPs); outlying islands
+      (Penghu, Kinmen, Matsu) excluded.
+    temporal_scope: '2026-09-24'
+    temporal_scope_description: Taipower real-time snapshot 2026-09-24T15:10:00
+    capacity_scope: national fleet
+    capacity_scope_description: All plants of this technology counted in the Taipower system
+    system_boundary: net installed capacity as counted by Taipower
+    system_boundary_description: Capacity figure published by Taipower per unit; excludes industrial self-generation
+      not sold to Taipower (e.g. Mailiao).
+  sources:
+  - source_name: Taipower_realtime_units_2026-09-24
+    source_description: Taiwan Power Company, real-time generation by unit including purchased power (台灣電力公司各機組發電量即時資訊(含外購電力)),
+      government open data dataset 8931.
+    link: https://data.gov.tw/dataset/8931
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official operator data)
+    reference_year: 2026
+    assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
+      except new units added with sourced ratings.
+    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+  attributes:
+  - attribute_name: installed_capacity
+    value: 180.9 MW
+    time_index: '2026-09-24'
+    attribute_notes: Unit MW. Sum over 1 plants or plant groups in the fleet file.
+  - attribute_name: number_of_plants
+    value: 1
+    time_index: '2026-09-24'
+    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+  - attribute_name: installed_capacity_plant
+    value: 180.9 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Tunghsiao GT; location 24.4906 N, 120.6714 E (OSM w181171613); commissioning
+      year 2025 (placeholder 2025).'
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - power_plant_fleet
+    - ocgt
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Hard coal steam turbine - Taiwan fleet 2026-09-24
+  technology:
+    technology_description: Hard coal steam turbine plants in the Taiwan power system.
+    technology_type: conversion
+    technology_category: fossil_fuel
+    technology_notes: PyPSA-Earth fuel type 'Hard Coal', technology 'Steam Turbine'.
+    process_name: hard coal to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taiwan main-island grid (Taipower system including IPPs); outlying islands
+      (Penghu, Kinmen, Matsu) excluded.
+    temporal_scope: '2026-09-24'
+    temporal_scope_description: Taipower real-time snapshot 2026-09-24T15:10:00
+    capacity_scope: national fleet
+    capacity_scope_description: All plants of this technology counted in the Taipower system
+    system_boundary: net installed capacity as counted by Taipower
+    system_boundary_description: Capacity figure published by Taipower per unit; excludes industrial self-generation
+      not sold to Taipower (e.g. Mailiao).
+  sources:
+  - source_name: Taipower_realtime_units_2026-09-24
+    source_description: Taiwan Power Company, real-time generation by unit including purchased power (台灣電力公司各機組發電量即時資訊(含外購電力)),
+      government open data dataset 8931.
+    link: https://data.gov.tw/dataset/8931
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official operator data)
+    reference_year: 2026
+    assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
+      except new units added with sourced ratings.
+    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+  attributes:
+  - attribute_name: installed_capacity
+    value: 11358.6 MW
+    time_index: '2026-09-24'
+    attribute_notes: Unit MW. Sum over 6 plants or plant groups in the fleet file.
+  - attribute_name: number_of_plants
+    value: 6
+    time_index: '2026-09-24'
+    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+  - attribute_name: installed_capacity_plant
+    value: 5500.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Taichung coal; location 24.2152 N, 120.4815 E (OSM w200691649); commissioning
+      year 1991 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 2400.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Linkou; location 25.1200 N, 121.2991 E (OSM w199146681); commissioning year
+      2016 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 1308.6 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Ho-Ping; location 24.3066 N, 121.7657 E (OSM w274895730); commissioning year
+      2002 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 800.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Talin coal; location 22.5353 N, 120.3337 E (OSM w204129566); commissioning
+      year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 800.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Talin coal; location 22.5353 N, 120.3337 E (OSM w204129566); commissioning
+      year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 550.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Hsinta coal; location 22.8523 N, 120.1973 E (OSM w226576525); commissioning
+      year 1982 (powerplantmatching).'
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - power_plant_fleet
+    - hard_coal
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Fuel oil steam turbine - Taiwan fleet 2026-09-24
+  technology:
+    technology_description: Fuel oil steam turbine plants in the Taiwan power system.
+    technology_type: conversion
+    technology_category: fossil_fuel
+    technology_notes: PyPSA-Earth fuel type 'Oil', technology 'Steam Turbine'.
+    process_name: fuel oil to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taiwan main-island grid (Taipower system including IPPs); outlying islands
+      (Penghu, Kinmen, Matsu) excluded.
+    temporal_scope: '2026-09-24'
+    temporal_scope_description: Taipower real-time snapshot 2026-09-24T15:10:00
+    capacity_scope: national fleet
+    capacity_scope_description: All plants of this technology counted in the Taipower system
+    system_boundary: net installed capacity as counted by Taipower
+    system_boundary_description: Capacity figure published by Taipower per unit; excludes industrial self-generation
+      not sold to Taipower (e.g. Mailiao).
+  sources:
+  - source_name: Taipower_realtime_units_2026-09-24
+    source_description: Taiwan Power Company, real-time generation by unit including purchased power (台灣電力公司各機組發電量即時資訊(含外購電力)),
+      government open data dataset 8931.
+    link: https://data.gov.tw/dataset/8931
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official operator data)
+    reference_year: 2026
+    assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
+      except new units added with sourced ratings.
+    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+  attributes:
+  - attribute_name: installed_capacity
+    value: 1000.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: Unit MW. Sum over 1 plants or plant groups in the fleet file.
+  - attribute_name: number_of_plants
+    value: 1
+    time_index: '2026-09-24'
+    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+  - attribute_name: installed_capacity_plant
+    value: 1000.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Hsieh-ho; location 25.1569 N, 121.7387 E (OSM r10757938); commissioning year
+      2025 (placeholder 2025).'
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - power_plant_fleet
+    - oil
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Oil-fired gas turbine - Taiwan fleet 2026-09-24
+  technology:
+    technology_description: Oil-fired gas turbine plants in the Taiwan power system.
+    technology_type: conversion
+    technology_category: fossil_fuel
+    technology_notes: PyPSA-Earth fuel type 'Oil', technology 'OCGT'.
+    process_name: fuel oil to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taiwan main-island grid (Taipower system including IPPs); outlying islands
+      (Penghu, Kinmen, Matsu) excluded.
+    temporal_scope: '2026-09-24'
+    temporal_scope_description: Taipower real-time snapshot 2026-09-24T15:10:00
+    capacity_scope: national fleet
+    capacity_scope_description: All plants of this technology counted in the Taipower system
+    system_boundary: net installed capacity as counted by Taipower
+    system_boundary_description: Capacity figure published by Taipower per unit; excludes industrial self-generation
+      not sold to Taipower (e.g. Mailiao).
+  sources:
+  - source_name: Taipower_realtime_units_2026-09-24
+    source_description: Taiwan Power Company, real-time generation by unit including purchased power (台灣電力公司各機組發電量即時資訊(含外購電力)),
+      government open data dataset 8931.
+    link: https://data.gov.tw/dataset/8931
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official operator data)
+    reference_year: 2026
+    assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
+      except new units added with sourced ratings.
+    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+  attributes:
+  - attribute_name: installed_capacity
+    value: 280.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: Unit MW. Sum over 1 plants or plant groups in the fleet file.
+  - attribute_name: number_of_plants
+    value: 1
+    time_index: '2026-09-24'
+    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+  - attribute_name: installed_capacity_plant
+    value: 280.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Taichung GT (oil); location 24.2152 N, 120.4815 E (OSM w200691649); commissioning
+      year 2025 (placeholder 2025).'
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - power_plant_fleet
+    - oil
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Onshore wind turbine - Taiwan fleet 2026-09-24
+  technology:
+    technology_description: Onshore wind turbine plants in the Taiwan power system.
+    technology_type: conversion
+    technology_category: renewable
+    technology_notes: PyPSA-Earth fuel type 'Wind', technology 'Onshore'.
+    process_name: wind to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taiwan main-island grid (Taipower system including IPPs); outlying islands
+      (Penghu, Kinmen, Matsu) excluded.
+    temporal_scope: '2026-09-24'
+    temporal_scope_description: Taipower real-time snapshot 2026-09-24T15:10:00
+    capacity_scope: national fleet
+    capacity_scope_description: All plants of this technology counted in the Taipower system
+    system_boundary: net installed capacity as counted by Taipower
+    system_boundary_description: Capacity figure published by Taipower per unit; excludes industrial self-generation
+      not sold to Taipower (e.g. Mailiao).
+  sources:
+  - source_name: Taipower_realtime_units_2026-09-24
+    source_description: Taiwan Power Company, real-time generation by unit including purchased power (台灣電力公司各機組發電量即時資訊(含外購電力)),
+      government open data dataset 8931.
+    link: https://data.gov.tw/dataset/8931
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official operator data)
+    reference_year: 2026
+    assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
+      except new units added with sourced ratings.
+    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+  attributes:
+  - attribute_name: installed_capacity
+    value: 807.1 MW
+    time_index: '2026-09-24'
+    attribute_notes: Unit MW. Sum over 14 plants or plant groups in the fleet file.
+  - attribute_name: number_of_plants
+    value: 14
+    time_index: '2026-09-24'
+    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+  - attribute_name: installed_capacity_plant
+    value: 178.4 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Other purchased onshore wind; location 24.1128 N, 120.4076 E (powerplantmatching);
+      commissioning year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 86.2 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Changkong wind; location 24.1128 N, 120.4076 E (powerplantmatching); commissioning
+      year 2007 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 84.7 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Other Taipower wind; location 24.1128 N, 120.4076 E (powerplantmatching);
+      commissioning year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 75.9 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Zhongwei Da''an wind; location 24.3970 N, 120.5930 E (powerplantmatching);
+      commissioning year 2008 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 55.2 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Luwei Changbin wind; location 24.1544 N, 120.4270 E (powerplantmatching);
+      commissioning year 2007 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 49.2 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Chuangwei wind; location 23.8138 N, 120.2639 E (powerplantmatching); commissioning
+      year 2009 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 48.3 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Guanwei/Taowei wind; location 25.0264 N, 121.0428 E (powerplantmatching);
+      commissioning year 2010 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 46.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Yunmai wind; location 23.8155 N, 120.2554 E (OSM r13131409); commissioning
+      year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 42.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Miaoli Dapeng wind; location 24.6086 N, 120.7306 E (powerplantmatching);
+      commissioning year 2005 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 35.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Taichung Port wind; location 24.3083 N, 120.5356 E (OSM r13131411); commissioning
+      year 2005 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 30.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Guanyuan wind; location 25.0669 N, 121.1106 E (powerplantmatching); commissioning
+      year 2005 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 28.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Sihu wind; location 23.6616 N, 120.1571 E (OSM r13131408); commissioning
+      year 2010 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 25.2 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Hsinyuan Lunbei wind; location 23.8092 N, 120.3401 E (powerplantmatching);
+      commissioning year 2023 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 23.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Wanggong wind; location 23.9832 N, 120.3345 E (OSM r13131410); commissioning
+      year 2010 (powerplantmatching).'
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - power_plant_fleet
+    - wind
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Offshore wind turbine - Taiwan fleet 2026-09-24
+  technology:
+    technology_description: Offshore wind turbine plants in the Taiwan power system.
+    technology_type: conversion
+    technology_category: renewable
+    technology_notes: PyPSA-Earth fuel type 'Wind', technology 'Offshore'.
+    process_name: wind to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taiwan main-island grid (Taipower system including IPPs); outlying islands
+      (Penghu, Kinmen, Matsu) excluded.
+    temporal_scope: '2026-09-24'
+    temporal_scope_description: Taipower real-time snapshot 2026-09-24T15:10:00
+    capacity_scope: national fleet
+    capacity_scope_description: All plants of this technology counted in the Taipower system
+    system_boundary: net installed capacity as counted by Taipower
+    system_boundary_description: Capacity figure published by Taipower per unit; excludes industrial self-generation
+      not sold to Taipower (e.g. Mailiao).
+  sources:
+  - source_name: Taipower_realtime_units_2026-09-24
+    source_description: Taiwan Power Company, real-time generation by unit including purchased power (台灣電力公司各機組發電量即時資訊(含外購電力)),
+      government open data dataset 8931.
+    link: https://data.gov.tw/dataset/8931
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official operator data)
+    reference_year: 2026
+    assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
+      except new units added with sourced ratings.
+    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+  attributes:
+  - attribute_name: installed_capacity
+    value: 3380.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: Unit MW. Sum over 11 plants or plant groups in the fleet file.
+  - attribute_name: number_of_plants
+    value: 11
+    time_index: '2026-09-24'
+    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+  - attribute_name: installed_capacity_plant
+    value: 605.2 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Greater Changhua 1; location 24.1537 N, 119.9494 E (OSM w1333770360); commissioning
+      year 2023 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 499.2 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Changfang Xidao 2; location 24.1115 N, 120.2042 E (powerplantmatching); commissioning
+      year 2022 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 376.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Formosa 2; location 24.7720 N, 120.6472 E (powerplantmatching); commissioning
+      year 2023 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 337.1 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Greater Changhua 2b (assumed); location 24.2300 N, 120.0000 E (thewindpower.net);
+      commissioning year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 320.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Yunlin (Yunneng) A; location 23.5894 N, 120.0289 E (OSM w882630880); commissioning
+      year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 320.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Yunlin (Yunneng) B; location 23.5894 N, 120.0289 E (OSM w882630880); commissioning
+      year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 294.8 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Greater Changhua 2a; location 24.1575 N, 119.8278 E (OSM w1459169021); commissioning
+      year 2023 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 294.5 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Chung-Neng; location 23.9000 N, 120.1500 E (thewindpower.net); commissioning
+      year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 128.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Formosa 1; location 24.7107 N, 120.8122 E (OSM r13131412); commissioning
+      year 2019 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 109.2 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Taipower offshore phase 1; location 23.9646 N, 120.2383 E (powerplantmatching);
+      commissioning year 2021 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 96.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Changfang Xidao 1; location 24.1115 N, 120.2042 E (powerplantmatching); commissioning
+      year 2022 (powerplantmatching).'
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - power_plant_fleet
+    - wind
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Reservoir hydropower - Taiwan fleet 2026-09-24
+  technology:
+    technology_description: Reservoir hydropower plants in the Taiwan power system.
+    technology_type: conversion
+    technology_category: renewable
+    technology_notes: PyPSA-Earth fuel type 'Hydro', technology 'Reservoir'.
+    process_name: water inflow to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taiwan main-island grid (Taipower system including IPPs); outlying islands
+      (Penghu, Kinmen, Matsu) excluded.
+    temporal_scope: '2026-09-24'
+    temporal_scope_description: Taipower real-time snapshot 2026-09-24T15:10:00
+    capacity_scope: national fleet
+    capacity_scope_description: All plants of this technology counted in the Taipower system
+    system_boundary: net installed capacity as counted by Taipower
+    system_boundary_description: Capacity figure published by Taipower per unit; excludes industrial self-generation
+      not sold to Taipower (e.g. Mailiao).
+  sources:
+  - source_name: Taipower_realtime_units_2026-09-24
+    source_description: Taiwan Power Company, real-time generation by unit including purchased power (台灣電力公司各機組發電量即時資訊(含外購電力)),
+      government open data dataset 8931.
+    link: https://data.gov.tw/dataset/8931
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official operator data)
+    reference_year: 2026
+    assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
+      except new units added with sourced ratings.
+    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+  attributes:
+  - attribute_name: installed_capacity
+    value: 653.4 MW
+    time_index: '2026-09-24'
+    attribute_notes: Unit MW. Sum over 7 plants or plant groups in the fleet file.
+  - attribute_name: number_of_plants
+    value: 7
+    time_index: '2026-09-24'
+    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+  - attribute_name: installed_capacity_plant
+    value: 234.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Deji; location 24.2545 N, 121.1655 E (powerplantmatching); commissioning
+      year 1974 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 110.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Takuan I; location 23.8524 N, 120.8710 E (OSM w976767036); commissioning
+      year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 90.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Shihmen; location 24.8132 N, 121.2438 E (OSM w518956917); commissioning year
+      1964 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 70.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Feitsui; location 24.9095 N, 121.5772 E (OSM w497030578); commissioning year
+      2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 55.8 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Wanda; location 23.9754 N, 121.1323 E (OSM w172736809); commissioning year
+      2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 50.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Tsengwen; location 23.2479 N, 120.5329 E (OSM w962954457); commissioning
+      year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 43.6 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Chukung; location 23.8181 N, 120.8569 E (OSM w225470941); commissioning year
+      2025 (placeholder 2025).'
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - power_plant_fleet
+    - hydro
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Run-of-river hydropower - Taiwan fleet 2026-09-24
+  technology:
+    technology_description: Run-of-river hydropower plants in the Taiwan power system.
+    technology_type: conversion
+    technology_category: renewable
+    technology_notes: PyPSA-Earth fuel type 'Hydro', technology 'Run-Of-River'.
+    process_name: water inflow to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taiwan main-island grid (Taipower system including IPPs); outlying islands
+      (Penghu, Kinmen, Matsu) excluded.
+    temporal_scope: '2026-09-24'
+    temporal_scope_description: Taipower real-time snapshot 2026-09-24T15:10:00
+    capacity_scope: national fleet
+    capacity_scope_description: All plants of this technology counted in the Taipower system
+    system_boundary: net installed capacity as counted by Taipower
+    system_boundary_description: Capacity figure published by Taipower per unit; excludes industrial self-generation
+      not sold to Taipower (e.g. Mailiao).
+  sources:
+  - source_name: Taipower_realtime_units_2026-09-24
+    source_description: Taiwan Power Company, real-time generation by unit including purchased power (台灣電力公司各機組發電量即時資訊(含外購電力)),
+      government open data dataset 8931.
+    link: https://data.gov.tw/dataset/8931
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official operator data)
+    reference_year: 2026
+    assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
+      except new units added with sourced ratings.
+    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+  attributes:
+  - attribute_name: installed_capacity
+    value: 1462.3 MW
+    time_index: '2026-09-24'
+    attribute_notes: Unit MW. Sum over 21 plants or plant groups in the fleet file.
+  - attribute_name: number_of_plants
+    value: 21
+    time_index: '2026-09-24'
+    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+  - attribute_name: installed_capacity_plant
+    value: 368.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Chingshan; location 24.2516 N, 121.1019 E (powerplantmatching); commissioning
+      year 2015 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 217.6 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Kukuan; location 24.2091 N, 121.0240 E (powerplantmatching); commissioning
+      year 2000 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 195.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Tienlun; location 24.1846 N, 120.9228 E (powerplantmatching); commissioning
+      year 1952 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 133.4 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Ma-an; location 24.1822 N, 120.8411 E (powerplantmatching); commissioning
+      year 1998 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 97.2 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Longjian; location 24.0037 N, 121.4260 E (OSM w749133167); commissioning
+      year 1959 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 80.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Zhuolan; location 24.3498 N, 120.8812 E (powerplantmatching); commissioning
+      year 2003 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 61.2 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Bihai; location 24.3340 N, 121.6416 E (OSM r7346491); commissioning year
+      2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 54.6 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Small hydro east; location 23.9677 N, 121.4566 E (OSM w749136435); commissioning
+      year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 40.5 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Wulai/Gueishan/Cukeng; location 24.9025 N, 121.5612 E (OSM w497030590); commissioning
+      year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 40.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Yihsing; location 24.7770 N, 121.3619 E (OSM w507342535); commissioning year
+      2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 32.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Liwu; location 24.1551 N, 121.6272 E (OSM w227669295); commissioning year
+      2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 31.3 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Small hydro central; location 24.2702 N, 120.7919 E (OSM w266319475); commissioning
+      year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 31.1 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Small hydro north; location 24.6953 N, 121.0978 E (OSM w513427431); commissioning
+      year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 20.9 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Songlin; location 23.9754 N, 121.1323 E (OSM w172736809); commissioning year
+      2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 16.7 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Mingjian; location 23.8352 N, 120.7112 E (OSM w519033087); commissioning
+      year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 13.7 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Chianan Xikou/Wushantou; location 23.2305 N, 120.4473 E (OSM w367004758);
+      commissioning year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 12.8 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Shuili; location 23.8117 N, 120.8539 E (powerplantmatching); commissioning
+      year 1992 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 7.2 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Small hydro south; location 23.2305 N, 120.4473 E (OSM w367004758); commissioning
+      year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 6.1 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Other purchased small hydro; location 24.2702 N, 120.7919 E (OSM w266319475);
+      commissioning year 2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 2.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Beinan; location 23.9677 N, 121.4566 E (OSM w749136435); commissioning year
+      2025 (placeholder 2025).'
+  - attribute_name: installed_capacity_plant
+    value: 1.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Guanshan; location 23.9677 N, 121.4566 E (OSM w749136435); commissioning
+      year 2025 (placeholder 2025).'
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - power_plant_fleet
+    - hydro
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Pumped hydro storage - Taiwan fleet 2026-09-24
+  technology:
+    technology_description: Pumped hydro storage plants in the Taiwan power system.
+    technology_type: storage
+    technology_category: renewable
+    technology_notes: PyPSA-Earth fuel type 'Hydro', technology 'Pumped Storage'.
+    process_name: electricity storage
+    process_type: storage
+    process_category: power
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taiwan main-island grid (Taipower system including IPPs); outlying islands
+      (Penghu, Kinmen, Matsu) excluded.
+    temporal_scope: '2026-09-24'
+    temporal_scope_description: Taipower real-time snapshot 2026-09-24T15:10:00
+    capacity_scope: national fleet
+    capacity_scope_description: All plants of this technology counted in the Taipower system
+    system_boundary: net installed capacity as counted by Taipower
+    system_boundary_description: Capacity figure published by Taipower per unit; excludes industrial self-generation
+      not sold to Taipower (e.g. Mailiao).
+  sources:
+  - source_name: Taipower_realtime_units_2026-09-24
+    source_description: Taiwan Power Company, real-time generation by unit including purchased power (台灣電力公司各機組發電量即時資訊(含外購電力)),
+      government open data dataset 8931.
+    link: https://data.gov.tw/dataset/8931
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official operator data)
+    reference_year: 2026
+    assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
+      except new units added with sourced ratings.
+    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+  - source_name: e-info_231256_Sun_Moon_Lake_pumped_storage
+    source_description: '環境資訊中心: 缺水如何影響供電？水力發電那些小而重要的事'
+    link: https://e-info.org.tw/node/231256
+    source_type: article
+    access_date: '2026-09-24'
+    confidence_level: medium (secondary, news)
+    assessment_method: Search result summary
+    linked_attribute:
+    - storage_duration
+  attributes:
+  - attribute_name: installed_capacity
+    value: 2602.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: Unit MW. Sum over 2 plants or plant groups in the fleet file.
+  - attribute_name: number_of_plants
+    value: 2
+    time_index: '2026-09-24'
+    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+  - attribute_name: installed_capacity_plant
+    value: 1602.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Mingtan; location 23.8359 N, 120.8686 E (OSM w515759430); commissioning year
+      1993 (powerplantmatching).'
+  - attribute_name: installed_capacity_plant
+    value: 1000.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Takuan II (Minghu); location 23.8545 N, 120.8708 E (OSM w1105678337); commissioning
+      year 1977 (powerplantmatching).'
+  - attribute_name: storage_duration
+    value: 6 h
+    time_index: '2026-09-24'
+    attribute_notes: Full-load hours for all 10 units with Sun Moon Lake at 732 m.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - power_plant_fleet
+    - hydro
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Battery energy storage system - Taiwan fleet 2026-09-24
+  technology:
+    technology_description: Battery energy storage system plants in the Taiwan power system.
+    technology_type: storage
+    technology_category: other
+    technology_notes: PyPSA-Earth fuel type 'Battery', technology 'Battery'.
+    process_name: electricity storage
+    process_type: storage
+    process_category: power
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taiwan main-island grid (Taipower system including IPPs); outlying islands
+      (Penghu, Kinmen, Matsu) excluded.
+    temporal_scope: '2026-09-24'
+    temporal_scope_description: Taipower real-time snapshot 2026-09-24T15:10:00
+    capacity_scope: national fleet
+    capacity_scope_description: All plants of this technology counted in the Taipower system
+    system_boundary: net installed capacity as counted by Taipower
+    system_boundary_description: Capacity figure published by Taipower per unit; excludes industrial self-generation
+      not sold to Taipower (e.g. Mailiao).
+  sources:
+  - source_name: Taipower_realtime_units_2026-09-24
+    source_description: Taiwan Power Company, real-time generation by unit including purchased power (台灣電力公司各機組發電量即時資訊(含外購電力)),
+      government open data dataset 8931.
+    link: https://data.gov.tw/dataset/8931
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official operator data)
+    reference_year: 2026
+    assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
+      except new units added with sourced ratings.
+    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+  attributes:
+  - attribute_name: installed_capacity
+    value: 852.7 MW
+    time_index: '2026-09-24'
+    attribute_notes: Unit MW. Sum over 1 plants or plant groups in the fleet file.
+  - attribute_name: number_of_plants
+    value: 1
+    time_index: '2026-09-24'
+    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+  - attribute_name: installed_capacity_plant
+    value: 852.7 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Batteries; location 24.1500 N, 120.6500 E (assumed); commissioning year 2025
+      (placeholder 2025).'
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - power_plant_fleet
+    - battery
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - Taiwan fleet 2026-09-24
+  technology:
+    technology_description: Solar photovoltaic plants in the Taiwan power system.
+    technology_type: conversion
+    technology_category: renewable
+    technology_notes: PyPSA-Earth fuel type 'Solar', technology 'Pv'.
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: TW
+    geographic_scope_description: Taiwan main-island grid (Taipower system including IPPs); outlying islands
+      (Penghu, Kinmen, Matsu) excluded.
+    temporal_scope: '2026-09-24'
+    temporal_scope_description: Taipower real-time snapshot 2026-09-24T15:10:00
+    capacity_scope: national fleet
+    capacity_scope_description: All plants of this technology counted in the Taipower system
+    system_boundary: net installed capacity as counted by Taipower
+    system_boundary_description: Capacity figure published by Taipower per unit; excludes industrial self-generation
+      not sold to Taipower (e.g. Mailiao).
+  sources:
+  - source_name: Taipower_realtime_units_2026-09-24
+    source_description: Taiwan Power Company, real-time generation by unit including purchased power (台灣電力公司各機組發電量即時資訊(含外購電力)),
+      government open data dataset 8931.
+    link: https://data.gov.tw/dataset/8931
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official operator data)
+    reference_year: 2026
+    assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
+      except new units added with sourced ratings.
+    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+  - source_name: MOEAEA_solar_approvals_by_county
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    assessment_method: Taipower's solar total spread over counties by their share of 2015-2025 approvals.
+    linked_attribute:
+    - installed_capacity_plant
+  attributes:
+  - attribute_name: installed_capacity
+    value: 15391.9 MW
+    time_index: '2026-09-24'
+    attribute_notes: Unit MW. Sum over 19 plants or plant groups in the fleet file.
+  - attribute_name: number_of_plants
+    value: 19
+    time_index: '2026-09-24'
+    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+  - attribute_name: installed_capacity_plant
+    value: 3601.5 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 臺南市; location 23.1485 N, 120.3508 E (county representative point (GADM
+      4.1)); commissioning year 2021 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 1967.5 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 彰化縣; location 23.9894 N, 120.4984 E (county representative point (GADM
+      4.1)); commissioning year 2021 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 1744.1 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 雲林縣; location 23.6686 N, 120.4028 E (county representative point (GADM
+      4.1)); commissioning year 2020 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 1571.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 屏東縣; location 22.3886 N, 120.6568 E (county representative point (GADM
+      4.1)); commissioning year 2021 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 1473.8 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 嘉義縣; location 23.4258 N, 120.5154 E (county representative point (GADM
+      4.1)); commissioning year 2021 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 1473.7 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 高雄市; location 22.9704 N, 120.6397 E (county representative point (GADM
+      4.1)); commissioning year 2021 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 859.9 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 桃園市; location 24.8498 N, 121.2628 E (county representative point (GADM
+      4.1)); commissioning year 2021 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 817.1 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 臺中市; location 24.2208 N, 120.8602 E (county representative point (GADM
+      4.1)); commissioning year 2021 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 465.4 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 苗栗縣; location 24.5094 N, 120.8765 E (county representative point (GADM
+      4.1)); commissioning year 2021 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 271.9 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 南投縣; location 23.8349 N, 120.9408 E (county representative point (GADM
+      4.1)); commissioning year 2022 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 227.2 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 新竹縣; location 24.6806 N, 121.1609 E (county representative point (GADM
+      4.1)); commissioning year 2021 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 206.9 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 新北市; location 24.9847 N, 121.7875 E (county representative point (GADM
+      4.1)); commissioning year 2022 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 203.3 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 花蓮縣; location 23.7288 N, 121.3995 E (county representative point (GADM
+      4.1)); commissioning year 2021 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 202.1 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 宜蘭縣; location 24.6465 N, 121.6495 E (county representative point (GADM
+      4.1)); commissioning year 2021 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 88.4 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 臺東縣; location 22.8342 N, 121.0271 E (county representative point (GADM
+      4.1)); commissioning year 2021 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 81.3 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 臺北市; location 25.0784 N, 121.5684 E (county representative point (GADM
+      4.1)); commissioning year 2021 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 56.5 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 新竹市; location 24.7800 N, 120.9745 E (county representative point (GADM
+      4.1)); commissioning year 2021 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 52.0 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 嘉義市; location 23.4756 N, 120.4549 E (county representative point (GADM
+      4.1)); commissioning year 2021 (approval-weighted year).'
+  - attribute_name: installed_capacity_plant
+    value: 28.3 MW
+    time_index: '2026-09-24'
+    attribute_notes: 'Plant: Solar 基隆市; location 25.1127 N, 121.7122 E (county representative point (GADM
+      4.1)); commissioning year 2022 (approval-weighted year).'
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - power_plant_fleet
+    - solar
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+  harmonisation_record:
+    mapping_status: to_be_mapped

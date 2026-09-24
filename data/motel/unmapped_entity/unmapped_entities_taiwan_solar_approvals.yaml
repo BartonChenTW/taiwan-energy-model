@@ -1,0 +1,1983 @@
+# MOTEL unmapped staging records (schema 0.2.0), exported by pypsa_tw/data/export_motel.py on 2026-09-24.
+# Raw values with provenance, before MOTEL harmonisation. See pypsa_tw/data/README.md.
+
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 基隆市
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 基隆市
+    geographic_scope_description: 基隆市, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 41.160 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 0.000 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 465.300 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 0.000 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 242.100 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 1462.310 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 22289.535 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 3396.800 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 3395.400 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 1177.645 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 5932.120 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 臺北市
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 臺北市
+    geographic_scope_description: 臺北市, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 185.480 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 2386.640 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 7926.110 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 13912.380 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 8623.465 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 7440.460 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 33407.580 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 13822.145 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 12007.516 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 3986.875 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 6490.125 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 新北市
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 新北市
+    geographic_scope_description: 新北市, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 3928.070 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 3342.240 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 4446.970 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 10626.100 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 16667.620 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 30658.060 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 59897.345 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 57536.625 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 25629.011 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 30316.805 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 37300.465 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 桃園市
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 桃園市
+    geographic_scope_description: 桃園市, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 9254.870 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 38137.250 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 87008.040 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 137669.030 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 73588.575 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 111529.700 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 137386.045 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 184670.622 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 146346.990 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 119209.923 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 120205.525 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 新竹縣
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 新竹縣
+    geographic_scope_description: 新竹縣, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 2541.600 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 8724.300 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 50317.530 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 35759.280 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 22509.380 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 24686.170 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 40915.060 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 39847.564 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 30836.370 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 23541.243 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 28078.812 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 新竹市
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 新竹市
+    geographic_scope_description: 新竹市, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 1319.330 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 204.780 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 7804.770 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 12438.100 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 2743.470 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 4157.120 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 12071.260 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 13532.935 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 8666.540 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 6904.795 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 6645.150 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 宜蘭縣
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 宜蘭縣
+    geographic_scope_description: 宜蘭縣, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 1475.940 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 7335.270 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 7805.890 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 15626.590 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 18601.015 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 47427.310 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 56626.194 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 28077.875 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 43335.235 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 22038.455 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 25458.665 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 苗栗縣
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 苗栗縣
+    geographic_scope_description: 苗栗縣, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 1703.800 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 12893.140 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 39485.540 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 48032.440 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 68634.636 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 102693.980 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 77356.327 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 114889.045 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 45075.575 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 66104.450 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 53727.000 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 臺中市
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 臺中市
+    geographic_scope_description: 臺中市, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 14829.600 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 19413.100 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 63016.510 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 104662.620 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 95269.330 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 107585.680 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 131876.884 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 160434.963 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 155794.748 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 138508.803 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 115650.243 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 彰化縣
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 彰化縣
+    geographic_scope_description: 彰化縣, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 42055.580 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 86375.630 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 232204.340 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 200212.500 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 320605.100 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 459832.180 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 213162.392 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 419867.098 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 252369.762 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 254118.491 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 184847.907 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 雲林縣
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 雲林縣
+    geographic_scope_description: 雲林縣, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 82562.600 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 81178.960 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 130744.750 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 314737.550 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 236395.745 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 323443.990 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 300368.134 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 501998.390 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 204500.190 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 94729.775 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 92334.360 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 南投縣
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 南投縣
+    geographic_scope_description: 南投縣, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 5962.530 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 5752.340 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 19060.460 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 19871.340 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 16941.337 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 29258.040 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 64693.596 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 48838.735 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 71920.855 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 52682.270 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 33368.965 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 嘉義縣
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 嘉義縣
+    geographic_scope_description: 嘉義縣, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 31044.000 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 33204.960 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 79024.540 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 190005.920 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 167621.600 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 200981.460 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 148687.870 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 406655.815 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 201646.860 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 289246.339 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 248592.300 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 嘉義市
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 嘉義市
+    geographic_scope_description: 嘉義市, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 4240.010 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 434.100 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 5547.460 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 4999.510 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 2984.130 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 7691.680 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 12809.000 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 8708.545 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 6733.220 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 7720.470 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 8623.565 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 臺南市
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 臺南市
+    geographic_scope_description: 臺南市, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 64089.000 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 78118.000 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 210126.540 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 345738.710 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 628908.393 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 676318.160 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 495708.575 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 1238712.970 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 340479.120 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 538085.351 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 263206.236 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 高雄市
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 高雄市
+    geographic_scope_description: 高雄市, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 28486.310 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 62673.810 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 136716.480 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 185376.360 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 161975.015 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 141540.040 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 295036.785 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 386035.909 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 254968.620 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 187459.635 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 156383.485 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 屏東縣
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 屏東縣
+    geographic_scope_description: 屏東縣, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 21927.280 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 33877.450 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 106923.090 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 181840.220 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 291767.055 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 460967.010 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 150769.585 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 390024.465 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 295111.725 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 107766.760 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 87511.163 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 花蓮縣
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 花蓮縣
+    geographic_scope_description: 花蓮縣, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 47.310 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 728.780 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 4732.770 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 15612.890 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 24438.845 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 12108.260 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 115303.463 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 23764.625 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 36546.775 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 31234.190 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 10963.210 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 臺東縣
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 臺東縣
+    geographic_scope_description: 臺東縣, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 708.500 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 2994.150 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 3382.270 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 10830.880 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 8863.720 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 15139.030 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 24922.955 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 10158.430 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 20860.410 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 9767.910 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 12186.430 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 澎湖縣
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 澎湖縣
+    geographic_scope_description: 澎湖縣, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 3617.110 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 2283.540 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 4998.150 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 4743.860 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 2005.200 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 0.000 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 6886.180 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 45873.960 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 6717.415 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 10079.945 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 5870.010 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 金門縣
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 金門縣
+    geographic_scope_description: 金門縣, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 3104.430 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 2348.320 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 2074.320 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 1505.400 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 1278.285 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 1107.230 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 3655.620 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 6539.510 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 1243.700 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 9376.590 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 9390.875 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
+- schema_version: 0.2.0
+  technology_name: Solar photovoltaic - approved capacity 連江縣
+  technology:
+    technology_description: Solar PV installations approved (同意備案) per year.
+    technology_type: conversion
+    technology_category: renewable
+    process_name: solar irradiation to electricity
+    process_type: conversion
+    process_category: power
+  scope:
+    geographic_scope: 連江縣
+    geographic_scope_description: 連江縣, Taiwan (county or special municipality)
+    temporal_scope: 2015-2025
+    temporal_scope_description: Calendar years (ROC 104-114)
+    capacity_scope: all approved projects
+    system_boundary: approved capacity (同意備案)
+    system_boundary_description: Capacity of approved projects; differs from completed, grid-connected
+      capacity.
+    scope_notes: The PDFs were last updated 2021-05-04 to 2026-06-22 depending on the year.
+  sources:
+  - source_name: MOEAEA_solar_approvals_by_county
+    source_description: 經濟部能源署 各年度各縣市太陽光電發電設備同意備案核准情形 (Energy Administration, solar PV approvals by county
+      and year), government open data dataset 16423.
+    link: https://data.gov.tw/dataset/16423
+    source_type: dataset
+    access_date: '2026-09-24'
+    confidence_level: high (official statistics); approvals, not grid-connected capacity
+    reference_year: 2025
+    assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
+      published total.
+    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    linked_attribute:
+    - approved_capacity
+  attributes:
+  - attribute_name: approved_capacity
+    value: 0.000 kW
+    time_index: '2015'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 0.000 kW
+    time_index: '2016'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 0.000 kW
+    time_index: '2017'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 76.000 kW
+    time_index: '2018'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 0.000 kW
+    time_index: '2019'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 0.000 kW
+    time_index: '2020'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 58.290 kW
+    time_index: '2021'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 0.000 kW
+    time_index: '2022'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 0.000 kW
+    time_index: '2023'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 0.000 kW
+    time_index: '2024'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  - attribute_name: approved_capacity
+    value: 487.860 kW
+    time_index: '2025'
+    attribute_notes: Unit kW. Annual total of monthly approvals.
+  metadata:
+    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    tags:
+    - taiwan
+    - solar_pv
+    - approvals
+    - county
+    other_notes:
+    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - Used as geographic shares for solar.
+  harmonisation_record:
+    mapping_status: to_be_mapped
