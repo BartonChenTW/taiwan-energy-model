@@ -44,6 +44,16 @@ The console prints each case with its warnings, so it doubles as a quick check o
 
 Only aggregated numbers are exported, and the repository is public, so everything in `docs/data/` is public too.
 
+## Taiwan energy data page
+
+`docs/taiwan-data.html` lists key figures and data sources for Taiwan's electricity system. The exporter builds it into `docs/data/taiwan_catalog.json` from:
+
+- `pypsa_tw/data/taiwan_key_facts.csv`: figures with value, unit, year, scope, source, link and evidence. Evidence is `downloaded`, `page_opened`, `search_summary` (still to verify) or `model_output`.
+- `pypsa_tw/data/taiwan_energy_catalog.csv`: data sources with provider, content, format, update frequency, licence, link and model use (`used`, `candidate`, `reference`).
+- `pypsa_tw/data/official/link_check_<date>.csv`: HTTP status of every link at the last check.
+
+To add a figure or a source, add a row to the CSV and rerun the exporter.
+
 ## Preview locally
 
 The page loads its data with `fetch`, which browsers block for files opened directly from disk. Serve the folder instead, bound to localhost:

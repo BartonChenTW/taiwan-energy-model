@@ -430,6 +430,29 @@ def build_comparison(repo, featured_path):
     }
 
 
+def export_catalog(repo, out):
+    """Key facts and data-source catalogue for the "Taiwan energy data" page."""
+    data = repo / "pypsa_tw" / "data"
+    facts = pd.read_csv(data / "taiwan_key_facts.csv", dtype=str).fillna("")
+    catalog = pd.read_csv(data / "taiwan_energy_catalog.csv", dtype=str).fillna("")
+    checks = sorted((data / "official").glob("link_check_*.csv"))
+    status = {}
+    checked = None
+    if checks:
+        lc = pd.read_csv(checks[-1], dtype=str)
+        status = dict(zip(lc.link, lc.http_status))
+        checked = lc.checked.iloc[0]
+    payload = {
+        "generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+        "links_checked": checked,
+        "link_status": status,
+        "facts": facts.to_dict(orient="records"),
+        "catalog": catalog.to_dict(orient="records"),
+    }
+    (out / "taiwan_catalog.json").write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"wrote taiwan_catalog.json ({len(facts)} facts, {len(catalog)} sources)")
+
+
 def main():
     logging.disable(logging.WARNING)
     warnings.filterwarnings("ignore")
@@ -452,6 +475,7 @@ def main():
         print(f"[{flag}] {summary['id']}: {text or 'no warnings'}")
 
     featured = repo / "results" / FEATURED_CASE.split("__")[0] / "networks" / (FEATURED_CASE.split("__")[1] + ".nc")
+    export_catalog(repo, out)
     comparison = build_comparison(repo, featured)
     if comparison:
         (out / "comparison.json").write_text(json.dumps(comparison, indent=1), encoding="utf-8")

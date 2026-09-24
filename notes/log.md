@@ -169,6 +169,18 @@ Barton's instructions: keep developing; (1) enable the fleet; (2) research the m
    - **Explanations behind an (i) icon** (follow-up request): the price, renewable-potential and comparison-mix notes open on hover, keyboard focus or tap, instead of being shown as paragraphs.
    - **"Data comparison" section:** PyPSA-Earth default inputs vs Taiwan data vs reported statistics (capacity by technology, key inputs, generation mix). The data is `docs/data/comparison.json`; the default-data side is the archived old-fleet full-year run. The mix colour order (gas, nuclear, coal, renewables, storage, other) passes the palette's adjacent-pair checks in both modes.
 
+ - **Taiwan energy data page** (`docs/taiwan-data.html`, Barton's request for a tab with all the Taiwan data, sources and summaries):
+   - Key figures (`pypsa_tw/data/taiwan_key_facts.csv`): 45 figures on capacity, demand, generation, emissions, prices, policy targets and renewable resource. Each has its source, link and evidence. 26 still need checking because they came from search summaries.
+     - new: grid emission factor 0.474 kg CO2e/kWh (2024) and 0.494 (2023)
+     - new: average tariffs H1 2025: overall 3.75, residential 2.77, industrial 4.27 NT$/kWh
+     - new: electricity use by sector in 2024 (industry 55.2%, residential 18.8%, services 17.6%, energy 6.5%; 283.8 TWh)
+     - new: 2025 targets (renewables 20%, solar 20 GW, offshore wind 5.7 GW) and 15.7 GW offshore wind by 2035
+     - new: 2050 net-zero pathway (renewables 60-70%, hydrogen 9-12%, thermal with CCUS 20-27%) and forecast demand growth of 2.5%/yr for 2026-2035
+   - Data sources (`pypsa_tw/data/taiwan_energy_catalog.csv`): 35 sources, from Taipower open data, the Energy Administration, MOEA, MOENV, NDC, the Central Weather Administration, OSM, GADM, ERA5, IRENA, GEGIS, technology-data, Ember, EIA, GEM, OWID, thewindpower.net, Bank of Taiwan and MOTEL.
+     - 11 used in the model or dashboard, the rest marked as candidates or references.
+     - Candidates worth adding next: Taipower daily supply-demand (19995) for the demand shape, unit historical generation (37331) and daily solar generation (29938) for validation, electricity use by county (38959) for spatial demand, and the Energy Administration statistics database to replace the search-summary figures.
+   - Links: 42/44 reachable by script on 2026-09-24 (`official/link_check_20260924.csv`). Copernicus CDS timed out and IRENA returned 403 (bot protection); both are known sites. data.nat.gov.tw/dataset/157114 returned 502 and was replaced by data.gov.tw/dataset/157114.
+
 
 TODO:
  - to run PyPSA-Earth Taiwan!

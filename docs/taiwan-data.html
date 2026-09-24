@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Taiwan Energy Data | 台灣能源資料</title>
+    <meta name="description" content="Key figures and data sources for Taiwan's electricity system, with evidence status and links." />
+    <link rel="stylesheet" href="assets/site.css" />
+    <script src="assets/taiwan-data.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <div>
+          <div class="eyebrow">PyPSA-Earth · Taiwan</div>
+          <h1 data-i18n="title">Taiwan energy data</h1>
+        </div>
+        <div class="toolbar">
+          <div class="segmented" role="group" aria-label="Language">
+            <button type="button" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" data-lang="zh" aria-pressed="false">繁中</button>
+          </div>
+          <button type="button" id="theme-toggle" class="ghost" aria-label="Toggle dark mode">◐</button>
+        </div>
+      </div>
+      <nav class="shell tabs" aria-label="Sections">
+        <a href="index.html" data-i18n="nav_dashboard">← Model dashboard</a>
+        <a href="#facts" data-i18n="nav_facts">Key figures</a>
+        <a href="#sources" data-i18n="nav_sources">Data sources</a>
+      </nav>
+    </header>
+
+    <main class="shell">
+      <p class="sub intro" data-i18n="intro"></p>
+      <section class="tiles" id="tiles" aria-label="Summary"></section>
+
+      <section id="facts" class="section">
+        <h2 data-i18n="facts_title">Key figures</h2>
+        <article class="panel">
+          <div class="filters">
+            <label><span data-i18n="filter_topic">Topic</span> <select id="fact-topic"></select></label>
+            <label><span data-i18n="filter_evidence">Evidence</span> <select id="fact-evidence"></select></label>
+            <label class="grow"><span data-i18n="filter_search">Search</span> <input id="fact-search" type="search" /></label>
+          </div>
+          <p class="muted" id="evidence-legend"></p>
+          <div id="table-facts" class="table-wrap"></div>
+        </article>
+      </section>
+
+      <section id="sources" class="section">
+        <h2 data-i18n="sources_title">Data sources</h2>
+        <article class="panel">
+          <div class="filters">
+            <label><span data-i18n="filter_category">Category</span> <select id="src-category"></select></label>
+            <label><span data-i18n="filter_use">Use in model</span> <select id="src-use"></select></label>
+            <label class="grow"><span data-i18n="filter_search">Search</span> <input id="src-search" type="search" /></label>
+          </div>
+          <p class="muted" id="use-legend"></p>
+          <div id="table-sources" class="table-wrap"></div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="shell footer">
+      <span data-i18n="footer"></span>
+    </footer>
+  </body>
+</html>

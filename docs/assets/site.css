@@ -260,3 +260,27 @@ tr.selected { background: var(--wash); }
 .info-tip > span { display: block; }
 .info-tip .tip-muted { margin-top: 8px; color: var(--ink-2); font-size: 12px; }
 .info:hover .info-tip, .info:focus .info-tip, .info:focus-within .info-tip { visibility: visible; opacity: 1; }
+
+/* Taiwan energy data page */
+.intro { max-width: 860px; margin-top: 18px; font-size: 14px; }
+.filters { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: end; margin-bottom: 8px; }
+.filters label { display: flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--ink-2); }
+.filters .grow { flex: 1 1 220px; }
+input[type="search"] {
+  font: inherit; font-size: 14px; color: var(--ink); background: var(--surface);
+  border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; width: 100%;
+}
+.chip {
+  display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;
+  padding: 1px 8px; border-radius: 999px; border: 1px solid var(--border); font-size: 12px; color: var(--ink);
+}
+.chip-icon { font-weight: 700; font-size: 11px; }
+.chip.good .chip-icon { color: var(--good); }
+.chip.warning { border-color: var(--warning); }
+.chip.warning .chip-icon { color: var(--ink); background: var(--warning); border-radius: 50%; width: 14px; height: 14px; display: inline-grid; place-items: center; font-size: 10px; }
+.chip.neutral .chip-icon { color: var(--muted); }
+.chip.use-used { border-color: var(--accent); }
+.link-mark { margin-left: 4px; font-size: 11px; font-weight: 700; cursor: help; }
+.link-mark.ok { color: var(--good); }
+.link-mark.bad { color: var(--muted); }
+td.note-cell { min-width: 220px; max-width: 420px; color: var(--ink-2); }

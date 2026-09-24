@@ -33,3 +33,8 @@ Items Claude decided or assumed without your confirmation. Tick them off, or not
 ## MOTEL records (`pypsa_tw/data/motel/`)
 
 - [ ] Attribute names and scope labels are raw staging values, before MOTEL harmonisation. Check them if you plan to submit the records to the MOTEL database.
+
+## Taiwan energy data page (`docs/taiwan-data.html`)
+
+- [ ] **26 key figures marked "To verify"** in `pypsa_tw/data/taiwan_key_facts.csv` come from search summaries. Check them against the linked source (ideally the Energy Administration statistics database) and change `evidence` to `page_opened` or `downloaded`.
+- [ ] **Catalogue content and notes are in English only**; dataset names are bilingual.

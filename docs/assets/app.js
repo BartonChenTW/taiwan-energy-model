@@ -13,6 +13,7 @@ const AVAILABILITY_ORDER = ["solar", "onwind", "offwind-ac", "offwind-dc", "ror"
 const I18N = {
   en: {
     title: "Taiwan electricity model", nav_results: "Results", nav_inputs: "Inputs",
+    nav_data: "Taiwan energy data →",
     nav_compare: "Data comparison", compare_title: "PyPSA-Earth data vs Taiwan data",
     compare_intro: "PyPSA-Earth's default inputs for Taiwan (power plants from powerplantmatching with an IRENA top-up, and a GEGIS 2030 demand projection) compared with the Taiwan data used now (Taipower's unit list and demand calibrated to the Taipower system), and with reported statistics.",
     cmp_capacity: "Installed capacity", cmp_capacity_sub: "GW per technology",
@@ -73,6 +74,7 @@ const I18N = {
   },
   zh: {
     title: "台灣電力系統模型", nav_results: "結果", nav_inputs: "輸入資料", nav_runs: "所有模擬",
+    nav_data: "台灣能源資料 →",
     nav_compare: "資料比較", compare_title: "PyPSA-Earth 資料與台灣資料比較",
     compare_intro: "比較 PyPSA-Earth 對台灣的預設輸入（powerplantmatching 機組資料加上 IRENA 補足，以及 GEGIS 2030 年需求預估）、現在使用的台灣資料（台電機組清單，需求依台電系統校準），以及公開統計。",
     cmp_capacity: "裝置容量", cmp_capacity_sub: "各技術容量（GW）",

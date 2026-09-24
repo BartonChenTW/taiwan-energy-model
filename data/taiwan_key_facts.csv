@@ -1,0 +1,46 @@
+topic,indicator_en,indicator_zh,value,unit,year,scope,source_name,link,evidence,note
+capacity,Installed capacity (model fleet),裝置容量（模型機組）,64.0,GW,2026-09,Taipower system,Taipower real-time unit list + new units,https://data.gov.tw/dataset/8931,downloaded,"Includes 3.9 GW of new gas units in trial operation; outlying islands, cogeneration and 68 MW geothermal/biomass left out"
+capacity,Gas,燃氣,26.2,GW,2026-09,Taipower system,Taipower real-time unit list + new units,https://data.gov.tw/dataset/8931,downloaded,Includes IPPs and Taichung CC #1-2 / Hsinta new CC #3 (1.3 GW each)
+capacity,Coal,燃煤,11.4,GW,2026-09,Taipower system,Taipower real-time unit list,https://data.gov.tw/dataset/8931,downloaded,Excludes industrial self-generation such as Mailiao
+capacity,Solar PV,太陽光電,15.4,GW,2026-09,Taipower system,Taipower real-time unit list,https://data.gov.tw/dataset/8931,downloaded,
+capacity,Offshore wind,離岸風電,3.4,GW,2026-09,Taipower system,Taipower real-time unit list,https://data.gov.tw/dataset/8931,downloaded,
+capacity,Onshore wind,陸域風電,0.81,GW,2026-09,Taipower system,Taipower real-time unit list,https://data.gov.tw/dataset/8931,downloaded,
+capacity,Conventional hydro,慣常水力,2.1,GW,2026-09,Taipower system,Taipower real-time unit list,https://data.gov.tw/dataset/8931,downloaded,
+capacity,Pumped hydro,抽蓄水力,2.6,GW,2026-09,Taipower system,Taipower real-time unit list,https://data.gov.tw/dataset/8931,downloaded,"Mingtan 1.6 GW, Takuan II 1.0 GW; about 6 h at full load"
+capacity,Battery storage,電池儲能,0.85,GW,2026-09,Taipower system,Taipower real-time unit list,https://data.gov.tw/dataset/8931,downloaded,
+capacity,Nuclear,核能,0,GW,2026-09,Taiwan,Taipower real-time unit list,https://data.gov.tw/dataset/8931,downloaded,No reactor in the list; Maanshan 2 shut down in May 2025
+capacity,Taipower system installed capacity,台電系統裝置容量,59.8,GW,2025,Taipower system,Taipower historical installed capacity,https://www.taipower.com.tw/2764/2826/2829/2834/25101/normalPost,search_summary,59842 MW; thermal 58.7%
+capacity,Coal (national),燃煤（全國）,19.9,GW,2024,Taiwan (national),Energy Administration capacity overview,https://www.moeaea.gov.tw/ECW/populace/content/Content.aspx?menu_id=14438,search_summary,National totals include self-generation
+capacity,Gas (national),燃氣（全國）,20.1,GW,2024,Taiwan (national),Energy Administration capacity overview,https://www.moeaea.gov.tw/ECW/populace/content/Content.aspx?menu_id=14438,search_summary,
+capacity,Renewables (national),再生能源（全國）,21.1,GW,2024,Taiwan (national),Energy Administration capacity overview,https://www.moeaea.gov.tw/ECW/populace/content/Content.aspx?menu_id=14438,search_summary,"Solar 67.8%, wind 18.5%, hydro incl. pumped 10.1%, biomass and waste 3.6%"
+capacity,Solar PV approved 2015-2025,太陽光電核准容量 2015-2025,21.0,GW,2015-2025,Taiwan (by county),Energy Administration solar approvals,https://data.gov.tw/dataset/16423,downloaded,Approvals (同意備案); more than what was built
+demand,Peak load,尖峰負載,40.88,GW,2024,Taipower system,Taipower annual peak load,https://data.gov.tw/dataset/8307,downloaded,Net peak 40882 MW; reserve margin 11.0%
+demand,Peak load,尖峰負載,40.75,GW,2025,Taipower system,Taipower annual peak load,https://data.gov.tw/dataset/8307,downloaded,Net peak 40752 MW; night-time reserve margin 14.2%
+demand,Electricity consumption,電力消費,283.8,TWh,2024,Taiwan (national),Energy Administration energy consumption overview,https://www.moeaea.gov.tw/ECW/populace/content/Content.aspx?menu_id=14436,search_summary,Record high
+demand,Industry share of consumption,工業部門用電占比,55.2,%,2024,Taiwan (national),Energy Administration energy consumption overview,https://www.moeaea.gov.tw/ECW/populace/content/Content.aspx?menu_id=14436,search_summary,156.6 TWh
+demand,Residential share of consumption,住宅部門用電占比,18.8,%,2024,Taiwan (national),Energy Administration energy consumption overview,https://www.moeaea.gov.tw/ECW/populace/content/Content.aspx?menu_id=14436,search_summary,53.4 TWh
+demand,Services share of consumption,服務業部門用電占比,17.6,%,2024,Taiwan (national),Energy Administration energy consumption overview,https://www.moeaea.gov.tw/ECW/populace/content/Content.aspx?menu_id=14436,search_summary,50.0 TWh
+demand,Energy sector share of consumption,能源部門用電占比,6.5,%,2024,Taiwan (national),Energy Administration energy consumption overview,https://www.moeaea.gov.tw/ECW/populace/content/Content.aspx?menu_id=14436,search_summary,18.5 TWh
+demand,Change in consumption vs 2024,用電量較 2024 年變化,-0.3,%,2025,Taiwan (national),MOEA national power supply-demand report 2025,https://www.moea.gov.tw/Mns/populace/news/News.aspx?kind=1&menu_id=40&news_id=123066,search_summary,About -0.84 TWh
+demand,Forecast demand growth 2026-2035,2026-2035 年用電成長率預估,2.5,%/yr,2026-2035,Taiwan (national),MOEA national power supply-demand report 2025,https://www.moea.gov.tw/Mns/populace/news/News.aspx?kind=1&menu_id=40&news_id=123066,search_summary,AI data centres included as a separate driver for the first time
+generation,Total generation,總發電量,288.6,TWh,2024,Taiwan (national),EIA Taiwan Analysis Brief,https://www.eia.gov/international/content/analysis/countries_short/Taiwan/Taiwan.pdf,search_summary,"Gas 42.4%, coal 39.3%, nuclear 4.2%, renewables 11.6%, pumped storage 1.1%"
+generation,Total generation,總發電量,288.9,TWh,2025,Taiwan (national),MOENV energy information platform,https://energy.moenv.gov.tw/energy/electricity-generation-mix/2408.html,search_summary,"Coal 35.4%, gas 47.8%, renewables 13.1%, nuclear 1.1%"
+generation,Taipower system generation,台電系統發電量,251.44,TWh,2024,Taipower system,Taipower (via search summary),,search_summary,"Excluding wheeling; gas 47.2%, coal 31.1%, oil 1.4%, nuclear 8.2%, renewables 11.9%"
+generation,Taipower electricity sales,台電售電量,233,TWh,2023,Taipower system,e-info.org.tw,https://e-info.org.tw/node/238379,search_summary,
+emissions,Grid emission factor,電力排碳係數,0.474,kg CO2e/kWh,2024,Taipower system (public supply),Energy Administration,https://ea01.moeaea.gov.tw/e0406/01/News/Show?id=8ac752a793534a1e8ad17e3804b51969,search_summary,Published 2025-04-14; 2023: 0.494
+emissions,Grid emission factor,電力排碳係數,0.494,kg CO2e/kWh,2023,Taipower system (public supply),Energy Administration,https://www.moeaea.gov.tw/ecw/populace/content/ContentDesc.aspx?menu_id=26391,search_summary,
+price,Average electricity price,平均電價,3.75,NT$/kWh,2025 H1,Taipower tariffs,The Reporter (報導者),https://www.twreporter.org/a/data-reporter-taiwan-freezing-electricity-rates,search_summary,Tariffs frozen in the first half of 2025
+price,Residential average price,住宅平均電價,2.77,NT$/kWh,2025 H1,Taipower tariffs,The Reporter (報導者),https://www.twreporter.org/a/data-reporter-taiwan-freezing-electricity-rates,search_summary,"From October 2025: +0.1 NT$/kWh up to 700 kWh/month (2.87)"
+price,Industrial average price,工業平均電價,4.27,NT$/kWh,2025 H1,Taipower tariffs,The Reporter (報導者),https://www.twreporter.org/a/data-reporter-taiwan-freezing-electricity-rates,search_summary,
+price,EUR exchange rate (spot midpoint),歐元匯率（即期中間價）,36.185,NT$/EUR,2026-09-24,Bank of Taiwan,Bank of Taiwan exchange rates,https://rate.bot.com.tw/xrt?Lang=zh-TW,page_opened,"Buy 35.885, sell 36.485 (17:01); used for NT$/kWh on this dashboard"
+policy,Renewable share target,再生能源發電占比目標,20,%,2025,Taiwan (national),Presidential Office,https://www.president.gov.tw/NEWS/20654,search_summary,"Reported 2025 national share: 13.1%"
+policy,Solar PV target,太陽光電目標,20,GW,2025,Taiwan (national),Presidential Office / Executive Yuan,https://www.president.gov.tw/NEWS/20654,search_summary,From 2026: +2 GW per year
+policy,Offshore wind target,離岸風電目標,5.7,GW,2025,Taiwan (national),Presidential Office,https://www.president.gov.tw/News/24873,search_summary,
+policy,Offshore wind target,離岸風電目標,15.7,GW,2035,Taiwan (national),Offshore wind Round 3 zonal development,https://technews.tw/2026/03/20/taiwan-energy-policy/,search_summary,About 1 GW released per year from 2026
+policy,Renewables in 2050 electricity supply,2050 年再生能源供電占比,60-70,%,2050,Taiwan (national),National Development Council: Taiwan 2050 net-zero pathway,https://ncsd.ndc.gov.tw/Fore/nsdn/about0/2050Path,search_summary,"Hydrogen 9-12%, thermal with CCUS 20-27%, pumped hydro 1%"
+policy,Imported energy dependence,進口能源依存度,97.4,%,2021,Taiwan (national),National Development Council: Taiwan 2050 net-zero pathway,https://ncsd.ndc.gov.tw/Fore/nsdn/about0/2050Path,search_summary,Target below 50% by 2050
+resource,Solar technical potential (model),太陽光電技術潛力（模型）,50.3,GW,2013 weather,Taiwan main island,PyPSA-Earth land eligibility,,model_output,Maximum installable capacity on eligible land in the model
+resource,Onshore wind technical potential (model),陸域風電技術潛力（模型）,43.0,GW,2013 weather,Taiwan main island,PyPSA-Earth land eligibility,,model_output,
+resource,Offshore wind technical potential (model),離岸風電技術潛力（模型）,50.5,GW,2013 weather,Taiwan waters,PyPSA-Earth land eligibility,,model_output,AC-connected 12.6 GW + DC-connected 37.9 GW
+resource,Solar capacity factor (2013 weather),太陽光電容量因數（2013 年氣象）,13.3,%,2013 weather,Taiwan main island,ERA5 via atlite (model),,model_output,
+resource,Offshore wind capacity factor (2013 weather),離岸風電容量因數（2013 年氣象）,41.9,%,2013 weather,Taiwan waters,ERA5 via atlite (model),,model_output,Existing farms
