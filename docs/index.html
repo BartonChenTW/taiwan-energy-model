@@ -70,11 +70,9 @@
 
         <div class="grid two">
           <article class="panel">
-            <h3 data-i18n="price">Electricity price</h3>
-            <p class="sub" data-i18n="price_sub">Modelled wholesale price, national average (NT$/kWh)</p>
+            <h3><span data-i18n="price">Electricity price</span> <span class="info" tabindex="0" role="button" aria-describedby="tip-price" data-info-label><span aria-hidden="true">i</span><span class="info-tip" role="tooltip" id="tip-price"><span id="price-note"></span><span id="fx-note" class="tip-muted"></span></span></span></h3>
+            <p class="sub" data-i18n="price_sub">Modelled wholesale price, national average, EUR/MWh; hover the line for NT$/kWh</p>
             <div id="chart-price" class="chart"></div>
-            <p class="note" id="price-note"></p>
-            <p class="muted" id="fx-note"></p>
           </article>
           <article class="panel">
             <h3 data-i18n="map">Network</h3>
@@ -96,10 +94,9 @@
             <details><summary data-i18n="show_buses">Show demand by bus</summary><div id="table-buses"></div></details>
           </article>
           <article class="panel">
-            <h3 data-i18n="availability">Renewable potential (weather)</h3>
+            <h3><span data-i18n="availability">Renewable potential (weather)</span> <span class="info" tabindex="0" role="button" aria-describedby="tip-availability" data-info-label><span aria-hidden="true">i</span><span class="info-tip" role="tooltip" id="tip-availability"><span id="availability-note"></span></span></span></h3>
             <p class="sub" data-i18n="availability_sub">Available output per MW installed, hour by hour (0–1), capacity-weighted per technology</p>
             <div id="chart-availability" class="chart tall"></div>
-            <p class="note" id="availability-note"></p>
             <div id="table-potential" class="table-wrap"></div>
           </article>
         </div>
@@ -127,10 +124,9 @@
           </article>
         </div>
         <article class="panel">
-          <h3 data-i18n="cmp_mix">Generation mix: model vs reported statistics</h3>
+          <h3><span data-i18n="cmp_mix">Generation mix: model vs reported statistics</span> <span class="info" tabindex="0" role="button" aria-describedby="tip-cmp-mix" data-info-label><span aria-hidden="true">i</span><span class="info-tip" role="tooltip" id="tip-cmp-mix"><span data-i18n="cmp_mix_note"></span></span></span></h3>
           <p class="sub" data-i18n="cmp_mix_sub">Share of annual generation (%)</p>
           <div id="chart-cmp-mix" class="chart"></div>
-          <p class="muted" data-i18n="cmp_mix_note"></p>
         </article>
       </section>
 

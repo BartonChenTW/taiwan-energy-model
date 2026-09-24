@@ -220,3 +220,43 @@ tr.selected { background: var(--wash); }
   .chart { height: 280px; }
   .chart.tall { height: 340px; }
 }
+
+/* (i) icon with a tooltip: opens on hover, keyboard focus, or tap (focus). */
+.info {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  margin-left: 4px;
+  border: 1px solid var(--axis);
+  border-radius: 50%;
+  color: var(--ink-2);
+  font: italic 600 11px/1 Georgia, "Times New Roman", serif;
+  vertical-align: 1px;
+  cursor: help;
+}
+.info:hover, .info:focus-visible { border-color: var(--accent); color: var(--accent); outline: none; }
+.info-tip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 8px);
+  left: -12px;
+  width: max-content;
+  max-width: min(360px, 80vw);
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  color: var(--ink);
+  font: 400 13px/1.55 var(--font);
+  text-align: left;
+  white-space: normal;
+  transition: opacity 0.12s ease;
+}
+.info-tip > span { display: block; }
+.info-tip .tip-muted { margin-top: 8px; color: var(--ink-2); font-size: 12px; }
+.info:hover .info-tip, .info:focus .info-tip, .info:focus-within .info-tip { visibility: visible; opacity: 1; }

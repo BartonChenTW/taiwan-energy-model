@@ -38,15 +38,15 @@ const I18N = {
     capacity: "Installed capacity", capacity_sub: "Capacity by technology (GW); capacity factor in the table",
     dispatch: "Dispatch",
     dispatch_sub: "National generation by technology and demand (GW). Storage charging is shown below zero. Drag to zoom, double-click to reset.",
-    price: "Electricity price", price_sub: "Modelled wholesale price, national average (NT$/kWh)",
-    price_note: "What is this? In every time step the model works out the cost of supplying one more kWh at each bus. That is set by the most expensive power plant still needed, or by the penalty for unserved demand when supply runs short. The national price averages the buses, weighted by their demand. It is a wholesale cost signal, not the retail tariff: Taipower tariffs are regulated and also cover the grid and other costs. Spikes are hours with unserved demand: the affected bus reaches the shortage penalty of about 36 NT$/kWh, which lifts the national average.",
-    fx_note: (rate, date) => `Model costs are in euros; converted at ${rate} NT$/€ (Bank of Taiwan spot midpoint, ${date}).`,
+    price: "Electricity price", price_sub: "Modelled wholesale price, national average, EUR/MWh; hover the line for NT$/kWh",
+    price_note: "In every time step the model works out the cost of supplying one more kWh at each bus. That is set by the most expensive power plant still needed, or by the penalty for unserved demand when supply runs short. The national price averages the buses, weighted by their demand. It is a wholesale cost signal, not the retail tariff: Taipower tariffs are regulated and also cover the grid and other costs. Spikes are hours with unserved demand: the affected bus reaches the shortage penalty of 1,000 EUR/MWh (about 36 NT$/kWh), which lifts the national average.",
+    fx_note: (rate, date) => `Prices are in EUR/MWh, as in the model's cost data. Values in brackets are NT$/kWh at ${rate} NT$/€ (Bank of Taiwan spot midpoint, ${date}); 1 EUR/MWh = ${(rate / 1000).toFixed(4)} NT$/kWh.`,
     map: "Network", map_sub: "Buses sized by demand; line width by capacity. Hover for loading.",
     show_table: "Show table", show_lines: "Show line table", show_buses: "Show demand by bus",
     inputs: "Inputs", demand: "Demand", demand_sub: "National electricity demand (GW)",
     availability: "Renewable potential (weather)",
     availability_sub: "Available output per MW installed, hour by hour (0–1), capacity-weighted per technology",
-    availability_note: "What is this? This is not whether plants are working (outages or maintenance). It is how much the weather allows: 1 means the sun, wind or river flow would let every installed MW run at full power, 0 means none. Its yearly average is the potential capacity factor. The realised capacity factor is what the model actually used; the difference is curtailment. The technical potential is the maximum capacity that could be installed on eligible land and sea areas. CF = capacity factor.",
+    availability_note: "This is not whether plants are working (outages or maintenance). It is how much the weather allows: 1 means the sun, wind or river flow would let every installed MW run at full power, 0 means none. Its yearly average is the potential capacity factor. The realised capacity factor is what the model actually used; the difference is curtailment. The technical potential is the maximum capacity that could be installed on eligible land and sea areas. CF = capacity factor.",
     pot_tech: "Technology", pot_installed: "Installed (GW)", pot_potential: "Technical potential (GW)",
     pot_cf: "Potential CF", pot_cf_real: "Realised CF", pot_curt: "Curtailed",
     technology: "Technology data", technology_sub: "Fleet and cost assumptions used in this run",
@@ -60,13 +60,13 @@ const I18N = {
     cf_col: "Capacity factor", count_col: "Units", mc_col: "Marginal cost (EUR/MWh)",
     cc_col: "Capital cost (EUR/MW/yr)", eff_col: "Efficiency", co2_col: "CO₂ (t/MWh fuel)",
     life_col: "Lifetime (yr)", hours_col: "Storage (h)", year_col: "Mean build year", ext_col: "Extendable",
-    bus_col: "Bus", peak_col: "Peak (GW)", gen_col: "Generation (TWh)", price_col: "Mean price (NT$/kWh)",
+    bus_col: "Bus", peak_col: "Peak (GW)", gen_col: "Generation (TWh)", price_col: "Mean price, EUR/MWh (NT$/kWh)",
     line_col: "Line", from_to: "From – to", snom_col: "Capacity (GW)", sopt_col: "Optimised (GW)",
     len_col: "Length (km)", load_mean_col: "Mean loading", load_max_col: "Max loading",
     status_col: "Status", run_col: "Run", grid_col: "Grid", solver_col: "Solver", period_col: "Period",
     buses_col: "Buses", time_col: "Solve (s)", co2_mt_col: "CO₂ (Mt)",
     yes: "yes", no: "no", demand_series: "Demand", grid_fixed: "fixed (v1.0)", grid_opt: "expandable (copt)",
-    ok_label: "OK", warning_label: "Warning", critical_label: "Critical", ntd_unit: "NT$/kWh",
+    ok_label: "OK", warning_label: "Warning", critical_label: "Critical", ntd_unit: "NT$/kWh", more_info: "More information",
     no_issues: "No issues found by the automatic checks.",
     represents: (h, w) => `${h} h represented · ${w} h per snapshot`,
     loading_error: "Could not load the data. If you opened this file directly, serve the folder instead: python -m http.server -d docs",
@@ -98,14 +98,14 @@ const I18N = {
     capacity: "裝置容量", capacity_sub: "各技術裝置容量（GW）；容量因數見表格",
     dispatch: "調度",
     dispatch_sub: "全國各技術發電量與需求（GW）。抽蓄充電顯示於零以下。拖曳可放大，雙擊可還原。",
-    price: "電價", price_sub: "模型批發電價，全國平均（元/度）",
-    price_note: "這是什麼？模型在每個時段計算各節點「多供應 1 度電」的成本，由當時仍需運轉、成本最高的電廠決定；供電不足時則由未供電的懲罰成本決定。全國電價是各節點依需求加權的平均。這是批發層級的成本訊號，不是零售電價：台電電價由政府核定，並涵蓋電網等其他成本。尖峰代表該時段有未供電：受影響的節點電價達到約 36 元/度的缺電懲罰成本，使全國平均升高。",
-    fx_note: (rate, date) => `模型成本以歐元計，依臺灣銀行即期匯率中間價 ${rate} 元/歐元（${date}）換算。`,
+    price: "電價", price_sub: "模型批發電價，全國平均，EUR/MWh；滑鼠移到曲線上可看元/度",
+    price_note: "模型在每個時段計算各節點「多供應 1 度電」的成本，由當時仍需運轉、成本最高的電廠決定；供電不足時則由未供電的懲罰成本決定。全國電價是各節點依需求加權的平均。這是批發層級的成本訊號，不是零售電價：台電電價由政府核定，並涵蓋電網等其他成本。尖峰代表該時段有未供電：受影響的節點電價達到 1,000 EUR/MWh（約 36 元/度）的缺電懲罰成本，使全國平均升高。",
+    fx_note: (rate, date) => `電價單位為 EUR/MWh，與模型成本資料一致。括號內為元/度，依臺灣銀行即期匯率中間價 ${rate} 元/歐元（${date}）換算；1 EUR/MWh = ${(rate / 1000).toFixed(4)} 元/度。`,
     map: "電網", map_sub: "節點大小代表需求；線寬代表容量。滑鼠移上可看負載率。",
     show_table: "顯示表格", show_lines: "顯示線路表", show_buses: "顯示各節點需求",
     inputs: "輸入資料", demand: "電力需求", demand_sub: "全國電力需求（GW）",
     availability: "再生能源潛力（氣象）", availability_sub: "每 MW 裝置容量逐時可發電比例（0–1），依技術容量加權",
-    availability_note: "這是什麼？這不是機組是否正常運轉（停機或檢修），而是天氣允許的發電程度：1 代表日照、風或河川流量足以讓每 MW 滿載發電，0 代表完全無法發電。其年平均即為潛在容量因數。實際容量因數是模型真正使用的部分，兩者差距即為棄電。技術潛力是可用土地與海域上最多可設置的容量。",
+    availability_note: "這不是機組是否正常運轉（停機或檢修），而是天氣允許的發電程度：1 代表日照、風或河川流量足以讓每 MW 滿載發電，0 代表完全無法發電。其年平均即為潛在容量因數。實際容量因數是模型真正使用的部分，兩者差距即為棄電。技術潛力是可用土地與海域上最多可設置的容量。",
     pot_tech: "技術", pot_installed: "已裝置（GW）", pot_potential: "技術潛力（GW）",
     pot_cf: "潛在容量因數", pot_cf_real: "實際容量因數", pot_curt: "棄電率",
     technology: "技術資料", technology_sub: "本次模擬使用的機組與成本假設",
@@ -119,13 +119,13 @@ const I18N = {
     cf_col: "容量因數", count_col: "機組數", mc_col: "邊際成本（EUR/MWh）",
     cc_col: "資本成本（EUR/MW/年）", eff_col: "效率", co2_col: "CO₂（t/MWh 燃料）",
     life_col: "壽命（年）", hours_col: "儲能時數（h）", year_col: "平均商轉年", ext_col: "可擴建",
-    bus_col: "節點", peak_col: "尖峰（GW）", gen_col: "發電量（TWh）", price_col: "平均電價（元/度）",
+    bus_col: "節點", peak_col: "尖峰（GW）", gen_col: "發電量（TWh）", price_col: "平均電價，EUR/MWh（元/度）",
     line_col: "線路", from_to: "起訖", snom_col: "容量（GW）", sopt_col: "最佳化後（GW）",
     len_col: "長度（km）", load_mean_col: "平均負載率", load_max_col: "最大負載率",
     status_col: "狀態", run_col: "模擬", grid_col: "電網", solver_col: "求解器", period_col: "期間",
     buses_col: "節點數", time_col: "求解（秒）", co2_mt_col: "CO₂（百萬噸）",
     yes: "是", no: "否", demand_series: "需求", grid_fixed: "固定（v1.0）", grid_opt: "可擴建（copt）",
-    ok_label: "正常", warning_label: "注意", critical_label: "嚴重", ntd_unit: "元/度",
+    ok_label: "正常", warning_label: "注意", critical_label: "嚴重", ntd_unit: "元/度", more_info: "更多資訊",
     no_issues: "自動檢查未發現問題。",
     represents: (h, w) => `代表 ${h} 小時 · 每個時段 ${w} 小時`,
     loading_error: "無法載入資料。若直接開啟檔案，請改用本機伺服器：python -m http.server -d docs",
@@ -289,7 +289,7 @@ function renderTiles(s) {
   $("tiles").innerHTML = [
     tile(t("t_demand"), nf(s.demand_TWh, 1), "TWh", t("represents")(nf(s.represented_hours, 0), nf(s.weight_h_per_snapshot, 1))),
     tile(t("t_co2"), nf(s.co2_Mt, 1), "Mt"),
-    tile(t("t_price"), nf(ntd(s.price_mean), 2), t("ntd_unit")),
+    tile(t("t_price"), nf(s.price_mean, 1), "EUR/MWh", `(${nf(ntd(s.price_mean), 2)} ${t("ntd_unit")})`),
     ...(s.unserved_GWh > 0 ? [tile(GROUP_LABEL[state.lang].unserved, nf(s.unserved_GWh, 1), "GWh",
         `${t("peak_col")} ${nf(s.unserved_peak_GW, 2)}`)] : []),
     tile(t("t_solve"), solve, "s", solveNote),
@@ -364,7 +364,12 @@ function singleLine(targetId, x, y, name, unit, color, digits = 1) {
 }
 
 function renderPrice(d) {
-  singleLine("chart-price", d.inputs.time, d.results.price_national.map(ntd), t("price"), t("ntd_unit"), cssVar("--accent"), 2);
+  const eur = d.results.price_national;
+  Plotly.react("chart-price", [{
+    type: "scatter", mode: "lines", x: d.inputs.time, y: eur, customdata: eur.map(ntd),
+    name: t("price"), line: { color: cssVar("--accent"), width: 2 },
+    hovertemplate: `%{x}<br>%{y:.1f} EUR/MWh (%{customdata:.2f} ${t("ntd_unit")})<extra></extra>`,
+  }], baseLayout({ showlegend: false, hovermode: "x", yaxis: { title: { text: "EUR/MWh", font: { size: 11 } } } }), plotConfig);
   const fx = state.index.currency;
   $("price-note").textContent = t("price_note");
   $("fx-note").textContent = fx ? t("fx_note")(fx.eur_twd, fx.date) : "";
@@ -423,7 +428,7 @@ function renderInputs(d) {
   singleLine("chart-demand", d.inputs.time, d.inputs.demand_MW.map((v) => v / 1e3), t("demand_series"), "GW", cssVar("--ink-2"), 1);
   $("table-buses").innerHTML = table(
     [[t("bus_col")], [`${t("t_demand")} (TWh)`, 1], [t("peak_col"), 1], [t("gen_col"), 1], [t("price_col"), 1]],
-    d.results.buses.map((b) => [[esc(b.name)], [nf(b.demand_TWh, 1), 1], [nf(b.peak_GW, 1), 1], [nf(b.generation_TWh, 1), 1], [nf(ntd(b.price_mean), 2), 1]]),
+    d.results.buses.map((b) => [[esc(b.name)], [nf(b.demand_TWh, 1), 1], [nf(b.peak_GW, 1), 1], [nf(b.generation_TWh, 1), 1], [`${nf(b.price_mean, 1)} (${nf(ntd(b.price_mean), 2)})`, 1]]),
   );
 
   // Small multiples: one row per technology, shared time axis.
@@ -585,6 +590,7 @@ function renderFindings() {
 function applyStaticText() {
   document.documentElement.lang = state.lang === "zh" ? "zh-Hant" : "en";
   document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll("[data-info-label]").forEach((el) => el.setAttribute("aria-label", t("more_info")));
   document.querySelectorAll("[data-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === state.lang)));
   $("generated").textContent = state.index ? `${t("generated")}: ${state.index.generated}` : "";
   const select = $("case-select");
