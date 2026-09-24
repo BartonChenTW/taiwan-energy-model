@@ -13,6 +13,16 @@ const AVAILABILITY_ORDER = ["solar", "onwind", "offwind-ac", "offwind-dc", "ror"
 const I18N = {
   en: {
     title: "Taiwan electricity model", nav_results: "Results", nav_inputs: "Inputs",
+    setup_title: "Model setup: which year does each input represent?",
+    su_input: "Input", su_year: "Year / basis", su_note: "What it means",
+    su_weather: "Weather (solar, wind, hydro availability)", su_weather_note: "Hourly ERA5 reanalysis weather of this year. It sets when the sun shines and the wind blows, not how much capacity exists.",
+    su_demand_shape: "Demand profile (hourly shape)", su_demand_shape_note: (py, wy) => `GEGIS projection for ${py}, computed with ${wy} weather; only the daily and seasonal pattern is used.`,
+    su_demand_level: "Demand level (annual total)", su_demand_level_note: (sc) => `The profile is scaled by ${sc} to Taipower-system generation in 2024 (251 TWh, still to verify).`,
+    su_fleet: "Power plants (capacities)", su_fleet_note: (src) => `Today's fleet: ${src}, including new gas units in trial operation.`,
+    su_grid: "Transmission grid", su_grid_note: (ll) => `Today's OpenStreetMap grid, ${ll === "v1.0" ? "kept fixed" : "allowed to expand (" + ll + ")"}.`,
+    su_costs: "Costs and fuel prices", su_costs_note: "PyPSA technology-data projections for this year; they set the dispatch order (marginal costs).",
+    su_resolution: "Resolution", su_resolution_note: (cl, opts) => `${cl} buses, time steps from ${opts}.`,
+    su_summary: (wy, fd) => `In short: today's system (fleet ${fd}, demand at 2024 level) under the weather of ${wy}.`,
     nav_data: "Taiwan energy data →",
     nav_compare: "Data comparison", compare_title: "PyPSA-Earth data vs Taiwan data",
     compare_intro: "PyPSA-Earth's default inputs for Taiwan (power plants from powerplantmatching with an IRENA top-up, and a GEGIS 2030 demand projection) compared with the Taiwan data used now (Taipower's unit list and demand calibrated to the Taipower system), and with reported statistics.",
@@ -74,6 +84,16 @@ const I18N = {
   },
   zh: {
     title: "台灣電力系統模型", nav_results: "結果", nav_inputs: "輸入資料", nav_runs: "所有模擬",
+    setup_title: "模型設定：各項輸入代表哪一年？",
+    su_input: "輸入", su_year: "年份／依據", su_note: "意義",
+    su_weather: "氣象（太陽光電、風力、水力可用率）", su_weather_note: "該年的 ERA5 逐時再分析氣象資料，決定何時有日照與風，而不是裝置容量。",
+    su_demand_shape: "需求曲線（逐時形狀）", su_demand_shape_note: (py, wy) => `GEGIS ${py} 年預估，以 ${wy} 年氣象計算；只取用每日與季節變化型態。`,
+    su_demand_level: "需求量（年總量）", su_demand_level_note: (sc) => `需求曲線乘以 ${sc}，校準至台電系統 2024 年發電量（251 TWh，待查證）。`,
+    su_fleet: "發電機組（裝置容量）", su_fleet_note: (src) => `現有機組：${src}，含試運轉中的新燃氣機組。`,
+    su_grid: "輸電網路", su_grid_note: (ll) => `目前的 OpenStreetMap 電網，${ll === "v1.0" ? "維持不變" : "允許擴建（" + ll + "）"}。`,
+    su_costs: "成本與燃料價格", su_costs_note: "PyPSA technology-data 該年預估值，決定調度順序（邊際成本）。",
+    su_resolution: "解析度", su_resolution_note: (cl, opts) => `${cl} 個節點，時間步長依 ${opts}。`,
+    su_summary: (wy, fd) => `簡言之：今天的系統（機組 ${fd}、需求為 2024 年水準），套用 ${wy} 年的氣象。`,
     nav_data: "台灣能源資料 →",
     nav_compare: "資料比較", compare_title: "PyPSA-Earth 資料與台灣資料比較",
     compare_intro: "比較 PyPSA-Earth 對台灣的預設輸入（powerplantmatching 機組資料加上 IRENA 補足，以及 GEGIS 2030 年需求預估）、現在使用的台灣資料（台電機組清單，需求依台電系統校準），以及公開統計。",
@@ -585,6 +605,23 @@ async function renderComparison() {
   }), plotConfig);
 }
 
+
+function renderSetup() {
+  const su = state.index && state.index.setup;
+  if (!su) { $("setup-panel").hidden = true; return; }
+  const rows = [
+    [t("su_weather"), `${su.weather_year} (${su.cutout})`, t("su_weather_note")],
+    [t("su_demand_shape"), `${su.demand_profile_year} / ${su.demand_profile_weather_year}`, t("su_demand_shape_note")(su.demand_profile_year, su.demand_profile_weather_year)],
+    [t("su_demand_level"), "2024", t("su_demand_level_note")(su.demand_scale)],
+    [t("su_fleet"), su.fleet_date || "–", t("su_fleet_note")(su.fleet)],
+    [t("su_grid"), "today", t("su_grid_note")(su.transmission)],
+    [t("su_costs"), String(su.costs_year), t("su_costs_note")],
+    [t("su_resolution"), `${su.clusters} · ${su.opts}`, t("su_resolution_note")(su.clusters, su.opts)],
+  ];
+  $("table-setup").innerHTML = `<p class="note">${esc(t("su_summary")(su.weather_year, su.fleet_date))}</p>` +
+    table([[t("su_input")], [t("su_year")], [t("su_note")]], rows.map((r) => [[esc(r[0])], [`<b>${esc(r[1])}</b>`], [esc(r[2])]]));
+}
+
 function renderFindings() {
   $("findings-list").innerHTML = FINDINGS[state.lang].map((f) => `<li>${f}</li>`).join("");
 }
@@ -617,6 +654,7 @@ async function loadCase(id) {
 async function renderAll() {
   applyStaticText();
   renderFindings();
+  renderSetup();
   const d = await loadCase(state.current);
   renderStatus(d.summary);
   renderTiles(d.summary);

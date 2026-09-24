@@ -1,11 +1,25 @@
 {
- "generated": "2026-09-24 10:39 UTC",
+ "generated": "2026-09-24 11:42 UTC",
  "featured": "tw_test2_highs_2013_fullyear_4h_6b_ls__elec_s_6_ec_lv1.0_Co2L-4H",
  "currency": {
   "eur_twd": 36.185,
   "date": "2026-09-24 17:01",
   "basis": "Bank of Taiwan spot rate, buy/sell midpoint",
   "source": "https://rate.bot.com.tw/xrt?Lang=zh-TW"
+ },
+ "setup": {
+  "config": "pypsa_tw/config/config_tw_test2_highs.yaml",
+  "weather_year": "2013",
+  "cutout": "cutout-2013-era5-tw",
+  "demand_profile_year": 2030,
+  "demand_profile_weather_year": 2013,
+  "demand_scale": 0.749,
+  "fleet": "official Taipower list",
+  "fleet_date": "2026-09-24",
+  "costs_year": 2030,
+  "transmission": "v1.0",
+  "clusters": 6,
+  "opts": "Co2L-4H"
  },
  "cases": [
   {

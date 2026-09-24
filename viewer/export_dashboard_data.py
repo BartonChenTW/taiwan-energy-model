@@ -430,6 +430,40 @@ def build_comparison(repo, featured_path):
     }
 
 
+SETUP_CONFIG = "pypsa_tw/config/config_tw_test2_highs.yaml"
+
+
+def _deep_update(base, extra):
+    for k, v in extra.items():
+        base[k] = _deep_update(base.get(k, {}), v) if isinstance(v, dict) and isinstance(base.get(k), dict) else v
+    return base
+
+
+def model_setup(repo):
+    """Which year each model input represents, read from the merged Taiwan config."""
+    import yaml
+
+    cfg = yaml.safe_load((repo / "config.default.yaml").read_text(encoding="utf-8"))
+    cfg = _deep_update(cfg, yaml.safe_load((repo / SETUP_CONFIG).read_text(encoding="utf-8")))
+    units = sorted((repo / "pypsa_tw/data/official").glob("taipower_units_*.json"))
+    fleet_date = json.loads(units[-1].read_bytes().decode("utf-8-sig"))["DateTime"][:10] if units else None
+    lo, el, sc = cfg["load_options"], cfg["electricity"], cfg["scenario"]
+    return {
+        "config": SETUP_CONFIG,
+        "weather_year": str(cfg["snapshots"]["start"])[:4],
+        "cutout": cfg["atlite"]["default"],
+        "demand_profile_year": lo.get("prediction_year"),
+        "demand_profile_weather_year": lo.get("weather_year"),
+        "demand_scale": lo.get("scale"),
+        "fleet": "official Taipower list" if el.get("custom_powerplants") == "replace" else "powerplantmatching",
+        "fleet_date": fleet_date,
+        "costs_year": cfg["costs"]["year"],
+        "transmission": sc["ll"][0],
+        "clusters": sc["clusters"][0],
+        "opts": sc["opts"][0],
+    }
+
+
 def export_catalog(repo, out):
     """Key facts and data-source catalogue for the "Taiwan energy data" page."""
     data = repo / "pypsa_tw" / "data"
@@ -496,6 +530,7 @@ def main():
             {"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
              "featured": FEATURED_CASE if any(c["id"] == FEATURED_CASE for c in index) else None,
              "currency": CURRENCY,
+             "setup": model_setup(repo),
              "cases": index},
             indent=1,
         ),
