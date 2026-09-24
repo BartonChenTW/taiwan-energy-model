@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-24 14:30 UTC",
+ "generated": "2026-09-24 15:45 UTC",
  "base": "d161cb737b89",
  "base_run": "tw_test2_highs_2013_fullyear_4h_6b_ls",
  "caveat": "Exploration tool, not a forecast: 6 buses, 4-hourly time steps, one weather year (2013), today's grid, fixed capacities (the model does not choose what to build). Costs are technology-data 2030 projections in EUR.",
@@ -76,14 +76,14 @@
   },
   "gas_price_mult": {
    "default": 1.0,
-   "min": 0.5,
+   "min": 0.0,
    "max": 2.0,
    "unit": "x",
    "description": "Gas fuel price multiplier (O&M unchanged)"
   },
   "coal_price_mult": {
    "default": 1.0,
-   "min": 0.5,
+   "min": 0.0,
    "max": 2.0,
    "unit": "x",
    "description": "Coal fuel price multiplier (O&M unchanged)"
@@ -158,6 +158,9 @@
     "investment_MEUR": 2164.3,
     "system_cost_MEUR": 8746.2,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {
+     "offwind": 2164.26
+    },
     "co2_Mt": 118.37,
     "re_share": 0.3118,
     "curtailment_TWh": 0.0,
@@ -186,6 +189,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     4957.5,
+     8432.7
+    ],
+    "investment_MEUR": [
+     1278.2,
+     3477.5
+    ],
+    "system_cost_MEUR": [
+     6235.7,
+     11910.2
+    ],
+    "co2_Mt": [
+     106.97,
+     127.67
+    ],
+    "re_share": [
+     0.2852,
+     0.3454
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     1.8,
+     2400.9
+    ],
+    "capacity_added_GW": [
+     10.0,
+     10.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     10.0,
+     10.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -2220.3,
+     -1750.7
+    ],
+    "investment_MEUR": [
+     1278.2,
+     3477.5
+    ],
+    "system_cost_MEUR": [
+     -942.1,
+     1726.8
+    ],
+    "co2_Mt": [
+     -18.6,
+     -14.24
+    ],
+    "re_share": [
+     0.1586,
+     0.192
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -56.7,
+     -0.6
+    ],
+    "capacity_added_GW": [
+     10.0,
+     10.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     10.0,
+     10.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -223,6 +331,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 10070.2,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 80.48,
     "re_share": 0.1385,
     "curtailment_TWh": 0.0,
@@ -249,6 +358,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     7841.6,
+     12214.4
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     7841.6,
+     12214.4
+    ],
+    "co2_Mt": [
+     80.48,
+     80.48
+    ],
+    "re_share": [
+     0.1333,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     2.4,
+     16610.8
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     1133.4,
+     1561.4
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     1133.4,
+     1561.4
+    ],
+    "co2_Mt": [
+     -62.13,
+     -45.09
+    ],
+    "re_share": [
+     0.0,
+     0.0067
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     14153.2
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -286,6 +500,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 8489.3,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 133.98,
     "re_share": 0.1381,
     "curtailment_TWh": 0.0,
@@ -312,6 +527,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6650.1,
+     10622.0
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     6650.1,
+     10622.0
+    ],
+    "co2_Mt": [
+     125.37,
+     142.86
+    ],
+    "re_share": [
+     0.1255,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     185.4
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     0.925,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -109.5,
+     -31.0
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     -109.5,
+     -31.0
+    ],
+    "co2_Mt": [
+     -0.38,
+     0.25
+    ],
+    "re_share": [
+     -0.0011,
+     0.0
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -2272.2,
+     -2.4
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     -0.075,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [],
    "solver_status": "Optimal",
    "solve_s": 12.8,
@@ -343,6 +663,9 @@
     "investment_MEUR": 203.3,
     "system_cost_MEUR": 8611.1,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {
+     "onwind": 203.29
+    },
     "co2_Mt": 132.92,
     "re_share": 0.1529,
     "curtailment_TWh": 0.0,
@@ -371,6 +694,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6550.5,
+     10457.8
+    ],
+    "investment_MEUR": [
+     117.4,
+     334.0
+    ],
+    "system_cost_MEUR": [
+     6667.9,
+     10791.8
+    ],
+    "co2_Mt": [
+     124.33,
+     141.35
+    ],
+    "re_share": [
+     0.1397,
+     0.1693
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     1.7,
+     2385.9
+    ],
+    "capacity_added_GW": [
+     2.0,
+     2.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     2.0,
+     2.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -195.2,
+     -157.7
+    ],
+    "investment_MEUR": [
+     117.4,
+     334.0
+    ],
+    "system_cost_MEUR": [
+     -77.8,
+     176.3
+    ],
+    "co2_Mt": [
+     -1.26,
+     -1.2
+    ],
+    "re_share": [
+     0.0131,
+     0.0159
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -71.7,
+     -0.7
+    ],
+    "capacity_added_GW": [
+     2.0,
+     2.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     2.0,
+     2.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -408,6 +836,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 9506.4,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 100.61,
     "re_share": 0.1385,
     "curtailment_TWh": 0.0,
@@ -434,6 +863,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     7335.8,
+     11925.4
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     7335.8,
+     11925.4
+    ],
+    "co2_Mt": [
+     100.61,
+     100.61
+    ],
+    "re_share": [
+     0.1266,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     2.4,
+     2457.6
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     627.6,
+     1272.4
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     627.6,
+     1272.4
+    ],
+    "co2_Mt": [
+     -42.0,
+     -24.96
+    ],
+    "re_share": [
+     0.0,
+     0.0
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     0.0
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -471,6 +1005,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 9157.9,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 138.38,
     "re_share": 0.089,
     "curtailment_TWh": 0.0,
@@ -499,6 +1034,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     7236.5,
+     11286.5
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     7236.5,
+     11286.5
+    ],
+    "co2_Mt": [
+     129.81,
+     146.85
+    ],
+    "re_share": [
+     0.0813,
+     0.0985
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     2.4,
+     2457.6
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     3.38,
+     3.38
+    ],
+    "capacity_change_GW": [
+     -3.38,
+     -3.38
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     528.3,
+     633.5
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     528.3,
+     633.5
+    ],
+    "co2_Mt": [
+     4.06,
+     4.24
+    ],
+    "re_share": [
+     -0.0549,
+     -0.0453
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     0.0
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     3.38,
+     3.38
+    ],
+    "capacity_change_GW": [
+     -3.38,
+     -3.38
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -536,6 +1176,9 @@
     "investment_MEUR": 1082.1,
     "system_cost_MEUR": 8641.4,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {
+     "offwind": 1082.13
+    },
     "co2_Mt": 126.72,
     "re_share": 0.2253,
     "curtailment_TWh": 0.0,
@@ -564,6 +1207,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     5787.4,
+     9537.7
+    ],
+    "investment_MEUR": [
+     639.1,
+     1738.8
+    ],
+    "system_cost_MEUR": [
+     6426.5,
+     11276.5
+    ],
+    "co2_Mt": [
+     118.1,
+     135.17
+    ],
+    "re_share": [
+     0.206,
+     0.2494
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     2.1,
+     2429.1
+    ],
+    "capacity_added_GW": [
+     5.0,
+     5.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     5.0,
+     5.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -1115.3,
+     -920.8
+    ],
+    "investment_MEUR": [
+     639.1,
+     1738.8
+    ],
+    "system_cost_MEUR": [
+     -476.2,
+     818.0
+    ],
+    "co2_Mt": [
+     -7.47,
+     -6.89
+    ],
+    "re_share": [
+     0.0794,
+     0.096
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -28.5,
+     -0.3
+    ],
+    "capacity_added_GW": [
+     5.0,
+     5.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     5.0,
+     5.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -601,6 +1349,9 @@
     "investment_MEUR": 785.9,
     "system_cost_MEUR": 8303.1,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {
+     "solar": 785.93
+    },
     "co2_Mt": 126.25,
     "re_share": 0.2298,
     "curtailment_TWh": 0.0,
@@ -629,6 +1380,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     5729.9,
+     9469.9
+    ],
+    "investment_MEUR": [
+     448.6,
+     1304.3
+    ],
+    "system_cost_MEUR": [
+     6178.5,
+     10774.2
+    ],
+    "co2_Mt": [
+     117.13,
+     134.77
+    ],
+    "re_share": [
+     0.2101,
+     0.2546
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     1962.8
+    ],
+    "capacity_added_GW": [
+     20.0,
+     20.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     20.0,
+     20.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -1183.1,
+     -978.3
+    ],
+    "investment_MEUR": [
+     448.6,
+     1304.3
+    ],
+    "system_cost_MEUR": [
+     -734.5,
+     326.0
+    ],
+    "co2_Mt": [
+     -8.44,
+     -7.84
+    ],
+    "re_share": [
+     0.0835,
+     0.1012
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -494.8,
+     -2.4
+    ],
+    "capacity_added_GW": [
+     20.0,
+     20.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     20.0,
+     20.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -666,6 +1522,9 @@
     "investment_MEUR": 2035.2,
     "system_cost_MEUR": 9821.7,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {
+     "nuclear": 2035.22
+    },
     "co2_Mt": 126.69,
     "re_share": 0.1381,
     "curtailment_TWh": 0.0,
@@ -694,6 +1553,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6043.4,
+     9812.2
+    ],
+    "investment_MEUR": [
+     1141.5,
+     3433.6
+    ],
+    "system_cost_MEUR": [
+     7184.9,
+     13245.8
+    ],
+    "co2_Mt": [
+     118.12,
+     135.52
+    ],
+    "re_share": [
+     0.1255,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     56.5
+    ],
+    "capacity_added_GW": [
+     2.7,
+     2.7
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     2.7,
+     2.7
+    ],
+    "max_line_loading": [
+     0.874,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -840.8,
+     -664.8
+    ],
+    "investment_MEUR": [
+     1141.5,
+     3433.6
+    ],
+    "system_cost_MEUR": [
+     300.7,
+     2768.8
+    ],
+    "co2_Mt": [
+     -7.64,
+     -7.09
+    ],
+    "re_share": [
+     -0.0011,
+     0.0
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -2401.1,
+     -2.4
+    ],
+    "capacity_added_GW": [
+     2.7,
+     2.7
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     2.7,
+     2.7
+    ],
+    "max_line_loading": [
+     -0.126,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [],
    "solver_status": "Optimal",
    "solve_s": 10.9,
@@ -725,6 +1689,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 5739.9,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 80.64,
     "re_share": 0.1385,
     "curtailment_TWh": 0.0,
@@ -751,6 +1716,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     4589.3,
+     7054.1
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     4589.3,
+     7054.1
+    ],
+    "co2_Mt": [
+     68.01,
+     95.58
+    ],
+    "re_share": [
+     0.1266,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     2.4,
+     2457.6
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -3598.9,
+     -2118.9
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     -3598.9,
+     -2118.9
+    ],
+    "co2_Mt": [
+     -57.56,
+     -47.03
+    ],
+    "re_share": [
+     0.0,
+     0.0
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     0.0
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -794,6 +1864,9 @@
     "investment_not_costed": [
      "TW0 2 nuclear maanshan"
     ],
+    "investment_by_carrier_MEUR": {
+     "nuclear": 0.0
+    },
     "co2_Mt": 129.35,
     "re_share": 0.1385,
     "curtailment_TWh": 0.0,
@@ -822,6 +1895,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6307.9,
+     10133.4
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     6307.9,
+     10133.4
+    ],
+    "co2_Mt": [
+     120.78,
+     137.82
+    ],
+    "re_share": [
+     0.1266,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     2.4,
+     2457.6
+    ],
+    "capacity_added_GW": [
+     1.78,
+     1.78
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     1.78,
+     1.78
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -519.6,
+     -400.3
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     -519.6,
+     -400.3
+    ],
+    "co2_Mt": [
+     -4.79,
+     -4.79
+    ],
+    "re_share": [
+     0.0,
+     0.0
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     0.0
+    ],
+    "capacity_added_GW": [
+     1.78,
+     1.78
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     1.78,
+     1.78
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -859,6 +2037,9 @@
     "investment_MEUR": 3246.4,
     "system_cost_MEUR": 8995.4,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {
+     "offwind": 3246.41
+    },
     "co2_Mt": 104.2,
     "re_share": 0.3984,
     "curtailment_TWh": 0.07,
@@ -887,6 +2068,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     4248.8,
+     7449.9
+    ],
+    "investment_MEUR": [
+     1917.3,
+     5216.3
+    ],
+    "system_cost_MEUR": [
+     6166.1,
+     12666.2
+    ],
+    "co2_Mt": [
+     91.31,
+     116.06
+    ],
+    "re_share": [
+     0.3644,
+     0.4405
+    ],
+    "curtailment_TWh": [
+     0.02,
+     0.22
+    ],
+    "unserved_GWh": [
+     1.5,
+     2372.9
+    ],
+    "capacity_added_GW": [
+     15.0,
+     15.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     15.0,
+     15.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -3203.1,
+     -2459.4
+    ],
+    "investment_MEUR": [
+     1917.3,
+     5216.3
+    ],
+    "system_cost_MEUR": [
+     -1285.8,
+     2756.9
+    ],
+    "co2_Mt": [
+     -34.26,
+     -26.55
+    ],
+    "re_share": [
+     0.2378,
+     0.2871
+    ],
+    "curtailment_TWh": [
+     0.02,
+     0.22
+    ],
+    "unserved_GWh": [
+     -84.7,
+     -0.9
+    ],
+    "capacity_added_GW": [
+     15.0,
+     15.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     15.0,
+     15.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -936,6 +2222,9 @@
      "TW0 1 nuclear kuosheng",
      "TW0 2 nuclear maanshan"
     ],
+    "investment_by_carrier_MEUR": {
+     "nuclear": 0.0
+    },
     "co2_Mt": 120.82,
     "re_share": 0.1381,
     "curtailment_TWh": 0.0,
@@ -964,6 +2253,111 @@
     "max_line_loading": -0.016,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     5557.0,
+     9147.9
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     5557.0,
+     9147.9
+    ],
+    "co2_Mt": [
+     112.23,
+     129.55
+    ],
+    "re_share": [
+     0.1255,
+     0.1533
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     3.0
+    ],
+    "capacity_added_GW": [
+     4.88,
+     4.88
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     4.88,
+     4.88
+    ],
+    "max_line_loading": [
+     0.837,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -1505.1,
+     -1151.2
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     -1505.1,
+     -1151.2
+    ],
+    "co2_Mt": [
+     -13.52,
+     -13.06
+    ],
+    "re_share": [
+     -0.0011,
+     0.0
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -2454.6,
+     -2.4
+    ],
+    "capacity_added_GW": [
+     4.88,
+     4.88
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     4.88,
+     4.88
+    ],
+    "max_line_loading": [
+     -0.163,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [],
    "solver_status": "Optimal",
    "solve_s": 10.88,
@@ -995,6 +2389,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 9803.1,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 142.61,
     "re_share": 0.1266,
     "curtailment_TWh": 0.0,
@@ -1021,6 +2416,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 25.2
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     7714.2,
+     12180.2
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     7714.2,
+     12180.2
+    ],
+    "co2_Mt": [
+     133.31,
+     152.0
+    ],
+    "re_share": [
+     0.1162,
+     0.1398
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     700.7,
+     5767.1
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     248.9,
+     304.2
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     1006.0,
+     1527.2
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     1006.0,
+     1527.2
+    ],
+    "co2_Mt": [
+     7.74,
+     9.39
+    ],
+    "re_share": [
+     -0.0136,
+     -0.0104
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     698.3,
+     3309.5
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     22.6,
+     27.6
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -1058,6 +2558,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 8577.0,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 134.14,
     "re_share": 0.1385,
     "curtailment_TWh": 0.0,
@@ -1086,6 +2587,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6708.2,
+     10657.6
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     6708.2,
+     10657.6
+    ],
+    "co2_Mt": [
+     125.57,
+     142.65
+    ],
+    "re_share": [
+     0.1266,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     2.4,
+     2457.6
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     2.0,
+     2.0
+    ],
+    "capacity_change_GW": [
+     -2.0,
+     -2.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     0.0,
+     4.6
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     0.0,
+     4.6
+    ],
+    "co2_Mt": [
+     0.0,
+     0.04
+    ],
+    "re_share": [
+     0.0,
+     0.0
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     0.0
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     2.0,
+     2.0
+    ],
+    "capacity_change_GW": [
+     -2.0,
+     -2.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -1123,6 +2729,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 10291.0,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 73.29,
     "re_share": 0.1421,
     "curtailment_TWh": 0.0,
@@ -1149,6 +2756,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     8319.5,
+     12206.3
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     8319.5,
+     12206.3
+    ],
+    "co2_Mt": [
+     65.68,
+     79.45
+    ],
+    "re_share": [
+     0.1339,
+     0.1544
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     1821.8,
+     17709.9
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     1553.3,
+     1871.0
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     1553.3,
+     1871.0
+    ],
+    "co2_Mt": [
+     -63.16,
+     -59.89
+    ],
+    "re_share": [
+     0.001,
+     0.0073
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     1819.4,
+     15252.3
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -1186,6 +2898,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 8484.3,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 133.96,
     "re_share": 0.1381,
     "curtailment_TWh": 0.0,
@@ -1212,6 +2925,111 @@
     "max_line_loading": -0.111,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6650.1,
+     10556.3
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     6650.1,
+     10556.3
+    ],
+    "co2_Mt": [
+     125.37,
+     142.67
+    ],
+    "re_share": [
+     0.1254,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     0.0
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     0.787,
+     0.991
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -109.5,
+     -58.1
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     -109.5,
+     -58.1
+    ],
+    "co2_Mt": [
+     -0.38,
+     0.06
+    ],
+    "re_share": [
+     -0.0012,
+     0.0
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -2457.6,
+     -2.4
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     -0.213,
+     -0.009
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [],
    "solver_status": "Optimal",
    "solve_s": 11.73,
@@ -1243,6 +3061,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 10348.0,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 80.64,
     "re_share": 0.1385,
     "curtailment_TWh": 0.0,
@@ -1269,6 +3088,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     8251.8,
+     12711.3
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     8251.8,
+     12711.3
+    ],
+    "co2_Mt": [
+     68.01,
+     95.58
+    ],
+    "re_share": [
+     0.1266,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     2.4,
+     2457.6
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     1543.6,
+     2058.3
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     1543.6,
+     2058.3
+    ],
+    "co2_Mt": [
+     -57.56,
+     -47.03
+    ],
+    "re_share": [
+     0.0,
+     0.0
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     0.0
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -1306,6 +3230,9 @@
     "investment_MEUR": 508.2,
     "system_cost_MEUR": 8662.0,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {
+     "onwind": 508.21
+    },
     "co2_Mt": 131.08,
     "re_share": 0.1744,
     "curtailment_TWh": 0.0,
@@ -1334,6 +3261,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6315.6,
+     10176.0
+    ],
+    "investment_MEUR": [
+     293.6,
+     835.0
+    ],
+    "system_cost_MEUR": [
+     6609.2,
+     11011.0
+    ],
+    "co2_Mt": [
+     122.47,
+     139.5
+    ],
+    "re_share": [
+     0.1594,
+     0.1932
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.7,
+     2283.2
+    ],
+    "capacity_added_GW": [
+     5.0,
+     5.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     5.0,
+     5.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -477.0,
+     -392.6
+    ],
+    "investment_MEUR": [
+     293.6,
+     835.0
+    ],
+    "system_cost_MEUR": [
+     -183.4,
+     442.4
+    ],
+    "co2_Mt": [
+     -3.11,
+     -3.0
+    ],
+    "re_share": [
+     0.0328,
+     0.0398
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -174.4,
+     -1.7
+    ],
+    "capacity_added_GW": [
+     5.0,
+     5.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     5.0,
+     5.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -1371,6 +3403,9 @@
     "investment_MEUR": 196.5,
     "system_cost_MEUR": 8504.3,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {
+     "solar": 196.48
+    },
     "co2_Mt": 132.19,
     "re_share": 0.1614,
     "curtailment_TWh": 0.0,
@@ -1399,6 +3434,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6454.9,
+     10355.4
+    ],
+    "investment_MEUR": [
+     112.2,
+     326.1
+    ],
+    "system_cost_MEUR": [
+     6567.1,
+     10681.5
+    ],
+    "co2_Mt": [
+     123.58,
+     140.66
+    ],
+    "re_share": [
+     0.1475,
+     0.1788
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     2320.9
+    ],
+    "capacity_added_GW": [
+     5.0,
+     5.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     5.0,
+     5.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -297.6,
+     -253.3
+    ],
+    "investment_MEUR": [
+     112.2,
+     326.1
+    ],
+    "system_cost_MEUR": [
+     -185.4,
+     72.8
+    ],
+    "co2_Mt": [
+     -2.02,
+     -1.95
+    ],
+    "re_share": [
+     0.0209,
+     0.0254
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -136.7,
+     -2.4
+    ],
+    "capacity_added_GW": [
+     5.0,
+     5.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     5.0,
+     5.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -1436,6 +3576,9 @@
     "investment_MEUR": 523.9,
     "system_cost_MEUR": 9028.8,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {
+     "CCGT": 523.94
+    },
     "co2_Mt": 134.03,
     "re_share": 0.1381,
     "curtailment_TWh": 0.0,
@@ -1464,6 +3607,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6650.1,
+     10615.6
+    ],
+    "investment_MEUR": [
+     319.0,
+     814.9
+    ],
+    "system_cost_MEUR": [
+     6969.1,
+     11430.5
+    ],
+    "co2_Mt": [
+     125.37,
+     142.78
+    ],
+    "re_share": [
+     0.1257,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     450.9
+    ],
+    "capacity_added_GW": [
+     5.0,
+     5.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     5.0,
+     5.0
+    ],
+    "max_line_loading": [
+     0.958,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -109.5,
+     -37.4
+    ],
+    "investment_MEUR": [
+     319.0,
+     814.9
+    ],
+    "system_cost_MEUR": [
+     209.5,
+     777.5
+    ],
+    "co2_Mt": [
+     -0.38,
+     0.17
+    ],
+    "re_share": [
+     -0.0009,
+     0.0
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -2006.7,
+     -2.4
+    ],
+    "capacity_added_GW": [
+     5.0,
+     5.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     5.0,
+     5.0
+    ],
+    "max_line_loading": [
+     -0.042,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [],
    "solver_status": "Optimal",
    "solve_s": 11.52,
@@ -1496,6 +3744,10 @@
     "investment_MEUR": 776.1,
     "system_cost_MEUR": 8825.4,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {
+     "solar": 392.96,
+     "battery": 383.15
+    },
     "co2_Mt": 130.36,
     "re_share": 0.1839,
     "curtailment_TWh": 0.0,
@@ -1525,6 +3777,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6167.2,
+     10073.3
+    ],
+    "investment_MEUR": [
+     444.1,
+     1285.9
+    ],
+    "system_cost_MEUR": [
+     6611.3,
+     11359.2
+    ],
+    "co2_Mt": [
+     121.48,
+     138.86
+    ],
+    "re_share": [
+     0.168,
+     0.2042
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     1613.5
+    ],
+    "capacity_added_GW": [
+     15.0,
+     15.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     15.0,
+     15.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -621.4,
+     -527.7
+    ],
+    "investment_MEUR": [
+     444.1,
+     1285.9
+    ],
+    "system_cost_MEUR": [
+     -177.3,
+     758.2
+    ],
+    "co2_Mt": [
+     -4.22,
+     -3.75
+    ],
+    "re_share": [
+     0.0414,
+     0.0508
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -844.1,
+     -2.4
+    ],
+    "capacity_added_GW": [
+     15.0,
+     15.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     15.0,
+     15.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -1562,6 +3919,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 8650.8,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 134.68,
     "re_share": 0.1322,
     "curtailment_TWh": 0.0,
@@ -1590,6 +3948,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6775.2,
+     10733.4
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     6775.2,
+     10733.4
+    ],
+    "co2_Mt": [
+     126.11,
+     143.15
+    ],
+    "re_share": [
+     0.1209,
+     0.1464
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     2.4,
+     2457.6
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.8,
+     0.8
+    ],
+    "capacity_change_GW": [
+     -0.8,
+     -0.8
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     67.0,
+     80.4
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     67.0,
+     80.4
+    ],
+    "co2_Mt": [
+     0.51,
+     0.54
+    ],
+    "re_share": [
+     -0.007,
+     -0.0057
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     0.0
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.8,
+     0.8
+    ],
+    "capacity_change_GW": [
+     -0.8,
+     -0.8
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -1627,6 +4090,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 9440.2,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 104.17,
     "re_share": 0.1388,
     "curtailment_TWh": 0.0,
@@ -1653,6 +4117,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     7506.6,
+     11678.6
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     7506.6,
+     11678.6
+    ],
+    "co2_Mt": [
+     95.7,
+     112.77
+    ],
+    "re_share": [
+     0.1276,
+     0.1535
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     213.1,
+     4741.0
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     798.4,
+     1025.6
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     798.4,
+     1025.6
+    ],
+    "co2_Mt": [
+     -29.97,
+     -29.83
+    ],
+    "re_share": [
+     0.0001,
+     0.001
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     210.7,
+     2283.4
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -1690,6 +4259,9 @@
     "investment_MEUR": 153.3,
     "system_cost_MEUR": 8729.9,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {
+     "battery": 153.26
+    },
     "co2_Mt": 134.17,
     "re_share": 0.1384,
     "curtailment_TWh": 0.0,
@@ -1718,6 +4290,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6689.8,
+     10639.9
+    ],
+    "investment_MEUR": [
+     87.9,
+     253.5
+    ],
+    "system_cost_MEUR": [
+     6777.7,
+     10893.4
+    ],
+    "co2_Mt": [
+     125.51,
+     142.62
+    ],
+    "re_share": [
+     0.1265,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     2170.1
+    ],
+    "capacity_added_GW": [
+     2.0,
+     2.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     2.0,
+     2.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -22.5,
+     -0.3
+    ],
+    "investment_MEUR": [
+     87.9,
+     253.5
+    ],
+    "system_cost_MEUR": [
+     65.4,
+     253.2
+    ],
+    "co2_Mt": [
+     -0.06,
+     0.03
+    ],
+    "re_share": [
+     -0.0001,
+     0.0
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -287.5,
+     -2.4
+    ],
+    "capacity_added_GW": [
+     2.0,
+     2.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     2.0,
+     2.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -1755,6 +4432,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 8577.0,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 134.14,
     "re_share": 0.1385,
     "curtailment_TWh": 0.0,
@@ -1783,6 +4461,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6708.3,
+     10653.0
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     6708.3,
+     10653.0
+    ],
+    "co2_Mt": [
+     125.57,
+     142.61
+    ],
+    "re_share": [
+     0.1266,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     2.4,
+     2457.6
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.85,
+     0.85
+    ],
+    "capacity_change_GW": [
+     -0.85,
+     -0.85
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     0.0,
+     0.1
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     0.0,
+     0.1
+    ],
+    "co2_Mt": [
+     0.0,
+     0.0
+    ],
+    "re_share": [
+     0.0,
+     0.0
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     0.0
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.85,
+     0.85
+    ],
+    "capacity_change_GW": [
+     -0.85,
+     -0.85
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -1820,6 +4603,9 @@
     "investment_MEUR": 209.6,
     "system_cost_MEUR": 8788.0,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {
+     "CCGT": 209.58
+    },
     "co2_Mt": 134.26,
     "re_share": 0.1382,
     "curtailment_TWh": 0.0,
@@ -1848,6 +4634,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6655.8,
+     10616.5
+    ],
+    "investment_MEUR": [
+     127.6,
+     326.0
+    ],
+    "system_cost_MEUR": [
+     6783.4,
+     10942.5
+    ],
+    "co2_Mt": [
+     125.39,
+     142.63
+    ],
+    "re_share": [
+     0.1262,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     1502.4
+    ],
+    "capacity_added_GW": [
+     2.0,
+     2.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     2.0,
+     2.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -86.9,
+     1.4
+    ],
+    "investment_MEUR": [
+     127.6,
+     326.0
+    ],
+    "system_cost_MEUR": [
+     40.7,
+     327.4
+    ],
+    "co2_Mt": [
+     -0.3,
+     0.12
+    ],
+    "re_share": [
+     -0.0004,
+     0.0
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -955.2,
+     -2.4
+    ],
+    "capacity_added_GW": [
+     2.0,
+     2.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     2.0,
+     2.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -1885,6 +4776,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 7363.1,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 125.57,
     "re_share": 0.1534,
     "curtailment_TWh": 0.0,
@@ -1911,6 +4803,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": -25.1
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     5687.5,
+     9204.5
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     5687.5,
+     9204.5
+    ],
+    "co2_Mt": [
+     117.66,
+     133.31
+    ],
+    "re_share": [
+     0.1398,
+     0.1704
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     700.7
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     0.994,
+     1.0
+    ],
+    "demand_TWh": [
+     203.7,
+     248.9
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -1448.5,
+     -1020.7
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     -1448.5,
+     -1020.7
+    ],
+    "co2_Mt": [
+     -9.3,
+     -7.91
+    ],
+    "re_share": [
+     0.0132,
+     0.017
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -1756.9,
+     -2.4
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     -0.006,
+     0.0
+    ],
+    "demand_TWh": [
+     -27.7,
+     -22.6
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -1948,6 +4945,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 11116.6,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 151.2,
     "re_share": 0.1171,
     "curtailment_TWh": 0.0,
@@ -1974,6 +4972,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 50.3
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     8716.3,
+     13381.0
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     8716.3,
+     13381.0
+    ],
+    "co2_Mt": [
+     140.9,
+     159.57
+    ],
+    "re_share": [
+     0.1088,
+     0.1288
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     2057.9,
+     13104.7
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     271.6,
+     331.9
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     2008.1,
+     2728.0
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     2008.1,
+     2728.0
+    ],
+    "co2_Mt": [
+     15.33,
+     17.17
+    ],
+    "re_share": [
+     -0.0246,
+     -0.0178
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     2055.5,
+     10647.1
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     45.3,
+     55.3
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -2011,6 +5114,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 8948.8,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 120.73,
     "re_share": 0.1385,
     "curtailment_TWh": 0.0,
@@ -2037,6 +5141,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6830.0,
+     11316.0
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     6830.0,
+     11316.0
+    ],
+    "co2_Mt": [
+     120.73,
+     120.73
+    ],
+    "re_share": [
+     0.1266,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     2.4,
+     2457.6
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     121.8,
+     663.0
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     121.8,
+     663.0
+    ],
+    "co2_Mt": [
+     -21.88,
+     -4.84
+    ],
+    "re_share": [
+     0.0,
+     0.0
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     0.0
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -2074,6 +5283,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 13456.8,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 134.14,
     "re_share": 0.1385,
     "curtailment_TWh": 0.0,
@@ -2100,6 +5310,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     10199.2,
+     17064.1
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     10199.2,
+     17064.1
+    ],
+    "co2_Mt": [
+     125.57,
+     142.61
+    ],
+    "re_share": [
+     0.1266,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     2.4,
+     2457.6
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     3491.0,
+     6411.1
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     3491.0,
+     6411.1
+    ],
+    "co2_Mt": [
+     0.0,
+     0.0
+    ],
+    "re_share": [
+     0.0,
+     0.0
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     0.0
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -2137,6 +5452,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 12176.0,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 158.33,
     "re_share": 0.11,
     "curtailment_TWh": 0.0,
@@ -2163,6 +5479,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 75.5
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     9825.0,
+     14425.9
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     9825.0,
+     14425.9
+    ],
+    "co2_Mt": [
+     148.71,
+     166.06
+    ],
+    "re_share": [
+     0.1033,
+     0.1197
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     4227.9,
+     23634.3
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     294.2,
+     359.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     3116.8,
+     3772.9
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     3116.8,
+     3772.9
+    ],
+    "co2_Mt": [
+     23.14,
+     24.43
+    ],
+    "re_share": [
+     -0.0337,
+     -0.0233
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     4225.5,
+     21176.7
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     67.9,
+     83.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -2200,6 +5621,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 8852.3,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 136.13,
     "re_share": 0.1152,
     "curtailment_TWh": 0.0,
@@ -2228,6 +5650,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6965.9,
+     10957.1
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     6965.9,
+     10957.1
+    ],
+    "co2_Mt": [
+     127.6,
+     144.61
+    ],
+    "re_share": [
+     0.1054,
+     0.1276
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     14.3,
+     2620.4
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     5.0,
+     5.0
+    ],
+    "capacity_change_GW": [
+     -5.0,
+     -5.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     257.7,
+     304.1
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     257.7,
+     304.1
+    ],
+    "co2_Mt": [
+     1.99,
+     2.04
+    ],
+    "re_share": [
+     -0.0258,
+     -0.0212
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     11.9,
+     162.8
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     5.0,
+     5.0
+    ],
+    "capacity_change_GW": [
+     -5.0,
+     -5.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -2266,6 +5793,9 @@
     "investment_MEUR": 523.9,
     "system_cost_MEUR": 10776.9,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {
+     "CCGT": 523.94
+    },
     "co2_Mt": 74.27,
     "re_share": 0.1384,
     "curtailment_TWh": 0.0,
@@ -2294,6 +5824,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     8178.9,
+     12424.5
+    ],
+    "investment_MEUR": [
+     319.0,
+     814.9
+    ],
+    "system_cost_MEUR": [
+     8497.9,
+     13239.4
+    ],
+    "co2_Mt": [
+     65.49,
+     82.23
+    ],
+    "re_share": [
+     0.1275,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     4590.2
+    ],
+    "capacity_added_GW": [
+     5.0,
+     5.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     5.0,
+     5.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     1470.7,
+     1771.5
+    ],
+    "investment_MEUR": [
+     319.0,
+     814.9
+    ],
+    "system_cost_MEUR": [
+     1789.7,
+     2586.4
+    ],
+    "co2_Mt": [
+     -60.38,
+     -59.87
+    ],
+    "re_share": [
+     -0.0001,
+     0.0009
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -51.1,
+     2132.6
+    ],
+    "capacity_added_GW": [
+     5.0,
+     5.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     5.0,
+     5.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -2332,6 +5967,9 @@
     "investment_MEUR": 2164.3,
     "system_cost_MEUR": 10151.2,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {
+     "offwind": 2164.26
+    },
     "co2_Mt": 67.07,
     "re_share": 0.3122,
     "curtailment_TWh": 0.0,
@@ -2360,6 +5998,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     5949.3,
+     10171.5
+    ],
+    "investment_MEUR": [
+     1278.2,
+     3477.5
+    ],
+    "system_cost_MEUR": [
+     7227.5,
+     13649.0
+    ],
+    "co2_Mt": [
+     67.07,
+     67.07
+    ],
+    "re_share": [
+     0.2949,
+     0.3458
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     1.8,
+     11510.6
+    ],
+    "capacity_added_GW": [
+     10.0,
+     10.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     10.0,
+     10.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -758.9,
+     -407.3
+    ],
+    "investment_MEUR": [
+     1278.2,
+     3477.5
+    ],
+    "system_cost_MEUR": [
+     519.3,
+     3070.2
+    ],
+    "co2_Mt": [
+     -75.54,
+     -58.5
+    ],
+    "re_share": [
+     0.1605,
+     0.1924
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -33.7,
+     9053.0
+    ],
+    "capacity_added_GW": [
+     10.0,
+     10.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     10.0,
+     10.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -2395,6 +6138,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 8577.0,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 134.14,
     "re_share": 0.1385,
     "curtailment_TWh": 0.0,
@@ -2421,6 +6165,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6708.2,
+     10653.0
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     6708.2,
+     10653.0
+    ],
+    "co2_Mt": [
+     125.57,
+     142.61
+    ],
+    "re_share": [
+     0.1266,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     2.4,
+     2457.6
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     0.0,
+     0.0
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     0.0,
+     0.0
+    ],
+    "co2_Mt": [
+     0.0,
+     0.0
+    ],
+    "re_share": [
+     0.0,
+     0.0
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     0.0
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     0.0,
+     0.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -2458,6 +6307,9 @@
     "investment_MEUR": 393.0,
     "system_cost_MEUR": 8433.2,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {
+     "solar": 392.96
+    },
     "co2_Mt": 130.25,
     "re_share": 0.1843,
     "curtailment_TWh": 0.0,
@@ -2486,6 +6338,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6204.6,
+     10058.9
+    ],
+    "investment_MEUR": [
+     224.3,
+     652.1
+    ],
+    "system_cost_MEUR": [
+     6428.9,
+     10711.0
+    ],
+    "co2_Mt": [
+     121.57,
+     138.7
+    ],
+    "re_share": [
+     0.1684,
+     0.2041
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     2194.2
+    ],
+    "capacity_added_GW": [
+     10.0,
+     10.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     10.0,
+     10.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -594.1,
+     -503.6
+    ],
+    "investment_MEUR": [
+     224.3,
+     652.1
+    ],
+    "system_cost_MEUR": [
+     -369.8,
+     148.5
+    ],
+    "co2_Mt": [
+     -4.03,
+     -3.89
+    ],
+    "re_share": [
+     0.0418,
+     0.0507
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -263.4,
+     -2.4
+    ],
+    "capacity_added_GW": [
+     10.0,
+     10.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     10.0,
+     10.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -2523,6 +6480,9 @@
     "investment_MEUR": 383.1,
     "system_cost_MEUR": 8965.8,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {
+     "battery": 383.15
+    },
     "co2_Mt": 134.24,
     "re_share": 0.1383,
     "curtailment_TWh": 0.0,
@@ -2551,6 +6511,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6667.0,
+     10667.0
+    ],
+    "investment_MEUR": [
+     219.8,
+     633.8
+    ],
+    "system_cost_MEUR": [
+     6886.8,
+     11300.8
+    ],
+    "co2_Mt": [
+     125.44,
+     142.78
+    ],
+    "re_share": [
+     0.1263,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     1823.5
+    ],
+    "capacity_added_GW": [
+     5.0,
+     5.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     5.0,
+     5.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     -59.3,
+     14.0
+    ],
+    "investment_MEUR": [
+     219.8,
+     633.8
+    ],
+    "system_cost_MEUR": [
+     160.5,
+     647.8
+    ],
+    "co2_Mt": [
+     -0.19,
+     0.17
+    ],
+    "re_share": [
+     -0.0003,
+     0.0
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     -634.1,
+     -2.4
+    ],
+    "capacity_added_GW": [
+     5.0,
+     5.0
+    ],
+    "capacity_removed_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_change_GW": [
+     5.0,
+     5.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -2588,6 +6653,7 @@
     "investment_MEUR": 0.0,
     "system_cost_MEUR": 8585.0,
     "investment_not_costed": [],
+    "investment_by_carrier_MEUR": {},
     "co2_Mt": 134.2,
     "re_share": 0.1384,
     "curtailment_TWh": 0.0,
@@ -2616,6 +6682,111 @@
     "max_line_loading": 0.0,
     "demand_TWh": 0.0
    },
+   "ranges": {
+    "operating_cost_MEUR": [
+     6708.2,
+     10676.9
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     6708.2,
+     10676.9
+    ],
+    "co2_Mt": [
+     125.57,
+     142.63
+    ],
+    "re_share": [
+     0.1269,
+     0.1534
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     2.4,
+     3344.0
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     5.0,
+     5.0
+    ],
+    "capacity_change_GW": [
+     -5.0,
+     -5.0
+    ],
+    "max_line_loading": [
+     1.0,
+     1.0
+    ],
+    "demand_TWh": [
+     226.3,
+     276.6
+    ]
+   },
+   "delta_ranges": {
+    "operating_cost_MEUR": [
+     0.0,
+     23.9
+    ],
+    "investment_MEUR": [
+     0.0,
+     0.0
+    ],
+    "system_cost_MEUR": [
+     0.0,
+     23.9
+    ],
+    "co2_Mt": [
+     0.0,
+     0.06
+    ],
+    "re_share": [
+     -0.0001,
+     0.0003
+    ],
+    "curtailment_TWh": [
+     0.0,
+     0.0
+    ],
+    "unserved_GWh": [
+     0.0,
+     886.4
+    ],
+    "capacity_added_GW": [
+     0.0,
+     0.0
+    ],
+    "capacity_removed_GW": [
+     5.0,
+     5.0
+    ],
+    "capacity_change_GW": [
+     -5.0,
+     -5.0
+    ],
+    "max_line_loading": [
+     0.0,
+     0.0
+    ],
+    "demand_TWh": [
+     0.0,
+     0.0
+    ]
+   },
+   "variants": [
+    "high",
+    "low",
+    "w2018"
+   ],
    "warnings": [
     {
      "code": "load_shedding",
@@ -2627,5 +6798,28 @@
    "solve_s": 18.34,
    "objective": 9419869881.0
   }
- ]
+ ],
+ "uncertainty": {
+  "variants": {
+   "w2011": {
+    "weather": "2011"
+   },
+   "w2018": {
+    "weather": "2018"
+   },
+   "low": {
+    "mult": 0.9
+   },
+   "high": {
+    "mult": 1.1
+   }
+  },
+  "fuel_demand_spread": 0.1,
+  "investment_spread": 0.3,
+  "discount_rates": [
+   0.05,
+   0.1
+  ],
+  "base_discount_rate": 0.071
+ }
 }

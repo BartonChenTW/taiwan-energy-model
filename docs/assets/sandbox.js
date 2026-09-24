@@ -250,7 +250,9 @@ function renderMatch(best) {
 }
 
 function uncertaintyText(s) {
-  const names = (s.variants || []).map((v) => (v.startsWith("w") ? t("unc_weather")(v.slice(1)) : t(`unc_${v}`)));
+  const order = ["w2011", "w2018", "low", "high"];
+  const names = [...(s.variants || [])].sort((a, b) => order.indexOf(a) - order.indexOf(b))
+    .map((v) => (v.startsWith("w") ? t("unc_weather")(v.slice(1)) : t(`unc_${v}`)));
   return names.length ? t("unc_note")([t("unc_weather")("2013"), ...names].join(", ")) : t("unc_none");
 }
 

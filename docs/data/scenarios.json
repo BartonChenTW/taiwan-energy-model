@@ -63,7 +63,57 @@
   {
    "label": "2018",
    "run": "tw_weather2018_highs_fullyear_4h_6b_ls",
-   "available": false
+   "id": "tw_weather2018_highs_fullyear_4h_6b_ls__elec_s_6_ec_lv1.0_Co2L-4H",
+   "available": true,
+   "demand_TWh": 251.394,
+   "peak_GW": 37.66,
+   "unserved_GWh": 51.2,
+   "unserved_peak_GW": 0.6,
+   "co2_Mt": 134.442,
+   "price_mean": 64.26,
+   "re_share": 0.1367,
+   "energy_TWh": {
+    "CCGT": 116.472,
+    "coal": 99.501,
+    "hydro": 0.801,
+    "load shedding": 0.051,
+    "offwind-ac": 11.892,
+    "oil": 1.01,
+    "onwind": 1.5,
+    "ror": 2.071,
+    "solar": 18.096
+   },
+   "capacity_GW": {
+    "CCGT": 26.027,
+    "OCGT": 0.181,
+    "PHS": 2.602,
+    "battery": 0.853,
+    "coal": 11.359,
+    "hydro": 0.653,
+    "offwind-ac": 3.38,
+    "offwind-dc": 0.0,
+    "oil": 1.28,
+    "onwind": 0.807,
+    "ror": 1.462,
+    "solar": 15.392
+   },
+   "setup": {
+    "config": "pypsa_tw/config/config_tw_test2_highs.yaml + pypsa_tw/config/scenarios/weather_2018.yaml",
+    "weather_year": "2018",
+    "cutout": "cutout-2018-era5-tw",
+    "demand_profile_year": 2030,
+    "demand_profile_weather_year": 2018,
+    "demand_scale": 0.7596,
+    "demand_target_TWh": 251.4,
+    "system_year": null,
+    "fleet": "official Taipower list",
+    "fleet_file": "data/custom_powerplants.csv",
+    "fleet_date": "2026-09-24",
+    "costs_year": 2030,
+    "transmission": "v1.0",
+    "clusters": 6,
+    "opts": "Co2L-4H"
+   }
   }
  ],
  "future": [

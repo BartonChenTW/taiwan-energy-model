@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-24 14:29 UTC",
+ "generated": "2026-09-24 15:44 UTC",
  "featured": "tw_test2_highs_2013_fullyear_4h_6b_ls__elec_s_6_ec_lv1.0_Co2L-4H",
  "currency": {
   "eur_twd": 36.185,
@@ -510,6 +510,54 @@
     "demand_profile_year": 2030,
     "demand_profile_weather_year": 2013,
     "demand_scale": 0.749,
+    "demand_target_TWh": 251.4,
+    "system_year": null,
+    "fleet": "official Taipower list",
+    "fleet_file": "data/custom_powerplants.csv",
+    "fleet_date": "2026-09-24",
+    "costs_year": 2030,
+    "transmission": "v1.0",
+    "clusters": 6,
+    "opts": "Co2L-4H"
+   }
+  },
+  {
+   "id": "tw_weather2018_highs_fullyear_4h_6b_ls__elec_s_6_ec_lv1.0_Co2L-4H",
+   "run": "tw_weather2018_highs_fullyear_4h_6b_ls",
+   "case": "elec_s_6_ec_lv1.0_Co2L-4H",
+   "transmission": "v1.0",
+   "solver": "highs",
+   "solver_status": "Optimal",
+   "solve_rule_s": 28.44,
+   "solver_s": 12.39,
+   "objective": 8659244595.0,
+   "snapshots": 2190,
+   "start": "2018-01-01 00:00:00",
+   "end": "2018-12-31 20:00:00",
+   "step_h": 4.0,
+   "weight_h_per_snapshot": 4.0,
+   "represented_hours": 8760.0,
+   "buses": 6,
+   "demand_TWh": 251.394,
+   "generation_TWh": 251.343,
+   "co2_Mt": 134.442,
+   "unserved_GWh": 51.2,
+   "unserved_peak_GW": 0.6,
+   "price_mean": 64.26,
+   "warnings": [
+    {
+     "code": "load_shedding",
+     "severity": "critical",
+     "gwh": 51.2
+    }
+   ],
+   "setup": {
+    "config": "pypsa_tw/config/config_tw_test2_highs.yaml + pypsa_tw/config/scenarios/weather_2018.yaml",
+    "weather_year": "2018",
+    "cutout": "cutout-2018-era5-tw",
+    "demand_profile_year": 2030,
+    "demand_profile_weather_year": 2018,
+    "demand_scale": 0.7596,
     "demand_target_TWh": 251.4,
     "system_year": null,
     "fleet": "official Taipower list",
