@@ -797,6 +797,94 @@ def export_sandbox(repo, out):
     print(f"wrote {len(index)} sandbox scenarios to {sb_out.relative_to(repo)} ({size:.1f} MB)")
 
 
+# ---------- Sector-coupled test run (draft page docs/sector-draft.html) ----------
+SECTOR_DRAFT_RUN = "tw_sector_test_2013_6b"
+
+
+def _demand_use(carrier):
+    """Group a sector-model load carrier into a broad use."""
+    c = carrier.lower()
+    if "electricity" in c or c in ("ac", "land transport ev"):
+        return "electricity"
+    if any(k in c for k in ("transport", "aviation", "shipping")):
+        return "transport"
+    if "industry" in c or c in ("nh3",):
+        return "industry"
+    if any(k in c for k in ("residential", "services", "heat")):
+        return "buildings"
+    if "agriculture" in c:
+        return "agriculture"
+    return "other"
+
+
+def export_sector_draft(repo, out):
+    """Aggregated numbers of the sector-coupled test for its draft review page."""
+    files = sorted((repo / "results" / SECTOR_DRAFT_RUN / "postnetworks").glob("*.nc"))
+    if not files:
+        return
+    n = pypsa.Network(str(files[0]))
+    w = n.snapshot_weightings.generators
+
+    loads = n.loads_t.p.mul(w, axis=0).sum().groupby(n.loads.carrier).sum()
+    static = (n.loads.p_set * w.sum()).groupby(n.loads.carrier).sum()
+    demand = loads.add(static[~static.index.isin(loads.index)], fill_value=0) / 1e6
+    demand = demand[(demand > 0.05) & ~demand.index.str.contains("emissions")].sort_values(ascending=False)
+
+    # Electricity supply: generators on electricity buses, plus links delivering to them.
+    ac = n.buses.index[n.buses.carrier.isin(["AC", "low voltage"])]
+    supply = {}
+    gen = n.generators[n.generators.bus.isin(ac) & (n.generators.carrier != "load shedding")]
+    for c, v in (n.generators_t.p[gen.index].mul(w, axis=0).sum().groupby(gen.carrier).sum() / 1e6).items():
+        supply[c] = supply.get(c, 0) + v
+    for i in (1, 2, 3):
+        col = f"bus{i}"
+        if col not in n.links:
+            continue
+        idx = n.links.index[n.links[col].isin(ac) & ~n.links[f"bus0"].isin(ac)]
+        if len(idx):
+            v = -n.links_t[f"p{i}"][idx].mul(w, axis=0).sum()
+            for c, x in (v.groupby(n.links.loc[idx, "carrier"]).sum() / 1e6).items():
+                supply[c] = supply.get(c, 0) + x
+    su = n.storage_units_t.p.clip(lower=0).mul(w, axis=0).sum().groupby(n.storage_units.carrier).sum() / 1e6
+    for c, v in su.items():
+        supply[c] = supply.get(c, 0) + v
+    supply = {k: _r(v, 2) for k, v in sorted(supply.items(), key=lambda x: -x[1]) if v > 0.05}
+
+    # Capacity of electricity producers: fixed (existing) vs built by the model.
+    cap = []
+    for comp, attr in (("generators", "p_nom"), ("links", "p_nom")):
+        df = getattr(n, comp)
+        df = df[(df.bus1.isin(ac) if comp == "links" else df.bus.isin(ac)) & (df.carrier != "load shedding")]
+        if comp == "links":
+            df = df[~df.bus0.isin(ac)]
+        for c, g in df.groupby("carrier"):
+            fixed = g.loc[~g.p_nom_extendable, "p_nom"].sum() / 1e3
+            built = (g.loc[g.p_nom_extendable, "p_nom_opt"] - g.loc[g.p_nom_extendable, "p_nom"]).clip(lower=0).sum() / 1e3
+            if fixed + built > 0.05:
+                cap.append({"carrier": c, "fixed_GW": _r(fixed, 2), "built_GW": _r(built, 2)})
+
+    co2 = n.stores.index[n.stores.carrier == "co2"]
+    co2_mt = float(n.stores_t.e[co2].iloc[-1].sum() / 1e6) if len(co2) else None
+    fleet = pd.read_csv(repo / "data" / "custom_powerplants.csv")
+    fleet_gw = (fleet.groupby("Fueltype").Capacity.sum() / 1e3).round(2).to_dict()
+    payload = {
+        "generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+        "run": SECTOR_DRAFT_RUN, "network": files[0].name,
+        "snapshots": int(len(n.snapshots)), "step_h": _r(float(w.iloc[0]), 1), "objective_EUR": _r(n.objective, 0),
+        "co2_Mt": _r(co2_mt, 1), "co2_cap": "none",
+        "demand_TWh": [{"carrier": c, "use": _demand_use(c), "TWh": _r(v, 2)} for c, v in demand.items()],
+        "electricity_demand_TWh": _r(float(demand[[c for c in demand.index if _demand_use(c) == "electricity"]].sum()), 1),
+        "final_demand_TWh": _r(float(demand.sum()), 1),
+        "electricity_supply_TWh": supply,
+        "electricity_capacity_GW": sorted(cap, key=lambda r: -(r["fixed_GW"] + r["built_GW"])),
+        "official_fleet_GW": fleet_gw,
+        "reference": {"co2_fuel_combustion_2025_Mt": 239.5, "electricity_consumption_2024_TWh": 283.8,
+                      "taipower_system_generation_2024_TWh": 251.4},
+    }
+    (out / "sector_draft.json").write_text(json.dumps(payload, indent=1), encoding="utf-8")
+    print(f"wrote sector_draft.json ({SECTOR_DRAFT_RUN}, {len(n.snapshots)} snapshots)")
+
+
 def main():
     logging.disable(logging.WARNING)
     warnings.filterwarnings("ignore")
@@ -847,6 +935,7 @@ def main():
     )
     print(f"wrote {len(index)} cases to {out.relative_to(repo)}")
     export_sandbox(repo, out)
+    export_sector_draft(repo, out)
 
 
 if __name__ == "__main__":

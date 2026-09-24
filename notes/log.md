@@ -306,5 +306,22 @@ Barton asked for a landing page, an About page, a page on the challenges of the 
    - In the sandbox, when the levers match no computed scenario exactly, a "Request exactly these settings" link pre-fills the form with the levers.
  - **About text** comes from public sources only: GitHub profile (name, Empa, bio, location, projects) and the public part of LinkedIn. For Barton to review (checklist).
 
+## 2026-09-24: first sector-coupled test (draft)
+
+Barton asked to try PyPSA-Earth's sector-coupled model. Overlay: `pypsa_tw/config/scenarios/sector_test.yaml` (overnight, 2030, 6 buses, 144 h steps, no H2 export, load shedding allowed).
+
+ - **Runs end to end** after four small fixes in PyPSA-Earth's scripts (commented in the code):
+   1. The UN Energy Statistics Database reports Taiwan as "Other Asia", which was dropped (all Taiwan demand was 0). `build_base_energy_totals.py` and `build_base_industry_totals.py` now map it to Taiwan. Checked: 2019 gross production 274.2 TWh, nuclear 3,872 MW, pumped hydro 2,602 MW.
+   2. `prepare_urban_percent.py`: UNCTAD's bulk file id 355 no longer exists; the current id is looked up (2301 at the time).
+   3. `prepare_urban_percent.py`: "China, Taiwan Province of" converts to both CN and TW and was dropped; mapped to Taiwan.
+   4. `prepare_ports.py`: msi.nga.mil fails Python's certificate check; falls back to a local copy in `data/ports/UpdatedPub150.csv` (downloaded with curl, not committed).
+ - **The result is not credible yet**, and is shown only on a draft page (`docs/sector-draft.html`, not in the menus, noindex):
+   - Coal 31.9 GW, CCGT 44.9 GW and oil 3.7 GW in the sector network, against 11.4, 26.0 and 1.3 GW in the official fleet. The source of the extra capacity is still to trace.
+   - Electricity demand is 353 TWh, against 284 TWh national consumption (2024) and 251 TWh in the electricity model.
+   - CO2 is 280 Mt, against 239.5 Mt fuel combustion (2025).
+   - 40.6 GW of rooftop solar was built (extendable by default in the sector model); fossil supply is unlimited; there is no CO2 cap; 6-day time steps.
+ - **Plausible:** the non-electric demand from the UN balance (road oil 149 TWh, aviation 54 TWh, gas for industry 56 TWh, petrochemical naphtha).
+ - **Exporter:** `export_sector_draft` writes `docs/data/sector_draft.json` (aggregated numbers only).
+
 TODO:
  - to run PyPSA-Earth Taiwan!

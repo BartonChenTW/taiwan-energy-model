@@ -1,0 +1,218 @@
+{
+ "generated": "2026-09-24 17:17 UTC",
+ "run": "tw_sector_test_2013_6b",
+ "network": "elec_s_6_ec_lv1.0_Co2L-4H_144h_2030_0.071_AB_0export.nc",
+ "snapshots": 61,
+ "step_h": 144.0,
+ "objective_EUR": 17335180136.0,
+ "co2_Mt": 280.3,
+ "co2_cap": "none",
+ "demand_TWh": [
+  {
+   "carrier": "industry electricity",
+   "use": "electricity",
+   "TWh": 200.69
+  },
+  {
+   "carrier": "land transport oil",
+   "use": "transport",
+   "TWh": 148.49
+  },
+  {
+   "carrier": "AC",
+   "use": "electricity",
+   "TWh": 82.72
+  },
+  {
+   "carrier": "services electricity",
+   "use": "electricity",
+   "TWh": 62.95
+  },
+  {
+   "carrier": "gas for industry",
+   "use": "industry",
+   "TWh": 55.57
+  },
+  {
+   "carrier": "kerosene for aviation",
+   "use": "transport",
+   "TWh": 53.63
+  },
+  {
+   "carrier": "low-temperature heat for industry",
+   "use": "industry",
+   "TWh": 30.68
+  },
+  {
+   "carrier": "naphtha for industry",
+   "use": "industry",
+   "TWh": 24.54
+  },
+  {
+   "carrier": "shipping oil",
+   "use": "transport",
+   "TWh": 14.37
+  },
+  {
+   "carrier": "residential gas",
+   "use": "buildings",
+   "TWh": 10.02
+  },
+  {
+   "carrier": "residential oil",
+   "use": "buildings",
+   "TWh": 6.36
+  },
+  {
+   "carrier": "services oil",
+   "use": "buildings",
+   "TWh": 6.03
+  },
+  {
+   "carrier": "services gas",
+   "use": "buildings",
+   "TWh": 4.93
+  },
+  {
+   "carrier": "agriculture oil",
+   "use": "agriculture",
+   "TWh": 4.82
+  },
+  {
+   "carrier": "agriculture electricity",
+   "use": "electricity",
+   "TWh": 3.74
+  },
+  {
+   "carrier": "urban central heat",
+   "use": "buildings",
+   "TWh": 2.64
+  },
+  {
+   "carrier": "residential urban decentral heat",
+   "use": "buildings",
+   "TWh": 2.3
+  },
+  {
+   "carrier": "rail transport electricity",
+   "use": "electricity",
+   "TWh": 2.19
+  },
+  {
+   "carrier": "solid biomass for industry",
+   "use": "industry",
+   "TWh": 1.94
+  },
+  {
+   "carrier": "land transport fuel cell",
+   "use": "transport",
+   "TWh": 0.91
+  },
+  {
+   "carrier": "H2 for shipping",
+   "use": "transport",
+   "TWh": 0.86
+  },
+  {
+   "carrier": "land transport EV",
+   "use": "electricity",
+   "TWh": 0.47
+  },
+  {
+   "carrier": "rail transport oil",
+   "use": "transport",
+   "TWh": 0.16
+  },
+  {
+   "carrier": "residential rural heat",
+   "use": "buildings",
+   "TWh": 0.08
+  }
+ ],
+ "electricity_demand_TWh": 352.8,
+ "final_demand_TWh": 721.1,
+ "electricity_supply_TWh": {
+  "CCGT": 151.6,
+  "coal": 99.5,
+  "solar rooftop": 45.34,
+  "solar": 18.04,
+  "offwind-ac": 12.43,
+  "oil": 11.21,
+  "urban central solid biomass CHP": 10.39,
+  "ror": 1.97,
+  "onwind": 1.59,
+  "hydro": 0.89
+ },
+ "electricity_capacity_GW": [
+  {
+   "carrier": "CCGT",
+   "fixed_GW": 44.87,
+   "built_GW": 0.0
+  },
+  {
+   "carrier": "solar rooftop",
+   "fixed_GW": 0.0,
+   "built_GW": 40.6
+  },
+  {
+   "carrier": "coal",
+   "fixed_GW": 31.91,
+   "built_GW": 0.0
+  },
+  {
+   "carrier": "solar",
+   "fixed_GW": 15.39,
+   "built_GW": 0.0
+  },
+  {
+   "carrier": "urban central solid biomass CHP",
+   "fixed_GW": 0.0,
+   "built_GW": 4.39
+  },
+  {
+   "carrier": "oil",
+   "fixed_GW": 3.66,
+   "built_GW": 0.0
+  },
+  {
+   "carrier": "offwind-ac",
+   "fixed_GW": 3.38,
+   "built_GW": 0.0
+  },
+  {
+   "carrier": "ror",
+   "fixed_GW": 1.46,
+   "built_GW": 0.0
+  },
+  {
+   "carrier": "battery discharger",
+   "fixed_GW": 0.85,
+   "built_GW": 0.0
+  },
+  {
+   "carrier": "onwind",
+   "fixed_GW": 0.81,
+   "built_GW": 0.0
+  },
+  {
+   "carrier": "OCGT",
+   "fixed_GW": 0.44,
+   "built_GW": 0.0
+  }
+ ],
+ "official_fleet_GW": {
+  "Battery": 0.85,
+  "CCGT": 26.03,
+  "Hard Coal": 11.36,
+  "Hydro": 4.72,
+  "OCGT": 0.18,
+  "Oil": 1.28,
+  "Solar": 15.39,
+  "Wind": 4.19
+ },
+ "reference": {
+  "co2_fuel_combustion_2025_Mt": 239.5,
+  "electricity_consumption_2024_TWh": 283.8,
+  "taipower_system_generation_2024_TWh": 251.4
+ }
+}

@@ -1,0 +1,24 @@
+# Scenario overlay: first test of PyPSA-Earth's sector-coupled workflow for Taiwan.
+# Use on top of the Test 2 config:
+#   snakemake -j 1 solve_sector_networks --configfile pypsa_tw/config/config_tw_test2_highs.yaml pypsa_tw/config/scenarios/sector_test.yaml
+# Purpose: find out which sector inputs PyPSA-Earth can build for Taiwan (energy
+# balances, heat, transport, industry) before any sector scenario is designed.
+# Kept small: one planning horizon, 6-day time steps (144h), 6 buses.
+
+run:
+  name: "tw_sector_test_2013_6b"
+  sector_name: "tw_sector_test_2013_6b"
+
+scenario:
+  planning_horizons: [2030]
+  sopts: ["144h"]
+  demand: ["AB"]
+
+export:
+  # PyPSA-Earth's default is 10 TWh/yr of hydrogen export; Taiwan has no export plan.
+  h2export: [0]
+  endogenous: false
+
+solving:
+  options:
+    load_shedding: true

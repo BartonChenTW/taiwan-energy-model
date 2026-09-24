@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Sector Model (Draft)</title>
+    <meta name="title-en" content="Sector Model (Draft)" />
+    <meta name="title-zh" content="部門耦合模型（草稿）" />
+    <meta name="description" content="Draft for review: first test of PyPSA-Earth's sector-coupled model for Taiwan." />
+    <link rel="stylesheet" href="assets/site.css" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <script src="assets/pages.js" defer></script>
+    <script src="assets/sector-draft.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <div>
+          <div class="eyebrow">PyPSA-Earth · Taiwan</div>
+          <h1><span class="t-en">Sector-coupled model (draft)</span><span class="t-zh">部門耦合模型（草稿）</span></h1>
+        </div>
+        <div class="toolbar">
+          <div class="segmented" role="group" aria-label="Language">
+            <button type="button" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" data-lang="zh" aria-pressed="false">繁中</button>
+          </div>
+          <button type="button" id="theme-toggle" class="ghost" aria-label="Toggle dark mode">◐</button>
+        </div>
+      </div>
+      <nav class="shell tabs" aria-label="Pages">
+        <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a>
+        <a href="challenges.html"><span class="t-en">Challenges</span><span class="t-zh">挑戰</span></a>
+        <a href="sandbox.html"><span class="t-en">Sandbox</span><span class="t-zh">情境沙盒</span></a>
+        <a href="dashboard.html"><span class="t-en">Model dashboard</span><span class="t-zh">模型儀表板</span></a>
+        <a href="taiwan-data.html"><span class="t-en">Taiwan energy data</span><span class="t-zh">台灣能源資料</span></a>
+        <a href="sector-draft.html" aria-current="page"><span class="t-en">Sector model (draft)</span><span class="t-zh">部門耦合（草稿）</span></a>
+      </nav>
+    </header>
+
+    <main class="shell">
+      <section class="status-list" aria-label="Draft">
+        <div class="status critical"><span class="icon" aria-hidden="true">!</span>
+          <span><b><span class="t-en">Draft for review, not a result.</span><span class="t-zh">審閱用草稿，並非結果。</span></b>
+            <span class="t-en">This is the first technical test of PyPSA-Earth's sector-coupled model for Taiwan. It runs end to end, but several inputs are known to be wrong (see "Problems found"), so none of these numbers should be quoted. The page is not linked from the menu of the other pages.</span>
+            <span class="t-zh">這是 PyPSA-Earth 部門耦合模型在台灣的第一次技術測試。模型可以完整執行，但已知有數項輸入不正確（見「發現的問題」），因此請勿引用這些數字。其他頁面的選單未連結此頁。</span></span></div>
+      </section>
+
+      <section class="section">
+        <h2><span class="t-en">What was run</span><span class="t-zh">執行內容</span></h2>
+        <p class="prose-inline"><span class="t-en">The sector-coupled model adds heat, transport, industry and hydrogen to the electricity system, each with its own demand, fuels and technologies. This test: one year (2030 costs and demand growth), 6 regions, <b>144-hour</b> time steps (61 steps), 2013 weather, no CO₂ cap, no hydrogen export, load shedding allowed. Non-electric demand comes from the UN energy statistics, where Taiwan is listed as "Other Asia".</span>
+          <span class="t-zh">部門耦合模型在電力系統之外，加入熱能、運輸、工業與氫能，各有其需求、燃料與技術。本次測試：單一年度（2030 年成本與需求成長）、6 個區域、每 <b>144 小時</b>一個時段（共 61 個）、2013 年氣象、不設 CO₂ 上限、無氫氣出口、允許切負載。非電力需求取自聯合國能源統計，其中台灣列為「Other Asia」。</span></p>
+        <section class="tiles" id="sd-tiles" aria-label="Key figures"></section>
+      </section>
+
+      <div class="grid two">
+        <article class="panel">
+          <h3><span class="t-en">Final energy demand by use</span><span class="t-zh">各用途最終能源需求</span></h3>
+          <p class="sub"><span class="t-en">TWh per year, all energy carriers</span><span class="t-zh">每年 TWh，所有能源載體</span></p>
+          <div id="sd-chart-demand" class="chart"></div>
+          <details><summary><span class="t-en">Show all demand items</span><span class="t-zh">顯示所有需求項目</span></summary><div id="sd-table-demand" class="table-wrap"></div></details>
+        </article>
+        <article class="panel">
+          <h3><span class="t-en">Electricity supply by technology</span><span class="t-zh">各技術電力供給</span></h3>
+          <p class="sub"><span class="t-en">TWh per year</span><span class="t-zh">每年 TWh</span></p>
+          <div id="sd-chart-supply" class="chart"></div>
+        </article>
+      </div>
+
+      <article class="panel">
+        <h3><span class="t-en">Electricity capacity: sector model vs official fleet</span><span class="t-zh">發電容量：部門耦合模型與官方機組比較</span></h3>
+        <p class="sub"><span class="t-en">GW. Official fleet: Taipower unit list used by the electricity model. The gaps for coal, gas and oil are the main problem to fix.</span><span class="t-zh">GW。官方機組：電力模型使用的台電機組清單。燃煤、燃氣與燃油的差距是首要待修正的問題。</span></p>
+        <div id="sd-chart-capacity" class="chart"></div>
+        <div id="sd-table-capacity" class="table-wrap"></div>
+      </article>
+
+      <section class="section prose">
+        <h2><span class="t-en">Problems found</span><span class="t-zh">發現的問題</span></h2>
+        <ol id="sd-issues"></ol>
+
+        <h2><span class="t-en">What was changed to make it run</span><span class="t-zh">為了執行所做的修改</span></h2>
+        <ol>
+          <li><span class="t-en">The UN energy statistics report Taiwan as "Other Asia", which PyPSA-Earth dropped, so every Taiwan demand was zero. Mapped to Taiwan (checked: 2019 electricity production 274.2 TWh, nuclear 3,872 MW, pumped hydro 2,602 MW).</span><span class="t-zh">聯合國能源統計將台灣列為「Other Asia」，PyPSA-Earth 因此將其排除，所有台灣需求皆為零。已對應為台灣（核對：2019 年發電量 274.2 TWh、核能 3,872 MW、抽蓄水力 2,602 MW）。</span></li>
+          <li><span class="t-en">The UN urban-population file moved to a new ID; the script now looks it up. Its name "China, Taiwan Province of" matched two countries and was dropped; mapped to Taiwan.</span><span class="t-zh">聯合國都市人口檔案的編號已變更，程式改為自動查詢；其名稱「China, Taiwan Province of」同時對應兩個國家而遭排除，已對應為台灣。</span></li>
+          <li><span class="t-en">The World Port Index could not be downloaded by Python (certificate error); a local copy is used instead.</span><span class="t-zh">世界港口索引因憑證錯誤無法由 Python 下載，改用本機副本。</span></li>
+        </ol>
+
+        <h2><span class="t-en">Next steps before publishing</span><span class="t-zh">發布前的下一步</span></h2>
+        <ol>
+          <li><span class="t-en">Trace the extra coal, gas and oil capacity and use the official fleet only.</span><span class="t-zh">追查多出的燃煤、燃氣與燃油容量，只採用官方機組。</span></li>
+          <li><span class="t-en">Check each demand against the Energy Administration's energy balance and align the scope (national vs Taipower system).</span><span class="t-zh">逐項與能源署能源平衡表核對需求，並統一範圍（全國或台電系統）。</span></li>
+          <li><span class="t-en">Decide which technologies are fixed and which the model may build; set a CO₂ path.</span><span class="t-zh">決定哪些技術固定、哪些可由模型新建；設定 CO₂ 路徑。</span></li>
+          <li><span class="t-en">Use finer time steps (e.g. 3–4 hours) once the inputs are right.</span><span class="t-zh">輸入正確後，改用較細的時間步長（例如 3–4 小時）。</span></li>
+        </ol>
+        <p class="note muted" id="sd-meta"></p>
+      </section>
+    </main>
+
+    <footer class="shell footer">
+      <span class="t-en">Draft. Built with PyPSA-Earth's sector-coupled workflow.</span><span class="t-zh">草稿。以 PyPSA-Earth 部門耦合流程建置。</span>
+    </footer>
+  </body>
+</html>
