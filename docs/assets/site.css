@@ -24,6 +24,8 @@
   --c-gas: #eb6834;
   --c-hydro: #2a78d6;
   --c-other: #898781;
+  /* Unserved demand: neutral ink, not a status colour, so it never reads as a series status. */
+  --c-unserved: #52514e;
 
   --good: #0ca30c;
   --warning: #fab219;
@@ -55,6 +57,7 @@
     --c-offwind: #199e70;
     --c-gas: #d95926;
     --c-hydro: #3987e5;
+    --c-unserved: #c3c2b7;
   }
 }
 
@@ -79,6 +82,7 @@
   --c-offwind: #199e70;
   --c-gas: #d95926;
   --c-hydro: #3987e5;
+  --c-unserved: #c3c2b7;
 }
 
 * { box-sizing: border-box; }
@@ -194,6 +198,7 @@ table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px
 th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--grid); vertical-align: top; }
 th { color: var(--ink-2); font-weight: 600; white-space: nowrap; }
 td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td:first-child { white-space: nowrap; }
 tr.clickable { cursor: pointer; }
 tr.clickable:hover { background: var(--wash); }
 tr.selected { background: var(--wash); }

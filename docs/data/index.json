@@ -1,0 +1,291 @@
+{
+ "generated": "2026-09-24 01:12 UTC",
+ "cases": [
+  {
+   "id": "tw_basic_test1_2013_7d_4h_6b__elec_s_6_ec_lcopt_Co2L-4H",
+   "run": "tw_basic_test1_2013_7d_4h_6b",
+   "case": "elec_s_6_ec_lcopt_Co2L-4H",
+   "transmission": "copt",
+   "solver": "highs",
+   "solver_status": "Optimal",
+   "solve_rule_s": 11.45,
+   "solver_s": 0.63,
+   "objective": 176236517575.0,
+   "snapshots": 42,
+   "start": "2013-03-01 00:00:00",
+   "end": "2013-03-07 20:00:00",
+   "step_h": 4.0,
+   "weight_h_per_snapshot": 208.571,
+   "represented_hours": 8760.0,
+   "buses": 18,
+   "demand_TWh": 307.443,
+   "generation_TWh": 428.198,
+   "co2_Mt": 0.042,
+   "unserved_GWh": 0.0,
+   "unserved_peak_GW": 0.0,
+   "price_mean": 1145.6,
+   "warnings": [
+    {
+     "code": "subnetworks",
+     "severity": "critical",
+     "n": 15
+    },
+    {
+     "code": "availability_saturated",
+     "severity": "critical",
+     "share": 0.143
+    },
+    {
+     "code": "gens_extendable",
+     "severity": "warning"
+    },
+    {
+     "code": "lines_extendable",
+     "severity": "warning",
+     "added_gw": 3.0
+    }
+   ]
+  },
+  {
+   "id": "tw_test1_gurobi_2013_7d_4h_6b__elec_s_6_ec_lcopt_Co2L-4H",
+   "run": "tw_test1_gurobi_2013_7d_4h_6b",
+   "case": "elec_s_6_ec_lcopt_Co2L-4H",
+   "transmission": "copt",
+   "solver": "gurobi",
+   "solver_status": "Optimal",
+   "solve_rule_s": 9.95,
+   "solver_s": 0.09,
+   "objective": 8189581946.0,
+   "snapshots": 42,
+   "start": "2013-03-01 00:00:00",
+   "end": "2013-03-07 20:00:00",
+   "step_h": 4.0,
+   "weight_h_per_snapshot": 208.571,
+   "represented_hours": 8760.0,
+   "buses": 6,
+   "demand_TWh": 307.443,
+   "generation_TWh": 307.443,
+   "co2_Mt": 167.732,
+   "unserved_GWh": 0.0,
+   "unserved_peak_GW": 0.0,
+   "price_mean": 45.62,
+   "warnings": [
+    {
+     "code": "availability_saturated",
+     "severity": "critical",
+     "share": 0.143
+    },
+    {
+     "code": "lines_extendable",
+     "severity": "warning",
+     "added_gw": 0.0
+    }
+   ]
+  },
+  {
+   "id": "tw_test1_gurobi_2013_7d_4h_6b__elec_s_6_ec_lv1.0_Co2L-4H",
+   "run": "tw_test1_gurobi_2013_7d_4h_6b",
+   "case": "elec_s_6_ec_lv1.0_Co2L-4H",
+   "transmission": "v1.0",
+   "solver": "gurobi",
+   "solver_status": "Optimal",
+   "solve_rule_s": 9.25,
+   "solver_s": 0.04,
+   "objective": 7065204666.0,
+   "snapshots": 42,
+   "start": "2013-03-01 00:00:00",
+   "end": "2013-03-07 20:00:00",
+   "step_h": 4.0,
+   "weight_h_per_snapshot": 208.571,
+   "represented_hours": 8760.0,
+   "buses": 6,
+   "demand_TWh": 264.401,
+   "generation_TWh": 264.401,
+   "co2_Mt": 161.304,
+   "unserved_GWh": 0.0,
+   "unserved_peak_GW": 0.0,
+   "price_mean": 43.23,
+   "warnings": []
+  },
+  {
+   "id": "tw_test1_highs_2013_7d_4h_6b__elec_s_6_ec_lcopt_Co2L-4H",
+   "run": "tw_test1_highs_2013_7d_4h_6b",
+   "case": "elec_s_6_ec_lcopt_Co2L-4H",
+   "transmission": "copt",
+   "solver": "highs",
+   "solver_status": "Optimal",
+   "solve_rule_s": 8.57,
+   "solver_s": 0.06,
+   "objective": 8189581946.0,
+   "snapshots": 42,
+   "start": "2013-03-01 00:00:00",
+   "end": "2013-03-07 20:00:00",
+   "step_h": 4.0,
+   "weight_h_per_snapshot": 208.571,
+   "represented_hours": 8760.0,
+   "buses": 6,
+   "demand_TWh": 307.443,
+   "generation_TWh": 307.443,
+   "co2_Mt": 167.732,
+   "unserved_GWh": 0.0,
+   "unserved_peak_GW": 0.0,
+   "price_mean": 45.62,
+   "warnings": [
+    {
+     "code": "availability_saturated",
+     "severity": "critical",
+     "share": 0.143
+    },
+    {
+     "code": "lines_extendable",
+     "severity": "warning",
+     "added_gw": 0.0
+    }
+   ]
+  },
+  {
+   "id": "tw_test1_highs_2013_7d_4h_6b__elec_s_6_ec_lv1.0_Co2L-4H",
+   "run": "tw_test1_highs_2013_7d_4h_6b",
+   "case": "elec_s_6_ec_lv1.0_Co2L-4H",
+   "transmission": "v1.0",
+   "solver": "highs",
+   "solver_status": "Optimal",
+   "solve_rule_s": 8.33,
+   "solver_s": 0.05,
+   "objective": 7065204666.0,
+   "snapshots": 42,
+   "start": "2013-03-01 00:00:00",
+   "end": "2013-03-07 20:00:00",
+   "step_h": 4.0,
+   "weight_h_per_snapshot": 208.571,
+   "represented_hours": 8760.0,
+   "buses": 6,
+   "demand_TWh": 264.401,
+   "generation_TWh": 264.401,
+   "co2_Mt": 161.304,
+   "unserved_GWh": 0.0,
+   "unserved_peak_GW": 0.0,
+   "price_mean": 43.23,
+   "warnings": []
+  },
+  {
+   "id": "tw_test2_gurobi_2013_fullyear_4h_6b_ls__elec_s_6_ec_lv1.0_Co2L-4H",
+   "run": "tw_test2_gurobi_2013_fullyear_4h_6b_ls",
+   "case": "elec_s_6_ec_lv1.0_Co2L-4H",
+   "transmission": "v1.0",
+   "solver": "gurobi",
+   "solver_status": "Optimal",
+   "solve_rule_s": 16.08,
+   "solver_s": 0.84,
+   "objective": 8592173092.0,
+   "snapshots": 2190,
+   "start": "2013-01-01 00:00:00",
+   "end": "2013-12-31 20:00:00",
+   "step_h": 4.0,
+   "weight_h_per_snapshot": 4.0,
+   "represented_hours": 8760.0,
+   "buses": 6,
+   "demand_TWh": 288.704,
+   "generation_TWh": 288.294,
+   "co2_Mt": 170.424,
+   "unserved_GWh": 409.7,
+   "unserved_peak_GW": 1.59,
+   "price_mean": 81.11,
+   "warnings": [
+    {
+     "code": "load_shedding",
+     "severity": "critical",
+     "gwh": 409.7
+    }
+   ]
+  },
+  {
+   "id": "tw_test2_highs_2013_fullyear_4h_6b__elec_s_6_ec_lcopt_Co2L-4H",
+   "run": "tw_test2_highs_2013_fullyear_4h_6b",
+   "case": "elec_s_6_ec_lcopt_Co2L-4H",
+   "transmission": "copt",
+   "solver": "highs",
+   "solver_status": "Optimal",
+   "solve_rule_s": 20.75,
+   "solver_s": 6.52,
+   "objective": 5376964546.0,
+   "snapshots": 2190,
+   "start": "2013-01-01 00:00:00",
+   "end": "2013-12-31 20:00:00",
+   "step_h": 4.0,
+   "weight_h_per_snapshot": 4.0,
+   "represented_hours": 8760.0,
+   "buses": 6,
+   "demand_TWh": 335.702,
+   "generation_TWh": 335.702,
+   "co2_Mt": 129.022,
+   "unserved_GWh": 0.0,
+   "unserved_peak_GW": 0.0,
+   "price_mean": 37.17,
+   "warnings": [
+    {
+     "code": "cf_implausible",
+     "severity": "critical",
+     "carrier": "solar",
+     "cf": 0.986,
+     "limit": 0.3
+    },
+    {
+     "code": "cf_implausible",
+     "severity": "critical",
+     "carrier": "onwind",
+     "cf": 0.988,
+     "limit": 0.6
+    },
+    {
+     "code": "cf_implausible",
+     "severity": "critical",
+     "carrier": "offwind-ac",
+     "cf": 0.992,
+     "limit": 0.7
+    },
+    {
+     "code": "availability_saturated",
+     "severity": "critical",
+     "share": 0.984
+    },
+    {
+     "code": "lines_extendable",
+     "severity": "warning",
+     "added_gw": 4.4
+    }
+   ]
+  },
+  {
+   "id": "tw_test2_highs_2013_fullyear_4h_6b_ls__elec_s_6_ec_lv1.0_Co2L-4H",
+   "run": "tw_test2_highs_2013_fullyear_4h_6b_ls",
+   "case": "elec_s_6_ec_lv1.0_Co2L-4H",
+   "transmission": "v1.0",
+   "solver": "highs",
+   "solver_status": "Optimal",
+   "solve_rule_s": 24.15,
+   "solver_s": 9.26,
+   "objective": 8592173092.0,
+   "snapshots": 2190,
+   "start": "2013-01-01 00:00:00",
+   "end": "2013-12-31 20:00:00",
+   "step_h": 4.0,
+   "weight_h_per_snapshot": 4.0,
+   "represented_hours": 8760.0,
+   "buses": 6,
+   "demand_TWh": 288.704,
+   "generation_TWh": 288.294,
+   "co2_Mt": 170.424,
+   "unserved_GWh": 409.7,
+   "unserved_peak_GW": 2.18,
+   "price_mean": 81.11,
+   "warnings": [
+    {
+     "code": "load_shedding",
+     "severity": "critical",
+     "gwh": 409.7
+    }
+   ]
+  }
+ ]
+}

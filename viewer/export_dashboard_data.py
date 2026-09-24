@@ -28,6 +28,8 @@ from viewer_helper import resolve_repo
 
 RENEWABLE_CARRIERS = ["solar", "onwind", "offwind-ac", "offwind-dc", "ror"]
 # Capacity factors above these are not physically plausible for Taiwan.
+# pypsa-earth names the load-shedding carrier "load shedding"; PyPSA-Eur uses "load".
+SHED_CARRIERS = ["load shedding", "load"]
 MAX_PLAUSIBLE_CF = {"solar": 0.30, "onwind": 0.60, "offwind-ac": 0.70, "offwind-dc": 0.70}
 
 
@@ -85,7 +87,8 @@ def energy_by_carrier(n, w):
 
 
 def capacity_by_carrier(n):
-    gen = n.generators.groupby("carrier").p_nom_opt.sum()
+    # Load-shedding generators ("load") have a huge nominal capacity; leave them out.
+    gen = n.generators[~n.generators.carrier.isin(SHED_CARRIERS)].groupby("carrier").p_nom_opt.sum()
     su = n.storage_units.groupby("carrier").p_nom_opt.sum()
     return gen.add(su, fill_value=0.0)
 
@@ -118,7 +121,7 @@ def availability_profiles(n):
 def technology_table(n):
     g = n.generators
     rows = []
-    for carrier, df in g.groupby("carrier"):
+    for carrier, df in g[~g.carrier.isin(SHED_CARRIERS)].groupby("carrier"):
         cap = df.p_nom_opt
         wmean = lambda col: (df[col] * cap).sum() / cap.sum() if cap.sum() > 0 else df[col].mean()
         rows.append(
@@ -170,7 +173,7 @@ def sanity_warnings(n, energy, cap, hours, avail):
     n_sub = n.buses.sub_network.nunique()
     if n_sub > 1:
         warn.append({"code": "subnetworks", "severity": "critical", "n": int(n_sub)})
-    shed = n.generators.index[n.generators.carrier == "load"]
+    shed = n.generators.index[n.generators.carrier.isin(SHED_CARRIERS)]
     if len(shed):
         shed_e = float(n.generators_t.p[shed].mul(n.snapshot_weightings.generators, axis=0).sum().sum())
         if shed_e > 1:
@@ -301,8 +304,10 @@ def export_case(repo, run, nc_path):
         "represented_hours": _r(hours, 1),
         "buses": int(len(n.buses)),
         "demand_TWh": _r(demand / 1e6),
-        "generation_TWh": _r(energy.sum() / 1e6),
+        "generation_TWh": _r(energy.drop(SHED_CARRIERS, errors="ignore").sum() / 1e6),
         "co2_Mt": _r(co2.sum() / 1e6),
+        "unserved_GWh": _r(energy.reindex(SHED_CARRIERS).fillna(0).sum() / 1e3, 1),
+        "unserved_peak_GW": _r(dispatch.reindex(columns=SHED_CARRIERS).fillna(0).sum(axis=1).max() / 1e3, 2),
         "price_mean": _r(nat_price.mean(), 2),
         "warnings": sanity_warnings(n, energy, cap, hours, avail),
     }

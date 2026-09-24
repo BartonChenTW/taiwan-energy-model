@@ -2,11 +2,11 @@
    Data comes from docs/data/, written by pypsa_tw/viewer/export_dashboard_data.py. */
 
 // Technology groups in stack order, bottom to top. Colours come from CSS tokens.
-const GROUPS = ["coal", "nuclear", "onwind", "storage", "solar", "offwind", "gas", "hydro", "other"];
+const GROUPS = ["coal", "nuclear", "onwind", "storage", "solar", "offwind", "gas", "hydro", "other", "unserved"];
 const CARRIER_GROUP = {
   coal: "coal", lignite: "coal", nuclear: "nuclear", onwind: "onwind", PHS: "storage",
   battery: "storage", solar: "solar", "offwind-ac": "offwind", "offwind-dc": "offwind",
-  CCGT: "gas", OCGT: "gas", ror: "hydro", hydro: "hydro", oil: "other", load: "other",
+  CCGT: "gas", OCGT: "gas", ror: "hydro", hydro: "hydro", oil: "other", load: "unserved", "load shedding": "unserved",
 };
 const AVAILABILITY_ORDER = ["solar", "onwind", "offwind-ac", "offwind-dc", "ror"];
 
@@ -84,32 +84,36 @@ const I18N = {
 
 const GROUP_LABEL = {
   en: { coal: "Coal", nuclear: "Nuclear", onwind: "Onshore wind", storage: "Pumped hydro",
-        solar: "Solar PV", offwind: "Offshore wind", gas: "Gas", hydro: "Hydro", other: "Other (oil)" },
+        solar: "Solar PV", offwind: "Offshore wind", gas: "Gas", hydro: "Hydro", other: "Other (oil)", unserved: "Unserved demand" },
   zh: { coal: "燃煤", nuclear: "核能", onwind: "陸域風電", storage: "抽蓄水力", solar: "太陽光電",
-        offwind: "離岸風電", gas: "燃氣", hydro: "水力", other: "其他（燃油）" },
+        offwind: "離岸風電", gas: "燃氣", hydro: "水力", other: "其他（燃油）", unserved: "未供電量" },
 };
 const CARRIER_LABEL = {
   en: { CCGT: "Gas (CCGT)", OCGT: "Gas (OCGT)", coal: "Coal", lignite: "Lignite", nuclear: "Nuclear",
         oil: "Oil", solar: "Solar PV", onwind: "Onshore wind", "offwind-ac": "Offshore wind (AC)",
         "offwind-dc": "Offshore wind (DC)", ror: "Run-of-river hydro", hydro: "Reservoir hydro",
-        PHS: "Pumped hydro", load: "Load shedding" },
+        PHS: "Pumped hydro", load: "Load shedding", "load shedding": "Load shedding" },
   zh: { CCGT: "燃氣複循環", OCGT: "燃氣單循環", coal: "燃煤", lignite: "褐煤", nuclear: "核能", oil: "燃油",
         solar: "太陽光電", onwind: "陸域風電", "offwind-ac": "離岸風電（交流）", "offwind-dc": "離岸風電（直流）",
-        ror: "川流式水力", hydro: "水庫式水力", PHS: "抽蓄水力", load: "切負載" },
+        ror: "川流式水力", hydro: "水庫式水力", PHS: "抽蓄水力", load: "切負載", "load shedding": "切負載" },
 };
 
 const FINDINGS = {
   en: [
-    "<b>Isolated buses fixed.</b> Two cluster buses (TW1 0, TW2 0) came from disconnected pieces of the OpenStreetMap grid. Since the config fetches small isolated subnetworks into the main grid, every run has one connected network and no load shedding.",
-    "<b>Weather data gap (fixed).</b> Runs before 2026-09-23 used a weather file covering only 2013-03-01 to 03-06. Outside those days solar, wind and run-of-river were treated as fully available, so those results overstate renewables. The runs are flagged in the table; they are replaced by runs with a full-year 2013 weather file.",
-    "<b>Today's grid kept fixed.</b> Runs with grid “v1.0” keep transmission at today's capacity. Earlier “copt” runs let lines expand (Test 2 added 4.4 GW).",
-    "<b>Input data still to review (Phase 3).</b> The fleet includes 5.3 GW of nuclear, but Taiwan's last reactor shut down in May 2025. Pumped hydro has no storage hours. Demand (≈336 TWh) looks high against recent statistics. Costs come from 2030 projections.",
+    "<b>Full year: today's system falls short at summer peaks.</b> With real 2013 weather, a fixed grid and no load shedding, the full-year run (Test 2) is infeasible. The diagnostic run that allows load shedding leaves 410 GWh unserved (0.14% of demand) over 800 hours in June–August, peaking at 2.2 GW. No line is at its limit then, so this is a shortage of generation capacity, not of transmission.",
+    "<b>Generation mix does not match 2024 yet.</b> Model: coal 55%, gas 21%, nuclear 15%, renewables 9%. Taiwan 2024: gas 42%, coal 39%, nuclear 4%, renewables 12%, pumped storage 1%. Coal is cheaper than gas in the cost data and has no availability or emission limits, so it runs at a 99.5% capacity factor.",
+    "<b>Input data to fix next (Phase 3).</b> The fleet includes 5.3 GW of nuclear, but Taiwan's last reactor shut down in May 2025. Gas (18.3 GW) and solar (12.4 GW) are below 2024 levels (about 20 GW and 14 GW). Pumped hydro has no storage hours, and run-of-river hydro produces almost nothing. The demand profile is a 2030 projection scaled to 2024 (288.6 TWh), and its summer peaks look too high. Costs come from 2030 projections.",
+    "<b>Weather data fixed.</b> Runs before 2026-09-23 used a weather file covering only 2013-03-01 to 03-06, so renewables were treated as fully available the rest of the time (solar capacity factor 99%). Runs now use a full-year 2013 weather file: solar reaches 13% and offshore wind 44%. The workflow now stops if the weather data doesn't cover the run.",
+    "<b>Grid and connectivity fixed.</b> Small disconnected pieces of the OpenStreetMap grid are merged into the main network, and runs marked “v1.0” keep transmission at today's capacity. Earlier “copt” runs let lines expand.",
+    "<b>Solvers agree.</b> HiGHS and Gurobi give the same result for Test 1, and both solve it in well under a second.",
   ],
   zh: [
-    "<b>孤立節點已修正。</b>兩個叢集節點（TW1 0、TW2 0）源自 OpenStreetMap 電網中互不相連的部分。設定改為把小型孤立子網路併入主網後，每次模擬都只有一個相連電網，且不需切負載。",
-    "<b>氣象資料缺漏（已修正）。</b>2026-09-23 之前的模擬使用只涵蓋 2013-03-01 至 03-06 的氣象檔。這幾天以外，太陽光電、風電與川流式水力都被視為滿載可用，因此高估再生能源。這些模擬已在表格中標示，並由使用 2013 全年氣象檔的新模擬取代。",
-    "<b>維持現有電網。</b>電網標示為「v1.0」的模擬維持目前輸電容量；較早的「copt」模擬允許線路擴建（Test 2 增加 4.4 GW）。",
-    "<b>輸入資料仍待檢視（第三階段）。</b>機組資料包含 5.3 GW 核能，但台灣最後一部核電機組已於 2025 年 5 月停機；抽蓄水力沒有儲能時數；電力需求（約 336 TWh）相較近年統計偏高；成本資料採用 2030 年預估值。",
+    "<b>全年模擬：現有系統在夏季尖峰時容量不足。</b>使用 2013 年實際氣象、固定電網且不允許切負載時，全年模擬（Test 2）無可行解。允許切負載的診斷模擬顯示，6 至 8 月共 800 小時有 410 GWh 未供電（占需求 0.14%），最高 2.2 GW。當時沒有線路達到容量上限，因此是發電容量不足，而非輸電瓶頸。",
+    "<b>發電結構尚未符合 2024 年實況。</b>模型：燃煤 55%、燃氣 21%、核能 15%、再生能源 9%。台灣 2024 年：燃氣 42%、燃煤 39%、核能 4%、再生能源 12%、抽蓄 1%。成本資料中燃煤比燃氣便宜，且沒有可用率或排放限制，因此容量因數達 99.5%。",
+    "<b>下一步要修正的輸入資料（第三階段）。</b>機組資料包含 5.3 GW 核能，但台灣最後一部核電機組已於 2025 年 5 月停機。燃氣（18.3 GW）與太陽光電（12.4 GW）低於 2024 年水準（約 20 GW 與 14 GW）。抽蓄水力沒有儲能時數，川流式水力幾乎沒有發電。需求曲線是 2030 年預估值按 2024 年總量（288.6 TWh）縮放，夏季尖峰看起來偏高。成本資料採用 2030 年預估值。",
+    "<b>氣象資料已修正。</b>2026-09-23 之前的模擬使用只涵蓋 2013-03-01 至 03-06 的氣象檔，其餘時間再生能源都被視為滿載可用（太陽光電容量因數 99%）。現在改用 2013 全年氣象檔：太陽光電 13%、離岸風電 44%。若氣象資料未涵蓋模擬期間，流程會直接停止。",
+    "<b>電網與連通性已修正。</b>OpenStreetMap 電網中不相連的小區塊已併入主網；標示「v1.0」的模擬維持目前的輸電容量，較早的「copt」模擬允許線路擴建。",
+    "<b>求解器結果一致。</b>HiGHS 與 Gurobi 對 Test 1 得到相同結果，兩者都在一秒內完成。",
   ],
 };
 
@@ -233,6 +237,8 @@ function renderTiles(s) {
     tile(t("t_demand"), nf(s.demand_TWh, 1), "TWh", t("represents")(nf(s.represented_hours, 0), nf(s.weight_h_per_snapshot, 1))),
     tile(t("t_co2"), nf(s.co2_Mt, 1), "Mt"),
     tile(t("t_price"), nf(s.price_mean, 1), "EUR/MWh"),
+    ...(s.unserved_GWh > 0 ? [tile(GROUP_LABEL[state.lang].unserved, nf(s.unserved_GWh, 1), "GWh",
+        `${t("peak_col")} ${nf(s.unserved_peak_GW, 2)}`)] : []),
     tile(t("t_solve"), solve, "s", solveNote),
   ].join("");
 }
@@ -494,8 +500,11 @@ async function selectCase(id) {
 function defaultCase(cases) {
   const requested = new URL(location.href).searchParams.get("case");
   if (requested && cases.some((c) => c.id === requested)) return requested;
-  const clean = cases.filter((c) => severityOf(c) === "good");
-  const pick = clean.find((c) => c.run.includes("test2")) || clean[0] || cases[cases.length - 1];
+  // Prefer a full-year run without extendable lines; among those, one that passes every check.
+  const current = cases.filter((c) => c.transmission !== "copt");
+  const fullYear = current.filter((c) => c.snapshots >= 1000);
+  const pick = fullYear.find((c) => severityOf(c) === "good") || fullYear[fullYear.length - 1]
+    || current.find((c) => severityOf(c) === "good") || cases[cases.length - 1];
   return pick.id;
 }
 
