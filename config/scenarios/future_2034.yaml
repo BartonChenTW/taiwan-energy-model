@@ -2,7 +2,7 @@
 # Use on top of the Test 2 config:
 #   snakemake -j 1 solve_all_networks --configfile pypsa_tw/config/config_tw_test2_highs.yaml pypsa_tw/config/scenarios/future_2034.yaml
 # Fleet: data/custom_powerplants_tw2034.csv from pypsa_tw/data/build_future_powerplants.py
-# (MOEA supply-demand report 2025 edition: thermal schedule of Figure 3-3,
+# (MOEA 全國電力資源供需報告 113年度, data.gov.tw/dataset/16437: thermal schedule of Figure 3-3,
 # renewable targets of Table 3-1). The grid stays as today, nothing is
 # investable, and load shedding is allowed, so any shortfall shows up as
 # unserved energy.

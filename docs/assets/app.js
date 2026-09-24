@@ -24,16 +24,17 @@ const I18N = {
     su_costs: "Costs and fuel prices", su_costs_note: "PyPSA technology-data projections for this year; they set the dispatch order (marginal costs).",
     su_resolution: "Resolution", su_resolution_note: (cl, opts) => `${cl} buses, time steps from ${opts}.`,
     su_summary: (wy, fd) => `In short: today's system (fleet ${fd}, demand at 2024 level) under the weather of ${wy}.`,
-    su_demand_level_future: (sc, twh, sy) => `The profile is scaled by ${sc} to ${twh} TWh: Taipower-system generation in 2024 (251 TWh, still to verify) grown by 1.7%/yr to ${sy}, as in the MOEA outlook (2025 edition).`,
+    su_demand_level_future: (sc, twh, sy) => `The profile is scaled by ${sc} to ${twh} TWh: Taipower-system generation in 2024 (251 TWh, still to verify) grown by 1.7%/yr to ${sy}, as in the MOEA supply-demand report 113年度 (Section 3.1, p. 7).`,
     su_fleet_future: (f) => `Planned fleet (${f}): today's fleet with the MOEA schedule of new gas units and retirements, and renewables at the government targets.`,
     su_planned: "planned",
     su_summary_future: (sy, wy) => `In short: the planned ${sy} system (fleet and demand) under the weather of ${wy}, with today's grid.`,
+    sc_sources: "<b>Sources.</b> Planned fleet and demand growth: MOEA (經濟部), <i>全國電力資源供需報告 113年度</i> (National Power Supply-Demand Report FY2024), prepared by the Energy Administration: Figure 3-3 (thermal plan, p. 18), Table 3-1 (renewable targets, p. 19), Section 3.1 (demand +1.7%/yr, p. 7); <a href=\"https://data.gov.tw/dataset/16437\" rel=\"noopener\">data.gov.tw/dataset/16437</a>. Weather: ERA5 reanalysis (Copernicus Climate Change Service). Demand shape: GEGIS (Mattsson et al., 2021) from the PyPSA-Earth data bundle. Costs: PyPSA technology-data v0.13.2. Full references: <a href=\"taiwan-data.html#refs\">Taiwan energy data → References</a>.",
     nav_scenarios: "Scenarios", sc_title: "Scenarios: other weather years and future years",
     sc_intro: "Each scenario changes one thing against the 2013 run with today's system. Load shedding is allowed in all of them, so a shortfall shows up as unserved demand instead of an infeasible run. Select a row to open that run.",
     sc_weather: "Weather years: today's system", sc_weather_sub: "Same fleet, grid and annual demand (251 TWh); only the weather changes",
     sc_weather_note: "The weather year sets hourly solar, wind and hydro availability and the shape of the demand profile (GEGIS computes demand with that year's temperatures). Annual demand is rescaled to the same 251 TWh in every year.",
     sc_future: "Future years: the planned system", sc_future_sub: "Planned fleet and demand, 2013 weather, today's grid",
-    sc_future_note: "Fleet: today's Taipower list plus the MOEA 2025 supply-demand report's unit-by-unit schedule of new gas plants and coal, oil and gas retirements (Figure 3-3; a unit counts if it runs on 1 July), with solar, wind, hydro, geothermal and biomass at the Table 3-1 targets (2032 targets held for 2034). Demand grows 1.7%/yr. The grid is not expanded, and costs are technology-data projections for 2030 and 2035. Sites of two unnamed gas units and of geothermal and biomass are assumptions.",
+    sc_future_note: "Fleet: today's Taipower list plus the MOEA supply-demand report 113年度's unit-by-unit schedule of new gas plants and coal, oil and gas retirements (Figure 3-3; a unit counts if it runs on 1 July), with solar, wind, hydro, geothermal and biomass at the Table 3-1 targets (2032 targets held for 2034). Demand grows 1.7%/yr. The grid is not expanded, and costs are technology-data projections for 2030 and 2035. Sites of two unnamed gas units and of geothermal and biomass are assumptions.",
     sc_capacity: "Installed capacity: today and planned", sc_capacity_sub: "GW by technology in each future-year run",
     sc_case: "Scenario", sc_re: "Renewables", sc_pending: "not run yet", sc_today: "today",
     nav_data: "Taiwan energy data →",
@@ -107,16 +108,17 @@ const I18N = {
     su_costs: "成本與燃料價格", su_costs_note: "PyPSA technology-data 該年預估值，決定調度順序（邊際成本）。",
     su_resolution: "解析度", su_resolution_note: (cl, opts) => `${cl} 個節點，時間步長依 ${opts}。`,
     su_summary: (wy, fd) => `簡言之：今天的系統（機組 ${fd}、需求為 2024 年水準），套用 ${wy} 年的氣象。`,
-    su_demand_level_future: (sc, twh, sy) => `需求曲線乘以 ${sc}，即 ${twh} TWh：台電系統 2024 年發電量（251 TWh，待查證）依經濟部展望（2025 年版）每年成長 1.7% 至 ${sy} 年。`,
+    su_demand_level_future: (sc, twh, sy) => `需求曲線乘以 ${sc}，即 ${twh} TWh：台電系統 2024 年發電量（251 TWh，待查證）依經濟部 113 年度全國電力資源供需報告（第 7 頁）每年成長 1.7% 至 ${sy} 年。`,
     su_fleet_future: (f) => `規劃機組（${f}）：現有機組，加上經濟部規劃的新燃氣機組與除役時程，再生能源依政府目標。`,
     su_planned: "規劃",
     su_summary_future: (sy, wy) => `簡言之：${sy} 年規劃的系統（機組與需求），套用 ${wy} 年的氣象，電網維持現狀。`,
+    sc_sources: "<b>資料來源。</b>規劃機組與需求成長：經濟部（能源署編製）《全國電力資源供需報告 113年度》：圖 3-3（火力機組規劃，第 18 頁）、表 3-1（再生能源目標，第 19 頁）、參、一 需求面規劃（需求年均成長 1.7%，第 7 頁）；<a href=\"https://data.gov.tw/dataset/16437\" rel=\"noopener\">data.gov.tw/dataset/16437</a>。氣象：ERA5 再分析資料（哥白尼氣候變遷服務）。需求曲線：GEGIS（Mattsson 等，2021），取自 PyPSA-Earth 資料包。成本：PyPSA technology-data v0.13.2。完整參考資料：<a href=\"taiwan-data.html#refs\">台灣能源資料 → 參考來源</a>。",
     nav_scenarios: "情境", sc_title: "情境：其他氣象年與未來年份",
     sc_intro: "每個情境只相對於「2013 年氣象、現有系統」改變一件事。所有情境都允許切負載，供電不足時會顯示為未供電量，而不是無可行解。點選一列可開啟該模擬。",
     sc_weather: "氣象年：現有系統", sc_weather_sub: "機組、電網與年需求（251 TWh）相同，只改變氣象",
     sc_weather_note: "氣象年決定逐時的太陽光電、風力與水力可用率，以及需求曲線的形狀（GEGIS 以該年氣溫計算需求）。各年的年需求都重新縮放為 251 TWh。",
     sc_future: "未來年份：規劃的系統", sc_future_sub: "規劃的機組與需求，2013 年氣象，現有電網",
-    sc_future_note: "機組：現有台電清單，加上經濟部 2025 年全國電力資源供需報告的逐機組新燃氣機組與燃煤、燃油、燃氣除役時程（圖 3-3；7 月 1 日在役才計入），太陽光電、風力、水力、地熱與生質能依表 3-1 目標（2034 年沿用 2032 年目標）。需求每年成長 1.7%。電網不擴建，成本採 technology-data 2030 與 2035 年預估。兩部未指定地點的燃氣機組及地熱、生質能的位置為假設。",
+    sc_future_note: "機組：現有台電清單，加上經濟部 113 年度全國電力資源供需報告的逐機組新燃氣機組與燃煤、燃油、燃氣除役時程（圖 3-3；7 月 1 日在役才計入），太陽光電、風力、水力、地熱與生質能依表 3-1 目標（2034 年沿用 2032 年目標）。需求每年成長 1.7%。電網不擴建，成本採 technology-data 2030 與 2035 年預估。兩部未指定地點的燃氣機組及地熱、生質能的位置為假設。",
     sc_capacity: "裝置容量：現有與規劃", sc_capacity_sub: "各未來年份模擬的裝置容量（GW）",
     sc_case: "情境", sc_re: "再生能源", sc_pending: "尚未模擬", sc_today: "現在",
     nav_data: "台灣能源資料 →",
@@ -669,6 +671,8 @@ async function renderScenarios() {
   const sc = state.scenarios;
   if (!sc) { $("scenarios").hidden = true; return; }
   $("scenarios").hidden = false;
+  // Static, trusted HTML from I18N (links to the sources).
+  $("sc-sources").innerHTML = t("sc_sources");
   const label = (r) => (r.label === "today" ? t("sc_today") : r.label);
 
   const shareChart = (targetId, rows) => {

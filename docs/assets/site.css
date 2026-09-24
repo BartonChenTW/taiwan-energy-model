@@ -297,3 +297,10 @@ td.note-cell { min-width: 220px; max-width: 420px; color: var(--ink-2); }
 .setup { margin-bottom: 22px; }
 .setup summary { font-size: 14px; }
 .setup .note { margin-top: 10px; }
+
+/* Source line under a chart */
+.sources { margin-top: 8px; font-size: 12px; color: var(--ink-2); }
+.sources-label { font-weight: 600; margin-right: 4px; }
+.sources ul { list-style: none; margin: 2px 0 0; padding: 0; }
+.sources li { margin: 3px 0; line-height: 1.5; }
+.sources .chip { font-size: 11px; padding: 0 6px; }

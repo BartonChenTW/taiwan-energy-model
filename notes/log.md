@@ -239,5 +239,30 @@ Barton asked what "2013" means and asked for other years. Chosen: other weather 
    - Dark mode has its own values. Its worst normal-vision pairs (about 11–13) are between colours that never sit next to each other in a chart.
    - The planned-additions chart is no longer red-dominated: coal retirements are grey, and gas retirements are a lighter gas colour.
 
+## 2026-09-24: sources for every projection
+
+Barton: "in the projection, where is it from? Identifying the source is important."
+
+ - **Source registry** `pypsa_tw/data/sources.csv`: one row per source, with original title, publisher, edition, publication date, landing page, direct file URL, local copy and SHA-256, access date, licence and evidence. Every row of `taiwan_timeseries.csv` now has a `source_id` and a `locator`:
+   - projections and targets: table or section, printed page and PDF page;
+   - history: the column of the downloaded file.
+
+   `build_timeseries.py` stops if a local copy no longer matches its checksum, and the exporter stops if a row points to an unknown source.
+ - **The MOEA report, identified properly:**
+   - From the cover: 經濟部《全國電力資源供需報告 113年度》, prepared by 經濟部能源署, i.e. the FY2024 report with the 2025–2034 outlook.
+   - Direct file: `https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=365` (data.gov.tw 16437, identifier 313210000G-000048, updated 2026-06-09). SHA-256 `03b879cf…fc84`.
+   - Earlier notes called it the "2025 edition", which is ambiguous; it is now named 113年度 everywhere. The press-release outlook is the 114年度 report.
+   - Printed page = PDF page − 4. Figure 3-3 is p. 18 (PDF p. 22), Table 3-1 p. 19 (PDF 23), Table 3-2 p. 20 (PDF 24), demand growth p. 7 (PDF 11). Each was confirmed against the extracted text. (The earlier "Figure 3-3, p. 22" was a PDF page number.)
+ - **Correction:**
+   - The 2026–2035 night-peak growth (2.7%/yr) was labelled as the MOEA report, but its link and evidence were a search summary of a Science Media Center Taiwan article. It is now attributed to that article (`smctw_2026_outlook`, search summary).
+   - Titles of the MOEA news release and the SMC article are left empty rather than guessed.
+ - **Not verified:** the NDC 2050 pathway PDF returns HTTP 403 to scripts, so the 60–70% renewable-share figure stays "to verify" (checklist).
+ - **Website:**
+   - Every chart on the Taiwan energy data page has a "Sources" line built from the series it plots: kind, years, source, table/page, link and evidence badge.
+   - The series table shows the locator.
+   - A new "References for history and projections" table has the full registry (`docs/data/taiwan_sources.csv`).
+   - The dashboard's Scenarios section cites the report's figure, table and pages.
+ - **Also updated:** the key facts from the report now carry pages, and the MOTEL records use the registry (full citation plus locations; all 5 files pass `--strict`).
+
 TODO:
  - to run PyPSA-Earth Taiwan!

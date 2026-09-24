@@ -97,7 +97,25 @@ An earlier note said "no line at its limit, so it is a capacity shortfall". That
 
 ## History, projections and targets (`taiwan_timeseries.csv`)
 
-`build_timeseries.py` builds one table of Taiwan electricity data by year. Each row has `kind` = `history`, `projection` or `target`, plus its source, link and evidence. It has 826 rows in 45 series:
+`build_timeseries.py` builds one table of Taiwan electricity data by year. Each row has `kind` = `history`, `projection` or `target`, a `source_id` and a `locator`, plus the evidence. It has 850 rows in 49 series.
+
+**Where each value comes from.** `sources.csv` is the registry of every source:
+- original title and publisher, edition, publication date;
+- the landing page and the direct file URL;
+- the local copy with its SHA-256 checksum, the access date and the evidence level.
+
+`build_timeseries.py` stops if a local copy no longer matches its checksum. The `locator` says where in the source a value is. Projections and targets give the table or section with its printed page and PDF page, e.g. "Table 3-2, p. 20 (PDF p. 24)". History gives the column of the downloaded file. The website shows this under every chart and in a reference list. The main sources:
+
+| source_id | Source | Used for |
+| --- | --- | --- |
+| `moea_psd_fy2024` | 經濟部《全國電力資源供需報告 113年度》 (MOEA National Power Supply-Demand Report FY2024, prepared by the Energy Administration; 2024 actuals, outlook 2025–2034), [data.gov.tw/dataset/16437](https://data.gov.tw/dataset/16437) | Night peak and capability (Table 3-2, p. 20), renewable targets (Table 3-1, p. 19), thermal plan (Figure 3-3, p. 18), demand growth 1.7%/yr (Section 3.1, p. 7), renewable-share targets (Section 3.2(1), p. 11), storage (Section 3.2(5), p. 17) |
+| `moea_psd_fy2025_press` | MOEA news release on the 114年度 report (2026-06); the full report was not yet published | 2026–2035 outlook: +2.5%/yr, about 26 GW new gas |
+| `smctw_2026_outlook` | Science Media Center Taiwan article (secondary; search summary) | 2026–2035 night-peak growth 2.7%/yr, **to verify** |
+| `ndc_2050_pathway` | 國發會《臺灣2050淨零排放路徑及策略總說明》 (2022-03) | 2050 renewable share 60–70%, **to verify** (PDF blocked by bot protection) |
+| `gegis_ssp2_26` | GEGIS (Mattsson et al., 2021) in the PyPSA-Earth data bundle | PyPSA-Earth default demand projection (a model projection, not an official forecast) |
+| `derived_moea_growth` | Computed here | 1.7%/yr applied to 2024 generation (not published by anyone) |
+
+The full table:
 
 | Kind | Content | Source (in `official/`) |
 | --- | --- | --- |
@@ -113,8 +131,8 @@ An earlier note said "no line at its limit, so it is a capacity shortfall". That
 The report's Table 3-2 was checked after transcription: each year's reserve margin equals capability ÷ peak − 1. The Table 3-1 renewable targets add up to the stated totals.
 
 **Two editions of the supply-demand report:**
-- The downloaded PDF is the 2025 edition: 2024 actuals, 2025–2034 outlook, demand +1.7%/yr, night peak +2.1%/yr.
-- The 2026 edition (press release only, 2026-06) raises this to +2.5%/yr for 2026–2035, with night peak +2.7%/yr and about 26 GW of new gas.
+- The downloaded PDF is the **113年度 (FY2024) report**, published in 2025: 2024 actuals, 2025–2034 outlook, demand +1.7%/yr, night peak +2.1%/yr. Earlier notes called it the "2025 edition".
+- The **114年度 (FY2025) report** has so far only a news release (2026-06). It raises growth to +2.5%/yr for 2026–2035, with about 26 GW of new gas. The night-peak growth of +2.7%/yr comes from a secondary article (`smctw_2026_outlook`), not from MOEA directly.
 
 **Checks against the official files:** these confirmed several figures taken earlier from search summaries: national generation 2024 of 289.4 TWh, capacities, emission factors and renewable shares. The key-facts table now marks them as downloaded.
 
@@ -126,9 +144,9 @@ The 2024 Taipower-system figure of 251.44 TWh used for demand calibration is sti
 python pypsa_tw/data/build_future_powerplants.py
 ```
 
-This writes `data/custom_powerplants_tw2030.csv` and `data/custom_powerplants_tw2034.csv`. Each starts from today's file and applies the MOEA National Power Supply-Demand Report, 2025 edition ([16437](https://data.gov.tw/dataset/16437)).
+This writes `data/custom_powerplants_tw2030.csv` and `data/custom_powerplants_tw2034.csv`. Each starts from today's file and applies the MOEA National Power Supply-Demand Report 113年度 (`moea_psd_fy2024`, [16437](https://data.gov.tw/dataset/16437)).
 
-**Thermal plan.** `official/moea_thermal_schedule_2024_2034.csv` is Figure 3-3 of the report (p. 22), transcribed unit by unit with the month of each addition or retirement.
+**Thermal plan.** `official/moea_thermal_schedule_2024_2034.csv` is Figure 3-3 of the report (p. 18; PDF p. 22), transcribed unit by unit with the month of each addition or retirement.
 - The transcription adds up to the report's own totals for 2025–2034: +25,163 MW added and −12,941 MW retired. The script checks both.
 - A unit counts for model year Y if it is in service on 1 July of Y, i.e. at the summer peak. A unit retiring in December of Y still counts for Y.
 - Units already in today's fleet (`in_base_fleet = yes`, e.g. Tatan #7–9 and the new Taichung/Hsinta units) are not added again. Retirements of units no longer in the fleet (Mailiao coal, Chang Sheng) are skipped.

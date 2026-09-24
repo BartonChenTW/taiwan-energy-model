@@ -303,21 +303,27 @@ EVIDENCE_METHOD = {
 
 
 def _ts_sources(group):
-    out, seen = [], set()
-    for _, r in group.iterrows():
-        if r.source_name in seen:
-            continue
-        seen.add(r.source_name)
+    """One MOTEL source per source id, with the full citation from sources.csv."""
+    reg = pd.read_csv(HERE / "sources.csv", dtype=str).fillna("").set_index("source_id")
+    out = []
+    for sid, g in group.groupby("source_id", sort=False):
+        r = reg.loc[sid]
+        cite = "; ".join(x for x in [r.title, r.title_en, r.publisher, r.edition, f"published {r.published}" if r.published else ""] if x)
+        if r.local_file:
+            cite += f"; local copy pypsa_tw/data/{r.local_file}" + (f" (SHA-256 {r.sha256})" if r.sha256 else "")
+        locators = sorted(set(x for x in g.locator if isinstance(x, str) and x))
+        if locators and not all(x.startswith("column") for x in locators):
+            cite += "; locations: " + " | ".join(locators)
         src = {
-            "source_name": r.source_name.replace(" ", "_").replace(":", "")[:80],
-            "source_description": r.source_name,
-            "source_type": "dataset" if "dataset" in str(r.link) else "report",
-            "access_date": ACCESS_DATE,
+            "source_name": sid,
+            "source_description": cite,
+            "source_type": "dataset" if "dataset" in r.landing_url else "report",
+            "access_date": r.accessed or ACCESS_DATE,
             "assessment_method": EVIDENCE_METHOD.get(r.evidence, r.evidence),
-            "linked_attribute": sorted(set(group.loc[group.source_name == r.source_name, "series"])),
+            "linked_attribute": sorted(set(g.series)),
         }
-        if isinstance(r.link, str) and r.link:
-            src["link"] = r.link
+        if r.file_url or r.landing_url:
+            src["link"] = r.file_url or r.landing_url
         out.append(src)
     return out
 
@@ -325,7 +331,8 @@ def _ts_sources(group):
 def _ts_attributes(group):
     attrs = []
     for _, r in group.sort_values(["series", "year"]).iterrows():
-        note = f"{r.kind.capitalize()}. Unit {r.unit}."
+        note = f"{r.kind.capitalize()}. Unit {r.unit}. Source {r.source_id}" + (
+            f", {r.locator}." if isinstance(r.locator, str) and r.locator else ".")
         if isinstance(r.note, str) and r.note:
             note += " " + r.note
         attrs.append({"attribute_name": r.series, "value": f"{r.value:g} {r.unit}",

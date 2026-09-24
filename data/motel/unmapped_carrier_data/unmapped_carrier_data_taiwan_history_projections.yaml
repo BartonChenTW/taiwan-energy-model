@@ -16,8 +16,10 @@
     system_boundary: annual gross generation
     scope_notes: Attribute notes say whether each value is history, projection or target.
   sources:
-  - source_name: Energy_Administration_generation_by_source_(annual)
-    source_description: 'Energy Administration: generation by source (annual)'
+  - source_name: moeaea_generation_annual
+    source_description: 發電量年資料; Annual electricity generation; 經濟部能源署 Energy Administration; 2005-2025;
+      published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_generation_by_source_annual.csv
+      (SHA-256 60fe2f20455f83fe08c69eb92d08a836720b4a31880213ae31abb8a478ceb326)
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
@@ -35,1121 +37,1142 @@
     - generation_total
     - generation_waste
     - generation_wind
-    link: https://data.gov.tw/dataset/16481
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=70
   attributes:
   - attribute_name: generation_biomass
     value: 0.3235 TWh
     time_index: '2005'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.3213 TWh
     time_index: '2006'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.3023 TWh
     time_index: '2007'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.2725 TWh
     time_index: '2008'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.2293 TWh
     time_index: '2009'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.27 TWh
     time_index: '2010'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.2361 TWh
     time_index: '2011'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.2421 TWh
     time_index: '2012'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.2285 TWh
     time_index: '2013'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.2525 TWh
     time_index: '2014'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.249 TWh
     time_index: '2015'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.2081 TWh
     time_index: '2016'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.1916 TWh
     time_index: '2017'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.1916 TWh
     time_index: '2018'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.1765 TWh
     time_index: '2019'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.2118 TWh
     time_index: '2020'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.2017 TWh
     time_index: '2021'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.1642 TWh
     time_index: '2022'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.244 TWh
     time_index: '2023'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.2374 TWh
     time_index: '2024'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_biomass
     value: 0.2731 TWh
     time_index: '2025'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: generation_coal
     value: 120.044 TWh
     time_index: '2005'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 124.049 TWh
     time_index: '2006'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 128.463 TWh
     time_index: '2007'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 122.202 TWh
     time_index: '2008'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 120.668 TWh
     time_index: '2009'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 122.353 TWh
     time_index: '2010'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 124.468 TWh
     time_index: '2011'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 122.437 TWh
     time_index: '2012'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 121.449 TWh
     time_index: '2013'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 123.445 TWh
     time_index: '2014'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 117.159 TWh
     time_index: '2015'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 121.225 TWh
     time_index: '2016'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 127.95 TWh
     time_index: '2017'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 131.257 TWh
     time_index: '2018'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 126.401 TWh
     time_index: '2019'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 125.907 TWh
     time_index: '2020'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 128.84 TWh
     time_index: '2021'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 121.025 TWh
     time_index: '2022'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 119.168 TWh
     time_index: '2023'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 113.31 TWh
     time_index: '2024'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_coal
     value: 102.237 TWh
     time_index: '2025'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: generation_gas
     value: 38.9158 TWh
     time_index: '2005'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 40.1097 TWh
     time_index: '2006'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 45.0332 TWh
     time_index: '2007'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 48.5118 TWh
     time_index: '2008'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 47.2806 TWh
     time_index: '2009'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 60.2459 TWh
     time_index: '2010'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 64.2056 TWh
     time_index: '2011'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 66.2921 TWh
     time_index: '2012'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 68.389 TWh
     time_index: '2013'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 73.0702 TWh
     time_index: '2014'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 79.009 TWh
     time_index: '2015'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 83.3036 TWh
     time_index: '2016'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 91.4417 TWh
     time_index: '2017'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 92.409 TWh
     time_index: '2018'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 91.1455 TWh
     time_index: '2019'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 99.8873 TWh
     time_index: '2020'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 108.359 TWh
     time_index: '2021'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 112.006 TWh
     time_index: '2022'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 111.63 TWh
     time_index: '2023'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 122.503 TWh
     time_index: '2024'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_gas
     value: 138.159 TWh
     time_index: '2025'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0 TWh
     time_index: '2005'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0 TWh
     time_index: '2006'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0 TWh
     time_index: '2007'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0 TWh
     time_index: '2008'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0 TWh
     time_index: '2009'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0 TWh
     time_index: '2010'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0 TWh
     time_index: '2011'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0 TWh
     time_index: '2012'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0 TWh
     time_index: '2013'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0 TWh
     time_index: '2014'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0 TWh
     time_index: '2015'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0 TWh
     time_index: '2016'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0 TWh
     time_index: '2017'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0 TWh
     time_index: '2018'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0.0008 TWh
     time_index: '2019'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0.0019 TWh
     time_index: '2020'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0.0091 TWh
     time_index: '2021'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0.025 TWh
     time_index: '2022'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0.0232 TWh
     time_index: '2023'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0.0267 TWh
     time_index: '2024'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_geothermal
     value: 0.0258 TWh
     time_index: '2025'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: generation_hydro
     value: 4.0714 TWh
     time_index: '2005'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 4.0884 TWh
     time_index: '2006'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 4.4175 TWh
     time_index: '2007'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 4.3051 TWh
     time_index: '2008'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 3.7483 TWh
     time_index: '2009'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 4.1941 TWh
     time_index: '2010'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 3.9997 TWh
     time_index: '2011'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 5.6696 TWh
     time_index: '2012'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 5.4229 TWh
     time_index: '2013'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 4.3179 TWh
     time_index: '2014'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 4.4701 TWh
     time_index: '2015'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 6.562 TWh
     time_index: '2016'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 5.4468 TWh
     time_index: '2017'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 4.4816 TWh
     time_index: '2018'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 5.5448 TWh
     time_index: '2019'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 3.0192 TWh
     time_index: '2020'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 3.4747 TWh
     time_index: '2021'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 5.8365 TWh
     time_index: '2022'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 3.9639 TWh
     time_index: '2023'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 4.2106 TWh
     time_index: '2024'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_hydro
     value: 5.5061 TWh
     time_index: '2025'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 39.972 TWh
     time_index: '2005'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 39.8705 TWh
     time_index: '2006'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 40.5392 TWh
     time_index: '2007'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 40.8269 TWh
     time_index: '2008'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 41.5711 TWh
     time_index: '2009'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 41.6287 TWh
     time_index: '2010'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 42.1165 TWh
     time_index: '2011'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 40.4217 TWh
     time_index: '2012'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 41.6394 TWh
     time_index: '2013'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 42.389 TWh
     time_index: '2014'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 36.4711 TWh
     time_index: '2015'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 31.6614 TWh
     time_index: '2016'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 22.4455 TWh
     time_index: '2017'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 27.6783 TWh
     time_index: '2018'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 32.3234 TWh
     time_index: '2019'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 31.4402 TWh
     time_index: '2020'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 27.7879 TWh
     time_index: '2021'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 23.7548 TWh
     time_index: '2022'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 17.802 TWh
     time_index: '2023'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 12.1803 TWh
     time_index: '2024'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_nuclear
     value: 3.2374 TWh
     time_index: '2025'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 核能_全國(統計數值).
   - attribute_name: generation_oil
     value: 17.2008 TWh
     time_index: '2005'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 19.8466 TWh
     time_index: '2006'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 16.8239 TWh
     time_index: '2007'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 15.0387 TWh
     time_index: '2008'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 9.4028 TWh
     time_index: '2009'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 11.1308 TWh
     time_index: '2010'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 9.4878 TWh
     time_index: '2011'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 7.6232 TWh
     time_index: '2012'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 6.8181 TWh
     time_index: '2013'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 8.0139 TWh
     time_index: '2014'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 11.9892 TWh
     time_index: '2015'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 11.8913 TWh
     time_index: '2016'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 12.7167 TWh
     time_index: '2017'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 8.1714 TWh
     time_index: '2018'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 5.8496 TWh
     time_index: '2019'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 4.4196 TWh
     time_index: '2020'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 5.3311 TWh
     time_index: '2021'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 4.4495 TWh
     time_index: '2022'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 3.7761 TWh
     time_index: '2023'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 4.1878 TWh
     time_index: '2024'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_oil
     value: 4.3722 TWh
     time_index: '2025'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.8385 TWh
     time_index: '2005'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.9107 TWh
     time_index: '2006'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.9327 TWh
     time_index: '2007'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.4672 TWh
     time_index: '2008'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.3051 TWh
     time_index: '2009'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.061 TWh
     time_index: '2010'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 2.9021 TWh
     time_index: '2011'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 2.9369 TWh
     time_index: '2012'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.1871 TWh
     time_index: '2013'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.1212 TWh
     time_index: '2014'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.035 TWh
     time_index: '2015'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.2937 TWh
     time_index: '2016'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.3337 TWh
     time_index: '2017'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.3708 TWh
     time_index: '2018'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.2081 TWh
     time_index: '2019'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.1589 TWh
     time_index: '2020'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.184 TWh
     time_index: '2021'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.0622 TWh
     time_index: '2022'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.0511 TWh
     time_index: '2023'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.0753 TWh
     time_index: '2024'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_pumped_storage
     value: 3.1022 TWh
     time_index: '2025'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: generation_solar
     value: 0.001 TWh
     time_index: '2005'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 0.0015 TWh
     time_index: '2006'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 0.0022 TWh
     time_index: '2007'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 0.0045 TWh
     time_index: '2008'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 0.0091 TWh
     time_index: '2009'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 0.0217 TWh
     time_index: '2010'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 0.0616 TWh
     time_index: '2011'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 0.1599 TWh
     time_index: '2012'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 0.3211 TWh
     time_index: '2013'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 0.5288 TWh
     time_index: '2014'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 0.8503 TWh
     time_index: '2015'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 1.109 TWh
     time_index: '2016'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 1.6675 TWh
     time_index: '2017'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 2.6616 TWh
     time_index: '2018'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 3.9647 TWh
     time_index: '2019'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 6.2474 TWh
     time_index: '2020'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 8.351 TWh
     time_index: '2021'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 10.8988 TWh
     time_index: '2022'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 13.3404 TWh
     time_index: '2023'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 15.4986 TWh
     time_index: '2024'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_solar
     value: 16.7392 TWh
     time_index: '2025'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: generation_taipower_ipp
     value: 185.031 TWh
     time_index: '2005'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 193.199 TWh
     time_index: '2006'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 198.796 TWh
     time_index: '2007'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 198.976 TWh
     time_index: '2008'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 190.302 TWh
     time_index: '2009'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 206.431 TWh
     time_index: '2010'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 212.347 TWh
     time_index: '2011'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 212.809 TWh
     time_index: '2012'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 211.81 TWh
     time_index: '2013'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 217.721 TWh
     time_index: '2014'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 217.997 TWh
     time_index: '2015'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 224.572 TWh
     time_index: '2016'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 231.411 TWh
     time_index: '2017'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 231.978 TWh
     time_index: '2018'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 230.525 TWh
     time_index: '2019'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 235.95 TWh
     time_index: '2020'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 244.436 TWh
     time_index: '2021'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 246.66 TWh
     time_index: '2022'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 238.033 TWh
     time_index: '2023'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 243.191 TWh
     time_index: '2024'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_taipower_ipp
     value: 241.551 TWh
     time_index: '2025'
-    attribute_notes: History. Unit TWh. Taipower-owned plus independent power producers; excludes power
-      bought from self-generators
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, columns 總發電量_台電 + 總發電量_民營電廠 (統計數值).
+      Taipower-owned plus independent power producers; excludes power bought from self-generators
   - attribute_name: generation_total
     value: 227.512 TWh
     time_index: '2005'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 235.53 TWh
     time_index: '2006'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 243.117 TWh
     time_index: '2007'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 238.305 TWh
     time_index: '2008'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 230.037 TWh
     time_index: '2009'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 247.059 TWh
     time_index: '2010'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 252.167 TWh
     time_index: '2011'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 250.373 TWh
     time_index: '2012'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 252.341 TWh
     time_index: '2013'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 259.964 TWh
     time_index: '2014'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 258.142 TWh
     time_index: '2015'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 264.108 TWh
     time_index: '2016'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 270.256 TWh
     time_index: '2017'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 275.497 TWh
     time_index: '2018'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 274.141 TWh
     time_index: '2019'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 280.172 TWh
     time_index: '2020'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 291.414 TWh
     time_index: '2021'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 288.408 TWh
     time_index: '2022'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 282.859 TWh
     time_index: '2023'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 289.386 TWh
     time_index: '2024'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_total
     value: 289.705 TWh
     time_index: '2025'
-    attribute_notes: History. Unit TWh. Gross generation including self-generation
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 總發電量_全國(統計數值). Gross generation
+      including self-generation
   - attribute_name: generation_waste
     value: 3.0538 TWh
     time_index: '2005'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.0567 TWh
     time_index: '2006'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.1633 TWh
     time_index: '2007'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.0887 TWh
     time_index: '2008'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.0361 TWh
     time_index: '2009'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.1276 TWh
     time_index: '2010'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.1969 TWh
     time_index: '2011'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.1777 TWh
     time_index: '2012'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.2457 TWh
     time_index: '2013'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.3255 TWh
     time_index: '2014'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.3842 TWh
     time_index: '2015'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.3966 TWh
     time_index: '2016'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.341 TWh
     time_index: '2017'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.5666 TWh
     time_index: '2018'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.6349 TWh
     time_index: '2019'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.5697 TWh
     time_index: '2020'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.6045 TWh
     time_index: '2021'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.6088 TWh
     time_index: '2022'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.6223 TWh
     time_index: '2023'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.6459 TWh
     time_index: '2024'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_waste
     value: 3.8497 TWh
     time_index: '2025'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: generation_wind
     value: 0.0913 TWh
     time_index: '2005'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 0.2761 TWh
     time_index: '2006'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 0.4395 TWh
     time_index: '2007'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 0.5883 TWh
     time_index: '2008'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 0.7866 TWh
     time_index: '2009'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 1.0263 TWh
     time_index: '2010'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 1.4927 TWh
     time_index: '2011'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 1.4135 TWh
     time_index: '2012'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 1.64 TWh
     time_index: '2013'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 1.5005 TWh
     time_index: '2014'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 1.5252 TWh
     time_index: '2015'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 1.4571 TWh
     time_index: '2016'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 1.7225 TWh
     time_index: '2017'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 1.7095 TWh
     time_index: '2018'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 1.8922 TWh
     time_index: '2019'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 2.3089 TWh
     time_index: '2020'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 2.2708 TWh
     time_index: '2021'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 3.5775 TWh
     time_index: '2022'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 6.2383 TWh
     time_index: '2023'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 10.5098 TWh
     time_index: '2024'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: generation_wind
     value: 12.2033 TWh
     time_index: '2025'
-    attribute_notes: History. Unit TWh.
+    attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:
@@ -1175,8 +1198,13 @@
     system_boundary: annual peak and demand
     scope_notes: Attribute notes say whether each value is history, projection or target.
   sources:
-  - source_name: PyPSA-Earth_default_GEGIS_demand_(SSP2-2.6)
-    source_description: 'PyPSA-Earth default: GEGIS demand (SSP2-2.6)'
+  - source_name: gegis_ssp2_26
+    source_description: 'GlobalEnergyGIS synthetic hourly electricity demand (SSP2-2.6); GlobalEnergyGIS
+      synthetic hourly electricity demand (SSP2-2.6); Mattsson, Verendel, Hedenus, Reichenberg (Chalmers);
+      distributed with PyPSA-Earth; prediction years 2030/2040/2050; weather years 2011/2013/2018; published
+      2021; local copy pypsa_tw/data/data/ssp2-2.6/<year>/era5_<weather year>/Asia.csv; locations: data/ssp2-2.6/<year>/era5_2013/Asia.csv,
+      region TW, maximum hourly value | data/ssp2-2.6/<year>/era5_2013/Asia.csv, region TW, sum of hourly
+      values'
     source_type: report
     access_date: '2026-09-24'
     assessment_method: Read from PyPSA-Earth input data
@@ -1184,16 +1212,22 @@
     - gegis_demand
     - gegis_peak
     link: https://github.com/niclasmattsson/GlobalEnergyGIS
-  - source_name: Derived_from_MOEA_report_(2025_edition)_1.7%/yr_on_2024_generation
-    source_description: 'Derived from MOEA report (2025 edition): 1.7%/yr on 2024 generation'
-    source_type: dataset
+  - source_name: derived_moea_growth
+    source_description: 'Official growth rate applied to 2024 generation; Official growth rate applied
+      to 2024 generation; this repository (pypsa_tw/data/build_timeseries.py); locations: 1.7%/yr: moea_psd_fy2024,
+      Section 3.1(1), p. 7 (PDF p. 11); 2024 base: moeaea_generation_annual'
+    source_type: report
     access_date: '2026-09-24'
     assessment_method: Derived from official figures (see attribute notes)
     linked_attribute:
     - generation_forecast
-    link: https://data.gov.tw/dataset/16437
-  - source_name: MOEA_National_Power_Supply-Demand_Report_(2025_edition)
-    source_description: MOEA National Power Supply-Demand Report (2025 edition)
+  - source_name: moea_psd_fy2024
+    source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
+      of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
+      actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
+      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Section 2.2(3), p.
+      5 (PDF p. 9) | Table 3-2, p. 20 (PDF p. 24)'
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
@@ -1201,575 +1235,598 @@
     - night_capability
     - night_peak_load
     - night_reserve_margin
-    link: https://data.gov.tw/dataset/16437
-  - source_name: Taipower_annual_peak_load_and_reserve_margin
-    source_description: 'Taipower: annual peak load and reserve margin'
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=365
+  - source_name: taipower_peak_annual
+    source_description: 台灣電力公司歷年尖峰負載及備用容量率; Taipower annual peak load and reserve margin; 台灣電力公司 Taipower;
+      1982-2025; published dataset updated 2025-07-15; local copy pypsa_tw/data/official/taipower_peak_load_by_year.csv
+      (SHA-256 2144db03a94d9fd95da00e402a98e31a748ee987b8778eb1cc57631514758929)
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - peak_load
     - reserve_margin
-    link: https://data.gov.tw/dataset/8307
+    link: https://service.taipower.com.tw/data/opendata/apply/file/d003002/001.csv
   attributes:
   - attribute_name: gegis_demand
     value: 335.702 TWh
     time_index: '2030'
-    attribute_notes: Projection. Unit TWh. Unscaled GEGIS projection; the model scales the 2030 profile
-      by 0.749
+    attribute_notes: Projection. Unit TWh. Source gegis_ssp2_26, data/ssp2-2.6/<year>/era5_2013/Asia.csv,
+      region TW, sum of hourly values. Unscaled GEGIS projection; the model scales the 2030 profile by
+      0.749
   - attribute_name: gegis_demand
     value: 411.223 TWh
     time_index: '2040'
-    attribute_notes: Projection. Unit TWh. Unscaled GEGIS projection; the model scales the 2030 profile
-      by 0.749
+    attribute_notes: Projection. Unit TWh. Source gegis_ssp2_26, data/ssp2-2.6/<year>/era5_2013/Asia.csv,
+      region TW, sum of hourly values. Unscaled GEGIS projection; the model scales the 2030 profile by
+      0.749
   - attribute_name: gegis_demand
     value: 528.946 TWh
     time_index: '2050'
-    attribute_notes: Projection. Unit TWh. Unscaled GEGIS projection; the model scales the 2030 profile
-      by 0.749
+    attribute_notes: Projection. Unit TWh. Source gegis_ssp2_26, data/ssp2-2.6/<year>/era5_2013/Asia.csv,
+      region TW, sum of hourly values. Unscaled GEGIS projection; the model scales the 2030 profile by
+      0.749
   - attribute_name: gegis_peak
     value: 55.8934 GW
     time_index: '2030'
-    attribute_notes: Projection. Unit GW. Hourly peak of the unscaled GEGIS profile
+    attribute_notes: Projection. Unit GW. Source gegis_ssp2_26, data/ssp2-2.6/<year>/era5_2013/Asia.csv,
+      region TW, maximum hourly value. Hourly peak of the unscaled GEGIS profile
   - attribute_name: gegis_peak
     value: 68.5823 GW
     time_index: '2040'
-    attribute_notes: Projection. Unit GW. Hourly peak of the unscaled GEGIS profile
+    attribute_notes: Projection. Unit GW. Source gegis_ssp2_26, data/ssp2-2.6/<year>/era5_2013/Asia.csv,
+      region TW, maximum hourly value. Hourly peak of the unscaled GEGIS profile
   - attribute_name: gegis_peak
     value: 88.9969 GW
     time_index: '2050'
-    attribute_notes: Projection. Unit GW. Hourly peak of the unscaled GEGIS profile
+    attribute_notes: Projection. Unit GW. Source gegis_ssp2_26, data/ssp2-2.6/<year>/era5_2013/Asia.csv,
+      region TW, maximum hourly value. Hourly peak of the unscaled GEGIS profile
   - attribute_name: generation_forecast
     value: 294.305 TWh
     time_index: '2025'
-    attribute_notes: 'Projection. Unit TWh. Not published as such: the report''s average growth rate applied
-      to 2024 national generation'
+    attribute_notes: 'Projection. Unit TWh. Source derived_moea_growth, 1.7%/yr: moea_psd_fy2024, Section
+      3.1(1), p. 7 (PDF p. 11); 2024 base: moeaea_generation_annual. Not published as such: the report''s
+      average growth rate applied to 2024 national generation'
   - attribute_name: generation_forecast
     value: 299.309 TWh
     time_index: '2026'
-    attribute_notes: 'Projection. Unit TWh. Not published as such: the report''s average growth rate applied
-      to 2024 national generation'
+    attribute_notes: 'Projection. Unit TWh. Source derived_moea_growth, 1.7%/yr: moea_psd_fy2024, Section
+      3.1(1), p. 7 (PDF p. 11); 2024 base: moeaea_generation_annual. Not published as such: the report''s
+      average growth rate applied to 2024 national generation'
   - attribute_name: generation_forecast
     value: 304.397 TWh
     time_index: '2027'
-    attribute_notes: 'Projection. Unit TWh. Not published as such: the report''s average growth rate applied
-      to 2024 national generation'
+    attribute_notes: 'Projection. Unit TWh. Source derived_moea_growth, 1.7%/yr: moea_psd_fy2024, Section
+      3.1(1), p. 7 (PDF p. 11); 2024 base: moeaea_generation_annual. Not published as such: the report''s
+      average growth rate applied to 2024 national generation'
   - attribute_name: generation_forecast
     value: 309.572 TWh
     time_index: '2028'
-    attribute_notes: 'Projection. Unit TWh. Not published as such: the report''s average growth rate applied
-      to 2024 national generation'
+    attribute_notes: 'Projection. Unit TWh. Source derived_moea_growth, 1.7%/yr: moea_psd_fy2024, Section
+      3.1(1), p. 7 (PDF p. 11); 2024 base: moeaea_generation_annual. Not published as such: the report''s
+      average growth rate applied to 2024 national generation'
   - attribute_name: generation_forecast
     value: 314.834 TWh
     time_index: '2029'
-    attribute_notes: 'Projection. Unit TWh. Not published as such: the report''s average growth rate applied
-      to 2024 national generation'
+    attribute_notes: 'Projection. Unit TWh. Source derived_moea_growth, 1.7%/yr: moea_psd_fy2024, Section
+      3.1(1), p. 7 (PDF p. 11); 2024 base: moeaea_generation_annual. Not published as such: the report''s
+      average growth rate applied to 2024 national generation'
   - attribute_name: generation_forecast
     value: 320.187 TWh
     time_index: '2030'
-    attribute_notes: 'Projection. Unit TWh. Not published as such: the report''s average growth rate applied
-      to 2024 national generation'
+    attribute_notes: 'Projection. Unit TWh. Source derived_moea_growth, 1.7%/yr: moea_psd_fy2024, Section
+      3.1(1), p. 7 (PDF p. 11); 2024 base: moeaea_generation_annual. Not published as such: the report''s
+      average growth rate applied to 2024 national generation'
   - attribute_name: generation_forecast
     value: 325.63 TWh
     time_index: '2031'
-    attribute_notes: 'Projection. Unit TWh. Not published as such: the report''s average growth rate applied
-      to 2024 national generation'
+    attribute_notes: 'Projection. Unit TWh. Source derived_moea_growth, 1.7%/yr: moea_psd_fy2024, Section
+      3.1(1), p. 7 (PDF p. 11); 2024 base: moeaea_generation_annual. Not published as such: the report''s
+      average growth rate applied to 2024 national generation'
   - attribute_name: generation_forecast
     value: 331.166 TWh
     time_index: '2032'
-    attribute_notes: 'Projection. Unit TWh. Not published as such: the report''s average growth rate applied
-      to 2024 national generation'
+    attribute_notes: 'Projection. Unit TWh. Source derived_moea_growth, 1.7%/yr: moea_psd_fy2024, Section
+      3.1(1), p. 7 (PDF p. 11); 2024 base: moeaea_generation_annual. Not published as such: the report''s
+      average growth rate applied to 2024 national generation'
   - attribute_name: generation_forecast
     value: 336.795 TWh
     time_index: '2033'
-    attribute_notes: 'Projection. Unit TWh. Not published as such: the report''s average growth rate applied
-      to 2024 national generation'
+    attribute_notes: 'Projection. Unit TWh. Source derived_moea_growth, 1.7%/yr: moea_psd_fy2024, Section
+      3.1(1), p. 7 (PDF p. 11); 2024 base: moeaea_generation_annual. Not published as such: the report''s
+      average growth rate applied to 2024 national generation'
   - attribute_name: generation_forecast
     value: 342.521 TWh
     time_index: '2034'
-    attribute_notes: 'Projection. Unit TWh. Not published as such: the report''s average growth rate applied
-      to 2024 national generation'
+    attribute_notes: 'Projection. Unit TWh. Source derived_moea_growth, 1.7%/yr: moea_psd_fy2024, Section
+      3.1(1), p. 7 (PDF p. 11); 2024 base: moeaea_generation_annual. Not published as such: the report''s
+      average growth rate applied to 2024 national generation'
   - attribute_name: night_capability
     value: 42.139 GW
     time_index: '2025'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_capability
     value: 43.347 GW
     time_index: '2026'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_capability
     value: 44.338 GW
     time_index: '2027'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_capability
     value: 44.887 GW
     time_index: '2028'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_capability
     value: 45.951 GW
     time_index: '2029'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_capability
     value: 50.479 GW
     time_index: '2030'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_capability
     value: 53.966 GW
     time_index: '2031'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_capability
     value: 56.825 GW
     time_index: '2032'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_capability
     value: 57.503 GW
     time_index: '2033'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_capability
     value: 56.923 GW
     time_index: '2034'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_peak_load
     value: 36.146 GW
     time_index: '2023'
-    attribute_notes: 'History. Unit GW. Section 2.2(3). Derived: 2024 value minus the reported 1155 MW
-      increase'
+    attribute_notes: 'History. Unit GW. Source moea_psd_fy2024, Section 2.2(3), p. 5 (PDF p. 9). Derived:
+      2024 value minus the reported 1155 MW increase'
   - attribute_name: night_peak_load
     value: 37.301 GW
     time_index: '2024'
-    attribute_notes: History. Unit GW. Section 2.2(3). Actual
+    attribute_notes: History. Unit GW. Source moea_psd_fy2024, Section 2.2(3), p. 5 (PDF p. 9). Actual
   - attribute_name: night_peak_load
     value: 36.888 GW
     time_index: '2025'
-    attribute_notes: Projection. Unit GW. Table 3-2. 2025 is an actual value in the report
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24). 2025 is
+      an actual value in the report
   - attribute_name: night_peak_load
     value: 38.106 GW
     time_index: '2026'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_peak_load
     value: 39.304 GW
     time_index: '2027'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_peak_load
     value: 40.338 GW
     time_index: '2028'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_peak_load
     value: 41.183 GW
     time_index: '2029'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_peak_load
     value: 42.22 GW
     time_index: '2030'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_peak_load
     value: 43.154 GW
     time_index: '2031'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_peak_load
     value: 44.092 GW
     time_index: '2032'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_peak_load
     value: 45.046 GW
     time_index: '2033'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_peak_load
     value: 45.973 GW
     time_index: '2034'
-    attribute_notes: Projection. Unit GW. Table 3-2.
+    attribute_notes: Projection. Unit GW. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_reserve_margin
     value: 14.2 %
     time_index: '2025'
-    attribute_notes: Projection. Unit %. Table 3-2.
+    attribute_notes: Projection. Unit %. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_reserve_margin
     value: 13.8 %
     time_index: '2026'
-    attribute_notes: Projection. Unit %. Table 3-2.
+    attribute_notes: Projection. Unit %. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_reserve_margin
     value: 12.8 %
     time_index: '2027'
-    attribute_notes: Projection. Unit %. Table 3-2.
+    attribute_notes: Projection. Unit %. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_reserve_margin
     value: 11.3 %
     time_index: '2028'
-    attribute_notes: Projection. Unit %. Table 3-2.
+    attribute_notes: Projection. Unit %. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_reserve_margin
     value: 11.6 %
     time_index: '2029'
-    attribute_notes: Projection. Unit %. Table 3-2.
+    attribute_notes: Projection. Unit %. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_reserve_margin
     value: 19.6 %
     time_index: '2030'
-    attribute_notes: Projection. Unit %. Table 3-2.
+    attribute_notes: Projection. Unit %. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_reserve_margin
     value: 25.1 %
     time_index: '2031'
-    attribute_notes: Projection. Unit %. Table 3-2.
+    attribute_notes: Projection. Unit %. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_reserve_margin
     value: 28.9 %
     time_index: '2032'
-    attribute_notes: Projection. Unit %. Table 3-2.
+    attribute_notes: Projection. Unit %. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_reserve_margin
     value: 27.7 %
     time_index: '2033'
-    attribute_notes: Projection. Unit %. Table 3-2.
+    attribute_notes: Projection. Unit %. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: night_reserve_margin
     value: 23.8 %
     time_index: '2034'
-    attribute_notes: Projection. Unit %. Table 3-2.
+    attribute_notes: Projection. Unit %. Source moea_psd_fy2024, Table 3-2, p. 20 (PDF p. 24).
   - attribute_name: peak_load
     value: 6.918 GW
     time_index: '1982'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 7.808 GW
     time_index: '1983'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 8.517 GW
     time_index: '1984'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 8.716 GW
     time_index: '1985'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 9.9 GW
     time_index: '1986'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 11.113 GW
     time_index: '1987'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 12.331 GW
     time_index: '1988'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 13.422 GW
     time_index: '1989'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 14.511 GW
     time_index: '1990'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 15.321 GW
     time_index: '1991'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 16.704 GW
     time_index: '1992'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 17.666 GW
     time_index: '1993'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 18.61 GW
     time_index: '1994'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 19.933 GW
     time_index: '1995'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 21.762 GW
     time_index: '1996'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 22.237 GW
     time_index: '1997'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 23.83 GW
     time_index: '1998'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 24.206 GW
     time_index: '1999'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 25.854 GW
     time_index: '2000'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 26.29 GW
     time_index: '2001'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 27.117 GW
     time_index: '2002'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 28.594 GW
     time_index: '2003'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 29.034 GW
     time_index: '2004'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 30.943 GW
     time_index: '2005'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 32.06 GW
     time_index: '2006'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 32.791 GW
     time_index: '2007'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 31.32 GW
     time_index: '2008'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 31.011 GW
     time_index: '2009'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 33.023 GW
     time_index: '2010'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 33.787 GW
     time_index: '2011'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 33.081 GW
     time_index: '2012'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 33.957 GW
     time_index: '2013'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 34.821 GW
     time_index: '2014'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 35.248 GW
     time_index: '2015'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 35.864 GW
     time_index: '2016'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 36.259 GW
     time_index: '2017'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 37.057 GW
     time_index: '2018'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 37.067 GW
     time_index: '2019'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 37.715 GW
     time_index: '2020'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 38.701 GW
     time_index: '2021'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 40.593 GW
     time_index: '2022'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 39.489 GW
     time_index: '2023'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 40.882 GW
     time_index: '2024'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: peak_load
     value: 40.752 GW
     time_index: '2025'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source taipower_peak_annual, column 尖峰負載(MW).
   - attribute_name: reserve_margin
     value: 26.8 %
     time_index: '1982'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 29.2 %
     time_index: '1983'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 22.1 %
     time_index: '1984'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 55.1 %
     time_index: '1985'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 48.3 %
     time_index: '1986'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 35 %
     time_index: '1987'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 21.7 %
     time_index: '1988'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 14 %
     time_index: '1989'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 7.4 %
     time_index: '1990'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 4.8 %
     time_index: '1991'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 6.7 %
     time_index: '1992'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 4.2 %
     time_index: '1993'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 4.8 %
     time_index: '1994'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 4.7 %
     time_index: '1995'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 5.6 %
     time_index: '1996'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 11 %
     time_index: '1997'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 7.7 %
     time_index: '1998'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 12.5 %
     time_index: '1999'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 12.6 %
     time_index: '2000'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 13.2 %
     time_index: '2001'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 16 %
     time_index: '2002'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 14.6 %
     time_index: '2003'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 20.2 %
     time_index: '2004'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 16.3 %
     time_index: '2005'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 16.1 %
     time_index: '2006'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 16.2 %
     time_index: '2007'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 21.1 %
     time_index: '2008'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 28.1 %
     time_index: '2009'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 23.4 %
     time_index: '2010'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 20.6 %
     time_index: '2011'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 22.7 %
     time_index: '2012'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 17.5 %
     time_index: '2013'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 14.7 %
     time_index: '2014'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 11.5 %
     time_index: '2015'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 10.4 %
     time_index: '2016'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 9.8 %
     time_index: '2017'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 10 %
     time_index: '2018'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 16.8 %
     time_index: '2019'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 16.4 %
     time_index: '2020'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 13.5 %
     time_index: '2021'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％).
   - attribute_name: reserve_margin
     value: 12.2 %
     time_index: '2022'
-    attribute_notes: History. Unit %. Night-time reserve margin from 2022
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％). Night-time reserve
+      margin from 2022
   - attribute_name: reserve_margin
     value: 14.7 %
     time_index: '2023'
-    attribute_notes: History. Unit %. Night-time reserve margin from 2022
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％). Night-time reserve
+      margin from 2022
   - attribute_name: reserve_margin
     value: 11 %
     time_index: '2024'
-    attribute_notes: History. Unit %. Night-time reserve margin from 2022
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％). Night-time reserve
+      margin from 2022
   - attribute_name: reserve_margin
     value: 14.2 %
     time_index: '2025'
-    attribute_notes: History. Unit %. Night-time reserve margin from 2022
+    attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％). Night-time reserve
+      margin from 2022
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:
@@ -1795,184 +1852,186 @@
     system_boundary: grid emission factor of public supply; CO2 from fuel combustion (all sectors)
     scope_notes: Attribute notes say whether each value is history, projection or target.
   sources:
-  - source_name: Energy_Administration_energy_indicators_(annual)
-    source_description: 'Energy Administration: energy indicators (annual)'
+  - source_name: moeaea_indicators_annual
+    source_description: 能源指標年資料; Annual energy indicators; 經濟部能源署 Energy Administration; 2005-2025; published
+      dataset updated 2025-08-26; local copy pypsa_tw/data/official/moeaea_energy_indicators_annual.csv
+      (SHA-256 973f4c9531079a4c3f1eeaa985a91bb1aac97d8e83f2c6ed20383e4748930218)
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - co2_fuel_combustion
     - grid_emission_factor
-    link: https://data.gov.tw/dataset/8308
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=13
   attributes:
   - attribute_name: co2_fuel_combustion
     value: 247.956 Mt
     time_index: '2005'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 255.33 Mt
     time_index: '2006'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 259.215 Mt
     time_index: '2007'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 247.536 Mt
     time_index: '2008'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 235.868 Mt
     time_index: '2009'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 251.708 Mt
     time_index: '2010'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 257.096 Mt
     time_index: '2011'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 253.201 Mt
     time_index: '2012'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 254.109 Mt
     time_index: '2013'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 258.48 Mt
     time_index: '2014'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 258.475 Mt
     time_index: '2015'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 262.982 Mt
     time_index: '2016'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 269.461 Mt
     time_index: '2017'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 267.142 Mt
     time_index: '2018'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 258.811 Mt
     time_index: '2019'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 257.39 Mt
     time_index: '2020'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 266.922 Mt
     time_index: '2021'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 258.142 Mt
     time_index: '2022'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 250.579 Mt
     time_index: '2023'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 245.307 Mt
     time_index: '2024'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: co2_fuel_combustion
     value: 239.542 Mt
     time_index: '2025'
-    attribute_notes: History. Unit Mt.
+    attribute_notes: History. Unit Mt. Source moeaea_indicators_annual, column 燃料燃燒二氧化碳排放量(百萬公噸).
   - attribute_name: grid_emission_factor
     value: 0.555 kg CO2e/kWh
     time_index: '2005'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.562 kg CO2e/kWh
     time_index: '2006'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.558 kg CO2e/kWh
     time_index: '2007'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.555 kg CO2e/kWh
     time_index: '2008'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.543 kg CO2e/kWh
     time_index: '2009'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.534 kg CO2e/kWh
     time_index: '2010'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.534 kg CO2e/kWh
     time_index: '2011'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.529 kg CO2e/kWh
     time_index: '2012'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.519 kg CO2e/kWh
     time_index: '2013'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.518 kg CO2e/kWh
     time_index: '2014'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.525 kg CO2e/kWh
     time_index: '2015'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.53 kg CO2e/kWh
     time_index: '2016'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.554 kg CO2e/kWh
     time_index: '2017'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.533 kg CO2e/kWh
     time_index: '2018'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.509 kg CO2e/kWh
     time_index: '2019'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.502 kg CO2e/kWh
     time_index: '2020'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.509 kg CO2e/kWh
     time_index: '2021'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.495 kg CO2e/kWh
     time_index: '2022'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.494 kg CO2e/kWh
     time_index: '2023'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.474 kg CO2e/kWh
     time_index: '2024'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   - attribute_name: grid_emission_factor
     value: 0.467 kg CO2e/kWh
     time_index: '2025'
-    attribute_notes: History. Unit kg CO2e/kWh.
+    attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:
@@ -1998,8 +2057,10 @@
     system_boundary: national indicators and policy targets
     scope_notes: Attribute notes say whether each value is history, projection or target.
   sources:
-  - source_name: Energy_Administration_energy_indicators_(annual)
-    source_description: 'Energy Administration: energy indicators (annual)'
+  - source_name: moeaea_indicators_annual
+    source_description: 能源指標年資料; Annual energy indicators; 經濟部能源署 Energy Administration; 2005-2025; published
+      dataset updated 2025-08-26; local copy pypsa_tw/data/official/moeaea_energy_indicators_annual.csv
+      (SHA-256 973f4c9531079a4c3f1eeaa985a91bb1aac97d8e83f2c6ed20383e4748930218)
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
@@ -2009,462 +2070,469 @@
     - load_factor
     - re_capacity_share
     - re_share
-    link: https://data.gov.tw/dataset/8308
-  - source_name: MOEA_National_Power_Supply-Demand_Report_(2025_edition)
-    source_description: MOEA National Power Supply-Demand Report (2025 edition)
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=13
+  - source_name: moea_psd_fy2024
+    source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
+      of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
+      actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
+      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Section 3.2(1), p.
+      11 (PDF p. 15) | Section 3.2(5), p. 17 (PDF p. 21)'
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - re_share
     - storage_grid
-    link: https://data.gov.tw/dataset/16437
-  - source_name: National_Development_Council_Taiwan_2050_net-zero_pathway
-    source_description: 'National Development Council: Taiwan 2050 net-zero pathway'
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=365
+  - source_name: ndc_2050_pathway
+    source_description: 臺灣2050淨零排放路徑及策略總說明; Taiwan's Pathway to Net-Zero Emissions in 2050; 國家發展委員會 National
+      Development Council; published 2022-03
     source_type: report
     access_date: '2026-09-24'
     assessment_method: Search result summary; to be verified
     linked_attribute:
     - re_share
-    link: https://ncsd.ndc.gov.tw/Fore/nsdn/about0/2050Path
+    link: https://ncsd.ndc.gov.tw/_ofu/download/about0/2050Path/%E8%87%BA%E7%81%A32050%E6%B7%A8%E9%9B%B6%E6%8E%92%E6%94%BE%E8%B7%AF%E5%BE%91%E5%8F%8A%E7%AD%96%E7%95%A5%E7%B8%BD%E8%AA%AA%E6%98%8E.pdf
   attributes:
   - attribute_name: import_dependence
     value: 99.9016 %
     time_index: '2005'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.9058 %
     time_index: '2006'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.8982 %
     time_index: '2007'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.8324 %
     time_index: '2008'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.8541 %
     time_index: '2009'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.8688 %
     time_index: '2010'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.8659 %
     time_index: '2011'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.8763 %
     time_index: '2012'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.8843 %
     time_index: '2013'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.8626 %
     time_index: '2014'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.8177 %
     time_index: '2015'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.8308 %
     time_index: '2016'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.8246 %
     time_index: '2017'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.2976 %
     time_index: '2018'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.2132 %
     time_index: '2019'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.1798 %
     time_index: '2020'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.1507 %
     time_index: '2021'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.1807 %
     time_index: '2022'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.1675 %
     time_index: '2023'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.0246 %
     time_index: '2024'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: import_dependence
     value: 99.0272 %
     time_index: '2025'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 進口能源依存度(%).
   - attribute_name: line_losses
     value: 4.76 %
     time_index: '2005'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 4.85 %
     time_index: '2006'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 4.75 %
     time_index: '2007'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 4.58 %
     time_index: '2008'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 4.86 %
     time_index: '2009'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 4.66 %
     time_index: '2010'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 4.76 %
     time_index: '2011'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 4.42 %
     time_index: '2012'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 4.25 %
     time_index: '2013'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 4.09 %
     time_index: '2014'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 3.72 %
     time_index: '2015'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 3.85 %
     time_index: '2016'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 3.82 %
     time_index: '2017'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 3.94 %
     time_index: '2018'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 3.86 %
     time_index: '2019'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 3.97 %
     time_index: '2020'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 3.53 %
     time_index: '2021'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 3.82 %
     time_index: '2022'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 3.2 %
     time_index: '2023'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 2.93 %
     time_index: '2024'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: line_losses
     value: 3.19 %
     time_index: '2025'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 線路損失率(%).
   - attribute_name: load_factor
     value: 69.97 %
     time_index: '2005'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 69.99 %
     time_index: '2006'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 70.27 %
     time_index: '2007'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 72.78 %
     time_index: '2008'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 71.27 %
     time_index: '2009'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 71.69 %
     time_index: '2010'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 71.98 %
     time_index: '2011'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 72.86 %
     time_index: '2012'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 71.75 %
     time_index: '2013'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 71.87 %
     time_index: '2014'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 70.96 %
     time_index: '2015'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 71.67 %
     time_index: '2016'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 72.75 %
     time_index: '2017'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 71.87 %
     time_index: '2018'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 71.59 %
     time_index: '2019'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 72.12 %
     time_index: '2020'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 73.59 %
     time_index: '2021'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 70.83 %
     time_index: '2022'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 71.46 %
     time_index: '2023'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 70.86 %
     time_index: '2024'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: load_factor
     value: 72.39 %
     time_index: '2025'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 負載率(%).
   - attribute_name: re_capacity_share
     value: 6.0457 %
     time_index: '2005'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 6.0211 %
     time_index: '2006'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 6.1483 %
     time_index: '2007'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 6.267 %
     time_index: '2008'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 6.3229 %
     time_index: '2009'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 6.5456 %
     time_index: '2010'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 6.9721 %
     time_index: '2011'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 7.4288 %
     time_index: '2012'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 7.8195 %
     time_index: '2013'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 8.3962 %
     time_index: '2014'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 8.8961 %
     time_index: '2015'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 9.5313 %
     time_index: '2016'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 10.6693 %
     time_index: '2017'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 11.8773 %
     time_index: '2018'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 13.8913 %
     time_index: '2019'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 16.5438 %
     time_index: '2020'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 19.545 %
     time_index: '2021'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 22.8137 %
     time_index: '2022'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 28.0358 %
     time_index: '2023'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 31.5422 %
     time_index: '2024'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_capacity_share
     value: 32.7404 %
     time_index: '2025'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源裝置容量占總裝置容量比例(%).
   - attribute_name: re_share
     value: 3.3145 %
     time_index: '2005'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 3.2878 %
     time_index: '2006'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 3.4242 %
     time_index: '2007'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 3.4657 %
     time_index: '2008'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 3.3948 %
     time_index: '2009'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 3.497 %
     time_index: '2010'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 3.5639 %
     time_index: '2011'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 4.2587 %
     time_index: '2012'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 4.3029 %
     time_index: '2013'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 3.8178 %
     time_index: '2014'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 4.0593 %
     time_index: '2015'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 4.821 %
     time_index: '2016'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 4.5768 %
     time_index: '2017'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 4.5775 %
     time_index: '2018'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 5.5496 %
     time_index: '2019'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 5.4819 %
     time_index: '2020'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 6.1464 %
     time_index: '2021'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 8.3599 %
     time_index: '2022'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 9.6981 %
     time_index: '2023'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 11.7936 %
     time_index: '2024'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 13.3229 %
     time_index: '2025'
-    attribute_notes: History. Unit %.
+    attribute_notes: History. Unit %. Source moeaea_indicators_annual, column 再生能源發電占總發電量比例(%).
   - attribute_name: re_share
     value: 20 %
     time_index: '2026'
-    attribute_notes: Target. Unit %. Section 3.2(1). Target date November 2026
+    attribute_notes: Target. Unit %. Source moea_psd_fy2024, Section 3.2(1), p. 11 (PDF p. 15). Target
+      date November 2026
   - attribute_name: re_share
     value: 30 %
     time_index: '2030'
-    attribute_notes: Target. Unit %. Section 3.2(1).
+    attribute_notes: Target. Unit %. Source moea_psd_fy2024, Section 3.2(1), p. 11 (PDF p. 15).
   - attribute_name: re_share
     value: 65 %
     time_index: '2050'
-    attribute_notes: Target. Unit %. Range 60-70%; midpoint shown
+    attribute_notes: Target. Unit %. Source ndc_2050_pathway. Range 60-70%; midpoint shown
   - attribute_name: storage_grid
     value: 1 GW
     time_index: '2025'
-    attribute_notes: 'Target. Unit GW. Section 3.2(5). Reached early: Taipower-owned 0.16 GW + procured
-      ancillary-service storage 1.26 GW by end 2024'
+    attribute_notes: 'Target. Unit GW. Source moea_psd_fy2024, Section 3.2(5), p. 17 (PDF p. 21). Reached
+      early: Taipower-owned 0.16 GW + procured ancillary-service storage 1.26 GW by end 2024'
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:

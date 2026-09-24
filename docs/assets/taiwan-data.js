@@ -13,8 +13,14 @@ const I18N = {
     h_re: "Renewable capacity: history and targets", h_re_sub: "GW. Targets for 2030 and 2032 from the MOEA report (Table 3-1); wind target = offshore + onshore",
     h_share: "Renewable share of generation", h_share_sub: "%. Targets: 20% (Nov 2026), 30% (2030), about 65% (2050 net-zero pathway)",
     h_ef: "Grid emission factor", h_ef_sub: "kg CO2e per kWh of public electricity supply",
-    h_plan: "Planned thermal additions and retirements", h_plan_sub: "GW per year, Taipower system (MOEA report 2025 edition, Figure 3-3, unit by unit). Above zero: new gas units; below zero: retirements. The 2030 and 2034 model scenarios use this plan.",
+    h_plan: "Planned thermal additions and retirements", h_plan_sub: "GW per year, Taipower system (MOEA supply-demand report 113年度, Figure 3-3, p. 18, unit by unit). Above zero: new gas units; below zero: retirements. The 2030 and 2034 model scenarios use this plan.",
     s_add_gas: "Gas added", s_ret_coal: "Coal retired", s_ret_gas: "Gas retired", s_ret_oil: "Oil retired",
+    src_label: "Sources", src_history: "History", src_ref: "see References below",
+    h_refs: "References for history and projections",
+    h_refs_sub: "Every series points to one of these sources (pypsa_tw/data/sources.csv). Projections and targets also give the table or page; history gives the column of the downloaded file. A checksum identifies the exact file used.",
+    col_title: "Title", col_publisher: "Publisher", col_edition: "Edition / coverage", col_published: "Published",
+    col_file: "File", col_local: "Local copy (SHA-256)", col_accessed: "Accessed", col_locator: "Where in the source",
+    link_page: "page", link_file: "file",
     h_table: "All series", filter_series: "Series", filter_kind: "Kind", download_csv: "Download CSV",
     kind_history: "History", kind_projection: "Projection", kind_target: "Target",
     col_kind: "Kind", s_total: "Total", s_forecast: "Official growth path (derived)", s_gegis: "PyPSA-Earth default demand",
@@ -56,8 +62,14 @@ const I18N = {
     h_re: "再生能源裝置容量：歷史與目標", h_re_sub: "GW。2030、2032 年目標取自經濟部報告（表 3-1）；風電目標為離岸加陸域",
     h_share: "再生能源發電占比", h_share_sub: "%。目標：20%（2026 年 11 月）、30%（2030 年）、約 65%（2050 淨零路徑）",
     h_ef: "電力排碳係數", h_ef_sub: "每度公用售電之公斤 CO2e",
-    h_plan: "火力機組新增與除役規劃", h_plan_sub: "每年 GW，台電系統（經濟部 2025 年版報告圖 3-3，逐機組）。零以上：新燃氣機組；零以下：除役。2030 與 2034 年模型情境採用此規劃。",
+    h_plan: "火力機組新增與除役規劃", h_plan_sub: "每年 GW，台電系統（經濟部 113 年度全國電力資源供需報告圖 3-3，第 18 頁，逐機組）。零以上：新燃氣機組；零以下：除役。2030 與 2034 年模型情境採用此規劃。",
     s_add_gas: "燃氣新增", s_ret_coal: "燃煤除役", s_ret_gas: "燃氣除役", s_ret_oil: "燃油除役",
+    src_label: "資料來源", src_history: "歷史", src_ref: "詳見下方參考資料",
+    h_refs: "歷史與預測資料的參考來源",
+    h_refs_sub: "每個數列都對應下列其中一個來源（pypsa_tw/data/sources.csv）。預測與目標另註明表號或頁碼；歷史資料註明下載檔案中的欄位。檢查碼可辨識所用的確切檔案。",
+    col_title: "標題", col_publisher: "發布機關", col_edition: "版次／涵蓋範圍", col_published: "發布時間",
+    col_file: "檔案", col_local: "本地副本（SHA-256）", col_accessed: "取得日期", col_locator: "出處位置",
+    link_page: "頁面", link_file: "檔案",
     h_table: "所有數列", filter_series: "數列", filter_kind: "類型", download_csv: "下載 CSV",
     kind_history: "歷史", kind_projection: "預測", kind_target: "目標",
     col_kind: "類型", s_total: "合計", s_forecast: "官方成長路徑（推估）", s_gegis: "PyPSA-Earth 預設需求",
@@ -330,7 +342,69 @@ function renderHistory() {
     planBar("planned_retire_oil", "s_ret_oil", cssVar("--c-other"), -1),
   ], layoutBase({ barmode: "relative", hovermode: "closest", xaxis: { dtick: 1 }, yaxis: { title: { text: "GW", font: { size: 11 } } } }), plotCfg);
 
+  Object.keys(CHART_SERIES).forEach(sourceLine);
   renderSeriesTable();
+  renderRefs();
+}
+
+
+// ---------- Sources under each chart ----------
+// Which series each chart plots (the source line lists their sources).
+const CHART_SERIES = {
+  "chart-h-gen": (id) => id.startsWith("generation_") || id === "gegis_demand",
+  "chart-h-cap": (id, kind) => id.startsWith("capacity_") && kind === "history",
+  "chart-h-peak": (id) => ["peak_load", "night_peak_load", "night_capability"].includes(id),
+  "chart-h-re": (id) => ["capacity_hydro", "capacity_solar", "capacity_wind", "capacity_geothermal", "capacity_biomass",
+                         "capacity_waste", "capacity_renewables", "capacity_offshore_wind", "capacity_onshore_wind"].includes(id),
+  "chart-h-share": (id) => id === "re_share",
+  "chart-h-ef": (id) => id === "grid_emission_factor",
+  "chart-h-plan": (id) => id.startsWith("planned_"),
+};
+
+function sourceLine(chartId) {
+  const pick = CHART_SERIES[chartId];
+  const rows = state.ts.filter((r) => pick(r.series, r.kind));
+  // History: one entry per source. Projections and targets: one per source and locator.
+  const entries = new Map();
+  for (const r of rows) {
+    const hist = r.kind === "history";
+    const key = hist ? `h|${r.source_id}` : `p|${r.source_id}|${r.locator}`;
+    if (!entries.has(key)) entries.set(key, { hist, r, kinds: new Set(), years: [] });
+    const e = entries.get(key);
+    e.kinds.add(r.kind);
+    if (/^\d{4}$/.test(r.year)) e.years.push(Number(r.year));
+  }
+  const items = [...entries.values()].sort((a, b) => (a.hist === b.hist ? 0 : a.hist ? -1 : 1)).map((e) => {
+    const src = state.src[e.r.source_id] || {};
+    const kinds = [...e.kinds].map((k) => t(`kind_${k}`)).join(" / ");
+    const span = e.years.length ? ` ${Math.min(...e.years)}${Math.max(...e.years) > Math.min(...e.years) ? `–${Math.max(...e.years)}` : ""}` : "";
+    // History from files: the column is in the series table. Anything else (a report page) is shown here.
+    const where = e.r.locator && !e.r.locator.startsWith("column") ? `, ${esc(e.r.locator)}` : "";
+    const link = src.landing_url ? ` <a href="${esc(src.landing_url)}" rel="noopener">${esc(hostOf(src.landing_url))}</a>` : "";
+    return `<li><b>${esc(kinds)}${esc(span)}:</b> ${esc(src.short_cite || e.r.source_name)}${where}${link} ${evidenceBadge(e.r.evidence)}</li>`;
+  });
+  let el = document.getElementById(`src-${chartId}`);
+  if (!el) {
+    el = document.createElement("div");
+    el.className = "sources";
+    el.id = `src-${chartId}`;
+    $(chartId).insertAdjacentElement("afterend", el);
+  }
+  el.innerHTML = `<span class="sources-label">${esc(t("src_label"))}</span><ul>${items.join("")}</ul>`;
+}
+
+const hostOf = (url) => { try { return new URL(url).hostname.replace(/^www\./, ""); } catch { return url; } };
+
+function renderRefs() {
+  const used = new Set(state.ts.map((r) => r.source_id));
+  const refs = Object.values(state.src).filter((r) => used.has(r.source_id));
+  const head = [t("col_title"), t("col_publisher"), t("col_edition"), t("col_published"), t("col_evidence"), t("col_link"), t("col_local"), t("col_accessed"), t("col_note")];
+  $("table-refs").innerHTML = `<table><thead><tr>${head.map((x) => `<th>${esc(x)}</th>`).join("")}</tr></thead><tbody>` +
+    refs.map((r) => `<tr id="ref-${esc(r.source_id)}"><td><b>${esc(r.title || r.title_en)}</b>${r.title && r.title_en && r.title_en !== r.title ? `<br><span class="muted">${esc(r.title_en)}</span>` : ""}<br><code>${esc(r.source_id)}</code></td>
+      <td>${esc(r.publisher)}</td><td>${esc(r.edition)}</td><td>${esc(r.published)}</td><td>${evidenceBadge(r.evidence)}</td>
+      <td>${r.landing_url ? `<a href="${esc(r.landing_url)}" rel="noopener">${esc(t("link_page"))}</a>` : "–"}${r.file_url ? ` · <a href="${esc(r.file_url)}" rel="noopener">${esc(t("link_file"))}</a>` : ""}</td>
+      <td>${r.local_file ? `<code>${esc(r.local_file)}</code>${r.sha256 ? `<br><span class="muted" title="${esc(r.sha256)}">${esc(r.sha256.slice(0, 12))}…</span>` : ""}` : "–"}</td>
+      <td>${esc(r.accessed || "–")}</td><td class="note-cell">${esc(r.note)}</td></tr>`).join("") + "</tbody></table>";
 }
 
 function renderSeriesTable() {
@@ -349,7 +423,7 @@ function renderSeriesTable() {
     rows.map((r) => `<tr><td>${esc(zh ? r.indicator_zh : r.indicator_en)}</td><td>${esc(r.year)}</td>
       <td class="num"><b>${esc(Number(r.value).toLocaleString(zh ? "zh-TW" : "en-US", { maximumFractionDigits: 3 }))}</b> ${esc(r.unit)}</td>
       <td>${esc(t(`kind_${r.kind}`))}</td><td>${esc(r.scope)}</td><td>${evidenceBadge(r.evidence)}</td>
-      <td>${esc(r.source_name)}${r.link ? `<br>${linkCell(r.link)}` : ""}</td><td class="note-cell">${esc(r.note)}</td></tr>`).join("") +
+      <td>${esc(r.source_name)}${r.locator ? `<br><span class="muted">${esc(r.locator)}</span>` : ""}${r.link ? `<br>${linkCell(r.link)}` : ""}</td><td class="note-cell">${esc(r.note)}</td></tr>`).join("") +
     "</tbody></table>";
 }
 
@@ -392,7 +466,9 @@ async function init() {
     state.data = await res.json();
     try {
       const r2 = await fetch("data/taiwan_timeseries.json");
-      state.ts = r2.ok ? (await r2.json()).rows : null;
+      const tsData = r2.ok ? await r2.json() : null;
+      state.ts = tsData ? tsData.rows : null;
+      state.src = Object.fromEntries(((tsData && tsData.sources) || []).map((x) => [x.source_id, x]));
     } catch { state.ts = null; }
     renderAll();
   } catch (err) {

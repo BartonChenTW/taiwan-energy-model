@@ -582,10 +582,16 @@ def export_catalog(repo, out):
     ts_file = data / "taiwan_timeseries.csv"
     if ts_file.exists():
         ts = pd.read_csv(ts_file, dtype={"year": str}).fillna("")
+        # Source registry: every row's source_id resolves to a full citation.
+        src = pd.read_csv(data / "sources.csv", dtype=str).fillna("")
+        missing = set(ts.source_id) - set(src.source_id)
+        assert not missing, f"source ids not in sources.csv: {missing}"
         (out / "taiwan_timeseries.json").write_text(
-            json.dumps({"generated": payload["generated"], "rows": ts.to_dict(orient="records")},
+            json.dumps({"generated": payload["generated"], "rows": ts.to_dict(orient="records"),
+                        "sources": src.to_dict(orient="records")},
                        ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
         ts.to_csv(out / "taiwan_timeseries.csv", index=False, encoding="utf-8")
+        src.to_csv(out / "taiwan_sources.csv", index=False, encoding="utf-8")
         print(f"wrote taiwan_timeseries.json/.csv ({len(ts)} rows, {ts.series.nunique()} series)")
 
 

@@ -38,8 +38,8 @@ Items Claude decided or assumed without your confirmation. Tick them off, or not
 
 - [ ] **12 key figures marked "To verify"** (14 confirmed from official downloads on 2026-09-24) in `pypsa_tw/data/taiwan_key_facts.csv` come from search summaries. Check them against the linked source (ideally the Energy Administration statistics database) and change `evidence` to `page_opened` or `downloaded`.
 - [ ] **Catalogue content and notes are in English only**; dataset names are bilingual.
-- [ ] **Report transcription** (`official/taiwan_projections_targets.csv`): Tables 3-1 and 3-2 of the 2025 supply-demand report were typed in by hand. The consistency checks pass, but a second look at the PDF (`official/moea_power_supply_demand_report_20260609.pdf`, pp. 19–20) would help.
-- [ ] **Which outlook to use for future scenarios:** the 2025 edition (+1.7%/yr, full PDF) or the 2026 edition (+2.5%/yr, press release only).
+- [ ] **Report transcription** (`official/taiwan_projections_targets.csv`): Tables 3-1 and 3-2 of the 113年度 supply-demand report were typed in by hand. The consistency checks pass, but a second look at the PDF (`official/moea_power_supply_demand_report_20260609.pdf`, printed pp. 19–20, PDF pp. 23–24) would help.
+- [ ] **Which outlook to use for future scenarios:** the 113年度 report (+1.7%/yr, full PDF) or the 114年度 report (+2.5%/yr, news release only so far).
 - [ ] **2023 night peak (36,146 MW)** is derived: the 2024 value minus the reported increase.
 
 ## Future-year scenarios (`pypsa_tw/data/build_future_powerplants.py`, `pypsa_tw/config/scenarios/`)
@@ -49,5 +49,12 @@ Items Claude decided or assumed without your confirmation. Tick them off, or not
 - [ ] **Geothermal and biomass locations:** geothermal all at Qingshui (Yilan); biomass split evenly over the six special municipalities. They also run at a capacity factor of about 100%, which is high for geothermal.
 - [ ] **Renewable targets are national** but applied to the Taipower-system fleet and demand. This is one reason the model's renewable share (35.8% in 2030) is above the 30% target.
 - [ ] **Offshore wind growth follows today's farms** (Changhua, Yunlin). Round 3 zones are elsewhere too (e.g. Hsinchu, Miaoli).
-- [ ] **Demand growth:** the 2025 edition's +1.7%/yr is used. The 2026 edition says +2.5%/yr (press release only), which would give about 290 TWh in 2030.
+- [ ] **Demand growth:** the 113年度 report's +1.7%/yr is used. The 114年度 report says +2.5%/yr (news release only), which would give about 290 TWh in 2030.
 - [ ] **Model-year rule:** a unit counts if it is in service on 1 July of the model year.
+
+## Sources (`pypsa_tw/data/sources.csv`)
+
+- [ ] **NDC 2050 pathway (60–70% renewables):** from a search summary. The PDF blocks scripted downloads (HTTP 403); download it by hand into `pypsa_tw/data/official/`, check the figure and page, then set `evidence`, `local_file` and `sha256` in `sources.csv`.
+- [ ] **Night-peak growth 2026–2035 (2.7%/yr):** from a secondary article (Science Media Center Taiwan), not MOEA. Replace it with the MOEA 114年度 report when it is published on data.gov.tw/dataset/16437.
+- [ ] **Titles of the MOEA news release and the SMC article** are not recorded (left empty rather than guessed). Add them from the pages.
+- [ ] **Publication date of the 113年度 report:** the text cites data of 2025-08-15, and the open-data file was updated 2026-06-09. The exact publication date is not in the PDF.

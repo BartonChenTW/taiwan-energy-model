@@ -17,99 +17,101 @@
     system_boundary: installed capacity
     scope_notes: National totals include self-generation (e.g. Mailiao).
   sources:
-  - source_name: Energy_Administration_capacity_by_source_(annual)
-    source_description: 'Energy Administration: capacity by source (annual)'
+  - source_name: moeaea_capacity_annual
+    source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
+      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_coal
-    link: https://data.gov.tw/dataset/16480
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=69
   attributes:
   - attribute_name: installed_capacity
     value: 17.0281 GW
     time_index: '2005'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 18.232 GW
     time_index: '2006'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 17.9035 GW
     time_index: '2007'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 17.8461 GW
     time_index: '2008'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 17.8981 GW
     time_index: '2009'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 17.9886 GW
     time_index: '2010'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 17.9886 GW
     time_index: '2011'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 17.4176 GW
     time_index: '2012'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 17.4362 GW
     time_index: '2013'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 16.8015 GW
     time_index: '2014'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 16.7896 GW
     time_index: '2015'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 17.6096 GW
     time_index: '2016'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 18.3509 GW
     time_index: '2017'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 19.3251 GW
     time_index: '2018'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 21.0082 GW
     time_index: '2019'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 21.0082 GW
     time_index: '2020'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 20.9945 GW
     time_index: '2021'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 20.9945 GW
     time_index: '2022'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 20.5044 GW
     time_index: '2023'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 19.8853 GW
     time_index: '2024'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   - attribute_name: installed_capacity
     value: 19.309 GW
     time_index: '2025'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:
@@ -139,99 +141,101 @@
     system_boundary: installed capacity
     scope_notes: National totals include self-generation (e.g. Mailiao).
   sources:
-  - source_name: Energy_Administration_capacity_by_source_(annual)
-    source_description: 'Energy Administration: capacity by source (annual)'
+  - source_name: moeaea_capacity_annual
+    source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
+      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_gas
-    link: https://data.gov.tw/dataset/16480
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=69
   attributes:
   - attribute_name: installed_capacity
     value: 11.1496 GW
     time_index: '2005'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 11.7835 GW
     time_index: '2006'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 12.8045 GW
     time_index: '2007'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 13.2755 GW
     time_index: '2008'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 14.7655 GW
     time_index: '2009'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 15.7266 GW
     time_index: '2010'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 15.7354 GW
     time_index: '2011'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 15.7354 GW
     time_index: '2012'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 15.9258 GW
     time_index: '2013'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 15.9684 GW
     time_index: '2014'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 15.9684 GW
     time_index: '2015'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 15.6684 GW
     time_index: '2016'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 14.9045 GW
     time_index: '2017'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 16.8936 GW
     time_index: '2018'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 17.7862 GW
     time_index: '2019'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 18.6787 GW
     time_index: '2020'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 19.2157 GW
     time_index: '2021'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 19.2217 GW
     time_index: '2022'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 18.9728 GW
     time_index: '2023'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 20.0964 GW
     time_index: '2024'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   - attribute_name: installed_capacity
     value: 22.847 GW
     time_index: '2025'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:
@@ -260,99 +264,101 @@
     system_boundary: installed capacity
     scope_notes: National totals include self-generation (e.g. Mailiao).
   sources:
-  - source_name: Energy_Administration_capacity_by_source_(annual)
-    source_description: 'Energy Administration: capacity by source (annual)'
+  - source_name: moeaea_capacity_annual
+    source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
+      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_oil
-    link: https://data.gov.tw/dataset/16480
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=69
   attributes:
   - attribute_name: installed_capacity
     value: 4.6057 GW
     time_index: '2005'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 4.5483 GW
     time_index: '2006'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 4.5757 GW
     time_index: '2007'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 4.5539 GW
     time_index: '2008'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 4.4814 GW
     time_index: '2009'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 4.1851 GW
     time_index: '2010'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 3.8841 GW
     time_index: '2011'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 3.8861 GW
     time_index: '2012'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 3.875 GW
     time_index: '2013'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 3.8321 GW
     time_index: '2014'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 3.8321 GW
     time_index: '2015'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 3.8298 GW
     time_index: '2016'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 3.026 GW
     time_index: '2017'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 3.0817 GW
     time_index: '2018'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 3.0717 GW
     time_index: '2019'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.0951 GW
     time_index: '2020'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.0916 GW
     time_index: '2021'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.106 GW
     time_index: '2022'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.1075 GW
     time_index: '2023'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.1873 GW
     time_index: '2024'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.2285 GW
     time_index: '2025'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:
@@ -381,99 +387,101 @@
     system_boundary: installed capacity
     scope_notes: National totals include self-generation (e.g. Mailiao).
   sources:
-  - source_name: Energy_Administration_capacity_by_source_(annual)
-    source_description: 'Energy Administration: capacity by source (annual)'
+  - source_name: moeaea_capacity_annual
+    source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
+      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_nuclear
-    link: https://data.gov.tw/dataset/16480
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=69
   attributes:
   - attribute_name: installed_capacity
     value: 5.144 GW
     time_index: '2005'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 5.144 GW
     time_index: '2006'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 5.144 GW
     time_index: '2007'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 5.144 GW
     time_index: '2008'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 5.144 GW
     time_index: '2009'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 5.144 GW
     time_index: '2010'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 5.144 GW
     time_index: '2011'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 5.144 GW
     time_index: '2012'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 5.144 GW
     time_index: '2013'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 5.144 GW
     time_index: '2014'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 5.144 GW
     time_index: '2015'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 5.144 GW
     time_index: '2016'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 5.144 GW
     time_index: '2017'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 4.508 GW
     time_index: '2018'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 3.872 GW
     time_index: '2019'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 3.872 GW
     time_index: '2020'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.887 GW
     time_index: '2021'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.887 GW
     time_index: '2022'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 1.902 GW
     time_index: '2023'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.951 GW
     time_index: '2024'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0 GW
     time_index: '2025'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:
@@ -502,115 +510,123 @@
     system_boundary: installed capacity
     scope_notes: National totals include self-generation (e.g. Mailiao).
   sources:
-  - source_name: Energy_Administration_capacity_by_source_(annual)
-    source_description: 'Energy Administration: capacity by source (annual)'
+  - source_name: moeaea_capacity_annual
+    source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
+      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_solar
-    link: https://data.gov.tw/dataset/16480
-  - source_name: MOEA_National_Power_Supply-Demand_Report_(2025_edition)
-    source_description: MOEA National Power Supply-Demand Report (2025 edition)
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=69
+  - source_name: moea_psd_fy2024
+    source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
+      of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
+      actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
+      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Table 3-1, p. 19 (PDF
+      p. 23)'
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_solar
-    link: https://data.gov.tw/dataset/16437
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=365
   attributes:
   - attribute_name: installed_capacity
     value: 0.001 GW
     time_index: '2005'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0014 GW
     time_index: '2006'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0024 GW
     time_index: '2007'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0056 GW
     time_index: '2008'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0095 GW
     time_index: '2009'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0346 GW
     time_index: '2010'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.1299 GW
     time_index: '2011'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.2313 GW
     time_index: '2012'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.4099 GW
     time_index: '2013'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.636 GW
     time_index: '2014'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.8843 GW
     time_index: '2015'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 1.2451 GW
     time_index: '2016'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 1.7677 GW
     time_index: '2017'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.7381 GW
     time_index: '2018'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 4.1495 GW
     time_index: '2019'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 5.8172 GW
     time_index: '2020'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 7.7002 GW
     time_index: '2021'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 9.7237 GW
     time_index: '2022'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 12.4177 GW
     time_index: '2023'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 14.2811 GW
     time_index: '2024'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 15.474 GW
     time_index: '2025'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_太陽光電_全國(統計數值).
   - attribute_name: installed_capacity
     value: 31.2 GW
     time_index: '2030'
-    attribute_notes: Target. Unit GW. Table 3-1. 2024 actual 14.3 GW
+    attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23). 2024 actual
+      14.3 GW
   - attribute_name: installed_capacity
     value: 32.7 GW
     time_index: '2032'
-    attribute_notes: Target. Unit GW. Table 3-1.
+    attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23).
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:
@@ -639,99 +655,101 @@
     system_boundary: installed capacity
     scope_notes: National totals include self-generation (e.g. Mailiao).
   sources:
-  - source_name: Energy_Administration_capacity_by_source_(annual)
-    source_description: 'Energy Administration: capacity by source (annual)'
+  - source_name: moeaea_capacity_annual
+    source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
+      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_wind
-    link: https://data.gov.tw/dataset/16480
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=69
   attributes:
   - attribute_name: installed_capacity
     value: 0.0239 GW
     time_index: '2005'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.102 GW
     time_index: '2006'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.186 GW
     time_index: '2007'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.2504 GW
     time_index: '2008'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.3743 GW
     time_index: '2009'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.4759 GW
     time_index: '2010'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.5227 GW
     time_index: '2011'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.571 GW
     time_index: '2012'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6142 GW
     time_index: '2013'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6372 GW
     time_index: '2014'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6467 GW
     time_index: '2015'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6821 GW
     time_index: '2016'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6924 GW
     time_index: '2017'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.7132 GW
     time_index: '2018'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.8452 GW
     time_index: '2019'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.9371 GW
     time_index: '2020'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 1.0942 GW
     time_index: '2021'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 1.5811 GW
     time_index: '2022'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.6774 GW
     time_index: '2023'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 3.905 GW
     time_index: '2024'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 4.5172 GW
     time_index: '2025'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:
@@ -760,23 +778,29 @@
     system_boundary: installed capacity
     scope_notes: National totals include self-generation (e.g. Mailiao).
   sources:
-  - source_name: MOEA_National_Power_Supply-Demand_Report_(2025_edition)
-    source_description: MOEA National Power Supply-Demand Report (2025 edition)
+  - source_name: moea_psd_fy2024
+    source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
+      of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
+      actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
+      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Table 3-1, p. 19 (PDF
+      p. 23)'
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_offshore_wind
-    link: https://data.gov.tw/dataset/16437
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=365
   attributes:
   - attribute_name: installed_capacity
     value: 10.9 GW
     time_index: '2030'
-    attribute_notes: Target. Unit GW. Table 3-1. Subject to Round 3.3 tender; 2024 actual 3.0 GW
+    attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23). Subject to
+      Round 3.3 tender; 2024 actual 3.0 GW
   - attribute_name: installed_capacity
     value: 13.9 GW
     time_index: '2032'
-    attribute_notes: Target. Unit GW. Table 3-1.
+    attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23).
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:
@@ -805,23 +829,29 @@
     system_boundary: installed capacity
     scope_notes: National totals include self-generation (e.g. Mailiao).
   sources:
-  - source_name: MOEA_National_Power_Supply-Demand_Report_(2025_edition)
-    source_description: MOEA National Power Supply-Demand Report (2025 edition)
+  - source_name: moea_psd_fy2024
+    source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
+      of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
+      actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
+      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Table 3-1, p. 19 (PDF
+      p. 23)'
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_onshore_wind
-    link: https://data.gov.tw/dataset/16437
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=365
   attributes:
   - attribute_name: installed_capacity
     value: 0.979 GW
     time_index: '2030'
-    attribute_notes: Target. Unit GW. Table 3-1. 2024 actual 0.918 GW
+    attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23). 2024 actual
+      0.918 GW
   - attribute_name: installed_capacity
     value: 0.979 GW
     time_index: '2032'
-    attribute_notes: Target. Unit GW. Table 3-1.
+    attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23).
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:
@@ -850,115 +880,123 @@
     system_boundary: installed capacity
     scope_notes: National totals include self-generation (e.g. Mailiao).
   sources:
-  - source_name: Energy_Administration_capacity_by_source_(annual)
-    source_description: 'Energy Administration: capacity by source (annual)'
+  - source_name: moeaea_capacity_annual
+    source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
+      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_hydro
-    link: https://data.gov.tw/dataset/16480
-  - source_name: MOEA_National_Power_Supply-Demand_Report_(2025_edition)
-    source_description: MOEA National Power Supply-Demand Report (2025 edition)
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=69
+  - source_name: moea_psd_fy2024
+    source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
+      of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
+      actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
+      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Table 3-1, p. 19 (PDF
+      p. 23)'
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_hydro
-    link: https://data.gov.tw/dataset/16437
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=365
   attributes:
   - attribute_name: installed_capacity
     value: 1.9097 GW
     time_index: '2005'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 1.9097 GW
     time_index: '2006'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 1.9212 GW
     time_index: '2007'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 1.938 GW
     time_index: '2008'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 1.937 GW
     time_index: '2009'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 1.9775 GW
     time_index: '2010'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.0408 GW
     time_index: '2011'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.0813 GW
     time_index: '2012'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.0813 GW
     time_index: '2013'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.0813 GW
     time_index: '2014'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.0893 GW
     time_index: '2015'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.0893 GW
     time_index: '2016'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.0893 GW
     time_index: '2017'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.0915 GW
     time_index: '2018'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.0925 GW
     time_index: '2019'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.0932 GW
     time_index: '2020'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.0939 GW
     time_index: '2021'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.098 GW
     time_index: '2022'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.1037 GW
     time_index: '2023'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.1226 GW
     time_index: '2024'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.1244 GW
     time_index: '2025'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_慣常水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.14 GW
     time_index: '2030'
-    attribute_notes: Target. Unit GW. Table 3-1. 2024 actual 2.123 GW
+    attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23). 2024 actual
+      2.123 GW
   - attribute_name: installed_capacity
     value: 2.18 GW
     time_index: '2032'
-    attribute_notes: Target. Unit GW. Table 3-1.
+    attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23).
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:
@@ -987,99 +1025,101 @@
     system_boundary: installed capacity
     scope_notes: National totals include self-generation (e.g. Mailiao).
   sources:
-  - source_name: Energy_Administration_capacity_by_source_(annual)
-    source_description: 'Energy Administration: capacity by source (annual)'
+  - source_name: moeaea_capacity_annual
+    source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
+      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_pumped_storage
-    link: https://data.gov.tw/dataset/16480
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=69
   attributes:
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2005'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2006'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2007'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2008'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2009'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2010'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2011'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2012'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2013'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2014'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2015'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2016'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2017'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2018'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2019'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2020'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2021'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2022'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2023'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2024'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   - attribute_name: installed_capacity
     value: 2.602 GW
     time_index: '2025'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:
@@ -1108,115 +1148,123 @@
     system_boundary: installed capacity
     scope_notes: National totals include self-generation (e.g. Mailiao).
   sources:
-  - source_name: Energy_Administration_capacity_by_source_(annual)
-    source_description: 'Energy Administration: capacity by source (annual)'
+  - source_name: moeaea_capacity_annual
+    source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
+      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_geothermal
-    link: https://data.gov.tw/dataset/16480
-  - source_name: MOEA_National_Power_Supply-Demand_Report_(2025_edition)
-    source_description: MOEA National Power Supply-Demand Report (2025 edition)
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=69
+  - source_name: moea_psd_fy2024
+    source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
+      of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
+      actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
+      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Table 3-1, p. 19 (PDF
+      p. 23)'
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_geothermal
-    link: https://data.gov.tw/dataset/16437
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=365
   attributes:
   - attribute_name: installed_capacity
     value: 0 GW
     time_index: '2005'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0 GW
     time_index: '2006'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0 GW
     time_index: '2007'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0 GW
     time_index: '2008'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0 GW
     time_index: '2009'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0 GW
     time_index: '2010'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0 GW
     time_index: '2011'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0 GW
     time_index: '2012'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0 GW
     time_index: '2013'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0 GW
     time_index: '2014'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0 GW
     time_index: '2015'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0 GW
     time_index: '2016'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0 GW
     time_index: '2017'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0 GW
     time_index: '2018'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0003 GW
     time_index: '2019'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0003 GW
     time_index: '2020'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0045 GW
     time_index: '2021'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.005 GW
     time_index: '2022'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0073 GW
     time_index: '2023'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0075 GW
     time_index: '2024'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0075 GW
     time_index: '2025'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_地熱_全國(統計數值).
   - attribute_name: installed_capacity
     value: 1.2 GW
     time_index: '2030'
-    attribute_notes: Target. Unit GW. Table 3-1. 2024 actual 0.007 GW
+    attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23). 2024 actual
+      0.007 GW
   - attribute_name: installed_capacity
     value: 1.4 GW
     time_index: '2032'
-    attribute_notes: Target. Unit GW. Table 3-1.
+    attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23).
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:
@@ -1245,99 +1293,101 @@
     system_boundary: installed capacity
     scope_notes: National totals include self-generation (e.g. Mailiao).
   sources:
-  - source_name: Energy_Administration_capacity_by_source_(annual)
-    source_description: 'Energy Administration: capacity by source (annual)'
+  - source_name: moeaea_capacity_annual
+    source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
+      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_biomass
-    link: https://data.gov.tw/dataset/16480
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=69
   attributes:
   - attribute_name: installed_capacity
     value: 0.0895 GW
     time_index: '2005'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0881 GW
     time_index: '2006'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0868 GW
     time_index: '2007'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0868 GW
     time_index: '2008'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0868 GW
     time_index: '2009'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0868 GW
     time_index: '2010'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0813 GW
     time_index: '2011'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0813 GW
     time_index: '2012'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0813 GW
     time_index: '2013'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0813 GW
     time_index: '2014'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.08 GW
     time_index: '2015'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.08 GW
     time_index: '2016'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.08 GW
     time_index: '2017'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0806 GW
     time_index: '2018'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.079 GW
     time_index: '2019'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0862 GW
     time_index: '2020'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0852 GW
     time_index: '2021'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0917 GW
     time_index: '2022'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0828 GW
     time_index: '2023'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0838 GW
     time_index: '2024'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.0844 GW
     time_index: '2025'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:
@@ -1366,99 +1416,101 @@
     system_boundary: installed capacity
     scope_notes: National totals include self-generation (e.g. Mailiao).
   sources:
-  - source_name: Energy_Administration_capacity_by_source_(annual)
-    source_description: 'Energy Administration: capacity by source (annual)'
+  - source_name: moeaea_capacity_annual
+    source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
+      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_waste
-    link: https://data.gov.tw/dataset/16480
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=69
   attributes:
   - attribute_name: installed_capacity
     value: 0.5838 GW
     time_index: '2005'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6095 GW
     time_index: '2006'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6225 GW
     time_index: '2007'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6225 GW
     time_index: '2008'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6225 GW
     time_index: '2009'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6225 GW
     time_index: '2010'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6244 GW
     time_index: '2011'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6291 GW
     time_index: '2012'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6291 GW
     time_index: '2013'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6291 GW
     time_index: '2014'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6291 GW
     time_index: '2015'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6291 GW
     time_index: '2016'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6291 GW
     time_index: '2017'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6319 GW
     time_index: '2018'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6319 GW
     time_index: '2019'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6319 GW
     time_index: '2020'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6319 GW
     time_index: '2021'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6319 GW
     time_index: '2022'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6665 GW
     time_index: '2023'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6665 GW
     time_index: '2024'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   - attribute_name: installed_capacity
     value: 0.6645 GW
     time_index: '2025'
-    attribute_notes: History. Unit GW.
+    attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:
@@ -1487,23 +1539,29 @@
     system_boundary: installed capacity
     scope_notes: National totals include self-generation (e.g. Mailiao).
   sources:
-  - source_name: MOEA_National_Power_Supply-Demand_Report_(2025_edition)
-    source_description: MOEA National Power Supply-Demand Report (2025 edition)
+  - source_name: moea_psd_fy2024
+    source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
+      of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
+      actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
+      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Table 3-1, p. 19 (PDF
+      p. 23)'
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_biomass_waste
-    link: https://data.gov.tw/dataset/16437
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=365
   attributes:
   - attribute_name: installed_capacity
     value: 0.81 GW
     time_index: '2030'
-    attribute_notes: Target. Unit GW. Table 3-1. 2024 actual 0.751 GW
+    attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23). 2024 actual
+      0.751 GW
   - attribute_name: installed_capacity
     value: 0.84 GW
     time_index: '2032'
-    attribute_notes: Target. Unit GW. Table 3-1.
+    attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23).
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:
@@ -1532,23 +1590,29 @@
     system_boundary: installed capacity
     scope_notes: National totals include self-generation (e.g. Mailiao).
   sources:
-  - source_name: MOEA_National_Power_Supply-Demand_Report_(2025_edition)
-    source_description: MOEA National Power Supply-Demand Report (2025 edition)
+  - source_name: moea_psd_fy2024
+    source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
+      of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
+      actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
+      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Table 3-1, p. 19 (PDF
+      p. 23)'
     source_type: dataset
     access_date: '2026-09-24'
     assessment_method: Official file downloaded and read
     linked_attribute:
     - capacity_renewables
-    link: https://data.gov.tw/dataset/16437
+    link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=365
   attributes:
   - attribute_name: installed_capacity
     value: 47.229 GW
     time_index: '2030'
-    attribute_notes: Target. Unit GW. Table 3-1. 2024 actual 21.099 GW
+    attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23). 2024 actual
+      21.099 GW
   - attribute_name: installed_capacity
     value: 51.999 GW
     time_index: '2032'
-    attribute_notes: Target. Unit GW. Table 3-1.
+    attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23).
   metadata:
     related_project: PyPSA-Earth Taiwan (pypsa_tw)
     tags:

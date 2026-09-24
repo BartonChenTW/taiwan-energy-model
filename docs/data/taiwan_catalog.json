@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-24 12:35 UTC",
+ "generated": "2026-09-24 13:25 UTC",
  "links_checked": "2026-09-24",
  "link_status": {
   "https://cds.climate.copernicus.eu/": "0",
@@ -282,7 +282,7 @@
    "unit": "TWh",
    "year": "2024",
    "scope": "Taiwan (national)",
-   "source_name": "MOEA National Power Supply-Demand Report (2025 edition), Figure 2-1",
+   "source_name": "MOEA, supply-demand report 113年度 (FY2024), Figure 2-1, p. 2 (PDF p. 6)",
    "link": "https://data.gov.tw/dataset/16437",
    "evidence": "downloaded",
    "note": "Record high"
@@ -295,7 +295,7 @@
    "unit": "%",
    "year": "2024",
    "scope": "Taiwan (national)",
-   "source_name": "MOEA National Power Supply-Demand Report (2025 edition), Figure 2-1",
+   "source_name": "MOEA, supply-demand report 113年度 (FY2024), Figure 2-1, p. 2 (PDF p. 6)",
    "link": "https://data.gov.tw/dataset/16437",
    "evidence": "downloaded",
    "note": "156.6 TWh"
@@ -308,7 +308,7 @@
    "unit": "%",
    "year": "2024",
    "scope": "Taiwan (national)",
-   "source_name": "MOEA National Power Supply-Demand Report (2025 edition), Figure 2-1",
+   "source_name": "MOEA, supply-demand report 113年度 (FY2024), Figure 2-1, p. 2 (PDF p. 6)",
    "link": "https://data.gov.tw/dataset/16437",
    "evidence": "downloaded",
    "note": "53.4 TWh"
@@ -321,7 +321,7 @@
    "unit": "%",
    "year": "2024",
    "scope": "Taiwan (national)",
-   "source_name": "MOEA National Power Supply-Demand Report (2025 edition), Figure 2-1",
+   "source_name": "MOEA, supply-demand report 113年度 (FY2024), Figure 2-1, p. 2 (PDF p. 6)",
    "link": "https://data.gov.tw/dataset/16437",
    "evidence": "downloaded",
    "note": "50.0 TWh"
@@ -334,7 +334,7 @@
    "unit": "%",
    "year": "2024",
    "scope": "Taiwan (national)",
-   "source_name": "MOEA National Power Supply-Demand Report (2025 edition), Figure 2-1",
+   "source_name": "MOEA, supply-demand report 113年度 (FY2024), Figure 2-1, p. 2 (PDF p. 6)",
    "link": "https://data.gov.tw/dataset/16437",
    "evidence": "downloaded",
    "note": "18.5 TWh"
@@ -347,7 +347,7 @@
    "unit": "%",
    "year": "2025",
    "scope": "Taiwan (national)",
-   "source_name": "MOEA National Power Supply-Demand Report (2026 edition, press release)",
+   "source_name": "MOEA, news release on the supply-demand report 114年度 (FY2025)",
    "link": "https://www.moea.gov.tw/Mns/populace/news/News.aspx?kind=1&menu_id=40&news_id=123066",
    "evidence": "page_opened",
    "note": "About -0.84 TWh"
@@ -360,7 +360,7 @@
    "unit": "%/yr",
    "year": "2026-2035",
    "scope": "Taiwan (national)",
-   "source_name": "MOEA National Power Supply-Demand Report (2026 edition, press release)",
+   "source_name": "MOEA, news release on the supply-demand report 114年度 (FY2025)",
    "link": "https://www.moea.gov.tw/Mns/populace/news/News.aspx?kind=1&menu_id=40&news_id=123066",
    "evidence": "page_opened",
    "note": "AI data centres included as a separate driver for the first time"
@@ -659,7 +659,7 @@
    "unit": "%/yr",
    "year": "2025-2034",
    "scope": "Taiwan (national)",
-   "source_name": "MOEA National Power Supply-Demand Report (2025 edition)",
+   "source_name": "MOEA, supply-demand report 113年度 (FY2024), Section 3.1(1), p. 7 (PDF p. 11)",
    "link": "https://data.gov.tw/dataset/16437",
    "evidence": "downloaded",
    "note": "2025 edition; previous 10 years 1.23%/yr. Night peak +2.1%/yr"
@@ -672,7 +672,7 @@
    "unit": "GW",
    "year": "2034",
    "scope": "Taipower system",
-   "source_name": "MOEA National Power Supply-Demand Report (2025 edition)",
+   "source_name": "MOEA, supply-demand report 113年度 (FY2024), Table 3-2, p. 20 (PDF p. 24)",
    "link": "https://data.gov.tw/dataset/16437",
    "evidence": "downloaded",
    "note": "From 36.9 GW (2025); Table 3-2"
@@ -685,7 +685,7 @@
    "unit": "GW",
    "year": "2030",
    "scope": "Taiwan (national)",
-   "source_name": "MOEA National Power Supply-Demand Report (2025 edition)",
+   "source_name": "MOEA, supply-demand report 113年度 (FY2024), Table 3-1, p. 19 (PDF p. 23)",
    "link": "https://data.gov.tw/dataset/16437",
    "evidence": "downloaded",
    "note": "32.7 GW by 2032; Table 3-1"
@@ -698,7 +698,7 @@
    "unit": "GW",
    "year": "2030",
    "scope": "Taiwan (national)",
-   "source_name": "MOEA National Power Supply-Demand Report (2025 edition)",
+   "source_name": "MOEA, supply-demand report 113年度 (FY2024), Table 3-1, p. 19 (PDF p. 23)",
    "link": "https://data.gov.tw/dataset/16437",
    "evidence": "downloaded",
    "note": "13.9 GW by 2032, subject to Round 3.3; Table 3-1"
@@ -711,7 +711,7 @@
    "unit": "%",
    "year": "2030",
    "scope": "Taiwan (national)",
-   "source_name": "MOEA National Power Supply-Demand Report (2025 edition)",
+   "source_name": "MOEA, supply-demand report 113年度 (FY2024), Section 3.2(1), p. 11 (PDF p. 15)",
    "link": "https://data.gov.tw/dataset/16437",
    "evidence": "downloaded",
    "note": "20% by November 2026"
@@ -724,7 +724,7 @@
    "unit": "GW",
    "year": "2025-2034",
    "scope": "Taipower system",
-   "source_name": "MOEA National Power Supply-Demand Report (2025 edition)",
+   "source_name": "MOEA, supply-demand report 113年度 (FY2024), Section 3.3(1), p. 18 (PDF p. 22)",
    "link": "https://data.gov.tw/dataset/16437",
    "evidence": "downloaded",
    "note": "Retirements 12.9 GW (coal, oil, gas): net +12.2 GW"
@@ -1223,7 +1223,7 @@
    "license": "Government Open Data License v1",
    "link": "https://data.gov.tw/dataset/16437",
    "model_use": "used",
-   "note": "2025 edition transcribed (Tables 3-1, 3-2) into official/taiwan_projections_targets.csv"
+   "note": "113年度 (FY2024) report transcribed (Tables 3-1, 3-2) into official/taiwan_projections_targets.csv"
   },
   {
    "category": "statistics",

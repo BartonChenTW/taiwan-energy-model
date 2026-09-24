@@ -3,15 +3,15 @@ Build future Taiwan power plant files (2030, 2034) from today's fleet.
 
 Starts from ``data/custom_powerplants.csv`` (today's fleet, built by
 ``build_custom_powerplants.py``) and applies the government plan in the MOEA
-National Power Supply-Demand Report, 2025 edition
-(https://data.gov.tw/dataset/16437):
+National Power Supply-Demand Report 113年度 (FY2024; 全國電力資源供需報告,
+https://data.gov.tw/dataset/16437; source id ``moea_psd_fy2024`` in ``sources.csv``):
 
 - Thermal units: ``official/moea_thermal_schedule_2024_2034.csv``, transcribed
-  from Figure 3-3 (additions and retirements by unit and month). A unit counts
+  from Figure 3-3, p. 18 (additions and retirements by unit and month). A unit counts
   for model year Y if it is in service on 1 July of Y, at the summer peak.
   Units already in today's fleet (``in_base_fleet = yes``) are not added again,
   and retirements of units no longer in the fleet are skipped.
-- Renewables: ``official/taiwan_projections_targets.csv`` (Table 3-1 targets for
+- Renewables: ``official/taiwan_projections_targets.csv`` (Table 3-1, p. 19, targets for
   2030 and 2032; the 2032 targets are held for 2034). Existing solar, wind and
   conventional hydro rows are scaled to the target, so new capacity goes where
   today's capacity is. Pumped hydro and batteries stay as they are.
