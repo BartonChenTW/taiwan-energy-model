@@ -11,8 +11,8 @@ To use it, set these in the Taiwan config:
 ```yaml
 electricity:
   custom_powerplants: replace   # use only this file, not powerplantmatching
-  # The default filter keeps only DateIn <= 2023, which would drop the 2025 placeholders.
-  powerplants_filter: (DateOut >= 2025 or DateOut != DateOut) and (DateIn <= 2025 or DateIn != DateIn)
+  # The default filter keeps only DateIn <= 2023, which would drop the 2025 placeholders and the 2026 Taichung units.
+  powerplants_filter: (DateOut >= 2026 or DateOut != DateOut) and (DateIn <= 2026 or DateIn != DateIn)
   estimate_renewable_capacities:
     stats: false                # no IRENA top-up of solar and wind
 ```
@@ -33,7 +33,7 @@ Coordinates not found in OpenStreetMap come from the powerplantmatching list the
 
 | Technology | GW |
 | --- | --- |
-| Gas (CCGT 22.13, OCGT 0.18) | 22.31 |
+| Gas (CCGT 26.03, OCGT 0.18), including 3.9 GW of new units in trial operation | 26.21 |
 | Coal | 11.36 |
 | Oil (Hsieh-ho 1.00, Taichung gas turbines 0.28) | 1.28 |
 | Solar PV | 15.39 |
@@ -42,9 +42,15 @@ Coordinates not found in OpenStreetMap come from the powerplantmatching list the
 | Hydro (reservoir 0.65, run-of-river 1.46) | 2.11 |
 | Pumped hydro (Mingtan, Takuan II), 6 h | 2.60 |
 | Batteries | 0.85 |
-| **Total** | **60.10** |
+| **Total** | **64.00** |
 
-Taipower gives 59.8 GW for the 2025 Taipower system. Nuclear is 0: no reactor is in the list.
+Without the new units the total is 60.10 GW; Taipower gives 59.8 GW for the 2025 Taipower system. Nuclear is 0: no reactor is in the list.
+
+**New units in trial operation** (`supplementary_units.csv`): Taipower shows them as "-", but they were generating at the snapshot. They are added with ratings from news sources:
+- Taichung new CC #1 and #2, 1,300 MW each ([CNA 2026-09-04](https://www.cna.com.tw/news/afe/202609040200.aspx): "about 2,600 MW" for the pair).
+- Hsinta new CC #3, 1,300 MW ([e-info.org.tw](https://e-info.org.tw/node/243153)).
+
+Hsinta new CC #2 (0 MW at the snapshot) is listed but not included.
 
 ## Effect on the full-year run (2026-09-24 diagnostics)
 
@@ -58,17 +64,27 @@ Test 2 (2013 weather, 4H, 6 buses, fixed grid), with load shedding allowed so th
 | Coal | 55% | 35% | 40% | 31.1% |
 | Nuclear | 15% | 0% | 0% | 8.2% (0 since May 2025) |
 | Renewables | 9% | 12% | 14% | 11.9% |
-| Unserved | 0.41 TWh | 4.60 TWh | 0.83 TWh (peak 1.6 GW, Jun–Aug) | 0 |
+| Unserved | 0.41 TWh | 4.60 TWh | 0.83 TWh (peak 1.6 GW, Jun–Aug; 0 with `s_max_pu: 1.0`) | 0 |
+
+The first three columns are without the new gas units in trial operation. With them (the current file), the scale-0.749 results are the same: 834.9 GWh unserved, gas 46%, coal 40%, renewables 14%.
 
 **Demand must match the fleet's scope.** This file is Taipower's system, including purchased power. So demand should be scaled to Taipower-system generation, 251.44 TWh in 2024 (scale 0.749), not to the national total. **To confirm:** 251.44 TWh (excluding wheeling) comes from a search summary; I could not open a Taipower page stating it. It agrees with 2023's implied 247.3 TWh (coal 83.6 TWh at a 33.8% share, [e-info.org.tw](https://e-info.org.tw/node/238379)) and with 2023 sales of 233 TWh. The national total of 288.6 TWh also covers industrial self-generation, such as Mailiao, which is not in this file. With scale 0.749 the model peak is 41.4 GW, against Taipower's official net peak of 40,882 MW in 2024 and 40,752 MW in 2025 (`official/taipower_peak_load_by_year.csv`, [data.gov.tw/dataset/8307](https://data.gov.tw/dataset/8307)).
 
-**Remaining shortfall:** units Taipower shows as "-" were generating 4.5 GW at the snapshot, mostly new gas units in trial operation: Taichung CC #1–2 at 2.56 GW and Hsinta new CC #3 at 0.57 GW. Their ratings are not in the feed, so they are left out here. Including them would probably close the summer gap.
+**The remaining shortfall is transmission, not generation.** The unserved energy sits at the Taipei bus (`TW0 1`: 87 TWh demand, 3.8 GW local generation). In every snapshot with shedding, the aggregated corridor `TW0 1`–`TW0 4` is at its limit of 0.7 × 13.93 GW = 9.75 GW, while 5.3 GW of gas capacity elsewhere is unused.
+- Adding the 3.9 GW of new gas units left the unserved energy unchanged at 834.9 GWh.
+- With lines allowed their full rating (`lines.s_max_pu: 1.0`), the full year has **no unserved energy**.
+
+Two caveats:
+- The 6-bus clustering lumps Taipei's several 345 kV corridors into one line.
+- `s_max_pu: 0.7` is pypsa-earth's default N-1 security margin.
+
+An earlier note said "no line at its limit, so it is a capacity shortfall". That was wrong: the check compared flows with the full rating `s_nom`, not with `s_max_pu × s_nom`.
 
 **Coal still runs at a 100% capacity factor.** Taichung units under environmental shutdown or reduced output ("環保停機", "友善降載減排") are not modelled.
 
 ## Assumptions to check
 
-- **Units shown as "-"** (34 units: new units in trial operation, such as Taichung CC #1–2 and Hsinta new CC #2–3, and standby units such as Hsinta coal #1–3) are left out, as in Taipower's own subtotals.
+- **Units shown as "-"** (34 units): 3 new gas units in trial operation are added with sourced ratings (see above). The other 31 are left out, as in Taipower's own subtotals: Hsinta new CC #2, Talin #5, standby coal Hsinta #1–3, the nuclear sites' gas turbines, and new solar and offshore wind farms in trial.
 - **Left out:** outlying-island units (316 MW; Penghu, Kinmen and Matsu are not on the main grid), purchased cogeneration (627 MW; no fuel or location published), and geothermal and biomass (68 MW).
 - **Solar** (15.4 GW, 15.0 GW of it one "other purchased solar" entry) is spread over counties by their share of 2015–2025 approvals, excluding the islands, and placed at one point per county. Approvals (21.0 GW) are more than what was built, so they are used only as shares.
 - **Pumped hydro:** 6 h at full load. The ten units can run 6 h at full load with Sun Moon Lake at 732 m ([e-info.org.tw](https://e-info.org.tw/node/231256)); this is also pypsa-earth's `PHS_max_hours` default.

@@ -1,0 +1,80 @@
+match,name,fueltype,technology,set,duration_h,lat,lon,coord_source,note,datein,datein_source
+大潭CC,Tatan,CCGT,CCGT,PP,,25.0253,121.0458,OSM r18726493,,2006,powerplantmatching
+通霄CC,Tunghsiao,CCGT,CCGT,PP,,24.4906,120.6714,OSM w181171613,,2025,placeholder 2025
+通霄GT,Tunghsiao GT,OCGT,OCGT,PP,,24.4906,120.6714,OSM w181171613,,2025,placeholder 2025
+興達新CC,Hsinta new CC,CCGT,CCGT,PP,,22.8523,120.1973,OSM w226576525,,2025,placeholder 2025
+興達CC,Hsinta CC,CCGT,CCGT,PP,,22.8523,120.1973,OSM w226576525,,1998,powerplantmatching
+南部CC,Nanpu,CCGT,CCGT,PP,,22.6005,120.3005,OSM r6358152,,1995,powerplantmatching
+大林#6,Talin gas,CCGT,CCGT,PP,,22.5353,120.3337,OSM w204129566,,2025,placeholder 2025
+台中CC,Taichung new CC,CCGT,CCGT,PP,,24.2152,120.4815,OSM w200691649,new gas units on the Taichung site; ratings in supplementary_units.csv,2026,CNA 2026-09-04 (commercial operation 2026-2027)
+海湖,Hai-Fu (Ever Power),CCGT,CCGT,PP,,25.1159,121.2567,OSM w114411959,IPP,1999,powerplantmatching
+新桃,Hsintao,CCGT,CCGT,PP,,24.8141,121.1979,OSM w365285231,IPP,2002,powerplantmatching
+國光,Kuokuang,CCGT,CCGT,PP,,25.0419,121.3424,OSM w538753336,IPP,2003,powerplantmatching
+星彰,Star Buck (Changbin),CCGT,CCGT,PP,,24.1271,120.4317,OSM w915288818,IPP,2009,powerplantmatching
+星元,Star Yuan (Changbin),CCGT,CCGT,PP,,24.1287,120.4214,OSM w915269327,IPP,2004,powerplantmatching
+嘉惠,Chiahui,CCGT,CCGT,PP,,23.5332,120.4732,OSM w507020797,IPP,2003,powerplantmatching
+豐德,Sun Ba Fong Der,CCGT,CCGT,PP,,23.0822,120.3564,OSM w151212447,IPP; powerplantmatching places it in Chiayi,2004,powerplantmatching
+林口,Linkou,Hard Coal,Steam Turbine,PP,,25.12,121.2991,OSM w199146681,,2016,powerplantmatching
+台中#,Taichung coal,Hard Coal,Steam Turbine,PP,,24.2152,120.4815,OSM w200691649,,1991,powerplantmatching
+興達#4,Hsinta coal,Hard Coal,Steam Turbine,PP,,22.8523,120.1973,OSM w226576525,units 1-3 not counted by Taipower,1982,powerplantmatching
+大林#1,Talin coal,Hard Coal,Steam Turbine,PP,,22.5353,120.3337,OSM w204129566,,2025,placeholder 2025
+大林#2,Talin coal,Hard Coal,Steam Turbine,PP,,22.5353,120.3337,OSM w204129566,,2025,placeholder 2025
+和平,Ho-Ping,Hard Coal,Steam Turbine,PP,,24.3066,121.7657,OSM w274895730,IPP,2002,powerplantmatching
+協和,Hsieh-ho,Oil,Steam Turbine,PP,,25.1569,121.7387,OSM r10757938,,2025,placeholder 2025
+台中Gas,Taichung GT (oil),Oil,OCGT,PP,,24.2152,120.4815,OSM w200691649,gas turbines on the Taichung site,2025,placeholder 2025
+德基,Deji,Hydro,Reservoir,PP,,24.2545,121.1655,powerplantmatching,Dajia river; Deji reservoir,1974,powerplantmatching
+青山,Chingshan,Hydro,Run-Of-River,PP,,24.2516,121.1019,powerplantmatching,Dajia river cascade,2015,powerplantmatching
+谷關,Kukuan,Hydro,Run-Of-River,PP,,24.2091,121.024,powerplantmatching,Dajia river cascade,2000,powerplantmatching
+天輪,Tienlun,Hydro,Run-Of-River,PP,,24.1846,120.9228,powerplantmatching,Dajia river cascade,1952,powerplantmatching
+馬鞍,Ma-an,Hydro,Run-Of-River,PP,,24.1822,120.8411,powerplantmatching,Dajia river cascade,1998,powerplantmatching
+卓蘭,Zhuolan,Hydro,Run-Of-River,PP,,24.3498,120.8812,powerplantmatching,,2003,powerplantmatching
+萬大,Wanda,Hydro,Reservoir,PP,,23.9754,121.1323,OSM w172736809,Wushe reservoir,2025,placeholder 2025
+松林,Songlin,Hydro,Run-Of-River,PP,,23.9754,121.1323,OSM w172736809,located with Wanda,2025,placeholder 2025
+大觀一,Takuan I,Hydro,Reservoir,PP,,23.8524,120.871,OSM w976767036,Sun Moon Lake,2025,placeholder 2025
+鉅工,Chukung,Hydro,Reservoir,PP,,23.8181,120.8569,OSM w225470941,Sun Moon Lake,2025,placeholder 2025
+水里,Shuili,Hydro,Run-Of-River,PP,,23.8117,120.8539,powerplantmatching,,1992,powerplantmatching
+立霧,Liwu,Hydro,Run-Of-River,PP,,24.1551,121.6272,OSM w227669295,,2025,placeholder 2025
+龍澗,Longjian,Hydro,Run-Of-River,PP,,24.0037,121.426,OSM w749133167,,1959,powerplantmatching
+碧海,Bihai,Hydro,Run-Of-River,PP,,24.334,121.6416,OSM r7346491,,2025,placeholder 2025
+烏來&桂山&粗坑,Wulai/Gueishan/Cukeng,Hydro,Run-Of-River,PP,,24.9025,121.5612,OSM w497030590,,2025,placeholder 2025
+北部小水力,Small hydro north,Hydro,Run-Of-River,PP,,24.6953,121.0978,OSM w513427431,regional representative location,2025,placeholder 2025
+中部小水力,Small hydro central,Hydro,Run-Of-River,PP,,24.2702,120.7919,OSM w266319475,regional representative location,2025,placeholder 2025
+南部小水力,Small hydro south,Hydro,Run-Of-River,PP,,23.2305,120.4473,OSM w367004758,regional representative location,2025,placeholder 2025
+東部小水力,Small hydro east,Hydro,Run-Of-River,PP,,23.9677,121.4566,OSM w749136435,regional representative location,2025,placeholder 2025
+翡翠,Feitsui,Hydro,Reservoir,PP,,24.9095,121.5772,OSM w497030578,Feitsui reservoir,2025,placeholder 2025
+石門,Shihmen,Hydro,Reservoir,PP,,24.8132,121.2438,OSM w518956917,Shihmen reservoir,1964,powerplantmatching
+曾文,Tsengwen,Hydro,Reservoir,PP,,23.2479,120.5329,OSM w962954457,Tsengwen reservoir,2025,placeholder 2025
+義興,Yihsing,Hydro,Run-Of-River,PP,,24.777,121.3619,OSM w507342535,,2025,placeholder 2025
+名間,Mingjian,Hydro,Run-Of-River,PP,,23.8352,120.7112,OSM w519033087,,2025,placeholder 2025
+嘉南西口,Chianan Xikou/Wushantou,Hydro,Run-Of-River,PP,,23.2305,120.4473,OSM w367004758,,2025,placeholder 2025
+卑南,Beinan,Hydro,Run-Of-River,PP,,23.9677,121.4566,OSM w749136435,small; placed with east small hydro,2025,placeholder 2025
+捷祥關山,Guanshan,Hydro,Run-Of-River,PP,,23.9677,121.4566,OSM w749136435,small; placed with east small hydro,2025,placeholder 2025
+其它購電小水力,Other purchased small hydro,Hydro,Run-Of-River,PP,,24.2702,120.7919,OSM w266319475,placed with central small hydro,2025,placeholder 2025
+大觀二,Takuan II (Minghu),Hydro,Pumped Storage,Store,6.0,23.8545,120.8708,OSM w1105678337,6 h at full load (e-info.org.tw),1977,powerplantmatching
+明潭,Mingtan,Hydro,Pumped Storage,Store,6.0,23.8359,120.8686,OSM w515759430,6 h at full load (e-info.org.tw),1993,powerplantmatching
+電池,Batteries,Battery,Battery,Store,,24.15,120.65,assumed,Taipower total only; no locations published,2025,placeholder 2025
+觀園,Guanyuan wind,Wind,Onshore,PP,,25.0669,121.1106,powerplantmatching,,2005,powerplantmatching
+台中港,Taichung Port wind,Wind,Onshore,PP,,24.3083,120.5356,OSM r13131411,,2005,powerplantmatching
+王功,Wanggong wind,Wind,Onshore,PP,,23.9832,120.3345,OSM r13131410,,2010,powerplantmatching
+彰工,Changkong wind,Wind,Onshore,PP,,24.1128,120.4076,powerplantmatching,,2007,powerplantmatching
+雲麥,Yunmai wind,Wind,Onshore,PP,,23.8155,120.2554,OSM r13131409,,2025,placeholder 2025
+四湖,Sihu wind,Wind,Onshore,PP,,23.6616,120.1571,OSM r13131408,,2010,powerplantmatching
+其它台電自有,Other Taipower wind,Wind,Onshore,PP,,24.1128,120.4076,powerplantmatching,placed with Changkong,2025,placeholder 2025
+苗栗大鵬,Miaoli Dapeng wind,Wind,Onshore,PP,,24.6086,120.7306,powerplantmatching,,2005,powerplantmatching
+鹿威彰濱,Luwei Changbin wind,Wind,Onshore,PP,,24.1544,120.427,powerplantmatching,,2007,powerplantmatching
+觀威觀音&桃威新屋,Guanwei/Taowei wind,Wind,Onshore,PP,,25.0264,121.0428,powerplantmatching,,2010,powerplantmatching
+中威大安,Zhongwei Da'an wind,Wind,Onshore,PP,,24.397,120.593,powerplantmatching,,2008,powerplantmatching
+創維風,Chuangwei wind,Wind,Onshore,PP,,23.8138,120.2639,powerplantmatching,,2009,powerplantmatching
+新源崙背,Hsinyuan Lunbei wind,Wind,Onshore,PP,,23.8092,120.3401,powerplantmatching,,2023,powerplantmatching
+其它購電風力,Other purchased onshore wind,Wind,Onshore,PP,,24.1128,120.4076,powerplantmatching,placed with Changkong,2025,placeholder 2025
+離岸一期,Taipower offshore phase 1,Wind,Offshore,PP,,23.9646,120.2383,powerplantmatching,,2021,powerplantmatching
+海洋竹南,Formosa 1,Wind,Offshore,PP,,24.7107,120.8122,OSM r13131412,,2019,powerplantmatching
+海能風,Formosa 2,Wind,Offshore,PP,,24.772,120.6472,powerplantmatching,,2023,powerplantmatching
+沃一風,Greater Changhua 1,Wind,Offshore,PP,,24.1537,119.9494,OSM w1333770360,,2023,powerplantmatching
+沃二風,Greater Changhua 2a,Wind,Offshore,PP,,24.1575,119.8278,OSM w1459169021,,2023,powerplantmatching
+沃南風,Greater Changhua 2b (assumed),Wind,Offshore,PP,,24.23,120.0,thewindpower.net,name assumed to be Greater Changhua 2b,2025,placeholder 2025
+芳一風,Changfang Xidao 1,Wind,Offshore,PP,,24.1115,120.2042,powerplantmatching,,2022,powerplantmatching
+芳二風,Changfang Xidao 2,Wind,Offshore,PP,,24.1115,120.2042,powerplantmatching,,2022,powerplantmatching
+允湖,Yunlin (Yunneng) A,Wind,Offshore,PP,,23.5894,120.0289,OSM w882630880,,2025,placeholder 2025
+允西,Yunlin (Yunneng) B,Wind,Offshore,PP,,23.5894,120.0289,OSM w882630880,,2025,placeholder 2025
+中能風,Chung-Neng,Wind,Offshore,PP,,23.9,120.15,thewindpower.net,,2025,placeholder 2025

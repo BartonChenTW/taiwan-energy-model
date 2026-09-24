@@ -1,0 +1,5 @@
+unit,capacity_mw,include,source,source_date,note
+台中CC#1(註10),1300,yes,https://www.cna.com.tw/news/afe/202609040200.aspx,2026-09-04,"Taichung new gas units 1-2 total about 2,600 MW; unit 1 in dispatch since May 2026, commercial operation end of September 2026; 1,274.8 MW net at the Taipower snapshot"
+台中CC#2(註10),1300,yes,https://www.cna.com.tw/news/afe/202609040200.aspx,2026-09-04,"in test operation, dispatch from October 2026, commercial operation March 2027; 1,284.9 MW net at the snapshot"
+興達新CC#3(註10),1300,yes,https://e-info.org.tw/node/243153,2026,"1,300 MW per new Hsinta unit (unit 1 is listed at 1,300.0 MW); in trial grid operation; 570.5 MW net at the snapshot"
+興達新CC#2(註10),1300,no,https://e-info.org.tw/node/243153,2026,"joins by the end of 2026; 0 MW at the snapshot, so not included yet"

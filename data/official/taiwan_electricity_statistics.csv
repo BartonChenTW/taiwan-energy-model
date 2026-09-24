@@ -1,0 +1,21 @@
+statistic,value,unit,year,scope,source_name,link,evidence,note
+generation_total,251.44,TWh,2024,Taipower system,Taipower (via search summary),,search_summary,Taipower-system generation excluding wheeling; I could not open a Taipower page stating it. Consistent with 2023's implied 247.3 TWh
+sales_total,233.0,TWh,2023,Taipower system,e-info.org.tw 238379,https://e-info.org.tw/node/238379,search_summary,Taipower electricity sales in 2023
+generation_coal,83.6,TWh,2023,Taipower system,e-info.org.tw 238379,https://e-info.org.tw/node/238379,search_summary,33.8% of Taipower-system generation in 2023
+generation_gas,108.3,TWh,2023,Taipower system,e-info.org.tw 238379,https://e-info.org.tw/node/238379,search_summary,43.8% of Taipower-system generation in 2023
+generation_total,288.6,TWh,2024,Taiwan (national),EIA Taiwan Analysis Brief,https://www.eia.gov/international/content/analysis/countries_short/Taiwan/Taiwan.pdf,search_summary,National total generation including self-generation
+generation_total,288.9,TWh,2025,Taiwan (national),MOENV energy information platform,https://energy.moenv.gov.tw/energy/electricity-generation-mix/2408.html,search_summary,From search summary: about 0.2 TWh less than 2024
+share_gas,42.4,%,2024,Taiwan (national),EIA Taiwan Analysis Brief,https://www.eia.gov/international/content/analysis/countries_short/Taiwan/Taiwan.pdf,search_summary,
+share_coal,39.3,%,2024,Taiwan (national),EIA Taiwan Analysis Brief,https://www.eia.gov/international/content/analysis/countries_short/Taiwan/Taiwan.pdf,search_summary,
+share_nuclear,4.2,%,2024,Taiwan (national),EIA Taiwan Analysis Brief,https://www.eia.gov/international/content/analysis/countries_short/Taiwan/Taiwan.pdf,search_summary,
+share_renewables,11.6,%,2024,Taiwan (national),EIA Taiwan Analysis Brief,https://www.eia.gov/international/content/analysis/countries_short/Taiwan/Taiwan.pdf,search_summary,
+share_pumped_storage,1.1,%,2024,Taiwan (national),EIA Taiwan Analysis Brief,https://www.eia.gov/international/content/analysis/countries_short/Taiwan/Taiwan.pdf,search_summary,
+share_gas,47.2,%,2024,Taipower system,Taipower (via search summary),,search_summary,
+share_coal,31.1,%,2024,Taipower system,Taipower (via search summary),,search_summary,
+share_oil,1.4,%,2024,Taipower system,Taipower (via search summary),,search_summary,
+share_nuclear,8.2,%,2024,Taipower system,Taipower (via search summary),,search_summary,
+share_renewables,11.9,%,2024,Taipower system,Taipower (via search summary),,search_summary,Includes hydro and waste/biogas from cogeneration
+share_coal,35.4,%,2025,Taiwan (national),MOENV energy information platform,https://energy.moenv.gov.tw/energy/electricity-generation-mix/2408.html,search_summary,From search summary
+share_gas,47.8,%,2025,Taiwan (national),MOENV energy information platform,https://energy.moenv.gov.tw/energy/electricity-generation-mix/2408.html,search_summary,From search summary
+share_renewables,13.1,%,2025,Taiwan (national),MOENV energy information platform,https://energy.moenv.gov.tw/energy/electricity-generation-mix/2408.html,search_summary,From search summary
+share_nuclear,1.1,%,2025,Taiwan (national),MOENV energy information platform,https://energy.moenv.gov.tw/energy/electricity-generation-mix/2408.html,search_summary,From search summary; Maanshan 2 shut down in May 2025

@@ -6,7 +6,8 @@ Inputs (all in ``pypsa_tw/data/``):
 - ``official/taipower_units_<date>.json``: Taipower real-time unit list,
   including purchased power from IPPs (https://data.gov.tw/dataset/8931).
   Only units that Taipower counts in installed capacity are used; units shown
-  as "-" (new units in trial operation, units on standby) are left out.
+  as "-" (new units in trial operation, units on standby) are left out, except
+  those listed in ``supplementary_units.csv`` with a sourced rating.
 - ``taipower_plant_mapping.csv``: Taipower plant name -> PyPSA-Earth fuel type,
   technology, storage hours and coordinates, with the source of each coordinate.
 - ``official/moeaea_solar_approvals_by_county_kW.csv``: Energy Administration
@@ -109,6 +110,15 @@ def main():
     units = read_taipower_units(units_file)
     mapping = pd.read_csv(HERE / "taipower_plant_mapping.csv")
 
+    # Units Taipower shows as "-" (e.g. new units in trial operation) but that were
+    # generating: ratings come from supplementary_units.csv, with sources.
+    supplement = pd.read_csv(HERE / "supplementary_units.csv").query("include == 'yes'")
+    fill = units.unit.isin(supplement.unit) & units.capacity.isna()
+    units.loc[fill, "capacity"] = units.loc[fill, "unit"].map(supplement.set_index("unit").capacity_mw)
+    missing = set(supplement.unit) - set(units.loc[fill, "unit"])
+    if missing:
+        print(f"note: supplementary units not found as '-' in this snapshot: {sorted(missing)}")
+
     counted = units.dropna(subset=["capacity"])
     not_counted = units[units.capacity.isna()]
     islands = counted[counted.unit.str.startswith(ISLAND_UNITS)]
@@ -139,6 +149,7 @@ def main():
 
     snapshot = json.loads(units_file.read_bytes().decode("utf-8-sig"))["DateTime"]
     print(f"Taipower snapshot {snapshot} ({units_file.name})")
+    print(f"added from supplementary_units.csv: {fill.sum()} units, {units.loc[fill, 'capacity'].sum():.0f} MW")
     print(f"wrote {len(out)} plants to {OUTPUT.relative_to(REPO)}\n")
     print((out.groupby(["Fueltype", "Technology"]).Capacity.sum() / 1e3).round(2).rename("GW").to_string())
     print(f"\ntotal {out.Capacity.sum() / 1e3:.2f} GW")
