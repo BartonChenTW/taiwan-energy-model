@@ -1,0 +1,26 @@
+# Scenario overlay: sector-coupled reference run for 2025, 24-hour time steps.
+# Use on top of the Test 2 config:
+#   snakemake -j 1 solve_sector_networks --configfile pypsa_tw/config/config_tw_test2_highs.yaml pypsa_tw/config/scenarios/sector_2025_24h.yaml
+# Same as sector_test.yaml except the planning year (2025: sector demand grown from the
+# UN base year 2019 to 2025, technology-data 2025 costs for the sector part) and daily
+# time steps (365 steps). Weather 2013, 6 buses, no hydrogen export, load shedding allowed.
+# The run name is shared with sector_test.yaml so the prepared electricity network and
+# weather profiles are reused; results go to results/<sector_name>/.
+
+run:
+  name: "tw_sector_test_2013_6b"
+  sector_name: "tw_sector_2025_24h_2013w_6b"
+
+scenario:
+  planning_horizons: [2025]
+  sopts: ["24h"]
+  demand: ["AB"]
+
+export:
+  # PyPSA-Earth's default is 10 TWh/yr of hydrogen export; Taiwan has no export plan.
+  h2export: [0]
+  endogenous: false
+
+solving:
+  options:
+    load_shedding: true

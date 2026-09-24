@@ -322,6 +322,11 @@ Barton asked to try PyPSA-Earth's sector-coupled model. Overlay: `pypsa_tw/confi
    - 40.6 GW of rooftop solar was built (extendable by default in the sector model); fossil supply is unlimited; there is no CO2 cap; 6-day time steps.
  - **Plausible:** the non-electric demand from the UN balance (road oil 149 TWh, aviation 54 TWh, gas for industry 56 TWh, petrochemical naphtha).
  - **Exporter:** `export_sector_draft` writes `docs/data/sector_draft.json` (aggregated numbers only).
+ - **Correction:** the "too much coal and gas" finding was wrong.
+   - PyPSA-Earth's `convert_conventional_generators_to_links` (`scripts/prepare_sector_network.py`) turns each plant into a link rated on its fuel side: `p_nom = MW_el / efficiency`.
+   - 31.9 GW coal is 11.36 / 0.356, and 44.9 GW CCGT is 26.03 / 0.58. The electric capacities are the official fleet's.
+   - The export now reports link capacity × efficiency.
+ - **Draft page:** technology and demand names are translated (EN and ZH) instead of PyPSA-Earth codes in monospace.
 
 TODO:
  - to run PyPSA-Earth Taiwan!

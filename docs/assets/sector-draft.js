@@ -13,9 +13,8 @@ const L = {
     official: "Official fleet", model: "Sector model",
     meta: (d) => `Run ${d.run}, ${d.snapshots} time steps of ${d.step} h, exported ${d.generated}.`,
     issues: (d, f) => [
-      `Coal, gas and oil capacity is too high: ${f.coal} GW coal, ${f.ccgt} GW CCGT and ${f.oil} GW oil in the sector network, against ${f.coalOff}, ${f.ccgtOff} and ${f.oilOff} GW in the official fleet. The sector workflow appears to add existing plants from another source on top; to trace.`,
       `Electricity demand is ${d.electricity_demand_TWh} TWh, against ${d.reference.electricity_consumption_2024_TWh} TWh official national consumption (2024) and ${d.reference.taipower_system_generation_2024_TWh} TWh in the electricity model (Taipower system). It comes from the UN balance with PyPSA-Earth's 2030 growth factors; part may be counted twice.`,
-      `CO₂ is ${d.co2_Mt} Mt, about ${Math.round((d.co2_Mt / d.reference.co2_fuel_combustion_2025_Mt - 1) * 100)}% above official fuel-combustion emissions (${d.reference.co2_fuel_combustion_2025_Mt} Mt, 2025), consistent with the too-high demand and fossil capacity.`,
+      `CO₂ is ${d.co2_Mt} Mt, about ${Math.round((d.co2_Mt / d.reference.co2_fuel_combustion_2025_Mt - 1) * 100)}% above official fuel-combustion emissions (${d.reference.co2_fuel_combustion_2025_Mt} Mt, 2025), consistent with the too-high demand; coal also runs at full output all year, as in the electricity model.`,
       `The model built ${f.rooftop} GW of rooftop solar, which is extendable by default in the sector model, so this is not "today's fixed system".`,
       "Fossil fuel supply is unlimited and biomass uses PyPSA-Earth's default potential, not checked for Taiwan.",
       "No CO₂ cap, and 6-day time steps: daily solar and wind patterns are averaged out.",
@@ -32,15 +31,54 @@ const L = {
     official: "官方機組", model: "部門耦合模型",
     meta: (d) => `模擬 ${d.run}，共 ${d.snapshots} 個時段、每段 ${d.step} 小時，匯出時間 ${d.generated}。`,
     issues: (d, f) => [
-      `燃煤、燃氣與燃油容量過高：部門網路中燃煤 ${f.coal} GW、複循環燃氣 ${f.ccgt} GW、燃油 ${f.oil} GW，官方機組分別為 ${f.coalOff}、${f.ccgtOff}、${f.oilOff} GW。部門流程似乎從其他來源額外加入既有電廠，待追查。`,
       `電力需求為 ${d.electricity_demand_TWh} TWh，官方 2024 年全國用電量為 ${d.reference.electricity_consumption_2024_TWh} TWh，電力模型（台電系統）為 ${d.reference.taipower_system_generation_2024_TWh} TWh。此需求來自聯合國能源平衡加上 PyPSA-Earth 的 2030 年成長係數，可能部分重複計算。`,
-      `CO₂ 為 ${d.co2_Mt} Mt，比官方燃料燃燒排放（${d.reference.co2_fuel_combustion_2025_Mt} Mt，2025 年）高約 ${Math.round((d.co2_Mt / d.reference.co2_fuel_combustion_2025_Mt - 1) * 100)}%，與需求及化石容量過高一致。`,
+      `CO₂ 為 ${d.co2_Mt} Mt，比官方燃料燃燒排放（${d.reference.co2_fuel_combustion_2025_Mt} Mt，2025 年）高約 ${Math.round((d.co2_Mt / d.reference.co2_fuel_combustion_2025_Mt - 1) * 100)}%，與需求過高一致；燃煤也與電力模型一樣全年滿載運轉。`,
       `模型新建了 ${f.rooftop} GW 屋頂型太陽光電（部門模型預設可擴建），因此這不是「現有的固定系統」。`,
       "化石燃料供給無上限，生質能使用 PyPSA-Earth 預設潛力，尚未針對台灣核對。",
       "未設 CO₂ 上限，且每 6 天一個時段：日內的太陽光電與風力變化被平均掉。",
     ],
   },
 };
+
+
+// Readable names for PyPSA-Earth carrier codes (the code stays as a tooltip in the tables).
+const NAMES = {
+  en: {
+    CCGT: "Gas (combined cycle)", OCGT: "Gas (open cycle)", coal: "Coal", oil: "Oil", nuclear: "Nuclear",
+    solar: "Solar PV (ground-mounted)", "solar rooftop": "Solar PV (rooftop)", "offwind-ac": "Offshore wind (AC)",
+    "offwind-dc": "Offshore wind (DC)", onwind: "Onshore wind", ror: "Run-of-river hydro", hydro: "Reservoir hydro",
+    PHS: "Pumped hydro", "battery discharger": "Battery", "urban central solid biomass CHP": "Biomass CHP (district heating)",
+    AC: "Electricity (households and other)", "industry electricity": "Industry electricity", "services electricity": "Services electricity",
+    "agriculture electricity": "Agriculture electricity", "rail transport electricity": "Rail electricity", "land transport EV": "Electric vehicles",
+    "land transport oil": "Road transport oil", "land transport fuel cell": "Road transport hydrogen (fuel cell)", "rail transport oil": "Rail oil",
+    "kerosene for aviation": "Aviation kerosene", "shipping oil": "Shipping oil", "H2 for shipping": "Shipping hydrogen",
+    "gas for industry": "Industry gas", "low-temperature heat for industry": "Industry low-temperature heat", "naphtha for industry": "Industry naphtha (feedstock)",
+    "solid biomass for industry": "Industry solid biomass", "H2 for industry": "Industry hydrogen", NH3: "Ammonia",
+    "residential gas": "Residential gas", "residential oil": "Residential oil", "residential biomass": "Residential biomass",
+    "services gas": "Services gas", "services oil": "Services oil", "services biomass": "Services biomass", "agriculture oil": "Agriculture oil",
+    "urban central heat": "District heating", "residential urban decentral heat": "Urban residential heat (individual)",
+    "services urban decentral heat": "Urban services heat (individual)", "residential rural heat": "Rural residential heat",
+    "services rural heat": "Rural services heat", "H2 export": "Hydrogen export",
+  },
+  zh: {
+    CCGT: "燃氣複循環", OCGT: "燃氣單循環", coal: "燃煤", oil: "燃油", nuclear: "核能",
+    solar: "太陽光電（地面型）", "solar rooftop": "太陽光電（屋頂型）", "offwind-ac": "離岸風電（交流）",
+    "offwind-dc": "離岸風電（直流）", onwind: "陸域風電", ror: "川流式水力", hydro: "水庫式水力",
+    PHS: "抽蓄水力", "battery discharger": "電池儲能", "urban central solid biomass CHP": "生質能汽電共生（區域供熱）",
+    AC: "電力（住宅及其他）", "industry electricity": "工業用電", "services electricity": "服務業用電",
+    "agriculture electricity": "農業用電", "rail transport electricity": "鐵路用電", "land transport EV": "電動車",
+    "land transport oil": "公路運輸燃油", "land transport fuel cell": "公路運輸用氫（燃料電池）", "rail transport oil": "鐵路燃油",
+    "kerosene for aviation": "航空燃油", "shipping oil": "航運燃油", "H2 for shipping": "航運用氫",
+    "gas for industry": "工業用天然氣", "low-temperature heat for industry": "工業低溫熱能", "naphtha for industry": "工業石油腦（原料）",
+    "solid biomass for industry": "工業固態生質燃料", "H2 for industry": "工業用氫", NH3: "氨",
+    "residential gas": "住宅天然氣", "residential oil": "住宅燃油", "residential biomass": "住宅生質能",
+    "services gas": "服務業天然氣", "services oil": "服務業燃油", "services biomass": "服務業生質能", "agriculture oil": "農業燃油",
+    "urban central heat": "區域供熱", "residential urban decentral heat": "都市住宅供熱（個別）",
+    "services urban decentral heat": "都市服務業供熱（個別）", "residential rural heat": "鄉村住宅供熱",
+    "services rural heat": "鄉村服務業供熱", "H2 export": "氫氣出口",
+  },
+};
+const name = (c) => NAMES[lang()][c] || NAMES.en[c] || c;
 
 let data = null;
 const $ = (id) => document.getElementById(id);
@@ -96,17 +134,17 @@ function render() {
   const uses = Object.keys(byUse).sort((a, b) => byUse[b] - byUse[a]);
   bars("sd-chart-demand", uses.map((u) => t.use[u] || u), uses.map((u) => byUse[u]), "TWh", 0);
   $("sd-table-demand").innerHTML = `<table><thead><tr><th>${t.col_item}</th><th>${t.col_use}</th><th class="num">${t.col_twh}</th></tr></thead><tbody>` +
-    d.demand_TWh.map((r) => `<tr><td><code>${esc(r.carrier)}</code></td><td>${esc(t.use[r.use] || r.use)}</td><td class="num">${nf(r.TWh, 1)}</td></tr>`).join("") + "</tbody></table>";
+    d.demand_TWh.map((r) => `<tr><td title="${esc(r.carrier)}">${esc(name(r.carrier))}</td><td>${esc(t.use[r.use] || r.use)}</td><td class="num">${nf(r.TWh, 1)}</td></tr>`).join("") + "</tbody></table>";
 
   const sup = Object.entries(d.electricity_supply_TWh);
-  bars("sd-chart-supply", sup.map(([k]) => k), sup.map(([, v]) => v), "TWh", 1);
+  bars("sd-chart-supply", sup.map(([k]) => name(k)), sup.map(([, v]) => v), "TWh", 1);
 
   // Capacity: official fleet (neutral) vs sector model (accent), for the technologies both have.
   const map = [["coal", "Hard Coal"], ["CCGT", "CCGT"], ["OCGT", "OCGT"], ["oil", "Oil"], ["solar", "Solar"], ["solar rooftop", null],
                ["offwind-ac", null], ["onwind", null], ["urban central solid biomass CHP", null]];
   const cap = Object.fromEntries(d.electricity_capacity_GW.map((r) => [r.carrier, r]));
   const rows = map.filter(([k]) => cap[k]);
-  const labels = rows.map(([k]) => k);
+  const labels = rows.map(([k]) => name(k));
   const official = rows.map(([, o]) => (o ? d.official_fleet_GW[o] || 0 : null));
   const model = rows.map(([k]) => cap[k].fixed_GW + cap[k].built_GW);
   $("sd-chart-capacity").style.height = `${Math.max(260, 70 + 44 * labels.length)}px`;
@@ -119,7 +157,7 @@ function render() {
   $("sd-table-capacity").innerHTML = `<table><thead><tr><th>${t.col_tech}</th><th class="num">${t.col_official}</th><th class="num">${t.col_fixed}</th><th class="num">${t.col_built}</th></tr></thead><tbody>` +
     d.electricity_capacity_GW.map((r) => {
       const o = (map.find(([k]) => k === r.carrier) || [])[1];
-      return `<tr><td><code>${esc(r.carrier)}</code></td><td class="num">${o ? nf(d.official_fleet_GW[o] || 0, 2) : "–"}</td><td class="num">${nf(r.fixed_GW, 2)}</td><td class="num">${nf(r.built_GW, 2)}</td></tr>`;
+      return `<tr><td title="${esc(r.carrier)}">${esc(name(r.carrier))}</td><td class="num">${o ? nf(d.official_fleet_GW[o] || 0, 2) : "–"}</td><td class="num">${nf(r.fixed_GW, 2)}</td><td class="num">${nf(r.built_GW, 2)}</td></tr>`;
     }).join("") + "</tbody></table>";
 
   $("sd-issues").innerHTML = t.issues(d, capacityFigures(d)).map((s) => `<li>${esc(s)}</li>`).join("");

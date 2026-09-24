@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-24 17:17 UTC",
+ "generated": "2026-09-24 21:02 UTC",
  "run": "tw_sector_test_2013_6b",
  "network": "elec_s_6_ec_lv1.0_Co2L-4H_144h_2030_0.071_AB_0export.nc",
  "snapshots": 61,
@@ -145,18 +145,13 @@
  },
  "electricity_capacity_GW": [
   {
-   "carrier": "CCGT",
-   "fixed_GW": 44.87,
-   "built_GW": 0.0
-  },
-  {
    "carrier": "solar rooftop",
    "fixed_GW": 0.0,
    "built_GW": 40.6
   },
   {
-   "carrier": "coal",
-   "fixed_GW": 31.91,
+   "carrier": "CCGT",
+   "fixed_GW": 26.03,
    "built_GW": 0.0
   },
   {
@@ -165,13 +160,8 @@
    "built_GW": 0.0
   },
   {
-   "carrier": "urban central solid biomass CHP",
-   "fixed_GW": 0.0,
-   "built_GW": 4.39
-  },
-  {
-   "carrier": "oil",
-   "fixed_GW": 3.66,
+   "carrier": "coal",
+   "fixed_GW": 11.36,
    "built_GW": 0.0
   },
   {
@@ -185,8 +175,18 @@
    "built_GW": 0.0
   },
   {
+   "carrier": "oil",
+   "fixed_GW": 1.28,
+   "built_GW": 0.0
+  },
+  {
+   "carrier": "urban central solid biomass CHP",
+   "fixed_GW": 0.0,
+   "built_GW": 1.19
+  },
+  {
    "carrier": "battery discharger",
-   "fixed_GW": 0.85,
+   "fixed_GW": 0.84,
    "built_GW": 0.0
   },
   {
@@ -196,7 +196,7 @@
   },
   {
    "carrier": "OCGT",
-   "fixed_GW": 0.44,
+   "fixed_GW": 0.18,
    "built_GW": 0.0
   }
  ],

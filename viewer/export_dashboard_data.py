@@ -858,8 +858,11 @@ def export_sector_draft(repo, out):
         if comp == "links":
             df = df[~df.bus0.isin(ac)]
         for c, g in df.groupby("carrier"):
-            fixed = g.loc[~g.p_nom_extendable, "p_nom"].sum() / 1e3
-            built = (g.loc[g.p_nom_extendable, "p_nom_opt"] - g.loc[g.p_nom_extendable, "p_nom"]).clip(lower=0).sum() / 1e3
+            # A link's p_nom is on its input (fuel) side; the electric capacity is p_nom x efficiency
+            # (PyPSA-Earth's convert_conventional_generators_to_links sets p_nom = MW_el / efficiency).
+            eff = g["efficiency"] if comp == "links" else 1.0
+            fixed = (g["p_nom"] * eff)[~g.p_nom_extendable].sum() / 1e3
+            built = ((g["p_nom_opt"] - g["p_nom"]).clip(lower=0) * eff)[g.p_nom_extendable].sum() / 1e3
             if fixed + built > 0.05:
                 cap.append({"carrier": c, "fixed_GW": _r(fixed, 2), "built_GW": _r(built, 2)})
 

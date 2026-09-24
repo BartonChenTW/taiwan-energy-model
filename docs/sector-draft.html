@@ -69,7 +69,7 @@
 
       <article class="panel">
         <h3><span class="t-en">Electricity capacity: sector model vs official fleet</span><span class="t-zh">發電容量：部門耦合模型與官方機組比較</span></h3>
-        <p class="sub"><span class="t-en">GW. Official fleet: Taipower unit list used by the electricity model. The gaps for coal, gas and oil are the main problem to fix.</span><span class="t-zh">GW。官方機組：電力模型使用的台電機組清單。燃煤、燃氣與燃油的差距是首要待修正的問題。</span></p>
+        <p class="sub"><span class="t-en">GW. Official fleet: Taipower unit list used by the electricity model. Coal, gas and oil match the official list; the sector model adds rooftop solar and biomass CHP that it builds itself.</span><span class="t-zh">GW。官方機組：電力模型使用的台電機組清單。燃煤、燃氣與燃油與官方清單一致；屋頂型太陽光電與生質能汽電共生為模型自行新建。</span></p>
         <div id="sd-chart-capacity" class="chart"></div>
         <div id="sd-table-capacity" class="table-wrap"></div>
       </article>
@@ -77,6 +77,8 @@
       <section class="section prose">
         <h2><span class="t-en">Problems found</span><span class="t-zh">發現的問題</span></h2>
         <ol id="sd-issues"></ol>
+
+        <p class="note"><span class="t-en"><b>Resolved:</b> an earlier version of this page reported 31.9 GW of coal and 44.9 GW of gas. Those were fuel-input ratings: the sector model turns each plant into a link rated on its fuel side (electric capacity ÷ efficiency). The electric capacities are the official fleet's.</span><span class="t-zh"><b>已釐清：</b>本頁先前列出燃煤 31.9 GW、燃氣 44.9 GW，那是燃料輸入端的額定值：部門模型把每座電廠轉為以燃料端計量的連結（電力容量 ÷ 效率）。電力容量與官方機組一致。</span></p>
 
         <h2><span class="t-en">What was changed to make it run</span><span class="t-zh">為了執行所做的修改</span></h2>
         <ol>
@@ -87,7 +89,7 @@
 
         <h2><span class="t-en">Next steps before publishing</span><span class="t-zh">發布前的下一步</span></h2>
         <ol>
-          <li><span class="t-en">Trace the extra coal, gas and oil capacity and use the official fleet only.</span><span class="t-zh">追查多出的燃煤、燃氣與燃油容量，只採用官方機組。</span></li>
+          <li><span class="t-en">Decide whether rooftop solar and biomass CHP may be built, or fix them at today's capacity for the 2025 reference.</span><span class="t-zh">決定是否允許新建屋頂型太陽光電與生質能汽電共生，或在 2025 年基準情境中固定為現有容量。</span></li>
           <li><span class="t-en">Check each demand against the Energy Administration's energy balance and align the scope (national vs Taipower system).</span><span class="t-zh">逐項與能源署能源平衡表核對需求，並統一範圍（全國或台電系統）。</span></li>
           <li><span class="t-en">Decide which technologies are fixed and which the model may build; set a CO₂ path.</span><span class="t-zh">決定哪些技術固定、哪些可由模型新建；設定 CO₂ 路徑。</span></li>
           <li><span class="t-en">Use finer time steps (e.g. 3–4 hours) once the inputs are right.</span><span class="t-zh">輸入正確後，改用較細的時間步長（例如 3–4 小時）。</span></li>
