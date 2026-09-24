@@ -1,0 +1,8514 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-09-22T08:45:51Z",
+    "timestamp_areas_base": "2026-09-22T08:45:51Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "way",
+  "id": 102247970,
+  "center": {
+    "lat": 23.7279085,
+    "lon": 120.1606903
+  },
+  "tags": {
+    "name": "雲林新興發電廠",
+    "natural": "coastline",
+    "operator": "碩力光能股份有限公司",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "271MW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2022-03-30",
+    "wikidata": "Q117316833",
+    "wikipedia": "zh:雲林新興發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 114411959,
+  "center": {
+    "lat": 25.1159488,
+    "lon": 121.2567122
+  },
+  "tags": {
+    "addr:city": "桃園市",
+    "addr:country": "TW",
+    "addr:district": "蘆竹區",
+    "addr:full": "338桃園市蘆竹區濱海路一段199號",
+    "addr:housenumber": "199",
+    "addr:postcode": "338",
+    "addr:street": "濱海路一段",
+    "alt_name": "Changsheng Power Plant",
+    "barrier": "wall",
+    "generator:source": "oil",
+    "name": "海湖發電廠",
+    "name:en": "Hai-Fu Power Station",
+    "name:zh": "海湖發電廠",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "plant:method": "combustion",
+    "plant:output:electricity": "900 MW",
+    "plant:source": "gas",
+    "power": "plant",
+    "wikidata": "Q5638914",
+    "wikipedia": "zh:海湖發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 151212447,
+  "center": {
+    "lat": 23.0821916,
+    "lon": 120.3563574
+  },
+  "tags": {
+    "addr:city": "臺南市",
+    "addr:country": "TW",
+    "addr:district": "山上區",
+    "addr:full": "743臺南市山上區隙子口66號",
+    "addr:housenumber": "66",
+    "addr:place": "隙子口",
+    "addr:postcode": "743",
+    "alt_name": "森霸電廠",
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "豐德發電廠",
+    "name:en": "Sun Ba Fong Der Power Plant",
+    "name:zh": "豐德發電廠",
+    "operator": "森霸電力公司",
+    "plant:method": "combustion",
+    "plant:output:electricity": "980 MW",
+    "plant:source": "gas",
+    "power": "plant",
+    "wikidata": "Q12003949",
+    "wikipedia": "zh:豐德發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 157901183,
+  "center": {
+    "lat": 23.1598805,
+    "lon": 120.0953497
+  },
+  "tags": {
+    "name": "森崴七股光電場",
+    "operator": "森崴能源股份有限公司",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "77 MW",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 163120819,
+  "center": {
+    "lat": 23.0401911,
+    "lon": 120.2822380
+  },
+  "tags": {
+    "addr:city": "台南市",
+    "addr:country": "TW",
+    "addr:district": "永康區",
+    "addr:full": "台南市永康區王行東路166號",
+    "addr:housenumber": "166",
+    "addr:street": "王行東路",
+    "alt_name": "永康焚化廠;永康焚化爐",
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "台南永康垃圾資源回收(焚化)廠",
+    "operator": "達和環保",
+    "plant:method": "combustion",
+    "plant:output:electricity": "22.5 MW",
+    "plant:source": "waste",
+    "power": "plant",
+    "start_date": "2007-03-29"
+  }
+},
+{
+  "type": "way",
+  "id": 163191816,
+  "center": {
+    "lat": 23.0448762,
+    "lon": 120.0749738
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "城西垃圾焚化廠",
+    "note": "廠區範圍已包含2026年啟用的更新爐範圍，但發電數據尚未找到可靠來源，15.8 MW 僅包含原焚化爐",
+    "plant:method": "combustion",
+    "plant:output:electricity": "15.8 MW",
+    "plant:source": "waste",
+    "power": "plant",
+    "wikidata": "Q24836350",
+    "wikipedia": "zh:城西垃圾焚化廠"
+  }
+},
+{
+  "type": "way",
+  "id": 172736809,
+  "center": {
+    "lat": 23.9753838,
+    "lon": 121.1323033
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "萬大發電廠",
+    "name:zh": "萬大發電廠",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "plant:source": "hydro",
+    "power": "plant",
+    "wikidata": "Q12010815",
+    "wikipedia": "zh:萬大發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 181171613,
+  "center": {
+    "lat": 24.4905501,
+    "lon": 120.6714268
+  },
+  "tags": {
+    "addr:city": "苗栗縣",
+    "addr:country": "TW",
+    "addr:district": "通霄鎮",
+    "addr:full": "357苗栗縣通霄鎮海濱路1-31號",
+    "addr:housenumber": "1-31",
+    "addr:postcode": "357",
+    "addr:province": "台灣省",
+    "addr:street": "海濱路",
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "通霄發電廠",
+    "name:en": "Tunghsiao Power Plant",
+    "name:fr": "Centrale de Tunghsiao",
+    "name:zh": "通霄發電廠",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:wikipedia": "en:Taiwan Power Company",
+    "operator:zh": "台灣電力公司",
+    "plant:method": "combustion",
+    "plant:output:electricity": "3757 MW",
+    "plant:source": "gas",
+    "power": "plant",
+    "wikidata": "Q6691590",
+    "wikipedia": "zh:通霄發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 189784502,
+  "center": {
+    "lat": 24.9582245,
+    "lon": 121.4973601
+  },
+  "tags": {
+    "addr:city": "新北市",
+    "addr:country": "TW",
+    "addr:district": "新店區",
+    "addr:full": "23155新北市新店區薏仁坑路自強巷1號",
+    "addr:housenumber": "1",
+    "addr:postcode": "23155",
+    "addr:street": "薏仁坑路自強巷",
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "新店垃圾焚化廠",
+    "name:en": "Xindian Refuse Incineration Plant",
+    "name:nan": "Sin-tiàm-lap-sap-hûn-hòa-chhiúⁿ",
+    "name:nan-Hant": "新店垃圾焚化廠",
+    "name:nan-Latn-pehoeji": "Sin-tiàm-lap-sap-hûn-hòa-chhiúⁿ",
+    "name:nan-Latn-tailo": "Sin-tiàm-lap-sap-hûn-huà-tshiúnn",
+    "name:zh": "新店垃圾焚化廠",
+    "operator": "達和環保服務股份有限公司",
+    "operator:en": "Onyx Ta-Ho Environmental Services",
+    "operator:zh": "達和環保服務股份有限公司",
+    "phone": "+886 2 2214 2022",
+    "plant:method": "combustion",
+    "plant:output:electricity": "14.6 MW",
+    "plant:source": "waste",
+    "power": "plant",
+    "start_date": "1994-03",
+    "website": "https://xindianplant.epd.ntpc.gov.tw/",
+    "wikidata": "Q130478145",
+    "wikimedia_commons": "File:新店垃圾焚化廠.png"
+  }
+},
+{
+  "type": "way",
+  "id": 199146681,
+  "center": {
+    "lat": 25.1200129,
+    "lon": 121.2991160
+  },
+  "tags": {
+    "addr:city": "新北市",
+    "addr:country": "TW",
+    "addr:district": "林口區",
+    "addr:full": "新北市林口區下福里139-1號",
+    "addr:housenumber": "139-1",
+    "addr:place": "下福里",
+    "alt_name": "林口發電廠",
+    "barrier": "wall",
+    "full_name": "台灣電力股份有限公司林口發電廠",
+    "landuse": "industrial",
+    "name": "林口火力發電廠",
+    "name:en": "Linkou Power Plant",
+    "name:nan": "Nâ-káu-hóe-le̍k-hoa̍t-tiān-chhiúⁿ",
+    "name:nan-Hant": "林口火力發電廠",
+    "name:nan-Latn-pehoeji": "Nâ-káu-hóe-le̍k-hoa̍t-tiān-chhiúⁿ",
+    "name:nan-Latn-tailo": "Nâ-káu-hué-li̍k-hua̍t-tiān-tshiúnn",
+    "name:zh": "林口火力發電廠",
+    "plant:method": "combustion",
+    "plant:output:electricity": "2400 MW",
+    "plant:source": "coal",
+    "power": "plant",
+    "wikidata": "Q11105601",
+    "wikipedia": "zh:林口發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 200691649,
+  "center": {
+    "lat": 24.2151787,
+    "lon": 120.4815213
+  },
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "龍井區",
+    "addr:full": "43401臺中市龍井區龍昌路1號",
+    "addr:housenumber": "1",
+    "addr:postcode": "43401",
+    "addr:street": "龍昌路",
+    "landuse": "industrial",
+    "name": "台中火力發電廠",
+    "name:en": "Taichung Power Plant",
+    "name:zh": "台中火力發電廠",
+    "operator": "台灣電力公司",
+    "plant:method": "combustion",
+    "plant:output:electricity": "5824 MW",
+    "plant:source": "coal",
+    "power": "plant",
+    "start_date": "1992",
+    "wikidata": "Q584095",
+    "wikipedia": "zh:台中發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 203381069,
+  "center": {
+    "lat": 25.2025462,
+    "lon": 121.6626555
+  },
+  "tags": {
+    "alt_name": "國聖廠",
+    "generator:source": "nuclear",
+    "is_in:zh": "台灣新北市萬里區",
+    "landuse": "industrial",
+    "name": "第二核能發電廠",
+    "name:en": "Kuosheng Nuclear Power Plant",
+    "name:nan": "Tē-jī He̍k-lêng Hoat-tiān-chhiúⁿ",
+    "name:nan-Hant": "第二核能發電廠",
+    "name:nan-Latn-pehoeji": "Tē-jī He̍k-lêng Hoat-tiān-chhiúⁿ",
+    "name:nan-Latn-tailo": "Tē-jī Hi̍k-lîng Huat-tiān-tshiúnn",
+    "name:zh": "第二核能發電廠",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "plant:method": "fission",
+    "plant:output:electricity": "1896 MW",
+    "plant:source": "nuclear",
+    "power": "plant",
+    "short_name": "核二廠",
+    "wikidata": "Q711929",
+    "wikipedia": "de:Kernkraftwerk Kuosheng"
+  }
+},
+{
+  "type": "way",
+  "id": 204129566,
+  "center": {
+    "lat": 22.5352842,
+    "lon": 120.3336778
+  },
+  "tags": {
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "大林火力發電廠",
+    "plant:output:electricity": "2650 MW",
+    "plant:source": "coal;gas",
+    "power": "plant",
+    "start_date": "1969",
+    "wikidata": "Q10935779",
+    "wikipedia": "zh:大林發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 207641187,
+  "center": {
+    "lat": 25.2854775,
+    "lon": 121.5883283
+  },
+  "tags": {
+    "alt_name": "金山發電廠",
+    "generator:source": "nuclear",
+    "is_in:zh": "台灣新北市石門區",
+    "landuse": "industrial",
+    "name": "第一核能發電廠",
+    "name:en": "Chin Shan Nuclear Power Plant",
+    "name:fr": "Centrale nucléaire de Chin Shan",
+    "name:it": "Centrale nucleare di Chin Shan",
+    "name:no": "Chin Shan kjernekraftverk",
+    "name:zh": "第一核能發電廠",
+    "operator": "台灣電力公司",
+    "plant:method": "fission",
+    "plant:output:electricity": "1208 MW",
+    "plant:source": "nuclear",
+    "power": "plant",
+    "short_name": "核一廠",
+    "source": "bing",
+    "wikidata": "Q712574",
+    "wikipedia": "de:Kernkraftwerk Chin Shan"
+  }
+},
+{
+  "type": "way",
+  "id": 222486466,
+  "center": {
+    "lat": 23.4489553,
+    "lon": 120.2803856
+  },
+  "tags": {
+    "addr:city": "嘉義縣",
+    "addr:country": "TW",
+    "addr:district": "鹿草鄉",
+    "addr:full": "嘉義縣鹿草鄉豐稠村馬稠後農場60號",
+    "addr:housenumber": "60",
+    "addr:place": "農場",
+    "addr:province": "台灣省",
+    "landuse": "industrial",
+    "name": "鹿草焚化爐",
+    "plant:method": "combustion",
+    "plant:output:electricity": "25 MW",
+    "plant:source": "waste",
+    "power": "plant",
+    "wikidata": "Q132217959"
+  }
+},
+{
+  "type": "way",
+  "id": 225470941,
+  "center": {
+    "lat": 23.8180677,
+    "lon": 120.8568561
+  },
+  "tags": {
+    "barrier": "wall",
+    "name": "明潭發電廠鉅工分廠",
+    "operator": "台灣電力公司",
+    "plant:output:electricity": "43.5 MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "start_date": "1937",
+    "wikidata": "Q15902781",
+    "wikipedia": "zh:明潭發電廠鉅工分廠"
+  }
+},
+{
+  "type": "way",
+  "id": 226576525,
+  "center": {
+    "lat": 22.8523387,
+    "lon": 120.1973397
+  },
+  "tags": {
+    "addr:city": "高雄市",
+    "addr:country": "TW",
+    "addr:district": "永安區",
+    "addr:full": "828高雄市永安區興達路6號",
+    "addr:housenumber": "6",
+    "addr:postcode": "828",
+    "addr:street": "興達路",
+    "alt_name": "Hsing-ta Power Plant",
+    "landuse": "industrial",
+    "name": "興達發電廠",
+    "name:en": "Hsinta Power Plant",
+    "name:zh": "興達發電廠",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "plant:output:electricity": "4325.95 MW",
+    "plant:source": "coal;gas",
+    "power": "plant",
+    "start_date": "1982",
+    "wikidata": "Q7212656",
+    "wikipedia": "zh:興達發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 227669295,
+  "center": {
+    "lat": 24.1551471,
+    "lon": 121.6271997
+  },
+  "tags": {
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "東部發電廠立霧機組",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "plant:output:electricity": "32 MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "wikidata": "Q15904732"
+  }
+},
+{
+  "type": "way",
+  "id": 249855731,
+  "center": {
+    "lat": 26.1563851,
+    "lon": 119.9346814
+  },
+  "tags": {
+    "addr:city": "連江縣",
+    "addr:country": "TW",
+    "addr:district": "南竿鄉",
+    "addr:full": "連江縣南竿鄉清水村99之9號",
+    "addr:housenumber": "99之9",
+    "addr:place": "清水村",
+    "addr:province": "福建省",
+    "barrier": "wall",
+    "full_name": "台灣電力公司協和發電廠珠山分廠",
+    "landuse": "industrial",
+    "name": "珠山發電廠",
+    "name:en": "Zhushan Power Plant",
+    "name:zh": "珠山發電廠",
+    "official_name": "協和發電廠珠山分廠",
+    "official_name:zh": "協和發電廠珠山分廠",
+    "operator": "台灣電力公司",
+    "plant:method": "combustion",
+    "plant:source": "diesel",
+    "power": "plant",
+    "wikidata": "Q24837780",
+    "wikipedia": "zh:協和發電廠珠山分廠"
+  }
+},
+{
+  "type": "way",
+  "id": 258589949,
+  "center": {
+    "lat": 23.3585965,
+    "lon": 119.5067782
+  },
+  "tags": {
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "望安發電廠",
+    "name:zh": "望安發電廠",
+    "name:zh-Hans": "望安发电厂",
+    "name:zh-Hant": "望安發電廠",
+    "power": "plant",
+    "wikidata": "Q24835641",
+    "wikipedia": "zh:望安發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 262837692,
+  "center": {
+    "lat": 22.7655717,
+    "lon": 121.0280379
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "東興發電廠",
+    "official_name": "台灣電力股份有限公司東興發電廠",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "plant:method": "run-of-the-river",
+    "plant:output:electricity": "0.8MW",
+    "plant:source": "hydro",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 266319475,
+  "center": {
+    "lat": 24.2702414,
+    "lon": 120.7918602
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "社寮角發電廠",
+    "plant:output:electricity": "yes",
+    "plant:source": "hydro",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 274895730,
+  "center": {
+    "lat": 24.3066367,
+    "lon": 121.7656659
+  },
+  "tags": {
+    "addr:city": "花蓮縣",
+    "addr:country": "TW",
+    "addr:district": "秀林鄉",
+    "addr:full": "972花蓮縣秀林鄉和工二路7號",
+    "addr:housenumber": "7",
+    "addr:postcode": "972",
+    "addr:province": "台灣省",
+    "addr:street": "和工二路",
+    "alt_name": "和平發電廠",
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "和平電廠",
+    "name:en": "Ho-Ping Power Station",
+    "name:zh": "和平電廠",
+    "operator": "和平電力股份有限公司",
+    "plant:method": "combustion",
+    "plant:output:electricity": "1320 MW",
+    "plant:source": "coal",
+    "power": "plant",
+    "wikidata": "Q15225086",
+    "wikipedia": "zh:和平電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 292500014,
+  "center": {
+    "lat": 24.1843080,
+    "lon": 120.9229270
+  },
+  "tags": {
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "大甲溪發電廠",
+    "operator": "台灣電力公司",
+    "plant:output:electricity": "1137.165 MW",
+    "plant:source": "hydro",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 300909121,
+  "center": {
+    "lat": 25.0626067,
+    "lon": 121.6056342
+  },
+  "tags": {
+    "addr:city": "臺北市",
+    "addr:country": "TW",
+    "addr:district": "內湖區",
+    "addr:full": "臺北市內湖區安康路290號",
+    "addr:housenumber": "290",
+    "addr:postcode": "114",
+    "addr:street": "安康路",
+    "alt_name": "內湖焚化爐",
+    "building": "industrial",
+    "landuse": "industrial",
+    "layer": "2",
+    "name": "內湖垃圾焚化廠",
+    "phone": "+886-2-27961833",
+    "plant:method": "combustion",
+    "plant:output:electricity": "yes",
+    "plant:source": "waste",
+    "power": "plant",
+    "wikidata": "Q20062901",
+    "wikipedia": "zh:內湖垃圾焚化廠"
+  }
+},
+{
+  "type": "way",
+  "id": 300909125,
+  "center": {
+    "lat": 24.6602714,
+    "lon": 121.8359535
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "利澤垃圾焚化廠",
+    "operator": "達和環保服務公司",
+    "plant:method": "combustion",
+    "plant:output:electricity": "12.6 MW",
+    "plant:source": "waste",
+    "power": "plant",
+    "wikidata": "Q22097584",
+    "wikipedia": "zh:利澤垃圾焚化廠"
+  }
+},
+{
+  "type": "way",
+  "id": 307905907,
+  "center": {
+    "lat": 22.8382924,
+    "lon": 120.2069701
+  },
+  "tags": {
+    "name": "永安鹽灘光電廠",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 307905912,
+  "center": {
+    "lat": 22.8450529,
+    "lon": 120.2083706
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "3900MW興達複循環燃煤電廠",
+    "name:en": "Hsinta (Xingda) Combined Cycle Renewal Project",
+    "operator": "TPC",
+    "power": "plant",
+    "source": "https://www.nsenergybusiness.com/projects/hsinta-combined-cycle-power-plant-renewal/;https://www.gevernova.com/news/press-releases/coal-gas-transition-powered-ge-vernova-ha-equipment-first-block-hsinta-power"
+  }
+},
+{
+  "type": "way",
+  "id": 310318489,
+  "center": {
+    "lat": 21.9577039,
+    "lon": 120.7405419
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 310318490,
+  "center": {
+    "lat": 21.9569533,
+    "lon": 120.7402788
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 310318491,
+  "center": {
+    "lat": 21.9560137,
+    "lon": 120.7404689
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 310318492,
+  "center": {
+    "lat": 21.9565225,
+    "lon": 120.7407230
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 316623898,
+  "center": {
+    "lat": 22.7313621,
+    "lon": 121.1357606
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "台東縣垃圾資源回收廠",
+    "plant:source": "waste",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 337541593,
+  "center": {
+    "lat": 23.5634490,
+    "lon": 119.6599419
+  },
+  "tags": {
+    "addr:city": "澎湖縣",
+    "addr:country": "TW",
+    "addr:district": "湖西鄉",
+    "addr:full": "澎湖縣湖西鄉尖山村10鄰尖山29號之2",
+    "addr:hamlet": "尖山村",
+    "addr:housenumber": "29",
+    "addr:neighbourhood": "10",
+    "addr:place": "尖山",
+    "addr:province": "台灣省",
+    "addr:unit": "2",
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "尖山發電廠",
+    "name:en": "Chienshan Power Plant",
+    "name:zh": "尖山發電廠",
+    "name:zh-Hans": "尖山发电厂",
+    "name:zh-Hant": "尖山發電廠",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:wikipedia": "en:Taiwan Power Company",
+    "operator:zh": "台灣電力公司",
+    "plant:output:electricity": "129.8 MW",
+    "plant:source": "diesel",
+    "power": "plant",
+    "source": "http://en.wikipedia.org/wiki/Chienshan_Power_Plant",
+    "wikidata": "Q15209640",
+    "wikipedia": "zh:尖山發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 342755187,
+  "center": {
+    "lat": 24.4409559,
+    "lon": 118.3988432
+  },
+  "tags": {
+    "fixme": "请完善能源类型及装机容量",
+    "landuse": "industrial",
+    "name": "金門發電廠夏興分廠",
+    "name:zh": "金門發電廠夏興分廠",
+    "plant:source": "diesel",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 365285231,
+  "center": {
+    "lat": 24.8141180,
+    "lon": 121.1979199
+  },
+  "tags": {
+    "addr:city": "新竹縣",
+    "addr:country": "TW",
+    "addr:district": "關西鎮",
+    "addr:full": "306新竹縣關西鎮66號",
+    "addr:housenumber": "66",
+    "addr:postcode": "306",
+    "addr:province": "台灣省",
+    "full_name": "新桃電力股份有限公司新桃電廠",
+    "landuse": "industrial",
+    "name": "新桃電廠",
+    "name:en": "Hsintao Thermal Power Plant",
+    "name:zh": "新桃電廠",
+    "operator": "新桃電力公司",
+    "plant:method": "combustion",
+    "plant:output:electricity": "733 MW",
+    "plant:source": "gas",
+    "power": "plant",
+    "source": "https://www.gem.wiki/Hsin_Tao_power_station",
+    "wikidata": "Q11975963",
+    "wikipedia": "zh:新桃電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 367004758,
+  "center": {
+    "lat": 23.2304933,
+    "lon": 120.4473297
+  },
+  "tags": {
+    "area": "yes",
+    "landuse": "industrial",
+    "name": "西口水力發電廠",
+    "operator": "嘉南實業有限公司",
+    "plant:method": "run-of-the-river",
+    "plant:output:electricity": "11.52 MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "start_date": "2007-04-11",
+    "wikidata": "Q17194227",
+    "wikipedia": "zh:西口水力發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 380570208,
+  "center": {
+    "lat": 23.9854499,
+    "lon": 120.8932556
+  },
+  "tags": {
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "明潭發電廠北山機組",
+    "old_name": "substation",
+    "power": "plant",
+    "substation": "transmission"
+  }
+},
+{
+  "type": "way",
+  "id": 405701010,
+  "center": {
+    "lat": 24.2937718,
+    "lon": 120.7273023
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 405701011,
+  "center": {
+    "lat": 24.2960379,
+    "lon": 120.7273479
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 407195137,
+  "center": {
+    "lat": 24.9374313,
+    "lon": 121.5427569
+  },
+  "tags": {
+    "alt_name": "小粗坑發電廠;桂山發電廠粗坑分廠",
+    "alt_name:en": "Xiaocukeng Power Plant",
+    "alt_name:zh": "小粗坑發電廠;桂山發電廠粗坑分廠",
+    "name": "桂山發電廠粗坑機組",
+    "name:en": "Gueishan Power Plant Cukeng Branch",
+    "name:zh": "桂山發電廠粗坑機組",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "plant:output:electricity": "5 MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "start_date": "1909-08",
+    "wikidata": "Q16926590",
+    "wikimedia_commons": "File:小粗坑發電廠.JPG",
+    "wikipedia": "zh:桂山發電廠粗坑機組"
+  }
+},
+{
+  "type": "way",
+  "id": 422240640,
+  "center": {
+    "lat": 23.1936938,
+    "lon": 119.4222053
+  },
+  "tags": {
+    "addr:city": "澎湖縣",
+    "addr:country": "TW",
+    "addr:district": "七美鄉",
+    "addr:full": "澎湖縣七美鄉南港村11鄰南滬1號之3",
+    "addr:hamlet": "南港村",
+    "addr:housenumber": "1",
+    "addr:neighbourhood": "11",
+    "addr:place": "南滬",
+    "addr:province": "台灣省",
+    "addr:unit": "3",
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "台電七美發電廠",
+    "name:zh": "台電七美發電廠",
+    "name:zh-Hans": "台电七美发电厂",
+    "name:zh-Hant": "台電七美發電廠",
+    "power": "plant",
+    "wikidata": "Q24834733",
+    "wikipedia": "zh:七美發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 430607406,
+  "center": {
+    "lat": 22.6619227,
+    "lon": 121.4740616
+  },
+  "tags": {
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "台電綠島發電廠",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 446850637,
+  "center": {
+    "lat": 24.2171174,
+    "lon": 120.6169009
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 454417612,
+  "center": {
+    "lat": 24.4940960,
+    "lon": 120.8000664
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 454417681,
+  "center": {
+    "lat": 24.4894197,
+    "lon": 120.8003248
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 454417752,
+  "center": {
+    "lat": 24.4860871,
+    "lon": 120.8039089
+  },
+  "tags": {
+    "addr:city": "苗栗縣",
+    "addr:country": "TW",
+    "addr:district": "銅鑼鄉",
+    "addr:full": "36647苗栗縣銅鑼鄉中興路99號",
+    "addr:housenumber": "99",
+    "addr:postcode": "36647",
+    "addr:province": "台灣省",
+    "addr:street": "中興路",
+    "building": "industrial",
+    "name": "正達國際光電股份有限公司",
+    "plant:source": "hydro",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 462837619,
+  "center": {
+    "lat": 22.6816435,
+    "lon": 120.2757170
+  },
+  "tags": {
+    "building": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 462837620,
+  "center": {
+    "lat": 22.6814307,
+    "lon": 120.2726856
+  },
+  "tags": {
+    "building": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 462837622,
+  "center": {
+    "lat": 22.6811232,
+    "lon": 120.2722742
+  },
+  "tags": {
+    "building": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 462837623,
+  "center": {
+    "lat": 22.6808192,
+    "lon": 120.2717768
+  },
+  "tags": {
+    "building": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 462837706,
+  "center": {
+    "lat": 22.6803745,
+    "lon": 120.2711156
+  },
+  "tags": {
+    "building": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 462869087,
+  "center": {
+    "lat": 22.6801175,
+    "lon": 120.2726512
+  },
+  "tags": {
+    "building": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 462869088,
+  "center": {
+    "lat": 22.6796044,
+    "lon": 120.2733338
+  },
+  "tags": {
+    "building": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 462869090,
+  "center": {
+    "lat": 22.6792079,
+    "lon": 120.2729994
+  },
+  "tags": {
+    "building": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 462869091,
+  "center": {
+    "lat": 22.6795223,
+    "lon": 120.2736941
+  },
+  "tags": {
+    "building": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 462869096,
+  "center": {
+    "lat": 22.6832601,
+    "lon": 120.2752779
+  },
+  "tags": {
+    "building": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 462869112,
+  "center": {
+    "lat": 22.6828973,
+    "lon": 120.2750871
+  },
+  "tags": {
+    "building": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 492388177,
+  "center": {
+    "lat": 23.2088241,
+    "lon": 120.3655641
+  },
+  "tags": {
+    "building": "yes",
+    "landuse": "industrial",
+    "name": "水力發電廠",
+    "name:ja": "水力発電所",
+    "power": "plant",
+    "tourism": "attraction"
+  }
+},
+{
+  "type": "way",
+  "id": 496645448,
+  "center": {
+    "lat": 25.1341707,
+    "lon": 121.3673979
+  },
+  "tags": {
+    "addr:city": "新北市",
+    "addr:country": "TW",
+    "addr:district": "八里區",
+    "addr:full": "新北市八里區中山路三段409號",
+    "addr:housenumber": "409",
+    "addr:street": "中山路三段",
+    "alt_name:nan": "Pat-lí-pùn-sò-hûn-huà-lôo",
+    "email": "Bali.inc.plane@gmail.com",
+    "landuse": "industrial",
+    "name": "八里垃圾焚化爐",
+    "name:en": "Bali Refuse Incineration Plant",
+    "name:nan": "Pat-lí-lap-sap-hûn-huà-lôo",
+    "name:zh": "八里垃圾焚化爐",
+    "phone": "+886 2 2619 5111",
+    "plant:method": "combustion",
+    "plant:output:electricity": "40.881 MW",
+    "plant:source": "waste",
+    "power": "plant",
+    "source": "https://www.gem.wiki/Bali_Refuse_Incineration_power_station",
+    "website": "https://baliplant.epd.ntpc.net.tw",
+    "wikidata": "Q55696434",
+    "wikipedia": "zh:八里垃圾焚化廠"
+  }
+},
+{
+  "type": "way",
+  "id": 497030578,
+  "center": {
+    "lat": 24.9094915,
+    "lon": 121.5772283
+  },
+  "tags": {
+    "alt_name": "翡翠發電廠",
+    "name": "桂山發電廠翡翠分廠",
+    "plant:output:electricity": "70 MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "start_date": "1942",
+    "wikidata": "Q11968629"
+  }
+},
+{
+  "type": "way",
+  "id": 497030590,
+  "center": {
+    "lat": 24.9025490,
+    "lon": 121.5611745
+  },
+  "tags": {
+    "alt_name": "桂山發電廠;新龜山發電廠",
+    "name": "桂山發電廠桂山機組",
+    "plant:output:electricity": "13 MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "start_date": "1942",
+    "wikidata": "Q21016983"
+  }
+},
+{
+  "type": "way",
+  "id": 507020797,
+  "center": {
+    "lat": 23.5332279,
+    "lon": 120.4732020
+  },
+  "tags": {
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "嘉惠發電廠",
+    "name:en": "Chiahui Power Plant",
+    "name:zh": "嘉惠發電廠",
+    "plant:method": "combustion",
+    "plant:output:electricity": "670 MW",
+    "plant:source": "gas",
+    "power": "plant",
+    "wikidata": "Q15209599",
+    "wikipedia": "zh:嘉惠發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 507342535,
+  "center": {
+    "lat": 24.7770055,
+    "lon": 121.3618657
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "石門發電廠義興電廠",
+    "plant:output:electricity": "0.9 MW",
+    "plant:source": "hydro",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 508805367,
+  "center": {
+    "lat": 24.3352892,
+    "lon": 121.6762019
+  },
+  "tags": {
+    "barrier": "wall",
+    "name": "變電所",
+    "plant:source": "hydro",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 511859208,
+  "center": {
+    "lat": 24.3326816,
+    "lon": 121.6075130
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "東部發電廠碧海機組",
+    "power": "plant",
+    "wikidata": "Q15903058"
+  }
+},
+{
+  "type": "way",
+  "id": 513405031,
+  "center": {
+    "lat": 24.8615991,
+    "lon": 121.5546023
+  },
+  "tags": {
+    "alt_name": "烏來發電廠",
+    "name": "桂山發電廠烏來機組",
+    "plant:source": "hydro",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 513405041,
+  "center": {
+    "lat": 24.8598037,
+    "lon": 121.5524511
+  },
+  "tags": {
+    "alt_name": "烏來發電廠",
+    "name": "桂山發電廠烏來機組",
+    "plant:output:electricity": "23 MW",
+    "plant:source": "hydro",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 513427431,
+  "center": {
+    "lat": 24.6953026,
+    "lon": 121.0978327
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "桂山發電廠軟橋分廠",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 513486768,
+  "center": {
+    "lat": 24.2095614,
+    "lon": 121.0232641
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "大甲溪發電廠谷關分廠",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 513486769,
+  "center": {
+    "lat": 24.2081584,
+    "lon": 121.0184531
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "台電公司谷關訓練中心",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 513512832,
+  "center": {
+    "lat": 24.2089546,
+    "lon": 121.0212372
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "台電青山施工處",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 513552210,
+  "center": {
+    "lat": 24.9037130,
+    "lon": 121.5579537
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "桂山發電廠",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 514667283,
+  "center": {
+    "lat": 25.1187110,
+    "lon": 121.2565379
+  },
+  "tags": {
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "長生火力發電廠",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 515490703,
+  "center": {
+    "lat": 25.0079303,
+    "lon": 121.5897240
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "福德坑沼氣發電廠",
+    "plant:method": "combustion",
+    "plant:source": "biogas",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 515759414,
+  "center": {
+    "lat": 23.8517471,
+    "lon": 120.8682734
+  },
+  "tags": {
+    "addr:city": "南投縣",
+    "addr:country": "TW",
+    "addr:district": "水里鄉",
+    "addr:full": "南投縣水里鄉車埕村明潭巷73號",
+    "addr:housenumber": "73",
+    "addr:province": "台灣省",
+    "addr:street": "明潭巷",
+    "landuse": "industrial",
+    "name": "大觀發電廠",
+    "power": "plant",
+    "wikidata": "Q15900609",
+    "wikipedia": "zh:大觀發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 515759430,
+  "center": {
+    "lat": 23.8359060,
+    "lon": 120.8685505
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "明潭抽蓄水力發電廠",
+    "official_name": "明潭發電廠抽蓄機組",
+    "plant:method": "water-storage",
+    "plant:output:electricity": "1602 MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "start_date": "1995",
+    "wikidata": "Q24835688",
+    "wikipedia": "zh:明潭發電廠抽蓄機組"
+  }
+},
+{
+  "type": "way",
+  "id": 515763085,
+  "center": {
+    "lat": 23.8264665,
+    "lon": 120.8653455
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "明潭發電廠",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 517137824,
+  "center": {
+    "lat": 22.0264012,
+    "lon": 121.5395168
+  },
+  "tags": {
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "蘭嶼發電廠",
+    "power": "plant",
+    "wikidata": "Q19853654",
+    "wikipedia": "zh:蘭嶼發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 518956917,
+  "center": {
+    "lat": 24.8132255,
+    "lon": 121.2437563
+  },
+  "tags": {
+    "addr:city": "桃園市",
+    "addr:country": "TW",
+    "addr:district": "大溪區",
+    "addr:full": "桃園市大溪區義和里19鄰環湖路一段6巷22號",
+    "addr:hamlet": "義和里",
+    "addr:housenumber": "22",
+    "addr:neighbourhood": "19",
+    "addr:street": "環湖路一段6巷",
+    "barrier": "wall",
+    "name": "石門發電廠石門電廠",
+    "plant:output:electricity": "90 MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "wikidata": "Q15903631",
+    "wikipedia": "zh:石門發電廠石門電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 519033087,
+  "center": {
+    "lat": 23.8352152,
+    "lon": 120.7111632
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "名間水力發電廠",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 529638244,
+  "center": {
+    "lat": 26.3685628,
+    "lon": 120.4975357
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "東引發電三廠",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "plant:method": "combustion",
+    "plant:output:electricity": "6.4 MW",
+    "plant:source": "diesel",
+    "power": "plant",
+    "start_date": "1971"
+  }
+},
+{
+  "type": "way",
+  "id": 531426594,
+  "center": {
+    "lat": 26.3697975,
+    "lon": 120.5014822
+  },
+  "tags": {
+    "alt_name": "東引發電2廠",
+    "landuse": "industrial",
+    "name": "東引發電二廠",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 538753336,
+  "center": {
+    "lat": 25.0419232,
+    "lon": 121.3424190
+  },
+  "tags": {
+    "addr:city": "桃園市",
+    "addr:country": "TW",
+    "addr:district": "龜山區",
+    "addr:full": "333桃園市龜山區北油一區11號",
+    "addr:housenumber": "11",
+    "addr:place": "北油一區",
+    "addr:postcode": "333",
+    "landuse": "industrial",
+    "name": "國光發電廠",
+    "name:en": "Kuokuang Power Plant",
+    "name:zh": "國光發電廠",
+    "operator": "國光電力公司",
+    "plant:method": "combustion",
+    "plant:output:electricity": "480 MW",
+    "plant:source": "gas",
+    "power": "plant",
+    "wikidata": "Q15240808",
+    "wikipedia": "zh:國光發電廠",
+    "wikipedia:en": "Kuokuang Power Plant"
+  }
+},
+{
+  "type": "way",
+  "id": 540297736,
+  "center": {
+    "lat": 25.0359296,
+    "lon": 121.3724108
+  },
+  "tags": {
+    "barrier": "fence",
+    "landuse": "industrial",
+    "name": "華亞汽電廠",
+    "name:en": "Hwa Ya Cogen Power Plant",
+    "name:zh": "華亞汽電廠",
+    "operator": "華亞汽電股份有限公司",
+    "plant:method": "combustion",
+    "plant:output:electricity": "275MW",
+    "plant:source": "coal",
+    "power": "plant",
+    "source": "https://www.gem.wiki/Hwa_Ya_Cogen_power_station"
+  }
+},
+{
+  "type": "way",
+  "id": 546051675,
+  "center": {
+    "lat": 25.0458175,
+    "lon": 121.9282217
+  },
+  "tags": {
+    "barrier": "fence",
+    "landuse": "industrial",
+    "name": "龍門核四港區",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 583660049,
+  "center": {
+    "lat": 23.8030978,
+    "lon": 120.1904879
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "麥寮發電廠",
+    "name:en": "Mailiao Power Plant",
+    "name:zh": "麥寮發電廠",
+    "plant:method": "combustion",
+    "plant:output:electricity": "4200 MW",
+    "plant:source": "coal",
+    "power": "plant",
+    "wikidata": "Q15243860",
+    "wikipedia": "zh:麥寮發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 618262400,
+  "center": {
+    "lat": 24.7893835,
+    "lon": 120.9996354
+  },
+  "tags": {
+    "fixme": "Position estimated",
+    "landuse": "industrial",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 661662183,
+  "center": {
+    "lat": 25.0276792,
+    "lon": 121.0399707
+  },
+  "tags": {
+    "addr:city": "桃園市",
+    "addr:country": "TW",
+    "addr:district": "觀音區",
+    "addr:full": "328桃園市觀音區電廠路1號",
+    "addr:housenumber": "1",
+    "addr:postcode": "328",
+    "addr:street": "電廠路",
+    "barrier": "fence",
+    "landuse": "industrial",
+    "name": "大潭發電廠",
+    "name:en": "Tatan Power Plant",
+    "name:fr": "Centrale de Tatan",
+    "name:ja": "大潭発電所",
+    "name:zh": "大潭發電廠",
+    "operator": "台灣電力公司",
+    "plant:method": "combustion",
+    "plant:output:electricity": "4984.2 MW",
+    "plant:source": "gas",
+    "power": "plant",
+    "wikidata": "Q6832032",
+    "wikipedia": "zh:大潭發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 662983942,
+  "center": {
+    "lat": 24.2894629,
+    "lon": 120.7302264
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 674880816,
+  "center": {
+    "lat": 24.5010497,
+    "lon": 120.7985274
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 674881259,
+  "center": {
+    "lat": 24.4975430,
+    "lon": 120.7981660
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 674881260,
+  "center": {
+    "lat": 24.4970968,
+    "lon": 120.7988151
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 674882793,
+  "center": {
+    "lat": 24.4982568,
+    "lon": 120.8000441
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 674882795,
+  "center": {
+    "lat": 24.4948246,
+    "lon": 120.7985953
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 674882804,
+  "center": {
+    "lat": 24.4950073,
+    "lon": 120.7985939
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 674882811,
+  "center": {
+    "lat": 24.4987475,
+    "lon": 120.8000332
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 674882817,
+  "center": {
+    "lat": 24.4949509,
+    "lon": 120.7995414
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 675021962,
+  "center": {
+    "lat": 24.4920656,
+    "lon": 120.8003422
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 675028234,
+  "center": {
+    "lat": 24.4877408,
+    "lon": 120.8030144
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 675028244,
+  "center": {
+    "lat": 24.4879194,
+    "lon": 120.8038609
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 676312031,
+  "center": {
+    "lat": 24.3194450,
+    "lon": 120.7279168
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant",
+    "roof:shape": "flat"
+  }
+},
+{
+  "type": "way",
+  "id": 682011892,
+  "center": {
+    "lat": 24.2880261,
+    "lon": 120.6980265
+  },
+  "tags": {
+    "barrier": "wall",
+    "name": "后里垃圾焚化廠",
+    "plant:source": "waste",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 705042734,
+  "center": {
+    "lat": 23.9872317,
+    "lon": 121.6042087
+  },
+  "tags": {
+    "building": "yes",
+    "name": "活動中心",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 709894062,
+  "center": {
+    "lat": 24.6120955,
+    "lon": 121.6368724
+  },
+  "tags": {
+    "addr:city": "宜蘭縣",
+    "addr:country": "TW",
+    "addr:district": "大同鄉",
+    "addr:full": "267宜蘭縣大同鄉三星路八段501巷139號",
+    "addr:housenumber": "139",
+    "addr:postcode": "267",
+    "addr:province": "台灣省",
+    "addr:street": "三星路八段501巷",
+    "building": "industrial",
+    "image": "https://commons.wikimedia.org/wiki/File:%E6%B8%85%E6%B0%B4%E5%9C%B0%E7%86%B1%E7%99%BC%E9%9B%BB%E5%BB%A0%E5%9C%B0%E7%86%B1%E4%BA%95.jpg",
+    "name": "清水地熱發電廠",
+    "plant:output:electricity": "4.2 MW",
+    "plant:source": "geothermal",
+    "power": "plant",
+    "start_date": "2021-11-23",
+    "wikidata": "Q15901473",
+    "wikimedia_commons": "Category:Qingshui Geothermal Power Plant",
+    "wikipedia": "zh:清水地熱發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 717426540,
+  "center": {
+    "lat": 24.7617405,
+    "lon": 121.0228961
+  },
+  "tags": {
+    "landuse": "industrial",
+    "man_made": "works",
+    "name": "聯亞科技",
+    "name:en": "UNITED INDUSTRIAL GASES CO. (UIGC)",
+    "name:zh": "聯亞科技",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 747277003,
+  "center": {
+    "lat": 24.8261453,
+    "lon": 121.1668140
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "宏關發電廠預定地",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 749133167,
+  "center": {
+    "lat": 24.0036903,
+    "lon": 121.4260363
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "東部發電廠龍澗機組",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "plant:output:electricity": "97.2 MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "start_date": "1955",
+    "wikidata": "Q15907324",
+    "wikipedia": "zh:東部發電廠龍澗機組"
+  }
+},
+{
+  "type": "way",
+  "id": 749133169,
+  "center": {
+    "lat": 24.0228326,
+    "lon": 121.4106862
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "東部發電廠龍溪機組",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 749136409,
+  "center": {
+    "lat": 23.9672277,
+    "lon": 121.4820218
+  },
+  "tags": {
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "東部發電廠清流機組",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 749136435,
+  "center": {
+    "lat": 23.9677108,
+    "lon": 121.4566266
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "東部發電廠清水機組",
+    "plant:output:electricity": "7 MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "start_date": "1936",
+    "wikidata": "Q15909962",
+    "wikipedia": "zh:東部發電廠清水機組"
+  }
+},
+{
+  "type": "way",
+  "id": 749136443,
+  "center": {
+    "lat": 23.9665572,
+    "lon": 121.4589669
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "東部發電廠清水機組",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 792770883,
+  "center": {
+    "lat": 20.7013786,
+    "lon": 116.7279252
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 833469130,
+  "center": {
+    "lat": 23.4813650,
+    "lon": 121.4183886
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 833469131,
+  "center": {
+    "lat": 23.4801324,
+    "lon": 121.4197083
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 833469136,
+  "center": {
+    "lat": 23.4807568,
+    "lon": 121.4175572
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 839529723,
+  "center": {
+    "lat": 23.3991203,
+    "lon": 119.3178924
+  },
+  "tags": {
+    "name": "花嶼村簡易發電廠",
+    "name:en": "Huayu Power Plant",
+    "name:zh": "花嶼村簡易發電廠",
+    "name:zh-Hans": "花屿村简易发电厂",
+    "name:zh-Hant": "花嶼村簡易發電廠",
+    "operator": "望安鄉公所",
+    "plant:method": "combustion",
+    "plant:output:electricity": "1.1 MW",
+    "plant:source": "oil",
+    "power": "plant",
+    "start_date": "2018-12-19",
+    "wikidata": "Q116847070",
+    "wikimedia_commons": "Category:Huayu Power Plant",
+    "wikipedia": "zh:花嶼村簡易發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 840674455,
+  "center": {
+    "lat": 23.7701272,
+    "lon": 121.4894232
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 840684061,
+  "center": {
+    "lat": 22.4278768,
+    "lon": 120.5194949
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "太陽能電站",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 840684062,
+  "center": {
+    "lat": 22.4289263,
+    "lon": 120.5187749
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "太陽能電站",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 840684131,
+  "center": {
+    "lat": 22.4268961,
+    "lon": 120.5139927
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "太陽能電站",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 840684133,
+  "center": {
+    "lat": 22.4252904,
+    "lon": 120.5134518
+  },
+  "tags": {
+    "landuse": "aquaculture",
+    "name": "漁電共生",
+    "natural": "water",
+    "plant:source": "solar",
+    "power": "plant",
+    "water": "pond"
+  }
+},
+{
+  "type": "way",
+  "id": 840684134,
+  "center": {
+    "lat": 22.4230939,
+    "lon": 120.5147745
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "太陽能電站",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 840684135,
+  "center": {
+    "lat": 22.4241886,
+    "lon": 120.5132161
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "太陽能電站",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 840684136,
+  "center": {
+    "lat": 22.4232674,
+    "lon": 120.5128620
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "太陽能電站",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 840955021,
+  "center": {
+    "lat": 24.1008512,
+    "lon": 120.3896859
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "台電彰濱太陽光電廠",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "100 MW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2019-10-09"
+  }
+},
+{
+  "type": "way",
+  "id": 865842324,
+  "center": {
+    "lat": 23.9987500,
+    "lon": 120.1400000
+  },
+  "tags": {
+    "plant:method": "wind_turbine",
+    "plant:output:electricity": "yes",
+    "plant:source": "wind",
+    "power": "plant",
+    "seamark:production_area:category": "wind_farm",
+    "seamark:type": "production_area",
+    "source": "China MSA Notice No. 1164/2020"
+  }
+},
+{
+  "type": "way",
+  "id": 882630880,
+  "center": {
+    "lat": 23.5894445,
+    "lon": 120.0288889
+  },
+  "tags": {
+    "name": "Yunlin Offshore Wind Farm",
+    "operator": "Yunneng Wind Power Co., Ltd (YWPC)",
+    "plant:method": "wind_turbine",
+    "plant:output:electricity": "640 MW",
+    "plant:source": "wind",
+    "power": "plant",
+    "seamark:production_area:category": "wind_farm",
+    "seamark:type": "production_area",
+    "source": "https://navy.mnd.gov.tw/Files/Others/25-101(民).pdf",
+    "start_date": "2025-08",
+    "website": "https://www.yunlin-offshore.com/en/"
+  }
+},
+{
+  "type": "way",
+  "id": 882630881,
+  "center": {
+    "lat": 23.8975000,
+    "lon": 120.1391667
+  },
+  "tags": {
+    "plant:method": "wind_turbine",
+    "plant:source": "wind",
+    "power": "plant",
+    "seamark:production_area:category": "wind_farm",
+    "seamark:type": "production_area",
+    "source": "China MSA Notice No. 1455/2020"
+  }
+},
+{
+  "type": "way",
+  "id": 882630882,
+  "center": {
+    "lat": 23.9974444,
+    "lon": 119.8708056
+  },
+  "tags": {
+    "plant:method": "wind_turbine",
+    "plant:source": "wind",
+    "power": "plant",
+    "seamark:production_area:category": "wind_farm",
+    "seamark:type": "production_area",
+    "source": "https://navy.mnd.gov.tw/Files/Others/26-102(民-含附件).pdf"
+  }
+},
+{
+  "type": "way",
+  "id": 915269327,
+  "center": {
+    "lat": 24.1286797,
+    "lon": 120.4214322
+  },
+  "tags": {
+    "addr:city": "彰化縣",
+    "addr:country": "TW",
+    "addr:county": "彰化縣",
+    "addr:district": "線西鄉",
+    "addr:full": "彰化縣線西鄉彰濱工業區慶安南二路2號",
+    "addr:housenumber": "2",
+    "addr:province": "台灣省",
+    "addr:street": "慶安南二路",
+    "landuse": "industrial",
+    "name": "星元電廠",
+    "name:en": "Star Buck Power Plant",
+    "name:zh": "星元電廠",
+    "operator": "星元電力",
+    "plant:method": "combustion",
+    "plant:output:electricity": "490 MW",
+    "plant:source": "gas",
+    "power": "plant",
+    "source": "http://www.starbuckpower.com.tw/about_e.php",
+    "start_date": "2009-03",
+    "wikidata": "Q12002660",
+    "wikipedia": "zh:星元電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 915288818,
+  "center": {
+    "lat": 24.1270945,
+    "lon": 120.4317485
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "彰濱電廠",
+    "name:en": "Chang Bin Power Plant",
+    "name:zh": "彰濱電廠",
+    "operator": "星能公司",
+    "plant:method": "combustion",
+    "plant:output:electricity": "490 MW",
+    "plant:source": "gas",
+    "power": "plant",
+    "source": "https://www.gem.wiki/Chang-Bin_power_station",
+    "start_date": "2004-03-29",
+    "wikidata": "Q11963417",
+    "wikipedia": "zh:彰濱電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 916837341,
+  "center": {
+    "lat": 23.8010135,
+    "lon": 120.1965292
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "Mailiao RF-CFB Power Station",
+    "name:en": "Mailiao Formosa RF-CFB Utility Power Station No. 4",
+    "power": "plant",
+    "source": "https://www.gem.wiki/Formosa_Petrochemical_Utility_Station_No.4"
+  }
+},
+{
+  "type": "way",
+  "id": 917645006,
+  "center": {
+    "lat": 24.5469266,
+    "lon": 121.5095623
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "仁澤地熱發電廠",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "plant:source": "geothermal",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 920214540,
+  "center": {
+    "lat": 23.5192154,
+    "lon": 120.3750534
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "新港發電廠",
+    "name:en": "Hsinkang SK Power Plant",
+    "name:zh": "新港發電廠",
+    "operator": "台塑企業",
+    "operator:en": "Formosa Plastics Group",
+    "plant:method": "combustion",
+    "plant:output:electricity": "yes",
+    "plant:source": "coal",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 933153632,
+  "center": {
+    "lat": 24.1182605,
+    "lon": 120.4262516
+  },
+  "tags": {
+    "floating": "yes",
+    "name": "彰濱崙尾東一號暨二號海上型太陽能電廠",
+    "operator": "辰亞能源公司",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "181 MW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2021-03-06"
+  }
+},
+{
+  "type": "way",
+  "id": 938465342,
+  "center": {
+    "lat": 24.2915298,
+    "lon": 120.7314719
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 955330270,
+  "center": {
+    "lat": 24.8489357,
+    "lon": 121.1832373
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 955330272,
+  "center": {
+    "lat": 24.8417246,
+    "lon": 121.1856336
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 962954457,
+  "center": {
+    "lat": 23.2478843,
+    "lon": 120.5328593
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "曾文發電廠",
+    "operator": "台灣電力公司",
+    "plant:method": "water-storage",
+    "plant:output:electricity": "50 MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "wikidata": "Q15913832",
+    "wikipedia": "zh:曾文發電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 972979422,
+  "center": {
+    "lat": 24.5790548,
+    "lon": 120.8300579
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 973162649,
+  "center": {
+    "lat": 24.4605666,
+    "lon": 120.6968267
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "太陽能",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 976767036,
+  "center": {
+    "lat": 23.8523998,
+    "lon": 120.8709664
+  },
+  "tags": {
+    "name": "大觀一廠",
+    "official_name": "大觀發電廠大觀一廠",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "plant:output:electricity": "110 MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "start_date": "1946-10-30",
+    "wikidata": "Q22773943",
+    "wikipedia": "zh:大觀發電廠大觀一廠"
+  }
+},
+{
+  "type": "way",
+  "id": 977468126,
+  "center": {
+    "lat": 22.6834727,
+    "lon": 120.2755163
+  },
+  "tags": {
+    "building": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 977900902,
+  "center": {
+    "lat": 24.5928822,
+    "lon": 120.7885467
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 978657289,
+  "center": {
+    "lat": 24.6572682,
+    "lon": 120.9622780
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 978673365,
+  "center": {
+    "lat": 24.5013812,
+    "lon": 120.6999258
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 980854277,
+  "center": {
+    "lat": 24.4324952,
+    "lon": 120.6447394
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 988543108,
+  "center": {
+    "lat": 24.6652159,
+    "lon": 120.8256134
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 989911761,
+  "center": {
+    "lat": 24.5116529,
+    "lon": 120.7092753
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 990479153,
+  "center": {
+    "lat": 24.6843007,
+    "lon": 120.9383358
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 994981430,
+  "center": {
+    "lat": 24.3652503,
+    "lon": 120.5806736
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796344,
+  "center": {
+    "lat": 24.2130812,
+    "lon": 120.4906128
+  },
+  "tags": {
+    "name": "台電台中電廠D-E生水池太陽光電發電廠",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796345,
+  "center": {
+    "lat": 24.2081376,
+    "lon": 120.4944593
+  },
+  "tags": {
+    "name": "台灣電力公司龍井太陽光電",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796346,
+  "center": {
+    "lat": 23.5975552,
+    "lon": 120.1721093
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796347,
+  "center": {
+    "lat": 23.6410816,
+    "lon": 120.4623585
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796348,
+  "center": {
+    "lat": 23.6421993,
+    "lon": 120.4619687
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796349,
+  "center": {
+    "lat": 23.6418966,
+    "lon": 120.4642175
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796350,
+  "center": {
+    "lat": 23.7877589,
+    "lon": 120.2233983
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796351,
+  "center": {
+    "lat": 23.7831238,
+    "lon": 120.2220036
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796353,
+  "center": {
+    "lat": 23.5868263,
+    "lon": 120.1732660
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796354,
+  "center": {
+    "lat": 23.5828443,
+    "lon": 120.1724862
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796355,
+  "center": {
+    "lat": 23.5833068,
+    "lon": 120.1747755
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796356,
+  "center": {
+    "lat": 23.5627327,
+    "lon": 120.1713281
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796357,
+  "center": {
+    "lat": 23.4321194,
+    "lon": 120.1835219
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796358,
+  "center": {
+    "lat": 23.4313947,
+    "lon": 120.1807939
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796359,
+  "center": {
+    "lat": 23.4304174,
+    "lon": 120.1808454
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796360,
+  "center": {
+    "lat": 23.4291422,
+    "lon": 120.1813097
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796361,
+  "center": {
+    "lat": 23.4301223,
+    "lon": 120.1829514
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796362,
+  "center": {
+    "lat": 23.4295797,
+    "lon": 120.1844315
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796363,
+  "center": {
+    "lat": 23.4271656,
+    "lon": 120.1814317
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796364,
+  "center": {
+    "lat": 23.4244136,
+    "lon": 120.1795561
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796365,
+  "center": {
+    "lat": 23.4227656,
+    "lon": 120.1790648
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796366,
+  "center": {
+    "lat": 23.4210880,
+    "lon": 120.1779518
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796367,
+  "center": {
+    "lat": 23.4212069,
+    "lon": 120.1809027
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796368,
+  "center": {
+    "lat": 23.4163638,
+    "lon": 120.1744963
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796369,
+  "center": {
+    "lat": 23.4194322,
+    "lon": 120.1757285
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796370,
+  "center": {
+    "lat": 23.4112243,
+    "lon": 120.1782086
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796371,
+  "center": {
+    "lat": 23.4107084,
+    "lon": 120.1756809
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796372,
+  "center": {
+    "lat": 23.4079122,
+    "lon": 120.1756852
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796373,
+  "center": {
+    "lat": 23.4076223,
+    "lon": 120.1777350
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796374,
+  "center": {
+    "lat": 23.4097234,
+    "lon": 120.1770784
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796375,
+  "center": {
+    "lat": 23.4090133,
+    "lon": 120.1778934
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796377,
+  "center": {
+    "lat": 23.3966188,
+    "lon": 120.2259631
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796378,
+  "center": {
+    "lat": 23.3959640,
+    "lon": 120.2183564
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796379,
+  "center": {
+    "lat": 23.3715679,
+    "lon": 120.2365998
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "18.5 MW",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796380,
+  "center": {
+    "lat": 23.3304325,
+    "lon": 120.1848140
+  },
+  "tags": {
+    "name": "韋能能源嘉義義竹電廠",
+    "operator": "韋能能源",
+    "operator:wikidata": "Q117748687",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "70200 kW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2019-09-16",
+    "wikidata": "Q116177314",
+    "wikipedia": "zh:韋能能源嘉義義竹電廠"
+  }
+},
+{
+  "type": "way",
+  "id": 996796391,
+  "center": {
+    "lat": 23.3132906,
+    "lon": 120.1689631
+  },
+  "tags": {
+    "barrier": "fence",
+    "name": "曄恆嘉義鹽地太陽光電廠",
+    "operator": "寶島陽光;曄恆能源",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "19999.2 kW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2019-09"
+  }
+},
+{
+  "type": "way",
+  "id": 996796392,
+  "center": {
+    "lat": 23.3173778,
+    "lon": 120.1743861
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796393,
+  "center": {
+    "lat": 23.3166529,
+    "lon": 120.1741676
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796394,
+  "center": {
+    "lat": 23.3170014,
+    "lon": 120.1745241
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796395,
+  "center": {
+    "lat": 24.2345791,
+    "lon": 120.5808809
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796490,
+  "center": {
+    "lat": 23.2678344,
+    "lon": 120.1475013
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796491,
+  "center": {
+    "lat": 23.2646084,
+    "lon": 120.1464038
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796492,
+  "center": {
+    "lat": 23.2656760,
+    "lon": 120.1517665
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796493,
+  "center": {
+    "lat": 23.2708619,
+    "lon": 120.1699197
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796494,
+  "center": {
+    "lat": 23.2688622,
+    "lon": 120.1677647
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796495,
+  "center": {
+    "lat": 23.2683827,
+    "lon": 120.1667724
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796496,
+  "center": {
+    "lat": 23.2501330,
+    "lon": 120.1958413
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796501,
+  "center": {
+    "lat": 23.2425163,
+    "lon": 120.2187712
+  },
+  "tags": {
+    "name": "心忠學甲第一型太陽光電發電廠",
+    "operator": "心忠電業股份有限公司",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "75.97",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 996796502,
+  "center": {
+    "lat": 23.2375845,
+    "lon": 120.2138977
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1004035912,
+  "center": {
+    "lat": 24.4963945,
+    "lon": 118.4022734
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1004632477,
+  "center": {
+    "lat": 24.5794026,
+    "lon": 120.8292200
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1008849765,
+  "center": {
+    "lat": 24.7020833,
+    "lon": 120.9407197
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1008849766,
+  "center": {
+    "lat": 24.7030383,
+    "lon": 120.9402427
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1008849775,
+  "center": {
+    "lat": 24.7070396,
+    "lon": 120.9307289
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1008849778,
+  "center": {
+    "lat": 24.7069870,
+    "lon": 120.9382928
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1008849779,
+  "center": {
+    "lat": 24.7068663,
+    "lon": 120.9402708
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1011195426,
+  "center": {
+    "lat": 24.5760883,
+    "lon": 120.8017102
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1011195427,
+  "center": {
+    "lat": 24.5744147,
+    "lon": 120.8015919
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1013421003,
+  "center": {
+    "lat": 24.9676941,
+    "lon": 121.0848855
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1014031585,
+  "center": {
+    "lat": 23.6070570,
+    "lon": 120.3386567
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1014031586,
+  "center": {
+    "lat": 23.6076942,
+    "lon": 120.3387187
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1014031587,
+  "center": {
+    "lat": 23.6074841,
+    "lon": 120.3371983
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1014031588,
+  "center": {
+    "lat": 23.6085905,
+    "lon": 120.3374002
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1014031589,
+  "center": {
+    "lat": 23.6065051,
+    "lon": 120.3388995
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1014350120,
+  "center": {
+    "lat": 22.5461481,
+    "lon": 120.5210254
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1014351301,
+  "center": {
+    "lat": 22.5560290,
+    "lon": 120.5120684
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1014627163,
+  "center": {
+    "lat": 22.7563266,
+    "lon": 120.4745002
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1014627164,
+  "center": {
+    "lat": 22.7636001,
+    "lon": 120.4742029
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1015074727,
+  "center": {
+    "lat": 23.2379978,
+    "lon": 120.1062238
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1015154005,
+  "center": {
+    "lat": 24.0599753,
+    "lon": 120.4080958
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1016878219,
+  "center": {
+    "lat": 24.6492743,
+    "lon": 120.8114276
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1034743386,
+  "center": {
+    "lat": 24.6213144,
+    "lon": 120.8437450
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1043683284,
+  "center": {
+    "lat": 24.3165590,
+    "lon": 120.7306010
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1056585626,
+  "center": {
+    "lat": 24.3213295,
+    "lon": 120.7283456
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1056585627,
+  "center": {
+    "lat": 24.3226253,
+    "lon": 120.7287388
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1056585633,
+  "center": {
+    "lat": 24.3185056,
+    "lon": 120.7291319
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1056585634,
+  "center": {
+    "lat": 24.3164542,
+    "lon": 120.7339104
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1056585635,
+  "center": {
+    "lat": 24.3165573,
+    "lon": 120.7328702
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1058863143,
+  "center": {
+    "lat": 24.6150142,
+    "lon": 120.8276319
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1062936209,
+  "center": {
+    "lat": 24.6963752,
+    "lon": 120.9299922
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1064802978,
+  "center": {
+    "lat": 24.5838276,
+    "lon": 120.8288744
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1068794693,
+  "center": {
+    "lat": 23.1273891,
+    "lon": 120.3311269
+  },
+  "tags": {
+    "name": "奇美綠能園區",
+    "operator": "奇美綠能",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "15272.28 kW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2020"
+  }
+},
+{
+  "type": "way",
+  "id": 1068991133,
+  "center": {
+    "lat": 24.1273112,
+    "lon": 120.4260771
+  },
+  "tags": {
+    "addr:city": "彰化縣",
+    "addr:country": "TW",
+    "addr:county": "彰化縣",
+    "addr:district": "線西鄉",
+    "addr:full": "彰化縣線西鄉彰濱東一路11號",
+    "addr:housenumber": "11",
+    "addr:province": "台灣省",
+    "addr:street": "彰濱東一路",
+    "landuse": "industrial",
+    "name": "台泥綠能彰濱基地",
+    "opening_hours": "Mo-Fr 09:00-12:00,13:00-16:00; PH off",
+    "operator": "台泥綠能",
+    "phone": "+886 4 7911215",
+    "plant:method": "photovoltaic;wind_turbine",
+    "plant:output:electricity": "17.28 MW",
+    "plant:source": "solar;wind",
+    "power": "plant",
+    "start_date": "2020",
+    "website": "https://tccgreenenergy.com/"
+  }
+},
+{
+  "type": "way",
+  "id": 1078100515,
+  "center": {
+    "lat": 22.5807029,
+    "lon": 120.3310204
+  },
+  "tags": {
+    "building": "yes",
+    "landuse": "industrial",
+    "name": "焚化爐",
+    "name:en": "Incinerator",
+    "name:zh": "焚化爐",
+    "plant:method": "combustion",
+    "plant:output:electricity": "yes",
+    "plant:source": "waste",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1086384134,
+  "center": {
+    "lat": 24.1056753,
+    "lon": 120.4226172
+  },
+  "tags": {
+    "floating": "yes",
+    "operator": "華暄綠能",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "192.3 MW",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1089871952,
+  "center": {
+    "lat": 24.6156387,
+    "lon": 120.8251924
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1089871953,
+  "center": {
+    "lat": 24.6161831,
+    "lon": 120.8257347
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1089871954,
+  "center": {
+    "lat": 24.6156748,
+    "lon": 120.8273192
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1089871955,
+  "center": {
+    "lat": 24.6171905,
+    "lon": 120.8272676
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1089871956,
+  "center": {
+    "lat": 24.6167720,
+    "lon": 120.8263363
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1089871957,
+  "center": {
+    "lat": 24.6174898,
+    "lon": 120.8265711
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1089871958,
+  "center": {
+    "lat": 24.6178976,
+    "lon": 120.8259415
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1089871959,
+  "center": {
+    "lat": 24.6184607,
+    "lon": 120.8250627
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1089871960,
+  "center": {
+    "lat": 24.6185636,
+    "lon": 120.8259436
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1089871961,
+  "center": {
+    "lat": 24.6173220,
+    "lon": 120.8214154
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1089871962,
+  "center": {
+    "lat": 24.6175525,
+    "lon": 120.8244253
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1089871963,
+  "center": {
+    "lat": 24.6298742,
+    "lon": 120.8221496
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1099841628,
+  "center": {
+    "lat": 24.9461652,
+    "lon": 121.0096096
+  },
+  "tags": {
+    "abandoned:landuse": "landfill",
+    "barrier": "fence",
+    "name": "桃園後庄掩埋場",
+    "operator": "大同智能",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "2996.61 kW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2017"
+  }
+},
+{
+  "type": "way",
+  "id": 1100880076,
+  "center": {
+    "lat": 22.4258088,
+    "lon": 120.5158326
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "太陽能電站",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1101596093,
+  "center": {
+    "lat": 24.3588115,
+    "lon": 120.6642492
+  },
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "外埔區",
+    "addr:full": "臺中市外埔區廍子路113號",
+    "addr:housenumber": "113",
+    "addr:street": "廍子路",
+    "barrier": "fence",
+    "landuse": "industrial",
+    "layer": "1",
+    "name": "外埔綠能生態園區",
+    "operator": "臺中市政府環境保護局",
+    "plant:method": "anaerobic_digestion",
+    "plant:source": "biomass",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1103184018,
+  "center": {
+    "lat": 22.7754769,
+    "lon": 120.2546519
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1105678337,
+  "center": {
+    "lat": 23.8545037,
+    "lon": 120.8707511
+  },
+  "tags": {
+    "name": "大觀二廠",
+    "plant:method": "water-pumped-storage",
+    "plant:output:electricity": "1000 MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "start_date": "1985"
+  }
+},
+{
+  "type": "way",
+  "id": 1115327176,
+  "center": {
+    "lat": 24.6290204,
+    "lon": 121.8164761
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "龍德汽電共生廠",
+    "name:en": "Longder Power Station",
+    "name:zh": "龍德汽電共生廠",
+    "operator": "台灣塑膠工業股份有限公司",
+    "plant:method": "combustion",
+    "plant:output:electricity": "324 MW",
+    "plant:source": "coal",
+    "power": "plant",
+    "source": "https://www.gem.wiki/Longder_power_station"
+  }
+},
+{
+  "type": "way",
+  "id": 1116849601,
+  "center": {
+    "lat": 24.6183882,
+    "lon": 120.7961660
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1116849603,
+  "center": {
+    "lat": 24.5947686,
+    "lon": 120.7856838
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1116849604,
+  "center": {
+    "lat": 24.5889143,
+    "lon": 120.7905375
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1121516757,
+  "center": {
+    "lat": 24.5929716,
+    "lon": 120.8169153
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "苗栗長春石化發電廠",
+    "name:en": "Miaoli ChangChun Petrochemical (CCPC) Power Station",
+    "name:zh": "苗栗長春石化發電廠",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1125961969,
+  "center": {
+    "lat": 24.6505728,
+    "lon": 120.8365745
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1125961970,
+  "center": {
+    "lat": 24.6423056,
+    "lon": 120.8224866
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1125961971,
+  "center": {
+    "lat": 24.6419017,
+    "lon": 120.8214516
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1125961972,
+  "center": {
+    "lat": 24.6431847,
+    "lon": 120.8234277
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1127489495,
+  "center": {
+    "lat": 24.5596455,
+    "lon": 120.7266502
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1127489513,
+  "center": {
+    "lat": 24.5134757,
+    "lon": 120.7040416
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1127489518,
+  "center": {
+    "lat": 24.5048439,
+    "lon": 120.7004412
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1127960875,
+  "center": {
+    "lat": 23.9848611,
+    "lon": 120.2433056
+  },
+  "tags": {
+    "plant:method": "wind_turbine",
+    "plant:output:electricity": "yes",
+    "plant:source": "wind",
+    "power": "plant",
+    "seamark:production_area:category": "wind_farm",
+    "seamark:type": "production_area",
+    "source": "https://cnmoo.mnd.gov.tw/AboutUs/Partner_Info.aspx?ID=30197&AID=42826"
+  }
+},
+{
+  "type": "way",
+  "id": 1130594040,
+  "center": {
+    "lat": 23.0967695,
+    "lon": 120.1375542
+  },
+  "tags": {
+    "name": "七股太陽光電場",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "1799.5 kW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2018-08-28",
+    "wikipedia": "zh:台南七股太陽光電場"
+  }
+},
+{
+  "type": "way",
+  "id": 1137163620,
+  "center": {
+    "lat": 24.3531166,
+    "lon": 120.6329574
+  },
+  "tags": {
+    "building": "yes",
+    "man_made": "works",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1137163621,
+  "center": {
+    "lat": 24.3527634,
+    "lon": 120.6324330
+  },
+  "tags": {
+    "building": "yes",
+    "man_made": "works",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1137163622,
+  "center": {
+    "lat": 24.3524837,
+    "lon": 120.6320951
+  },
+  "tags": {
+    "building": "yes",
+    "man_made": "works",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1154449414,
+  "center": {
+    "lat": 24.7894030,
+    "lon": 120.9994718
+  },
+  "tags": {
+    "fixme": "Position estimated",
+    "landuse": "industrial",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1159977104,
+  "center": {
+    "lat": 24.5433537,
+    "lon": 120.6980425
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1163837254,
+  "center": {
+    "lat": 23.9848101,
+    "lon": 120.3383939
+  },
+  "tags": {
+    "alt_name": "王功小型風力發電站",
+    "landuse": "industrial",
+    "name": "王功風力發電區",
+    "plant:method": "wind_turbine",
+    "plant:output:electricity": "yes",
+    "plant:source": "wind",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1167690559,
+  "center": {
+    "lat": 23.2045018,
+    "lon": 119.4411235
+  },
+  "tags": {
+    "generator:method": "photovoltaic",
+    "generator:source": "solar",
+    "landuse": "industrial",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1167690560,
+  "center": {
+    "lat": 23.2039444,
+    "lon": 119.4413584
+  },
+  "tags": {
+    "generator:method": "photovoltaic",
+    "generator:source": "solar",
+    "landuse": "industrial",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1173196958,
+  "center": {
+    "lat": 25.0798780,
+    "lon": 121.1761886
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "大園汽電共生公司",
+    "name:en": "Tayuan Cogeneration Power Plant",
+    "name:zh": "大園汽電共生公司",
+    "power": "plant",
+    "source": "https://www.tycc.com.tw/en/energy/index/5"
+  }
+},
+{
+  "type": "way",
+  "id": 1173743437,
+  "center": {
+    "lat": 23.8081917,
+    "lon": 120.2114081
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "Mailiao Formosa Petrochemical Power Plant",
+    "plant:method": "combustion",
+    "plant:output:electricity": "yes",
+    "plant:source": "coal",
+    "power": "plant",
+    "source": "https://www.gem.wiki/Mailiao_Formosa_Petrochemical_power_station"
+  }
+},
+{
+  "type": "way",
+  "id": 1188181938,
+  "center": {
+    "lat": 24.0922677,
+    "lon": 120.5616778
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "Changua Plant Power Station",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1193648422,
+  "center": {
+    "lat": 23.7711123,
+    "lon": 120.1772080
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "海豐發電廠",
+    "plant:output:electricity": "yes",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1208016613,
+  "center": {
+    "lat": 24.6867088,
+    "lon": 120.8943264
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1209441610,
+  "center": {
+    "lat": 23.2338093,
+    "lon": 120.1024827
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1212181135,
+  "center": {
+    "lat": 24.5631297,
+    "lon": 120.8488497
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1213002112,
+  "center": {
+    "lat": 24.2142566,
+    "lon": 120.4771223
+  },
+  "tags": {
+    "plant:output:electricity": "yes",
+    "plant:source": "hydro",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1216136711,
+  "center": {
+    "lat": 24.9714550,
+    "lon": 121.4096458
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name:en": "Formosa Nan Ya Plastics Shu-lin Power Station",
+    "plant:method": "combustion",
+    "plant:output:electricity": "yes",
+    "plant:source": "coal",
+    "power": "plant",
+    "source": "https://www.gem.wiki/Shu-Lin_power_station"
+  }
+},
+{
+  "type": "way",
+  "id": 1232833236,
+  "center": {
+    "lat": 24.3390836,
+    "lon": 120.7748160
+  },
+  "tags": {
+    "leisure": "park",
+    "name": "卓蘭發電廠景山分場",
+    "operator": "台灣電力公司",
+    "plant:output:electricity": "4MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "start_date": "2022-09-30",
+    "wikidata": "Q24832306"
+  }
+},
+{
+  "type": "way",
+  "id": 1233233086,
+  "center": {
+    "lat": 23.9686286,
+    "lon": 121.4880691
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "東部發電廠銅門機組",
+    "operator": "台灣電力公司",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1238367382,
+  "center": {
+    "lat": 23.7394933,
+    "lon": 120.5410069
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1238367383,
+  "center": {
+    "lat": 23.7393033,
+    "lon": 120.5419684
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1239577989,
+  "center": {
+    "lat": 23.3544744,
+    "lon": 120.4026076
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1239577990,
+  "center": {
+    "lat": 23.3555944,
+    "lon": 120.4035276
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1239577992,
+  "center": {
+    "lat": 23.3536807,
+    "lon": 120.4067203
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1263822910,
+  "center": {
+    "lat": 23.7957097,
+    "lon": 120.6960227
+  },
+  "tags": {
+    "addr:city": "竹山鎮",
+    "addr:postcode": "557",
+    "landuse": "industrial",
+    "name": "集集南岸十一號跌水小水力發電廠",
+    "plant:method": "run-of-the-river",
+    "plant:output:electricity": "yes",
+    "plant:source": "hydro",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1263827104,
+  "center": {
+    "lat": 23.7899069,
+    "lon": 120.6936434
+  },
+  "tags": {
+    "addr:city": "竹山鎮",
+    "addr:postcode": "557",
+    "landuse": "industrial",
+    "name": "明潭發電廠南岸二機組",
+    "plant:method": "run-of-the-river",
+    "plant:output:electricity": "3.5 MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "wikidata": "Q117316571"
+  }
+},
+{
+  "type": "way",
+  "id": 1263829223,
+  "center": {
+    "lat": 23.7998699,
+    "lon": 120.6990840
+  },
+  "tags": {
+    "addr:city": "竹山鎮",
+    "addr:postcode": "557",
+    "landuse": "industrial",
+    "name": "集集南岸十號跌水小水力發電廠",
+    "plant:method": "run-of-the-river",
+    "plant:output:electricity": "yes",
+    "plant:source": "hydro",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1263834917,
+  "center": {
+    "lat": 23.8043363,
+    "lon": 120.7021014
+  },
+  "tags": {
+    "addr:postcode": "557",
+    "landuse": "industrial",
+    "name": "集集南岸九號跌水小水力發電廠",
+    "plant:method": "run-of-the-river",
+    "plant:output:electricity": "yes",
+    "plant:source": "hydro",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1263843612,
+  "center": {
+    "lat": 23.7733655,
+    "lon": 120.6415089
+  },
+  "tags": {
+    "addr:city": "林內鄉",
+    "addr:postcode": "643",
+    "landuse": "industrial",
+    "name": "集集南岸三跌水小水力發電廠",
+    "plant:method": "run-of-the-river",
+    "plant:output:electricity": "1.692 MW",
+    "plant:source": "hydro",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1265529135,
+  "center": {
+    "lat": 23.2286685,
+    "lon": 120.1720267
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1266131708,
+  "center": {
+    "lat": 23.2492832,
+    "lon": 120.1770944
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1266335507,
+  "center": {
+    "lat": 23.2459942,
+    "lon": 120.2014814
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1266335508,
+  "center": {
+    "lat": 23.2457263,
+    "lon": 120.2022127
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1266335509,
+  "center": {
+    "lat": 23.2449767,
+    "lon": 120.2025400
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1266673174,
+  "center": {
+    "lat": 23.2449582,
+    "lon": 120.1810523
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1267435318,
+  "center": {
+    "lat": 23.2578239,
+    "lon": 120.2109947
+  },
+  "tags": {
+    "name": "solar panels",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1274561921,
+  "center": {
+    "lat": 23.2462531,
+    "lon": 120.2101422
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1274561922,
+  "center": {
+    "lat": 23.2485990,
+    "lon": 120.2121071
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1274561923,
+  "center": {
+    "lat": 23.2425218,
+    "lon": 120.2291019
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1275525993,
+  "center": {
+    "lat": 23.7731634,
+    "lon": 120.5985295
+  },
+  "tags": {
+    "generator:type": "kaplan_turbine",
+    "name": "明潭發電廠濁水機組",
+    "plant:method": "run-of-the-river",
+    "plant:output:electricity": "3.67MW",
+    "plant:source": "hydro",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1281904757,
+  "center": {
+    "lat": 23.2327556,
+    "lon": 120.2146045
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1286528351,
+  "center": {
+    "lat": 22.5364724,
+    "lon": 120.3858137
+  },
+  "tags": {
+    "floating": "yes",
+    "name": "鳳山水庫太陽光電場",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "2 MW",
+    "plant:source": "solar",
+    "power": "plant",
+    "wikidata": "Q117316869",
+    "wikipedia": "zh:鳳山水庫太陽光電場"
+  }
+},
+{
+  "type": "way",
+  "id": 1295373846,
+  "center": {
+    "lat": 24.5963815,
+    "lon": 120.7799773
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1314124473,
+  "center": {
+    "lat": 23.3182325,
+    "lon": 120.3538260
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1318312862,
+  "center": {
+    "lat": 23.9713720,
+    "lon": 121.5838994
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1318313116,
+  "center": {
+    "lat": 23.9714506,
+    "lon": 121.5839511
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1318313921,
+  "center": {
+    "lat": 23.9713228,
+    "lon": 121.5836089
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1333770360,
+  "center": {
+    "lat": 24.1537257,
+    "lon": 119.9493674
+  },
+  "tags": {
+    "name": "Greater Changhua 1 Offshore Wind",
+    "plant:method": "wind_turbine",
+    "plant:source": "wind",
+    "power": "plant",
+    "seamark:production_area:category": "wind_farm",
+    "seamark:type": "production_area",
+    "source": "https://navy.mnd.gov.tw/Files/Others/24-145(民).pdf"
+  }
+},
+{
+  "type": "way",
+  "id": 1341316836,
+  "center": {
+    "lat": 25.0524801,
+    "lon": 121.5946195
+  },
+  "tags": {
+    "name": "中式廣場",
+    "plant:method": "wind_turbine",
+    "plant:output:electricity": "yes",
+    "plant:source": "wind",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1341470581,
+  "center": {
+    "lat": 25.1515707,
+    "lon": 121.7763401
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1343875947,
+  "center": {
+    "lat": 24.7032607,
+    "lon": 120.7547663
+  },
+  "tags": {
+    "name:en": "Formosa 2 Offshore Wind Farm",
+    "plant:method": "wind_turbine",
+    "plant:output:electricity": "376 MW",
+    "plant:source": "wind",
+    "power": "plant",
+    "turbines": "47",
+    "wikidata": "Q111169001"
+  }
+},
+{
+  "type": "way",
+  "id": 1350387914,
+  "center": {
+    "lat": 23.9470379,
+    "lon": 121.5706579
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1352039014,
+  "center": {
+    "lat": 23.7038824,
+    "lon": 120.4141233
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1352039015,
+  "center": {
+    "lat": 23.7035377,
+    "lon": 120.4136645
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1352039016,
+  "center": {
+    "lat": 23.7031937,
+    "lon": 120.4132068
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1362560858,
+  "center": {
+    "lat": 26.3658917,
+    "lon": 120.4953885
+  },
+  "tags": {
+    "addr:city": "連江縣",
+    "addr:country": "TW",
+    "addr:district": "東引鄉",
+    "addr:full": "212041連江縣東引鄉樂華村165號",
+    "addr:housenumber": "165",
+    "addr:place": "樂華村",
+    "addr:postcode": "212041",
+    "addr:province": "福建省",
+    "landuse": "industrial",
+    "name": "東引發電一廠",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1364246411,
+  "center": {
+    "lat": 23.8404250,
+    "lon": 121.5326111
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1364246412,
+  "center": {
+    "lat": 23.8387168,
+    "lon": 121.5315543
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1366076774,
+  "center": {
+    "lat": 22.9471431,
+    "lon": 120.3216588
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1366076788,
+  "center": {
+    "lat": 22.9524164,
+    "lon": 120.3155689
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1368004795,
+  "center": {
+    "lat": 22.9293713,
+    "lon": 120.3273310
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1368004796,
+  "center": {
+    "lat": 22.9315756,
+    "lon": 120.3212132
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1368004797,
+  "center": {
+    "lat": 22.9300475,
+    "lon": 120.3204470
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1368004798,
+  "center": {
+    "lat": 22.9500706,
+    "lon": 120.3151202
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1382902162,
+  "center": {
+    "lat": 23.5330121,
+    "lon": 120.4944816
+  },
+  "tags": {
+    "floating": "yes",
+    "name": "內埔子水庫太陽光電場",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant",
+    "wikidata": "Q117316861",
+    "wikipedia": "zh:內埔子水庫太陽光電場"
+  }
+},
+{
+  "type": "way",
+  "id": 1388420771,
+  "center": {
+    "lat": 22.4168717,
+    "lon": 120.6163229
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "枋寮太陽能光電生利案場一期",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388420772,
+  "center": {
+    "lat": 22.4093472,
+    "lon": 120.6149351
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "枋寮太陽能光電生利案場",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388420773,
+  "center": {
+    "lat": 22.4078580,
+    "lon": 120.6149927
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "枋寮太陽能光電生利案場",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388420774,
+  "center": {
+    "lat": 22.4069165,
+    "lon": 120.6146865
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "枋寮太陽能光電生利案場",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388420775,
+  "center": {
+    "lat": 22.4064504,
+    "lon": 120.6152515
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912137,
+  "center": {
+    "lat": 22.4009429,
+    "lon": 120.6125301
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912138,
+  "center": {
+    "lat": 22.4018102,
+    "lon": 120.6182575
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912139,
+  "center": {
+    "lat": 22.4001787,
+    "lon": 120.6183147
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912140,
+  "center": {
+    "lat": 22.3945117,
+    "lon": 120.6094772
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912141,
+  "center": {
+    "lat": 22.3896711,
+    "lon": 120.6150751
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912142,
+  "center": {
+    "lat": 22.3886100,
+    "lon": 120.6145853
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912143,
+  "center": {
+    "lat": 22.3942484,
+    "lon": 120.6073172
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912144,
+  "center": {
+    "lat": 22.3950027,
+    "lon": 120.6066993
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912145,
+  "center": {
+    "lat": 22.3964149,
+    "lon": 120.6073176
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912146,
+  "center": {
+    "lat": 22.3964311,
+    "lon": 120.6056492
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912147,
+  "center": {
+    "lat": 22.3912943,
+    "lon": 120.6070671
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912148,
+  "center": {
+    "lat": 22.3887919,
+    "lon": 120.6038947
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912149,
+  "center": {
+    "lat": 22.3910691,
+    "lon": 120.6032452
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912150,
+  "center": {
+    "lat": 22.3949493,
+    "lon": 120.6051991
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912151,
+  "center": {
+    "lat": 22.3844968,
+    "lon": 120.6068047
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912152,
+  "center": {
+    "lat": 22.3736671,
+    "lon": 120.6144021
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912153,
+  "center": {
+    "lat": 22.3727866,
+    "lon": 120.6142125
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912154,
+  "center": {
+    "lat": 22.3744820,
+    "lon": 120.6112314
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912155,
+  "center": {
+    "lat": 22.3896892,
+    "lon": 120.6063529
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912156,
+  "center": {
+    "lat": 22.3954781,
+    "lon": 120.6105704
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912157,
+  "center": {
+    "lat": 22.3860882,
+    "lon": 120.6062576
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912158,
+  "center": {
+    "lat": 22.3760738,
+    "lon": 120.6048171
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912159,
+  "center": {
+    "lat": 22.3750717,
+    "lon": 120.6068098
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912160,
+  "center": {
+    "lat": 22.3725084,
+    "lon": 120.6105381
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912161,
+  "center": {
+    "lat": 22.3732539,
+    "lon": 120.6124548
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912162,
+  "center": {
+    "lat": 22.3754075,
+    "lon": 120.6125579
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912163,
+  "center": {
+    "lat": 22.3760166,
+    "lon": 120.6144028
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912164,
+  "center": {
+    "lat": 22.3773471,
+    "lon": 120.6125365
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912165,
+  "center": {
+    "lat": 22.3789582,
+    "lon": 120.6161070
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912166,
+  "center": {
+    "lat": 22.3982610,
+    "lon": 120.6098092
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912167,
+  "center": {
+    "lat": 22.3989423,
+    "lon": 120.6100209
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912168,
+  "center": {
+    "lat": 22.3965805,
+    "lon": 120.6113068
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912169,
+  "center": {
+    "lat": 22.4021628,
+    "lon": 120.6170605
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912170,
+  "center": {
+    "lat": 22.4021963,
+    "lon": 120.6165308
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912171,
+  "center": {
+    "lat": 22.4015911,
+    "lon": 120.6157472
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912172,
+  "center": {
+    "lat": 22.4030183,
+    "lon": 120.6157410
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912173,
+  "center": {
+    "lat": 22.4017414,
+    "lon": 120.6145996
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912174,
+  "center": {
+    "lat": 22.4021452,
+    "lon": 120.6141238
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1388912175,
+  "center": {
+    "lat": 22.3994278,
+    "lon": 120.6153820
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1389688018,
+  "center": {
+    "lat": 22.3923565,
+    "lon": 120.6198337
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1389688021,
+  "center": {
+    "lat": 22.3845464,
+    "lon": 120.6144071
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1389688022,
+  "center": {
+    "lat": 22.3796621,
+    "lon": 120.6090304
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1389688023,
+  "center": {
+    "lat": 22.3796686,
+    "lon": 120.6065324
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1389688024,
+  "center": {
+    "lat": 22.3787289,
+    "lon": 120.6075022
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1389688025,
+  "center": {
+    "lat": 22.3782576,
+    "lon": 120.6085331
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1389688026,
+  "center": {
+    "lat": 22.3786386,
+    "lon": 120.6004200
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1389688027,
+  "center": {
+    "lat": 22.3767351,
+    "lon": 120.6024338
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1389688028,
+  "center": {
+    "lat": 22.3805108,
+    "lon": 120.5994768
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1389688029,
+  "center": {
+    "lat": 22.3810331,
+    "lon": 120.5996216
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1389688030,
+  "center": {
+    "lat": 22.3815955,
+    "lon": 120.5989809
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1389688031,
+  "center": {
+    "lat": 22.3815032,
+    "lon": 120.5996111
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1389688032,
+  "center": {
+    "lat": 22.3744300,
+    "lon": 120.5994757
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1390427971,
+  "center": {
+    "lat": 24.6706184,
+    "lon": 121.6700079
+  },
+  "tags": {
+    "layer": "1",
+    "name": "安農萬富微水力發電廠",
+    "operator": "恆水創電公司",
+    "plant:source": "hydro",
+    "power": "plant",
+    "start_date": "2023"
+  }
+},
+{
+  "type": "way",
+  "id": 1394073120,
+  "center": {
+    "lat": 24.6549899,
+    "lon": 121.6180651
+  },
+  "tags": {
+    "name": "微水力測試平台",
+    "plant:source": "hydro",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1409643507,
+  "center": {
+    "lat": 22.7154897,
+    "lon": 120.4143581
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "和山光電場 一期",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1409643508,
+  "center": {
+    "lat": 22.7189932,
+    "lon": 120.4125951
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "和山光電場 一期",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1409643510,
+  "center": {
+    "lat": 22.7134734,
+    "lon": 120.4127910
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1409643511,
+  "center": {
+    "lat": 22.7134754,
+    "lon": 120.4167178
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "和山光電場 一期",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1410140906,
+  "center": {
+    "lat": 24.2867034,
+    "lon": 120.7267179
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name:en": "Houli Mill power station",
+    "plant:method": "combustion",
+    "plant:output:electricity": "yes",
+    "plant:source": "coal",
+    "power": "plant",
+    "source": "https://www.gem.wiki/Houli_Mill_power_station"
+  }
+},
+{
+  "type": "way",
+  "id": 1423878031,
+  "center": {
+    "lat": 22.4724433,
+    "lon": 120.4739900
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423878032,
+  "center": {
+    "lat": 22.4731221,
+    "lon": 120.4729619
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423878033,
+  "center": {
+    "lat": 22.4712107,
+    "lon": 120.4734357
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423878034,
+  "center": {
+    "lat": 22.4705844,
+    "lon": 120.4733738
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423878035,
+  "center": {
+    "lat": 22.4777142,
+    "lon": 120.4742488
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887239,
+  "center": {
+    "lat": 22.4705627,
+    "lon": 120.4816685
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887240,
+  "center": {
+    "lat": 22.4712217,
+    "lon": 120.4827923
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887241,
+  "center": {
+    "lat": 22.4713631,
+    "lon": 120.4836126
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887242,
+  "center": {
+    "lat": 22.4724081,
+    "lon": 120.4792764
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887243,
+  "center": {
+    "lat": 22.4725985,
+    "lon": 120.4808942
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887244,
+  "center": {
+    "lat": 22.4639733,
+    "lon": 120.4874705
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887245,
+  "center": {
+    "lat": 22.4645325,
+    "lon": 120.4835432
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887246,
+  "center": {
+    "lat": 22.4661741,
+    "lon": 120.4841991
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887250,
+  "center": {
+    "lat": 22.4679111,
+    "lon": 120.4906237
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887252,
+  "center": {
+    "lat": 22.4690016,
+    "lon": 120.4932378
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887253,
+  "center": {
+    "lat": 22.4716458,
+    "lon": 120.4934803
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887254,
+  "center": {
+    "lat": 22.4719945,
+    "lon": 120.4921419
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887255,
+  "center": {
+    "lat": 22.4714371,
+    "lon": 120.4922292
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887256,
+  "center": {
+    "lat": 22.4724862,
+    "lon": 120.4919831
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887257,
+  "center": {
+    "lat": 22.4754709,
+    "lon": 120.4946622
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887258,
+  "center": {
+    "lat": 22.4776315,
+    "lon": 120.4955332
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887259,
+  "center": {
+    "lat": 22.4779022,
+    "lon": 120.4958889
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887260,
+  "center": {
+    "lat": 22.4779552,
+    "lon": 120.4964949
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887261,
+  "center": {
+    "lat": 22.4900914,
+    "lon": 120.4959143
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887262,
+  "center": {
+    "lat": 22.4897386,
+    "lon": 120.4968840
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887263,
+  "center": {
+    "lat": 22.4969293,
+    "lon": 120.4738876
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887264,
+  "center": {
+    "lat": 22.4968277,
+    "lon": 120.4744851
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887265,
+  "center": {
+    "lat": 22.4965323,
+    "lon": 120.4747733
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887266,
+  "center": {
+    "lat": 22.4963353,
+    "lon": 120.4742326
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887267,
+  "center": {
+    "lat": 22.4969362,
+    "lon": 120.4720166
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887268,
+  "center": {
+    "lat": 22.4964278,
+    "lon": 120.4722106
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887269,
+  "center": {
+    "lat": 22.4951212,
+    "lon": 120.4718956
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887270,
+  "center": {
+    "lat": 22.4924022,
+    "lon": 120.4685097
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887271,
+  "center": {
+    "lat": 22.4939280,
+    "lon": 120.4691313
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887272,
+  "center": {
+    "lat": 22.4933566,
+    "lon": 120.4695189
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887273,
+  "center": {
+    "lat": 22.4971892,
+    "lon": 120.4694118
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887274,
+  "center": {
+    "lat": 22.4986144,
+    "lon": 120.4713909
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887275,
+  "center": {
+    "lat": 22.4981819,
+    "lon": 120.4718754
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1423887276,
+  "center": {
+    "lat": 22.4986261,
+    "lon": 120.4728719
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1428803974,
+  "center": {
+    "lat": 22.6970884,
+    "lon": 120.3200445
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "940 kW",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1447799715,
+  "center": {
+    "lat": 24.1006895,
+    "lon": 120.5101061
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1447799716,
+  "center": {
+    "lat": 24.1013000,
+    "lon": 120.5111467
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1459169021,
+  "center": {
+    "lat": 24.1574838,
+    "lon": 119.8278306
+  },
+  "tags": {
+    "name": "Greater Changhua 2a Offshore Wind",
+    "plant:method": "wind_turbine",
+    "plant:source": "wind",
+    "power": "plant",
+    "seamark:production_area:category": "wind_farm",
+    "seamark:type": "production_area",
+    "source": "https://navy.mnd.gov.tw/Files/Others/24-145(民).pdf"
+  }
+},
+{
+  "type": "way",
+  "id": 1463539704,
+  "center": {
+    "lat": 24.0474968,
+    "lon": 120.5296055
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1464549300,
+  "center": {
+    "lat": 23.9713224,
+    "lon": 121.5847796
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1464549301,
+  "center": {
+    "lat": 23.9716649,
+    "lon": 121.5838992
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1464549302,
+  "center": {
+    "lat": 23.9715908,
+    "lon": 121.5838456
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1464549303,
+  "center": {
+    "lat": 23.9715348,
+    "lon": 121.5837555
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1464549304,
+  "center": {
+    "lat": 23.9714551,
+    "lon": 121.5837213
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1466960536,
+  "center": {
+    "lat": 22.4711540,
+    "lon": 120.5460423
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1476875157,
+  "center": {
+    "lat": 24.4987877,
+    "lon": 120.7984919
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1476875158,
+  "center": {
+    "lat": 24.4974832,
+    "lon": 120.8011150
+  },
+  "tags": {
+    "building": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1476875159,
+  "center": {
+    "lat": 24.4938061,
+    "lon": 120.8017038
+  },
+  "tags": {
+    "building": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1476877998,
+  "center": {
+    "lat": 24.2965686,
+    "lon": 120.7210377
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1476877999,
+  "center": {
+    "lat": 24.2926706,
+    "lon": 120.7277914
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1476878000,
+  "center": {
+    "lat": 24.2902625,
+    "lon": 120.7314691
+  },
+  "tags": {
+    "building": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1476878001,
+  "center": {
+    "lat": 24.2873264,
+    "lon": 120.7249242
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1476878002,
+  "center": {
+    "lat": 24.2869633,
+    "lon": 120.7287812
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1494588674,
+  "center": {
+    "lat": 24.9069669,
+    "lon": 121.2455313
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1494590589,
+  "center": {
+    "lat": 23.0925799,
+    "lon": 120.4638001
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1494590590,
+  "center": {
+    "lat": 23.0920333,
+    "lon": 120.4646696
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1494592815,
+  "center": {
+    "lat": 22.8206478,
+    "lon": 120.2316976
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "2000 kW",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1494592816,
+  "center": {
+    "lat": 22.8346065,
+    "lon": 120.2764500
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1494592817,
+  "center": {
+    "lat": 22.8338846,
+    "lon": 120.2765061
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1494592818,
+  "center": {
+    "lat": 22.8330162,
+    "lon": 120.2767548
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1494592819,
+  "center": {
+    "lat": 22.8567120,
+    "lon": 120.2815738
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1494592820,
+  "center": {
+    "lat": 22.8561342,
+    "lon": 120.2826256
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1494595654,
+  "center": {
+    "lat": 22.6393589,
+    "lon": 120.3792589
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1499361624,
+  "center": {
+    "lat": 24.6752155,
+    "lon": 120.9128521
+  },
+  "tags": {
+    "layer": "3",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1499733667,
+  "center": {
+    "lat": 24.1856389,
+    "lon": 120.8363286
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1499734177,
+  "center": {
+    "lat": 24.8953682,
+    "lon": 121.0296980
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "1998,92 kW",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1500870511,
+  "center": {
+    "lat": 23.3180230,
+    "lon": 120.1671659
+  },
+  "tags": {
+    "name": "Budai Xinwen Floating solar farm (嘉義布袋新塭滯洪池水面型太陽能光電)",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "35.5 MW",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1503431846,
+  "center": {
+    "lat": 24.9235293,
+    "lon": 121.0464182
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1503668091,
+  "center": {
+    "lat": 24.9300797,
+    "lon": 120.9898692
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1503668355,
+  "center": {
+    "lat": 24.8930184,
+    "lon": 120.9938482
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "1998.92 kW",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1504993076,
+  "center": {
+    "lat": 25.0960678,
+    "lon": 121.2075825
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1504993196,
+  "center": {
+    "lat": 25.0550399,
+    "lon": 121.0984958
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1517407583,
+  "center": {
+    "lat": 22.7785035,
+    "lon": 121.1119278
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1517648181,
+  "center": {
+    "lat": 22.7776501,
+    "lon": 121.1153657
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1528756410,
+  "center": {
+    "lat": 24.0950294,
+    "lon": 120.4114853
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1528756411,
+  "center": {
+    "lat": 24.0959326,
+    "lon": 120.4261008
+  },
+  "tags": {
+    "floating": "yes",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1535473070,
+  "center": {
+    "lat": 23.5602484,
+    "lon": 120.3193547
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540961877,
+  "center": {
+    "lat": 22.3758748,
+    "lon": 120.5960530
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540961878,
+  "center": {
+    "lat": 22.3777959,
+    "lon": 120.5937005
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540961879,
+  "center": {
+    "lat": 22.3773262,
+    "lon": 120.5935153
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540961880,
+  "center": {
+    "lat": 22.3740590,
+    "lon": 120.5952330
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540961881,
+  "center": {
+    "lat": 22.3727335,
+    "lon": 120.5988476
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540961882,
+  "center": {
+    "lat": 22.3736798,
+    "lon": 120.5977339
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540961883,
+  "center": {
+    "lat": 22.3725607,
+    "lon": 120.6012820
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540961884,
+  "center": {
+    "lat": 22.3746163,
+    "lon": 120.6029497
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540961885,
+  "center": {
+    "lat": 22.3770501,
+    "lon": 120.6034580
+  },
+  "tags": {
+    "landuse": "industrial",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971438,
+  "center": {
+    "lat": 22.3741961,
+    "lon": 120.5896899
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971448,
+  "center": {
+    "lat": 22.3852250,
+    "lon": 120.5910452
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971511,
+  "center": {
+    "lat": 22.3660507,
+    "lon": 120.6098311
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971512,
+  "center": {
+    "lat": 22.3652649,
+    "lon": 120.6098817
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971513,
+  "center": {
+    "lat": 22.3664035,
+    "lon": 120.6088257
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971515,
+  "center": {
+    "lat": 22.3640785,
+    "lon": 120.6098112
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971516,
+  "center": {
+    "lat": 22.3590017,
+    "lon": 120.6110441
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971517,
+  "center": {
+    "lat": 22.3588623,
+    "lon": 120.6120489
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971518,
+  "center": {
+    "lat": 22.3587398,
+    "lon": 120.6137850
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971519,
+  "center": {
+    "lat": 22.3586549,
+    "lon": 120.6175887
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971520,
+  "center": {
+    "lat": 22.3598327,
+    "lon": 120.6176045
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971521,
+  "center": {
+    "lat": 22.3598042,
+    "lon": 120.6166292
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971522,
+  "center": {
+    "lat": 22.3593128,
+    "lon": 120.6158571
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971523,
+  "center": {
+    "lat": 22.3585998,
+    "lon": 120.6162164
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971524,
+  "center": {
+    "lat": 22.3547845,
+    "lon": 120.6130949
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971527,
+  "center": {
+    "lat": 22.3531359,
+    "lon": 120.6167719
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971563,
+  "center": {
+    "lat": 22.3378440,
+    "lon": 120.6117805
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1540971564,
+  "center": {
+    "lat": 22.3384373,
+    "lon": 120.6127429
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1549189577,
+  "center": {
+    "lat": 24.0517344,
+    "lon": 120.4107017
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1549446913,
+  "center": {
+    "lat": 24.0433985,
+    "lon": 120.4426039
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1549446914,
+  "center": {
+    "lat": 24.0414034,
+    "lon": 120.4443734
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "way",
+  "id": 1551688450,
+  "center": {
+    "lat": 24.4489851,
+    "lon": 120.6843961
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant"
+  }
+},
+{
+  "type": "relation",
+  "id": 6358152,
+  "center": {
+    "lat": 22.6005232,
+    "lon": 120.3004973
+  },
+  "tags": {
+    "addr:city": "高雄市",
+    "addr:country": "TW",
+    "addr:district": "前鎮區",
+    "addr:full": "806高雄市前鎮區成功二路5號",
+    "addr:housenumber": "5",
+    "addr:postcode": "806",
+    "addr:street": "成功二路",
+    "barrier": "wall",
+    "full_name": "台灣電力公司南部發電廠",
+    "landuse": "industrial",
+    "name": "南部發電廠",
+    "name:en": "Nanpu Power Plant",
+    "name:fr": "Centrale de Nanpu",
+    "name:zh": "南部發電廠",
+    "operator": "台灣電力股份有限公司",
+    "plant:method": "combustion",
+    "plant:output:electricity": "1117.8 MW",
+    "plant:source": "gas",
+    "power": "plant",
+    "type": "multipolygon",
+    "wikidata": "Q10909141",
+    "wikipedia": "zh:南部發電廠"
+  }
+},
+{
+  "type": "relation",
+  "id": 7346491,
+  "center": {
+    "lat": 24.3339963,
+    "lon": 121.6416467
+  },
+  "tags": {
+    "alt_name": "碧海電廠",
+    "name": "台電東部發電廠碧海機組",
+    "operator": "台灣電力公司東部發電廠",
+    "plant:output:electricity": "61.2 MW",
+    "power": "plant",
+    "start_date": "2011",
+    "type": "site",
+    "wikidata": "Q15903058",
+    "wikipedia": "zh:東部發電廠碧海機組"
+  }
+},
+{
+  "type": "relation",
+  "id": 7565672,
+  "center": {
+    "lat": 21.9583910,
+    "lon": 120.7511501
+  },
+  "tags": {
+    "addr:city": "屏東縣",
+    "addr:country": "TW",
+    "addr:district": "恆春鎮",
+    "addr:full": "屏東縣恆春鎮南灣路387號",
+    "addr:housenumber": "387",
+    "addr:province": "台灣省",
+    "addr:street": "南灣路",
+    "alt_name": "馬鞍山發電廠",
+    "landuse": "industrial",
+    "name": "第三核能發電廠",
+    "name:de": "Kernkraftwerk Maanshan",
+    "name:en": "Maanshan Nuclear Power Plant",
+    "name:fr": "Centrale nucléaire de Ma'anshan",
+    "name:nan": "Tē-saⁿ He̍k-lêng Hoat-tiān-chhiúⁿ",
+    "name:nan-Hant": "第三核能發電廠",
+    "name:nan-Latn-pehoeji": "Tē-saⁿ He̍k-lêng Hoat-tiān-chhiúⁿ",
+    "name:nan-Latn-tailo": "Tē-sann Hi̍k-lîng Huat-tiān-tshiúnn",
+    "name:zh": "第三核能發電廠",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "plant:method": "fission",
+    "plant:output:electricity": "1780 MW",
+    "plant:source": "nuclear",
+    "power": "plant",
+    "short_name": "核三廠",
+    "start_date": "1984-07-27",
+    "type": "multipolygon",
+    "wikidata": "Q712797",
+    "wikimedia_commons": "Category:Maanshan Nuclear Power Plant",
+    "wikipedia": "zh:第三核能發電廠"
+  }
+},
+{
+  "type": "relation",
+  "id": 10757938,
+  "center": {
+    "lat": 25.1569288,
+    "lon": 121.7386791
+  },
+  "tags": {
+    "addr:city": "基隆市",
+    "addr:country": "TW",
+    "addr:district": "中山區",
+    "addr:full": "203基隆市中山區文化路80號",
+    "addr:housenumber": "80",
+    "addr:postcode": "203",
+    "addr:province": "台灣省",
+    "addr:street": "文化路",
+    "alt_name": "協和火力發電廠",
+    "landuse": "industrial",
+    "name": "協和發電廠",
+    "name:en": "Hsieh-ho Power Plant",
+    "name:nan": "Hia̍p-hô-hoat-tiān-chhiúⁿ",
+    "name:nan-Hant": "協和發電廠",
+    "name:nan-Latn-pehoeji": "Hia̍p-hô-hoat-tiān-chhiúⁿ",
+    "name:nan-Latn-tailo": "Hia̍p-hô-huat-tiān-tshiúnn",
+    "name:zh": "協和發電廠",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "plant:method": "combustion",
+    "plant:output:electricity": "2000 MW",
+    "plant:source": "oil",
+    "power": "plant",
+    "type": "multipolygon",
+    "wikidata": "Q6850640",
+    "wikipedia": "zh:協和發電廠"
+  }
+},
+{
+  "type": "relation",
+  "id": 11041623,
+  "center": {
+    "lat": 22.7000691,
+    "lon": 120.3695508
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "仁武焚化爐",
+    "name:en": "Renwu Incineration Plant",
+    "name:ja": "仁武清掃工場",
+    "name:zh": "仁武焚化爐",
+    "plant:source": "waste",
+    "power": "plant",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 12867924,
+  "center": {
+    "lat": 22.8524802,
+    "lon": 120.2019187
+  },
+  "tags": {
+    "name": "興達太陽能發電廠",
+    "plant:output:electricity": "1.627 MW",
+    "plant:source": "solar",
+    "power": "plant",
+    "type": "site"
+  }
+},
+{
+  "type": "relation",
+  "id": 13131408,
+  "center": {
+    "lat": 23.6615957,
+    "lon": 120.1570619
+  },
+  "tags": {
+    "name": "四湖風力發電站",
+    "plant:output:electricity": "28 MW",
+    "plant:source": "wind",
+    "power": "plant",
+    "start_date": "2010-10",
+    "type": "site",
+    "wikidata": "Q42173665",
+    "wikipedia": "zh:四湖風力發電站"
+  }
+},
+{
+  "type": "relation",
+  "id": 13131409,
+  "center": {
+    "lat": 23.8154821,
+    "lon": 120.2553896
+  },
+  "tags": {
+    "name": "雲麥風力發電站",
+    "operator": "台灣電力公司",
+    "plant:output:electricity": "46 MW",
+    "plant:source": "wind",
+    "power": "plant",
+    "start_date": "2008-01",
+    "type": "site"
+  }
+},
+{
+  "type": "relation",
+  "id": 13131410,
+  "center": {
+    "lat": 23.9832428,
+    "lon": 120.3345045
+  },
+  "tags": {
+    "fixme": "請標示：\nhttps://wiki.openstreetmap.org/wiki/Seamarks/Lights :\n諸塔同步閃光每 3.0 秒。 或亦\nhttps://wiki.openstreetmap.org/wiki/Proposed_features/Aviation_Obstacle_Light",
+    "name": "王功風力發電站",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:wikipedia": "en:Taiwan Power Company",
+    "operator:zh": "台灣電力公司",
+    "plant:output:electricity": "23 MW",
+    "plant:source": "wind",
+    "power": "plant",
+    "start_date": "2010-10-21",
+    "type": "site"
+  }
+},
+{
+  "type": "relation",
+  "id": 13131411,
+  "center": {
+    "lat": 24.3082524,
+    "lon": 120.5355527
+  },
+  "tags": {
+    "name": "臺中港風力發電站",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "plant:output:electricity": "36 MW",
+    "plant:source": "wind",
+    "power": "plant",
+    "start_date": "2007-06",
+    "type": "site"
+  }
+},
+{
+  "type": "relation",
+  "id": 13131412,
+  "center": {
+    "lat": 24.7107222,
+    "lon": 120.8121666
+  },
+  "tags": {
+    "name": "海洋竹南風力發電場",
+    "name:en": "Formosa 1 Offshore Wind Farm",
+    "operator": "海洋風力發電股份有限公司",
+    "plant:output:electricity": "128 MW",
+    "plant:source": "wind",
+    "power": "plant",
+    "start_date": "2017-07",
+    "type": "site",
+    "wikidata": "Q27926626"
+  }
+},
+{
+  "type": "relation",
+  "id": 13309899,
+  "center": {
+    "lat": 23.9497816,
+    "lon": 121.5205045
+  },
+  "tags": {
+    "generator:output:hot_water": "2 MW",
+    "landuse": "industrial",
+    "name": "東部發電廠初英機組",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:wikipedia": "en:Taiwan Power Company",
+    "operator:zh": "台灣電力公司",
+    "plant:output:electricity": "yes",
+    "plant:source": "hydro",
+    "power": "plant",
+    "start_date": "1941",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 13335122,
+  "center": {
+    "lat": 24.4136714,
+    "lon": 118.2809827
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "塔山發電廠",
+    "name:en": "Tashan Power Plant",
+    "name:zh": "塔山發電廠",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:wikipedia": "en:Taiwan Power Company",
+    "operator:zh": "台灣電力公司",
+    "plant:output:electricity": "64.6 MW",
+    "plant:source": "diesel",
+    "power": "plant",
+    "type": "multipolygon",
+    "wikidata": "Q15453940",
+    "wikipedia": "zh:塔山發電廠",
+    "wikipedia:en": "Tashan Power Plant",
+    "wikipedia:zh": "塔山發電廠"
+  }
+},
+{
+  "type": "relation",
+  "id": 14244780,
+  "center": {
+    "lat": 22.8942602,
+    "lon": 120.3531117
+  },
+  "tags": {
+    "abandoned:landuse": "landfill",
+    "name": "成勁關廟電廠",
+    "operator": "成勁電力公司",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "3483.48 kW",
+    "plant:source": "solar",
+    "power": "plant",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 14531778,
+  "center": {
+    "lat": 24.9323551,
+    "lon": 121.0367332
+  },
+  "tags": {
+    "plant:output:electricity": "1.85968 MW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2019",
+    "type": "site"
+  }
+},
+{
+  "type": "relation",
+  "id": 14531779,
+  "center": {
+    "lat": 24.9374817,
+    "lon": 121.0086508
+  },
+  "tags": {
+    "plant:output:electricity": "1.9824 MW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2017",
+    "type": "site"
+  }
+},
+{
+  "type": "relation",
+  "id": 14531781,
+  "center": {
+    "lat": 24.9168503,
+    "lon": 121.0300611
+  },
+  "tags": {
+    "plant:output:electricity": "1.9872 MW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2019-08",
+    "type": "site"
+  }
+},
+{
+  "type": "relation",
+  "id": 14531782,
+  "center": {
+    "lat": 24.9033603,
+    "lon": 121.0098455
+  },
+  "tags": {
+    "plant:output:electricity": "1.97768 MW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2018-11",
+    "type": "site"
+  }
+},
+{
+  "type": "relation",
+  "id": 14531784,
+  "center": {
+    "lat": 24.8904554,
+    "lon": 121.0154644
+  },
+  "tags": {
+    "plant:output:electricity": "1.99892 MW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2018-11",
+    "type": "site"
+  }
+},
+{
+  "type": "relation",
+  "id": 14531786,
+  "center": {
+    "lat": 24.8907112,
+    "lon": 120.9803323
+  },
+  "tags": {
+    "plant:output:electricity": "1.99892 MW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2018-11",
+    "type": "site"
+  }
+},
+{
+  "type": "relation",
+  "id": 14543894,
+  "center": {
+    "lat": 25.1180119,
+    "lon": 121.2730305
+  },
+  "tags": {
+    "name": "蘆竹風力發電站",
+    "name:en": "Luzhu wind farm",
+    "plant:method": "wind_turbine",
+    "plant:output:electricity": "7200 kW",
+    "plant:source": "wind",
+    "power": "plant",
+    "site": "wind_farm",
+    "start_date": "2015",
+    "type": "site",
+    "wikidata": "Q41579232"
+  }
+},
+{
+  "type": "relation",
+  "id": 15257043,
+  "center": {
+    "lat": 23.1138195,
+    "lon": 120.1341171
+  },
+  "tags": {
+    "name": "天篷第一期太陽能電廠",
+    "operator": "天篷能源股份有限公司",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "79980 kW",
+    "plant:source": "solar",
+    "power": "plant",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 15257044,
+  "center": {
+    "lat": 23.1390118,
+    "lon": 120.1318453
+  },
+  "tags": {
+    "name": "天禽第一期太陽能電廠",
+    "operator": "天禽能源股份有限公司",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "19567.2 kW",
+    "plant:source": "solar",
+    "power": "plant",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 15257045,
+  "center": {
+    "lat": 23.1433147,
+    "lon": 120.1291914
+  },
+  "tags": {
+    "name": "天衝太陽能電廠",
+    "operator": "天衝能源股份有限公司",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "116510.4 kW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2021-06-30",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 15258416,
+  "center": {
+    "lat": 23.9237585,
+    "lon": 120.3259101
+  },
+  "tags": {
+    "image": "https://www.venaenergy.tw/wp/wp-content/uploads/2021/05/Hancock-1.jpg",
+    "name": "速力綠能芳苑發電廠",
+    "note": "芳寮路以北為第一機組、以南為第二機組",
+    "operator": "台灣速力綠能股份有限公司",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "8.2 MW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2021-05-05",
+    "type": "multipolygon",
+    "website": "https://www.venaenergy.tw/all_projects/8-2mw-hancock-%e8%8a%b3%e8%8b%91/"
+  }
+},
+{
+  "type": "relation",
+  "id": 15467088,
+  "center": {
+    "lat": 22.8268398,
+    "lon": 120.2953749
+  },
+  "tags": {
+    "name": "五甲尾滯洪池光電廠",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "4999.2 kW",
+    "plant:source": "solar",
+    "power": "plant",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 16019418,
+  "center": {
+    "lat": 24.6552714,
+    "lon": 121.6166464
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "蘭陽發電廠天埤機組",
+    "plant:output:electricity": "8.375 MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "type": "multipolygon",
+    "wikidata": "Q21016997",
+    "wikipedia": "zh:蘭陽發電廠天埤機組"
+  }
+},
+{
+  "type": "relation",
+  "id": 16064850,
+  "center": {
+    "lat": 24.6440495,
+    "lon": 121.5949386
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "蘭陽發電廠圓山機組",
+    "plant:output:electricity": "18 MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 16129356,
+  "center": {
+    "lat": 25.0054833,
+    "lon": 121.5871415
+  },
+  "tags": {
+    "addr:city": "臺北市",
+    "addr:country": "TW",
+    "addr:district": "文山區",
+    "addr:full": "116027臺北市文山區博嘉里1鄰木柵路五段53號",
+    "addr:hamlet": "博嘉里",
+    "addr:housenumber": "53",
+    "addr:neighborhood": "1",
+    "addr:postcode": "234032",
+    "addr:street": "木柵路五段",
+    "landuse": "industrial",
+    "name": "木柵垃圾焚化廠",
+    "name:en": "Muzha Refuse Incineration Plant",
+    "name:zh": "木柵垃圾焚化廠",
+    "operator": "臺北市政府環境保護局",
+    "operator:en": "Department of Environmental Protection, Taipei City Government",
+    "operator:wikidata": "Q15912558",
+    "operator:zh": "臺北市政府環境保護局",
+    "phone": "+886 2 2230 0800",
+    "plant:method": "combustion",
+    "plant:output:electricity": "13.5 MW",
+    "plant:source": "waste",
+    "power": "plant",
+    "start_date": "1995-03-28",
+    "type": "multipolygon",
+    "website": "https://www.mcrip.gov.taipei/",
+    "wikidata": "Q29353496",
+    "wikimedia_commons": "File:Taipei Taiwan Muzha-Refuse-Incineration-Plant-01.jpg",
+    "wikipedia": "en:Muzha Refuse Incineration Plant"
+  }
+},
+{
+  "type": "relation",
+  "id": 16214521,
+  "center": {
+    "lat": 23.1795146,
+    "lon": 120.1088879
+  },
+  "tags": {
+    "name": "台南鹽田光電場",
+    "operator": "台灣電力公司",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "150 MW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2020-09-14",
+    "type": "multipolygon",
+    "wikidata": "Q117316729",
+    "wikipedia": "zh:台南鹽田太陽光電場"
+  }
+},
+{
+  "type": "relation",
+  "id": 16859299,
+  "center": {
+    "lat": 24.0008025,
+    "lon": 121.4303409
+  },
+  "tags": {
+    "name": "東部發電廠水簾機組",
+    "operator": "台灣電力公司",
+    "plant:output:electricity": "9.5 MW",
+    "plant:source": "hydro",
+    "power": "plant",
+    "start_date": "1985-04-30",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 17643633,
+  "center": {
+    "lat": 23.3180230,
+    "lon": 120.1671659
+  },
+  "tags": {
+    "name": "新塭滯洪池太陽光電發電廠",
+    "operator": "永鑫能源",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "35513.38 kW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2020-09-30",
+    "type": "site"
+  }
+},
+{
+  "type": "relation",
+  "id": 18726493,
+  "center": {
+    "lat": 25.0253263,
+    "lon": 121.0457548
+  },
+  "tags": {
+    "barrier": "fence;wall",
+    "landuse": "industrial",
+    "name": "台電大潭發電廠",
+    "name:en": "Datan power station",
+    "name:zh": "台電大潭發電廠",
+    "plant:method": "combustion",
+    "plant:output:electricity": "4984.2 MW",
+    "plant:source": "gas",
+    "power": "plant",
+    "type": "multipolygon",
+    "wikidata": "Q6832032",
+    "wikipedia": "zh:大潭發電廠"
+  }
+},
+{
+  "type": "relation",
+  "id": 19313739,
+  "center": {
+    "lat": 23.1913409,
+    "lon": 120.3782782
+  },
+  "tags": {
+    "floating": "yes",
+    "name": "烏山頭水庫水面型太陽光電",
+    "official_name": "烏山頭水庫水面型太陽光電發電系統",
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "13705.2 kW",
+    "plant:source": "solar",
+    "power": "plant",
+    "start_date": "2022-05",
+    "type": "site",
+    "wikidata": "Q116188886",
+    "wikipedia": "zh:烏山頭水庫太陽光電場"
+  }
+},
+{
+  "type": "relation",
+  "id": 19803538,
+  "center": {
+    "lat": 26.2194020,
+    "lon": 119.9900014
+  },
+  "tags": {
+    "addr:city": "連江縣",
+    "addr:country": "TW",
+    "addr:district": "北竿鄉",
+    "addr:full": "連江縣北竿鄉塘岐村22號",
+    "addr:housenumber": "22",
+    "addr:province": "福建省",
+    "addr:street": "塘岐村",
+    "full_name:en": "台灣電力公司馬祖區營業處北竿發電廠",
+    "landuse": "industrial",
+    "name": "臺電北竿服務所",
+    "name:en": "Beigan Power Plant",
+    "name:zh": "臺電北竿服務所",
+    "operator": "台灣電力公司",
+    "operator:en": "Taiwan Power Company",
+    "operator:wikidata": "Q711691",
+    "operator:zh": "台灣電力公司",
+    "power": "plant",
+    "short_name": "北竿發電廠",
+    "type": "multipolygon"
+  }
+},
+{
+  "type": "relation",
+  "id": 20179695,
+  "center": {
+    "lat": 23.3933321,
+    "lon": 120.2306213
+  },
+  "tags": {
+    "plant:method": "photovoltaic",
+    "plant:output:electricity": "yes",
+    "plant:source": "solar",
+    "power": "plant",
+    "type": "site"
+  }
+},
+{
+  "type": "relation",
+  "id": 20405941,
+  "center": {
+    "lat": 24.4577982,
+    "lon": 120.6857748
+  },
+  "tags": {
+    "plant:source": "solar",
+    "power": "plant",
+    "type": "multipolygon"
+  }
+}
+
+  ]
+}
