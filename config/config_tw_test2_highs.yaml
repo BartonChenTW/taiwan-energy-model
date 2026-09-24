@@ -50,6 +50,13 @@ electricity:
   co2limit: .inf
   co2base: 1.2e+8 # unit: kgCO2-eq, year 2025
   automatic_emission: false
+  # Official Taiwan fleet built by pypsa_tw/data/build_custom_powerplants.py
+  # (sources: pypsa_tw/data/README.md). Use only that file, keep plants built up
+  # to 2026 (new Taichung gas units), and do not top solar/wind up to IRENA 2023.
+  custom_powerplants: replace
+  powerplants_filter: (DateOut >= 2026 or DateOut != DateOut) and (DateIn <= 2026 or DateIn != DateIn)
+  estimate_renewable_capacities:
+    stats: false
   # Test 2 represents today's fixed system, so no candidate technologies are investable.
   extendable_carriers:
     Generator: []
@@ -58,10 +65,11 @@ electricity:
     Link: []
 
 load_options:
-  # GEGIS demand is only available as a projection (2030 onwards). Scale the
-  # 2030 profile to Taiwan's 2024 total generation of 288.6 TWh (Taipower/EIA):
-  # 288.6 / 335.7 TWh = 0.86.
-  scale: 0.86
+  # GEGIS demand is only available as a projection (2030 onwards). The fleet is
+  # Taipower's system (data/custom_powerplants.csv), so scale the 2030 profile to
+  # Taipower-system generation in 2024: 251.44 / 335.7 TWh = 0.749. The national
+  # total (288.6 TWh) also covers industrial self-generation not in the fleet.
+  scale: 0.749
 
 atlite:
   default: cutout-2013-era5-tw
