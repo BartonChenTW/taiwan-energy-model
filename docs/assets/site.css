@@ -146,6 +146,7 @@ select {
 }
 .muted { color: var(--muted); font-size: 13px; }
 .sub { margin: 2px 0 10px; color: var(--ink-2); font-size: 13px; }
+.note { margin: 10px 0 4px; color: var(--ink-2); font-size: 13px; line-height: 1.55; }
 
 .status-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
 .status {
@@ -199,6 +200,8 @@ th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--grid
 th { color: var(--ink-2); font-weight: 600; white-space: nowrap; }
 td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 td:first-child { white-space: nowrap; }
+#table-potential th, #table-cmp-params th { white-space: normal; }
+#table-cmp-params td:last-child { color: var(--ink-2); min-width: 180px; }
 tr.clickable { cursor: pointer; }
 tr.clickable:hover { background: var(--wash); }
 tr.selected { background: var(--wash); }

@@ -27,6 +27,7 @@
       <nav class="shell tabs" aria-label="Sections">
         <a href="#results" data-i18n="nav_results">Results</a>
         <a href="#inputs" data-i18n="nav_inputs">Inputs</a>
+        <a href="#compare" data-i18n="nav_compare">Data comparison</a>
         <a href="#runs" data-i18n="nav_runs">All runs</a>
         <a href="#findings" data-i18n="nav_findings">Findings</a>
       </nav>
@@ -70,8 +71,10 @@
         <div class="grid two">
           <article class="panel">
             <h3 data-i18n="price">Electricity price</h3>
-            <p class="sub" data-i18n="price_sub">Demand-weighted national marginal price (EUR/MWh)</p>
+            <p class="sub" data-i18n="price_sub">Modelled wholesale price, national average (NT$/kWh)</p>
             <div id="chart-price" class="chart"></div>
+            <p class="note" id="price-note"></p>
+            <p class="muted" id="fx-note"></p>
           </article>
           <article class="panel">
             <h3 data-i18n="map">Network</h3>
@@ -93,15 +96,41 @@
             <details><summary data-i18n="show_buses">Show demand by bus</summary><div id="table-buses"></div></details>
           </article>
           <article class="panel">
-            <h3 data-i18n="availability">Renewable availability</h3>
-            <p class="sub" data-i18n="availability_sub">Capacity-weighted availability per technology (0–1), from the weather data</p>
+            <h3 data-i18n="availability">Renewable potential (weather)</h3>
+            <p class="sub" data-i18n="availability_sub">Available output per MW installed, hour by hour (0–1), capacity-weighted per technology</p>
             <div id="chart-availability" class="chart tall"></div>
+            <p class="note" id="availability-note"></p>
+            <div id="table-potential" class="table-wrap"></div>
           </article>
         </div>
         <article class="panel">
           <h3 data-i18n="technology">Technology data</h3>
           <p class="sub" data-i18n="technology_sub">Fleet and cost assumptions used in this run</p>
           <div id="table-technology" class="table-wrap"></div>
+        </article>
+      </section>
+
+      <!-- PyPSA-Earth default data vs Taiwan data -->
+      <section id="compare" class="section">
+        <h2 data-i18n="compare_title">PyPSA-Earth data vs Taiwan data</h2>
+        <p class="sub" data-i18n="compare_intro"></p>
+        <div class="grid two">
+          <article class="panel">
+            <h3 data-i18n="cmp_capacity">Installed capacity</h3>
+            <p class="sub" data-i18n="cmp_capacity_sub">GW per technology</p>
+            <div id="chart-cmp-capacity" class="chart tall"></div>
+          </article>
+          <article class="panel">
+            <h3 data-i18n="cmp_params">Key inputs</h3>
+            <p class="sub" data-i18n="cmp_params_sub">What changed and why</p>
+            <div id="table-cmp-params" class="table-wrap"></div>
+          </article>
+        </div>
+        <article class="panel">
+          <h3 data-i18n="cmp_mix">Generation mix: model vs reported statistics</h3>
+          <p class="sub" data-i18n="cmp_mix_sub">Share of annual generation (%)</p>
+          <div id="chart-cmp-mix" class="chart"></div>
+          <p class="muted" data-i18n="cmp_mix_note"></p>
         </article>
       </section>
 

@@ -28,6 +28,10 @@ from viewer_helper import resolve_repo
 
 # Case the dashboard opens with: the full-year run with standard settings.
 FEATURED_CASE = "tw_test2_highs_2013_fullyear_4h_6b_ls__elec_s_6_ec_lv1.0_Co2L-4H"
+# Model costs are in EUR (technology-data). The dashboard shows electricity prices in
+# NT$/kWh using this rate: Bank of Taiwan spot EUR, midpoint of buy 35.885 / sell 36.485.
+CURRENCY = {"eur_twd": 36.185, "date": "2026-09-24 17:01", "basis": "Bank of Taiwan spot rate, buy/sell midpoint",
+            "source": "https://rate.bot.com.tw/xrt?Lang=zh-TW"}
 RENEWABLE_CARRIERS = ["solar", "onwind", "offwind-ac", "offwind-dc", "ror"]
 # Capacity factors above these are not physically plausible for Taiwan.
 # pypsa-earth names the load-shedding carrier "load shedding"; PyPSA-Eur uses "load".
@@ -118,6 +122,30 @@ def availability_profiles(n):
             continue
         out[carrier] = pmax[gens].mul(cap, axis=1).sum(axis=1) / cap.sum()
     return pd.DataFrame(out, index=n.snapshots)
+
+
+def renewable_potential(n, avail, energy, hours):
+    """
+    Per renewable technology: installed and technical potential (GW), the potential
+    capacity factor from the weather data (mean availability), the realised capacity
+    factor from dispatch, and curtailment (the share of available energy not used).
+    """
+    out = {}
+    for carrier in RENEWABLE_CARRIERS:
+        g = n.generators[n.generators.carrier == carrier]
+        if g.empty or g.p_nom.sum() <= 0:
+            continue
+        potential = g.p_nom_max.replace(float("inf"), float("nan")).sum(min_count=1)
+        cf_pot = float(avail[carrier].mean()) if carrier in avail else None
+        cf_real = float(energy.get(carrier, 0.0)) / (g.p_nom_opt.sum() * hours)
+        out[carrier] = {
+            "installed_GW": _r(g.p_nom.sum() / 1e3),
+            "potential_GW": _r(potential / 1e3) if pd.notna(potential) else None,
+            "cf_potential": _r(cf_pot),
+            "cf_realised": _r(cf_real),
+            "curtailment": _r(max(0.0, 1 - cf_real / cf_pot)) if cf_pot else None,
+        }
+    return out
 
 
 def technology_table(n):
@@ -321,6 +349,7 @@ def export_case(repo, run, nc_path):
             "demand_MW": _list(load_t, 0),
             "availability": {c: _list(avail[c], 3) for c in avail.columns},
             "availability_mean": _series(avail.mean()),
+            "renewable_potential": renewable_potential(n, avail, energy, hours),
             "technology": technology_table(n),
         },
         "results": {
@@ -336,6 +365,69 @@ def export_case(repo, run, nc_path):
         },
     }
     return summary, detail
+
+
+# PyPSA-Earth default inputs: powerplantmatching fleet with IRENA top-up and the GEGIS
+# 2030 demand projection. This archived full-year run used them with demand scale 0.86.
+DEFAULT_DATA_RUN = "results/_archive/tw_test2_highs_2013_fullyear_4h_6b_ls_oldfleet_2026-09-24/networks/elec_s_6_ec_lv1.0_Co2L-4H.nc"
+DEFAULT_DATA_SCALE = 0.86
+MIX_GROUP = {"CCGT": "gas", "OCGT": "gas", "coal": "coal", "lignite": "coal", "nuclear": "nuclear", "oil": "other",
+             "solar": "renewables", "onwind": "renewables", "offwind-ac": "renewables", "offwind-dc": "renewables",
+             "ror": "renewables", "hydro": "renewables", "PHS": "storage", "battery": "storage"}
+CAP_GROUP = {"CCGT": "gas", "OCGT": "gas", "coal": "coal", "lignite": "coal", "nuclear": "nuclear", "oil": "oil",
+             "solar": "solar", "onwind": "onwind", "offwind-ac": "offwind", "offwind-dc": "offwind",
+             "ror": "hydro", "hydro": "hydro", "PHS": "phs", "battery": "battery"}
+
+
+def _fleet_and_mix(n):
+    w = n.snapshot_weightings.generators
+    g = n.generators[~n.generators.carrier.isin(SHED_CARRIERS)]
+    cap = pd.concat([g.groupby("carrier").p_nom.sum(), n.storage_units.groupby("carrier").p_nom.sum()])
+    e = pd.concat([n.generators_t.p[g.index].mul(w, axis=0).sum().groupby(g.carrier).sum(),
+                   n.storage_units_t.p.clip(lower=0).mul(w, axis=0).sum().groupby(n.storage_units.carrier).sum()])
+    mix = e.groupby(lambda c: MIX_GROUP.get(c, "other")).sum()
+    load = n.loads_t.p_set.sum(axis=1)
+    phs = n.storage_units[n.storage_units.carrier == "PHS"]
+    return {
+        "capacity_GW": _series(cap.groupby(lambda c: CAP_GROUP.get(c, "other")).sum() / 1e3, 2),
+        "mix_share": _series(mix / mix.sum(), 4),
+        "demand_TWh": float((load * w).sum() / 1e6),
+        "peak_GW": float(load.max() / 1e3),
+        "phs_hours": _r(phs.max_hours.mean(), 1) if len(phs) else None,
+    }
+
+
+def build_comparison(repo, featured_path):
+    """PyPSA-Earth default inputs vs Taiwan official inputs vs reported statistics."""
+    default_path = repo / DEFAULT_DATA_RUN
+    if not default_path.exists() or not featured_path.exists():
+        return None
+    default = _fleet_and_mix(pypsa.Network(str(default_path)))
+    taiwan = _fleet_and_mix(pypsa.Network(str(featured_path)))
+    stats = pd.read_csv(repo / "pypsa_tw/data/official/taiwan_electricity_statistics.csv")
+    peak = pd.read_csv(repo / "pypsa_tw/data/official/taipower_peak_load_by_year.csv", encoding="utf-8-sig")
+    actual = []
+    for (scope, year), grp in stats[stats.statistic.str.startswith("share_")].groupby(["scope", "year"], sort=False):
+        shares = {r.statistic.replace("share_", "").replace("pumped_storage", "storage"): r.value / 100
+                  for _, r in grp.iterrows()}
+        shares["other"] = max(0.0, 1 - sum(shares.values()))
+        actual.append({"label": f"{scope} {year}", "scope": scope, "year": int(year),
+                       "mix_share": {k: _r(v, 4) for k, v in shares.items()},
+                       "source": grp.source_name.iloc[0], "evidence": grp.evidence.iloc[0]})
+    peak_2024 = int(peak.loc[peak["年度"] == 2024, "尖峰負載(MW)"].iloc[0])
+    total_2024 = stats.query("statistic == 'generation_total' and year == 2024")
+    return {
+        "default": {**default, "demand_TWh": _r(default["demand_TWh"] / DEFAULT_DATA_SCALE, 1),
+                    "peak_GW": _r(default["peak_GW"] / DEFAULT_DATA_SCALE, 1),
+                    "note": "powerplantmatching fleet + IRENA 2023 top-up; GEGIS 2030 demand (unscaled)"},
+        "taiwan": {**taiwan, "demand_TWh": _r(taiwan["demand_TWh"], 1), "peak_GW": _r(taiwan["peak_GW"], 1),
+                   "note": "Taipower unit list 2026-09-24 (+ new units); demand scaled to Taipower system 2024"},
+        "actual_mix": actual,
+        "reference": {
+            "peak_GW_2024": _r(peak_2024 / 1e3, 2),
+            "demand_TWh_2024": {r.scope: r.value for _, r in total_2024.iterrows()},
+        },
+    }
 
 
 def main():
@@ -359,10 +451,17 @@ def main():
         text = "; ".join(describe_warning(w) for w in summary["warnings"])
         print(f"[{flag}] {summary['id']}: {text or 'no warnings'}")
 
+    featured = repo / "results" / FEATURED_CASE.split("__")[0] / "networks" / (FEATURED_CASE.split("__")[1] + ".nc")
+    comparison = build_comparison(repo, featured)
+    if comparison:
+        (out / "comparison.json").write_text(json.dumps(comparison, indent=1), encoding="utf-8")
+        print("wrote comparison.json (PyPSA-Earth default vs Taiwan data)")
+
     (out / "index.json").write_text(
         json.dumps(
             {"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
              "featured": FEATURED_CASE if any(c["id"] == FEATURED_CASE for c in index) else None,
+             "currency": CURRENCY,
              "cases": index},
             indent=1,
         ),

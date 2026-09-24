@@ -1,0 +1,104 @@
+{
+ "default": {
+  "capacity_GW": {
+   "coal": 18.24,
+   "gas": 18.32,
+   "hydro": 2.46,
+   "nuclear": 5.32,
+   "offwind": 2.22,
+   "oil": 0.28,
+   "onwind": 1.1,
+   "phs": 2.71,
+   "solar": 12.42
+  },
+  "mix_share": {
+   "coal": 0.5513,
+   "gas": 0.2067,
+   "nuclear": 0.1487,
+   "other": 0.0001,
+   "renewables": 0.0932,
+   "storage": 0.0
+  },
+  "demand_TWh": 335.7,
+  "peak_GW": 55.2,
+  "phs_hours": 0.0,
+  "note": "powerplantmatching fleet + IRENA 2023 top-up; GEGIS 2030 demand (unscaled)"
+ },
+ "taiwan": {
+  "capacity_GW": {
+   "battery": 0.85,
+   "coal": 11.36,
+   "gas": 26.21,
+   "hydro": 2.12,
+   "offwind": 3.38,
+   "oil": 1.28,
+   "onwind": 0.81,
+   "phs": 2.6,
+   "solar": 15.39
+  },
+  "mix_share": {
+   "coal": 0.397,
+   "gas": 0.4597,
+   "other": 0.0048,
+   "renewables": 0.1385,
+   "storage": 0.0
+  },
+  "demand_TWh": 251.4,
+  "peak_GW": 41.4,
+  "phs_hours": 6.0,
+  "note": "Taipower unit list 2026-09-24 (+ new units); demand scaled to Taipower system 2024"
+ },
+ "actual_mix": [
+  {
+   "label": "Taiwan (national) 2024",
+   "scope": "Taiwan (national)",
+   "year": 2024,
+   "mix_share": {
+    "gas": 0.424,
+    "coal": 0.393,
+    "nuclear": 0.042,
+    "renewables": 0.116,
+    "storage": 0.011,
+    "other": 0.014
+   },
+   "source": "EIA Taiwan Analysis Brief",
+   "evidence": "search_summary"
+  },
+  {
+   "label": "Taipower system 2024",
+   "scope": "Taipower system",
+   "year": 2024,
+   "mix_share": {
+    "gas": 0.472,
+    "coal": 0.311,
+    "oil": 0.014,
+    "nuclear": 0.082,
+    "renewables": 0.119,
+    "other": 0.002
+   },
+   "source": "Taipower (via search summary)",
+   "evidence": "search_summary"
+  },
+  {
+   "label": "Taiwan (national) 2025",
+   "scope": "Taiwan (national)",
+   "year": 2025,
+   "mix_share": {
+    "coal": 0.354,
+    "gas": 0.478,
+    "renewables": 0.131,
+    "nuclear": 0.011,
+    "other": 0.026
+   },
+   "source": "MOENV energy information platform",
+   "evidence": "search_summary"
+  }
+ ],
+ "reference": {
+  "peak_GW_2024": 40.88,
+  "demand_TWh_2024": {
+   "Taipower system": 251.44,
+   "Taiwan (national)": 288.6
+  }
+ }
+}
