@@ -200,7 +200,7 @@ const STACK = [
   { g: "wind", color: "--c-onwind", parts: ["wind"] },
   { g: "pumped_storage", color: "--c-storage", parts: ["pumped_storage"] },
   { g: "solar", color: "--c-solar", parts: ["solar"] },
-  { g: "other_re", color: "--c-offwind", parts: ["geothermal", "biomass", "waste"] },
+  { g: "other_re", color: "--c-other_re", parts: ["geothermal", "biomass", "waste"] },
   { g: "gas", color: "--c-gas", parts: ["gas"] },
   { g: "hydro", color: "--c-hydro", parts: ["hydro"] },
   { g: "oil", color: "--c-other", parts: ["oil"] },
@@ -325,7 +325,8 @@ function renderHistory() {
   Plotly.react("chart-h-plan", [
     planBar("planned_add_gas", "s_add_gas", cssVar("--c-gas"), 1),
     planBar("planned_retire_coal", "s_ret_coal", cssVar("--c-coal"), -1),
-    planBar("planned_retire_gas", "s_ret_gas", cssVar("--c-gas"), -1, { opacity: 0.5 }),
+    // Semi-transparent gas, so the legend swatch matches the bars.
+    planBar("planned_retire_gas", "s_ret_gas", `${cssVar("--c-gas")}80`, -1),
     planBar("planned_retire_oil", "s_ret_oil", cssVar("--c-other"), -1),
   ], layoutBase({ barmode: "relative", hovermode: "closest", xaxis: { dtick: 1 }, yaxis: { title: { text: "GW", font: { size: 11 } } } }), plotCfg);
 

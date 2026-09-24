@@ -2,11 +2,11 @@
    Data comes from docs/data/, written by pypsa_tw/viewer/export_dashboard_data.py. */
 
 // Technology groups in stack order, bottom to top. Colours come from CSS tokens.
-const GROUPS = ["coal", "nuclear", "onwind", "storage", "solar", "offwind", "gas", "hydro", "other", "unserved"];
+const GROUPS = ["coal", "nuclear", "onwind", "storage", "solar", "offwind", "gas", "hydro", "other_re", "other", "unserved"];
 const CARRIER_GROUP = {
   coal: "coal", lignite: "coal", nuclear: "nuclear", onwind: "onwind", PHS: "storage",
   battery: "storage", solar: "solar", "offwind-ac": "offwind", "offwind-dc": "offwind",
-  CCGT: "gas", OCGT: "gas", ror: "hydro", hydro: "hydro", oil: "other", geothermal: "other", biomass: "other",
+  CCGT: "gas", OCGT: "gas", ror: "hydro", hydro: "hydro", oil: "other", geothermal: "other_re", biomass: "other_re",
   load: "unserved", "load shedding": "unserved",
 };
 const AVAILABILITY_ORDER = ["solar", "onwind", "offwind-ac", "offwind-dc", "ror"];
@@ -181,9 +181,9 @@ const I18N = {
 
 const GROUP_LABEL = {
   en: { coal: "Coal", nuclear: "Nuclear", onwind: "Onshore wind", storage: "Storage (pumped hydro, battery)",
-        solar: "Solar PV", offwind: "Offshore wind", gas: "Gas", hydro: "Hydro", other: "Other (oil, geothermal, biomass)", unserved: "Unserved demand" },
+        solar: "Solar PV", offwind: "Offshore wind", gas: "Gas", hydro: "Hydro", other_re: "Geothermal, biomass", other: "Other (oil)", unserved: "Unserved demand" },
   zh: { coal: "燃煤", nuclear: "核能", onwind: "陸域風電", storage: "儲能（抽蓄、電池）", solar: "太陽光電",
-        offwind: "離岸風電", gas: "燃氣", hydro: "水力", other: "其他（燃油、地熱、生質能）", unserved: "未供電量" },
+        offwind: "離岸風電", gas: "燃氣", hydro: "水力", other_re: "地熱、生質能", other: "其他（燃油）", unserved: "未供電量" },
 };
 const CARRIER_LABEL = {
   en: { CCGT: "Gas (CCGT)", OCGT: "Gas (OCGT)", coal: "Coal", lignite: "Lignite", nuclear: "Nuclear",

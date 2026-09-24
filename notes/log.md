@@ -229,9 +229,15 @@ Barton asked what "2013" means and asked for other years. Chosen: other weather 
  - **Weather years 2011 and 2018:** cutouts requested from CDS (about 87 MB per request; the queue was slow). Runs follow when the downloads finish.
  - **Dashboard:**
    - New "Scenarios" section: generation mix and key results per weather year and per future year, plus installed capacity today / 2030 / 2034. Rows open the run.
-   - Geothermal and biomass are shown under "Other (oil, geothermal, biomass)".
+   - Geothermal and biomass have their own group, "Geothermal, biomass".
    - The Taiwan energy data page has a new chart of planned thermal additions and retirements by year, built from the schedule (4 new series in `taiwan_timeseries.csv`, now 850 rows).
 
+ - **Colours (Barton: coal, gas and pumped storage all looked red; wind and geothermal looked alike):**
+   - The earlier palette was only checked on neighbouring pairs in the stack.
+   - New technology colours in `docs/assets/site.css`, used by both pages: coal warm grey, gas orange, pumped storage and battery magenta, onshore/offshore wind light/dark teal, geothermal and biomass light blue (their own group), oil light grey, unserved demand near-black.
+   - Light mode was checked on every pair with the dataviz validator: all pass with normal vision (at least 15 apart), and the worst colour-blind pair is 8.5.
+   - Dark mode has its own values. Its worst normal-vision pairs (about 11–13) are between colours that never sit next to each other in a chart.
+   - The planned-additions chart is no longer red-dominated: coal retirements are grey, and gas retirements are a lighter gas colour.
 
 TODO:
  - to run PyPSA-Earth Taiwan!
