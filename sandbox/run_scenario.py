@@ -35,7 +35,10 @@ REPO = HERE.parents[1]
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(REPO / "scripts"))
 
-from levers import BASES, NUCLEAR_NEW_SITE, NUCLEAR_PLANTS, VARIANTS, describe, normalise, spec_hash  # noqa: E402
+from levers import (  # noqa: E402
+    BASES, BLOCKADE_SEASONS, DAMAGE_SITES, NUCLEAR_NEW_SITE, NUCLEAR_PLANTS, STANDBY_UNITS, VARIANTS,
+    describe, normalise, security, spec_hash,
+)
 
 SANDBOX = REPO / "results" / "sandbox"
 NEW_BATTERY_HOURS = 4.0  # storage duration of added batteries
@@ -210,6 +213,109 @@ def apply_levers(n, spec, base_emissions):
     return applied
 
 
+# ---------- Energy security: blockade window, fuel stocks, damage, restarts ----------
+FUELS = {"gas": ["CCGT", "OCGT"], "coal": ["coal"], "oil": ["oil"]}
+STOCK_KEYS = {"gas": ("lng_stock_days", "lng_import_frac"), "coal": ("coal_stock_days", "coal_import_frac"),
+              "oil": ("oil_stock_days", "oil_import_frac")}
+
+
+def fuel_use_per_day(n, snapshots=None):
+    """Average daily fuel use of the power plants (MWh of fuel per day) in a solved network,
+    over the whole year or over the given snapshots."""
+    w = n.snapshot_weightings.generators
+    p = n.generators_t.p
+    if snapshots is not None:
+        w, p = w.loc[snapshots], p.loc[snapshots]
+    days = w.sum() / 24
+    fuel = p.mul(w, axis=0).sum() / n.generators.efficiency
+    return {f: float(fuel[n.generators.index[n.generators.carrier.isin(c)]].sum() / days) for f, c in FUELS.items()}
+
+
+def apply_security(n, spec, base_solved, costs):
+    """Rationing, damage, restarts and, for a blockade window, fuel stocks and limited imports.
+
+    Stocks are "stock days x the power plants' average daily fuel use over the year"; imports are a
+    share of the base case's fuel use in the same window, so 100% imports reproduces normal operation.
+    """
+    sec = security(spec)
+    applied = {}
+    if sec["rationing_frac"] > 0:
+        n.loads_t.p_set *= 1 - sec["rationing_frac"]
+
+    for site in sec["damage"]:
+        d = DAMAGE_SITES[site]
+        bus = _nearest_bus(n, d["lat"], d["lon"])
+        if "line_factor" in d:
+            i = n.lines.index[(n.lines.bus0 == bus) | (n.lines.bus1 == bus)]
+            n.lines.loc[i, "s_nom"] *= d["line_factor"]
+            applied[f"damage {site}"] = {"bus": bus, "lines": list(i)}
+            continue
+        lost = {}
+        for carrier, mw in d["remove_MW"].items():
+            i = n.generators.index[(n.generators.bus == bus) & (n.generators.carrier == carrier)]
+            have = float(n.generators.loc[i, "p_nom"].sum())
+            cut = min(mw, have)
+            if have > 0:
+                n.generators.loc[i, "p_nom"] *= 1 - cut / have
+            lost[carrier] = round(cut, 1)
+        applied[f"damage {site}"] = {"bus": bus, "removed_MW": lost}
+
+    ref = n.generators[n.generators.carrier == "coal"]
+    for unit in sec["standby_restart"]:
+        u = STANDBY_UNITS[unit]
+        bus = _nearest_bus(n, u["lat"], u["lon"])
+        n.add("Generator", f"{bus} coal standby {unit}", bus=bus, carrier="coal", p_nom=u["MW"],
+              marginal_cost=ref.marginal_cost.mean(), efficiency=ref.efficiency.mean())
+        applied[f"restart {unit}"] = {"bus": bus, "MW": u["MW"]}
+
+    days = sec["blockade_days"]
+    if not days:
+        return applied
+    # Solve only the blockade window, at the base time step.
+    step_h = float(n.snapshot_weightings.generators.iloc[0])
+    start = pd.Timestamp(BLOCKADE_SEASONS[sec["blockade_season"]])
+    window = n.snapshots[(n.snapshots >= start) & (n.snapshots < start + pd.Timedelta(days=days))]
+    n.set_snapshots(window)
+    n.snapshot_weightings.loc[:, :] = step_h
+    year_use = fuel_use_per_day(base_solved)
+    window_use = fuel_use_per_day(base_solved, window)
+
+    vom = costs["VOM"]
+    stocks = {}
+    for fuel, carriers in FUELS.items():
+        gens = n.generators[n.generators.carrier.isin(carriers)]
+        if gens.empty:
+            continue
+        days_key, import_key = STOCK_KEYS[fuel]
+        # Fuel price per MWh of fuel, as in the generators' marginal cost (after any price levers).
+        fuel_price = float(((gens.marginal_cost - gens.carrier.map(vom)) * gens.efficiency).mean())
+        fbus, sbus = f"TW {fuel} fuel", f"TW {fuel} stock"
+        for b, c in ((fbus, f"{fuel} fuel"), (sbus, f"{fuel} stock")):
+            if c not in n.carriers.index:
+                n.add("Carrier", c)
+            n.add("Bus", b, carrier=c, x=n.buses.x.mean(), y=n.buses.y.mean())
+        # Plants draw fuel from the national fuel bus (link rated on its fuel side).
+        for g, r in gens.iterrows():
+            n.add("Link", f"{g} (fuel)", bus0=fbus, bus1=r.bus, carrier=r.carrier, p_nom=r.p_nom / r.efficiency,
+                  efficiency=r.efficiency, marginal_cost=vom.get(r.carrier, 0) * r.efficiency)
+        n.mremove("Generator", gens.index)
+        # Stock: a store that can only be drawn down (one-way link to the fuel bus).
+        stock = sec[days_key] * year_use[fuel]
+        n.add("Store", f"TW {fuel} stock", bus=sbus, carrier=f"{fuel} stock", e_nom=stock, e_initial=stock,
+              e_cyclic=False)
+        n.add("Link", f"TW {fuel} stock withdrawal", bus0=sbus, bus1=fbus, carrier=f"{fuel} stock",
+              p_nom=max(stock, 1.0), marginal_cost=fuel_price)
+        # Imports: a share of the normal fuel use in this window, spread evenly.
+        imp = sec[import_key] * window_use[fuel] / 24
+        n.add("Generator", f"TW {fuel} imports", bus=fbus, carrier=f"{fuel} fuel", p_nom=max(imp, 0.0),
+              marginal_cost=fuel_price)
+        stocks[fuel] = {"stock_MWh": round(stock), "imports_MW": round(imp, 1), "fuel_price": round(fuel_price, 2),
+                        "normal_use_MWh_per_day": round(year_use[fuel]),
+                        "window_use_MWh_per_day": round(window_use[fuel])}
+    applied["blockade"] = {"days": days, "start": str(start.date()), "snapshots": len(window), "fuels": stocks}
+    return applied
+
+
 def load_solve_module(cfg, opts):
     """Import scripts/solve_network.py and give it the globals it reads from Snakemake."""
     import solve_network as sn
@@ -238,7 +344,8 @@ def run(spec, force=False):
     sn = load_solve_module(cfg, opts)
 
     # A CO2 cap is a fraction of the central base case's emissions, the same absolute cap in every variant.
-    base_emissions = emissions_t(pypsa.Network(str(REPO / b["solved"])))
+    base_solved = pypsa.Network(str(REPO / b["solved"]))
+    base_emissions = emissions_t(base_solved)
     variant = VARIANTS[norm.get("variant", "central")]
     prepared = REPO / (b["weather_variants"][variant["weather"]] if "weather" in variant else b["prepared"])
     if not prepared.exists():
@@ -249,6 +356,7 @@ def run(spec, force=False):
         effective = {**norm, "levers": {**norm["levers"], **{
             k: norm["levers"][k] * variant["mult"] for k in ("gas_price_mult", "coal_price_mult", "demand_scale")}}}
     applied = apply_levers(n, effective, base_emissions)
+    applied.update(apply_security(n, effective, base_solved, pd.read_csv(REPO / b["costs"], index_col=0)))
 
     log_dir = REPO / "logs" / "sandbox" / key / "solve_network"
     log_dir.mkdir(parents=True, exist_ok=True)

@@ -89,6 +89,84 @@ LEVERS = {
 }
 
 
+# ---------- Energy security: blockade, damage, restarts ----------
+# Fuel stocks in Taiwan (secondary sources, to verify; see pypsa_tw/data/sources.csv):
+# LNG about 11 days (legal minimum 7 days, 14 days from 2027), coal about 41 days
+# (Taipower, 2022), oil 100+ days (Petroleum Administration Act: 60 days industry + 30 government).
+BLOCKADE_SEASONS = {"summer": "2013-07-01", "winter": "2013-01-07"}
+
+# Plant sites that can be lost (capacity removed at the nearest bus, from data/custom_powerplants.csv).
+DAMAGE_SITES = {
+    "tatan": {"name": "Tatan gas plant (大潭)", "lat": 25.0253, "lon": 121.0458, "remove_MW": {"CCGT": 7544.5}},
+    "taichung": {"name": "Taichung power plant (台中)", "lat": 24.2152, "lon": 120.4815,
+                 "remove_MW": {"coal": 5500.0, "CCGT": 2600.0}},
+    "hsinta": {"name": "Hsinta power plant (興達)", "lat": 22.8523, "lon": 120.1973,
+               "remove_MW": {"coal": 550.0, "CCGT": 4826.0}},
+    # Half the capacity of every line into the Taipei bus.
+    "taipei_corridor": {"name": "Taipei transmission corridor, half lost", "lat": 25.04, "lon": 121.70, "line_factor": 0.5},
+}
+
+# Mothballed or recently retired coal units that could be brought back.
+STANDBY_UNITS = {
+    "hsinta_3": {"name": "Hsinta coal #3 (興達#3, retired Dec 2025)", "MW": 550, "lat": 22.8523, "lon": 120.1973,
+                 "source": "MOEA supply-demand report 113年度, Figure 3-3"},
+    "mailiao_1_3": {"name": "Mailiao coal #1-3 (麥寮, retired 2024-25)", "MW": 1800, "lat": 23.8031, "lon": 120.1905,
+                    "source": "MOEA supply-demand report 113年度, Figure 3-3 (3 x 600 MW)"},
+    "hsinta_1_2": {"name": "Hsinta coal #1-2 (興達#1-2, standby)", "MW": 1000, "lat": 22.8523, "lon": 120.1973,
+                   "source": "to verify: assumed 2 x 500 MW; listed as standby in Taipower's unit list"},
+}
+
+# Only written into a spec when they differ from the default, so specs without them keep their hashes.
+# name: (default, min, max, unit, description)
+SECURITY_LEVERS = {
+    "blockade_days": (0, 0, 90, "days", "Length of the blockade window (0 = normal year)"),
+    "blockade_season": ("summer", None, None, "", "Start of the window: summer (1 July) or winter (7 January)"),
+    "lng_import_frac": (1.0, 0.0, 1.0, "fraction", "LNG imports during the blockade, share of normal"),
+    "coal_import_frac": (1.0, 0.0, 1.0, "fraction", "Coal imports during the blockade, share of normal"),
+    "oil_import_frac": (1.0, 0.0, 1.0, "fraction", "Oil imports during the blockade, share of normal"),
+    "lng_stock_days": (11.0, 0.0, 60.0, "days", "LNG stock at the start, in days of normal use"),
+    "coal_stock_days": (41.0, 0.0, 120.0, "days", "Coal stock at the start, in days of normal use"),
+    "oil_stock_days": (100.0, 0.0, 200.0, "days", "Oil stock at the start, in days of normal use"),
+    "rationing_frac": (0.0, 0.0, 0.5, "fraction", "Planned demand reduction during the window"),
+    "damage": ([], None, None, "sites", "Plant sites or grid links lost: " + ", ".join(DAMAGE_SITES)),
+    "standby_restart": ([], None, None, "units", "Standby or retired coal units restarted: " + ", ".join(STANDBY_UNITS)),
+}
+
+
+def _normalise_security(given):
+    out = {}
+    for name, (default, lo, hi, _, _) in SECURITY_LEVERS.items():
+        value = given.get(name, default)
+        if name in ("damage", "standby_restart"):
+            allowed = DAMAGE_SITES if name == "damage" else STANDBY_UNITS
+            value = sorted(set(value or []))
+            bad = set(value) - set(allowed)
+            if bad:
+                raise ValueError(f"{name}: unknown {sorted(bad)}")
+        elif name == "blockade_season":
+            if value not in BLOCKADE_SEASONS:
+                raise ValueError(f"blockade_season must be one of {sorted(BLOCKADE_SEASONS)}")
+        else:
+            value = float(value)
+            if not lo <= value <= hi:
+                raise ValueError(f"{name}={value} outside [{lo}, {hi}]")
+            value = round(value, 6)
+        if value != default:
+            out[name] = value
+    # Import shares, stocks and the season only matter inside a blockade window.
+    if not out.get("blockade_days"):
+        for k in ("blockade_season", "lng_import_frac", "coal_import_frac", "oil_import_frac",
+                  "lng_stock_days", "coal_stock_days", "oil_stock_days"):
+            out.pop(k, None)
+    return out
+
+
+def security(spec):
+    """All security levers of a normalised spec, defaults filled."""
+    given = spec["levers"]
+    return {k: given.get(k, d[0]) for k, d in SECURITY_LEVERS.items()}
+
+
 def normalise(spec):
     """Return a complete, validated copy of a spec (defaults filled, values checked)."""
     spec = dict(spec or {})
@@ -101,7 +179,7 @@ def normalise(spec):
     if base not in BASES:
         raise ValueError(f"unknown base {base!r}; choose from {sorted(BASES)}")
     given = dict(spec.get("levers") or {})
-    unknown = set(given) - set(LEVERS)
+    unknown = set(given) - set(LEVERS) - set(SECURITY_LEVERS)
     if unknown:
         raise ValueError(f"unknown levers: {sorted(unknown)}")
     levers = {}
@@ -121,6 +199,7 @@ def normalise(spec):
                 raise ValueError(f"{name}={value} outside [{lo}, {hi}]")
             value = round(value, 6)
         levers[name] = value
+    levers.update(_normalise_security(given))
     out = {"version": SPEC_VERSION, "base": base, "levers": levers}
     # The variant is only part of the spec (and its hash) when it is not the central case,
     # so central scenarios keep the hashes they had before variants existed.
@@ -149,7 +228,7 @@ def spec_hash(spec):
 def changed(spec):
     """Levers that differ from their default, e.g. for labels."""
     norm = normalise(spec)["levers"]
-    return {k: v for k, v in norm.items() if v != LEVERS[k][0]}
+    return {k: v for k, v in norm.items() if k in SECURITY_LEVERS or v != LEVERS[k][0]}
 
 
 def describe(spec):
@@ -170,4 +249,18 @@ def describe(spec):
             parts.append(f"{k.split('_')[0]} price x{v:g}")
         elif k == "line_rating":
             parts.append(f"lines {v:.0%} of rating")
+        elif k == "blockade_days":
+            parts.append(f"blockade {v:g} days")
+        elif k == "blockade_season":
+            parts.append(v)
+        elif k.endswith("_import_frac"):
+            parts.append(f"{ {'lng': 'LNG'}.get(k.split('_')[0], k.split('_')[0])} imports {v:.0%}")
+        elif k.endswith("_stock_days"):
+            parts.append(f"{ {'lng': 'LNG'}.get(k.split('_')[0], k.split('_')[0])} stock {v:g} d")
+        elif k == "rationing_frac":
+            parts.append(f"rationing {v:.0%}")
+        elif k == "damage":
+            parts.append("lost " + " + ".join(v))
+        elif k == "standby_restart":
+            parts.append("restart " + " + ".join(v))
     return ", ".join(parts) or "base case"

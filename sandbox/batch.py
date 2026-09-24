@@ -54,13 +54,38 @@ GRID = [
 ]
 
 
+# Energy-security cases (docs/energy-security.html): blockade windows with fuel stocks.
+CUT = {"lng_import_frac": 0, "coal_import_frac": 0, "oil_import_frac": 0}
+SECURITY_GRID = []
+for season in ("summer", "winter"):
+    for days in (14, 30, 60):
+        window = {"blockade_days": days, "blockade_season": season}
+        SECURITY_GRID += [window, {**window, **CUT}]
+    w30 = {"blockade_days": 30, "blockade_season": season}
+    SECURITY_GRID += [
+        {**w30, "lng_import_frac": 0},
+        {**w30, **CUT, "rationing_frac": 0.2},
+        {**w30, **CUT, "nuclear_restart": ["chinshan", "kuosheng", "maanshan"]},
+        {**w30, **CUT, "add_solar_GW": 10, "add_battery_GW": 5},
+        {**w30, **CUT, "standby_restart": ["hsinta_1_2", "hsinta_3", "mailiao_1_3"]},
+        {**w30, **CUT, "damage": ["taichung"]},
+        {**w30, **CUT, "lng_stock_days": 14},
+    ]
+SECURITY_GRID += [
+    {"blockade_days": 30, "blockade_season": "summer", **CUT, "damage": ["tatan"]},
+    {"blockade_days": 30, "blockade_season": "summer", **CUT, "damage": ["taipei_corridor"]},
+]
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--list", action="store_true")
+    ap.add_argument("--security", action="store_true", help="solve the energy-security (blockade) grid instead")
+    ap.add_argument("--force", action="store_true", help="solve again even if cached (after a model change)")
     ap.add_argument("--variants", nargs="*", default=[], choices=[v for v in VARIANTS if v != "central"],
                     help="also solve these uncertainty variants of every scenario")
     a = ap.parse_args()
-    central = [{"base": "today", "levers": levers} for levers in GRID]
+    central = [{"base": "today", "levers": levers} for levers in (SECURITY_GRID if a.security else GRID)]
     assert len({spec_hash(s) for s in central}) == len(central), "duplicate scenarios in the grid"
     specs = list(central)
     for v in a.variants:
@@ -79,7 +104,7 @@ def main():
     t0 = time.perf_counter()
     for i, s in enumerate(specs, 1):
         print(f"--- {i}/{len(specs)} {s.get('variant', 'central')}", flush=True)
-        run(s)
+        run(s, force=a.force)
     print(f"done in {time.perf_counter() - t0:.0f} s")
 
 

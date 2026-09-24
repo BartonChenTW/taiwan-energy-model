@@ -214,5 +214,54 @@ def test_weather_variant_uses_other_weather():
     assert float(w.loads_t.p_set.sum(axis=1).max()) < float(b.loads_t.p_set.sum(axis=1).max())  # ... flatter 2018 peak
 
 
+# ---------- energy security (blockade mode) ----------
+FULL_CUT = dict(lng_import_frac=0.0, coal_import_frac=0.0, oil_import_frac=0.0)
+
+
+def shed(n):
+    return energy(n, [SHED])
+
+
+def test_security_defaults_keep_old_hashes():
+    assert spec_hash({"levers": {"blockade_days": 0, "lng_import_frac": 1.0, "damage": []}}) == spec_hash({})
+    # Window-only levers mean nothing without a blockade window.
+    assert spec_hash({"levers": {"lng_stock_days": 14}}) == spec_hash({})
+    assert spec_hash({"levers": {"blockade_days": 30}}) != spec_hash({})
+    with pytest.raises(ValueError):
+        normalise({"levers": {"blockade_days": 30, "damage": ["nowhere"]}})
+
+
+def test_blockade_with_normal_imports_matches_base():
+    n, b = solved(blockade_days=30), base_solved()
+    window = n.snapshots
+    base_shed = float(b.generators_t.p.loc[window, b.generators.index[b.generators.carrier == SHED]]
+                      .mul(b.snapshot_weightings.generators.loc[window], axis=0).sum().sum())
+    assert len(window) == 30 * 6
+    assert shed(n) == pytest.approx(base_shed, rel=0.05, abs=5e3)
+
+
+def test_full_blockade_sheds_more_and_empties_lng():
+    n, ref = solved(blockade_days=30, **FULL_CUT), solved(blockade_days=30)
+    assert shed(n) > shed(ref) + 1e6  # more than 1 TWh extra
+    assert float(n.stores_t.e["TW gas stock"].iloc[-1]) < 1e-3 * float(n.stores.at["TW gas stock", "e_initial"])
+
+
+def test_nuclear_restart_helps_in_blockade():
+    n, full = solved(blockade_days=30, nuclear_restart=("chinshan", "kuosheng", "maanshan"), **FULL_CUT), solved(blockade_days=30, **FULL_CUT)
+    assert shed(n) < shed(full)
+
+
+def test_rationing_cuts_demand():
+    n, full = solved(blockade_days=30, rationing_frac=0.2, **FULL_CUT), solved(blockade_days=30, **FULL_CUT)
+    assert demand(n) == pytest.approx(0.8 * demand(full), rel=1e-9)
+
+
+def test_taichung_damage_removes_coal():
+    n, full = solved(blockade_days=30, damage=("taichung",), **FULL_CUT), solved(blockade_days=30, **FULL_CUT)
+    coal = lambda m: float(m.links.loc[m.links.carrier == "coal", "p_nom"].mul(m.links.efficiency).sum())
+    assert coal(n) == pytest.approx(coal(full) - 5500.0, abs=1.0)
+    assert shed(n) > shed(full)
+
+
 if __name__ == "__main__":
     sys.exit(pytest.main([__file__, "-q"]))
