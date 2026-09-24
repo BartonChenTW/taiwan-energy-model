@@ -57,6 +57,12 @@ electricity:
     Store: []
     Link: []
 
+load_options:
+  # GEGIS demand is only available as a projection (2030 onwards). Scale the
+  # 2030 profile to Taiwan's 2024 total generation of 288.6 TWh (Taipower/EIA):
+  # 288.6 / 335.7 TWh = 0.86.
+  scale: 0.86
+
 atlite:
   default: cutout-2013-era5-tw
   cutouts:
