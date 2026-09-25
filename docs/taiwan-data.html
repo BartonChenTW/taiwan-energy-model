@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Taiwan Energy Data | 台灣能源資料</title>
     <meta name="description" content="Key figures and data sources for Taiwan's electricity system, with evidence status and links." />
-    <link rel="stylesheet" href="assets/site.css?v=62398dfe" />
+    <link rel="stylesheet" href="assets/site.css?v=454a78a7" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-    <script src="assets/taiwan-data.js?v=005361e4" defer></script>
+    <script src="assets/taiwan-data.js?v=29a89c9b" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -28,6 +28,7 @@
         <a href="index.html" data-i18n="nav_home">← Home</a>
         <a href="dashboard.html" data-i18n="nav_dashboard">Model dashboard</a>
         <a href="#history" data-i18n="nav_history">History and projections</a>
+        <a href="#sectors" data-i18n="nav_sectors">All sectors</a>
         <a href="#facts" data-i18n="nav_facts">Key figures</a>
         <a href="#sources" data-i18n="nav_sources">Data sources</a>
         <a href="sandbox.html" data-i18n="nav_sandbox">Sandbox →</a>
@@ -93,6 +94,56 @@
           <h3 data-i18n="h_refs">References for history and projections</h3>
           <p class="sub" data-i18n="h_refs_sub"></p>
           <div id="table-refs" class="table-wrap"></div>
+        </article>
+      </section>
+
+      <section id="sectors" class="section">
+        <h2 data-i18n="sectors_title">Energy use in all sectors</h2>
+        <p class="sub" data-i18n="sectors_intro"></p>
+        <div class="grid two">
+          <article class="panel">
+            <h3 data-i18n="h_sector">Energy use by sector</h3>
+            <p class="sub" data-i18n="h_sector_sub"></p>
+            <div id="chart-s-sector" class="chart tall"></div>
+          </article>
+          <article class="panel">
+            <h3 data-i18n="h_fuel">What each sector runs on</h3>
+            <div class="filters">
+              <label><span data-i18n="filter_year">Year</span> <select id="s-year"></select></label>
+            </div>
+            <p class="sub" data-i18n="h_fuel_sub"></p>
+            <div id="chart-s-fuel" class="chart tall"></div>
+          </article>
+          <article class="panel">
+            <h3 data-i18n="h_transport">Transport energy by fuel</h3>
+            <p class="sub" data-i18n="h_transport_sub"></p>
+            <div id="chart-s-transport" class="chart tall"></div>
+          </article>
+          <article class="panel">
+            <h3 data-i18n="h_industry">Industry energy by branch</h3>
+            <p class="sub" data-i18n="h_industry_sub"></p>
+            <div id="chart-s-industry" class="chart tall"></div>
+          </article>
+          <article class="panel">
+            <h3 data-i18n="h_co2s">CO2 from fuel combustion by sector</h3>
+            <div class="filters">
+              <div class="segmented" role="group" aria-label="Allocation" id="co2-method">
+                <button type="button" data-method="direct" aria-pressed="true" data-i18n="co2_direct">Direct</button>
+                <button type="button" data-method="incl_indirect" aria-pressed="false" data-i18n="co2_indirect">Electricity allocated to users</button>
+              </div>
+            </div>
+            <p class="sub" id="h-co2s-sub"></p>
+            <div id="chart-s-co2" class="chart tall"></div>
+          </article>
+          <article class="panel">
+            <h3 data-i18n="h_home">Household electricity by appliance</h3>
+            <p class="sub" data-i18n="h_home_sub"></p>
+            <div id="chart-s-home" class="chart tall"></div>
+          </article>
+        </div>
+        <article class="panel prose-wide">
+          <h3 data-i18n="h_heatcool">Heating, cooling and hot water</h3>
+          <ul class="findings" id="heatcool"></ul>
         </article>
       </section>
 

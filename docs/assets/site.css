@@ -31,6 +31,12 @@
   /* Unserved demand: neutral ink, not a status colour, so it never reads as a series status. */
   --c-unserved: #2b2a28;
 
+  /* Categorical palette for charts of sectors, fuels and branches (dataviz reference
+     palette, 8 slots). Each chart's stacking order was checked with the palette
+     validator in light and dark (2026-09-25): adjacent CVD dE >= 8, normal >= 15. */
+  --k-1: #2a78d6; --k-2: #eb6834; --k-3: #1baf7a; --k-4: #eda100;
+  --k-5: #e87ba4; --k-6: #008300; --k-7: #4a3aa7; --k-8: #e34948;
+
   --good: #0ca30c;
   --warning: #fab219;
   --serious: #ec835a;
@@ -63,6 +69,8 @@
     --c-other_re: #6db8f0;
     --c-other: #44423f;
     --c-unserved: #ecebe4;
+    --k-1: #3987e5; --k-2: #d95926; --k-3: #199e70; --k-4: #c98500;
+    --k-5: #d55181; --k-6: #008300; --k-7: #9085e9; --k-8: #e66767;
   }
 }
 
@@ -89,6 +97,8 @@
   --c-other_re: #6db8f0;
   --c-other: #44423f;
   --c-unserved: #ecebe4;
+  --k-1: #3987e5; --k-2: #d95926; --k-3: #199e70; --k-4: #c98500;
+  --k-5: #d55181; --k-6: #008300; --k-7: #9085e9; --k-8: #e66767;
 }
 
 * { box-sizing: border-box; }

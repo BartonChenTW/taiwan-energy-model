@@ -51,6 +51,35 @@ const I18N = {
     none: "No rows match the filters.",
     footer: "Data: pypsa_tw/data/taiwan_key_facts.csv and taiwan_energy_catalog.csv, exported by pypsa_tw/viewer/export_dashboard_data.py.",
     loading_error: "Could not load the data. If you opened this file directly, serve the folder instead: python -m http.server -d docs",
+    nav_sectors: "All sectors", topic_end_use: "End use", filter_year: "Year",
+    sectors_title: "Energy use in all sectors",
+    sectors_intro: "Electricity is about a third of the energy Taiwan uses. These charts cover all of it: industry, transport, homes, services and agriculture, by fuel, from the official energy balance (Energy Administration, 2005-2025), plus CO2 by sector and a household survey of what uses electricity. Energy is in TWh (1 toe = 11.63 MWh; electricity counted at its energy content, 860 kcal/kWh).",
+    h_sector: "Energy use by sector", h_sector_sub: "TWh per year. The stack adds up to domestic energy consumption: final use by sector, non-energy use (petrochemical feedstock) and the energy sector's own use.",
+    h_fuel: "What each sector runs on", h_fuel_sub: "TWh in the selected year, by fuel. Electricity is counted at the point of use, not the fuel burnt to make it.",
+    h_transport: "Transport energy by fuel", h_transport_sub: "TWh per year, all domestic transport (road is about 97%). International shipping and aviation are not included.",
+    h_industry: "Industry energy by branch", h_industry_sub: "TWh per year, fuel and electricity (feedstock excluded). The industry classification changed in 2018.",
+    h_co2s: "CO2 from fuel combustion by sector", co2_direct: "Direct", co2_indirect: "Electricity allocated to users",
+    co2_sub_direct: "Mt CO2 per year. Direct: emissions where the fuel is burnt, so power plants count in the energy sector.",
+    co2_sub_indirect: "Mt CO2 per year. Power-plant emissions are allocated to the sectors that use the electricity; the energy sector keeps its own use and losses.",
+    h_home: "Household electricity by appliance", h_home_sub: "Share of household electricity, 2024 survey of 1,800 homes (Energy Administration / ITRI). Summer = June to September.",
+    home_year: "Whole year", home_summer: "Summer months",
+    h_heatcool: "Heating, cooling and hot water",
+    sec: { industry: "Industry", transport: "Transport", residential: "Residential", services: "Services", agriculture: "Agriculture",
+           non_energy: "Non-energy use (feedstock)", energy_own_use: "Energy sector own use", energy: "Energy sector" },
+    fuel: { gas: "Natural gas", electricity: "Electricity", heat: "Heat (steam)", coal: "Coal", biomass_waste: "Biomass and waste",
+            oil: "Oil products", solar_thermal: "Solar thermal" },
+    tfuel: { gasoline: "Gasoline", jet: "Jet fuel", diesel: "Diesel", fuel_oil: "Fuel oil", electricity: "Electricity", other: "Other" },
+    branch: { chemicals: "Chemicals", basic_metals: "Basic metals", electronics: "Electronics", non_metallic: "Cement, glass, ceramics",
+              paper: "Paper", textiles: "Textiles", other: "Other branches" },
+    break_2018: "2018: new classification",
+    heatcool: (v) => [
+      "The energy balance counts fuels by sector, not by end use, so there is no separate row for heating or cooling. For homes, the 2024 survey above shows what the electricity is used for.",
+      `Cooling runs on electricity: air conditioners use ${v.acYear}% of household electricity over the year and ${v.acSummer}% in June to September. Households own ${v.acPer} air conditioners on average, and ${v.acOwn}% have at least one (DGBAS 2025).`,
+      `In ${v.year}, electricity was ${v.elecShare}% of household energy use. The rest was LPG (${v.lpg} TWh) and natural gas (${v.gas} TWh), used for cooking and gas water heaters. Electric water heaters take another ${v.whYear}% of household electricity.`,
+      `Industry used ${v.heat} TWh of heat (steam) in ${v.year}, bought from cogeneration plants; in 2025, 89% of it went to the chemical industry. The balance records sold steam from 2001, and the series steps up in 2018 when the heat statistics were revised.`,
+      "Solar water heaters: the balance estimated about 1 TWh of solar heat a year in homes until 2021 and stopped from 2022, when it fell below the statistics' materiality threshold (compilation notes, item 6).",
+      "Space heating is not measured on its own. Winters are mild, and heating in homes appears inside electricity use (air conditioners in heating mode, electric heaters).",
+    ],
   },
   zh: {
     title: "台灣能源資料", nav_home: "← 首頁", nav_dashboard: "模型儀表板", nav_sandbox: "情境沙盒 →", nav_security: "能源安全 →", nav_sector: "部門耦合（草稿）→", nav_facts: "關鍵數據", nav_sources: "資料來源",
@@ -100,6 +129,35 @@ const I18N = {
     none: "沒有符合篩選條件的資料。",
     footer: "資料：pypsa_tw/data/taiwan_key_facts.csv 與 taiwan_energy_catalog.csv，由 pypsa_tw/viewer/export_dashboard_data.py 匯出。",
     loading_error: "無法載入資料。若直接開啟檔案，請改用本機伺服器：python -m http.server -d docs",
+    nav_sectors: "各部門", topic_end_use: "終端用途", filter_year: "年份",
+    sectors_title: "各部門能源使用",
+    sectors_intro: "電力約占台灣能源使用的三分之一。以下圖表涵蓋全部能源：工業、運輸、住宅、服務業與農業，依燃料別分列，資料取自官方能源平衡表（能源署，2005-2025 年），另有部門別 CO2 排放，以及家庭用電用途調查。能源單位為 TWh（1 公噸油當量 = 11.63 MWh；電力以其熱值 860 千卡/度計）。",
+    h_sector: "各部門能源消費", h_sector_sub: "每年 TWh。堆疊總和為國內能源消費：各部門最終消費、非能源消費（石化原料）及能源部門自用。",
+    h_fuel: "各部門使用的能源", h_fuel_sub: "所選年份的 TWh，依燃料別。電力以使用端計算，不計發電所燃燒的燃料。",
+    h_transport: "運輸部門能源（依燃料）", h_transport_sub: "每年 TWh，國內運輸（公路約占 97%）。不含國際海運與航空。",
+    h_industry: "工業部門能源（依行業）", h_industry_sub: "每年 TWh，燃料與電力（不含原料用途）。2018 年起行業分類改版。",
+    h_co2s: "各部門燃料燃燒 CO2 排放", co2_direct: "直接排放", co2_indirect: "電力排放分攤至用電部門",
+    co2_sub_direct: "每年百萬公噸 CO2。直接排放：在燃燒燃料處計算，因此電廠排放計入能源部門。",
+    co2_sub_indirect: "每年百萬公噸 CO2。電廠排放依用電量分攤至各用電部門；能源部門僅保留自用與損耗。",
+    h_home: "家庭用電（依電器）", h_home_sub: "占家庭用電比例，2024 年 1,800 戶調查（能源署／工研院）。夏月為 6 至 9 月。",
+    home_year: "全年", home_summer: "夏月",
+    h_heatcool: "暖氣、冷氣與熱水",
+    sec: { industry: "工業部門", transport: "運輸部門", residential: "住宅部門", services: "服務業部門", agriculture: "農業部門",
+           non_energy: "非能源消費（原料）", energy_own_use: "能源部門自用", energy: "能源部門" },
+    fuel: { gas: "天然氣", electricity: "電力", heat: "熱能（蒸汽）", coal: "煤及煤產品", biomass_waste: "生質能及廢棄物",
+            oil: "石油產品", solar_thermal: "太陽熱能" },
+    tfuel: { gasoline: "車用汽油", jet: "航空燃油", diesel: "柴油", fuel_oil: "燃料油", electricity: "電力", other: "其他" },
+    branch: { chemicals: "化學材料", basic_metals: "基本金屬", electronics: "電子產品", non_metallic: "水泥、玻璃、陶瓷",
+              paper: "紙漿及紙製品", textiles: "紡織", other: "其他行業" },
+    break_2018: "2018 年：分類改版",
+    heatcool: (v) => [
+      "能源平衡表依部門記錄燃料，而非依終端用途，因此沒有暖氣或冷氣的獨立項目。住宅部分可參考上方 2024 年調查的用電用途。",
+      `冷氣使用電力：冷氣機占家庭全年用電 ${v.acYear}%，6 至 9 月占 ${v.acSummer}%。每戶平均擁有 ${v.acPer} 台冷暖氣機，${v.acOwn}% 的家庭至少有一台（主計總處 2025 年）。`,
+      `${v.year} 年電力占住宅能源消費的 ${v.elecShare}%，其餘為液化石油氣（${v.lpg} TWh）與天然氣（${v.gas} TWh），用於烹飪與瓦斯熱水器。電熱水器另占家庭用電 ${v.whYear}%。`,
+      `${v.year} 年工業使用 ${v.heat} TWh 的熱能（蒸汽），購自汽電共生廠；2025 年其中 89% 用於化學材料業。平衡表自 2001 年起記錄售出的蒸汽，2018 年熱能統計修正後數值上升。`,
+      "太陽能熱水器：平衡表估計至 2021 年住宅每年約有 1 TWh 太陽熱能，2022 年起因已不符統計重要性原則而停編（編製說明第六點）。",
+      "暖氣未單獨統計。台灣冬季溫和，住宅暖氣用能包含在電力使用中（冷暖氣機暖氣模式、電暖器）。",
+    ],
   },
 };
 
@@ -342,9 +400,106 @@ function renderHistory() {
     planBar("planned_retire_oil", "s_ret_oil", cssVar("--c-other"), -1),
   ], layoutBase({ barmode: "relative", hovermode: "closest", xaxis: { dtick: 1 }, yaxis: { title: { text: "GW", font: { size: 11 } } } }), plotCfg);
 
+  renderSectors();
   Object.keys(CHART_SERIES).forEach(sourceLine);
   renderSeriesTable();
   renderRefs();
+}
+
+
+// ---------- Energy use in all sectors ----------
+// Colour slots (--k-1..8, site.css) per entity, and stacking orders that passed the
+// palette validator in light and dark (adjacent pairs).
+const SECTORS = [["industry", 1], ["transport", 2], ["residential", 3], ["services", 4], ["agriculture", 5],
+                 ["non_energy", 6], ["energy_own_use", 7]];
+const CO2_SECTORS = [["industry", 1], ["transport", 2], ["residential", 3], ["services", 4], ["agriculture", 5], ["energy", 7]];
+const FUELS = [["gas", 2], ["electricity", 1], ["heat", 8], ["coal", 7], ["biomass_waste", 6], ["oil", 5], ["solar_thermal", 4]];
+const TFUELS = [["gasoline", 4], ["jet", 3], ["diesel", 7], ["fuel_oil", 8], ["electricity", 1], ["other", 6]];
+const BRANCHES = [["chemicals", 1], ["basic_metals", 2], ["electronics", 3], ["non_metallic", 4], ["paper", 5], ["textiles", 6], ["other", 7]];
+const END_USE_SECTORS = ["industry", "transport", "residential", "services", "agriculture"];
+const slot = (k) => cssVar(`--k-${k}`);
+const L = (group, id) => (I18N[state.lang][group] || {})[id] || id;
+state.co2Method = "direct";
+
+function areaStack(prefix, entities, group, unit, digits) {
+  return entities.map(([id, k]) => {
+    const s = tsSeries(`${prefix}${id}`, ["history"]);
+    return { type: "scatter", mode: "lines", x: s.x, y: s.y, name: L(group, id), stackgroup: "one",
+             line: { width: 0.5, color: cssVar("--surface") }, fillcolor: slot(k),
+             hovertemplate: `${L(group, id)}: %{y:.${digits}f} ${unit}<extra></extra>` };
+  }).filter((tr) => tr.x.length);
+}
+
+function renderSectors() {
+  const tall = { yaxis: { title: { text: "TWh", font: { size: 11 } }, rangemode: "tozero" } };
+  Plotly.react("chart-s-sector", areaStack("sector_energy_", SECTORS, "sec", "TWh", 1), layoutBase(tall), plotCfg);
+
+  // Fuel mix by sector for one year: horizontal stacked bars.
+  const years = tsSeries("sector_energy_industry", ["history"]).x;
+  const sel = $("s-year");
+  if (sel.options.length !== years.length) {
+    sel.innerHTML = years.slice().reverse().map((y) => `<option value="${y}">${y}</option>`).join("");
+  }
+  const year = Number(sel.value || years[years.length - 1]);
+  const val = (id) => { const r = state.ts.find((x) => x.series === id && Number(x.year) === year); return r ? Number(r.value) : 0; };
+  const cats = END_USE_SECTORS.map((s) => L("sec", s));
+  const totals = END_USE_SECTORS.map((s) => FUELS.reduce((a, [f]) => a + val(`sector_fuel_${s}_${f}`), 0));
+  const fuelTraces = FUELS.map(([f, k]) => {
+    const x = END_USE_SECTORS.map((s) => val(`sector_fuel_${s}_${f}`));
+    return { type: "bar", orientation: "h", y: cats, x, name: L("fuel", f),
+             customdata: x.map((v, i) => (totals[i] ? (100 * v) / totals[i] : 0)),
+             marker: { color: slot(k), line: { color: cssVar("--surface"), width: 1.5 } },
+             hovertemplate: `%{y} · ${L("fuel", f)}: %{x:.1f} TWh (%{customdata:.0f}%)<extra></extra>` };
+  }).filter((tr) => tr.x.some((v) => v > 0.01));
+  Plotly.react("chart-s-fuel", fuelTraces, layoutBase({
+    barmode: "stack", hovermode: "closest", barcornerradius: 3,
+    yaxis: { autorange: "reversed" }, xaxis: { title: { text: "TWh", font: { size: 11 } } },
+  }), plotCfg);
+
+  // Transport by fuel and industry by branch, with the 2018 break marked on industry.
+  Plotly.react("chart-s-transport", areaStack("transport_fuel_", TFUELS, "tfuel", "TWh", 1), layoutBase(tall), plotCfg);
+  const brk = { shapes: [{ type: "line", x0: 2017.5, x1: 2017.5, y0: 0, y1: 1, yref: "paper",
+                           line: { color: cssVar("--muted"), width: 1, dash: "dot" } }],
+                annotations: [{ x: 2017.5, y: 1, yref: "paper", text: t("break_2018"), showarrow: false, xanchor: "left",
+                                yanchor: "top", font: { size: 10, color: cssVar("--muted") } }] };
+  Plotly.react("chart-s-industry", areaStack("industry_branch_", BRANCHES, "branch", "TWh", 1), layoutBase({ ...tall, ...brk }), plotCfg);
+
+  // CO2 by sector, direct or with electricity allocated.
+  const m = state.co2Method;
+  document.querySelectorAll("#co2-method button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.method === m)));
+  $("h-co2s-sub").textContent = t(m === "direct" ? "co2_sub_direct" : "co2_sub_indirect");
+  Plotly.react("chart-s-co2", areaStack(`co2_sector_${m}_`, CO2_SECTORS, "sec", "Mt", 1),
+    layoutBase({ yaxis: { title: { text: "Mt CO2", font: { size: 11 } }, rangemode: "tozero" } }), plotCfg);
+
+  // Household electricity by appliance (2024 survey), whole year and summer.
+  const apps = [...new Set(state.ts.filter((r) => r.series.startsWith("home_elec_year_")).map((r) => r.series.slice(15)))];
+  const share = (kind, a) => { const r = state.ts.find((x) => x.series === `home_elec_${kind}_${a}`); return r ? Number(r.value) : 0; };
+  apps.sort((a, b) => (a === "other") - (b === "other") || share("year", b) - share("year", a));
+  const appName = (a) => { const r = state.ts.find((x) => x.series === `home_elec_year_${a}`); return (state.lang === "zh" ? r.indicator_zh : r.indicator_en).split(/[:：]\s*/).pop(); };
+  const bars = [["year", "home_year", 1], ["summer", "home_summer", 2]].map(([kind, key, k]) => ({
+    type: "bar", orientation: "h", y: apps.map(appName), x: apps.map((a) => share(kind, a)), name: t(key),
+    marker: { color: slot(k) }, hovertemplate: `%{y} · ${t(key)}: %{x:.1f}%<extra></extra>`,
+  }));
+  Plotly.react("chart-s-home", bars, layoutBase({
+    barmode: "group", bargap: 0.25, bargroupgap: 0.1, hovermode: "closest", barcornerradius: 3,
+    yaxis: { autorange: "reversed" }, xaxis: { ticksuffix: "%", rangemode: "tozero" },
+  }), plotCfg);
+
+  // Heating, cooling and hot water: numbers from the same data.
+  const last = (id) => { const s = tsSeries(id, ["history"]); return { x: s.x[s.x.length - 1], y: s.y[s.y.length - 1] }; };
+  const fact = (name) => (state.data.facts.find((f) => f.indicator_en === name) || {}).value;
+  const ly = last("sector_fuel_residential_electricity").x;
+  const res = ["electricity", "oil", "gas", "solar_thermal"].reduce((a, f) => a + (last(`sector_fuel_residential_${f}`).y || 0), 0);
+  const fmt = (v, d = 1) => Number(v).toLocaleString(state.lang === "zh" ? "zh-TW" : "en-US", { maximumFractionDigits: d, minimumFractionDigits: d });
+  const v = {
+    year: ly, acYear: fmt(share("year", "air_conditioner")), acSummer: fmt(share("summer", "air_conditioner")),
+    whYear: fmt(share("year", "water_heater")),
+    acPer: fmt(Number(fact("Air conditioners per 100 households")) / 100), acOwn: fmt(Number(fact("Households with air conditioning"))),
+    elecShare: fmt((100 * last("sector_fuel_residential_electricity").y) / res, 0),
+    lpg: fmt(last("sector_fuel_residential_oil").y), gas: fmt(last("sector_fuel_residential_gas").y),
+    heat: fmt(last("sector_fuel_industry_heat").y),
+  };
+  $("heatcool").innerHTML = t("heatcool")(v).map((s) => `<li>${esc(s)}</li>`).join("");
 }
 
 
@@ -359,6 +514,12 @@ const CHART_SERIES = {
   "chart-h-share": (id) => id === "re_share",
   "chart-h-ef": (id) => id === "grid_emission_factor",
   "chart-h-plan": (id) => id.startsWith("planned_"),
+  "chart-s-sector": (id) => id.startsWith("sector_energy_"),
+  "chart-s-fuel": (id) => id.startsWith("sector_fuel_"),
+  "chart-s-transport": (id) => id.startsWith("transport_fuel_"),
+  "chart-s-industry": (id) => id.startsWith("industry_branch_"),
+  "chart-s-co2": (id) => id.startsWith("co2_sector_"),
+  "chart-s-home": (id) => id.startsWith("home_elec_"),
 };
 
 function sourceLine(chartId) {
@@ -378,8 +539,8 @@ function sourceLine(chartId) {
     const src = state.src[e.r.source_id] || {};
     const kinds = [...e.kinds].map((k) => t(`kind_${k}`)).join(" / ");
     const span = e.years.length ? ` ${Math.min(...e.years)}${Math.max(...e.years) > Math.min(...e.years) ? `–${Math.max(...e.years)}` : ""}` : "";
-    // History from files: the column is in the series table. Anything else (a report page) is shown here.
-    const where = e.r.locator && !e.r.locator.startsWith("column") ? `, ${esc(e.r.locator)}` : "";
+    // History from files: the column (or sheet and row) is in the series table. A report page is shown here.
+    const where = e.r.locator && !/^(column|sheet|Figure|附表)/.test(e.r.locator) ? `, ${esc(e.r.locator)}` : "";
     const link = src.landing_url ? ` <a href="${esc(src.landing_url)}" rel="noopener">${esc(hostOf(src.landing_url))}</a>` : "";
     return `<li><b>${esc(kinds)}${esc(span)}:</b> ${esc(src.short_cite || e.r.source_name)}${where}${link} ${evidenceBadge(e.r.evidence)}</li>`;
   });
@@ -459,6 +620,10 @@ async function init() {
   for (const id of ["src-category", "src-use"]) $(id).addEventListener("change", renderSources);
   $("fact-search").addEventListener("input", renderFacts);
   for (const id of ["ts-series", "ts-kind"]) $(id).addEventListener("change", renderSeriesTable);
+  $("s-year").addEventListener("change", renderSectors);
+  document.querySelectorAll("#co2-method button").forEach((b) => b.addEventListener("click", () => {
+    state.co2Method = b.dataset.method; renderSectors();
+  }));
   $("src-search").addEventListener("input", renderSources);
   try {
     const res = await fetch("data/taiwan_catalog.json");
