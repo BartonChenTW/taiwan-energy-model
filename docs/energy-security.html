@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="assets/site.css?v=454a78a7" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <script src="assets/pages.js?v=b03ff9c1" defer></script>
-    <script src="assets/security.js?v=1be79099" defer></script>
+    <script src="assets/security.js?v=f54b4e3f" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -92,6 +92,7 @@
       <section class="section prose-wide">
         <h2><span class="t-en">Reading the results</span><span class="t-zh">如何解讀結果</span></h2>
         <ul>
+          <li><span class="t-en">Today vs the 2034 plan: the planned system is more exposed in summer, because it runs more on gas (the fuel with the smallest stock) and less on coal. In winter it copes better, because the added solar and wind cover more of the lower demand. Switch "Power system" to compare the same case.</span><span class="t-zh">現有系統與 2034 年規劃比較：規劃中的系統在夏季較脆弱，因為更依賴燃氣（存量最少的燃料）、燃煤較少；冬季則較能因應，因為新增的太陽光電與風電可涵蓋較多的較低需求。切換「電力系統」即可比較同一情境。</span></li>
           <li><span class="t-en">The model knows when the blockade ends, so it spreads each stock to exactly zero on the last day. In reality operators would not know, and would likely run short earlier or keep more in reserve.</span><span class="t-zh">模型知道封鎖何時結束，因此會把每種存量剛好在最後一天用完。現實中調度者無從得知，可能更早短缺，或保留更多存量。</span></li>
           <li><span class="t-en">In a full blockade gas is limited by the fuel left, not by the plants: losing the Tatan gas plant or half of the lines into Taipei changes almost nothing. Coal is the opposite: after 30 summer days about a quarter of the coal stock is still there because the coal plants already run flat out, so losing the Taichung coal plant hurts most.</span><span class="t-zh">完全封鎖時，燃氣受限於剩餘燃料而非電廠：失去大潭電廠或進入台北的一半線路幾乎沒有影響。燃煤則相反：夏季 30 天後仍剩約四分之一的煤，因為燃煤機組已全力運轉，所以失去台中電廠的影響最大。</span></li>
           <li><span class="t-en">Rationing 20% of demand does not reduce the total shortfall here, because the model already sheds load in the least harmful way. Its real value is planned cuts instead of sudden blackouts, which this model does not capture. Rationed demand is counted as "not met".</span><span class="t-zh">在此配給 20% 需求並未減少總缺口，因為模型本來就會以代價最小的方式切除負載。配給的實際價值在於以計畫性限電取代突然停電，這點本模型無法呈現。配給減少的需求計入「未能供應」。</span></li>
@@ -104,7 +105,7 @@
         <ul>
           <li><span class="t-en">Gas, coal and oil plants draw from one national stock per fuel instead of unlimited supply. Each stock starts at "stock days × the power plants' average daily fuel use" in the normal model year, i.e. the stock is assumed to be shared in proportion between power and other users.</span><span class="t-zh">燃氣、燃煤與燃油電廠改由每種燃料的全國存量供應，而非無限供給。起始存量＝「存量天數 × 一般年度電廠平均每日燃料用量」，即假設存量依比例由電力與其他用戶分享。</span></li>
           <li><span class="t-en">During the blockade, imports arrive at a chosen share of the normal fuel use in the same weeks (0% = full blockade; 100% reproduces normal operation), spread evenly over time.</span><span class="t-zh">封鎖期間，進口量為同期一般燃料用量的某個比例（0% 為完全封鎖；100% 即重現正常運轉），平均分布於期間內。</span></li>
-          <li><span class="t-en">Only the blockade window is solved (from 1 July or 7 January), with today's plants and grid; demand that cannot be met is shed at 1,000 EUR/MWh.</span><span class="t-zh">只計算封鎖期間（自 7 月 1 日或 1 月 7 日起），採用現有電廠與電網；無法供應的需求以每 MWh 1,000 歐元的代價切除。</span></li>
+          <li><span class="t-en">Only the blockade window is solved (from 1 July or 7 January), with today's plants and grid or the MOEA 2034 plan; demand that cannot be met is shed at 1,000 EUR/MWh.</span><span class="t-zh">只計算封鎖期間（自 7 月 1 日或 1 月 7 日起），採用現有電廠與電網或經濟部 2034 年規劃；無法供應的需求以每 MWh 1,000 歐元的代價切除。</span></li>
           <li><span class="t-en">Damage removes a plant site's capacity at its region, or halves the lines into Taipei. Restarted standby or retired coal units are assumed available from day one (optimistic).</span><span class="t-zh">受損情境會移除該電廠所在區域的容量，或使進入台北的線路容量減半。重啟的備用或已除役燃煤機組假設自第一天起即可運轉（樂觀假設）。</span></li>
         </ul>
         <p class="note muted" id="sec-meta"></p>

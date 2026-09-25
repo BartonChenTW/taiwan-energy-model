@@ -3,6 +3,8 @@
 
 const TX = {
   en: {
+    system: "Power system", sys: { today: "Today's system", plan2034: "2034 plan (MOEA)" },
+    sys_note: { today: "Today's plants and grid, 2024 demand.", plan2034: "The MOEA plan for 2034: new gas units, coal retirements, the 2030s solar and wind targets; demand +1.7%/yr. Stocks in the same days of use as today; the 14-day LNG option is the legal target from 2027." },
     type: "Fuel imports", t_normal: "Normal imports (reference)", t_full: "Full blockade: no LNG, coal or oil", t_lng: "LNG imports stop, coal and oil continue",
     days: "Length", d: (n) => `${n} days`, season: "Starts", summer: "1 July (summer peak)", winter: "7 January (winter)",
     options: "Options (one at a time)", o_none: "None", o_ration: "Ration demand by 20%", o_lng14: "LNG stock 14 days (2027 target)",
@@ -28,6 +30,8 @@ const TX = {
               gas: "Gas", hydro: "Hydro", oil: "Oil", other: "Other", unserved: "Demand not met" },
   },
   zh: {
+    system: "電力系統", sys: { today: "現有系統", plan2034: "2034 年規劃（經濟部）" },
+    sys_note: { today: "現有電廠與電網，2024 年需求。", plan2034: "經濟部 2034 年規劃：新燃氣機組、燃煤除役、2030 年代太陽光電與風電目標；需求每年成長 1.7%。存量天數與今日相同；液化天然氣 14 天選項為 2027 年起的法定目標。" },
     type: "燃料進口", t_normal: "正常進口（參考）", t_full: "完全封鎖：液化天然氣、燃煤、燃油皆停止", t_lng: "液化天然氣停止進口，燃煤與燃油照常",
     days: "期間", d: (n) => `${n} 天`, season: "開始", summer: "7 月 1 日（夏季尖峰）", winter: "1 月 7 日（冬季）",
     options: "選項（一次一項）", o_none: "無", o_ration: "需求配給減少 20%", o_lng14: "液化天然氣存量 14 天（2027 年目標）",
@@ -69,7 +73,7 @@ const STOCKS = [
 
 const ORDER = ["coal", "nuclear", "onwind", "storage", "solar", "offwind", "gas", "hydro", "oil", "other", "unserved"];
 const COLOR = { oil: "--c-other", other: "--c-other_re" };
-const state = { index: null, cache: {}, ctl: { type: "full", days: 30, season: "summer", option: "none" } };
+const state = { index: null, cache: {}, ctl: { base: "today", type: "full", days: 30, season: "summer", option: "none" } };
 const $ = (id) => document.getElementById(id);
 const lang = () => (window.twLang ? window.twLang() : "en");
 const T = () => TX[lang()];
@@ -91,7 +95,7 @@ function layout(extra = {}) {
 }
 
 // ---------- which scenario do the controls describe? ----------
-function signature(sec, lv) {
+function signature(sec, lv, base = "today") {
   const imports = [sec.lng_import_frac, sec.coal_import_frac, sec.oil_import_frac];
   const type = imports.every((v) => v === 1) ? "normal" : imports.every((v) => v === 0) ? "full" : imports[0] === 0 && imports[1] === 1 ? "lng" : "other";
   let option = "none";
@@ -103,23 +107,24 @@ function signature(sec, lv) {
   else if (sec.damage.includes("taichung")) option = "taichung";
   else if (sec.damage.includes("tatan")) option = "tatan";
   else if (sec.damage.includes("taipei_corridor")) option = "corridor";
-  return { type, days: sec.blockade_days, season: sec.blockade_season, option };
+  return { base, type, days: sec.blockade_days, season: sec.blockade_season, option };
 }
 
 function label(g) {
   const t = T();
-  const parts = [t.d(g.days), t.season_short[g.season], { normal: t.l_normal, full: t.l_full, lng: t.l_lng }[g.type] || ""];
+  const parts = [t.sys[g.base] || g.base, t.d(g.days), t.season_short[g.season], { normal: t.l_normal, full: t.l_full, lng: t.l_lng }[g.type] || ""];
   if (g.option !== "none") parts.push(t.l_opt[g.option]);
   return parts.filter(Boolean).join(t.sep);
 }
-const labelOf = (s) => label(signature(s.security, s.levers));
+const sig = (s) => signature(s.security, s.levers, s.base || "today");
+const labelOf = (s) => label(sig(s));
 
 function best() {
   const c = state.ctl;
   let top = null;
   for (const s of state.index.scenarios) {
-    const g = signature(s.security, s.levers);
-    const d = 4 * (g.type !== c.type) + 3 * (g.days !== c.days) + 3 * (g.season !== c.season) + 2 * (g.option !== c.option);
+    const g = sig(s);
+    const d = 20 * (g.base !== c.base) + 4 * (g.type !== c.type) + 3 * (g.days !== c.days) + 3 * (g.season !== c.season) + 2 * (g.option !== c.option);
     if (!top || d < top.d) top = { s, d, g };
   }
   return top;
@@ -129,7 +134,10 @@ function best() {
 function renderControls() {
   const t = T(), c = state.ctl;
   const radio = (name, value, label) => `<label class="check"><input type="radio" name="${name}" value="${value}" ${String(c[name]) === String(value) ? "checked" : ""}> ${esc(label)}</label>`;
+  const bases = Object.keys(state.index.bases || { today: "" });
   $("sec-controls").innerHTML = `
+    <fieldset class="lever-group"><legend>${esc(t.system)}</legend>${bases.map((b) => radio("base", b, t.sys[b] || b)).join("")}
+      <p class="note muted">${esc(t.sys_note[c.base] || "")}</p></fieldset>
     <fieldset class="lever-group"><legend>${esc(t.type)}</legend>${radio("type", "full", t.t_full)}${radio("type", "lng", t.t_lng)}${radio("type", "normal", t.t_normal)}</fieldset>
     <fieldset class="lever-group"><legend>${esc(t.days)}</legend>${[14, 30, 60].map((d) => radio("days", d, t.d(d))).join("")}</fieldset>
     <fieldset class="lever-group"><legend>${esc(t.season)}</legend>${radio("season", "summer", t.summer)}${radio("season", "winter", t.winter)}</fieldset>
@@ -138,6 +146,7 @@ function renderControls() {
   $("sec-controls").querySelectorAll("input[type=radio]").forEach((el) => el.addEventListener("change", () => {
     state.ctl[el.name] = el.name === "days" ? Number(el.value) : el.value;
     writeUrl();
+    if (el.name === "base") renderControls();
     update();
   }));
 }
@@ -145,6 +154,7 @@ function renderControls() {
 function readUrl() {
   const q = new URL(location.href).searchParams;
   for (const k of ["type", "season", "option"]) if (q.has(k)) state.ctl[k] = q.get(k).slice(0, 20);
+  if (["today", "plan2034"].includes(q.get("base"))) state.ctl.base = q.get("base");
   if (q.has("days") && [14, 30, 60].includes(Number(q.get("days")))) state.ctl.days = Number(q.get("days"));
 }
 
@@ -213,7 +223,7 @@ function renderCharts(c) {
 function renderTable() {
   const t = T();
   const key = (s) => [s.security.blockade_season === "summer" ? 0 : 1, s.security.blockade_days, s.metrics.short_share];
-  const rows = [...state.index.scenarios].sort((a, b) => {
+  const rows = state.index.scenarios.filter((s) => (s.base || "today") === state.ctl.base).sort((a, b) => {
     const ka = key(a), kb = key(b);
     return ka[0] - kb[0] || ka[1] - kb[1] || ka[2] - kb[2];
   });
@@ -225,7 +235,7 @@ function renderTable() {
   $("sec-table").querySelectorAll("tr[data-hash]").forEach((tr) => {
     const go = () => {
       const s = state.index.scenarios.find((x) => x.hash === tr.dataset.hash);
-      Object.assign(state.ctl, signature(s.security, s.levers));
+      Object.assign(state.ctl, sig(s));
       renderControls(); writeUrl(); update();
     };
     tr.addEventListener("click", go);
