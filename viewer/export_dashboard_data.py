@@ -936,13 +936,23 @@ def export_sector_draft(repo, out):
 
 
 # ---------- Sector-coupled pathway 2030 -> 2050 (myopic) ----------
+_PATH = "pypsa_tw/config/scenarios/sector_path_2050"
+# (run, id, English label, Chinese label, overlays merged in order)
 SECTOR_PATHWAYS = [
-    ("tw_sector_path2050_24h_w2013_6b", "Pathway to net zero, daily steps", "pypsa_tw/config/scenarios/sector_path_2050.yaml"),
+    ("tw_sector_path2050_24h_w2013_6b", "central", "Central", "基準", [f"{_PATH}.yaml"]),
+    ("tw_sector_path2050_24h_A_nuclear_cap", "A", "A: new nuclear at most 6.75 GW", "A：新核電至多 6.75 GW",
+     [f"{_PATH}.yaml", f"{_PATH}_A_nuclear_cap.yaml"]),
+    ("tw_sector_path2050_24h_B_slower_growth", "B", "B: demand +1%/yr after 2035", "B：2035 年後需求年增 1%",
+     [f"{_PATH}.yaml", f"{_PATH}_B_slower_growth.yaml"]),
+    ("tw_sector_path2050_24h_C_h2_import", "C", "C: hydrogen imports at 90 €/MWh", "C：進口氫氣（每 MWh 90 歐元）",
+     [f"{_PATH}.yaml", f"{_PATH}_C_h2_import.yaml"]),
+    ("tw_sector_path2050_24h_D_float_geothermal", "D", "D: floating offshore wind and geothermal", "D：浮動式離岸風電與地熱",
+     [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml"]),
 ]
 # Electricity producers and storage -> groups shown on the page
 PATH_GEN_GROUPS = {"coal": "coal", "CCGT": "gas", "OCGT": "gas", "oil": "oil", "nuclear": "nuclear",
                    "solar": "solar", "solar rooftop": "solar", "onwind": "wind", "offwind-ac": "wind",
-                   "offwind-dc": "wind", "ror": "hydro", "hydro": "hydro", "PHS": "storage",
+                   "offwind-dc": "wind", "offwind-float": "wind", "ror": "hydro", "hydro": "hydro", "PHS": "storage",
                    "battery discharger": "storage", "home battery discharger": "storage", "H2 Fuel Cell": "hydrogen",
                    "H2 turbine": "hydrogen", "OCGT H2": "hydrogen", "urban central solid biomass CHP": "other_re",
                    "urban central solid biomass CHP CC": "other_re", "solid biomass": "other_re", "biomass": "other_re",
@@ -1061,18 +1071,27 @@ def sector_pathway_year(n, year, cap_Mt):
     }
 
 
+def _deep_merge(a, b):
+    out = dict(a)
+    for k, v in (b or {}).items():
+        out[k] = _deep_merge(out.get(k, {}), v) if isinstance(v, dict) and isinstance(out.get(k), dict) else v
+    return out
+
+
 def export_sector_pathway(repo, out):
-    """Myopic sector-coupled pathways for the draft page (docs/sector-draft.html#pathway)."""
+    """Myopic sector-coupled pathways (central and sensitivities) for docs/sector-draft.html#pathway."""
     import re
 
     import yaml
 
     payload = []
-    for run, label, overlay in SECTOR_PATHWAYS:
+    for run, pid, label, label_zh, overlays in SECTOR_PATHWAYS:
         files = sorted((repo / "results" / run / "postnetworks").glob("*.nc"))
         if not files:
             continue
-        cfg = yaml.safe_load((repo / overlay).read_text(encoding="utf-8"))
+        cfg = {}
+        for o in overlays:
+            cfg = _deep_merge(cfg, yaml.safe_load((repo / o).read_text(encoding="utf-8")))
         budget = cfg.get("co2_budget", {})
         base = float(budget.get("co2base_value", 0))
         years = []
@@ -1084,8 +1103,12 @@ def export_sector_pathway(repo, out):
             cap = base * budget.get("year", {}).get(year, 1.0) / 1e6
             years.append(sector_pathway_year(pypsa.Network(str(f)), year, cap))
         years.sort(key=lambda y: y["year"])
-        payload.append({"run": run, "label": label, "overlay": overlay, "horizons": [y["year"] for y in years],
-                        "co2_base_Mt": _r(base / 1e6, 1), "years": years,
+        horizons = cfg.get("scenario", {}).get("planning_horizons", [])
+        if [y["year"] for y in years] != horizons:
+            print(f"[skip] pathway {run}: incomplete ({[y['year'] for y in years]} of {horizons})")
+            continue
+        payload.append({"id": pid, "run": run, "label": label, "label_zh": label_zh, "overlay": overlays[-1],
+                        "horizons": horizons, "co2_base_Mt": _r(base / 1e6, 1), "years": years,
                         "assumptions": {"co2_factors": budget.get("year", {}),
                                         "co2_storage_Mt": cfg.get("sector", {}).get("co2_sequestration_potential"),
                                         "ev_share": cfg.get("sector", {}).get("land_transport_electric_share"),
@@ -1095,7 +1118,7 @@ def export_sector_pathway(repo, out):
         return
     (out / "sector_pathway.json").write_text(json.dumps({"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
                                                          "currency": CURRENCY, "pathways": payload}, indent=1), encoding="utf-8")
-    print(f"wrote sector_pathway.json ({', '.join(p['run'] for p in payload)})")
+    print(f"wrote sector_pathway.json ({', '.join(p['id'] for p in payload)})")
 
 
 # ---------- Energy security (docs/energy-security.html) ----------

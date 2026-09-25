@@ -12,7 +12,7 @@
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <script src="assets/pages.js?v=b03ff9c1" defer></script>
     <script src="assets/sector-draft.js?v=b0ab6712" defer></script>
-    <script src="assets/sector-pathway.js?v=a0a2fa0b" defer></script>
+    <script src="assets/sector-pathway.js?v=ce7a7ce1" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -52,12 +52,19 @@
 
       <section class="section" id="pathway">
         <h2><span class="t-en">Pathway to net zero: 2030 → 2040 → 2050</span><span class="t-zh">淨零路徑：2030 → 2040 → 2050</span></h2>
+        <div class="filters">
+          <label><span><span class="t-en">Scenario</span><span class="t-zh">情境</span></span> <select id="sp-variant"></select></label>
+        </div>
         <p id="sp-intro"></p>
         <div class="status-list"><div class="status warning"><span class="icon" aria-hidden="true">!</span>
           <span><span class="t-en">First pass with daily time steps: the solar day–night cycle is averaged out, so batteries and other short-term storage are undervalued. Demand growth, EV shares and CO₂ storage are simple assumptions (listed below); a run with 4-hour steps comes next.</span><span class="t-zh">第一版，每日一個時段：太陽光電的日夜變化被平均掉，因此電池等短時儲能的價值被低估。需求成長、電動車比例與 CO₂ 封存量為簡化假設（列於下方）；下一步將以每 4 小時一個時段重跑。</span></span></div></div>
         <article class="panel prose-wide">
           <h3><span class="t-en">What this draft shows</span><span class="t-zh">此草稿顯示的結果</span></h3>
           <ul class="findings" id="sp-findings"></ul>
+        </article>
+        <article class="panel">
+          <h3><span class="t-en">Sensitivities compared</span><span class="t-zh">敏感度分析比較</span></h3>
+          <div id="sp-compare" class="table-wrap"></div>
         </article>
         <article class="panel">
           <h3><span class="t-en">Key numbers by year</span><span class="t-zh">各年關鍵數據</span></h3>

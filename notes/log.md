@@ -456,5 +456,30 @@ Barton asked for sector-coupled runs for 2040/2050.
   - sensitivities: a nuclear limit (e.g. the sandbox's 5 plants), floating offshore wind, lower demand growth;
   - rerun the 2025 reference with the Taiwan demand rows and car numbers.
 
+## 2026-09-25: pathway sensitivities A-D (2050, daily steps)
+
+Each sensitivity changes one assumption of the central pathway (overlays `sector_path_2050_{A,B,C,D}_*.yaml`).
+
+| 2050 | Central | A: new nuclear ≤ 6.75 GW | B: +1%/yr after 2035 | C: H₂ imports at 90 €/MWh | D: floating wind + geothermal |
+| --- | --- | --- | --- | --- | --- |
+| System cost (bn €/yr) | 65.5 | 252.5 | 58.0 | 58.2 | 63.2 |
+| Demand not met (TWh) | 0 | 215 | 0 | 0 | 0 |
+| New nuclear (GW) | 41.4 | 6.8 | 32.7 | 30.2 | 14.3 |
+| Wind (GW) | 78 | 93 | 78 | 51 | 120 (66 floating) |
+| H₂ imported (TWh) | 0 | 0 | 0 | 110 | 0 |
+
+- **A:** with new nuclear capped at the sandbox's five plants, net zero in 2050 is out of reach. The €7,800/t CO₂ price is the penalty for unmet demand.
+- **D:** floating wind is the largest single lever. 66 GW is built out of a 231 GW potential at 2 MW/km² in 50–1,000 m of water, with no exclusion for shipping lanes, fishing or typhoon design, so that potential is optimistic. Geothermal is built up to its 6 GW cap, already by 2040.
+- **No single change removes the need for new nuclear.** A combined run (B + C + D, with the nuclear cap) would test whether together they can.
+- **New fork options:**
+  - `solving.options.capacity_max_total_MW` and `nuclear_max_total_MW` (`solve_network.py`);
+  - `demand_growth_override` (`prepare_energy_totals.py`, `build_industry_demand.py`);
+  - `sector.hydrogen_import` (`prepare_sector_network.py`);
+  - renewable `min_depth` and floating costs (`build_renewable_profiles.py`, `add_electricity.py`).
+- **Runs:**
+  - Solve-only and sector-only sensitivities reuse the central run's inputs (copied resources, `--rerun-triggers mtime`).
+  - D has its own electricity run (`tw_path2050_D_w2013_6b`).
+  - Sensitivity B's first solve was refused by the shared Gurobi licence server ("use limit (3) exceeded"). Later runs retry when the licence is busy.
+
 TODO:
  - to run PyPSA-Earth Taiwan!

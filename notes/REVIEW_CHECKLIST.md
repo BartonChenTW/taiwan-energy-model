@@ -124,6 +124,10 @@ Items Claude decided or assumed without your confirmation. Tick them off, or not
 - [ ] **New nuclear reaches 41 GW in 2050**, because nothing limits it per site. Decide on a cap, e.g. the sandbox's 5 Lungmen-size plants (6.75 GW) or a siting study, and rerun.
 - [ ] **Offshore wind bands** (AC up to 60 km from shore, DC beyond; depth ≤ 50 m) and no floating wind: check against the MOEA zones of potential and the round-3 zones.
 - [ ] **Car number 7.2 million** (search summary, MOTC 2022) drives EV charger and battery sizes. Check it against the MOTC registration statistics.
+- [ ] **Sensitivity inputs**, all from search summaries, to verify:
+  - H₂ import price 90 €/MWh, between Japan's US$2/kg 2050 target and about US$4.4/kg for Australian ammonia;
+  - geothermal 4.22 million €/MW (IRENA 2023 weighted average) and a 6 GW cap (2050 pathway target);
+  - floating wind at 50–1,000 m depth and 2 MW/km², with no exclusion zones.
 - [ ] **The six fork fixes** in `scripts/` (see log 2026-09-25) could go upstream to PyPSA-Earth as issues or pull requests.
 
 ## Website pages
