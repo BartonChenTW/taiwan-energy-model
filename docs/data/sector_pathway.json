@@ -1,0 +1,556 @@
+{
+ "generated": "2026-09-25 13:40 UTC",
+ "currency": {
+  "eur_twd": 36.185,
+  "date": "2026-09-24 17:01",
+  "basis": "Bank of Taiwan spot rate, buy/sell midpoint",
+  "source": "https://rate.bot.com.tw/xrt?Lang=zh-TW"
+ },
+ "pathways": [
+  {
+   "run": "tw_sector_path2050_24h_w2013_6b",
+   "label": "Pathway to net zero, daily steps",
+   "overlay": "pypsa_tw/config/scenarios/sector_path_2050.yaml",
+   "horizons": [
+    2030,
+    2040,
+    2050
+   ],
+   "co2_base_Mt": 258.9,
+   "years": [
+    {
+     "year": 2030,
+     "snapshots": 365,
+     "step_h": 24.0,
+     "objective_EUR": 10442876773.0,
+     "co2": {
+      "net_Mt": 195.1,
+      "cap_Mt": 207.1,
+      "captured_Mt": 0.0,
+      "dac_Mt": 0.0
+     },
+     "generation_TWh": {
+      "solar": 110.8,
+      "coal": 79.7,
+      "wind": 48.9,
+      "gas": 31.1,
+      "other_re": 16.9,
+      "oil": 11.2,
+      "hydro": 2.7,
+      "storage": 0.6
+     },
+     "generation_by_carrier_TWh": {
+      "coal": 79.67,
+      "solar": 75.99,
+      "offwind-ac": 46.25,
+      "solar rooftop": 34.79,
+      "CCGT": 31.12,
+      "oil": 11.21,
+      "geothermal": 10.51,
+      "biomass": 6.35,
+      "ror": 1.97,
+      "onwind": 1.89,
+      "hydro": 0.77,
+      "offwind-dc": 0.76,
+      "PHS": 0.44,
+      "battery discharger": 0.2,
+      "V2G": 0.06
+     },
+     "capacity_GW": {
+      "geothermal": {
+       "total_GW": 1.2,
+       "built_GW": 0.0
+      },
+      "offwind-ac": {
+       "total_GW": 10.9,
+       "built_GW": 0.0
+      },
+      "offwind-dc": {
+       "total_GW": 0.14,
+       "built_GW": 0.14
+      },
+      "onwind": {
+       "total_GW": 0.98,
+       "built_GW": 0.0
+      },
+      "ror": {
+       "total_GW": 1.48,
+       "built_GW": 0.0
+      },
+      "solar": {
+       "total_GW": 65.58,
+       "built_GW": 34.38
+      },
+      "solar rooftop": {
+       "total_GW": 30.55,
+       "built_GW": 30.55
+      },
+      "CCGT": {
+       "total_GW": 32.4,
+       "built_GW": 0.0
+      },
+      "OCGT": {
+       "total_GW": 0.18,
+       "built_GW": 0.0
+      },
+      "V2G": {
+       "total_GW": 3.56,
+       "built_GW": 0.0
+      },
+      "battery discharger": {
+       "total_GW": 0.84,
+       "built_GW": 0.0
+      },
+      "biomass": {
+       "total_GW": 0.81,
+       "built_GW": 0.0
+      },
+      "coal": {
+       "total_GW": 9.71,
+       "built_GW": 0.0
+      },
+      "oil": {
+       "total_GW": 1.28,
+       "built_GW": 0.0
+      },
+      "PHS": {
+       "total_GW": 2.6,
+       "built_GW": 0.0
+      },
+      "hydro": {
+       "total_GW": 0.66,
+       "built_GW": 0.0
+      }
+     },
+     "capacity_by_group_GW": {
+      "other_re": {
+       "total_GW": 2.01,
+       "built_GW": 0.0
+      },
+      "wind": {
+       "total_GW": 12.02,
+       "built_GW": 0.14
+      },
+      "hydro": {
+       "total_GW": 2.14,
+       "built_GW": 0.0
+      },
+      "solar": {
+       "total_GW": 96.13,
+       "built_GW": 64.93
+      },
+      "gas": {
+       "total_GW": 32.58,
+       "built_GW": 0.0
+      },
+      "storage": {
+       "total_GW": 3.44,
+       "built_GW": 0.0
+      },
+      "coal": {
+       "total_GW": 9.71,
+       "built_GW": 0.0
+      },
+      "oil": {
+       "total_GW": 1.28,
+       "built_GW": 0.0
+      }
+     },
+     "hydrogen_TWh": {},
+     "electrolysis_GW": 0.0,
+     "co2_price_EUR_t": 0.0,
+     "battery_GWh": 5.1,
+     "h2_storage_GWh": 0.0,
+     "demand_by_use_TWh": {
+      "electricity": 293.8,
+      "transport": 178.1,
+      "industry": 85.4,
+      "buildings": 35.8,
+      "agriculture": 6.4
+     },
+     "load_shedding_TWh": 0.02
+    },
+    {
+     "year": 2040,
+     "snapshots": 365,
+     "step_h": 24.0,
+     "objective_EUR": 12457588949.0,
+     "co2": {
+      "net_Mt": 102.4,
+      "cap_Mt": 103.6,
+      "captured_Mt": 26.0,
+      "dac_Mt": 0.0
+     },
+     "generation_TWh": {
+      "wind": 136.5,
+      "solar": 120.8,
+      "gas": 75.4,
+      "other_re": 19.5,
+      "oil": 9.6,
+      "coal": 8.4,
+      "hydro": 2.7,
+      "storage": 0.6
+     },
+     "generation_by_carrier_TWh": {
+      "solar": 75.84,
+      "CCGT": 71.0,
+      "offwind-dc": 64.56,
+      "offwind-ac": 45.46,
+      "solar rooftop": 44.93,
+      "onwind": 26.52,
+      "geothermal": 9.92,
+      "oil": 9.57,
+      "coal": 8.37,
+      "biomass": 5.99,
+      "urban central gas CHP": 3.25,
+      "urban central solid biomass CHP": 2.67,
+      "ror": 1.97,
+      "OCGT": 1.13,
+      "urban central solid biomass CHP CC": 0.95,
+      "hydro": 0.77,
+      "PHS": 0.39,
+      "battery discharger": 0.19,
+      "V2G": 0.12
+     },
+     "capacity_GW": {
+      "geothermal": {
+       "total_GW": 1.2,
+       "built_GW": 0.0
+      },
+      "offwind-ac": {
+       "total_GW": 10.9,
+       "built_GW": 0.0
+      },
+      "offwind-dc": {
+       "total_GW": 13.38,
+       "built_GW": 13.24
+      },
+      "onwind": {
+       "total_GW": 11.99,
+       "built_GW": 11.01
+      },
+      "ror": {
+       "total_GW": 1.48,
+       "built_GW": 0.0
+      },
+      "solar": {
+       "total_GW": 65.58,
+       "built_GW": 0.0
+      },
+      "solar rooftop": {
+       "total_GW": 40.6,
+       "built_GW": 10.05
+      },
+      "CCGT": {
+       "total_GW": 15.6,
+       "built_GW": 0.0
+      },
+      "OCGT": {
+       "total_GW": 3.7,
+       "built_GW": 3.52
+      },
+      "V2G": {
+       "total_GW": 32.08,
+       "built_GW": 0.0
+      },
+      "battery discharger": {
+       "total_GW": 0.11,
+       "built_GW": 0.11
+      },
+      "biomass": {
+       "total_GW": 0.81,
+       "built_GW": 0.0
+      },
+      "coal": {
+       "total_GW": 5.31,
+       "built_GW": 0.0
+      },
+      "oil": {
+       "total_GW": 1.28,
+       "built_GW": 0.0
+      },
+      "urban central gas CHP": {
+       "total_GW": 1.2,
+       "built_GW": 1.2
+      },
+      "urban central solid biomass CHP": {
+       "total_GW": 0.35,
+       "built_GW": 0.35
+      },
+      "urban central solid biomass CHP CC": {
+       "total_GW": 0.11,
+       "built_GW": 0.11
+      },
+      "PHS": {
+       "total_GW": 2.6,
+       "built_GW": 0.0
+      },
+      "hydro": {
+       "total_GW": 0.66,
+       "built_GW": 0.0
+      }
+     },
+     "capacity_by_group_GW": {
+      "other_re": {
+       "total_GW": 2.47,
+       "built_GW": 0.46
+      },
+      "wind": {
+       "total_GW": 36.27,
+       "built_GW": 24.25
+      },
+      "hydro": {
+       "total_GW": 2.14,
+       "built_GW": 0.0
+      },
+      "solar": {
+       "total_GW": 106.18,
+       "built_GW": 10.05
+      },
+      "gas": {
+       "total_GW": 20.5,
+       "built_GW": 4.72
+      },
+      "storage": {
+       "total_GW": 2.71,
+       "built_GW": 0.11
+      },
+      "coal": {
+       "total_GW": 5.31,
+       "built_GW": 0.0
+      },
+      "oil": {
+       "total_GW": 1.28,
+       "built_GW": 0.0
+      }
+     },
+     "hydrogen_TWh": {
+      "SMR CC": 2.21
+     },
+     "electrolysis_GW": 0.0,
+     "co2_price_EUR_t": 51.0,
+     "battery_GWh": 5.1,
+     "h2_storage_GWh": 0.3,
+     "demand_by_use_TWh": {
+      "electricity": 366.7,
+      "transport": 124.6,
+      "industry": 88.5,
+      "buildings": 35.8,
+      "agriculture": 6.4
+     },
+     "load_shedding_TWh": 0.08
+    },
+    {
+     "year": 2050,
+     "snapshots": 365,
+     "step_h": 24.0,
+     "objective_EUR": 65476133985.0,
+     "co2": {
+      "net_Mt": -0.4,
+      "cap_Mt": 0.0,
+      "captured_Mt": 40.1,
+      "dac_Mt": 26.7
+     },
+     "generation_TWh": {
+      "nuclear": 324.2,
+      "wind": 266.6,
+      "solar": 120.9,
+      "other_re": 12.2,
+      "hydro": 2.7,
+      "storage": 0.7,
+      "gas": 0.4
+     },
+     "generation_by_carrier_TWh": {
+      "nuclear": 324.15,
+      "offwind-dc": 130.03,
+      "solar": 75.99,
+      "onwind": 68.89,
+      "offwind-ac": 67.67,
+      "solar rooftop": 44.93,
+      "urban central solid biomass CHP CC": 8.68,
+      "geothermal": 3.22,
+      "ror": 1.97,
+      "hydro": 0.77,
+      "PHS": 0.44,
+      "CCGT": 0.37,
+      "biomass": 0.3,
+      "V2G": 0.22,
+      "battery discharger": 0.22
+     },
+     "capacity_GW": {
+      "geothermal": {
+       "total_GW": 1.2,
+       "built_GW": 0.0
+      },
+      "nuclear": {
+       "total_GW": 41.4,
+       "built_GW": 41.4
+      },
+      "offwind-ac": {
+       "total_GW": 16.23,
+       "built_GW": 16.23
+      },
+      "offwind-dc": {
+       "total_GW": 27.88,
+       "built_GW": 14.63
+      },
+      "onwind": {
+       "total_GW": 34.23,
+       "built_GW": 23.23
+      },
+      "ror": {
+       "total_GW": 1.48,
+       "built_GW": 0.0
+      },
+      "solar": {
+       "total_GW": 65.58,
+       "built_GW": 65.58
+      },
+      "solar rooftop": {
+       "total_GW": 40.6,
+       "built_GW": 30.55
+      },
+      "CCGT": {
+       "total_GW": 15.6,
+       "built_GW": 0.0
+      },
+      "OCGT": {
+       "total_GW": 3.7,
+       "built_GW": 0.0
+      },
+      "V2G": {
+       "total_GW": 60.59,
+       "built_GW": 0.0
+      },
+      "battery discharger": {
+       "total_GW": 0.22,
+       "built_GW": 0.11
+      },
+      "biomass": {
+       "total_GW": 0.81,
+       "built_GW": 0.0
+      },
+      "coal": {
+       "total_GW": 4.0,
+       "built_GW": 0.0
+      },
+      "oil": {
+       "total_GW": 1.28,
+       "built_GW": 0.0
+      },
+      "urban central gas CHP": {
+       "total_GW": 1.2,
+       "built_GW": 0.0
+      },
+      "urban central solid biomass CHP": {
+       "total_GW": 0.35,
+       "built_GW": 0.0
+      },
+      "urban central solid biomass CHP CC": {
+       "total_GW": 1.21,
+       "built_GW": 1.1
+      },
+      "PHS": {
+       "total_GW": 2.6,
+       "built_GW": 0.0
+      },
+      "hydro": {
+       "total_GW": 0.66,
+       "built_GW": 0.0
+      }
+     },
+     "capacity_by_group_GW": {
+      "other_re": {
+       "total_GW": 3.57,
+       "built_GW": 1.1
+      },
+      "nuclear": {
+       "total_GW": 41.4,
+       "built_GW": 41.4
+      },
+      "wind": {
+       "total_GW": 78.34,
+       "built_GW": 54.09
+      },
+      "hydro": {
+       "total_GW": 2.14,
+       "built_GW": 0.0
+      },
+      "solar": {
+       "total_GW": 106.18,
+       "built_GW": 96.13
+      },
+      "gas": {
+       "total_GW": 20.5,
+       "built_GW": 0.0
+      },
+      "storage": {
+       "total_GW": 2.82,
+       "built_GW": 0.11
+      },
+      "coal": {
+       "total_GW": 4.0,
+       "built_GW": 0.0
+      },
+      "oil": {
+       "total_GW": 1.28,
+       "built_GW": 0.0
+      }
+     },
+     "hydrogen_TWh": {
+      "H2 Electrolysis": 95.28,
+      "SMR": 0.22,
+      "SMR CC": 10.83
+     },
+     "electrolysis_GW": 21.32,
+     "co2_price_EUR_t": 1044.0,
+     "battery_GWh": 5.1,
+     "h2_storage_GWh": 189.6,
+     "demand_by_use_TWh": {
+      "electricity": 455.4,
+      "industry": 92.4,
+      "transport": 71.0,
+      "buildings": 35.8,
+      "agriculture": 6.4
+     },
+     "load_shedding_TWh": 0.0
+    }
+   ],
+   "assumptions": {
+    "co2_factors": {
+     "2030": 0.8,
+     "2040": 0.4,
+     "2050": 0.0
+    },
+    "co2_storage_Mt": 40,
+    "ev_share": {
+     "AB_2030": 0.05,
+     "AB_2040": 0.45,
+     "AB_2050": 0.85
+    },
+    "fcev_share": {
+     "AB_2030": 0.0,
+     "AB_2040": 0.02,
+     "AB_2050": 0.05
+    },
+    "extendable": {
+     "Generator": [
+      "solar",
+      "onwind",
+      "offwind-ac",
+      "offwind-dc",
+      "OCGT",
+      "CCGT",
+      "nuclear"
+     ],
+     "StorageUnit": [],
+     "Store": [
+      "battery",
+      "H2"
+     ],
+     "Link": []
+    }
+   }
+  }
+ ]
+}

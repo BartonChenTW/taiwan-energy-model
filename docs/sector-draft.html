@@ -12,6 +12,7 @@
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <script src="assets/pages.js?v=b03ff9c1" defer></script>
     <script src="assets/sector-draft.js?v=b0ab6712" defer></script>
+    <script src="assets/sector-pathway.js?v=a0a2fa0b" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -47,6 +48,55 @@
           <span><b><span class="t-en">Draft for review, not a result.</span><span class="t-zh">審閱用草稿，並非結果。</span></b>
             <span class="t-en">This is the first technical test of PyPSA-Earth's sector-coupled model for Taiwan. It runs end to end, but several inputs are known to be wrong (see "Problems found"), so none of these numbers should be quoted.</span>
             <span class="t-zh">這是 PyPSA-Earth 部門耦合模型在台灣的第一次技術測試。模型可以完整執行，但已知有數項輸入不正確（見「發現的問題」），因此請勿引用這些數字。</span></span></div>
+      </section>
+
+      <section class="section" id="pathway">
+        <h2><span class="t-en">Pathway to net zero: 2030 → 2040 → 2050</span><span class="t-zh">淨零路徑：2030 → 2040 → 2050</span></h2>
+        <p id="sp-intro"></p>
+        <div class="status-list"><div class="status warning"><span class="icon" aria-hidden="true">!</span>
+          <span><span class="t-en">First pass with daily time steps: the solar day–night cycle is averaged out, so batteries and other short-term storage are undervalued. Demand growth, EV shares and CO₂ storage are simple assumptions (listed below); a run with 4-hour steps comes next.</span><span class="t-zh">第一版，每日一個時段：太陽光電的日夜變化被平均掉，因此電池等短時儲能的價值被低估。需求成長、電動車比例與 CO₂ 封存量為簡化假設（列於下方）；下一步將以每 4 小時一個時段重跑。</span></span></div></div>
+        <article class="panel prose-wide">
+          <h3><span class="t-en">What this draft shows</span><span class="t-zh">此草稿顯示的結果</span></h3>
+          <ul class="findings" id="sp-findings"></ul>
+        </article>
+        <article class="panel">
+          <h3><span class="t-en">Key numbers by year</span><span class="t-zh">各年關鍵數據</span></h3>
+          <div id="sp-table" class="table-wrap"></div>
+        </article>
+        <div class="grid two">
+          <article class="panel">
+            <h3><span class="t-en">Electricity generation by source</span><span class="t-zh">各來源發電量</span></h3>
+            <p class="sub"><span class="t-en">TWh per year, into the grid and to households' own use</span><span class="t-zh">每年 TWh，含併網與用戶自用</span></p>
+            <div id="sp-chart-gen" class="chart tall"></div>
+          </article>
+          <article class="panel">
+            <h3><span class="t-en">Electricity capacity by type</span><span class="t-zh">各類發電容量</span></h3>
+            <p class="sub"><span class="t-en">GW installed in each year: kept from earlier years plus built in that period</span><span class="t-zh">各年裝置容量（GW）：先前留存加上該期新建</span></p>
+            <div id="sp-chart-cap" class="chart tall"></div>
+          </article>
+          <article class="panel">
+            <h3><span class="t-en">CO₂: emissions, storage and cap</span><span class="t-zh">CO₂：排放、封存與上限</span></h3>
+            <p class="sub"><span class="t-en">Mt CO₂ per year. Net emissions include CO₂ removed from the air; the cap falls on a straight line to zero in 2050</span><span class="t-zh">每年百萬公噸 CO₂。淨排放已扣除自大氣移除的 CO₂；上限直線降至 2050 年的零</span></p>
+            <div id="sp-chart-co2" class="chart"></div>
+          </article>
+          <article class="panel">
+            <h3><span class="t-en">Final energy demand by use</span><span class="t-zh">各用途最終能源需求</span></h3>
+            <p class="sub"><span class="t-en">TWh per year, all carriers</span><span class="t-zh">每年 TWh，所有能源載體</span></p>
+            <div id="sp-chart-use" class="chart"></div>
+          </article>
+        </div>
+        <article class="panel prose-wide">
+          <h3><span class="t-en">Assumptions and sources</span><span class="t-zh">假設與來源</span></h3>
+          <ul>
+            <li><span class="t-en">Starting system: the official 2030 plan (MOEA supply-demand report 113年度: thermal schedule, Figure 3-3; renewable targets, Table 3-1).</span><span class="t-zh">起始系統：官方 2030 年規劃（經濟部 113 年度全國電力資源供需報告：火力機組時程圖 3-3、再生能源目標表 3-1）。</span></li>
+            <li><span class="t-en">CO₂ cap: straight line from the model's 2025 reference (258.9 Mt) to net zero in 2050 (80% in 2030, 40% in 2040).</span><span class="t-zh">CO₂ 上限：自模型 2025 年基準（258.9 Mt）直線降至 2050 年淨零（2030 年 80%、2040 年 40%）。</span></li>
+            <li><span class="t-en">Demand: electricity and the electronics industry +2.5%/yr (the official 2026–2035 outlook, carried to 2050); other demand flat. For comparison, the energy balance shows +1.8%/yr for household electricity in 2015–2025.</span><span class="t-zh">需求：電力與電子業每年 +2.5%（官方 2026–2035 年展望，延用至 2050 年）；其他需求持平。對照：能源平衡表 2015–2025 年住宅用電年增 1.8%。</span></li>
+            <li><span class="t-en">CO₂ storage up to 40 Mt/yr, the negative-emissions volume in Taiwan's 2050 net-zero pathway (to verify).</span><span class="t-zh">CO₂ 封存上限每年 40 Mt，取自台灣 2050 淨零路徑的負碳量（待查證）。</span></li>
+            <li><span class="t-en">Road transport: electric share of energy 5% (2030), 45% (2040), 85% (2050), derived from the targets of 30% electric new cars in 2030 and 100% electric new cars and scooters in 2040 (to verify).</span><span class="t-zh">公路運輸：電力占能源比例 5%（2030）、45%（2040）、85%（2050），由 2030 年新車 30% 電動、2040 年新車與機車 100% 電動的目標推估（待查證）。</span></li>
+            <li><span class="t-en">The model may build solar (including rooftop), onshore and offshore wind, batteries, gas plants, new nuclear at the Lungmen and Maanshan sites, transmission, and PyPSA-Earth's sector technologies (heat pumps, electrolysers, hydrogen storage and fuel cells, carbon capture, direct air capture, synthetic fuels).</span><span class="t-zh">模型可新建：太陽光電（含屋頂型）、陸域與離岸風電、電池、燃氣電廠、核四與核三廠址的新核電、輸電線路，以及 PyPSA-Earth 的部門技術（熱泵、電解槽、儲氫與燃料電池、碳捕捉、直接空氣捕捉、合成燃料）。</span></li>
+          </ul>
+          <p class="note muted" id="sp-meta"></p>
+        </article>
       </section>
 
       <section class="section">

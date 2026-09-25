@@ -654,6 +654,9 @@ def sandbox_metrics(n, meta, costs, battery_hours=4.0):
 
     removed = {k.replace("offwind-ac+offwind-dc", "offwind"): v
                for k, v in meta.get("applied", {}).get("removed_MW", {}).items()}
+    # Coal retirement (coal_retire_frac) is recorded on its own; count it as removed capacity.
+    if meta.get("applied", {}).get("coal_retired_MW"):
+        removed["coal"] = removed.get("coal", 0.0) + meta["applied"]["coal_retired_MW"]
     removed_total = sum(removed.values())
 
     loading = []
@@ -932,6 +935,169 @@ def export_sector_draft(repo, out):
     print(f"wrote sector_draft.json ({', '.join(r['run'] for r in runs)})")
 
 
+# ---------- Sector-coupled pathway 2030 -> 2050 (myopic) ----------
+SECTOR_PATHWAYS = [
+    ("tw_sector_path2050_24h_w2013_6b", "Pathway to net zero, daily steps", "pypsa_tw/config/scenarios/sector_path_2050.yaml"),
+]
+# Electricity producers and storage -> groups shown on the page
+PATH_GEN_GROUPS = {"coal": "coal", "CCGT": "gas", "OCGT": "gas", "oil": "oil", "nuclear": "nuclear",
+                   "solar": "solar", "solar rooftop": "solar", "onwind": "wind", "offwind-ac": "wind",
+                   "offwind-dc": "wind", "ror": "hydro", "hydro": "hydro", "PHS": "storage",
+                   "battery discharger": "storage", "home battery discharger": "storage", "H2 Fuel Cell": "hydrogen",
+                   "H2 turbine": "hydrogen", "OCGT H2": "hydrogen", "urban central solid biomass CHP": "other_re",
+                   "urban central solid biomass CHP CC": "other_re", "solid biomass": "other_re", "biomass": "other_re",
+                   "geothermal": "other_re", "urban central gas CHP": "gas", "urban central gas CHP CC": "gas"}
+
+
+def _flow_into(n, buses, w):
+    """TWh delivered to the given buses by generators, links (any output port) and storage units."""
+    out = {}
+    gen = n.generators[n.generators.bus.isin(buses) & (n.generators.carrier != "load shedding")]
+    for c, v in (n.generators_t.p[gen.index].mul(w, axis=0).sum().groupby(gen.carrier).sum() / 1e6).items():
+        out[c] = out.get(c, 0) + v
+    for i in (1, 2, 3, 4):
+        col = f"bus{i}"
+        if col not in n.links or f"p{i}" not in n.links_t:
+            continue
+        idx = n.links.index[n.links[col].isin(buses) & ~n.links["bus0"].isin(buses)]
+        idx = idx.intersection(n.links_t[f"p{i}"].columns)
+        if len(idx):
+            v = (-n.links_t[f"p{i}"][idx]).clip(lower=0).mul(w, axis=0).sum()
+            for c, x in (v.groupby(n.links.loc[idx, "carrier"]).sum() / 1e6).items():
+                out[c] = out.get(c, 0) + x
+    su = n.storage_units[n.storage_units.bus.isin(buses)]
+    for c, v in (n.storage_units_t.p[su.index].clip(lower=0).mul(w, axis=0).sum().groupby(su.carrier).sum() / 1e6).items():
+        out[c] = out.get(c, 0) + v
+    return out
+
+
+def _capacity(n, buses):
+    """GW of electricity producers active in this horizon: kept from earlier (fixed) and newly built."""
+    rows = {}
+    for comp in ("generators", "links", "storage_units"):
+        df = getattr(n, comp)
+        if comp == "links":
+            df = df[df.bus1.isin(buses) & ~df.bus0.isin(buses)]
+            eff = df["efficiency"]
+        else:
+            df = df[df.bus.isin(buses)]
+            eff = 1.0
+        df = df[df.carrier != "load shedding"]
+        eff = eff if isinstance(eff, float) else eff.loc[df.index]
+        opt = df["p_nom_opt"] if "p_nom_opt" in df else df["p_nom"]
+        ext = df.p_nom_extendable
+        # Existing capacity on an extendable asset sits in p_nom / p_nom_min (base-year renewables).
+        floor = df["p_nom"].combine(df.get("p_nom_min", df["p_nom"]), max)
+        total = (opt.where(ext, df["p_nom"]) * eff).groupby(df.carrier).sum()
+        built = ((opt - floor).clip(lower=0) * eff)[ext].groupby(df.carrier[ext]).sum()
+        for c in total.index:
+            r = rows.setdefault(c, [0.0, 0.0])
+            r[0] += float(total.get(c, 0) - built.get(c, 0)) / 1e3
+            r[1] += float(built.get(c, 0)) / 1e3
+    return {c: {"total_GW": _r(a + b, 2), "built_GW": _r(b, 2)} for c, (a, b) in rows.items() if a + b > 0.05}
+
+
+def sector_pathway_year(n, year, cap_Mt):
+    w = n.snapshot_weightings.generators
+    elec = n.buses.index[n.buses.carrier.isin(["AC", "low voltage"])]
+    supply = _flow_into(n, elec, w)
+    groups = {}
+    for c, v in supply.items():
+        g = PATH_GEN_GROUPS.get(c)
+        if g is None:
+            continue  # grid-internal flows (distribution grid, chargers) are not generation
+        groups[g] = groups.get(g, 0) + v
+    h2 = n.buses.index[n.buses.carrier == "H2"]
+    h2_in = _flow_into(n, h2, w) if len(h2) else {}
+    co2_atm = n.stores.index[n.stores.carrier == "co2"]
+    net_co2 = float(n.stores_t.e[co2_atm].iloc[-1].sum() / 1e6) if len(co2_atm) else None
+    # CO2 put into geological storage and removed by DAC, from the links' flows (Mt/yr).
+    def link_out(carrier_like, port):
+        idx = n.links.index[n.links.carrier.str.contains(carrier_like, regex=False)]
+        if not len(idx) or f"p{port}" not in n.links_t:
+            return 0.0
+        idx = idx.intersection(n.links_t[f"p{port}"].columns)
+        return float((-n.links_t[f"p{port}"][idx]).mul(w, axis=0).sum().sum() / 1e6)
+    stored = n.stores.index[n.stores.carrier == "co2 stored"]
+    shed = n.generators.index[n.generators.carrier == "load shedding"]
+    loads = n.loads_t.p.mul(w, axis=0).sum().groupby(n.loads.carrier).sum()
+    static = (n.loads.p_set * w.sum()).groupby(n.loads.carrier).sum()
+    demand = loads.add(static[~static.index.isin(loads.index)], fill_value=0) / 1e6
+    demand = demand[(demand > 0.05) & ~demand.index.str.contains("emissions")]
+    use = {}
+    for c, v in demand.items():
+        use[_demand_use(c)] = use.get(_demand_use(c), 0) + float(v)
+    capacity = _capacity(n, elec)
+    cap_groups = {}
+    for c, v in capacity.items():
+        g = PATH_GEN_GROUPS.get(c)
+        if g is not None:
+            t = cap_groups.setdefault(g, {"total_GW": 0.0, "built_GW": 0.0})
+            t["total_GW"] += v["total_GW"]
+            t["built_GW"] += v["built_GW"]
+    batt = n.stores[n.stores.carrier.isin(["battery", "home battery"])]
+    h2s = n.stores[n.stores.carrier.str.startswith("H2")]
+    ely = n.links[n.links.carrier == "H2 Electrolysis"]
+    return {
+        "year": year, "snapshots": int(len(n.snapshots)), "step_h": _r(float(w.iloc[0]), 1),
+        "objective_EUR": _r(n.objective, 0),
+        "co2": {"net_Mt": _r(net_co2, 1), "cap_Mt": _r(cap_Mt, 1),
+                # CO2 captured (from plants, industry and DAC) into the "co2 stored" buffer, then
+                # sequestered (limited by co2_sequestration_potential) or used for synthetic fuels.
+                "captured_Mt": _r(float(n.stores_t.e[stored].max().sum() / 1e6) if len(stored) else 0.0, 1),
+                "dac_Mt": _r(link_out("DAC", 1) if "DAC" in set(n.links.carrier) else 0.0, 1)},
+        "generation_TWh": {g: _r(v, 1) for g, v in sorted(groups.items(), key=lambda x: -x[1]) if v > 0.05},
+        "generation_by_carrier_TWh": {c: _r(v, 2) for c, v in sorted(supply.items(), key=lambda x: -x[1]) if v > 0.05},
+        "capacity_GW": capacity,
+        "capacity_by_group_GW": {g: {k: _r(x, 2) for k, x in v.items()} for g, v in cap_groups.items()},
+        "hydrogen_TWh": {c: _r(v, 2) for c, v in h2_in.items() if v > 0.05},
+        "electrolysis_GW": _r(float(ely.p_nom_opt.sum() / 1e3), 2) if len(ely) else 0.0,
+        "co2_price_EUR_t": _r(float(-n.global_constraints.mu["CO2Limit"]), 0)
+                           if "CO2Limit" in n.global_constraints.index and "mu" in n.global_constraints else None,
+        "battery_GWh": _r(float(batt.e_nom_opt.sum() / 1e3), 1) if len(batt) else 0.0,
+        "h2_storage_GWh": _r(float(h2s.e_nom_opt.sum() / 1e3), 1) if len(h2s) else 0.0,
+        "demand_by_use_TWh": {k: _r(v, 1) for k, v in sorted(use.items(), key=lambda x: -x[1])},
+        "load_shedding_TWh": _r(float(n.generators_t.p[shed].mul(w, axis=0).sum().sum() / 1e6) if len(shed) else 0.0, 2),
+    }
+
+
+def export_sector_pathway(repo, out):
+    """Myopic sector-coupled pathways for the draft page (docs/sector-draft.html#pathway)."""
+    import re
+
+    import yaml
+
+    payload = []
+    for run, label, overlay in SECTOR_PATHWAYS:
+        files = sorted((repo / "results" / run / "postnetworks").glob("*.nc"))
+        if not files:
+            continue
+        cfg = yaml.safe_load((repo / overlay).read_text(encoding="utf-8"))
+        budget = cfg.get("co2_budget", {})
+        base = float(budget.get("co2base_value", 0))
+        years = []
+        for f in files:
+            m = re.search(r"_(20\d\d)_", f.name)
+            if not m:
+                continue
+            year = int(m.group(1))
+            cap = base * budget.get("year", {}).get(year, 1.0) / 1e6
+            years.append(sector_pathway_year(pypsa.Network(str(f)), year, cap))
+        years.sort(key=lambda y: y["year"])
+        payload.append({"run": run, "label": label, "overlay": overlay, "horizons": [y["year"] for y in years],
+                        "co2_base_Mt": _r(base / 1e6, 1), "years": years,
+                        "assumptions": {"co2_factors": budget.get("year", {}),
+                                        "co2_storage_Mt": cfg.get("sector", {}).get("co2_sequestration_potential"),
+                                        "ev_share": cfg.get("sector", {}).get("land_transport_electric_share"),
+                                        "fcev_share": cfg.get("sector", {}).get("land_transport_fuel_cell_share"),
+                                        "extendable": cfg.get("electricity", {}).get("extendable_carriers", {})}})
+    if not payload:
+        return
+    (out / "sector_pathway.json").write_text(json.dumps({"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+                                                         "currency": CURRENCY, "pathways": payload}, indent=1), encoding="utf-8")
+    print(f"wrote sector_pathway.json ({', '.join(p['run'] for p in payload)})")
+
+
 # ---------- Energy security (docs/energy-security.html) ----------
 SUPPLY_GROUP = {"CCGT": "gas", "OCGT": "gas", "coal": "coal", "oil": "oil", "nuclear": "nuclear", "solar": "solar",
                 "onwind": "onwind", "offwind-ac": "offwind", "offwind-dc": "offwind", "ror": "hydro", "hydro": "hydro",
@@ -1087,6 +1253,7 @@ def main():
     print(f"wrote {len(index)} cases to {out.relative_to(repo)}")
     export_sandbox(repo, out)
     export_sector_draft(repo, out)
+    export_sector_pathway(repo, out)
     export_security(repo, out)
     # Cache busting: give each CSS/JS link a content hash, so browsers load changed files at once.
     from stamp_assets import stamp
