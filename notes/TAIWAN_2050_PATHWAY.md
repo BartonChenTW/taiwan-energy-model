@@ -71,8 +71,45 @@ python -m snakemake -j 1 solve_sector_networks_myopic $B $S/sector_path_2050_off
   new nuclear, least cost otherwise.
 - **official_mix** (`+ sector_path_2050_official_mix.yaml`): the same, plus the official 2050 power
   mix as generation-share bounds.
+- **official_hi** (`+ sector_path_2050_official_highprice.yaml`): official options with hydrogen at
+  150 €/MWh and ammonia at 125 €/MWh.
 
-Each run takes about 10 minutes (3 horizons, daily steps, Gurobi).
+Each run takes about 12 minutes (3 horizons, daily steps, Gurobi). The exporter lists them as
+`official`, `official_mix` and `official_hi` on the draft page (`?pathway=official`).
+
+## First results (2050, daily steps, 2026-09-26)
+
+| 2050 | Central (nuclear) | official | official_mix | official_hi |
+| --- | --- | --- | --- | --- |
+| System cost (bn €/yr) | 65.5 | 58.2 | 70.0 | 75.1 |
+| New nuclear (GW) | 41.4 | 0 | 0 | 0 |
+| Offshore / onshore wind (GW) | – | 55 / 17 | 40 / 15 | 55 / 43 |
+| Solar incl. rooftop (GW) | 106 | 80 | 80 | 80 |
+| Gas with carbon capture (GW) | – | 0 | 11.4 | 0 |
+| Hydrogen turbines (GW) | – | 27.6 | 10.2 | 27.1 |
+| Hydrogen imported (TWh) | 0 | 315 | 436 | 265 |
+| of which to synthetic fuels / turbines (TWh) | – | 183 / 143 | 349 / 82 | 155 / 126 |
+| Ammonia imported (TWh) | – | 0 | 0 | 0 |
+| Demand not met (TWh) | 0 | 0 | 0 | 0 |
+
+The rows for hydrogen use count total hydrogen input, domestic and imported.
+
+- **Feasibility:** with the official options, net zero in 2050 is reached without new nuclear and
+  without unmet demand. Sensitivity A had no imports and no gas with capture, and left 215 TWh unmet.
+- **Imported hydrogen** is 8–13 Mt a year. Most of it becomes synthetic liquid fuels
+  (Fischer-Tropsch) for industry feedstock, aviation and shipping; the rest goes to hydrogen
+  turbines.
+  - The no-nuclear route is cheaper than the nuclear one only with hydrogen landed at about
+    90 €/MWh.
+  - At 150 €/MWh it costs about €10 bn a year more, and imports still reach 265 TWh.
+- **Ammonia** is never imported: after cracking losses, it costs more than hydrogen at these prices.
+- **Gas with carbon capture** is built only when the official mix forces 20% thermal power. The
+  official mix costs about €12 bn a year more than the least-cost choice within the same options.
+- **Offshore wind** sits at the plan's 55 GW maximum whenever imports are dear.
+
+A first version of `generation_share` also counted the coal and oil fuel-supply generators as
+power. Their carrier names match those of power plants, which let renewables exceed 70%. It now
+counts only output into electricity buses, and the 2050 step of official_mix was re-solved.
 
 ## Still open
 
@@ -84,3 +121,7 @@ Each run takes about 10 minutes (3 horizons, daily steps, Gurobi).
 - Retrofitting existing gas and coal plants with capture. Only new CCGT CC is offered.
 - Energy security of the import-based route. Imported hydrogen and ammonia raise blockade
   exposure; this should be compared with the nuclear route on the energy-security page.
+- Imports of synthetic fuels, methanol or ammonia as industrial feedstock. They are not modelled,
+  so the model imports hydrogen and makes the fuels domestically, which likely overstates
+  hydrogen imports.
+- A 4-hour rerun: daily steps undervalue batteries and overstate what solar can do.

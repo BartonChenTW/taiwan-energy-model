@@ -12,7 +12,7 @@
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <script src="assets/pages.js?v=b03ff9c1" defer></script>
     <script src="assets/sector-draft.js?v=b0ab6712" defer></script>
-    <script src="assets/sector-pathway.js?v=ce7a7ce1" defer></script>
+    <script src="assets/sector-pathway.js?v=6f99edcc" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -66,12 +66,12 @@
             <tbody>
               <tr><td><span class="t-en">New nuclear</span><span class="t-zh">新核電</span></td><td><span class="t-en">no (existing plants only)</span><span class="t-zh">否（僅既有電廠）</span></td><td><span class="t-en">no</span><span class="t-zh">否</span></td><td><span class="t-en">yes, no limit (our choice)</span><span class="t-zh">是，不設上限（我們的設定）</span></td></tr>
               <tr><td><span class="t-en">Power mix 2050</span><span class="t-zh">2050 年電力結構</span></td><td><span class="t-en">least cost</span><span class="t-zh">成本最低</span></td><td><span class="t-en">renewables 60–70%, hydrogen 9–12%, fossil with carbon capture 20–27%, pumped hydro ~1%</span><span class="t-zh">再生能源 60–70%、氫能 9–12%、火力搭配碳捕捉 20–27%、抽蓄水力約 1%</span></td><td><span class="t-en">least cost: nuclear ~45%, wind ~37%, solar ~17%</span><span class="t-zh">成本最低：核能約 45%、風電約 37%、太陽光電約 17%</span></td></tr>
-              <tr><td><span class="t-en">Gas power with carbon capture</span><span class="t-zh">燃氣發電搭配碳捕捉</span></td><td colspan="1"><span class="t-en">only as district-heating CHP</span><span class="t-zh">僅限區域供熱汽電共生</span></td><td><span class="t-en">central (20–27% incl. coal)</span><span class="t-zh">核心選項（20–27%，含燃煤）</span></td><td><span class="t-en">not available</span><span class="t-zh">無此選項</span></td></tr>
+              <tr><td><span class="t-en">Gas power with carbon capture</span><span class="t-zh">燃氣發電搭配碳捕捉</span></td><td colspan="1"><span class="t-en">only as district-heating CHP</span><span class="t-zh">僅限區域供熱汽電共生</span></td><td><span class="t-en">central (thermal with carbon capture 20–27%)</span><span class="t-zh">核心選項（火力搭配碳捕捉 20–27%）</span></td><td><span class="t-en">not available</span><span class="t-zh">無此選項</span></td></tr>
               <tr><td><span class="t-en">Hydrogen</span><span class="t-zh">氫能</span></td><td><span class="t-en">produced domestically; export only</span><span class="t-zh">國內生產；僅有出口選項</span></td><td><span class="t-en">largely imported</span><span class="t-zh">大多進口</span></td><td><span class="t-en">domestic (imports only in sensitivity C)</span><span class="t-zh">國內生產（僅敏感度 C 可進口）</span></td></tr>
               <tr><td><span class="t-en">CO₂ storage</span><span class="t-zh">CO₂ 封存</span></td><td><span class="t-en">200 Mt/yr (European default)</span><span class="t-zh">每年 200 Mt（歐洲預設）</span></td><td><span class="t-en">~40 Mt/yr negative emissions</span><span class="t-zh">每年約 40 Mt 負碳</span></td><td><span class="t-en">40 Mt/yr</span><span class="t-zh">每年 40 Mt</span></td></tr>
             </tbody>
           </table></div>
-          <p class="note muted"><span class="t-en">Official figures from secondary sources, to verify against the NDC pathway and its action plans.</span><span class="t-zh">官方數字取自二手資料，待與國發會淨零路徑及各行動計畫核對。</span></p>
+          <p class="note muted"><span class="t-en">Official figures checked in the approved key-strategy action plans (April 2023), which quote the NDC pathway; the 2050 CO₂ storage volume is not in the CCUS plan's text and is still to verify.</span><span class="t-zh">官方數字已與核定之各關鍵戰略行動計畫（2023 年 4 月，引述國發會淨零路徑）核對；2050 年 CO₂ 封存量未見於碳捕捉利用及封存行動計畫內文，仍待查證。</span></p>
           <p><b><span class="t-en">Gaps found in PyPSA-Earth's sector-coupled model for Taiwan</span><span class="t-zh">PyPSA-Earth 部門耦合模型用於台灣時發現的缺口</span></b></p>
           <ol>
             <li><span class="t-en">No gas power plant with carbon capture (only district-heating CHP, which Taiwan hardly has).</span><span class="t-zh">沒有燃氣發電搭配碳捕捉的電廠（僅有區域供熱汽電共生，而台灣幾乎沒有區域供熱）。</span></li>
@@ -80,7 +80,24 @@
             <li><span class="t-en">Bugs in the multi-year (myopic) chain, fixed in this fork: existing plants never retired, land-use limits counted existing capacity twice, converted biomass plants got unlimited free fuel, and clashing names dropped all links.</span><span class="t-zh">多年期（短視）流程的錯誤，已在本分支修正：既有電廠從不除役、土地利用上限重複扣除既有容量、轉換後的生質能電廠獲得無限免費燃料、名稱衝突導致所有連結遺失。</span></li>
             <li><span class="t-en">European defaults: 200 Mt/yr CO₂ storage, no floating offshore wind, zero geothermal investment cost.</span><span class="t-zh">歐洲預設值：每年 200 Mt CO₂ 封存、沒有浮動式離岸風電、地熱投資成本為零。</span></li>
           </ol>
-          <p><b><span class="t-en">Next:</span><span class="t-zh">下一步：</span></b> <span class="t-en">build Taiwan's 2050 net-zero pathway in this model ourselves: verified official targets, gas power with carbon capture and hydrogen/ammonia imports as options, no new nuclear. Then compare it with the nuclear route on cost, CO₂, imports and blockade exposure.</span><span class="t-zh">自行在本模型中建立台灣 2050 淨零路徑：採用經查證的官方目標，加入燃氣發電搭配碳捕捉與氫／氨進口選項，不新建核電；再與核電路徑比較成本、CO₂、進口依賴與封鎖風險。</span></p>
+          <p><b><span class="t-en">First step: Taiwan's official pathway in this model</span><span class="t-zh">第一步：在本模型中建立台灣官方路徑</span></b></p>
+          <p><span class="t-en">The fork now offers what the official plan relies on: gas combined cycle with carbon capture (NETL cost and efficiency), hydrogen turbines, and hydrogen (90 €/MWh) and ammonia (100 €/MWh) imports. New nuclear is capped at zero, and offshore wind (40–55 GW), solar (40–80 GW) and geothermal (3–6.2 GW) are held to the action plans' 2050 ranges. "Official mix" also imposes the plan's 2050 power mix; "high import prices" raises hydrogen to 150 €/MWh and ammonia to 125 €/MWh. Pick them in the scenario menu below.</span><span class="t-zh">本分支已加入官方規劃所依賴的選項：燃氣複循環搭配碳捕捉（採 NETL 成本與效率）、氫能渦輪機，以及氫氣（每 MWh 90 歐元）與氨（每 MWh 100 歐元）進口。新核電上限為零；離岸風電（40–55 GW）、太陽光電（40–80 GW）與地熱（3–6.2 GW）限於行動計畫的 2050 年範圍。「官方電力結構」另加上規劃的 2050 年電力結構；「高進口價格」將氫氣提高至每 MWh 150 歐元、氨 125 歐元。可於下方情境選單中選取。</span></p>
+          <div class="table-wrap"><table>
+            <thead><tr><th>2050</th><th class="num"><span class="t-en">Central (nuclear)</span><span class="t-zh">基準（核電）</span></th><th class="num"><span class="t-en">Official options</span><span class="t-zh">官方選項</span></th><th class="num"><span class="t-en">Official mix</span><span class="t-zh">官方電力結構</span></th><th class="num"><span class="t-en">High import prices</span><span class="t-zh">高進口價格</span></th></tr></thead>
+            <tbody>
+              <tr><td><span class="t-en">System cost (bn € per year)</span><span class="t-zh">系統成本（每年十億歐元）</span></td><td class="num">65.5</td><td class="num">58.2</td><td class="num">70.0</td><td class="num">75.1</td></tr>
+              <tr><td><span class="t-en">New nuclear (GW)</span><span class="t-zh">新核電（GW）</span></td><td class="num">41</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+              <tr><td><span class="t-en">Gas with carbon capture (GW)</span><span class="t-zh">燃氣搭配碳捕捉（GW）</span></td><td class="num">–</td><td class="num">0</td><td class="num">11</td><td class="num">0</td></tr>
+              <tr><td><span class="t-en">Hydrogen imported (TWh)</span><span class="t-zh">進口氫氣（TWh）</span></td><td class="num">0</td><td class="num">315</td><td class="num">436</td><td class="num">265</td></tr>
+              <tr><td><span class="t-en">Demand not met (TWh)</span><span class="t-zh">未能供應的需求（TWh）</span></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+            </tbody>
+          </table></div>
+          <ul>
+            <li><span class="t-en">With the official options, net zero in 2050 is reached without new nuclear and without unmet demand.</span><span class="t-zh">採用官方選項後，2050 年不新建核電也能達成淨零，且沒有未供應的需求。</span></li>
+            <li><span class="t-en">It rests on imported hydrogen: 265–436 TWh a year (8–13 Mt). Most of it is turned into synthetic liquid fuels for industry, aviation and shipping; the rest is burned in hydrogen turbines (about 10–17% of power). The no-nuclear route is cheaper than the nuclear one only if hydrogen lands at about 90 €/MWh; at 150 €/MWh it costs about €10 bn a year more.</span><span class="t-zh">這條路徑仰賴進口氫氣：每年 265–436 TWh（8–13 百萬公噸），大部分轉為工業、航空與航運用的合成液態燃料，其餘於氫能渦輪機發電（約占發電量 10–17%）。只有當氫氣到岸價約每 MWh 90 歐元時，非核路徑才比核電路徑便宜；每 MWh 150 歐元時每年約多出 100 億歐元。</span></li>
+            <li><span class="t-en">Gas with carbon capture is built only when the official mix forces 20% thermal power, even at high import prices; it would need part of the 40 Mt a year of CO₂ storage that direct air capture also uses. The official mix costs about €12 bn a year more than the least-cost choice within the same options.</span><span class="t-zh">只有在官方電力結構要求 20% 火力發電時才會興建燃氣碳捕捉電廠，即使進口價格高也是如此；它需要占用每年 40 Mt CO₂ 封存量的一部分，而直接空氣捕捉也需要這些封存量。官方電力結構比相同選項下的成本最低方案每年約多 120 億歐元。</span></li>
+            <li><span class="t-en">Still open: imports of synthetic fuels or ammonia for industry (not modelled, which likely overstates hydrogen imports), exposure to a blockade, and 4-hour time steps.</span><span class="t-zh">尚待處理：工業用合成燃料或氨的進口（尚未建模，可能高估氫氣進口）、封鎖風險，以及每 4 小時一個時段的模擬。</span></li>
+          </ul>
         </article>
         <article class="panel prose-wide">
           <h3><span class="t-en">What this draft shows</span><span class="t-zh">此草稿顯示的結果</span></h3>

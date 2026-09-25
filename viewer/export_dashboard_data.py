@@ -950,6 +950,14 @@ SECTOR_PATHWAYS = [
      [f"{_PATH}.yaml", f"{_PATH}_C_h2_import.yaml"]),
     ("tw_sector_path2050_24h_D_float_geothermal", "D", "D: floating offshore wind and geothermal", "D：浮動式離岸風電與地熱",
      [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml"]),
+    # Taiwan's official 2050 pathway (pypsa_tw/TAIWAN_2050_PATHWAY.md): no new nuclear
+    ("tw_sector_path2050_24h_official", "official", "Official options: no new nuclear", "官方選項：不新建核電",
+     [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml"]),
+    ("tw_sector_path2050_24h_official_mix", "official_mix", "Official power mix of 2050", "官方 2050 年電力結構",
+     [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml", f"{_PATH}_official_mix.yaml"]),
+    ("tw_sector_path2050_24h_official_highprice", "official_hi", "Official options, high import prices",
+     "官方選項，高進口價格",
+     [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml", f"{_PATH}_official_highprice.yaml"]),
 ]
 # Electricity producers and storage -> groups shown on the page
 PATH_GEN_GROUPS = {"coal": "coal", "CCGT": "gas", "OCGT": "gas", "oil": "oil", "nuclear": "nuclear",
@@ -958,7 +966,8 @@ PATH_GEN_GROUPS = {"coal": "coal", "CCGT": "gas", "OCGT": "gas", "oil": "oil", "
                    "battery discharger": "storage", "home battery discharger": "storage", "H2 Fuel Cell": "hydrogen",
                    "H2 turbine": "hydrogen", "OCGT H2": "hydrogen", "urban central solid biomass CHP": "other_re",
                    "urban central solid biomass CHP CC": "other_re", "solid biomass": "other_re", "biomass": "other_re",
-                   "geothermal": "other_re", "urban central gas CHP": "gas", "urban central gas CHP CC": "gas"}
+                   "geothermal": "other_re", "urban central gas CHP": "gas", "urban central gas CHP CC": "gas",
+                   "CCGT CC": "gas_cc", "H2 CCGT": "hydrogen", "NH3 CCGT": "hydrogen"}
 
 
 def _flow_into(n, buses, w):
@@ -1064,6 +1073,10 @@ def sector_pathway_year(n, year, cap_Mt):
         "capacity_by_group_GW": {g: {k: _r(x, 2) for k, x in v.items()} for g, v in cap_groups.items()},
         "hydrogen_TWh": {c: _r(v, 2) for c, v in h2_in.items() if v > 0.05},
         "electrolysis_GW": _r(float(ely.p_nom_opt.sum() / 1e3), 2) if len(ely) else 0.0,
+        # Imported hydrogen and ammonia (TWh, LHV), from the fork's import generators
+        "imports_TWh": {c: _r(float(n.generators_t.p[i].mul(w, axis=0).sum().sum() / 1e6), 1)
+                        for c in ("H2 import", "NH3 import")
+                        for i in [n.generators.index[n.generators.carrier == c]] if len(i)},
         "co2_price_EUR_t": _r(float(-n.global_constraints.mu["CO2Limit"]), 0)
                            if "CO2Limit" in n.global_constraints.index and "mu" in n.global_constraints else None,
         "battery_GWh": _r(float(batt.e_nom_opt.sum() / 1e3), 1) if len(batt) else 0.0,

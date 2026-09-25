@@ -520,5 +520,24 @@ The 2050 results are not comparable with Taiwan's official net-zero pathway.
   - compare with the nuclear route.
 - **Website:** "Model gaps" panel on `docs/sector-draft.html#model-gaps`.
 
+## 2026-09-26: Taiwan's official 2050 pathway in the model (no new nuclear)
+
+Filling the gaps found on 2026-09-25. Design, sources and results: `pypsa_tw/TAIWAN_2050_PATHWAY.md`.
+- **Official targets verified:** in the approved action plans (2023-04), downloaded to `pypsa_tw/data/official/` and registered in `sources.csv`.
+  - Offshore wind 40–55 GW, solar 40–80 GW, geothermal 3–6.2 GW.
+  - Power mix 60–70% renewables, 9–12% hydrogen, 20–27% thermal with capture.
+  - The 40 Mt/yr CO₂ storage volume is not in the CCUS plan's text; still to verify.
+- **Fork additions:**
+  - `CCGT CC`: gas combined cycle with capture, from NETL Rev. 4a H-class figures (capital cost ×2.04, efficiency ×0.885, 95% capture);
+  - `H2 CCGT`: hydrogen turbines;
+  - `NH3 import`: ammonia imports;
+  - `capacity_total_MW` and `generation_share` bounds in `solve_network`.
+- **Runs:** official (€58.2 bn in 2050), official_mix (€70.0 bn) and official_hi (€75.1 bn), against the central nuclear route (€65.5 bn).
+  - All reach net zero with no unmet demand and no new nuclear.
+  - They import 265–436 TWh of hydrogen a year, mostly for synthetic fuels.
+- **Bug found and fixed:** `generation_share` first counted the coal and oil fuel-supply generators as power. The 2050 step of official_mix was re-solved.
+- **Process note:** stopping the queue's wrapper script with TaskStop left Snakemake running without a console. The next job failed to start (0xC0000142), and the wrapper then went on to the following run. Let queue scripts finish.
+- **Website:** results table and findings in the model-gaps panel; the three runs are in the scenario menu. Gas with capture is hatched gas colour in the charts.
+
 TODO:
  - to run PyPSA-Earth Taiwan!
