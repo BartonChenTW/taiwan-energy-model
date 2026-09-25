@@ -1,0 +1,46 @@
+file,column,value,trend_2015_2025,basis
+growth_factors_cagr.csv,total residential space,0.0,,flat (assumption)
+growth_factors_cagr.csv,total residential water,0.0,,flat (assumption)
+growth_factors_cagr.csv,electricity residential,0.025,0.0182,"moea_psd_fy2025_press (+2.5%/yr, 2026-2035), applied to 2050"
+growth_factors_cagr.csv,total services space,0.0,,flat (assumption)
+growth_factors_cagr.csv,total services water,0.0,,flat (assumption)
+growth_factors_cagr.csv,total road,0.0,-0.0056,flat (assumption)
+growth_factors_cagr.csv,total rail,0.0,0.0,flat (assumption)
+growth_factors_cagr.csv,electricity rail,0.025,,"moea_psd_fy2025_press (+2.5%/yr, 2026-2035), applied to 2050"
+growth_factors_cagr.csv,total domestic aviation,0.0,-0.0257,flat (assumption)
+growth_factors_cagr.csv,total international aviation,0.0,,flat (assumption)
+growth_factors_cagr.csv,total domestic navigation,0.0,-0.0659,flat (assumption)
+growth_factors_cagr.csv,total international navigation,0.0,,flat (assumption)
+growth_factors_cagr.csv,services electricity,0.025,0.0058,"moea_psd_fy2025_press (+2.5%/yr, 2026-2035), applied to 2050"
+growth_factors_cagr.csv,agriculture electricity,0.025,0.0135,"moea_psd_fy2025_press (+2.5%/yr, 2026-2035), applied to 2050"
+growth_factors_cagr.csv,agriculture oil,0.0,0.0207,flat (assumption)
+growth_factors_cagr.csv,residential oil,0.0,-0.0448,flat (assumption)
+growth_factors_cagr.csv,residential biomass,0.0,,flat (assumption)
+growth_factors_cagr.csv,residential gas,0.0,0.0107,flat (assumption)
+growth_factors_cagr.csv,agriculture biomass,0.0,,flat (assumption)
+growth_factors_cagr.csv,services oil,0.0,0.0185,flat (assumption)
+growth_factors_cagr.csv,services biomass,0.0,,flat (assumption)
+growth_factors_cagr.csv,services gas,0.0,0.0094,flat (assumption)
+growth_factors_cagr.csv,residential heat oil,0.0,,flat (assumption)
+growth_factors_cagr.csv,residential heat biomass,0.0,,flat (assumption)
+growth_factors_cagr.csv,residential heat gas,0.0,,flat (assumption)
+growth_factors_cagr.csv,other electricity,0.025,,"moea_psd_fy2025_press (+2.5%/yr, 2026-2035), applied to 2050"
+growth_factors_cagr.csv,other oil,0.0,,flat (assumption)
+growth_factors_cagr.csv,other gas,0.0,,flat (assumption)
+growth_factors_cagr.csv,other biomass,0.0,,flat (assumption)
+growth_factors_cagr.csv,other heat,0.0,,flat (assumption)
+efficiency_gains_cagr.csv,(all),0.0,,none: the trends and the +2.5%/yr are net of efficiency
+industry_growth_cagr.csv,chemical and petrochemical,0.0,-0.0284,flat (assumption)
+industry_growth_cagr.csv,construction,0.0,,flat (assumption)
+industry_growth_cagr.csv,food and tobacco,0.0,,flat (assumption)
+industry_growth_cagr.csv,iron and steel,0.0,-0.0288,flat (assumption)
+industry_growth_cagr.csv,machinery,0.025,0.0451,"electronics (machinery branch), moea_psd_fy2025_press (+2.5%/yr, 2026-2035), applied to 2050"
+industry_growth_cagr.csv,mining and quarrying,0.0,,flat (assumption)
+industry_growth_cagr.csv,non-ferrous metals,0.0,,flat (assumption)
+industry_growth_cagr.csv,non-metallic minerals,0.0,-0.0215,flat (assumption)
+industry_growth_cagr.csv,paper pulp and print,0.0,-0.0393,flat (assumption)
+industry_growth_cagr.csv,textile and leather,0.0,-0.0686,flat (assumption)
+industry_growth_cagr.csv,transport equipment,0.0,,flat (assumption)
+industry_growth_cagr.csv,wood and wood products,0.0,,flat (assumption)
+industry_growth_cagr.csv,ammonia,0.0,,flat (assumption)
+industry_growth_cagr.csv,other,0.0,,flat (assumption)

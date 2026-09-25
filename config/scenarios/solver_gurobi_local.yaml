@@ -1,0 +1,7 @@
+# Solver overlay for local research runs on this workstation only (Gurobi licence).
+# Never use it for anything a web service could trigger: the sandbox and its planned
+# live solving use HiGHS (pypsa_tw/sandbox/PHASE2_LIVE_SOLVING.md).
+solving:
+  solver:
+    name: gurobi
+    options: gurobi-default

@@ -1,0 +1,104 @@
+# Scenario overlay: sector-coupled pathway 2030 -> 2040 -> 2050 (myopic, brownfield).
+# Use on top of the Test 2 config, with the Gurobi overlay for local runs:
+#   snakemake -j 1 solve_sector_networks_myopic --configfile pypsa_tw/config/config_tw_test2_highs.yaml pypsa_tw/config/scenarios/sector_path_2050.yaml pypsa_tw/config/scenarios/solver_gurobi_local.yaml
+#
+# Starting point: the official 2030 system (data/custom_powerplants_tw2030.csv, i.e. today's
+# fleet plus the MOEA 113年度 thermal schedule and 2030 renewable targets). Each horizon then
+# invests where it is cheapest under a CO2 cap, keeps what earlier horizons built, and retires
+# plants at the end of their technical lifetime (technology-data lifetimes from their DateIn).
+#
+# Assumptions (see pypsa_tw/log.md and REVIEW_CHECKLIST.md):
+# - CO2: straight line from the model's 2025 reference (258.9 Mt, results of sector_2025_24h)
+#   to net zero in 2050: 80% in 2030, 40% in 2040, 0% in 2050.
+# - Demand: Taiwan rows in data/demand/*_cagr.csv (pypsa_tw/data/build_sector_growth_tw.py):
+#   electricity +2.5%/yr, electronics industry +2.5%/yr, other demand flat.
+# - Buildable: solar (incl. rooftop), onshore and offshore wind, batteries, gas (OCGT, CCGT),
+#   new nuclear at the Lungmen and Maanshan sites, transmission (cost-optimal), and PyPSA-Earth's
+#   sector technologies (heat pumps, electrolysis, hydrogen storage and fuel cells, SMR with CC,
+#   CCS, DAC, biomass with CC, synthetic fuels).
+# - CO2 storage: 40 Mt/yr, the negative-emissions volume in Taiwan's 2050 net-zero pathway
+#   (40.2 Mt/yr in 2050; secondary source, to verify). PyPSA-Earth's default is 200 Mt/yr.
+# - Road transport energy shares, derived from the targets of 30% electric new passenger cars in
+#   2030 and 100% electric new cars and scooters in 2040: electric 5% (2030), 45% (2040),
+#   85% (2050); fuel cell 0 / 2% / 5%. Shipping hydrogen 0 / 5% / 15%.
+# - Time steps: 24 hours for this first pass (fast; daily steps hide the solar day-night cycle,
+#   so storage needs are underestimated). Rerun with sopts "4h" for final numbers.
+
+foresight: myopic
+
+run:
+  name: "tw_path2050_w2013_6b"
+  sector_name: "tw_sector_path2050_24h_w2013_6b"
+
+scenario:
+  ll: ["copt"]
+  planning_horizons: [2030, 2040, 2050]
+  sopts: ["24h"]
+  demand: ["AB"]
+
+electricity:
+  custom_powerplants_file: data/custom_powerplants_tw2030.csv
+  powerplants_filter: (DateOut >= 2030 or DateOut != DateOut) and (DateIn <= 2030 or DateIn != DateIn)
+  extendable_carriers:
+    Generator: [solar, onwind, offwind-ac, offwind-dc, OCGT, CCGT, nuclear]
+    StorageUnit: []
+    Store: [battery, H2]
+    Link: []
+  # New nuclear candidate sites (Taiwan fork option in scripts/add_electricity.py):
+  # Lungmen (核四, OSM way 546051675) and Maanshan (核三, OSM relation 7565672).
+  nuclear_candidate_sites: [[25.0458, 121.9282], [21.9584, 120.7512]]
+
+# Offshore wind: PyPSA-Earth splits AC (< 30 km from shore) and DC (> 30 km) sites. Taiwan's
+# Changhua farms lie about 35-60 km offshore, so with the defaults the 10.9 GW planned for 2030
+# (all AC in the fleet) was cut to the small AC potential. AC now covers up to 60 km, DC from
+# 60 km (no overlap). Water depth stays at 50 m (fixed-bottom).
+renewable:
+  offwind-ac:
+    max_shore_distance: 60000
+  offwind-dc:
+    min_shore_distance: 60000
+
+# Taiwan is missing from the WHO / Wikipedia vehicle data, so PyPSA-Earth gave it 0 cars and
+# no EV chargers (all EV demand was shed). Registered small passenger cars, about 7.2 million
+# (MOTC, 2022; search summary, to verify). Option added in scripts/prepare_transport_data_input.py.
+transport_data_override:
+  TW:
+    number cars: 7200000
+
+load_options:
+  scale: 0.8287
+
+costs:
+  year: 2030
+
+co2_budget:
+  enable: true
+  override_co2opt: true
+  co2base_value: 2.589e+8  # t CO2, the model's 2025 reference
+  year:
+    2030: 0.8
+    2040: 0.4
+    2050: 0.0
+
+export:
+  h2export: [0]
+  endogenous: false
+
+sector:
+  co2_sequestration_potential: 40
+  land_transport_fuel_cell_share:
+    AB_2030: 0.0
+    AB_2040: 0.02
+    AB_2050: 0.05
+  land_transport_electric_share:
+    AB_2030: 0.05
+    AB_2040: 0.45
+    AB_2050: 0.85
+  shipping_hydrogen_share:
+    AB_2030: 0.0
+    AB_2040: 0.05
+    AB_2050: 0.15
+
+solving:
+  options:
+    load_shedding: true
