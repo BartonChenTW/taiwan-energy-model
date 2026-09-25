@@ -391,5 +391,35 @@ Barton asked whether the model considers LNG and coal stocks, and for a wartime 
    - Data in `docs/data/security/` (264 KB); the exporter's `export_security` writes it.
    - Linked from every menu and the home page.
 
+## 2026-09-25: Taiwan energy data, all sectors
+
+Barton asked for data on sectors other than electricity (heating, transport, industry, cooling), with references.
+- **Sources found and downloaded:**
+  - Energy Administration energy balance 1982–2025 (table 3-02, toe; published 2026-09-07 on the energy statistics site, which also has an open API);
+  - CO2 from fuel combustion by sector 1990–2025 (Tables A1.1, A2.1);
+  - Residential Sector Energy Statistics 2024 (household electricity by appliance);
+  - DGBAS household equipment 2025.
+- **`build_timeseries.py`** now also writes:
+  - energy use by sector and fuel;
+  - transport by mode and fuel;
+  - industry by branch;
+  - CO2 by sector (direct and with electricity allocated);
+  - household appliance shares.
+
+  That makes 2,342 rows and 131 series, each checked against its source's totals.
+- **Main numbers for 2025:**
+  - Domestic energy use was 812 TWh, of which electricity was about 35%.
+  - Industry used 272 TWh, transport 132 TWh (97% road; gasoline 81, diesel 48, electricity 2.0), homes 70 TWh (76% electricity) and services 69 TWh.
+  - Non-energy use (petrochemical feedstock) was 189 TWh.
+  - Industry bought 14.4 TWh of steam from cogeneration plants.
+- **Households (2024 survey):**
+  - air conditioners use 29.6% of household electricity over the year and 50.4% in June to September;
+  - there are 2.8 air conditioners per household (DGBAS 2025).
+- **Website:** a new "Energy use in all sectors" section on `docs/taiwan-data.html`:
+  - six charts, with palettes validated in light and dark;
+  - notes on heating, cooling and hot water;
+  - 11 new key figures and 7 new catalogue entries.
+- **Useful for the sector-coupled model:** the balance is the official reference for its demand rows (todo: compare the model's 2025 run with it).
+
 TODO:
  - to run PyPSA-Earth Taiwan!

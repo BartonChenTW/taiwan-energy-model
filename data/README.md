@@ -97,7 +97,7 @@ An earlier note said "no line at its limit, so it is a capacity shortfall". That
 
 ## History, projections and targets (`taiwan_timeseries.csv`)
 
-`build_timeseries.py` builds one table of Taiwan electricity data by year. Each row has `kind` = `history`, `projection` or `target`, a `source_id` and a `locator`, plus the evidence. It has 850 rows in 49 series.
+`build_timeseries.py` builds one table of Taiwan energy data by year: electricity, energy use in all sectors, and CO2 by sector. Each row has `kind` = `history`, `projection` or `target`, a `source_id` and a `locator`, plus the evidence. It has 2,342 rows in 131 series.
 
 **Where each value comes from.** `sources.csv` is the registry of every source:
 - original title and publisher, edition, publication date;
@@ -127,8 +127,32 @@ The full table:
 | target | Renewable capacity by technology for 2030 and 2032; renewable share 20% (Nov 2026), 30% (2030), about 65% (2050); grid storage | same, Table 3-1, plus the NDC 2050 pathway |
 | projection | PyPSA-Earth default demand (GEGIS SSP2-2.6) for 2030, 2040 and 2050 | `data/ssp2-2.6/<year>/era5_2013/Asia.csv` |
 | projection (derived) | The report's 1.7%/yr growth applied to 2024 generation | computed |
+| history | Energy use by sector (industry, transport, residential, services, agriculture, non-energy use, energy sector own use), each sector by fuel, transport by mode and fuel, industry by branch, 2005–2025, TWh | `moeaea_energy_balance_toe_1982_2025.xlsx` (Energy Administration, 能源統計年報 table 3-02) |
+| history | CO2 from fuel combustion by sector, direct and with electricity allocated to users, 1990–2025 | `moeaea_co2_by_sector_1990_2025.csv`, transcribed from the two `moeaea_co2_by_sector_*.pdf` tables |
+| history | Household electricity by appliance, whole year and summer, 2024 survey | `moeaea_household_electricity_by_appliance_2024.csv` (Residential Sector Energy Statistics 2024, Figures 12–13) |
 
 The report's Table 3-2 was checked after transcription: each year's reserve margin equals capability ÷ peak − 1. The Table 3-1 renewable targets add up to the stated totals.
+
+**Energy use in all sectors (added 2026-09-25):**
+- **Energy balance.** One sheet per year (1982–2025) with rows for flows and sectors and columns for products, in toe (1 toe = 10^7 kcal = 11.63 MWh; electricity at 860 kcal/kWh).
+  - The builder reads it by label, not by row number. The 2018 revision moved residential and non-energy use from items 94/95 to 101/102.
+  - Labels are NFKC-normalised: some sheets use the compatibility character U+F9BE for 料.
+  - Checks: each year's sectors add up to final consumption (item 33), and each sector's fuels to its total.
+- **Breaks in the series:**
+  - 2018: new industry classification, electricity counted at 860 kcal/kWh, revised heat statistics (heat to industry jumps from 13 to 22 TWh).
+  - Solar thermal (solar water heaters) is no longer compiled from 2022, because it fell below the statistics' materiality threshold (compilation notes, item 6).
+- **CO2 by sector.** The two one-page tables (A1.1 direct, A2.1 with electricity allocated) were transcribed from the PDF text layer.
+  - Every year's sectors add up to the table total.
+  - The 2025 total (239.5 Mt) equals the energy-indicators file.
+  - The PDF text garbles the column headers. The order (energy, industry, transport, agriculture, services, residential) was confirmed from the balance: services burn more oil and gas than homes, which gives 4.5 Mt direct CO2 for services and 3.5 Mt for homes.
+- **Households.**
+  - Appliance shares come from the Energy Administration / ITRI 2024 survey: 1,800 households, face to face.
+  - Equipment ownership comes from DGBAS 2025 and is used in the key figures.
+  - The survey PDF (20 MB) is not committed; its checksum is in `sources.csv`.
+- **What is missing:**
+  - service-sector end uses, e.g. the cooling share: the non-productive energy audit report is a candidate;
+  - the electric-vehicle stock (MOTC registrations, candidate);
+  - a direct split of heating and cooling, which the balance does not have.
 
 **Two editions of the supply-demand report:**
 - The downloaded PDF is the **113年度 (FY2024) report**, published in 2025: 2024 actuals, 2025–2034 outlook, demand +1.7%/yr, night peak +2.1%/yr. Earlier notes called it the "2025 edition".

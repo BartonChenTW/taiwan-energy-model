@@ -93,6 +93,17 @@ Items Claude decided or assumed without your confirmation. Tick them off, or not
   - Each is removed at the nearest of the 6 buses. Check these against the fleet.
 - [ ] **Perfect foresight** inside the window is a best case. A rolling-horizon version that doesn't know the end date would be more realistic.
 
+## Energy use in all sectors (`docs/taiwan-data.html#sectors`)
+
+- [ ] **CO2 by sector:** the column order of the transcribed PDF tables was inferred, because the PDF text garbles the headers.
+  - The order was checked with the balance: services' oil and gas give 4.5 Mt of direct CO2, homes' 3.5 Mt.
+  - Compare it once against the printed table.
+- [ ] **Household appliance shares** (2024 survey): the whole-year "other" (20.17%) folds in four small appliances that the summer figure doesn't list (vacuum cleaners, set-top boxes, water dispensers, hair dryers).
+- [ ] **Uses stated on the page without a source:**
+  - homes use LPG and gas for cooking and water heaters;
+  - space heating shows up only inside electricity use.
+- [ ] **2018 break** (new classification, revised heat statistics): check that the page explains it well enough.
+
 ## Website pages
 
 - [ ] **About page** (`docs/about.html`):
