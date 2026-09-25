@@ -110,7 +110,7 @@ Results go to `results/sandbox/<hash>/` (the hash of the normalised spec is the 
 & .\.venv\python.exe pypsa_tw\sandbox\batch.py          # solve what is not cached (about 20 s each, one at a time)
 & .\.venv\python.exe pypsa_tw\sandbox\batch.py --variants low high w2018   # uncertainty variants (about 45 min)
 & .\.venv\python.exe pypsa_tw\sandbox\batch.py --security   # the 28 blockade cases (about 2 min)
-& ..venvpython.exe pypsa_twsandboxbatch.py --security --base plan2034   # the same cases on the MOEA 2034 plan system
+& .\.venv\python.exe pypsa_tw\sandbox\batch.py --security --base plan2034   # the same cases on the MOEA 2034 plan system
 & .\.venv\python.exe -m pytest pypsa_tw\sandbox\test_levers.py -q
 ```
 
