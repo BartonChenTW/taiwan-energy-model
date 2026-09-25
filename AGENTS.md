@@ -83,6 +83,18 @@ Future-year fleets come from `python pypsa_tw/data/build_future_powerplants.py`;
 
 After solving, refresh the dashboard data with `python pypsa_tw/viewer/export_dashboard_data.py` (see `pypsa_tw/GITHUB_PAGES.md`).
 
+## Sector-coupled pathway 2030 → 2050
+
+Myopic (brownfield) chain from the official 2030 system to net zero in 2050. It is a local research run: Gurobi overlay, about 25 minutes, one job at a time.
+
+```powershell
+& .\.venv\python.exe -m snakemake -j 1 solve_sector_networks_myopic --configfile pypsa_tw/config/config_tw_test2_highs.yaml pypsa_tw/config/scenarios/sector_path_2050.yaml pypsa_tw/config/scenarios/solver_gurobi_local.yaml
+```
+
+- The Taiwan demand growth rows in `data/demand/*_cagr.csv` come from `python pypsa_tw/data/build_sector_growth_tw.py`.
+- Several PyPSA-Earth scripts carry "Taiwan fork" fixes needed for this chain (see `pypsa_tw/log.md`, 2026-09-25).
+- The exporter writes `docs/data/sector_pathway.json` for the draft page.
+
 ## Sandbox (what-if scenarios)
 
 `pypsa_tw/sandbox/` solves "what if" scenarios without Snakemake:

@@ -104,6 +104,28 @@ Items Claude decided or assumed without your confirmation. Tick them off, or not
   - space heating shows up only inside electricity use.
 - [ ] **2018 break** (new classification, revised heat statistics): check that the page explains it well enough.
 
+## Sector-coupled pathway 2030 → 2050 (`pypsa_tw/config/scenarios/sector_path_2050.yaml`)
+
+- [ ] **Demand growth.** Taiwan rows in `data/demand/*_cagr.csv` (`pypsa_tw/data/build_sector_growth_tw.py`; values and 2015–2025 trends in `pypsa_tw/data/sector_growth_tw.csv`):
+  - electricity and the electronics industry grow +2.5%/yr to 2050, the official 2026–2035 outlook carried beyond 2035;
+  - everything else is flat, with no separate efficiency gains.
+  - These rows also change the 2025 reference the next time it is rerun.
+- [ ] **CO₂ path.** Straight line from the model's 2025 value (258.9 Mt, not the official 239.5 Mt) to 0 in 2050: 80% of it in 2030, 40% in 2040.
+- [ ] **CO₂ storage: 40 Mt/yr.** Taken from a search summary of the 2050 pathway (40.2 Mt/yr of negative emissions in 2050). Check the CCUS action plan, and whether that figure is storage or removals.
+- [ ] **Road transport shares** (electric 5/45/85%, fuel cell 0/2/5%; shipping hydrogen 0/5/15%):
+  - derived from the new-sale targets, not published as stock shares;
+  - check the targets in the MOTC action plan.
+- [ ] **New nuclear** is offered at the Lungmen and Maanshan buses (a fork change in `scripts/add_electricity.py`). Check the technology-data cost and whether it should be offered at all.
+- [ ] **Starting system** is the 2030 plan fleet, so everything in it counts as already built.
+  - Retirement comes from DateIn + technology-data lifetime (e.g. CCGT 25 years, so Tatan, built in 2006, retires in the 2031–2040 period).
+  - Check against Taipower's retirement dates.
+- [ ] **Biomass potential** is PyPSA-Earth's default of 40 TWh/yr, not checked for Taiwan.
+- [ ] **Time resolution** is 24 h in the first pass. Rerun at 4 h before any numbers are used.
+- [ ] **New nuclear reaches 41 GW in 2050**, because nothing limits it per site. Decide on a cap, e.g. the sandbox's 5 Lungmen-size plants (6.75 GW) or a siting study, and rerun.
+- [ ] **Offshore wind bands** (AC up to 60 km from shore, DC beyond; depth ≤ 50 m) and no floating wind: check against the MOEA zones of potential and the round-3 zones.
+- [ ] **Car number 7.2 million** (search summary, MOTC 2022) drives EV charger and battery sizes. Check it against the MOTC registration statistics.
+- [ ] **The six fork fixes** in `scripts/` (see log 2026-09-25) could go upstream to PyPSA-Earth as issues or pull requests.
+
 ## Website pages
 
 - [ ] **About page** (`docs/about.html`):

@@ -421,5 +421,40 @@ Barton asked for data on sectors other than electricity (heating, transport, ind
   - 11 new key figures and 7 new catalogue entries.
 - **Useful for the sector-coupled model:** the balance is the official reference for its demand rows (todo: compare the model's 2025 run with it).
 
+## 2026-09-25: sector-coupled pathway 2030 → 2040 → 2050 (first pass, daily steps)
+
+Barton asked for sector-coupled runs for 2040/2050.
+- **Setup** (`pypsa_tw/config/scenarios/sector_path_2050.yaml`):
+  - myopic chain on a new run `tw_path2050_w2013_6b`;
+  - starts from the official 2030 fleet;
+  - CO₂ cap on a straight line from the model's 2025 level (258.9 Mt) to 0 in 2050;
+  - Taiwan demand rows: electricity and electronics +2.5%/yr, other demand flat (`pypsa_tw/data/build_sector_growth_tw.py`);
+  - CO₂ storage 40 Mt/yr; EV shares 5/45/85%;
+  - new nuclear at the Lungmen and Maanshan buses.
+- **PyPSA-Earth fixes needed to make the chain meaningful** (each commented "Taiwan fork"):
+  - `add_existing_baseyear.py`: new-build names clashed with existing plants grouped in the base year's bin ("TW0 1 CCGT-2030"). PyPSA then dropped the whole Link table on reading, leaving no heat or gas plants, and the solve was infeasible.
+  - `add_brownfield.py`: existing plants never retired, because every horizon's prenetwork is rebuilt from today's fleet. They now retire at build year + lifetime; hydro and pumped hydro are kept.
+  - `solve_network.py`: the land-use limit subtracted base-year existing capacity from its own generator, which cut the planned 2030 offshore wind from 9.3 to 1.3 GW at TW0 1.
+  - `prepare_sector_network.py`: converting the existing biomass plants created an unlimited zero-carbon biomass supply at 7.4 €/MWh. The 2050 run burned 1,400 TWh of it against a 40 TWh potential.
+  - `prepare_transport_data_input.py`: Taiwan is missing from the vehicle data (0 cars, no EV chargers), so all EV demand was shed. New `transport_data_override` option, set to 7.2 million cars.
+  - `add_electricity.py`: new nuclear had no bus once no nuclear plant was left (`nuclear_candidate_sites`).
+- **Offshore wind:** AC covers sites up to 60 km from shore and DC beyond 60 km, since Taiwan's farms lie 35–60 km out.
+- **Result (24 h steps):**
+
+  | Year | System cost | Net CO₂ | CO₂ price |
+  | --- | --- | --- | --- |
+  | 2030 | €10.4 bn/yr | 195 Mt | – |
+  | 2040 | €12.5 bn/yr | 102 Mt | €51/t |
+  | 2050 | €65.5 bn/yr | net zero | about €1,040/t |
+
+  - Solar reaches its land-use potential (106 GW including rooftops), and wind reaches 78 GW.
+  - The rest comes from 41 GW of new nuclear (the model has no limit per site), plus 27 Mt of direct air capture, 95 TWh of hydrogen from electrolysis and CO₂ storage at its 40 Mt limit.
+- **Solve times:** about 1–2 minutes per horizon with Gurobi (local research run). A full chain from seeded electricity inputs takes about 25 minutes.
+- **Page:** a "Pathway to net zero" section on `docs/sector-draft.html` (data `docs/data/sector_pathway.json`, exporter `export_sector_pathway`).
+- **Next:**
+  - a 4-hour rerun;
+  - sensitivities: a nuclear limit (e.g. the sandbox's 5 plants), floating offshore wind, lower demand growth;
+  - rerun the 2025 reference with the Taiwan demand rows and car numbers.
+
 TODO:
  - to run PyPSA-Earth Taiwan!
