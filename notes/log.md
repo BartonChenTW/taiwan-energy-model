@@ -503,5 +503,22 @@ Barton asked what the blockade looks like in the future.
 - **Stocks** are kept in the same days of use as today; the 14-day LNG option is the legal target from 2027.
 - **2050 is not done:** a net-zero system imports little LNG or coal, so the question changes (uranium, fuels, equipment) and depends on the pathway's nuclear result.
 
+## 2026-09-25: finding — PyPSA-Earth's sector-coupled model is incomplete for Taiwan
+
+The 2050 results are not comparable with Taiwan's official net-zero pathway.
+- **Where the nuclear comes from:** our setup allowed new nuclear. PyPSA-Earth's default builds none, and the official pathway (NDC 2022) has none.
+- **Missing options the official plan relies on:**
+  - gas power with carbon capture (20–27% of power in the plan; PyPSA-Earth only has district-heating CHP with capture);
+  - hydrogen and ammonia imports (9–12% hydrogen power in the plan).
+  - Official figures are from secondary sources, still to verify.
+- **Other problems:** missing Taiwan data (growth rates, cars, the "Other Asia" name), myopic-chain bugs (fixed in the fork), and European defaults (200 Mt/yr storage, no floating wind, zero geothermal cost).
+- **Decision:** build "Taiwan's 2050 net-zero pathway" in pypsa_tw ourselves:
+  - verify the official targets;
+  - add gas power with carbon capture and hydrogen/ammonia imports;
+  - allow no new nuclear;
+  - reproduce the official mix and optimise within its options;
+  - compare with the nuclear route.
+- **Website:** "Model gaps" panel on `docs/sector-draft.html#model-gaps`.
+
 TODO:
  - to run PyPSA-Earth Taiwan!
