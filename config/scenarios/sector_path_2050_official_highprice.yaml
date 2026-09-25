@@ -1,0 +1,14 @@
+# Taiwan's 2050 net-zero pathway, "official options" with high import prices: hydrogen
+# 150 EUR/MWh (about US$5.4/kg) and ammonia 125 EUR/MWh (about US$700/t NH3, renewable ammonia
+# from Australia delivered to Japan around 2030; Ammonia Energy Association, citing IEA).
+# Tests how much of the no-nuclear route rests on cheap imports.
+# Layer on top of sector_path_2050_official.yaml.
+
+run:
+  sector_name: "tw_sector_path2050_24h_official_highprice"
+
+sector:
+  hydrogen_import:
+    price_EUR_per_MWh: 150
+  taiwan_power:
+    ammonia_import_price_EUR_per_MWh: 125

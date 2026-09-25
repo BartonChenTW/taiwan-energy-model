@@ -94,6 +94,7 @@ Myopic (brownfield) chain from the official 2030 system to net zero in 2050. It 
 - The Taiwan demand growth rows in `data/demand/*_cagr.csv` come from `python pypsa_tw/data/build_sector_growth_tw.py`.
 - Several PyPSA-Earth scripts carry "Taiwan fork" fixes needed for this chain (see `pypsa_tw/log.md`, 2026-09-25).
 - The exporter writes `docs/data/sector_pathway.json` for the draft page.
+- Taiwan's official 2050 pathway (no new nuclear; gas with carbon capture; hydrogen and ammonia imports; the action plans' 2050 ranges) layers `sector_path_2050_D_float_geothermal.yaml` and `sector_path_2050_official.yaml` on top, plus `sector_path_2050_official_mix.yaml` for the official power mix. The design, sources and commands are in `pypsa_tw/TAIWAN_2050_PATHWAY.md`.
 
 ## Sandbox (what-if scenarios)
 

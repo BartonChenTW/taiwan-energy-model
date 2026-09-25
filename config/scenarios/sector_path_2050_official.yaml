@@ -1,0 +1,63 @@
+# Taiwan's 2050 net-zero pathway, "official options": the supply options of the official plan
+# (National Development Council, March 2022, and its 2023 key-strategy action plans), no new
+# nuclear, least cost within them. Sources and design: pypsa_tw/TAIWAN_2050_PATHWAY.md.
+#
+# Layer on top of sector_path_2050.yaml and sector_path_2050_D_float_geothermal.yaml (it reuses
+# D's electricity network, which has floating offshore wind and geothermal):
+#   --configfile pypsa_tw/config/config_tw_test2_highs.yaml
+#     pypsa_tw/config/scenarios/sector_path_2050.yaml
+#     pypsa_tw/config/scenarios/sector_path_2050_D_float_geothermal.yaml
+#     pypsa_tw/config/scenarios/sector_path_2050_official.yaml
+
+run:
+  sector_name: "tw_sector_path2050_24h_official"
+
+sector:
+  # Hydrogen imports (hydrogen action plan: domestic renewable hydrogen "may be insufficient",
+  # imports mainly as liquid hydrogen by ship). 90 EUR/MWh as in sensitivity C (to verify).
+  hydrogen_import:
+    price_EUR_per_MWh: 90
+  taiwan_power:
+    # Gas combined cycle with post-combustion capture. NETL Cost and Performance Baseline,
+    # Rev. 4a (2022), H-class NGCC: total overnight cost 970 $/kW without capture (B32A) and
+    # 1,980 $/kW with 95% capture (B32B.95); LHV efficiency 61.0% and 54.0%.
+    gas_cc:
+      capture_rate: 0.95
+      investment_factor: 2.041   # 1980 / 970
+      efficiency_factor: 0.885   # 54.0 / 61.0
+    # Hydrogen-fired combined cycle at the CCGT cost and efficiency (hydrogen action plan:
+    # co-firing and dedicated hydrogen turbines).
+    hydrogen_ccgt: true
+    # Ammonia imports, landed, per MWh (LHV). About 700 $/t NH3 for Australia-to-Japan
+    # renewable ammonia around 2030 (Ammonia Energy Association, citing IEA) is 125 EUR/MWh;
+    # IEA expects production costs to fall after 2030. 100 EUR/MWh (to verify). Imported
+    # ammonia can be cracked to hydrogen for the hydrogen turbines.
+    ammonia_import_price_EUR_per_MWh: 100
+
+solving:
+  options:
+    nuclear_max_total_MW: 0   # no new nuclear (the plan has none)
+    # 2050 capacity ranges of the action plans.
+    capacity_total_MW:
+      offshore wind:          # wind/solar plan: 40-55 GW in 2050
+        carriers: [offwind-ac, offwind-dc, offwind-float]
+        min: {2050: 40000}
+        max: {2050: 55000}
+      solar:                  # wind/solar plan: 40-80 GW in 2050
+        carriers: [solar, solar rooftop]
+        min: {2050: 40000}
+        max: {2050: 80000}
+      geothermal:             # forward-energy plan: 3-6.2 GW in 2050
+        carriers: [geothermal]
+        min: {2050: 3000}
+        max: 6200
+
+plotting:
+  tech_colors:
+    CCGT CC: "#8c6d4f"
+    H2 CCGT: "#bf13a0"
+    H2 import: "#e05bd0"
+    NH3 import: "#6a4c9c"
+  nice_names:
+    CCGT CC: "Gas CCGT with capture"
+    H2 CCGT: "Hydrogen CCGT"

@@ -1,0 +1,29 @@
+# Taiwan's 2050 net-zero pathway, "official mix": as sector_path_2050_official.yaml, plus the
+# 2050 power mix of the official pathway (National Development Council, March 2022, quoted in
+# the grid and storage action plan): renewables 60-70%, hydrogen 9-12%, fossil with carbon
+# capture 20-27% of generation. Shares are of the three groups' combined generation; pumped
+# hydro (about 1%) and batteries are storage and not counted.
+# Layer on top of sector_path_2050_official.yaml.
+
+run:
+  sector_name: "tw_sector_path2050_24h_official_mix"
+
+solving:
+  options:
+    generation_share:
+      2050:
+        renewables:
+          carriers: [solar, solar rooftop, onwind, offwind-ac, offwind-dc, offwind-float,
+                     geothermal, ror, hydro, biomass, biomass EOP,
+                     urban central solid biomass CHP, urban central solid biomass CHP CC]
+          min: 0.60
+          max: 0.70
+        hydrogen:
+          carriers: [H2 CCGT, H2 Fuel Cell, NH3 CCGT]
+          min: 0.09
+          max: 0.12
+        fossil:
+          carriers: [CCGT CC, CCGT, OCGT, coal, oil, urban central gas CHP,
+                     urban central gas CHP CC]
+          min: 0.20
+          max: 0.27
