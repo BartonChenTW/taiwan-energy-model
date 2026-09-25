@@ -481,5 +481,27 @@ Each sensitivity changes one assumption of the central pathway (overlays `sector
   - D has its own electricity run (`tw_path2050_D_w2013_6b`).
   - Sensitivity B's first solve was refused by the shared Gurobi licence server ("use limit (3) exceeded"). Later runs retry when the licence is busy.
 
+## 2026-09-25: energy security on the 2034 plan system
+
+Barton asked what the blockade looks like in the future.
+- **New sandbox base `plan2034`** (`levers.BASES`): the Snakemake run of `future_2034.yaml` (MOEA 113年度 fleet and renewable targets, demand +1.7%/yr, 2035 costs).
+  - Run with `batch.py --security --base plan2034`: 28 cases in 111 s.
+  - The security page has a "Power system" switch. References and "caused by the blockade" are matched within the same system.
+  - The sandbox page still shows today's system only.
+- **Result, share of demand not met in a full blockade:**
+
+  | Window | Today | 2034 plan |
+  | --- | --- | --- |
+  | 14 d summer | 21.7% | 25.6% |
+  | 30 d summer | 41.4% | 46.1% |
+  | 60 d summer | 59.8% | 58.0% |
+  | 30 d winter | 19.6% | 13.5% |
+  | 60 d winter | 43.2% | 28.7% |
+
+  - Summer is worse: more gas (the smallest stock) and less coal. An LNG-only cut in summer 2034 already gives the full-blockade 46.1%.
+  - Winter is better: more solar and wind against lower demand.
+- **Stocks** are kept in the same days of use as today; the 14-day LNG option is the legal target from 2027.
+- **2050 is not done:** a net-zero system imports little LNG or coal, so the question changes (uranium, fuels, equipment) and depends on the pathway's nuclear result.
+
 TODO:
  - to run PyPSA-Earth Taiwan!
