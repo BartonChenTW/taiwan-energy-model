@@ -733,6 +733,8 @@ def export_sandbox(repo, out):
         costs = pd.read_csv(repo / base["costs"], index_col=0)
         if set(meta["spec"]["levers"]) & set(levers.SECURITY_LEVERS):
             continue  # energy-security case: exported by export_security
+        if meta["spec"].get("base", "today") != "today":
+            continue  # the sandbox page shows today's system only
         variant = meta["spec"].get("variant", "central")
         if variant != "central":
             # Uncertainty variant: metrics only, grouped under its scenario.
@@ -1201,14 +1203,14 @@ def export_security(repo, out):
         nc = spec_file.parent / "networks" / f"{levers.BASES[meta['spec']['base']]['case']}.nc"
         case = security_case(pypsa.Network(str(nc)), meta)
         sec = levers.security(meta["spec"])
-        entry = {"hash": meta["hash"], "label": meta["label"], "levers": lv, "security": sec,
+        entry = {"hash": meta["hash"], "label": meta["label"], "base": meta["spec"].get("base", "today"), "levers": lv, "security": sec,
                  "changed": levers.changed(meta["spec"]), "metrics": case["metrics"], "applied": meta["applied"]}
         rows.append(entry)
         (sec_out / "cases" / f"{meta['hash']}.json").write_text(json.dumps({**case, "scenario": entry}, separators=(",", ":")),
                                                                   encoding="utf-8")
     # Reference: the same window with normal imports and no other change.
     for r in rows:
-        ref = next((x for x in rows if x["security"]["blockade_days"] == r["security"]["blockade_days"]
+        ref = next((x for x in rows if x["base"] == r["base"] and x["security"]["blockade_days"] == r["security"]["blockade_days"]
                     and x["security"]["blockade_season"] == r["security"]["blockade_season"]
                     and set(x["changed"]) <= {"blockade_days", "blockade_season"}), None)
         r["reference"] = ref["hash"] if ref else None
@@ -1221,6 +1223,7 @@ def export_security(repo, out):
         "generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
         "levers": meta_levers, "seasons": levers.BLOCKADE_SEASONS, "damage_sites": levers.DAMAGE_SITES,
         "standby_units": levers.STANDBY_UNITS, "nuclear_plants": levers.NUCLEAR_PLANTS, "scenarios": rows,
+        "bases": {k: v["label"] for k, v in levers.BASES.items() if any(r["base"] == k for r in rows)},
     }, indent=1, ensure_ascii=False), encoding="utf-8")
     print(f"wrote {len(rows)} energy-security cases to {sec_out.relative_to(repo)}")
 

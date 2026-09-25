@@ -81,16 +81,17 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--list", action="store_true")
     ap.add_argument("--security", action="store_true", help="solve the energy-security (blockade) grid instead")
+    ap.add_argument("--base", default="today", choices=sorted(BASES), help="system the scenarios start from")
     ap.add_argument("--force", action="store_true", help="solve again even if cached (after a model change)")
     ap.add_argument("--variants", nargs="*", default=[], choices=[v for v in VARIANTS if v != "central"],
                     help="also solve these uncertainty variants of every scenario")
     a = ap.parse_args()
-    central = [{"base": "today", "levers": levers} for levers in (SECURITY_GRID if a.security else GRID)]
+    central = [{"base": a.base, "levers": levers} for levers in (SECURITY_GRID if a.security else GRID)]
     assert len({spec_hash(s) for s in central}) == len(central), "duplicate scenarios in the grid"
     specs = list(central)
     for v in a.variants:
         weather = VARIANTS[v].get("weather")
-        if weather and not (REPO / BASES["today"]["weather_variants"][weather]).exists():
+        if weather and not (REPO / BASES[a.base]["weather_variants"].get(weather, "missing")).exists():
             print(f"[skip] variant {v}: no prepared network for {weather} weather yet")
             continue
         specs += [{**s, "variant": v} for s in central]

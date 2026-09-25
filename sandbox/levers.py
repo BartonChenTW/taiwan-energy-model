@@ -38,6 +38,21 @@ BASES = {
             "2018": "networks/tw_weather2018_highs_fullyear_4h_6b_ls/elec_s_6_ec_lv1.0_Co2L-4H.nc",
         },
     },
+    # The planned system in 2034 (pypsa_tw/config/scenarios/future_2034.yaml: MOEA 113年度 thermal
+    # schedule and renewable targets, demand +1.7%/yr, 2035 technology costs), used for the
+    # energy-security cases of the mid-2030s.
+    "plan2034": {
+        "label": "The 2034 plan (MOEA 113年度 fleet and renewable targets, 2013 weather, load shedding allowed)",
+        "prepared": "networks/tw_future2034_highs_w2013_4h_6b_ls/elec_s_6_ec_lv1.0_Co2L-4H.nc",
+        "solved": "results/tw_future2034_highs_w2013_4h_6b_ls/networks/elec_s_6_ec_lv1.0_Co2L-4H.nc",
+        "run": "tw_future2034_highs_w2013_4h_6b_ls",
+        "configs": ["config.default.yaml", "pypsa_tw/config/config_tw_test2_highs.yaml",
+                    "pypsa_tw/config/scenarios/future_2034.yaml"],
+        "overrides": {},
+        "costs": "resources/tw_future2034_highs_w2013_4h_6b_ls/costs_2035_elec.csv",
+        "case": "elec_s_6_ec_lv1.0_Co2L-4H",
+        "weather_variants": {},
+    },
 }
 
 # Uncertainty variants: each scenario is also solved under these, and the page shows the
