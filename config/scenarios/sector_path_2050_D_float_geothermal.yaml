@@ -1,0 +1,50 @@
+# Sensitivity D of the 2050 pathway: more supply options.
+# - Floating offshore wind ("offwind-float"): water 50-1,000 m deep, technology-data floating
+#   costs (options added in scripts/build_renewable_profiles.py and add_electricity.py).
+# - Geothermal can be built, up to 6 GW in total: Taiwan's 2050 net-zero pathway target and the
+#   practical potential cited with it (2 GW by 2040, 6 GW by 2050; search summary, to verify).
+#   Investment 4.22 million EUR/MW: IRENA, Renewable Power Generation Costs in 2023, global
+#   weighted average 4,589 USD/kW (range 3,413-6,595), at 0.92 EUR/USD. PyPSA-Earth's cost file
+#   has no geothermal investment.
+# The electricity network changes, so this uses its own run name. Layer on top of
+# sector_path_2050.yaml (new nuclear stays uncapped, as in the central run).
+
+run:
+  name: "tw_path2050_D_w2013_6b"
+  sector_name: "tw_sector_path2050_24h_D_float_geothermal"
+
+electricity:
+  renewable_carriers: [solar, onwind, offwind-ac, offwind-dc, offwind-float, hydro]
+  extendable_carriers:
+    Generator: [solar, onwind, offwind-ac, offwind-dc, offwind-float, OCGT, CCGT, nuclear, geothermal]
+
+renewable:
+  offwind-float:
+    cutout: auto
+    resource:
+      method: wind
+      turbine: NREL_ReferenceTurbine_5MW_offshore
+    capacity_per_sqkm: 2
+    copernicus:
+      grid_codes: [80, 200]
+    natura: true
+    min_depth: 50
+    max_depth: 1000
+    potential: simple
+    clip_p_max_pu: 1.e-2
+    extendable: true
+
+costs:
+  investment:
+    geothermal: 4220000
+
+solving:
+  options:
+    capacity_max_total_MW:
+      geothermal: 6000
+
+plotting:
+  tech_colors:
+    offwind-float: "#2b6fc6"
+  nice_names:
+    offwind-float: "Offshore Wind (floating)"

@@ -1,0 +1,15 @@
+# Sensitivity C of the 2050 pathway: hydrogen can be imported at 90 EUR/MWh (LHV, about
+# US$3/kg), without a volume limit, at every hydrogen bus (option added in
+# scripts/prepare_sector_network.py). Taiwan's 2050 net-zero pathway counts on hydrogen for
+# about 9-12% of power, largely imported (secondary source, to verify).
+# Price basis (search summaries, to verify): Japan's Green Growth Strategy targets hydrogen
+# below 20 yen/Nm3 (about US$2/kg) in 2050; renewable ammonia from Australia delivered to Japan
+# is estimated at about US$4.4/kg-H2 (Ammonia Energy Association). 90 EUR/MWh is in between.
+# Layer on top of sector_path_2050.yaml.
+
+run:
+  sector_name: "tw_sector_path2050_24h_C_h2_import"
+
+sector:
+  hydrogen_import:
+    price_EUR_per_MWh: 90

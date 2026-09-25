@@ -1,0 +1,12 @@
+# Sensitivity A of the 2050 pathway: new nuclear capped at 6.75 GW in total (five Lungmen-design
+# units of 1.35 GW, the sandbox's maximum). Layer on top of sector_path_2050.yaml:
+#   snakemake -j 1 solve_sector_networks_myopic --configfile pypsa_tw/config/config_tw_test2_highs.yaml pypsa_tw/config/scenarios/sector_path_2050.yaml pypsa_tw/config/scenarios/sector_path_2050_A_nuclear_cap.yaml pypsa_tw/config/scenarios/solver_gurobi_local.yaml
+# Only the solve changes (option added in scripts/solve_network.py), so the sector inputs of the
+# central run can be reused.
+
+run:
+  sector_name: "tw_sector_path2050_24h_A_nuclear_cap"
+
+solving:
+  options:
+    nuclear_max_total_MW: 6750

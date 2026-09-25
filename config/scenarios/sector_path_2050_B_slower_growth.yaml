@@ -1,0 +1,14 @@
+# Sensitivity B of the 2050 pathway: electricity (and electronics) demand grows +2.5%/yr until
+# 2035 (the official 2026-2035 outlook), then +1%/yr. PyPSA-Earth applies one growth rate from
+# the base year (2019) to each horizon, so the equivalent rates are given per horizon
+# (option added in scripts/prepare_energy_totals.py and build_industry_demand.py):
+#   2040: (1.025^16 x 1.01^5)^(1/21) - 1 = 2.141%/yr;  2050: (1.025^16 x 1.01^15)^(1/31) - 1 = 1.771%/yr
+# 2030 is unchanged (2.5%/yr). Layer on top of sector_path_2050.yaml.
+
+run:
+  sector_name: "tw_sector_path2050_24h_B_slower_growth"
+
+demand_growth_override:
+  TW:
+    2040: 0.02141
+    2050: 0.01771
