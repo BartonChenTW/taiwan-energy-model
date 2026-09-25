@@ -1,0 +1,12 @@
+appliance,appliance_en,appliance_zh,whole_year_pct,summer_pct,note
+air_conditioner,Air conditioners,冷氣機,29.57,50.42,
+refrigerator,Refrigerators,電冰箱,12.54,8.91,
+water_heater,Electric water heaters,電熱水器,9.55,6.78,
+lighting,Lighting,照明,9.13,6.49,
+rice_cooker,Rice cookers,電鍋/電子鍋/IH電子鍋,4.58,3.21,
+tv,Televisions,電視機,4.51,3.26,
+hot_water_pot,Electric hot-water pots,電熱水瓶,3.10,2.20,
+water_boiler,Water boilers (開飲機),開飲機,2.85,2.02,
+computer,Computers,電腦(桌機、筆電、平板),2.05,1.38,
+dehumidifier,Dehumidifiers,除濕機,1.94,1.45,
+other,Other appliances,其他,20.17,13.89,"Whole year: 'other (39 appliances)' 14.12% plus vacuum cleaners 1.74%, set-top boxes 1.65%, water dispensers 1.34% and hair dryers 1.32%, which the summer figure does not list separately"
