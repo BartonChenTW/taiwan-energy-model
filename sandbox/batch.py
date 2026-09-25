@@ -39,7 +39,7 @@ GRID = [
     {"nuclear_restart": ["chinshan", "kuosheng", "maanshan"]},
     *({"add_nuclear_new_GW": round(n * 1.35, 2)} for n in (1, 2, 3, 5)),  # 1, 2, 3, 5 plants of 1.35 GW
     # Coal retirement and CO2 cap
-    *({"coal_retire_frac": v} for v in (0.5, 1.0)),
+    *({"coal_retire_frac": v} for v in (0.25, 0.5, 0.75, 1.0)),
     *({"co2_cap_frac": v} for v in (0.9, 0.75, 0.6)),
     # Demand and fuel prices
     *({"demand_scale": v} for v in (0.9, 1.1, 1.2, 1.3)),

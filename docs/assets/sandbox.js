@@ -14,8 +14,10 @@ const CARRIER_GROUP = {
 const CONTROLS = [
   ["add_solar_GW", "g_add", 1, 1, "GW"], ["add_onwind_GW", "g_add", 0.1, 1, "GW"], ["add_offwind_GW", "g_add", 0.1, 1, "GW"],
   ["add_battery_GW", "g_add", 0.1, 1, "GW"], ["add_ccgt_GW", "g_add", 1, 1, "GW"],
+  // Coal can only be retired (no new coal plants): a GW slider from 0 down to minus today's fleet, in quarters.
+  ["coal_retire_frac", "g_add", 0.25, 1, "GW"],
   ["nuclear_restart", "g_nuclear"], ["add_nuclear_new_GW", "g_nuclear", 0.1, 1, "GW"],
-  ["coal_retire_frac", "g_policy", 0.1, 100, "%"], ["co2_cap_frac", "g_policy", 0.05, 100, "%"],
+  ["co2_cap_frac", "g_policy", 0.05, 100, "%"],
   ["demand_scale", "g_market", 0.05, 1, "×"], ["gas_price_mult", "g_market", 0.1, 1, "×"], ["coal_price_mult", "g_market", 0.1, 1, "×"],
   ["line_rating", "g_grid", 0.05, 100, "%"],
 ];
@@ -26,11 +28,11 @@ const I18N = {
     nav_security: "Energy security →", nav_data: "Taiwan energy data →", nav_sector: "Sector model (draft) →",
     caveat: "Exploration tool, not a forecast: 6 buses, 4-hourly time steps, one weather year (2013), today's grid unless you change line ratings, and fixed capacities (the model dispatches what you add; it does not choose what to build). Costs are technology-data 2030 projections in EUR. Only pre-computed scenarios can be shown: the levers pick the nearest one.",
     levers_title: "What if…", levers_sub: "Start from today's system and change one or more levers.",
-    g_add: "Add or remove capacity", g_add_note: "Right of zero adds new capacity; left of zero removes existing plants (all plants of that type scaled down by the same share).", g_nuclear: "Nuclear", g_policy: "Coal and CO₂", g_market: "Demand and fuel prices", g_grid: "Transmission",
+    g_add: "Add or remove capacity", g_add_note: "Right of zero adds new capacity; left of zero removes existing plants (all plants of that type scaled down by the same share).", g_nuclear: "Nuclear", g_policy: "CO₂", g_market: "Demand and fuel prices", g_grid: "Transmission",
     add_solar_GW: "Solar PV", add_onwind_GW: "Onshore wind", add_offwind_GW: "Offshore wind", add_battery_GW: "Battery (4 h)",
     add_ccgt_GW: "Gas (CCGT)", nuclear_restart: "Restart existing plants", add_nuclear_new_GW: "New nuclear plants (Lungmen site)", plants: (n) => `${n} ${n === 1 ? "plant" : "plants"}`,
     plant_size: (gw) => `each plant ${gw} GW (one Lungmen-design reactor)`,
-    coal_retire_frac: "Coal retired", co2_cap_frac: "CO₂ cap (share of base emissions)", co2_off: "no cap", co2_apply: "Apply a cap",
+    coal_retire_frac: "Coal (retire only, no new coal)", co2_cap_frac: "CO₂ cap (share of base emissions)", co2_off: "no cap", co2_apply: "Apply a cap",
     demand_scale: "Demand", gas_price_mult: "Gas price", coal_price_mult: "Coal price",
     line_rating: "Usable line rating", reset: "Reset to base", share: "Copy link", copied: "Link copied.",
     copy_failed: "Copy the address bar to share this scenario.",
@@ -61,11 +63,11 @@ const I18N = {
     nav_security: "能源安全 →", nav_data: "台灣能源資料 →", nav_sector: "部門耦合（草稿）→",
     caveat: "這是探索工具，不是預測：6 個節點、每 4 小時一個時段、單一氣象年（2013），除非調整線路容量否則電網維持現狀，且容量為固定值（模型只調度您加入的容量，不會自行決定要蓋什麼）。成本為 technology-data 2030 年預估值（歐元）。只能顯示預先計算的情境：調整項目會對應到最接近的一個。",
     levers_title: "如果……", levers_sub: "從現有系統出發，調整一個或多個項目。",
-    g_add: "增減容量", g_add_note: "零以右為新增容量；零以左為移除既有電廠（該類電廠依相同比例縮減）。", g_nuclear: "核能", g_policy: "燃煤與 CO₂", g_market: "需求與燃料價格", g_grid: "輸電",
+    g_add: "增減容量", g_add_note: "零以右為新增容量；零以左為移除既有電廠（該類電廠依相同比例縮減）。", g_nuclear: "核能", g_policy: "CO₂", g_market: "需求與燃料價格", g_grid: "輸電",
     add_solar_GW: "太陽光電", add_onwind_GW: "陸域風電", add_offwind_GW: "離岸風電", add_battery_GW: "電池儲能（4 小時）",
     add_ccgt_GW: "燃氣複循環", nuclear_restart: "重啟既有電廠", add_nuclear_new_GW: "新核電廠（龍門廠址）", plants: (n) => `${n} 座`,
     plant_size: (gw) => `每座 ${gw} GW（龍門設計的一部機組）`,
-    coal_retire_frac: "燃煤除役比例", co2_cap_frac: "CO₂ 上限（基準排放的比例）", co2_off: "不設上限", co2_apply: "設定上限",
+    coal_retire_frac: "燃煤（僅可除役，不新建）", co2_cap_frac: "CO₂ 上限（基準排放的比例）", co2_off: "不設上限", co2_apply: "設定上限",
     demand_scale: "需求", gas_price_mult: "天然氣價格", coal_price_mult: "煤價",
     line_rating: "線路可用容量", reset: "回到基準", share: "複製連結", copied: "已複製連結。",
     copy_failed: "請複製網址列以分享此情境。",
@@ -163,7 +165,10 @@ function leverText(k, v, compact = false) {
     const change = `${v < 0 ? "−" : "+"}${nf(Math.abs(v), d)} GW`;
     return today[k] === undefined ? change : `${change} → ${nf(Math.max(0, today[k] + v), 1)} GW`;
   }
-  if (k === "coal_retire_frac" && today[k] !== undefined) return `${nf(v * 100, 0)} % → ${nf(today[k] * (1 - v), 1)} GW`;
+  if (k === "coal_retire_frac") {
+    if (today[k] === undefined) return `−${nf(v * 100, 0)} %`;
+    return `${v > 0 ? "−" : "+"}${nf(today[k] * v, 1)} GW → ${nf(today[k] * (1 - v), 1)} GW`;
+  }
   if (k === "demand_scale" && today[k] !== undefined) return `${nf(v, 2)} × → ${nf(today[k] * v, 0)} TWh`;
   if (k.endsWith("_price_mult") && today[k] !== undefined) return `${nf(v, 2)} × → ${nf(today[k] * v, 1)} €/MWh`;
   return `${nf(v * c[3], c[3] === 100 ? 0 : 2)} ${c[4]}`;
@@ -197,6 +202,11 @@ function renderControls() {
         <input type="range" id="lv-${k}" data-lever="${k}" data-unit-gw="${unitGW}" min="0" max="${site.max_units}" step="1" value="${Math.round(v / unitGW)}"></div>`;
       }
       const today = todayText(k);
+      if (k === "coal_retire_frac") {
+        // Slider in quarters of today's coal fleet, left = retire; the lever stays a fraction.
+        return `<div class="lever"><label class="lever-label" for="lv-${k}"><span>${esc(t(k))}${today ? `<span class="lever-today">${esc(today)}</span>` : ""}</span> <output id="out-${k}">${esc(leverText(k, v))}</output></label>
+        <input type="range" id="lv-${k}" data-lever="${k}" data-coal-step="${step}" min="${-Math.round(m.max / step)}" max="0" step="1" value="${-Math.round(v / step)}"></div>`;
+      }
       return `<div class="lever"><label class="lever-label" for="lv-${k}"><span>${esc(t(k))}${today ? `<span class="lever-today">${esc(today)}</span>` : ""}</span> <output id="out-${k}">${esc(leverText(k, v))}</output></label>
         ${isCap ? `<label class="check"><input type="checkbox" id="cap-on" ${v !== null ? "checked" : ""}> ${esc(t("co2_apply"))}</label>` : ""}
         <input type="range" id="lv-${k}" data-lever="${k}" min="${m.min}" max="${m.max}" step="${step}" value="${val}" ${isCap && v === null ? "disabled" : ""}></div>`;
@@ -204,7 +214,8 @@ function renderControls() {
 
   box.querySelectorAll("input[type=range]").forEach((el) => el.addEventListener("input", () => {
     // New nuclear: the slider counts plants; the lever is GW.
-    state.levers[el.dataset.lever] = el.dataset.unitGw ? Math.round(Number(el.value) * Number(el.dataset.unitGw) * 100) / 100 : Number(el.value);
+    state.levers[el.dataset.lever] = el.dataset.unitGw ? Math.round(Number(el.value) * Number(el.dataset.unitGw) * 100) / 100
+      : el.dataset.coalStep ? -Number(el.value) * Number(el.dataset.coalStep) : Number(el.value);
     $(`out-${el.dataset.lever}`).textContent = leverText(el.dataset.lever, state.levers[el.dataset.lever]);
     update();
   }));
