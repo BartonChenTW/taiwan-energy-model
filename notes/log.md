@@ -582,5 +582,11 @@ New page `docs/model-data.html`, built from `docs/data/model_data.json` (213 kB)
   - So the model, with PyPSA costs, sees solar and offshore wind as much cheaper than Taiwan's own figures. A Taiwan-cost sensitivity is worth running.
   - Caveats: no inflation adjustment (EUR 2020 vs NT$ 2026); tariff costs include grid connection and developer margins.
 
+## 2026-09-26: sector page no longer presents the nuclear-heavy run as the model's result
+
+- **Relabelled:** the first pathway run ("central") allowed unlimited new nuclear and no fuel imports. It is now labelled "Early test: unlimited new nuclear, no imports". Sensitivities A–D are described as tests of it.
+- **Model-gaps table:** the "This model (central)" column is replaced by "This fork: official runs": no new nuclear, gas with capture added, fuel imports added.
+- **Default view:** the official runs come first in the scenario menu, so the page opens on "Official options, all imports (no new nuclear)". The early test sits at the bottom of the results table.
+
 TODO:
  - to run PyPSA-Earth Taiwan!

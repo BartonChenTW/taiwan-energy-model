@@ -941,7 +941,24 @@ def export_sector_draft(repo, out):
 _PATH = "pypsa_tw/config/scenarios/sector_path_2050"
 # (run, id, English label, Chinese label, overlays merged in order)
 SECTOR_PATHWAYS = [
-    ("tw_sector_path2050_24h_w2013_6b", "central", "Central", "基準", [f"{_PATH}.yaml"]),
+    # Taiwan's official 2050 pathway (pypsa_tw/TAIWAN_2050_PATHWAY.md); the first entry is the page's default
+    ("tw_sector_path2050_24h_official_imp", "official_imp", "Official options, all imports (no new nuclear)",
+     "官方選項，全部進口選項（不新建核電）",
+     [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml", f"{_PATH}_official_imports.yaml"]),
+    ("tw_sector_path2050_24h_official", "official", "Official options: no new nuclear", "官方選項：不新建核電",
+     [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml"]),
+    ("tw_sector_path2050_24h_official_mix", "official_mix", "Official power mix of 2050", "官方 2050 年電力結構",
+     [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml", f"{_PATH}_official_mix.yaml"]),
+    ("tw_sector_path2050_24h_official_highprice", "official_hi", "Official options, high import prices",
+     "官方選項，高進口價格",
+     [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml", f"{_PATH}_official_highprice.yaml"]),
+    ("tw_sector_path2050_24h_official_imp_nuc", "official_imp_nuc", "Official options, all imports, nuclear allowed",
+     "官方選項，全部進口選項，允許核電",
+     [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml", f"{_PATH}_official_imports.yaml",
+      f"{_PATH}_official_imports_nuc.yaml"]),
+    # Early tests: unlimited new nuclear, no fuel imports (not a realistic picture of Taiwan)
+    ("tw_sector_path2050_24h_w2013_6b", "central", "Early test: unlimited new nuclear, no imports", "早期測試：新核電不設上限、無進口",
+     [f"{_PATH}.yaml"]),
     ("tw_sector_path2050_24h_A_nuclear_cap", "A", "A: new nuclear at most 6.75 GW", "A：新核電至多 6.75 GW",
      [f"{_PATH}.yaml", f"{_PATH}_A_nuclear_cap.yaml"]),
     ("tw_sector_path2050_24h_B_slower_growth", "B", "B: demand +1%/yr after 2035", "B：2035 年後需求年增 1%",
@@ -950,21 +967,6 @@ SECTOR_PATHWAYS = [
      [f"{_PATH}.yaml", f"{_PATH}_C_h2_import.yaml"]),
     ("tw_sector_path2050_24h_D_float_geothermal", "D", "D: floating offshore wind and geothermal", "D：浮動式離岸風電與地熱",
      [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml"]),
-    # Taiwan's official 2050 pathway (pypsa_tw/TAIWAN_2050_PATHWAY.md): no new nuclear
-    ("tw_sector_path2050_24h_official", "official", "Official options: no new nuclear", "官方選項：不新建核電",
-     [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml"]),
-    ("tw_sector_path2050_24h_official_mix", "official_mix", "Official power mix of 2050", "官方 2050 年電力結構",
-     [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml", f"{_PATH}_official_mix.yaml"]),
-    ("tw_sector_path2050_24h_official_highprice", "official_hi", "Official options, high import prices",
-     "官方選項，高進口價格",
-     [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml", f"{_PATH}_official_highprice.yaml"]),
-    ("tw_sector_path2050_24h_official_imp", "official_imp", "Official options, all imports (no new nuclear)",
-     "官方選項，全部進口選項（不新建核電）",
-     [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml", f"{_PATH}_official_imports.yaml"]),
-    ("tw_sector_path2050_24h_official_imp_nuc", "official_imp_nuc", "Official options, all imports, nuclear allowed",
-     "官方選項，全部進口選項，允許核電",
-     [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml", f"{_PATH}_official_imports.yaml",
-      f"{_PATH}_official_imports_nuc.yaml"]),
 ]
 # Sources behind the pathway assumptions (ids in pypsa_tw/data/sources.csv), listed on the page
 PATHWAY_SOURCES = ["moea_psd_fy2024", "ndc_2050_pathway", "ndc_2050_wind_solar", "ndc_2050_forward_energy",
