@@ -539,5 +539,14 @@ Filling the gaps found on 2026-09-25. Design, sources and results: `pypsa_tw/TAI
 - **Process note:** stopping the queue's wrapper script with TaskStop left Snakemake running without a console. The next job failed to start (0xC0000142), and the wrapper then went on to the following run. Let queue scripts finish.
 - **Website:** results table and findings in the model-gaps panel; the three runs are in the scenario menu. Gas with capture is hatched gas colour in the charts.
 
+## 2026-09-26: official pathway with all imports, and an import-price sweep
+
+- **Synthetic oil and methane imports:** a link from `co2 atmosphere` to the fuel bus, so the fuel is carbon-neutral. Ammonia turbines are on.
+- **Prices:** from Hampp et al. (2023), registered in `sources.csv`: hydrogen 90, ammonia 80, synthetic oil 120 and synthetic methane 90 €/MWh.
+- **At ×1:** no new nuclear costs €49.1 bn in 2050, below the €58.2 bn of hydrogen-only imports. Imports are 310 TWh: methane 120, ammonia 93 (all to turbines), oil 92, hydrogen 4.
+- **Sweep ×0.75 / ×1 / ×1.5, with and without new nuclear:** nuclear is built only at ×1.5 (16.7 GW), where it saves €2.5 bn a year and cuts imports from 278 to 171 TWh.
+- **Conclusion:** the "hydrogen imports" result was an artefact of hydrogen being the only importable carrier. The robust result is about 300 TWh a year of imported energy without nuclear. Nuclear's case is energy security, not cost.
+- **Process note:** scratch scripts had been written to the system temp folder, and one (`html.py`) shadowed the standard library for scripts run from there. They were moved to the session scratchpad.
+
 TODO:
  - to run PyPSA-Earth Taiwan!

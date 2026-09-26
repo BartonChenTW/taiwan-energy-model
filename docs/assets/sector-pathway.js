@@ -9,12 +9,17 @@ const PT = {
       net: "Net CO₂ emissions (Mt)", cap: "CO₂ cap (Mt)", stored: "CO₂ captured, stored or used (Mt)", dac: "of which from the air (DAC, Mt)", price: "CO₂ price in the model (€/t)",
       elec: "Electricity generated (TWh)", h2: "Hydrogen produced (TWh)", ely: "Electrolysers (GW)", batt: "Batteries (GWh)",
       cost: "System cost (bn € per year)", shed: "Demand not met (TWh)", h2imp: "Hydrogen imported (TWh)",
-      nuc: "New nuclear (GW)", gascc: "Gas with carbon capture (GW)", nh3imp: "Ammonia imported (TWh)", dac2: "CO₂ taken from the air (DAC, Mt)", wind: "Wind (GW)", solar: "Solar PV (GW)",
+      nuc: "New nuclear (GW)", gascc: "Gas with carbon capture (GW)", nh3imp: "Ammonia imported (TWh)", efimp: "Synthetic fuels imported (TWh)", dac2: "CO₂ taken from the air (DAC, Mt)", wind: "Wind (GW)", solar: "Solar PV (GW)",
     },
     variant: "Scenario", compare_year: (y) => `${y}`,
+    sweep: { title: "2050 cost with and without new nuclear, by import price level", price: "Import prices",
+             level: (f, h2) => `×${f} (hydrogen ${h2} €/MWh)`, no_nuc: "No new nuclear: system cost (bn €/yr)",
+             nuc: "Nuclear allowed: system cost (bn €/yr)", nuc_gw: "New nuclear built (GW)", gap: "Cost of excluding nuclear (bn €/yr)",
+             imp: "Imports without nuclear (TWh)",
+             note: "Official options with imports of hydrogen, ammonia, synthetic oil and methane; all import prices scaled together (×1 = hydrogen 90, ammonia 80, synthetic oil 120, synthetic methane 90 €/MWh)." },
     compare_note: "Sensitivities A–D each change one assumption of the central pathway; the official runs use the options and 2050 ranges of Taiwan's action plans, with no new nuclear (see the model gaps above). The columns are the last year.",
     groups: { nuclear: "Nuclear", coal: "Coal", gas: "Gas", gas_cc: "Gas with carbon capture", oil: "Oil", hydro: "Hydro", wind: "Wind", solar: "Solar PV",
-              other_re: "Biomass and geothermal", hydrogen: "Hydrogen (fuel cells, turbines)", storage: "Storage discharge" },
+              other_re: "Biomass and geothermal", hydrogen: "Hydrogen and ammonia power", storage: "Storage discharge" },
     uses: { industry: "Industry", transport: "Transport", buildings: "Buildings (heat, fuels)", electricity: "Electricity (other uses)",
             agriculture: "Agriculture", other: "Other" },
     net: "Net emissions", stored: "Captured (stored or used)", dac: "Taken from the air (DAC)", cap: "Cap",
@@ -24,11 +29,11 @@ const PT = {
       const g = (k, d = 0) => pnf((l.capacity_by_group_GW[k] || {}).total_GW || 0, d);
       const out = [`System cost rises from ${pnf(p.objective_EUR / 1e9, 1)} to ${pnf(l.objective_EUR / 1e9, 1)} bn € per year (${p.year} → ${l.year}); the CO₂ price in the model reaches about ${pnf(l.co2_price_EUR_t)} €/t.`,
         isOfficial(q)
-          ? `In ${l.year}: solar ${g("solar")} GW and offshore plus onshore wind ${g("wind")} GW (within the action plans' 2050 ranges), hydrogen turbines ${g("hydrogen")} GW, gas with carbon capture ${g("gas_cc", 1)} GW; no new nuclear.`
+          ? `In ${l.year}: solar ${g("solar")} GW and offshore plus onshore wind ${g("wind")} GW (within the action plans' 2050 ranges), hydrogen and ammonia turbines ${g("hydrogen")} GW, gas with carbon capture ${g("gas_cc", 1)} GW; no new nuclear.`
           : `In ${l.year}: solar ${g("solar")} GW (its land-use potential, incl. rooftops), wind ${g("wind")} GW${hasFloat(q) ? " incl. floating" : ""}, new nuclear ${g("nuclear", 1)} GW${q.id === "A" ? " (capped at 6.75 GW)" : " (no limit per site)"}${hasFloat(q) ? "" : "; floating offshore wind is not included"}.`];
       if (l.load_shedding_TWh > 1) out.push(`${pnf(l.load_shedding_TWh)} TWh of demand cannot be met: with these options net zero in ${l.year} is out of reach, and the CO₂ price shown is the penalty for unmet demand, not a real price.`);
-      if (h2imp(l) > 1) out.push(`${pnf(h2imp(l))} TWh of hydrogen is imported${isOfficial(q) ? ` (about ${pnf(h2imp(l) / 33.3)} Mt of hydrogen), for power, synthetic fuels and industry` : ""}.`);
-      if (nh3imp(l) > 1) out.push(`${pnf(nh3imp(l))} TWh of ammonia is imported.`);
+      if (h2imp(l) > 1 && efimp(l) + nh3imp(l) <= 1) out.push(`${pnf(h2imp(l))} TWh of hydrogen is imported${isOfficial(q) ? ` (about ${pnf(h2imp(l) / 33.3)} Mt of hydrogen), for power, synthetic fuels and industry` : ""}.`);
+      if (efimp(l) + nh3imp(l) > 1) out.push(`Imports: synthetic methane ${pnf(imp(l, "synthetic gas import"))}, ammonia ${pnf(nh3imp(l))}, synthetic oil ${pnf(imp(l, "synthetic oil import"))} and hydrogen ${pnf(h2imp(l))} TWh a year.`);
       out.push(`${pnf(l.co2.dac_Mt)} Mt of CO₂ is taken from the air and ${pnf(Object.values(l.hydrogen_TWh).reduce((a, b) => a + b, 0))} TWh of hydrogen is supplied (${pnf(l.electrolysis_GW, 1)} GW of electrolysers), mainly for synthetic fuels and industry.`);
       return out;
     },
@@ -40,12 +45,17 @@ const PT = {
       net: "淨 CO₂ 排放（Mt）", cap: "CO₂ 上限（Mt）", stored: "捕捉的 CO₂（封存或利用，Mt）", dac: "其中直接空氣捕捉（DAC，Mt）", price: "模型中的碳價（歐元/公噸）",
       elec: "發電量（TWh）", h2: "氫氣產量（TWh）", ely: "電解槽（GW）", batt: "電池（GWh）",
       cost: "系統成本（每年十億歐元）", shed: "未能供應的需求（TWh）", h2imp: "進口氫氣（TWh）",
-      nuc: "新核電（GW）", gascc: "燃氣搭配碳捕捉（GW）", nh3imp: "進口氨（TWh）", dac2: "直接空氣捕捉 CO₂（DAC，Mt）", wind: "風電（GW）", solar: "太陽光電（GW）",
+      nuc: "新核電（GW）", gascc: "燃氣搭配碳捕捉（GW）", nh3imp: "進口氨（TWh）", efimp: "進口合成燃料（TWh）", dac2: "直接空氣捕捉 CO₂（DAC，Mt）", wind: "風電（GW）", solar: "太陽光電（GW）",
     },
     variant: "情境", compare_year: (y) => `${y} 年`,
+    sweep: { title: "2050 年有無新核電的成本，依進口價格水準", price: "進口價格",
+             level: (f, h2) => `×${f}（氫氣每 MWh ${h2} 歐元）`, no_nuc: "不新建核電：系統成本（每年十億歐元）",
+             nuc: "允許核電：系統成本（每年十億歐元）", nuc_gw: "新建核電（GW）", gap: "排除核電的成本（每年十億歐元）",
+             imp: "不新建核電時的進口量（TWh）",
+             note: "官方選項加上氫氣、氨、合成燃油與合成甲烷的進口；所有進口價格同步縮放（×1 = 氫氣 90、氨 80、合成燃油 120、合成甲烷 90 歐元/MWh）。" },
     compare_note: "敏感度 A–D 各只改變基準路徑的一項假設；官方情境採用台灣各行動計畫的選項與 2050 年範圍，不新建核電（見上方模型缺口）。各欄為最後一年。",
     groups: { nuclear: "核能", coal: "燃煤", gas: "燃氣", gas_cc: "燃氣搭配碳捕捉", oil: "燃油", hydro: "水力", wind: "風力", solar: "太陽光電",
-              other_re: "生質能與地熱", hydrogen: "氫能（燃料電池、渦輪機）", storage: "儲能放電" },
+              other_re: "生質能與地熱", hydrogen: "氫能與氨發電", storage: "儲能放電" },
     uses: { industry: "工業", transport: "運輸", buildings: "建築（熱能、燃料）", electricity: "電力（其他用途）",
             agriculture: "農業", other: "其他" },
     net: "淨排放", stored: "捕捉（封存或利用）", dac: "直接空氣捕捉（DAC）", cap: "上限",
@@ -55,11 +65,11 @@ const PT = {
       const g = (k, d = 0) => pnf((l.capacity_by_group_GW[k] || {}).total_GW || 0, d);
       const out = [`系統成本自每年 ${pnf(p.objective_EUR / 1e9, 1)} 升至 ${pnf(l.objective_EUR / 1e9, 1)} 十億歐元（${p.year} → ${l.year} 年）；模型中的碳價約達每公噸 ${pnf(l.co2_price_EUR_t)} 歐元。`,
         isOfficial(q)
-          ? `${l.year} 年：太陽光電 ${g("solar")} GW、離岸與陸域風電 ${g("wind")} GW（皆在行動計畫的 2050 年範圍內），氫能渦輪機 ${g("hydrogen")} GW，燃氣搭配碳捕捉 ${g("gas_cc", 1)} GW；不新建核電。`
+          ? `${l.year} 年：太陽光電 ${g("solar")} GW、離岸與陸域風電 ${g("wind")} GW（皆在行動計畫的 2050 年範圍內），氫能與氨渦輪機 ${g("hydrogen")} GW，燃氣搭配碳捕捉 ${g("gas_cc", 1)} GW；不新建核電。`
           : `${l.year} 年：太陽光電 ${g("solar")} GW（達土地利用潛力上限，含屋頂型）、風電 ${g("wind")} GW${hasFloat(q) ? "（含浮動式）" : ""}、新核電 ${g("nuclear", 1)} GW${q.id === "A" ? "（上限 6.75 GW）" : "（未設各廠址上限）"}${hasFloat(q) ? "" : "；未納入浮動式離岸風電"}。`];
       if (l.load_shedding_TWh > 1) out.push(`有 ${pnf(l.load_shedding_TWh)} TWh 需求無法供應：在這些選項下，${l.year} 年無法達成淨零；表中碳價反映的是未供電的懲罰成本，並非實際碳價。`);
-      if (h2imp(l) > 1) out.push(`進口 ${pnf(h2imp(l))} TWh 氫氣${isOfficial(q) ? `（約 ${pnf(h2imp(l) / 33.3)} 百萬公噸氫），用於發電、合成燃料與工業` : ""}。`);
-      if (nh3imp(l) > 1) out.push(`進口 ${pnf(nh3imp(l))} TWh 氨。`);
+      if (h2imp(l) > 1 && efimp(l) + nh3imp(l) <= 1) out.push(`進口 ${pnf(h2imp(l))} TWh 氫氣${isOfficial(q) ? `（約 ${pnf(h2imp(l) / 33.3)} 百萬公噸氫），用於發電、合成燃料與工業` : ""}。`);
+      if (efimp(l) + nh3imp(l) > 1) out.push(`進口：合成甲烷 ${pnf(imp(l, "synthetic gas import"))}、氨 ${pnf(nh3imp(l))}、合成燃油 ${pnf(imp(l, "synthetic oil import"))}、氫氣 ${pnf(h2imp(l))} TWh／年。`);
       out.push(`${pnf(l.co2.dac_Mt)} Mt CO₂ 自大氣移除，氫氣供應 ${pnf(Object.values(l.hydrogen_TWh).reduce((a, b) => a + b, 0))} TWh（電解槽 ${pnf(l.electrolysis_GW, 1)} GW），主要用於合成燃料與工業。`);
       return out;
     },
@@ -112,7 +122,9 @@ function stackBars(id, years, groups, value, unit, names, digits = 0) {
 let pwId = null;
 const pLabel = (p) => (plang() === "zh" ? p.label_zh || p.label : p.label);
 const h2imp = (y) => y.hydrogen_TWh["H2 import"] || 0;
-const nh3imp = (y) => (y.imports_TWh || {})["NH3 import"] || 0;
+const imp = (y, c) => (y.imports_TWh || {})[c] || 0;
+const nh3imp = (y) => imp(y, "NH3 import");
+const efimp = (y) => imp(y, "synthetic oil import") + imp(y, "synthetic gas import");
 const isOfficial = (q) => q.id.startsWith("official");
 const hasFloat = (q) => q.id === "D" || isOfficial(q);
 
@@ -122,13 +134,36 @@ function renderCompare(t) {
   const rows = [
     ["cost", (y) => pnf(y.objective_EUR / 1e9, 1)], ["net", (y) => pnf(zero(y.co2.net_Mt))], ["shed", (y) => pnf(y.load_shedding_TWh, 1)],
     ["nuc", (y) => pnf(g(y, "nuclear"), 1)], ["wind", (y) => pnf(g(y, "wind"))], ["solar", (y) => pnf(g(y, "solar"))],
-    ["gascc", (y) => pnf(g(y, "gas_cc"), 1)], ["h2imp", (y) => pnf(h2imp(y))], ["nh3imp", (y) => pnf(nh3imp(y))],
+    ["gascc", (y) => pnf(g(y, "gas_cc"), 1)], ["h2imp", (y) => pnf(h2imp(y))], ["nh3imp", (y) => pnf(nh3imp(y))], ["efimp", (y) => pnf(efimp(y))],
     ["ely", (y) => pnf(y.electrolysis_GW, 1)], ["dac2", (y) => pnf(y.co2.dac_Mt)],
     ["elec", (y) => pnf(Object.values(y.generation_TWh).reduce((a, b) => a + b, 0))],
   ];
   const ps = pw.pathways;
   $p("sp-compare").innerHTML = `<p class="note muted">${pesc(t.compare_note)}</p><table><thead><tr><th>${pesc(t.compare_year(last(ps[0]).year))}</th>${ps.map((p) => `<th class="num">${pesc(pLabel(p))}</th>`).join("")}</tr></thead><tbody>` +
     rows.map(([k, f]) => `<tr><td>${pesc(t.rows[k])}</td>${ps.map((p) => `<td class="num">${f(last(p))}</td>`).join("")}</tr>`).join("") + "</tbody></table>";
+}
+
+function renderSweep(t) {
+  const el = $p("sp-sweep");
+  const sw = (pw && pw.import_sweep) || [];
+  if (!el) return;
+  if (!sw.length) { el.hidden = true; return; }
+  el.hidden = false;
+  const fs = [...new Set(sw.map((r) => r.factor))].sort((a, b) => a - b);
+  const get = (f, nuc) => sw.find((r) => r.factor === f && r.nuclear_allowed === nuc);
+  const bn = (r) => (r ? pnf(r.objective_EUR / 1e9, 1) : "–");
+  const imp = (r) => (r ? pnf(Object.values(r.imports_TWh || {}).reduce((a, b) => a + b, 0)) : "–");
+  const rows = [
+    [t.sweep.no_nuc, (f) => bn(get(f, false))],
+    [t.sweep.nuc, (f) => bn(get(f, true))],
+    [t.sweep.gap, (f) => { const a = get(f, false), b = get(f, true); return a && b ? pnf((a.objective_EUR - b.objective_EUR) / 1e9, 1) : "–"; }],
+    [t.sweep.nuc_gw, (f) => { const r = get(f, true); return r ? pnf(r.nuclear_GW, 1) : "–"; }],
+    [t.sweep.imp, (f) => imp(get(f, false))],
+  ];
+  el.innerHTML = `<p><b>${pesc(t.sweep.title)}</b></p><div class="table-wrap"><table><thead><tr><th>${pesc(t.sweep.price)}</th>` +
+    fs.map((f) => `<th class="num">${pesc(t.sweep.level(f, pnf(90 * f, (90 * f) % 1 ? 1 : 0)))}</th>`).join("") + "</tr></thead><tbody>" +
+    rows.map(([label, fn]) => `<tr><td>${pesc(label)}</td>${fs.map((f) => `<td class="num">${fn(f)}</td>`).join("")}</tr>`).join("") +
+    `</tbody></table></div><p class="note muted">${pesc(t.sweep.note)}</p>`;
 }
 
 function renderPathway() {
@@ -143,6 +178,7 @@ function renderPathway() {
   if (sel) sel.value = p.id;
   const t = P(), ys = p.years;
   renderCompare(t);
+  renderSweep(t);
   $p("sp-intro").textContent = `${pLabel(p)}${plang() === "zh" ? "。" : ". "}${t.intro(p, p.assumptions)}`;
 
   const rows = [

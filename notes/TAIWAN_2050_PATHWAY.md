@@ -111,6 +111,49 @@ A first version of `generation_share` also counted the coal and oil fuel-supply 
 power. Their carrier names match those of power plants, which let renewables exceed 70%. It now
 counts only output into electricity buses, and the 2050 step of official_mix was re-solved.
 
+## All imports and the price sweep (2026-09-26)
+
+The hydrogen-only runs could import nothing but hydrogen. The fork now also imports synthetic oil
+and methane: `sector.taiwan_power.efuel_import_price_EUR_per_MWh`, a link from `co2 atmosphere` to
+the oil or gas bus, so the fuel is carbon-neutral. Ammonia turbines (`NH3 CCGT`, efficiency
+× 0.95, to verify) are also switched on.
+
+Prices come from one basis, Hampp et al. (2023): 2050 costs delivered by ship to Germany.
+
+| Carrier | Price (€/MWh) |
+| --- | --- |
+| Hydrogen | 90 |
+| Ammonia | 80 |
+| Synthetic oil | 120 |
+| Synthetic methane | 90 |
+
+Overlays: `sector_path_2050_official_imports.yaml`, plus `_x075`, `_x150` and `_nuc*`. The `_nuc*`
+overlays allow new nuclear with no cap. The six runs took about 45 minutes, seeded with the
+official run's sector resources.
+
+| 2050, all import prices × | 0.75 | 1 | 1.5 |
+| --- | --- | --- | --- |
+| No new nuclear: cost (bn €/yr) | 41.2 | 49.1 | 63.0 |
+| Nuclear allowed: cost (bn €/yr) | 41.2 | 49.1 | 60.5 |
+| New nuclear built (GW) | 0 | 0 | 16.7 |
+| Imports without nuclear (TWh) | 343 | 310 | 278 |
+| Imports with nuclear allowed (TWh) | 343 | 310 | 171 |
+
+- **Imports at ×1** (310 TWh a year):
+  - synthetic methane 120 TWh;
+  - ammonia 93 TWh, all of it burned in ammonia turbines;
+  - synthetic oil 92 TWh;
+  - hydrogen 4 TWh.
+
+  The earlier 300–440 TWh of imported *hydrogen* came from hydrogen being the only importable
+  carrier. The amount of imported energy is the robust part.
+- **Nuclear:** it is not built at ×0.75 or ×1, even when allowed. At ×1.5 it saves €2.5 bn a year
+  (4%) and cuts imports by 107 TWh. For Taiwan the nuclear question is about import dependence
+  (blockade exposure), not cost.
+- **Price basis:** prices are for delivery to Germany. Distances from Australia or the Middle East
+  to Taiwan are shorter than Argentina to Germany, but the study's exporters and costs of capital
+  are European assumptions.
+
 ## Still open
 
 - The 2050 CO₂ storage volume: 40 Mt/yr comes from a search summary and is not in the CCUS plan's
@@ -121,7 +164,5 @@ counts only output into electricity buses, and the 2050 step of official_mix was
 - Retrofitting existing gas and coal plants with capture. Only new CCGT CC is offered.
 - Energy security of the import-based route. Imported hydrogen and ammonia raise blockade
   exposure; this should be compared with the nuclear route on the energy-security page.
-- Imports of synthetic fuels, methanol or ammonia as industrial feedstock. They are not modelled,
-  so the model imports hydrogen and makes the fuels domestically, which likely overstates
-  hydrogen imports.
+- Methanol imports: the model has no methanol bus for Taiwan's demand.
 - A 4-hour rerun: daily steps undervalue batteries and overstate what solar can do.

@@ -958,7 +958,17 @@ SECTOR_PATHWAYS = [
     ("tw_sector_path2050_24h_official_highprice", "official_hi", "Official options, high import prices",
      "官方選項，高進口價格",
      [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml", f"{_PATH}_official_highprice.yaml"]),
+    ("tw_sector_path2050_24h_official_imp", "official_imp", "Official options, all imports (no new nuclear)",
+     "官方選項，全部進口選項（不新建核電）",
+     [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml", f"{_PATH}_official_imports.yaml"]),
+    ("tw_sector_path2050_24h_official_imp_nuc", "official_imp_nuc", "Official options, all imports, nuclear allowed",
+     "官方選項，全部進口選項，允許核電",
+     [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml", f"{_PATH}_official_imports.yaml",
+      f"{_PATH}_official_imports_nuc.yaml"]),
 ]
+# Import-price sweep (all import prices x factor), with and without new nuclear
+IMPORT_SWEEP = [(f, nuc, "tw_sector_path2050_24h_official_imp" + ("_nuc" if nuc else "") + tag)
+                for f, tag in ((0.75, "_x075"), (1.0, ""), (1.5, "_x150")) for nuc in (False, True)]
 # Electricity producers and storage -> groups shown on the page
 PATH_GEN_GROUPS = {"coal": "coal", "CCGT": "gas", "OCGT": "gas", "oil": "oil", "nuclear": "nuclear",
                    "solar": "solar", "solar rooftop": "solar", "onwind": "wind", "offwind-ac": "wind",
@@ -1073,10 +1083,14 @@ def sector_pathway_year(n, year, cap_Mt):
         "capacity_by_group_GW": {g: {k: _r(x, 2) for k, x in v.items()} for g, v in cap_groups.items()},
         "hydrogen_TWh": {c: _r(v, 2) for c, v in h2_in.items() if v > 0.05},
         "electrolysis_GW": _r(float(ely.p_nom_opt.sum() / 1e3), 2) if len(ely) else 0.0,
-        # Imported hydrogen and ammonia (TWh, LHV), from the fork's import generators
-        "imports_TWh": {c: _r(float(n.generators_t.p[i].mul(w, axis=0).sum().sum() / 1e6), 1)
-                        for c in ("H2 import", "NH3 import")
-                        for i in [n.generators.index[n.generators.carrier == c]] if len(i)},
+        # Imported hydrogen, ammonia and synthetic fuels (TWh, LHV), from the fork's import
+        # generators and links (the links take the fuel's carbon from the atmosphere)
+        "imports_TWh": {**{c: _r(float(n.generators_t.p[i].mul(w, axis=0).sum().sum() / 1e6), 1)
+                           for c in ("H2 import", "NH3 import")
+                           for i in [n.generators.index[n.generators.carrier == c]] if len(i)},
+                        **{c: _r(float((-n.links_t.p1[i]).mul(w, axis=0).sum().sum() / 1e6), 1)
+                           for c in ("synthetic oil import", "synthetic gas import")
+                           for i in [n.links.index[n.links.carrier == c].intersection(n.links_t.p1.columns)] if len(i)}},
         "co2_price_EUR_t": _r(float(-n.global_constraints.mu["CO2Limit"]), 0)
                            if "CO2Limit" in n.global_constraints.index and "mu" in n.global_constraints else None,
         "battery_GWh": _r(float(batt.e_nom_opt.sum() / 1e3), 1) if len(batt) else 0.0,
@@ -1131,8 +1145,20 @@ def export_sector_pathway(repo, out):
                                         "extendable": cfg.get("electricity", {}).get("extendable_carriers", {})}})
     if not payload:
         return
+    # 2050 of the import-price sweep: cost with and without new nuclear at each price level
+    sweep = []
+    for factor, nuc, run in IMPORT_SWEEP:
+        f = repo / "results" / run / "postnetworks" / "elec_s_6_ec_lcopt_Co2L-4H_24h_2050_0.071_AB_0export.nc"
+        if not f.exists():
+            continue
+        y = sector_pathway_year(pypsa.Network(str(f)), 2050, 0.0)
+        sweep.append({"factor": factor, "nuclear_allowed": nuc, "run": run,
+                      "objective_EUR": y["objective_EUR"], "load_shedding_TWh": y["load_shedding_TWh"],
+                      "nuclear_GW": (y["capacity_by_group_GW"].get("nuclear") or {}).get("total_GW", 0.0),
+                      "imports_TWh": y["imports_TWh"]})
     (out / "sector_pathway.json").write_text(json.dumps({"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
-                                                         "currency": CURRENCY, "pathways": payload}, indent=1), encoding="utf-8")
+                                                         "currency": CURRENCY, "pathways": payload,
+                                                         "import_sweep": sweep}, indent=1), encoding="utf-8")
     print(f"wrote sector_pathway.json ({', '.join(p['id'] for p in payload)})")
 
 
