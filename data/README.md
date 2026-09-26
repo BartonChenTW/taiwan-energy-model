@@ -26,6 +26,7 @@ electricity:
 | `official/osm_power_plants_tw_20260924.json` | OpenStreetMap, all `power=plant` in Taiwan (Overpass API, 2026-09-24). ODbL. | Plant coordinates |
 | `data/gadm/gadm41_TWN/gadm41_TWN.gpkg` | GADM 4.1, level 2 (counties) | A representative point per county for solar |
 | `taipower_plant_mapping.csv` | Written by hand | Taipower plant name → fuel type, technology, storage hours, coordinates and coordinate source |
+| `plant_names_zh.csv` | Written by hand | Chinese plant names for the website: Taipower and IPP plant names, the labels of Taipower's unit list, developers' offshore wind project names, and the MOEA thermal schedule for planned units (`basis` column). County rows (solar, biomass) are named by rule in `export_model_data.py`. |
 
 Coordinates not found in OpenStreetMap come from the powerplantmatching list the model already used, or, for Greater Changhua 2b and Chung-Neng, from [thewindpower.net](https://www.thewindpower.net/). The `coord_source` column records which.
 

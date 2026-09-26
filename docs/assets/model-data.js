@@ -118,6 +118,7 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<
 const nf = (v, d = 0) => (v === null || v === undefined || Number.isNaN(v) ? "–" : new Intl.NumberFormat(mlang() === "zh" ? "zh-TW" : "en-US",
   { maximumFractionDigits: d, minimumFractionDigits: d }).format(v));
 const cfg = { displaylogo: false, responsive: true, modeBarButtonsToRemove: ["select2d", "lasso2d"] };
+const plantName = (p) => (mlang() === "zh" && p.name_zh ? p.name_zh : p.name);
 const regionName = (id) => { const r = st.data.network.regions.find((x) => x.id === id); return r ? r.label[mlang()] : id || "–"; };
 const regionColor = (id) => cv(`--k-${st.data.network.regions.findIndex((x) => x.id === id) + 1}`);
 const isDark = () => document.documentElement.getAttribute("data-theme") === "dark" ||
@@ -224,7 +225,7 @@ function plantsShown() {
   const f = st.data.fleets.find((x) => x.id === st.fleet) || st.data.fleets[0];
   const q = st.search.trim().toLowerCase();
   return { fleet: f, rows: f.plants.filter((p) => (!st.fuel || p.group === st.fuel) && (!st.region || p.region === st.region) &&
-                                                (!q || String(p.name).toLowerCase().includes(q))) };
+                                                (!q || String(p.name).toLowerCase().includes(q) || String(p.name_zh || "").includes(st.search.trim()))) };
 }
 
 function fillSelect(id, opts, value) {
@@ -248,7 +249,7 @@ function renderPlants() {
     return { type: "scattergeo", mode: "markers", name: t.groups[g], lon: ps.map((p) => p.lon), lat: ps.map((p) => p.lat),
              marker: { size: ps.map((p) => 5 + 34 * Math.sqrt((p.MW || 0) / maxMW)), color: cv(GROUP_COLOR[g]), opacity: 0.85,
                        line: { color: cv("--surface"), width: 1 } },
-             hovertemplate: ps.map((p) => `<b>${esc(p.name)}</b><br>${esc(t.groups[g])}${p.technology && p.technology !== p.fuel ? ` · ${esc(p.technology)}` : ""}<br>${nf(p.MW)} MW${p.year_in ? ` · ${p.year_in}` : ""}${p.year_out ? `–${p.year_out}` : ""}<br>${esc(regionName(p.region))}<extra></extra>`) };
+             hovertemplate: ps.map((p) => `<b>${esc(plantName(p))}</b><br>${esc(t.groups[g])}${techLabel(p) ? ` · ${esc(techLabel(p))}` : ""}<br>${nf(p.MW)} MW${p.year_in ? ` · ${p.year_in}` : ""}${p.year_out ? `–${p.year_out}` : ""}<br>${esc(regionName(p.region))}<extra></extra>`) };
   });
   traces.push({ type: "scattergeo", mode: "markers", lon: [119.3, 122.3], lat: [21.8, 25.5], marker: { size: 1, opacity: 0 }, hoverinfo: "skip", showlegend: false });
   Plotly.react("md-plant-map", traces, geoLayout({ showlegend: true }), cfg);
@@ -265,7 +266,8 @@ function renderPlants() {
 
   const k = st.sort.key, dir = st.sort.dir;
   const sorted = [...rows].sort((a, b) => {
-    const va = k === "region" ? regionName(a.region) : a[k], vb = k === "region" ? regionName(b.region) : b[k];
+    const val = (p) => (k === "region" ? regionName(p.region) : k === "name" ? plantName(p) : p[k]);
+    const va = val(a), vb = val(b);
     if (va === null || va === undefined) return 1;
     if (vb === null || vb === undefined) return -1;
     return (typeof va === "number" ? va - vb : String(va).localeCompare(String(vb))) * dir;
@@ -274,8 +276,8 @@ function renderPlants() {
   const cols = [[t.col_name, 0, "name"], [t.col_type, 0, "group"], [t.col_tech, 0, "technology"], [t.col_mw, 1, "MW"],
     ...(hasEff ? [[t.col_eff, 1, "efficiency"]] : []), [t.col_in, 1, "year_in"], ...(hasOut ? [[t.col_out, 1, "year_out"]] : []), [t.region, 0, "region"], [t.col_src_plant]];
   $m("md-plant-table").innerHTML = table(cols,
-    sorted.map((p) => [[esc(p.name)], [`<span class="swatch" style="background:${cv(GROUP_COLOR[p.group])}"></span>${esc(t.groups[p.group] || p.fuel)}`],
-      [esc(p.technology && p.technology !== p.fuel ? p.technology : "")], [nf(p.MW, 1), 1],
+    sorted.map((p) => [[mlang() === "zh" && p.name_zh ? `${esc(p.name_zh)}<br><span class="muted">${esc(p.name)}</span>` : esc(p.name)], [`<span class="swatch" style="background:${cv(GROUP_COLOR[p.group])}"></span>${esc(t.groups[p.group] || p.fuel)}`],
+      [esc(techLabel(p))], [nf(p.MW, 1), 1],
       ...(hasEff ? [[p.efficiency ? nf(p.efficiency * 100, 0) + "%" : "–", 1]] : []),
       [p.year_in ?? "–", 1], ...(hasOut ? [[p.year_out ?? "–", 1]] : []), [esc(regionName(p.region))], [plantSources(p)]]), true);
   $m("md-plant-table").querySelectorAll("th[data-sort]").forEach((th) => {
@@ -456,17 +458,30 @@ function renderSources() {
   });
 }
 
-const PLANT_SRC_NAME = { taipower_units_realtime: "Taipower unit list", moeaea_solar_approvals_county: "Energy Administration solar approvals",
-  powerplantmatching_gotzens2019: "powerplantmatching", cna_20260904_taichung_cc: "CNA 2026-09-04", einfo_hsinta_new_cc: "e-info.org.tw",
-  thewindpower: "thewindpower.net", gadm_41: "GADM 4.1", moea_psd_fy2024: "MOEA supply-demand report 113年度", osm_power_plants_tw: "OpenStreetMap" };
+const PLANT_SRC_NAMES = {
+  en: { taipower_units_realtime: "Taipower unit list", moeaea_solar_approvals_county: "Energy Administration solar approvals",
+        powerplantmatching_gotzens2019: "powerplantmatching", cna_20260904_taichung_cc: "CNA 2026-09-04", einfo_hsinta_new_cc: "e-info.org.tw",
+        thewindpower: "thewindpower.net", gadm_41: "GADM 4.1", moea_psd_fy2024: "MOEA supply-demand report 113年度", osm_power_plants_tw: "OpenStreetMap" },
+  zh: { taipower_units_realtime: "台電各機組發電量資訊", moeaea_solar_approvals_county: "能源署太陽光電同意備案容量",
+        powerplantmatching_gotzens2019: "powerplantmatching", cna_20260904_taichung_cc: "中央社 2026-09-04", einfo_hsinta_new_cc: "環境資訊中心",
+        thewindpower: "thewindpower.net", gadm_41: "GADM 4.1", moea_psd_fy2024: "經濟部 113 年度電力資源供需報告", osm_power_plants_tw: "OpenStreetMap" },
+};
+const LABEL_ZH = { "placeholder (2025)": "暫定（2025）", "county point (GADM 4.1)": "縣市代表點", "county point, assumed site": "縣市代表點（假設）",
+  "assumption: Tatan site": "假設：大潭廠址", "Figure 3-3": "圖 3-3", "Figure 3-3 (thermal schedule)": "圖 3-3（火力機組時程）",
+  "Table 3-1 (renewable targets; existing rows scaled)": "表 3-1（再生能源目標；依現有比例放大）" };
+const TECH_ZH = { "Steam Turbine": "汽力機組", Offshore: "離岸", Onshore: "陸域", "Run-Of-River": "川流式", Reservoir: "水庫式",
+  "Pumped Storage": "抽蓄", OCGT: "單循環燃氣渦輪", CCGT: "複循環", Geothermal: "地熱" };
+const techLabel = (p) => { const x = p.technology && p.technology !== p.fuel && p.technology !== "Pv" ? p.technology : "";
+  return mlang() === "zh" ? TECH_ZH[x] || x : x; };
 // one plant's sources: capacity, location, year
 function plantSources(p) {
   const t = T(), s = p.src || {};
   const one = (x) => {
     if (!x) return null;
     const r = x.id ? srcRec(x.id) : null;
-    const name = PLANT_SRC_NAME[x.id] || (r ? r.short_cite.split(" (")[0] : "");
-    const label = x.url ? x.label : [name, x.label && !x.label.includes(name) ? x.label : ""].filter(Boolean).join(", ");
+    const name = PLANT_SRC_NAMES[mlang()][x.id] || (r ? r.short_cite.split(" (")[0] : "");
+    const extra = x.label ? (mlang() === "zh" ? LABEL_ZH[x.label] || x.label : x.label) : "";
+    const label = x.url ? x.label : [name, extra && !(name && extra.includes(name)) ? extra : ""].filter(Boolean).join(mlang() === "zh" ? "，" : ", ");
     const url = x.url || (r ? r.landing_url : "");
     return url ? a(url, label) : esc(label);
   };

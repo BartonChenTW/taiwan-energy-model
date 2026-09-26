@@ -221,6 +221,17 @@ def _year_source(text):
 
 def export_plants(repo):
     mapping = pd.read_csv(repo / "pypsa_tw" / "data" / "taipower_plant_mapping.csv").drop_duplicates("name").set_index("name")
+    # Chinese plant names (pypsa_tw/data/plant_names_zh.csv); county rows are named by rule
+    names_zh = pd.read_csv(repo / "pypsa_tw" / "data" / "plant_names_zh.csv").set_index("name")["name_zh"].to_dict()
+
+    def name_zh(name):
+        if name in names_zh:
+            return names_zh[name]
+        if name.startswith("Solar "):
+            return f"太陽光電（{name[6:]}）"
+        if name.startswith("Biomass and waste "):
+            return f"生質能與廢棄物（{name[18:].replace(' (assumed)', '')}，假設）"
+        return None
     # planned plants (build_future_powerplants.py): coordinates from the thermal schedule file
     sched = pd.read_csv(repo / "pypsa_tw" / "data" / "official" / "moea_thermal_schedule_2024_2034.csv")
     sched_coord = sched.dropna(subset=["coord_source"]).drop_duplicates("plant").set_index("plant")["coord_source"].to_dict()
@@ -258,7 +269,7 @@ def export_plants(repo):
             if fid != "today" and (r.Name, round(r.Capacity, 1)) not in today:
                 where = "Table 3-1 (renewable targets; existing rows scaled)" if r.Fueltype in RE_FUELS else "Figure 3-3 (thermal schedule)"
                 cap_src = [{"id": "moea_psd_fy2024", "label": where}]
-            rows.append({"name": r.Name, "fuel": r.Fueltype, "group": FUEL_GROUP.get(r.Fueltype, "other"),
+            rows.append({"name": r.Name, "name_zh": name_zh(r.Name), "fuel": r.Fueltype, "group": FUEL_GROUP.get(r.Fueltype, "other"),
                          "technology": r.Technology if isinstance(r.Technology, str) else "",
                          "MW": _r(r.Capacity, 1), "efficiency": _r(r.Efficiency, 3),
                          "year_in": int(r.DateIn) if pd.notna(r.DateIn) else None,
