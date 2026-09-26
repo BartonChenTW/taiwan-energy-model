@@ -12,6 +12,9 @@ const PT = {
       nuc: "New nuclear (GW)", gascc: "Gas with carbon capture (GW)", nh3imp: "Ammonia imported (TWh)", efimp: "Synthetic fuels imported (TWh)", dac2: "CO₂ taken from the air (DAC, Mt)", wind: "Wind (GW)", solar: "Solar PV (GW)",
     },
     variant: "Scenario", compare_year: (y) => `${y}`,
+    src_title: "Sources for the pathway assumptions", link_page: "page", link_file: "file",
+    ev: { downloaded: "Downloaded", page_opened: "Page checked", search_summary: "To verify" },
+    src_note: "Full records, local copies and checksums: pypsa_tw/data/sources.csv. \"To verify\" marks figures taken from a search summary.",
     sweep: { title: "2050 cost with and without new nuclear, by import price level", price: "Import prices",
              level: (f, h2) => `×${f} (hydrogen ${h2} €/MWh)`, no_nuc: "No new nuclear: system cost (bn €/yr)",
              nuc: "Nuclear allowed: system cost (bn €/yr)", nuc_gw: "New nuclear built (GW)", gap: "Cost of excluding nuclear (bn €/yr)",
@@ -48,6 +51,9 @@ const PT = {
       nuc: "新核電（GW）", gascc: "燃氣搭配碳捕捉（GW）", nh3imp: "進口氨（TWh）", efimp: "進口合成燃料（TWh）", dac2: "直接空氣捕捉 CO₂（DAC，Mt）", wind: "風電（GW）", solar: "太陽光電（GW）",
     },
     variant: "情境", compare_year: (y) => `${y} 年`,
+    src_title: "路徑假設的資料來源", link_page: "頁面", link_file: "檔案",
+    ev: { downloaded: "已下載", page_opened: "已查頁面", search_summary: "待查證" },
+    src_note: "完整紀錄、本地副本與檢查碼：pypsa_tw/data/sources.csv。「待查證」表示數字取自搜尋摘要。",
     sweep: { title: "2050 年有無新核電的成本，依進口價格水準", price: "進口價格",
              level: (f, h2) => `×${f}（氫氣每 MWh ${h2} 歐元）`, no_nuc: "不新建核電：系統成本（每年十億歐元）",
              nuc: "允許核電：系統成本（每年十億歐元）", nuc_gw: "新建核電（GW）", gap: "排除核電的成本（每年十億歐元）",
@@ -166,6 +172,26 @@ function renderSweep(t) {
     `</tbody></table></div><p class="note muted">${pesc(t.sweep.note)}</p>`;
 }
 
+const EV_SEV = { downloaded: "good", page_opened: "good", search_summary: "warning" };
+const EV_ICON = { good: "✓", warning: "!", neutral: "◆" };
+
+function renderSources(t) {
+  const el = $p("sp-sources");
+  const src = (pw && pw.sources) || [];
+  if (!el) return;
+  if (!src.length) { el.hidden = true; return; }
+  el.hidden = false;
+  const chip = (ev) => { const sev = EV_SEV[ev] || "neutral";
+    return `<span class="chip ${sev}"><span class="chip-icon" aria-hidden="true">${EV_ICON[sev]}</span>${pesc(t.ev[ev] || ev)}</span>`; };
+  const link = (u, label) => (u ? `<a href="${pesc(u)}" rel="noopener">${pesc(label)}</a>` : "");
+  el.innerHTML = `<p><b>${pesc(t.src_title)}</b></p><ol class="refs">` + src.map((r) => {
+    const title = plang() === "zh" ? r.title || r.title_en : r.title_en || r.title;
+    const links = [link(r.landing_url, t.link_page), link(r.file_url, t.link_file)].filter(Boolean).join(" · ");
+    return `<li id="src-${pesc(r.source_id)}"><b>${pesc(r.short_cite || title)}</b>${r.short_cite && title && title !== r.short_cite ? ` — <i>${pesc(title)}</i>` : ""}. ` +
+      `${pesc(r.publisher)}${r.published ? `, ${pesc(r.published)}` : ""}. ${links} ${chip(r.evidence)}<br><span class="muted">${pesc(r.note)}</span></li>`;
+  }).join("") + `</ol><p class="note muted">${pesc(t.src_note)}</p>`;
+}
+
 function renderPathway() {
   if (!pw || !pw.pathways.length) return;
   const sel = $p("sp-variant");
@@ -179,6 +205,7 @@ function renderPathway() {
   const t = P(), ys = p.years;
   renderCompare(t);
   renderSweep(t);
+  renderSources(t);
   $p("sp-intro").textContent = `${pLabel(p)}${plang() === "zh" ? "。" : ". "}${t.intro(p, p.assumptions)}`;
 
   const rows = [

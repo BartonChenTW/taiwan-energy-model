@@ -966,6 +966,11 @@ SECTOR_PATHWAYS = [
      [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml", f"{_PATH}_official_imports.yaml",
       f"{_PATH}_official_imports_nuc.yaml"]),
 ]
+# Sources behind the pathway assumptions (ids in pypsa_tw/data/sources.csv), listed on the page
+PATHWAY_SOURCES = ["moea_psd_fy2024", "ndc_2050_pathway", "ndc_2050_wind_solar", "ndc_2050_forward_energy",
+                   "ndc_2050_geothermal", "ndc_2050_hydrogen", "ndc_2050_grid_storage", "ndc_2050_ccus", "ndc_2050_ev",
+                   "netl_baseline_rev4a_capture", "hampp2023_import_options", "aea_co2free_ammonia_cost",
+                   "aea_ammonia_gas_turbines", "irena_rpgc_2023_geothermal"]
 # Import-price sweep (all import prices x factor), with and without new nuclear
 IMPORT_SWEEP = [(f, nuc, "tw_sector_path2050_24h_official_imp" + ("_nuc" if nuc else "") + tag)
                 for f, tag in ((0.75, "_x075"), (1.0, ""), (1.5, "_x150")) for nuc in (False, True)]
@@ -1156,9 +1161,14 @@ def export_sector_pathway(repo, out):
                       "objective_EUR": y["objective_EUR"], "load_shedding_TWh": y["load_shedding_TWh"],
                       "nuclear_GW": (y["capacity_by_group_GW"].get("nuclear") or {}).get("total_GW", 0.0),
                       "imports_TWh": y["imports_TWh"]})
+    src = pd.read_csv(repo / "pypsa_tw" / "data" / "sources.csv", dtype=str).fillna("").set_index("source_id")
+    missing = [i for i in PATHWAY_SOURCES if i not in src.index]
+    assert not missing, f"pathway sources not in sources.csv: {missing}"
+    keep = ["short_cite", "title", "title_en", "publisher", "published", "landing_url", "file_url", "evidence", "note"]
+    sources = [{"source_id": i, **src.loc[i, keep].to_dict()} for i in PATHWAY_SOURCES]
     (out / "sector_pathway.json").write_text(json.dumps({"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
                                                          "currency": CURRENCY, "pathways": payload,
-                                                         "import_sweep": sweep}, indent=1), encoding="utf-8")
+                                                         "import_sweep": sweep, "sources": sources}, indent=1), encoding="utf-8")
     print(f"wrote sector_pathway.json ({', '.join(p['id'] for p in payload)})")
 
 

@@ -414,3 +414,8 @@ html[lang="zh-Hant"] .t-en { display: none; }
 #sec-controls .check { display: flex; gap: 8px; align-items: flex-start; margin: 6px 0; line-height: 1.35; }
 #sec-controls .check input { margin-top: 2px; flex: none; }
 #sec-table td:first-child { white-space: normal; min-width: 180px; }
+
+/* Numbered source list (sector page) */
+ol.refs { padding-left: 1.4em; }
+ol.refs li { margin: 0 0 10px; overflow-wrap: anywhere; }
+ol.refs .chip { margin-left: 4px; }
