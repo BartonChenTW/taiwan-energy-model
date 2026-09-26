@@ -1,5 +1,5 @@
-# MOTEL unmapped staging records (schema 0.2.0), exported by pypsa_tw/data/export_motel.py on 2026-09-24.
-# Raw values with provenance, before MOTEL harmonisation. See pypsa_tw/data/README.md.
+# MOTEL unmapped staging records (schema 0.2.0), exported by data/export_motel.py on 2026-09-24.
+# Raw values with provenance, before MOTEL harmonisation. See data/README.md.
 
 - schema_version: 0.2.0
   carrier_name: Electricity
@@ -18,7 +18,7 @@
   sources:
   - source_name: moeaea_generation_annual
     source_description: 發電量年資料; Annual electricity generation; 經濟部能源署 Energy Administration; 2005-2025;
-      published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_generation_by_source_annual.csv
+      published dataset updated 2026-09-23; local copy data/official/moeaea_generation_by_source_annual.csv
       (SHA-256 60fe2f20455f83fe08c69eb92d08a836720b4a31880213ae31abb8a478ceb326)
     source_type: dataset
     access_date: '2026-09-24'
@@ -1174,14 +1174,14 @@
     time_index: '2025'
     attribute_notes: History. Unit TWh. Source moeaea_generation_annual, column 再生能源_風力_全國(統計數值).
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - history_projection
     - demand
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -1202,7 +1202,7 @@
     source_description: 'GlobalEnergyGIS synthetic hourly electricity demand (SSP2-2.6); GlobalEnergyGIS
       synthetic hourly electricity demand (SSP2-2.6); Mattsson, Verendel, Hedenus, Reichenberg (Chalmers);
       distributed with PyPSA-Earth; prediction years 2030/2040/2050; weather years 2011/2013/2018; published
-      2021; local copy pypsa_tw/data/data/ssp2-2.6/<year>/era5_<weather year>/Asia.csv; locations: data/ssp2-2.6/<year>/era5_2013/Asia.csv,
+      2021; local copy data/data/ssp2-2.6/<year>/era5_<weather year>/Asia.csv; locations: data/ssp2-2.6/<year>/era5_2013/Asia.csv,
       region TW, maximum hourly value | data/ssp2-2.6/<year>/era5_2013/Asia.csv, region TW, sum of hourly
       values'
     source_type: report
@@ -1214,7 +1214,7 @@
     link: https://github.com/niclasmattsson/GlobalEnergyGIS
   - source_name: derived_moea_growth
     source_description: 'Official growth rate applied to 2024 generation; Official growth rate applied
-      to 2024 generation; this repository (pypsa_tw/data/build_timeseries.py); locations: 1.7%/yr: moea_psd_fy2024,
+      to 2024 generation; this repository (data/build_timeseries.py); locations: 1.7%/yr: moea_psd_fy2024,
       Section 3.1(1), p. 7 (PDF p. 11); 2024 base: moeaea_generation_annual'
     source_type: report
     access_date: '2026-09-24'
@@ -1225,7 +1225,7 @@
     source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
       of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
       actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
-      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      2026-06-09; local copy data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
       03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Section 2.2(3), p.
       5 (PDF p. 9) | Table 3-2, p. 20 (PDF p. 24)'
     source_type: dataset
@@ -1238,7 +1238,7 @@
     link: https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=365
   - source_name: taipower_peak_annual
     source_description: 台灣電力公司歷年尖峰負載及備用容量率; Taipower annual peak load and reserve margin; 台灣電力公司 Taipower;
-      1982-2025; published dataset updated 2025-07-15; local copy pypsa_tw/data/official/taipower_peak_load_by_year.csv
+      1982-2025; published dataset updated 2025-07-15; local copy data/official/taipower_peak_load_by_year.csv
       (SHA-256 2144db03a94d9fd95da00e402a98e31a748ee987b8778eb1cc57631514758929)
     source_type: dataset
     access_date: '2026-09-24'
@@ -1828,14 +1828,14 @@
     attribute_notes: History. Unit %. Source taipower_peak_annual, column 備用容量率(％). Night-time reserve
       margin from 2022
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - history_projection
     - demand
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -1854,7 +1854,7 @@
   sources:
   - source_name: moeaea_indicators_annual
     source_description: 能源指標年資料; Annual energy indicators; 經濟部能源署 Energy Administration; 2005-2025; published
-      dataset updated 2025-08-26; local copy pypsa_tw/data/official/moeaea_energy_indicators_annual.csv
+      dataset updated 2025-08-26; local copy data/official/moeaea_energy_indicators_annual.csv
       (SHA-256 973f4c9531079a4c3f1eeaa985a91bb1aac97d8e83f2c6ed20383e4748930218)
     source_type: dataset
     access_date: '2026-09-24'
@@ -2033,14 +2033,14 @@
     time_index: '2025'
     attribute_notes: History. Unit kg CO2e/kWh. Source moeaea_indicators_annual, column 電力排碳係數(公斤CO2e/度).
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - history_projection
     - emission_intensity
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -2059,7 +2059,7 @@
   sources:
   - source_name: moeaea_indicators_annual
     source_description: 能源指標年資料; Annual energy indicators; 經濟部能源署 Energy Administration; 2005-2025; published
-      dataset updated 2025-08-26; local copy pypsa_tw/data/official/moeaea_energy_indicators_annual.csv
+      dataset updated 2025-08-26; local copy data/official/moeaea_energy_indicators_annual.csv
       (SHA-256 973f4c9531079a4c3f1eeaa985a91bb1aac97d8e83f2c6ed20383e4748930218)
     source_type: dataset
     access_date: '2026-09-24'
@@ -2075,7 +2075,7 @@
     source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
       of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
       actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
-      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      2026-06-09; local copy data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
       03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Section 3.2(1), p.
       11 (PDF p. 15) | Section 3.2(5), p. 17 (PDF p. 21)'
     source_type: dataset
@@ -2534,13 +2534,13 @@
     attribute_notes: 'Target. Unit GW. Source moea_psd_fy2024, Section 3.2(5), p. 17 (PDF p. 21). Reached
       early: Taipower-owned 0.16 GW + procured ancillary-service storage 1.26 GW by end 2024'
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - history_projection
     - other
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped

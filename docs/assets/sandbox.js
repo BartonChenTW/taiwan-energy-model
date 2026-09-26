@@ -1,6 +1,6 @@
 /* Taiwan power system sandbox.
-   Phase 1: every scenario is pre-computed (pypsa_tw/sandbox/batch.py); the levers pick the
-   nearest one. Data: docs/data/sandbox/, written by pypsa_tw/viewer/export_dashboard_data.py. */
+   Phase 1: every scenario is pre-computed (sandbox/batch.py); the levers pick the
+   nearest one. Data: docs/data/sandbox/, written by viewer/export_dashboard_data.py. */
 
 // Technology groups and colours: the same as the dashboard (app.js).
 const GROUPS = ["coal", "nuclear", "onwind", "storage", "solar", "offwind", "gas", "hydro", "other_re", "other", "unserved"];
@@ -55,7 +55,7 @@ const I18N = {
     week: "Week", demand_line: "Demand", base_series: "Base case", scenario_series: "Scenario",
     all_title: "All computed scenarios", all_sub: "Select a row to open it",
     col_scenario: "Scenario", col_cost: "System cost Δ (M€/yr)", col_co2: "CO₂ Δ (Mt)", col_re: "Renewables", col_unserved: "Unserved (GWh)",
-    loading: "loading", footer: "Scenarios solved with pypsa_tw/sandbox/ (HiGHS) and exported by pypsa_tw/viewer/export_dashboard_data.py.",
+    loading: "loading", footer: "Scenarios solved with sandbox/ (HiGHS) and exported by viewer/export_dashboard_data.py.",
     loading_error: "Could not load the sandbox data. If you opened the file directly, serve it instead: python -m http.server -d docs",
   },
   zh: {
@@ -91,7 +91,7 @@ const I18N = {
     week: "週次", demand_line: "需求", base_series: "基準情境", scenario_series: "情境",
     all_title: "所有已計算情境", all_sub: "點選一列以開啟",
     col_scenario: "情境", col_cost: "系統成本變化（百萬歐元/年）", col_co2: "CO₂ 變化（Mt）", col_re: "再生能源", col_unserved: "未供電（GWh）",
-    loading: "負載", footer: "情境以 pypsa_tw/sandbox/（HiGHS）求解，並由 pypsa_tw/viewer/export_dashboard_data.py 匯出。",
+    loading: "負載", footer: "情境以 sandbox/（HiGHS）求解，並由 viewer/export_dashboard_data.py 匯出。",
     loading_error: "無法載入沙盒資料。若直接開啟檔案，請改用本機伺服器：python -m http.server -d docs",
   },
 };

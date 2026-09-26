@@ -1,5 +1,5 @@
 /* Draft review page for the sector-coupled test (data: docs/data/sector_draft.json,
-   written by pypsa_tw/viewer/export_dashboard_data.py). */
+   written by viewer/export_dashboard_data.py). */
 
 const L = {
   en: {

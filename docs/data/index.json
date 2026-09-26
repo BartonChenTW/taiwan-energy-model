@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-24 21:47 UTC",
+ "generated": "2026-09-26 20:42 UTC",
  "featured": "tw_test2_highs_2013_fullyear_4h_6b_ls__elec_s_6_ec_lv1.0_Co2L-4H",
  "currency": {
   "eur_twd": 36.185,
@@ -8,7 +8,7 @@
   "source": "https://rate.bot.com.tw/xrt?Lang=zh-TW"
  },
  "setup": {
-  "config": "pypsa_tw/config/config_tw_test2_highs.yaml",
+  "config": "config/config_tw_test2_highs.yaml",
   "weather_year": "2013",
   "cutout": "cutout-2013-era5-tw",
   "demand_profile_year": 2030,
@@ -17,7 +17,7 @@
   "demand_target_TWh": 251.4,
   "system_year": null,
   "fleet": "official Taipower list",
-  "fleet_file": "data/custom_powerplants.csv",
+  "fleet_file": "data/fleet/custom_powerplants.csv",
   "fleet_date": "2026-09-24",
   "costs_year": 2030,
   "transmission": "v1.0",
@@ -102,7 +102,7 @@
     }
    ],
    "setup": {
-    "config": "pypsa_tw/config/config_tw_test2_highs.yaml + pypsa_tw/config/scenarios/future_2030.yaml",
+    "config": "config/config_tw_test2_highs.yaml + config/scenarios/future_2030.yaml",
     "weather_year": "2013",
     "cutout": "cutout-2013-era5-tw",
     "demand_profile_year": 2030,
@@ -111,7 +111,7 @@
     "demand_target_TWh": 278.2,
     "system_year": 2030,
     "fleet": "official Taipower list",
-    "fleet_file": "data/custom_powerplants_tw2030.csv",
+    "fleet_file": "data/fleet/custom_powerplants_tw2030.csv",
     "fleet_date": "2026-09-24",
     "costs_year": 2030,
     "transmission": "v1.0",
@@ -150,7 +150,7 @@
     }
    ],
    "setup": {
-    "config": "pypsa_tw/config/config_tw_test2_highs.yaml + pypsa_tw/config/scenarios/future_2034.yaml",
+    "config": "config/config_tw_test2_highs.yaml + config/scenarios/future_2034.yaml",
     "weather_year": "2013",
     "cutout": "cutout-2013-era5-tw",
     "demand_profile_year": 2030,
@@ -159,7 +159,7 @@
     "demand_target_TWh": 297.6,
     "system_year": 2034,
     "fleet": "official Taipower list",
-    "fleet_file": "data/custom_powerplants_tw2034.csv",
+    "fleet_file": "data/fleet/custom_powerplants_tw2034.csv",
     "fleet_date": "2026-09-24",
     "costs_year": 2035,
     "transmission": "v1.0",
@@ -203,7 +203,7 @@
     }
    ],
    "setup": {
-    "config": "pypsa_tw/config/config_tw_test1_gurobi.yaml",
+    "config": "config/config_tw_test1_gurobi.yaml",
     "weather_year": "2013",
     "cutout": "cutout-2013-era5-tw",
     "demand_profile_year": 2030,
@@ -212,7 +212,7 @@
     "demand_target_TWh": 251.4,
     "system_year": null,
     "fleet": "official Taipower list",
-    "fleet_file": "data/custom_powerplants.csv",
+    "fleet_file": "data/fleet/custom_powerplants.csv",
     "fleet_date": "2026-09-24",
     "costs_year": 2030,
     "transmission": "v1.0",
@@ -245,7 +245,7 @@
    "price_mean": 46.81,
    "warnings": [],
    "setup": {
-    "config": "pypsa_tw/config/config_tw_test1_gurobi.yaml",
+    "config": "config/config_tw_test1_gurobi.yaml",
     "weather_year": "2013",
     "cutout": "cutout-2013-era5-tw",
     "demand_profile_year": 2030,
@@ -254,7 +254,7 @@
     "demand_target_TWh": 251.4,
     "system_year": null,
     "fleet": "official Taipower list",
-    "fleet_file": "data/custom_powerplants.csv",
+    "fleet_file": "data/fleet/custom_powerplants.csv",
     "fleet_date": "2026-09-24",
     "costs_year": 2030,
     "transmission": "v1.0",
@@ -298,7 +298,7 @@
     }
    ],
    "setup": {
-    "config": "pypsa_tw/config/config_tw_test1_highs.yaml",
+    "config": "config/config_tw_test1_highs.yaml",
     "weather_year": "2013",
     "cutout": "cutout-2013-era5-tw",
     "demand_profile_year": 2030,
@@ -307,7 +307,7 @@
     "demand_target_TWh": 251.4,
     "system_year": null,
     "fleet": "official Taipower list",
-    "fleet_file": "data/custom_powerplants.csv",
+    "fleet_file": "data/fleet/custom_powerplants.csv",
     "fleet_date": "2026-09-24",
     "costs_year": 2030,
     "transmission": "v1.0",
@@ -340,7 +340,7 @@
    "price_mean": 46.81,
    "warnings": [],
    "setup": {
-    "config": "pypsa_tw/config/config_tw_test1_highs.yaml",
+    "config": "config/config_tw_test1_highs.yaml",
     "weather_year": "2013",
     "cutout": "cutout-2013-era5-tw",
     "demand_profile_year": 2030,
@@ -349,7 +349,7 @@
     "demand_target_TWh": 251.4,
     "system_year": null,
     "fleet": "official Taipower list",
-    "fleet_file": "data/custom_powerplants.csv",
+    "fleet_file": "data/fleet/custom_powerplants.csv",
     "fleet_date": "2026-09-24",
     "costs_year": 2030,
     "transmission": "v1.0",
@@ -414,7 +414,7 @@
     }
    ],
    "setup": {
-    "config": "pypsa_tw/config/config_tw_test2_highs.yaml",
+    "config": "config/config_tw_test2_highs.yaml",
     "weather_year": "2013",
     "cutout": "cutout-2013-era5-tw",
     "demand_profile_year": 2030,
@@ -423,7 +423,7 @@
     "demand_target_TWh": 251.4,
     "system_year": null,
     "fleet": "official Taipower list",
-    "fleet_file": "data/custom_powerplants.csv",
+    "fleet_file": "data/fleet/custom_powerplants.csv",
     "fleet_date": "2026-09-24",
     "costs_year": 2030,
     "transmission": "v1.0",
@@ -462,7 +462,7 @@
     }
    ],
    "setup": {
-    "config": "pypsa_tw/config/config_tw_test2_highs.yaml + one-off overlay (see pypsa_tw/log.md)",
+    "config": "config/config_tw_test2_highs.yaml + one-off overlay (see notes/log.md)",
     "weather_year": "2013",
     "cutout": "cutout-2013-era5-tw",
     "demand_profile_year": 2030,
@@ -471,7 +471,7 @@
     "demand_target_TWh": 251.4,
     "system_year": null,
     "fleet": "official Taipower list",
-    "fleet_file": "data/custom_powerplants.csv",
+    "fleet_file": "data/fleet/custom_powerplants.csv",
     "fleet_date": "2026-09-24",
     "costs_year": 2030,
     "transmission": "v1.0",
@@ -504,7 +504,7 @@
    "price_mean": 46.81,
    "warnings": [],
    "setup": {
-    "config": "pypsa_tw/config/config_tw_test2_highs.yaml + one-off overlay (see pypsa_tw/log.md)",
+    "config": "config/config_tw_test2_highs.yaml + one-off overlay (see notes/log.md)",
     "weather_year": "2013",
     "cutout": "cutout-2013-era5-tw",
     "demand_profile_year": 2030,
@@ -513,7 +513,7 @@
     "demand_target_TWh": 251.4,
     "system_year": null,
     "fleet": "official Taipower list",
-    "fleet_file": "data/custom_powerplants.csv",
+    "fleet_file": "data/fleet/custom_powerplants.csv",
     "fleet_date": "2026-09-24",
     "costs_year": 2030,
     "transmission": "v1.0",
@@ -552,7 +552,7 @@
     }
    ],
    "setup": {
-    "config": "pypsa_tw/config/config_tw_test2_highs.yaml + pypsa_tw/config/scenarios/weather_2018.yaml",
+    "config": "config/config_tw_test2_highs.yaml + config/scenarios/weather_2018.yaml",
     "weather_year": "2018",
     "cutout": "cutout-2018-era5-tw",
     "demand_profile_year": 2030,
@@ -561,7 +561,7 @@
     "demand_target_TWh": 251.4,
     "system_year": null,
     "fleet": "official Taipower list",
-    "fleet_file": "data/custom_powerplants.csv",
+    "fleet_file": "data/fleet/custom_powerplants.csv",
     "fleet_date": "2026-09-24",
     "costs_year": 2030,
     "transmission": "v1.0",

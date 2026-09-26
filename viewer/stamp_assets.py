@@ -9,14 +9,14 @@ new URL and is fetched again, while unchanged files stay cached.
 
 Run before publishing (the exporter runs it too):
 
-    python pypsa_tw/viewer/stamp_assets.py
+    python viewer/stamp_assets.py
 """
 
 import hashlib
 import re
 from pathlib import Path
 
-DOCS = Path(__file__).resolve().parents[2] / "docs"
+DOCS = Path(__file__).resolve().parents[1] / "docs"
 REF = re.compile(r'(["\'])(assets/[\w.-]+\.(?:js|css))(?:\?v=[0-9a-f]+)?\1')
 
 

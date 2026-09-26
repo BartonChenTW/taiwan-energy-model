@@ -1,7 +1,7 @@
 # Scenario overlay: today's system under the weather of 2011.
 # Use on top of the Test 2 config:
-#   snakemake -j 1 solve_all_networks --configfile pypsa_tw/config/config_tw_test2_highs.yaml pypsa_tw/config/scenarios/weather_2011.yaml
-# Only the weather changes: same fleet (data/custom_powerplants.csv), same
+#   snakemake -j 1 solve_all_networks --configfile config/config_tw_test2_highs.yaml config/scenarios/weather_2011.yaml
+# Only the weather changes: same fleet (data/fleet/custom_powerplants.csv), same
 # grid, same annual demand (251.44 TWh). Load shedding is allowed, so any
 # shortfall shows up as unserved energy instead of an infeasible run.
 

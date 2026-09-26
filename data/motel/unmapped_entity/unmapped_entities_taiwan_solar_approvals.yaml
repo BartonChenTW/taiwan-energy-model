@@ -1,5 +1,5 @@
-# MOTEL unmapped staging records (schema 0.2.0), exported by pypsa_tw/data/export_motel.py on 2026-09-24.
-# Raw values with provenance, before MOTEL harmonisation. See pypsa_tw/data/README.md.
+# MOTEL unmapped staging records (schema 0.2.0), exported by data/export_motel.py on 2026-09-24.
+# Raw values with provenance, before MOTEL harmonisation. See data/README.md.
 
 - schema_version: 0.2.0
   technology_name: Solar photovoltaic - approved capacity 基隆市
@@ -31,7 +31,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -80,14 +80,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -121,7 +121,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -170,14 +170,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -211,7 +211,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -260,14 +260,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -301,7 +301,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -350,14 +350,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -391,7 +391,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -440,14 +440,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -481,7 +481,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -530,14 +530,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -571,7 +571,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -620,14 +620,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -661,7 +661,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -710,14 +710,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -751,7 +751,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -800,14 +800,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -841,7 +841,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -890,14 +890,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -931,7 +931,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -980,14 +980,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -1021,7 +1021,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -1070,14 +1070,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -1111,7 +1111,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -1160,14 +1160,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -1201,7 +1201,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -1250,14 +1250,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -1291,7 +1291,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -1340,14 +1340,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -1381,7 +1381,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -1430,14 +1430,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -1471,7 +1471,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -1520,14 +1520,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -1561,7 +1561,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -1610,14 +1610,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -1651,7 +1651,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -1700,14 +1700,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -1741,7 +1741,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -1790,14 +1790,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -1831,7 +1831,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -1880,14 +1880,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -1921,7 +1921,7 @@
     reference_year: 2025
     assessment_method: Transcribed from the yearly PDFs (column 總計); each year's county sum matches the
       published total.
-    source_locator: pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
+    source_locator: data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip
     linked_attribute:
     - approved_capacity
   attributes:
@@ -1970,14 +1970,14 @@
     time_index: '2025'
     attribute_notes: Unit kW. Annual total of monthly approvals.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - solar_pv
     - approvals
     - county
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used as geographic shares for solar.
   harmonisation_record:
     mapping_status: to_be_mapped

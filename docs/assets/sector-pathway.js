@@ -1,5 +1,5 @@
 /* Sector-coupled pathway 2030 -> 2050 on the draft page (data: docs/data/sector_pathway.json,
-   written by pypsa_tw/viewer/export_dashboard_data.py from the myopic runs). */
+   written by viewer/export_dashboard_data.py from the myopic runs). */
 
 const PT = {
   en: {
@@ -14,7 +14,7 @@ const PT = {
     variant: "Scenario", compare_year: (y) => `${y}`,
     src_title: "Sources for the pathway assumptions", link_page: "page", link_file: "file",
     ev: { downloaded: "Downloaded", page_opened: "Page checked", search_summary: "To verify" },
-    src_note: "Full records, local copies and checksums: pypsa_tw/data/sources.csv. \"To verify\" marks figures taken from a search summary.",
+    src_note: "Full records, local copies and checksums: data/sources.csv. \"To verify\" marks figures taken from a search summary.",
     sweep: { title: "2050 cost with and without new nuclear, by import price level", price: "Import prices",
              level: (f, h2) => `×${f} (hydrogen ${h2} €/MWh)`, no_nuc: "No new nuclear: system cost (bn €/yr)",
              nuc: "Nuclear allowed: system cost (bn €/yr)", nuc_gw: "New nuclear built (GW)", gap: "Cost of excluding nuclear (bn €/yr)",
@@ -53,7 +53,7 @@ const PT = {
     variant: "情境", compare_year: (y) => `${y} 年`,
     src_title: "路徑假設的資料來源", link_page: "頁面", link_file: "檔案",
     ev: { downloaded: "已下載", page_opened: "已查頁面", search_summary: "待查證" },
-    src_note: "完整紀錄、本地副本與檢查碼：pypsa_tw/data/sources.csv。「待查證」表示數字取自搜尋摘要。",
+    src_note: "完整紀錄、本地副本與檢查碼：data/sources.csv。「待查證」表示數字取自搜尋摘要。",
     sweep: { title: "2050 年有無新核電的成本，依進口價格水準", price: "進口價格",
              level: (f, h2) => `×${f}（氫氣每 MWh ${h2} 歐元）`, no_nuc: "不新建核電：系統成本（每年十億歐元）",
              nuc: "允許核電：系統成本（每年十億歐元）", nuc_gw: "新建核電（GW）", gap: "排除核電的成本（每年十億歐元）",

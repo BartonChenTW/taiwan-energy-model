@@ -9,7 +9,7 @@ the official pathway is run. The website summary is the "model gaps" panel on
 ## Official targets used
 
 All figures come from the approved key-strategy action plans (核定本, April 2023), which are
-downloaded to `pypsa_tw/data/official/` and registered in `pypsa_tw/data/sources.csv`.
+downloaded to `data/official/` and registered in `data/sources.csv`.
 
 | Item | 2050 target | Source (PDF page) | In the model |
 | --- | --- | --- | --- |
@@ -61,8 +61,8 @@ Both runs reuse sensitivity D's electricity network, which has floating offshore
 geothermal:
 
 ```bash
-B="--configfile pypsa_tw/config/config_tw_test2_highs.yaml pypsa_tw/config/scenarios/sector_path_2050.yaml pypsa_tw/config/scenarios/sector_path_2050_D_float_geothermal.yaml"
-S=pypsa_tw/config/scenarios
+B="--configfile config/config_tw_test2_highs.yaml config/scenarios/sector_path_2050.yaml config/scenarios/sector_path_2050_D_float_geothermal.yaml"
+S=config/scenarios
 python -m snakemake -j 1 solve_sector_networks_myopic $B $S/sector_path_2050_official.yaml $S/solver_gurobi_local.yaml --rerun-triggers mtime
 python -m snakemake -j 1 solve_sector_networks_myopic $B $S/sector_path_2050_official.yaml $S/sector_path_2050_official_mix.yaml $S/solver_gurobi_local.yaml --rerun-triggers mtime
 ```

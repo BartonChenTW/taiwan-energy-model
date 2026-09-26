@@ -1,14 +1,14 @@
 # Review checklist
 
-Items Claude decided or assumed without your confirmation. Tick them off, or note a correction, when you have time. Details and sources are in `pypsa_tw/data/README.md` and `pypsa_tw/log.md`.
+Items Claude decided or assumed without your confirmation. Tick them off, or note a correction, when you have time. Details and sources are in `data/README.md` and `notes/log.md`.
 
-## Power plant fleet (`data/custom_powerplants.csv`, added 2026-09-24)
+## Power plant fleet (`data/fleet/custom_powerplants.csv`, added 2026-09-24)
 
-- [ ] **Hydro technology per station**: reservoir or run-of-river (column `technology` in `pypsa_tw/data/taipower_plant_mapping.csv`). Reservoir: Deji, Wanda, Takuan I, Chukung, Feitsui, Shihmen, Tsengwen. All others are run-of-river.
+- [ ] **Hydro technology per station**: reservoir or run-of-river (column `technology` in `data/taipower_plant_mapping.csv`). Reservoir: Deji, Wanda, Takuan I, Chukung, Feitsui, Shihmen, Tsengwen. All others are run-of-river.
 - [ ] **Pumped hydro storage: 6 h** for Mingtan and Takuan II. Source: [e-info.org.tw](https://e-info.org.tw/node/231256), which says the 10 units can run 6 h at full load with Sun Moon Lake at 732 m.
 - [ ] **Batteries (853 MW)**: one assumed location in central Taiwan (24.15 N, 120.65 E), and pypsa-earth's default 6 h storage. Taiwan's grid batteries are probably shorter.
 - [ ] **沃南風 = Greater Changhua 2b**: assumed. Coordinates from thewindpower.net.
-- [ ] **New gas units in trial operation**, added with sourced ratings (`pypsa_tw/data/supplementary_units.csv`):
+- [ ] **New gas units in trial operation**, added with sourced ratings (`data/supplementary_units.csv`):
   - Taichung new CC #1 and #2, 1,300 MW each: [CNA 2026-09-04](https://www.cna.com.tw/news/afe/202609040200.aspx) gives "about 2,600 MW" for the pair.
   - Hsinta new CC #3, 1,300 MW: [e-info.org.tw](https://e-info.org.tw/node/243153); unit 1 is listed at 1,300.0 MW.
   - Hsinta new CC #2 is **not** included (not generating at the snapshot).
@@ -30,19 +30,19 @@ Items Claude decided or assumed without your confirmation. Tick them off, or not
 - [ ] **Line limit `s_max_pu: 0.7`** (pypsa-earth default, an N-1 margin). It is what makes the full year infeasible: the single aggregated line into Taipei binds at 9.75 GW. With 1.0 the full year solves. Decide whether 0.7 is right for Taiwan's 345 kV grid, or whether to test with more buses first.
 - [ ] **Two Taichung coal units** are to be dismantled from October 2026 (CNA 2026-09-04). They are still in the fleet, because the snapshot predates that.
 
-## MOTEL records (`pypsa_tw/data/motel/`)
+## MOTEL records (`data/motel/`)
 
 - [ ] Attribute names and scope labels are raw staging values, before MOTEL harmonisation. Check them if you plan to submit the records to the MOTEL database.
 
 ## Taiwan energy data page (`docs/taiwan-data.html`)
 
-- [ ] **12 key figures marked "To verify"** (14 confirmed from official downloads on 2026-09-24) in `pypsa_tw/data/taiwan_key_facts.csv` come from search summaries. Check them against the linked source (ideally the Energy Administration statistics database) and change `evidence` to `page_opened` or `downloaded`.
+- [ ] **12 key figures marked "To verify"** (14 confirmed from official downloads on 2026-09-24) in `data/taiwan_key_facts.csv` come from search summaries. Check them against the linked source (ideally the Energy Administration statistics database) and change `evidence` to `page_opened` or `downloaded`.
 - [ ] **Catalogue content and notes are in English only**; dataset names are bilingual.
 - [ ] **Report transcription** (`official/taiwan_projections_targets.csv`): Tables 3-1 and 3-2 of the 113年度 supply-demand report were typed in by hand. The consistency checks pass, but a second look at the PDF (`official/moea_power_supply_demand_report_20260609.pdf`, printed pp. 19–20, PDF pp. 23–24) would help.
 - [ ] **Which outlook to use for future scenarios:** the 113年度 report (+1.7%/yr, full PDF) or the 114年度 report (+2.5%/yr, news release only so far).
 - [ ] **2023 night peak (36,146 MW)** is derived: the 2024 value minus the reported increase.
 
-## Future-year scenarios (`pypsa_tw/data/build_future_powerplants.py`, `pypsa_tw/config/scenarios/`)
+## Future-year scenarios (`data/build_future_powerplants.py`, `config/scenarios/`)
 
 - [ ] **Figure 3-3 transcription** (`official/moea_thermal_schedule_2024_2034.csv`): typed from the chart image on p. 22 of the report. The totals match, but check the unit names and months, and the `in_base_fleet` flags (which units are already in today's list).
 - [ ] **Sites of the two "新增燃氣電源" units** (2032 and 2033, 1,300 MW each): the report gives no site; they are placed at Tatan.
@@ -52,14 +52,14 @@ Items Claude decided or assumed without your confirmation. Tick them off, or not
 - [ ] **Demand growth:** the 113年度 report's +1.7%/yr is used. The 114年度 report says +2.5%/yr (news release only), which would give about 290 TWh in 2030.
 - [ ] **Model-year rule:** a unit counts if it is in service on 1 July of the model year.
 
-## Sources (`pypsa_tw/data/sources.csv`)
+## Sources (`data/sources.csv`)
 
-- [ ] **NDC 2050 pathway (60–70% renewables):** from a search summary. The PDF blocks scripted downloads (HTTP 403); download it by hand into `pypsa_tw/data/official/`, check the figure and page, then set `evidence`, `local_file` and `sha256` in `sources.csv`.
+- [ ] **NDC 2050 pathway (60–70% renewables):** from a search summary. The PDF blocks scripted downloads (HTTP 403); download it by hand into `data/official/`, check the figure and page, then set `evidence`, `local_file` and `sha256` in `sources.csv`.
 - [ ] **Night-peak growth 2026–2035 (2.7%/yr):** from a secondary article (Science Media Center Taiwan), not MOEA. Replace it with the MOEA 114年度 report when it is published on data.gov.tw/dataset/16437.
 - [ ] **Titles of the MOEA news release and the SMC article** are not recorded (left empty rather than guessed). Add them from the pages.
 - [ ] **Publication date of the 113年度 report:** the text cites data of 2025-08-15, and the open-data file was updated 2026-06-09. The exact publication date is not in the PDF.
 
-## Sandbox (`pypsa_tw/sandbox/`)
+## Sandbox (`sandbox/`)
 
 - [ ] **Levers and ranges** (`levers.py`):
   - add 0–20 GW solar/offshore, 0–10 GW onshore/battery/CCGT;
@@ -104,9 +104,9 @@ Items Claude decided or assumed without your confirmation. Tick them off, or not
   - space heating shows up only inside electricity use.
 - [ ] **2018 break** (new classification, revised heat statistics): check that the page explains it well enough.
 
-## Sector-coupled pathway 2030 → 2050 (`pypsa_tw/config/scenarios/sector_path_2050.yaml`)
+## Sector-coupled pathway 2030 → 2050 (`config/scenarios/sector_path_2050.yaml`)
 
-- [ ] **Demand growth.** Taiwan rows in `data/demand/*_cagr.csv` (`pypsa_tw/data/build_sector_growth_tw.py`; values and 2015–2025 trends in `pypsa_tw/data/sector_growth_tw.csv`):
+- [ ] **Demand growth.** Taiwan rows in `data/demand/*_cagr.csv` (`data/build_sector_growth_tw.py`; values and 2015–2025 trends in `data/sector_growth_tw.csv`):
   - electricity and the electronics industry grow +2.5%/yr to 2050, the official 2026–2035 outlook carried beyond 2035;
   - everything else is flat, with no separate efficiency gains.
   - These rows also change the 2025 reference the next time it is rerun.

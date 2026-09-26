@@ -1,5 +1,5 @@
 /* Energy security page: blockade scenarios (data: docs/data/security/, written by
-   pypsa_tw/viewer/export_dashboard_data.py from the sandbox blockade mode). */
+   viewer/export_dashboard_data.py from the sandbox blockade mode). */
 
 const TX = {
   en: {

@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+# scratch and local outputs (model outputs live in the model checkout)
+*.log
+.vscode/

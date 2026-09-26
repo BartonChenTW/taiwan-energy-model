@@ -24,7 +24,7 @@ directly.
 
 Run from the repository root (then the sector workflow picks the rows up):
 
-    python pypsa_tw/data/build_sector_growth_tw.py
+    python data/build_sector_growth_tw.py
 """
 
 from pathlib import Path
@@ -32,7 +32,10 @@ from pathlib import Path
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent
-REPO = HERE.parents[1]
+import sys  # noqa: E402
+sys.path.insert(0, str(HERE.parent))
+from paths import MODEL_DIR as REPO  # noqa: E402  (model checkout: data/demand)
+
 DEMAND = REPO / "data" / "demand"
 OUT = HERE / "sector_growth_tw.csv"
 

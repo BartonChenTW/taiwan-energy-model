@@ -1,7 +1,7 @@
 # Scenario overlay: the planned system in 2030, under 2013 weather.
 # Use on top of the Test 2 config:
-#   snakemake -j 1 solve_all_networks --configfile pypsa_tw/config/config_tw_test2_highs.yaml pypsa_tw/config/scenarios/future_2030.yaml
-# Fleet: data/custom_powerplants_tw2030.csv from pypsa_tw/data/build_future_powerplants.py
+#   snakemake -j 1 solve_all_networks --configfile config/config_tw_test2_highs.yaml config/scenarios/future_2030.yaml
+# Fleet: data/fleet/custom_powerplants_tw2030.csv from data/build_future_powerplants.py
 # (MOEA 全國電力資源供需報告 113年度, data.gov.tw/dataset/16437: thermal schedule of Figure 3-3,
 # renewable targets of Table 3-1). The grid stays as today, nothing is
 # investable, and load shedding is allowed, so any shortfall shows up as
@@ -12,7 +12,7 @@ run:
   sector_name: "tw_future2030_highs_w2013_4h_6b_ls"
 
 electricity:
-  custom_powerplants_file: data/custom_powerplants_tw2030.csv
+  custom_powerplants_file: ../taiwan-energy-model/data/fleet/custom_powerplants_tw2030.csv
   powerplants_filter: (DateOut >= 2030 or DateOut != DateOut) and (DateIn <= 2030 or DateIn != DateIn)
 
 load_options:

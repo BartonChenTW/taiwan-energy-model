@@ -1,9 +1,9 @@
 # Taiwan power plant data
 
-`build_custom_powerplants.py` builds `data/custom_powerplants.csv` (powerplantmatching format) from official sources.
+`build_custom_powerplants.py` builds `data/fleet/custom_powerplants.csv` (powerplantmatching format) from official sources.
 
 ```powershell
-python pypsa_tw/data/build_custom_powerplants.py
+python data/build_custom_powerplants.py
 ```
 
 To use it, set these in the Taiwan config:
@@ -166,10 +166,10 @@ The 2024 Taipower-system figure of 251.44 TWh used for demand calibration is sti
 ## Future fleets, 2030 and 2034 (`build_future_powerplants.py`)
 
 ```powershell
-python pypsa_tw/data/build_future_powerplants.py
+python data/build_future_powerplants.py
 ```
 
-This writes `data/custom_powerplants_tw2030.csv` and `data/custom_powerplants_tw2034.csv`. Each starts from today's file and applies the MOEA National Power Supply-Demand Report 113年度 (`moea_psd_fy2024`, [16437](https://data.gov.tw/dataset/16437)).
+This writes `data/fleet/custom_powerplants_tw2030.csv` and `data/fleet/custom_powerplants_tw2034.csv`. Each starts from today's file and applies the MOEA National Power Supply-Demand Report 113年度 (`moea_psd_fy2024`, [16437](https://data.gov.tw/dataset/16437)).
 
 **Thermal plan.** `official/moea_thermal_schedule_2024_2034.csv` is Figure 3-3 of the report (p. 18; PDF p. 22), transcribed unit by unit with the month of each addition or retirement.
 - The transcription adds up to the report's own totals for 2025–2034: +25,163 MW added and −12,941 MW retired. The script checks both.
@@ -210,4 +210,4 @@ Nuclear stays at 0.
 | Batteries | 0.85 | 0.85 | 0.85 |
 | **Total** | **64.00** | **94.25** | **104.38** |
 
-`future_fleet_summary.csv` has the same table. To use a file, set `electricity.custom_powerplants_file` (the Snakefile now reads this key, defaulting to `data/custom_powerplants.csv`); see `pypsa_tw/config/scenarios/future_*.yaml`.
+`future_fleet_summary.csv` has the same table. To use a file, set `electricity.custom_powerplants_file` (the Snakefile now reads this key, defaulting to `data/fleet/custom_powerplants.csv`); see `config/scenarios/future_*.yaml`.

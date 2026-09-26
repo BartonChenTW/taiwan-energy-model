@@ -2,7 +2,7 @@
 Sandbox checks: the empty spec reproduces the base case, and each lever moves
 the solved network in the expected direction.
 
-    python -m pytest pypsa_tw/sandbox/test_levers.py -q
+    python -m pytest sandbox/test_levers.py -q
 
 Scenarios come from the cache in results/sandbox/ (solve the grid first with
 batch.py); a missing scenario is solved on the fly (about 30 s each).

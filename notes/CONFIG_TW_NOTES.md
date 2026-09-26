@@ -45,12 +45,12 @@ atlite:
 The corrected copy is saved as:
 
 ```text
-pypsa_tw/config.tw.fixed.yaml
+config.tw.fixed.yaml
 ```
 
 ## How To Use It
 
-The active workflow reads `config.yaml`, so keep `config.yaml` aligned with `pypsa_tw/config.tw.fixed.yaml` before running.
+The active workflow reads `config.yaml`, so keep `config.yaml` aligned with `config.tw.fixed.yaml` before running.
 
 Recommended check:
 

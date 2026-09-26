@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-26 17:29 UTC",
+ "generated": "2026-09-26 20:43 UTC",
  "currency": {
   "eur_twd": 36.185,
   "date": "2026-09-24 17:01",
@@ -12,7 +12,7 @@
    "run": "tw_sector_path2050_24h_official_imp",
    "label": "Official options, all imports (no new nuclear)",
    "label_zh": "\u5b98\u65b9\u9078\u9805\uff0c\u5168\u90e8\u9032\u53e3\u9078\u9805\uff08\u4e0d\u65b0\u5efa\u6838\u96fb\uff09",
-   "overlay": "pypsa_tw/config/scenarios/sector_path_2050_official_imports.yaml",
+   "overlay": "config/scenarios/sector_path_2050_official_imports.yaml",
    "horizons": [
     2030,
     2040,
@@ -576,7 +576,7 @@
    "run": "tw_sector_path2050_24h_official",
    "label": "Official options: no new nuclear",
    "label_zh": "\u5b98\u65b9\u9078\u9805\uff1a\u4e0d\u65b0\u5efa\u6838\u96fb",
-   "overlay": "pypsa_tw/config/scenarios/sector_path_2050_official.yaml",
+   "overlay": "config/scenarios/sector_path_2050_official.yaml",
    "horizons": [
     2030,
     2040,
@@ -1123,7 +1123,7 @@
    "run": "tw_sector_path2050_24h_official_mix",
    "label": "Official power mix of 2050",
    "label_zh": "\u5b98\u65b9 2050 \u5e74\u96fb\u529b\u7d50\u69cb",
-   "overlay": "pypsa_tw/config/scenarios/sector_path_2050_official_mix.yaml",
+   "overlay": "config/scenarios/sector_path_2050_official_mix.yaml",
    "horizons": [
     2030,
     2040,
@@ -1683,7 +1683,7 @@
    "run": "tw_sector_path2050_24h_official_highprice",
    "label": "Official options, high import prices",
    "label_zh": "\u5b98\u65b9\u9078\u9805\uff0c\u9ad8\u9032\u53e3\u50f9\u683c",
-   "overlay": "pypsa_tw/config/scenarios/sector_path_2050_official_highprice.yaml",
+   "overlay": "config/scenarios/sector_path_2050_official_highprice.yaml",
    "horizons": [
     2030,
     2040,
@@ -2230,7 +2230,7 @@
    "run": "tw_sector_path2050_24h_official_imp_nuc",
    "label": "Official options, all imports, nuclear allowed",
    "label_zh": "\u5b98\u65b9\u9078\u9805\uff0c\u5168\u90e8\u9032\u53e3\u9078\u9805\uff0c\u5141\u8a31\u6838\u96fb",
-   "overlay": "pypsa_tw/config/scenarios/sector_path_2050_official_imports_nuc.yaml",
+   "overlay": "config/scenarios/sector_path_2050_official_imports_nuc.yaml",
    "horizons": [
     2030,
     2040,
@@ -2794,7 +2794,7 @@
    "run": "tw_sector_path2050_24h_w2013_6b",
    "label": "Early test: unlimited new nuclear, no imports",
    "label_zh": "\u65e9\u671f\u6e2c\u8a66\uff1a\u65b0\u6838\u96fb\u4e0d\u8a2d\u4e0a\u9650\u3001\u7121\u9032\u53e3",
-   "overlay": "pypsa_tw/config/scenarios/sector_path_2050.yaml",
+   "overlay": "config/scenarios/sector_path_2050.yaml",
    "horizons": [
     2030,
     2040,
@@ -3344,7 +3344,7 @@
    "run": "tw_sector_path2050_24h_A_nuclear_cap",
    "label": "A: new nuclear at most 6.75 GW",
    "label_zh": "A\uff1a\u65b0\u6838\u96fb\u81f3\u591a 6.75 GW",
-   "overlay": "pypsa_tw/config/scenarios/sector_path_2050_A_nuclear_cap.yaml",
+   "overlay": "config/scenarios/sector_path_2050_A_nuclear_cap.yaml",
    "horizons": [
     2030,
     2040,
@@ -3889,7 +3889,7 @@
    "run": "tw_sector_path2050_24h_B_slower_growth",
    "label": "B: demand +1%/yr after 2035",
    "label_zh": "B\uff1a2035 \u5e74\u5f8c\u9700\u6c42\u5e74\u589e 1%",
-   "overlay": "pypsa_tw/config/scenarios/sector_path_2050_B_slower_growth.yaml",
+   "overlay": "config/scenarios/sector_path_2050_B_slower_growth.yaml",
    "horizons": [
     2030,
     2040,
@@ -4427,7 +4427,7 @@
    "run": "tw_sector_path2050_24h_C_h2_import",
    "label": "C: hydrogen imports at 90 \u20ac/MWh",
    "label_zh": "C\uff1a\u9032\u53e3\u6c2b\u6c23\uff08\u6bcf MWh 90 \u6b50\u5143\uff09",
-   "overlay": "pypsa_tw/config/scenarios/sector_path_2050_C_h2_import.yaml",
+   "overlay": "config/scenarios/sector_path_2050_C_h2_import.yaml",
    "horizons": [
     2030,
     2040,
@@ -4983,7 +4983,7 @@
    "run": "tw_sector_path2050_24h_D_float_geothermal",
    "label": "D: floating offshore wind and geothermal",
    "label_zh": "D\uff1a\u6d6e\u52d5\u5f0f\u96e2\u5cb8\u98a8\u96fb\u8207\u5730\u71b1",
-   "overlay": "pypsa_tw/config/scenarios/sector_path_2050_D_float_geothermal.yaml",
+   "overlay": "config/scenarios/sector_path_2050_D_float_geothermal.yaml",
    "horizons": [
     2030,
     2040,

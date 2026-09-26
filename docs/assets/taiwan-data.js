@@ -1,6 +1,6 @@
 /* Taiwan energy data page: key figures and data-source catalogue.
-   Data: docs/data/taiwan_catalog.json, written by pypsa_tw/viewer/export_dashboard_data.py
-   from pypsa_tw/data/taiwan_key_facts.csv and taiwan_energy_catalog.csv. */
+   Data: docs/data/taiwan_catalog.json, written by viewer/export_dashboard_data.py
+   from data/taiwan_key_facts.csv and taiwan_energy_catalog.csv. */
 
 const I18N = {
   en: {
@@ -17,7 +17,7 @@ const I18N = {
     s_add_gas: "Gas added", s_ret_coal: "Coal retired", s_ret_gas: "Gas retired", s_ret_oil: "Oil retired",
     src_label: "Sources", src_history: "History", src_ref: "see References below",
     h_refs: "References for history and projections",
-    h_refs_sub: "Every series points to one of these sources (pypsa_tw/data/sources.csv). Projections and targets also give the table or page; history gives the column of the downloaded file. A checksum identifies the exact file used.",
+    h_refs_sub: "Every series points to one of these sources (data/sources.csv). Projections and targets also give the table or page; history gives the column of the downloaded file. A checksum identifies the exact file used.",
     col_title: "Title", col_publisher: "Publisher", col_edition: "Edition / coverage", col_published: "Published",
     col_origin: "Origin", origin_pypsa_earth: "PyPSA-Earth default", origin_taiwan: "Taiwan data", origin_fork: "Added in this fork",
     col_file: "File", col_local: "Local copy (SHA-256)", col_accessed: "Accessed", col_locator: "Where in the source",
@@ -50,7 +50,7 @@ const I18N = {
     link_ok: "Link reachable", link_bad: (code) => `Link not reachable by script (HTTP ${code}); it may block bots`,
     open: "Open",
     none: "No rows match the filters.",
-    footer: "Data: pypsa_tw/data/taiwan_key_facts.csv and taiwan_energy_catalog.csv, exported by pypsa_tw/viewer/export_dashboard_data.py.",
+    footer: "Data: data/taiwan_key_facts.csv and taiwan_energy_catalog.csv, exported by viewer/export_dashboard_data.py.",
     loading_error: "Could not load the data. If you opened this file directly, serve the folder instead: python -m http.server -d docs",
     nav_sectors: "All sectors", topic_end_use: "End use", filter_year: "Year",
     sectors_title: "Energy use in all sectors",
@@ -96,7 +96,7 @@ const I18N = {
     s_add_gas: "燃氣新增", s_ret_coal: "燃煤除役", s_ret_gas: "燃氣除役", s_ret_oil: "燃油除役",
     src_label: "資料來源", src_history: "歷史", src_ref: "詳見下方參考資料",
     h_refs: "歷史與預測資料的參考來源",
-    h_refs_sub: "每個數列都對應下列其中一個來源（pypsa_tw/data/sources.csv）。預測與目標另註明表號或頁碼；歷史資料註明下載檔案中的欄位。檢查碼可辨識所用的確切檔案。",
+    h_refs_sub: "每個數列都對應下列其中一個來源（data/sources.csv）。預測與目標另註明表號或頁碼；歷史資料註明下載檔案中的欄位。檢查碼可辨識所用的確切檔案。",
     col_title: "標題", col_publisher: "發布機關", col_edition: "版次／涵蓋範圍", col_published: "發布時間",
     col_origin: "來源類別", origin_pypsa_earth: "PyPSA-Earth 預設", origin_taiwan: "台灣資料", origin_fork: "本分支新增",
     col_file: "檔案", col_local: "本地副本（SHA-256）", col_accessed: "取得日期", col_locator: "出處位置",
@@ -129,7 +129,7 @@ const I18N = {
     link_ok: "連結可連線", link_bad: (code) => `程式無法連線（HTTP ${code}），網站可能阻擋自動程式`,
     open: "開啟",
     none: "沒有符合篩選條件的資料。",
-    footer: "資料：pypsa_tw/data/taiwan_key_facts.csv 與 taiwan_energy_catalog.csv，由 pypsa_tw/viewer/export_dashboard_data.py 匯出。",
+    footer: "資料：data/taiwan_key_facts.csv 與 taiwan_energy_catalog.csv，由 viewer/export_dashboard_data.py 匯出。",
     loading_error: "無法載入資料。若直接開啟檔案，請改用本機伺服器：python -m http.server -d docs",
     nav_sectors: "各部門", topic_end_use: "終端用途", filter_year: "年份",
     sectors_title: "各部門能源使用",

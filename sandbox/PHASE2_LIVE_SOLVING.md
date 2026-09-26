@@ -48,7 +48,7 @@ browser ──POST /scenarios {spec}──▶ API (FastAPI) ──enqueue──�
 - **Not on the shared workstation** (DDM06479). A small VM or container service, e.g. 2 vCPU and 4 GB, is enough for one or two concurrent solves.
 - **The image contains:**
   - the conda environment from `envs/*.lock.yaml`;
-  - `scripts/` and `pypsa_tw/sandbox/`;
+  - `scripts/` and `sandbox/`;
   - the base inputs: the prepared network (0.9 MB), the solved base (2.3 MB), the costs CSV and the two config files.
 - No Snakemake and no data bundles are needed.
 - **Front end:** it stays on GitHub Pages. The API sends CORS headers for `bartonchentw.github.io` only.

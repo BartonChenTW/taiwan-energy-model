@@ -7,10 +7,10 @@ This table proposes a simple progression of Taiwan simulations across four key d
 - temporal resolution
 - bus/cluster
 
-All Taiwan test runs share these settings (see `pypsa_tw/config/`):
+All Taiwan test runs share these settings (see `config/`):
 
 - weather: full-year 2013 ERA5 cutout `cutout-2013-era5-tw`
-- fleet: official Taipower fleet (`data/custom_powerplants.csv`, 64.0 GW, no nuclear; see `pypsa_tw/data/README.md`)
+- fleet: official Taipower fleet (`data/fleet/custom_powerplants.csv`, 64.0 GW, no nuclear; see `data/README.md`)
 - today's fixed system: no extendable generators, no load shedding, transmission fixed (`ll: v1.0`), lines limited to `s_max_pu: 0.7` of their rating
 - demand: GEGIS 2030 profile scaled by 0.749 to Taipower-system generation (251.44 TWh in 2024)
 - network: 6 buses/clusters, with small isolated subnetworks fetched into the main grid

@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-25 08:38 UTC",
+ "generated": "2026-09-26 20:42 UTC",
  "links_checked": "2026-09-24",
  "link_status": {
   "https://cds.climate.copernicus.eu/": "0",
@@ -1327,7 +1327,7 @@
    "license": "MIT (code) / CC BY 4.0 (data)",
    "link": "https://github.com/uesl-empa/motel-platform",
    "model_use": "used",
-   "note": "Taiwan data exported as MOTEL staging records (pypsa_tw/data/motel/)"
+   "note": "Taiwan data exported as MOTEL staging records (data/motel/)"
   },
   {
    "category": "statistics",

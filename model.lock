@@ -1,0 +1,4 @@
+# PyPSA-Earth model checkout this study was last run with (see paths.py, AGENTS.md)
+repository: https://github.com/BartonChenTW/pypsa-earth
+branch: pypsa-taiwan-dev
+commit: 873d092c756357d8e263a692450e008477930c8b

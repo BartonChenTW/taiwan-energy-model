@@ -1,9 +1,9 @@
 """
 Solve the Phase 1 scenario grid: one lever at a time, plus a few combinations.
 
-    python pypsa_tw/sandbox/batch.py            # solve what is not cached yet
-    python pypsa_tw/sandbox/batch.py --list     # print the grid and exit
-    python pypsa_tw/sandbox/batch.py --variants low high w2018   # uncertainty variants too
+    python sandbox/batch.py            # solve what is not cached yet
+    python sandbox/batch.py --list     # print the grid and exit
+    python sandbox/batch.py --variants low high w2018   # uncertainty variants too
 
 Scenarios are solved one after another (shared workstation: one solve at a
 time, HiGHS). Each takes about 20-35 s, so the full grid of 42 takes about
@@ -16,7 +16,10 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from paths import MODEL_DIR  # noqa: E402
+
+REPO = MODEL_DIR
 
 from levers import BASES, VARIANTS, describe, spec_hash  # noqa: E402
 

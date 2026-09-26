@@ -23,9 +23,9 @@ into MOTEL's controlled vocabularies. This script writes:
 Run from the repository root after ``build_custom_powerplants.py``, then check
 the output with MOTEL's validator (vendored in ``motel/tools``):
 
-    python pypsa_tw/data/export_motel.py
-    python pypsa_tw/data/motel/tools/validate_unmapped.py pypsa_tw/data/motel \
-        --schema-dir pypsa_tw/data/motel/tools/schema
+    python data/export_motel.py
+    python data/motel/tools/validate_unmapped.py data/motel \
+        --schema-dir data/motel/tools/schema
 """
 
 import json
@@ -35,13 +35,12 @@ import pandas as pd
 import yaml
 
 HERE = Path(__file__).resolve().parent
-REPO = HERE.parents[1]
 OUT = HERE / "motel"
 OFFICIAL = HERE / "official"
 
 SCHEMA_VERSION = "0.2.0"
 ACCESS_DATE = "2026-09-24"
-PROJECT = "PyPSA-Earth Taiwan (pypsa_tw)"
+PROJECT = "Taiwan energy system model (taiwan-energy-model)"
 
 TAIPOWER_UNITS = {
     "source_name": "Taipower_realtime_units_2026-09-24",
@@ -54,7 +53,7 @@ TAIPOWER_UNITS = {
     "reference_year": 2026,
     "assessment_method": "Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not "
                          "counted, except new units added with sourced ratings.",
-    "source_locator": "pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)",
+    "source_locator": "data/official/taipower_units_20260924.json, field 裝置容量(MW)",
 }
 
 # Fleet technologies: (Fueltype, Technology) -> MOTEL-style description fields.
@@ -92,11 +91,11 @@ def taiwan_scope(temporal, temporal_description, capacity="national fleet",
 
 def metadata(tags, note):
     return {"related_project": PROJECT, "tags": ["taiwan", *tags],
-            "other_notes": [f"{ACCESS_DATE}: exported by pypsa_tw/data/export_motel.py", note]}
+            "other_notes": [f"{ACCESS_DATE}: exported by data/export_motel.py", note]}
 
 
 def fleet_records():
-    fleet = pd.read_csv(REPO / "data" / "custom_powerplants.csv", index_col=0)
+    fleet = pd.read_csv(HERE / "fleet" / "custom_powerplants.csv", index_col=0)
     supplement = pd.read_csv(HERE / "supplementary_units.csv").query("include == 'yes'")
     # Several Taipower entries can share a display name (e.g. Talin coal units 1 and 2).
     mapping = pd.read_csv(HERE / "taipower_plant_mapping.csv").drop_duplicates("name").set_index("name")
@@ -110,7 +109,7 @@ def fleet_records():
              "time_index": snapshot[:10],
              "attribute_notes": f"Unit MW. Sum over {len(plants)} plants or plant groups in the fleet file."},
             {"attribute_name": "number_of_plants", "value": int(len(plants)), "time_index": snapshot[:10],
-             "attribute_notes": "Plants or plant groups as aggregated in data/custom_powerplants.csv."},
+             "attribute_notes": "Plants or plant groups as aggregated in data/fleet/custom_powerplants.csv."},
         ]
         for _, p in plants.sort_values("Capacity", ascending=False).iterrows():
             src = mapping["coord_source"].get(p.Name, "county representative point (GADM 4.1)")
@@ -162,7 +161,7 @@ def fleet_records():
             "sources": sources,
             "attributes": attributes,
             "metadata": metadata(["power_plant_fleet", fuel.lower().replace(" ", "_")],
-                                 "Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model."),
+                                 "Same data as data/fleet/custom_powerplants.csv used by the PyPSA-Earth Taiwan model."),
             "harmonisation_record": {"mapping_status": "to_be_mapped"},
         })
     return records
@@ -181,7 +180,7 @@ def solar_approval_records():
         "reference_year": 2025,
         "assessment_method": "Transcribed from the yearly PDFs (column 總計); each year's county sum matches "
                              "the published total.",
-        "source_locator": "pypsa_tw/data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip",
+        "source_locator": "data/official/moeaea_solar_approvals_by_county_pdfs_20251120.zip",
         "linked_attribute": ["approved_capacity"],
     }
     records = []
@@ -229,7 +228,7 @@ def electricity_carrier_records():
                      "source_description": "台灣電力公司歷年尖峰負載及備用容量率, government open data dataset 8307.",
                      "link": "https://data.gov.tw/dataset/8307", "source_type": "dataset",
                      "access_date": ACCESS_DATE, "confidence_level": "high (official operator data)",
-                     "source_locator": "pypsa_tw/data/official/taipower_peak_load_by_year.csv",
+                     "source_locator": "data/official/taipower_peak_load_by_year.csv",
                      "linked_attribute": ["peak_load", "reserve_margin"]}],
         "attributes": [a for _, r in peak.iterrows() for a in (
             {"attribute_name": "peak_load", "value": f"{int(r['尖峰負載(MW)'])} MW", "time_index": str(int(r['年度'])),
@@ -310,7 +309,7 @@ def _ts_sources(group):
         r = reg.loc[sid]
         cite = "; ".join(x for x in [r.title, r.title_en, r.publisher, r.edition, f"published {r.published}" if r.published else ""] if x)
         if r.local_file:
-            cite += f"; local copy pypsa_tw/data/{r.local_file}" + (f" (SHA-256 {r.sha256})" if r.sha256 else "")
+            cite += f"; local copy data/{r.local_file}" + (f" (SHA-256 {r.sha256})" if r.sha256 else "")
         locators = sorted(set(x for x in g.locator if isinstance(x, str) and x))
         if locators and not all(x.startswith("column") for x in locators):
             cite += "; locations: " + " | ".join(locators)
@@ -364,7 +363,7 @@ def timeseries_records():
             "attributes": _ts_attributes(g.assign(series="installed_capacity")),
             "metadata": metadata(["capacity", "history" if "history" in kinds else "target",
                                   series.replace("capacity_", "")],
-                                 "Built from pypsa_tw/data/taiwan_timeseries.csv."),
+                                 "Built from data/taiwan_timeseries.csv."),
             "harmonisation_record": {"mapping_status": "to_be_mapped"},
         })
     groups = [
@@ -396,7 +395,7 @@ def timeseries_records():
                       "scope_notes": "Attribute notes say whether each value is history, projection or target."},
             "sources": _ts_sources(g),
             "attributes": _ts_attributes(g),
-            "metadata": metadata(["history_projection", category], "Built from pypsa_tw/data/taiwan_timeseries.csv."),
+            "metadata": metadata(["history_projection", category], "Built from data/taiwan_timeseries.csv."),
             "harmonisation_record": {"mapping_status": "to_be_mapped"},
         })
     return tech, carrier
@@ -419,8 +418,8 @@ def write(path, records, header):
 
 def main():
     header = (f"# MOTEL unmapped staging records (schema {SCHEMA_VERSION}), exported by "
-              f"pypsa_tw/data/export_motel.py on {ACCESS_DATE}.\n"
-              "# Raw values with provenance, before MOTEL harmonisation. See pypsa_tw/data/README.md.\n\n")
+              f"data/export_motel.py on {ACCESS_DATE}.\n"
+              "# Raw values with provenance, before MOTEL harmonisation. See data/README.md.\n\n")
     write(OUT / "unmapped_entity" / "unmapped_entities_taiwan_fleet.yaml", fleet_records(), header)
     write(OUT / "unmapped_entity" / "unmapped_entities_taiwan_solar_approvals.yaml", solar_approval_records(), header)
     write(OUT / "unmapped_carrier_data" / "unmapped_carrier_data_taiwan_electricity.yaml",

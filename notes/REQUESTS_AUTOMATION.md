@@ -4,7 +4,7 @@ Status: **design only, not built** (2026-09-24). The request page (`docs/request
 
 ## Goal
 
-A visitor asks for a scenario on the website. The request ends up as a file in a GitHub repository, without the visitor needing a GitHub account or seeing GitHub, and without anyone copying emails by hand. Later, the same entry point can feed automatic solving (sandbox Phase 2, `pypsa_tw/sandbox/PHASE2_LIVE_SOLVING.md`).
+A visitor asks for a scenario on the website. The request ends up as a file in a GitHub repository, without the visitor needing a GitHub account or seeing GitHub, and without anyone copying emails by hand. Later, the same entry point can feed automatic solving (sandbox Phase 2, `sandbox/PHASE2_LIVE_SOLVING.md`).
 
 ## Options
 
@@ -45,12 +45,12 @@ docs/request.html ──POST JSON──▶ Cloudflare Worker (free plan) ──G
   "name": "",
   "organisation": "",
   "scenario": {"base": "today", "levers": {"add_offwind_GW": 12, "nuclear_restart": ["maanshan"]}},
-  "sandbox_link": "https://bartonchentw.github.io/pypsa-earth/sandbox.html?add_offwind_GW=12&nuclear_restart=maanshan",
+  "sandbox_link": "https://bartonchentw.github.io/taiwan-energy-model/sandbox.html?add_offwind_GW=12&nuclear_restart=maanshan",
   "page_language": "en"
 }
 ```
 
-`scenario` uses the sandbox spec format (`pypsa_tw/sandbox/levers.py`), so it can be passed straight to `run_scenario.py`.
+`scenario` uses the sandbox spec format (`sandbox/levers.py`), so it can be passed straight to `run_scenario.py`.
 
 ### Worker code (sketch, to review before deploying)
 
@@ -138,17 +138,17 @@ export default {
    - Check the JSON file in the private repo and the GitHub email.
    - Check that a request from another origin is rejected.
 
-Keep the Worker code in the public repo under `pypsa_tw/requests_worker/` (no secrets in it) so it is versioned.
+Keep the Worker code in the public repo under `requests_worker/` (no secrets in it) so it is versioned.
 
 ## Handling a request
 
 1. **Read it:** open the new file in `pypsa-tw-requests/requests/`.
 2. **Solve it:** if `scenario` is set:
    ```powershell
-   & .\.venv\python.exe pypsa_tw\sandbox\run_scenario.py --levers '<levers JSON from the file>'
+   & .\.venv\python.exe sandbox\run_scenario.py --levers '<levers JSON from the file>'
    ```
    Otherwise, turn the question into levers.
-3. **Publish:** run `python pypsa_tw/viewer/export_dashboard_data.py`, then commit and push the website.
+3. **Publish:** run `python viewer/export_dashboard_data.py`, then commit and push the website.
 4. **Close it:** set `"status": "done"` and add `"result_link"` in the request file, then reply to the requester by email with the sandbox link.
 
 Later (sandbox Phase 2), a scheduled job can run steps 2–4 for new files automatically, still solving one request at a time, off the shared workstation.

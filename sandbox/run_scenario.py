@@ -1,8 +1,8 @@
 """
 Solve one sandbox scenario: a base case plus a lever spec (see levers.py).
 
-    python pypsa_tw/sandbox/run_scenario.py spec.json
-    python pypsa_tw/sandbox/run_scenario.py --levers '{"add_offwind_GW": 10}'
+    python sandbox/run_scenario.py spec.json
+    python sandbox/run_scenario.py --levers '{"add_offwind_GW": 10}'
 
 Loads the base case's prepared network, applies the levers in memory, then
 solves it with ``scripts/solve_network.py`` (its ``prepare_network`` and
@@ -31,8 +31,11 @@ import pypsa
 import yaml
 
 HERE = Path(__file__).resolve().parent
-REPO = HERE.parents[1]
 sys.path.insert(0, str(HERE))
+sys.path.insert(0, str(HERE.parent))
+from paths import MODEL_DIR, resolve  # noqa: E402
+
+REPO = MODEL_DIR  # model outputs (networks/, results/, logs/) and scripts/
 sys.path.insert(0, str(REPO / "scripts"))
 
 from levers import (  # noqa: E402
@@ -55,7 +58,7 @@ def base_config(base):
     """The merged config the base run was solved with."""
     cfg = {}
     for rel in BASES[base]["configs"]:
-        cfg = _deep_update(cfg, yaml.safe_load((REPO / rel).read_text(encoding="utf-8")))
+        cfg = _deep_update(cfg, yaml.safe_load(resolve(rel).read_text(encoding="utf-8")))
     return _deep_update(cfg, BASES[base]["overrides"])
 
 

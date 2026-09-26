@@ -1,5 +1,5 @@
-# MOTEL unmapped staging records (schema 0.2.0), exported by pypsa_tw/data/export_motel.py on 2026-09-24.
-# Raw values with provenance, before MOTEL harmonisation. See pypsa_tw/data/README.md.
+# MOTEL unmapped staging records (schema 0.2.0), exported by data/export_motel.py on 2026-09-24.
+# Raw values with provenance, before MOTEL harmonisation. See data/README.md.
 
 - schema_version: 0.2.0
   carrier_name: Electricity
@@ -21,7 +21,7 @@
     source_type: dataset
     access_date: '2026-09-24'
     confidence_level: high (official operator data)
-    source_locator: pypsa_tw/data/official/taipower_peak_load_by_year.csv
+    source_locator: data/official/taipower_peak_load_by_year.csv
     linked_attribute:
     - peak_load
     - reserve_margin
@@ -379,13 +379,13 @@
     time_index: '2025'
     attribute_notes: Unit %.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - peak_load
     - demand
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Used to check the calibrated demand profile.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -439,13 +439,13 @@
     time_index: '2023'
     attribute_notes: Unit TWh. 43.8% of Taipower-system generation in 2023
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - generation
     - taipower
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Values were taken from search summaries; verify against the source before reuse.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -496,13 +496,13 @@
     time_index: '2024'
     attribute_notes: Unit %. Includes hydro and waste/biogas from cogeneration
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - generation
     - taipower
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Values were taken from search summaries; verify against the source before reuse.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -538,13 +538,13 @@
     time_index: '2025'
     attribute_notes: Unit TWh.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - generation
     - taiwan
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Values were taken from search summaries; verify against the source before reuse.
   harmonisation_record:
     mapping_status: to_be_mapped
@@ -625,13 +625,13 @@
     time_index: '2025'
     attribute_notes: Unit %.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - generation
     - taiwan
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
+    - '2026-09-24: exported by data/export_motel.py'
     - Values were taken from search summaries; verify against the source before reuse.
   harmonisation_record:
     mapping_status: to_be_mapped

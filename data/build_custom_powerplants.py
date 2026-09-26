@@ -1,7 +1,7 @@
 """
-Build ``data/custom_powerplants.csv`` for Taiwan from official sources.
+Build ``data/fleet/custom_powerplants.csv`` for Taiwan from official sources.
 
-Inputs (all in ``pypsa_tw/data/``):
+Inputs (all in ``data/``):
 
 - ``official/taipower_units_<date>.json``: Taipower real-time unit list,
   including purchased power from IPPs (https://data.gov.tw/dataset/8931).
@@ -26,7 +26,7 @@ biomass (68 MW in total).
 
 Run from the repository root:
 
-    python pypsa_tw/data/build_custom_powerplants.py
+    python data/build_custom_powerplants.py
 
 Then set ``electricity.custom_powerplants: replace`` in the Taiwan config.
 """
@@ -39,8 +39,10 @@ import geopandas as gpd
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent
-REPO = HERE.parents[1]
-OUTPUT = REPO / "data" / "custom_powerplants.csv"
+sys.path.insert(0, str(HERE.parent))
+from paths import MODEL_DIR as REPO  # noqa: E402  (model checkout: GADM)
+
+OUTPUT = HERE / "fleet" / "custom_powerplants.csv"
 
 SUBTOTAL = "小計"
 SKIP_TYPES = {"儲能負載(Energy Storage System Load)</b>"}

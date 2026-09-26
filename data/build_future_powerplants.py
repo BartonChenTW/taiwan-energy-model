@@ -1,7 +1,7 @@
 """
 Build future Taiwan power plant files (2030, 2034) from today's fleet.
 
-Starts from ``data/custom_powerplants.csv`` (today's fleet, built by
+Starts from ``data/fleet/custom_powerplants.csv`` (today's fleet, built by
 ``build_custom_powerplants.py``) and applies the government plan in the MOEA
 National Power Supply-Demand Report 113年度 (FY2024; 全國電力資源供需報告,
 https://data.gov.tw/dataset/16437; source id ``moea_psd_fy2024`` in ``sources.csv``):
@@ -23,10 +23,10 @@ Nuclear stays at 0, as in the report.
 
 Run from the repository root:
 
-    python pypsa_tw/data/build_future_powerplants.py
+    python data/build_future_powerplants.py
 
-Writes ``data/custom_powerplants_tw<year>.csv`` and
-``pypsa_tw/data/future_fleet_summary.csv``. Point a config at a file with
+Writes ``data/fleet/custom_powerplants_tw<year>.csv`` and
+``data/future_fleet_summary.csv``. Point a config at a file with
 ``electricity.custom_powerplants_file``.
 """
 
@@ -35,8 +35,7 @@ from pathlib import Path
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent
-REPO = HERE.parents[1]
-BASE = REPO / "data" / "custom_powerplants.csv"
+BASE = HERE / "fleet" / "custom_powerplants.csv"
 SCHEDULE = HERE / "official" / "moea_thermal_schedule_2024_2034.csv"
 TARGETS = HERE / "official" / "taiwan_projections_targets.csv"
 YEARS = [2030, 2034]
@@ -132,7 +131,7 @@ def main():
     summary = []
     for year in YEARS:
         ppl, log = build(year, base, schedule, targets)
-        out = REPO / "data" / f"custom_powerplants_tw{year}.csv"
+        out = HERE / "fleet" / f"custom_powerplants_tw{year}.csv"
         ppl.to_csv(out)
         by_type = ppl.groupby("Fueltype").Capacity.sum() / 1000
         print(f"{year}: {len(ppl)} plants, {ppl.Capacity.sum() / 1000:.2f} GW -> {out.relative_to(REPO)}")

@@ -1,5 +1,5 @@
-# MOTEL unmapped staging records (schema 0.2.0), exported by pypsa_tw/data/export_motel.py on 2026-09-24.
-# Raw values with provenance, before MOTEL harmonisation. See pypsa_tw/data/README.md.
+# MOTEL unmapped staging records (schema 0.2.0), exported by data/export_motel.py on 2026-09-24.
+# Raw values with provenance, before MOTEL harmonisation. See data/README.md.
 
 - schema_version: 0.2.0
   technology_name: Hard coal steam turbine - Taiwan national capacity 2005-2025 (history)
@@ -19,7 +19,7 @@
   sources:
   - source_name: moeaea_capacity_annual
     source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
-      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      2005-2025; published dataset updated 2026-09-23; local copy data/official/moeaea_capacity_by_source_annual.csv
       (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
@@ -113,15 +113,15 @@
     time_index: '2025'
     attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃煤_全國(統計數值).
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - capacity
     - history
     - coal
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -143,7 +143,7 @@
   sources:
   - source_name: moeaea_capacity_annual
     source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
-      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      2005-2025; published dataset updated 2026-09-23; local copy data/official/moeaea_capacity_by_source_annual.csv
       (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
@@ -237,15 +237,15 @@
     time_index: '2025'
     attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃氣_全國(統計數值).
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - capacity
     - history
     - gas
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -266,7 +266,7 @@
   sources:
   - source_name: moeaea_capacity_annual
     source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
-      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      2005-2025; published dataset updated 2026-09-23; local copy data/official/moeaea_capacity_by_source_annual.csv
       (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
@@ -360,15 +360,15 @@
     time_index: '2025'
     attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 火力_燃油_全國(統計數值).
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - capacity
     - history
     - oil
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -389,7 +389,7 @@
   sources:
   - source_name: moeaea_capacity_annual
     source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
-      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      2005-2025; published dataset updated 2026-09-23; local copy data/official/moeaea_capacity_by_source_annual.csv
       (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
@@ -483,15 +483,15 @@
     time_index: '2025'
     attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 核能_全國(統計數值).
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - capacity
     - history
     - nuclear
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -512,7 +512,7 @@
   sources:
   - source_name: moeaea_capacity_annual
     source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
-      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      2005-2025; published dataset updated 2026-09-23; local copy data/official/moeaea_capacity_by_source_annual.csv
       (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
@@ -524,7 +524,7 @@
     source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
       of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
       actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
-      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      2026-06-09; local copy data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
       03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Table 3-1, p. 19 (PDF
       p. 23)'
     source_type: dataset
@@ -628,15 +628,15 @@
     time_index: '2032'
     attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23).
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - capacity
     - history
     - solar
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -657,7 +657,7 @@
   sources:
   - source_name: moeaea_capacity_annual
     source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
-      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      2005-2025; published dataset updated 2026-09-23; local copy data/official/moeaea_capacity_by_source_annual.csv
       (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
@@ -751,15 +751,15 @@
     time_index: '2025'
     attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_風力_全國(統計數值).
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - capacity
     - history
     - wind
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -782,7 +782,7 @@
     source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
       of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
       actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
-      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      2026-06-09; local copy data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
       03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Table 3-1, p. 19 (PDF
       p. 23)'
     source_type: dataset
@@ -802,15 +802,15 @@
     time_index: '2032'
     attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23).
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - capacity
     - target
     - offshore_wind
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -833,7 +833,7 @@
     source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
       of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
       actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
-      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      2026-06-09; local copy data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
       03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Table 3-1, p. 19 (PDF
       p. 23)'
     source_type: dataset
@@ -853,15 +853,15 @@
     time_index: '2032'
     attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23).
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - capacity
     - target
     - onshore_wind
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -882,7 +882,7 @@
   sources:
   - source_name: moeaea_capacity_annual
     source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
-      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      2005-2025; published dataset updated 2026-09-23; local copy data/official/moeaea_capacity_by_source_annual.csv
       (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
@@ -894,7 +894,7 @@
     source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
       of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
       actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
-      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      2026-06-09; local copy data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
       03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Table 3-1, p. 19 (PDF
       p. 23)'
     source_type: dataset
@@ -998,15 +998,15 @@
     time_index: '2032'
     attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23).
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - capacity
     - history
     - hydro
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -1027,7 +1027,7 @@
   sources:
   - source_name: moeaea_capacity_annual
     source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
-      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      2005-2025; published dataset updated 2026-09-23; local copy data/official/moeaea_capacity_by_source_annual.csv
       (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
@@ -1121,15 +1121,15 @@
     time_index: '2025'
     attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 抽蓄水力_全國(統計數值).
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - capacity
     - history
     - pumped_storage
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -1150,7 +1150,7 @@
   sources:
   - source_name: moeaea_capacity_annual
     source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
-      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      2005-2025; published dataset updated 2026-09-23; local copy data/official/moeaea_capacity_by_source_annual.csv
       (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
@@ -1162,7 +1162,7 @@
     source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
       of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
       actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
-      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      2026-06-09; local copy data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
       03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Table 3-1, p. 19 (PDF
       p. 23)'
     source_type: dataset
@@ -1266,15 +1266,15 @@
     time_index: '2032'
     attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23).
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - capacity
     - history
     - geothermal
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -1295,7 +1295,7 @@
   sources:
   - source_name: moeaea_capacity_annual
     source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
-      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      2005-2025; published dataset updated 2026-09-23; local copy data/official/moeaea_capacity_by_source_annual.csv
       (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
@@ -1389,15 +1389,15 @@
     time_index: '2025'
     attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_生質能_全國(統計數值).
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - capacity
     - history
     - biomass
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -1418,7 +1418,7 @@
   sources:
   - source_name: moeaea_capacity_annual
     source_description: 發電裝置容量年資料; Annual installed generating capacity; 經濟部能源署 Energy Administration;
-      2005-2025; published dataset updated 2026-09-23; local copy pypsa_tw/data/official/moeaea_capacity_by_source_annual.csv
+      2005-2025; published dataset updated 2026-09-23; local copy data/official/moeaea_capacity_by_source_annual.csv
       (SHA-256 1916e1518df20fe23fa7fe7256916036e53d5d42f3d5cf60096ee536c93dcb89)
     source_type: dataset
     access_date: '2026-09-24'
@@ -1512,15 +1512,15 @@
     time_index: '2025'
     attribute_notes: History. Unit GW. Source moeaea_capacity_annual, column 再生能源_廢棄物_全國(統計數值).
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - capacity
     - history
     - waste
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -1543,7 +1543,7 @@
     source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
       of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
       actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
-      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      2026-06-09; local copy data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
       03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Table 3-1, p. 19 (PDF
       p. 23)'
     source_type: dataset
@@ -1563,15 +1563,15 @@
     time_index: '2032'
     attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23).
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - capacity
     - target
     - biomass_waste
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -1594,7 +1594,7 @@
     source_description: '全國電力資源供需報告（113年度）; National Power Supply-Demand Report (FY2024); 經濟部 Ministry
       of Economic Affairs; prepared by 經濟部能源署 Energy Administration; 113年度 (ROC year 113 = 2024): 2024
       actuals, outlook 2025-2034; published 2025 (the text cites data of 2025-08-15); open-data file updated
-      2026-06-09; local copy pypsa_tw/data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
+      2026-06-09; local copy data/official/moea_power_supply_demand_report_20260609.pdf (SHA-256
       03b879cf1d57d38e4ec6199274dae3c17853498f67473d63435a21d18bf8fc84); locations: Table 3-1, p. 19 (PDF
       p. 23)'
     source_type: dataset
@@ -1614,14 +1614,14 @@
     time_index: '2032'
     attribute_notes: Target. Unit GW. Source moea_psd_fy2024, Table 3-1, p. 19 (PDF p. 23).
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - capacity
     - target
     - renewables
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Built from pypsa_tw/data/taiwan_timeseries.csv.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Built from data/taiwan_timeseries.csv.
   harmonisation_record:
     mapping_status: to_be_mapped

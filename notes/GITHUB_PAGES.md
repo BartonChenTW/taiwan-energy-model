@@ -34,14 +34,14 @@ The text pages hold both languages in the HTML (`.t-en` / `.t-zh`), and `pages.j
 
 GitHub's official Pages documentation says branch publishing can use either the repository root `/` or `/docs` folder as the publishing source.
 
-The live site is https://bartonchentw.github.io/pypsa-earth/ (built from `/docs` on `pypsa-taiwan-dev`).
+The live site is https://bartonchentw.github.io/taiwan-energy-model/ (built from `/docs` on `pypsa-taiwan-dev`).
 
 ## Refresh the data after new runs
 
 The page reads JSON files generated from the solved networks, so nothing is typed in by hand:
 
 ```powershell
-python pypsa_tw/viewer/export_dashboard_data.py
+python viewer/export_dashboard_data.py
 ```
 
 This reads every `results/<run>/networks/*.nc` (skipping `results/_archive`) and writes:
@@ -55,22 +55,22 @@ Results are exported as aggregated numbers. The model data page also publishes m
 
 ## Model data page
 
-`docs/model-data.html` reads `docs/data/model_data.json`, written by `pypsa_tw/viewer/export_model_data.py` (run on its own or through `export_dashboard_data.py`). It covers:
+`docs/model-data.html` reads `docs/data/model_data.json`, written by `viewer/export_model_data.py` (run on its own or through `export_dashboard_data.py`). It covers:
 
 - **Grid:** the base network of the Test 2 run (`networks/<run>/elec.nc`) and its 6 regions (`elec_s_6_ec.nc`, region shapes from `resources/<run>/bus_regions/`). Regions are named after the two most populous county seats inside them.
 - **Plants:** `resources/<run>/powerplants.csv` of today's fleet and the 2030 and 2034 plans. Plants are placed in the base run's regions by location, because each run clusters its own grid.
 - **Renewable potential:** `resources/<run>/renewable_profiles/profile_*.nc` (floating wind from the pathway D run) and the land-eligibility settings from the merged config.
 - **Costs:** `resources/tw_path2050_D_w2013_6b/costs_{2030,2040,2050}{,_sec}.csv`, plus the fork's derived options (gas with capture, hydrogen and ammonia turbines).
-- **PyPSA vs Taiwan costs:** `pypsa_tw/data/taiwan_cost_benchmarks.csv` (feed-in tariff parameters of 2026 and, for offshore wind, 2023; Taipower's actual cost by source), compared with the PyPSA rows of cost year 2030.
-- **Sources:** every section lists its sources from `pypsa_tw/data/sources.csv` (ids in `SECTION_SOURCES`), and each plant carries its own sources for capacity, location and year (Taipower unit list, OpenStreetMap object, powerplantmatching, news reports, the MOEA plan).
+- **PyPSA vs Taiwan costs:** `data/taiwan_cost_benchmarks.csv` (feed-in tariff parameters of 2026 and, for offshore wind, 2023; Taipower's actual cost by source), compared with the PyPSA rows of cost year 2030.
+- **Sources:** every section lists its sources from `data/sources.csv` (ids in `SECTION_SOURCES`), and each plant carries its own sources for capacity, location and year (Taipower unit list, OpenStreetMap object, powerplantmatching, news reports, the MOEA plan).
 
 ## Taiwan energy data page
 
 `docs/taiwan-data.html` lists key figures and data sources for Taiwan's electricity system. The exporter builds it into `docs/data/taiwan_catalog.json` from:
 
-- `pypsa_tw/data/taiwan_key_facts.csv`: figures with value, unit, year, scope, source, link and evidence. Evidence is `downloaded`, `page_opened`, `search_summary` (still to verify) or `model_output`.
-- `pypsa_tw/data/taiwan_energy_catalog.csv`: data sources with provider, content, format, update frequency, licence, link and model use (`used`, `candidate`, `reference`).
-- `pypsa_tw/data/official/link_check_<date>.csv`: HTTP status of every link at the last check.
+- `data/taiwan_key_facts.csv`: figures with value, unit, year, scope, source, link and evidence. Evidence is `downloaded`, `page_opened`, `search_summary` (still to verify) or `model_output`.
+- `data/taiwan_energy_catalog.csv`: data sources with provider, content, format, update frequency, licence, link and model use (`used`, `candidate`, `reference`).
+- `data/official/link_check_<date>.csv`: HTTP status of every link at the last check.
 
 To add a figure or a source, add a row to the CSV and rerun the exporter.
 
@@ -88,7 +88,7 @@ Then open http://127.0.0.1:8765/. Add `?lang=zh` for Traditional Chinese; `dashb
 
 `docs/sandbox.html` (with `docs/assets/sandbox.js`) lets visitors explore what-if scenarios. In Phase 1 every scenario is pre-computed:
 
-1. Solve the grid: `python pypsa_tw/sandbox/batch.py`, or one scenario with `python pypsa_tw/sandbox/run_scenario.py --levers '{...}'`. See `AGENTS.md`.
+1. Solve the grid: `python sandbox/batch.py`, or one scenario with `python sandbox/run_scenario.py --levers '{...}'`. See `AGENTS.md`.
 2. Rerun the exporter. It writes `docs/data/sandbox/index.json` (scenarios, lever ranges, metrics and deltas against the base case) and `docs/data/sandbox/cases/<hash>.json` (the usual case format plus the spec). That is about 0.3 MB per scenario, about 10 MB for the grid.
 
 **How the page works:**
@@ -103,7 +103,7 @@ Then open http://127.0.0.1:8765/. Add `?lang=zh` for Traditional Chinese; `dashb
 
 `docs/energy-security.html` (with `docs/assets/security.js`) shows the blockade cases from the sandbox's blockade mode.
 
-1. Solve them with `python pypsa_tw/sandbox/batch.py --security`: 28 cases, about 2 minutes. After a model change, add `--force`.
+1. Solve them with `python sandbox/batch.py --security`: 28 cases, about 2 minutes. After a model change, add `--force`.
 2. Rerun the exporter. `export_security` writes:
    - `docs/data/security/index.json`: cases, metrics, and each case's no-blockade reference in the same window;
    - `docs/data/security/cases/<hash>.json`: daily supply by source, stock levels and unmet demand.
@@ -122,22 +122,22 @@ Both identifiers are designed to be public. Until `FORM` is set, the page says o
 
 **How a request flows:**
 - The sandbox links to the request page with the current levers, so a request carries the exact spec (`scenario`, JSON) and a sandbox link.
-- To answer one, solve it with `pypsa_tw/sandbox/run_scenario.py --levers '...'`, export, push, and reply with the sandbox link.
+- To answer one, solve it with `sandbox/run_scenario.py --levers '...'`, export, push, and reply with the sandbox link.
 
 ## Cache busting
 
-GitHub Pages lets browsers cache files for 10 minutes or longer, so visitors could keep an old script after a change. `pypsa_tw/viewer/stamp_assets.py` gives each CSS/JS link in `docs/*.html` a content hash (`assets/sandbox.js?v=d1d94db0`), so a changed file gets a new URL.
+GitHub Pages lets browsers cache files for 10 minutes or longer, so visitors could keep an old script after a change. `viewer/stamp_assets.py` gives each CSS/JS link in `docs/*.html` a content hash (`assets/sandbox.js?v=d1d94db0`), so a changed file gets a new URL.
 
 The exporter runs it at the end. After editing only a page's JS or CSS, run it by hand:
 
 ```powershell
-python pypsa_tw/viewer/stamp_assets.py
+python viewer/stamp_assets.py
 ```
 
 ## Publish
 
 ```powershell
-git add docs pypsa_tw
+git add docs data
 git commit -m "Refresh Taiwan dashboard data"
 git push origin pypsa-taiwan-dev
 ```
@@ -149,4 +149,4 @@ GitHub Pages rebuilds within a minute or two of the push.
 - Plotly is loaded from a CDN, so the browser needs internet access.
 - The network map uses Plotly `scattergeo`, which needs no map tiles or WebGL.
 - Chart colours follow a palette validated for colour-vision deficiency in light and dark mode. Every chart has a table view.
-- For deeper analysis, use `pypsa_tw/viewer/simulation_viewer.ipynb` and `pypsa_tw/viewer/raw_input_viewer.ipynb`.
+- For deeper analysis, use `viewer/simulation_viewer.ipynb` and `viewer/raw_input_viewer.ipynb`.

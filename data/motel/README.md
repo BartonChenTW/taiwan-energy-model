@@ -15,10 +15,10 @@ All records are `mapping_status: to_be_mapped`. The values are raw, with provena
 ## Regenerate and validate
 
 ```powershell
-python pypsa_tw/data/build_custom_powerplants.py
-python pypsa_tw/data/build_timeseries.py
-python pypsa_tw/data/export_motel.py
-python pypsa_tw/data/motel/tools/validate_unmapped.py pypsa_tw/data/motel/unmapped_entity pypsa_tw/data/motel/unmapped_carrier_data --schema-dir pypsa_tw/data/motel/tools/schema --strict
+python data/build_custom_powerplants.py
+python data/build_timeseries.py
+python data/export_motel.py
+python data/motel/tools/validate_unmapped.py data/motel/unmapped_entity data/motel/unmapped_carrier_data --schema-dir data/motel/tools/schema --strict
 ```
 
 ## Vendored MOTEL files

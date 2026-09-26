@@ -1,16 +1,16 @@
 # Scenario overlay: sector-coupled pathway 2030 -> 2040 -> 2050 (myopic, brownfield).
 # Use on top of the Test 2 config, with the Gurobi overlay for local runs:
-#   snakemake -j 1 solve_sector_networks_myopic --configfile pypsa_tw/config/config_tw_test2_highs.yaml pypsa_tw/config/scenarios/sector_path_2050.yaml pypsa_tw/config/scenarios/solver_gurobi_local.yaml
+#   snakemake -j 1 solve_sector_networks_myopic --configfile config/config_tw_test2_highs.yaml config/scenarios/sector_path_2050.yaml config/scenarios/solver_gurobi_local.yaml
 #
-# Starting point: the official 2030 system (data/custom_powerplants_tw2030.csv, i.e. today's
+# Starting point: the official 2030 system (data/fleet/custom_powerplants_tw2030.csv, i.e. today's
 # fleet plus the MOEA 113年度 thermal schedule and 2030 renewable targets). Each horizon then
 # invests where it is cheapest under a CO2 cap, keeps what earlier horizons built, and retires
 # plants at the end of their technical lifetime (technology-data lifetimes from their DateIn).
 #
-# Assumptions (see pypsa_tw/log.md and REVIEW_CHECKLIST.md):
+# Assumptions (see notes/log.md and REVIEW_CHECKLIST.md):
 # - CO2: straight line from the model's 2025 reference (258.9 Mt, results of sector_2025_24h)
 #   to net zero in 2050: 80% in 2030, 40% in 2040, 0% in 2050.
-# - Demand: Taiwan rows in data/demand/*_cagr.csv (pypsa_tw/data/build_sector_growth_tw.py):
+# - Demand: Taiwan rows in data/demand/*_cagr.csv (data/build_sector_growth_tw.py):
 #   electricity +2.5%/yr, electronics industry +2.5%/yr, other demand flat.
 # - Buildable: solar (incl. rooftop), onshore and offshore wind, batteries, gas (OCGT, CCGT),
 #   new nuclear at the Lungmen and Maanshan sites, transmission (cost-optimal), and PyPSA-Earth's
@@ -37,7 +37,7 @@ scenario:
   demand: ["AB"]
 
 electricity:
-  custom_powerplants_file: data/custom_powerplants_tw2030.csv
+  custom_powerplants_file: ../taiwan-energy-model/data/fleet/custom_powerplants_tw2030.csv
   powerplants_filter: (DateOut >= 2030 or DateOut != DateOut) and (DateIn <= 2030 or DateIn != DateIn)
   extendable_carriers:
     Generator: [solar, onwind, offwind-ac, offwind-dc, OCGT, CCGT, nuclear]

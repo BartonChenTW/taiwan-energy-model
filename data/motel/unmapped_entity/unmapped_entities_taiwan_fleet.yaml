@@ -1,5 +1,5 @@
-# MOTEL unmapped staging records (schema 0.2.0), exported by pypsa_tw/data/export_motel.py on 2026-09-24.
-# Raw values with provenance, before MOTEL harmonisation. See pypsa_tw/data/README.md.
+# MOTEL unmapped staging records (schema 0.2.0), exported by data/export_motel.py on 2026-09-24.
+# Raw values with provenance, before MOTEL harmonisation. See data/README.md.
 
 - schema_version: 0.2.0
   technology_name: Natural gas combined cycle (CCGT) - Taiwan fleet 2026-09-24
@@ -33,7 +33,7 @@
     reference_year: 2026
     assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
       except new units added with sourced ratings.
-    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+    source_locator: data/official/taipower_units_20260924.json, field 裝置容量(MW)
   - source_name: e-info.org.tw_243153
     link: https://e-info.org.tw/node/243153
     source_type: article
@@ -58,7 +58,7 @@
   - attribute_name: number_of_plants
     value: 14
     time_index: '2026-09-24'
-    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+    attribute_notes: Plants or plant groups as aggregated in data/fleet/custom_powerplants.csv.
   - attribute_name: installed_capacity_plant
     value: 7544.5 MW
     time_index: '2026-09-24'
@@ -146,14 +146,14 @@
     attribute_notes: 'Unit 興達新CC#3(註10) (not yet counted by Taipower): 1,300 MW per new Hsinta unit (unit
       1 is listed at 1,300.0 MW); in trial grid operation; 570.5 MW net at the snapshot'
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - power_plant_fleet
     - ccgt
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Same data as data/fleet/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -188,7 +188,7 @@
     reference_year: 2026
     assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
       except new units added with sourced ratings.
-    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+    source_locator: data/official/taipower_units_20260924.json, field 裝置容量(MW)
   attributes:
   - attribute_name: installed_capacity
     value: 180.9 MW
@@ -197,21 +197,21 @@
   - attribute_name: number_of_plants
     value: 1
     time_index: '2026-09-24'
-    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+    attribute_notes: Plants or plant groups as aggregated in data/fleet/custom_powerplants.csv.
   - attribute_name: installed_capacity_plant
     value: 180.9 MW
     time_index: '2026-09-24'
     attribute_notes: 'Plant: Tunghsiao GT; location 24.4906 N, 120.6714 E (OSM w181171613); commissioning
       year 2025 (placeholder 2025).'
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - power_plant_fleet
     - ocgt
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Same data as data/fleet/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -246,7 +246,7 @@
     reference_year: 2026
     assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
       except new units added with sourced ratings.
-    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+    source_locator: data/official/taipower_units_20260924.json, field 裝置容量(MW)
   attributes:
   - attribute_name: installed_capacity
     value: 11358.6 MW
@@ -255,7 +255,7 @@
   - attribute_name: number_of_plants
     value: 6
     time_index: '2026-09-24'
-    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+    attribute_notes: Plants or plant groups as aggregated in data/fleet/custom_powerplants.csv.
   - attribute_name: installed_capacity_plant
     value: 5500.0 MW
     time_index: '2026-09-24'
@@ -287,14 +287,14 @@
     attribute_notes: 'Plant: Hsinta coal; location 22.8523 N, 120.1973 E (OSM w226576525); commissioning
       year 1982 (powerplantmatching).'
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - power_plant_fleet
     - hard_coal
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Same data as data/fleet/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -329,7 +329,7 @@
     reference_year: 2026
     assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
       except new units added with sourced ratings.
-    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+    source_locator: data/official/taipower_units_20260924.json, field 裝置容量(MW)
   attributes:
   - attribute_name: installed_capacity
     value: 1000.0 MW
@@ -338,21 +338,21 @@
   - attribute_name: number_of_plants
     value: 1
     time_index: '2026-09-24'
-    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+    attribute_notes: Plants or plant groups as aggregated in data/fleet/custom_powerplants.csv.
   - attribute_name: installed_capacity_plant
     value: 1000.0 MW
     time_index: '2026-09-24'
     attribute_notes: 'Plant: Hsieh-ho; location 25.1569 N, 121.7387 E (OSM r10757938); commissioning year
       2025 (placeholder 2025).'
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - power_plant_fleet
     - oil
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Same data as data/fleet/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -387,7 +387,7 @@
     reference_year: 2026
     assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
       except new units added with sourced ratings.
-    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+    source_locator: data/official/taipower_units_20260924.json, field 裝置容量(MW)
   attributes:
   - attribute_name: installed_capacity
     value: 280.0 MW
@@ -396,21 +396,21 @@
   - attribute_name: number_of_plants
     value: 1
     time_index: '2026-09-24'
-    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+    attribute_notes: Plants or plant groups as aggregated in data/fleet/custom_powerplants.csv.
   - attribute_name: installed_capacity_plant
     value: 280.0 MW
     time_index: '2026-09-24'
     attribute_notes: 'Plant: Taichung GT (oil); location 24.2152 N, 120.4815 E (OSM w200691649); commissioning
       year 2025 (placeholder 2025).'
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - power_plant_fleet
     - oil
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Same data as data/fleet/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -445,7 +445,7 @@
     reference_year: 2026
     assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
       except new units added with sourced ratings.
-    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+    source_locator: data/official/taipower_units_20260924.json, field 裝置容量(MW)
   attributes:
   - attribute_name: installed_capacity
     value: 807.1 MW
@@ -454,7 +454,7 @@
   - attribute_name: number_of_plants
     value: 14
     time_index: '2026-09-24'
-    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+    attribute_notes: Plants or plant groups as aggregated in data/fleet/custom_powerplants.csv.
   - attribute_name: installed_capacity_plant
     value: 178.4 MW
     time_index: '2026-09-24'
@@ -526,14 +526,14 @@
     attribute_notes: 'Plant: Wanggong wind; location 23.9832 N, 120.3345 E (OSM r13131410); commissioning
       year 2010 (powerplantmatching).'
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - power_plant_fleet
     - wind
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Same data as data/fleet/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -568,7 +568,7 @@
     reference_year: 2026
     assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
       except new units added with sourced ratings.
-    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+    source_locator: data/official/taipower_units_20260924.json, field 裝置容量(MW)
   attributes:
   - attribute_name: installed_capacity
     value: 3380.0 MW
@@ -577,7 +577,7 @@
   - attribute_name: number_of_plants
     value: 11
     time_index: '2026-09-24'
-    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+    attribute_notes: Plants or plant groups as aggregated in data/fleet/custom_powerplants.csv.
   - attribute_name: installed_capacity_plant
     value: 605.2 MW
     time_index: '2026-09-24'
@@ -634,14 +634,14 @@
     attribute_notes: 'Plant: Changfang Xidao 1; location 24.1115 N, 120.2042 E (powerplantmatching); commissioning
       year 2022 (powerplantmatching).'
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - power_plant_fleet
     - wind
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Same data as data/fleet/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -676,7 +676,7 @@
     reference_year: 2026
     assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
       except new units added with sourced ratings.
-    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+    source_locator: data/official/taipower_units_20260924.json, field 裝置容量(MW)
   attributes:
   - attribute_name: installed_capacity
     value: 653.4 MW
@@ -685,7 +685,7 @@
   - attribute_name: number_of_plants
     value: 7
     time_index: '2026-09-24'
-    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+    attribute_notes: Plants or plant groups as aggregated in data/fleet/custom_powerplants.csv.
   - attribute_name: installed_capacity_plant
     value: 234.0 MW
     time_index: '2026-09-24'
@@ -722,14 +722,14 @@
     attribute_notes: 'Plant: Chukung; location 23.8181 N, 120.8569 E (OSM w225470941); commissioning year
       2025 (placeholder 2025).'
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - power_plant_fleet
     - hydro
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Same data as data/fleet/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -764,7 +764,7 @@
     reference_year: 2026
     assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
       except new units added with sourced ratings.
-    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+    source_locator: data/official/taipower_units_20260924.json, field 裝置容量(MW)
   attributes:
   - attribute_name: installed_capacity
     value: 1462.3 MW
@@ -773,7 +773,7 @@
   - attribute_name: number_of_plants
     value: 21
     time_index: '2026-09-24'
-    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+    attribute_notes: Plants or plant groups as aggregated in data/fleet/custom_powerplants.csv.
   - attribute_name: installed_capacity_plant
     value: 368.0 MW
     time_index: '2026-09-24'
@@ -880,14 +880,14 @@
     attribute_notes: 'Plant: Guanshan; location 23.9677 N, 121.4566 E (OSM w749136435); commissioning
       year 2025 (placeholder 2025).'
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - power_plant_fleet
     - hydro
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Same data as data/fleet/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -922,7 +922,7 @@
     reference_year: 2026
     assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
       except new units added with sourced ratings.
-    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+    source_locator: data/official/taipower_units_20260924.json, field 裝置容量(MW)
   - source_name: e-info_231256_Sun_Moon_Lake_pumped_storage
     source_description: '環境資訊中心: 缺水如何影響供電？水力發電那些小而重要的事'
     link: https://e-info.org.tw/node/231256
@@ -940,7 +940,7 @@
   - attribute_name: number_of_plants
     value: 2
     time_index: '2026-09-24'
-    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+    attribute_notes: Plants or plant groups as aggregated in data/fleet/custom_powerplants.csv.
   - attribute_name: installed_capacity_plant
     value: 1602.0 MW
     time_index: '2026-09-24'
@@ -956,14 +956,14 @@
     time_index: '2026-09-24'
     attribute_notes: Full-load hours for all 10 units with Sun Moon Lake at 732 m.
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - power_plant_fleet
     - hydro
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Same data as data/fleet/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -998,7 +998,7 @@
     reference_year: 2026
     assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
       except new units added with sourced ratings.
-    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+    source_locator: data/official/taipower_units_20260924.json, field 裝置容量(MW)
   attributes:
   - attribute_name: installed_capacity
     value: 852.7 MW
@@ -1007,21 +1007,21 @@
   - attribute_name: number_of_plants
     value: 1
     time_index: '2026-09-24'
-    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+    attribute_notes: Plants or plant groups as aggregated in data/fleet/custom_powerplants.csv.
   - attribute_name: installed_capacity_plant
     value: 852.7 MW
     time_index: '2026-09-24'
     attribute_notes: 'Plant: Batteries; location 24.1500 N, 120.6500 E (assumed); commissioning year 2025
       (placeholder 2025).'
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - power_plant_fleet
     - battery
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Same data as data/fleet/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
   harmonisation_record:
     mapping_status: to_be_mapped
 - schema_version: 0.2.0
@@ -1056,7 +1056,7 @@
     reference_year: 2026
     assessment_method: Downloaded JSON snapshot; units summed per plant. Units shown as '-' are not counted,
       except new units added with sourced ratings.
-    source_locator: pypsa_tw/data/official/taipower_units_20260924.json, field 裝置容量(MW)
+    source_locator: data/official/taipower_units_20260924.json, field 裝置容量(MW)
   - source_name: MOEAEA_solar_approvals_by_county
     link: https://data.gov.tw/dataset/16423
     source_type: dataset
@@ -1072,7 +1072,7 @@
   - attribute_name: number_of_plants
     value: 19
     time_index: '2026-09-24'
-    attribute_notes: Plants or plant groups as aggregated in data/custom_powerplants.csv.
+    attribute_notes: Plants or plant groups as aggregated in data/fleet/custom_powerplants.csv.
   - attribute_name: installed_capacity_plant
     value: 3601.5 MW
     time_index: '2026-09-24'
@@ -1169,13 +1169,13 @@
     attribute_notes: 'Plant: Solar 基隆市; location 25.1127 N, 121.7122 E (county representative point (GADM
       4.1)); commissioning year 2022 (approval-weighted year).'
   metadata:
-    related_project: PyPSA-Earth Taiwan (pypsa_tw)
+    related_project: Taiwan energy system model (taiwan-energy-model)
     tags:
     - taiwan
     - power_plant_fleet
     - solar
     other_notes:
-    - '2026-09-24: exported by pypsa_tw/data/export_motel.py'
-    - Same data as data/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
+    - '2026-09-24: exported by data/export_motel.py'
+    - Same data as data/fleet/custom_powerplants.csv used by the PyPSA-Earth Taiwan model.
   harmonisation_record:
     mapping_status: to_be_mapped

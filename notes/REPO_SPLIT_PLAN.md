@@ -10,8 +10,8 @@ that change at different speeds:
 | Part | Where | Changes |
 | --- | --- | --- |
 | Model code: PyPSA-Earth plus our patches | `scripts/`, `Snakefile`, `config.default.yaml`, six files in `data/` | Rarely; should follow upstream |
-| Taiwan data collection | `pypsa_tw/data/` (23 MB with `official/`) | Often; its own sources and checksums |
-| The study: configs, sandbox, exporter, notes | `pypsa_tw/config`, `sandbox`, `viewer`, `*.md` | Daily |
+| Taiwan data collection | `data/` (23 MB with `official/`) | Often; its own sources and checksums |
+| The study: configs, sandbox, exporter, notes | `config`, `sandbox`, `viewer`, `*.md` | Daily |
 | Website | `docs/` (18 MB) | Daily; large regenerated JSON |
 
 Keeping them together causes three problems:
@@ -46,10 +46,10 @@ On DDM06479 the model checkout stays where it is: `F:\Barton\Repositories\pypsa-
 pypsa-taiwan/
   model.lock            model fork URL + commit this study was run with
   paths.py              MODEL_DIR (env PYPSA_EARTH_DIR, default ../pypsa-earth)
-  config/               from pypsa_tw/config (Taiwan configs and scenario overlays)
-  data/                 from pypsa_tw/data (official/, curated CSV, sources.csv, builders)
+  config/               from config (Taiwan configs and scenario overlays)
+  data/                 from data (official/, curated CSV, sources.csv, builders)
   data/fleet/           the three custom power plant files, moved out of the model's data/
-  sandbox/  viewer/     from pypsa_tw/sandbox, pypsa_tw/viewer
+  sandbox/  viewer/     from sandbox, viewer
   docs/                 the website (GitHub Pages of this repository)
   notes/                log.md, TAIWAN_2050_PATHWAY.md, DATA_PROVENANCE.md, plans, checklists
   AGENTS.md             how to run the study
@@ -86,7 +86,7 @@ Each step ends in a working state and can be paused.
 
 - Tag the current state: `git tag pre-split-2026-09` on `pypsa-taiwan-dev`, then push the tag.
 - List what moves: every tracked file under `pypsa_tw/` and `docs/`, `AGENTS.md`, and the three
-  `data/custom_powerplants*.csv`.
+  `data/fleet/custom_powerplants*.csv`.
 - Record reference results to compare against after the split:
   - Test 1 (7 days, HiGHS);
   - the sandbox base case (objective 9,411,890,728);

@@ -7,10 +7,10 @@
     <meta name="title-en" content="Model Data" />
     <meta name="title-zh" content="模型資料" />
     <meta name="description" content="The detailed inputs of the Taiwan energy system model: grid and regions, every power plant, renewable potential and technology costs." />
-    <link rel="stylesheet" href="assets/site.css?v=91cd1540" />
+    <link rel="stylesheet" href="assets/site.css?v=04eba4a3" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-    <script src="assets/pages.js?v=b03ff9c1" defer></script>
-    <script src="assets/model-data.js?v=d0553639" defer></script>
+    <script src="assets/pages.js?v=3dee9410" defer></script>
+    <script src="assets/model-data.js?v=ff5206aa" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -49,7 +49,7 @@
           <p class="sub"><span class="t-en">This fork runs PyPSA-Earth, an open model with its own global data. Some inputs are PyPSA-Earth's defaults, some are Taiwan data this fork adds, and some are other sources or settings added here. Every source, cost row and setting on this page carries one of these tags:</span><span class="t-zh">本分支執行開源模型 PyPSA-Earth，它有自己的全球資料。部分輸入沿用 PyPSA-Earth 預設，部分為本分支加入的台灣資料，另有部分為本分支加入的其他來源或設定。本頁每個來源、成本項目與設定都標示以下其中一種：</span></p>
           <div class="origin-legend" id="md-origin-legend"></div>
           <div id="md-overview" class="table-wrap"></div>
-          <p class="note muted"><span class="t-en">Changes to PyPSA-Earth itself (code and data files) are listed in <a href="https://github.com/BartonChenTW/pypsa-earth/blob/pypsa-taiwan-dev/pypsa_tw/DATA_PROVENANCE.md" rel="noopener">pypsa_tw/DATA_PROVENANCE.md</a>.</span><span class="t-zh">對 PyPSA-Earth 本身（程式與資料檔）的修改列於 <a href="https://github.com/BartonChenTW/pypsa-earth/blob/pypsa-taiwan-dev/pypsa_tw/DATA_PROVENANCE.md" rel="noopener">pypsa_tw/DATA_PROVENANCE.md</a>。</span></p>
+          <p class="note muted"><span class="t-en">Changes to PyPSA-Earth itself (code and data files) are listed in <a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/notes/DATA_PROVENANCE.md" rel="noopener">notes/DATA_PROVENANCE.md</a>.</span><span class="t-zh">對 PyPSA-Earth 本身（程式與資料檔）的修改列於 <a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/notes/DATA_PROVENANCE.md" rel="noopener">notes/DATA_PROVENANCE.md</a>。</span></p>
         </article>
         <nav class="tabs inline" aria-label="Sections">
           <a href="#origin"><span class="t-en">Data origin</span><span class="t-zh">資料來源</span></a>
@@ -83,7 +83,7 @@
             <div id="md-region-lines" class="table-wrap"></div>
           </article>
         </div>
-        <p class="note"><span class="t-en">Demand: the GEGIS hourly profile for 2030 (SSP2-2.6, 2013 weather), scaled by 0.749 so that the year matches Taipower-system generation in 2024 (251.4 TWh; this total is still to confirm, see <code>pypsa_tw/data/README.md</code>), and split between regions by population and GDP (PyPSA-Earth's <code>build_demand_profiles</code>).</span><span class="t-zh">需求：GEGIS 2030 年逐時曲線（SSP2-2.6、2013 年氣象），乘以 0.749 使全年總量符合 2024 年台電系統發電量（251.4 TWh；此總量仍待確認，見 <code>pypsa_tw/data/README.md</code>），並依人口與 GDP 分配至各區（PyPSA-Earth 的 <code>build_demand_profiles</code>）。</span></p>
+        <p class="note"><span class="t-en">Demand: the GEGIS hourly profile for 2030 (SSP2-2.6, 2013 weather), scaled by 0.749 so that the year matches Taipower-system generation in 2024 (251.4 TWh; this total is still to confirm, see <code>data/README.md</code>), and split between regions by population and GDP (PyPSA-Earth's <code>build_demand_profiles</code>).</span><span class="t-zh">需求：GEGIS 2030 年逐時曲線（SSP2-2.6、2013 年氣象），乘以 0.749 使全年總量符合 2024 年台電系統發電量（251.4 TWh；此總量仍待確認，見 <code>data/README.md</code>），並依人口與 GDP 分配至各區（PyPSA-Earth 的 <code>build_demand_profiles</code>）。</span></p>
         <div class="md-sources" data-section="grid"></div>
       </section>
 
@@ -112,7 +112,7 @@
         <article class="panel">
           <div id="md-plant-table" class="table-wrap"></div>
           <div class="md-sources" data-section="plants"></div>
-          <p class="note muted"><span class="t-en">From the model's power plant files, built by <code>pypsa_tw/data/build_custom_powerplants.py</code> (today) and <code>build_future_powerplants.py</code> (plans); method and checks in <a href="https://github.com/BartonChenTW/pypsa-earth/blob/pypsa-taiwan-dev/pypsa_tw/data/README.md" rel="noopener">pypsa_tw/data/README.md</a>. The Sources column gives each plant's sources for capacity, location and commissioning year. Regions are assigned by location.</span><span class="t-zh">資料取自模型的電廠檔，由 <code>pypsa_tw/data/build_custom_powerplants.py</code>（現況）與 <code>build_future_powerplants.py</code>（規劃）產生；方法與檢核見 <a href="https://github.com/BartonChenTW/pypsa-earth/blob/pypsa-taiwan-dev/pypsa_tw/data/README.md" rel="noopener">pypsa_tw/data/README.md</a>。「來源」欄列出每座電廠容量、位置與商轉年的來源。區域依位置指定。</span></p>
+          <p class="note muted"><span class="t-en">From the model's power plant files, built by <code>data/build_custom_powerplants.py</code> (today) and <code>build_future_powerplants.py</code> (plans); method and checks in <a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/data/README.md" rel="noopener">data/README.md</a>. The Sources column gives each plant's sources for capacity, location and commissioning year. Regions are assigned by location.</span><span class="t-zh">資料取自模型的電廠檔，由 <code>data/build_custom_powerplants.py</code>（現況）與 <code>build_future_powerplants.py</code>（規劃）產生；方法與檢核見 <a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/data/README.md" rel="noopener">data/README.md</a>。「來源」欄列出每座電廠容量、位置與商轉年的來源。區域依位置指定。</span></p>
         </article>
       </section>
 

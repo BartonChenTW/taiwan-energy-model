@@ -7,12 +7,12 @@ Reads every solved network under ``results/<run>/networks/*.nc`` and writes
 - ``docs/data/cases/<run>__<case>.json``: inputs, technology data and results
 - ``docs/data/scenarios.json``: weather-year and future-year scenario comparison
 - ``docs/data/sandbox/index.json`` and ``docs/data/sandbox/cases/<hash>.json``:
-  sandbox scenarios from ``results/sandbox/<hash>/`` (see ``pypsa_tw/sandbox/``),
+  sandbox scenarios from ``results/sandbox/<hash>/`` (see ``sandbox/``),
   with their spec and deltas against the sandbox base case
 
 Run from anywhere inside the repository:
 
-    python pypsa_tw/viewer/export_dashboard_data.py
+    python viewer/export_dashboard_data.py
 
 Only aggregated numbers are exported; no local paths end up in the output.
 """
@@ -28,7 +28,7 @@ import numpy as np
 import pandas as pd
 import pypsa
 
-from viewer_helper import resolve_repo
+from viewer_helper import MODEL_DIR, ROOT, resolve, resolve_repo  # noqa: F401
 
 # Case the dashboard opens with: the full-year run with standard settings.
 FEATURED_CASE = "tw_test2_highs_2013_fullyear_4h_6b_ls__elec_s_6_ec_lv1.0_Co2L-4H"
@@ -408,8 +408,8 @@ def build_comparison(repo, featured_path):
         return None
     default = _fleet_and_mix(pypsa.Network(str(default_path)))
     taiwan = _fleet_and_mix(pypsa.Network(str(featured_path)))
-    stats = pd.read_csv(repo / "pypsa_tw/data/official/taiwan_electricity_statistics.csv")
-    peak = pd.read_csv(repo / "pypsa_tw/data/official/taipower_peak_load_by_year.csv", encoding="utf-8-sig")
+    stats = pd.read_csv(ROOT / "data/official/taiwan_electricity_statistics.csv")
+    peak = pd.read_csv(ROOT / "data/official/taipower_peak_load_by_year.csv", encoding="utf-8-sig")
     actual = []
     for (scope, year), grp in stats[stats.statistic.str.startswith("share_")].groupby(["scope", "year"], sort=False):
         shares = {r.statistic.replace("share_", "").replace("pumped_storage", "storage"): r.value / 100
@@ -434,8 +434,8 @@ def build_comparison(repo, featured_path):
     }
 
 
-SETUP_CONFIG = "pypsa_tw/config/config_tw_test2_highs.yaml"
-SCENARIO_DIR = "pypsa_tw/config/scenarios"
+SETUP_CONFIG = "config/config_tw_test2_highs.yaml"
+SCENARIO_DIR = "config/scenarios"
 # Renewable carriers for the renewable share of generation (geothermal and biomass
 # count as renewable, as in Taiwan's statistics).
 RE_SHARE_CARRIERS = ["solar", "onwind", "offwind-ac", "offwind-dc", "ror", "hydro", "geothermal", "biomass"]
@@ -460,7 +460,7 @@ def _deep_update(base, extra):
 def _yaml(repo, rel):
     import yaml
 
-    return yaml.safe_load((repo / rel).read_text(encoding="utf-8"))
+    return yaml.safe_load(resolve(rel).read_text(encoding="utf-8"))
 
 
 _GEGIS = {}
@@ -476,10 +476,11 @@ def gegis_total_twh(repo, prediction_year, weather_year):
 
 
 def setup_from_config(repo, cfg, label):
-    units = sorted((repo / "pypsa_tw/data/official").glob("taipower_units_*.json"))
+    units = sorted((ROOT / "data/official").glob("taipower_units_*.json"))
     fleet_date = json.loads(units[-1].read_bytes().decode("utf-8-sig"))["DateTime"][:10] if units else None
     lo, el, sc = cfg["load_options"], cfg["electricity"], cfg["scenario"]
-    fleet_file = el.get("custom_powerplants_file", "data/custom_powerplants.csv")
+    # shown as a path in this repository (configs give it relative to the model checkout)
+    fleet_file = el.get("custom_powerplants_file", "data/fleet/custom_powerplants.csv").replace("../taiwan-energy-model/", "")
     planned = re.search(r"_tw(\d{4})\.csv$", fleet_file)
     gegis = gegis_total_twh(repo, lo.get("prediction_year"), lo.get("weather_year"))
     return {
@@ -502,14 +503,16 @@ def setup_from_config(repo, cfg, label):
 
 
 def run_setups(repo):
-    """Setup of every run that has a config in pypsa_tw/config/ (scenario overlays sit on top of Test 2)."""
+    """Setup of every run that has a config in config/ (scenario overlays sit on top of Test 2)."""
     setups = {}
-    for f in sorted((repo / "pypsa_tw/config").glob("config_tw_test*.yaml")):
-        rel = f.relative_to(repo).as_posix()
+    for f in sorted((ROOT / "config").glob("config_tw_test*.yaml")):
+        rel = f.relative_to(ROOT).as_posix()
         cfg = _deep_update(_yaml(repo, "config.default.yaml"), _yaml(repo, rel))
         setups[cfg["run"]["name"]] = setup_from_config(repo, cfg, rel)
-    for f in sorted((repo / SCENARIO_DIR).glob("*.yaml")):
-        rel = f.relative_to(repo).as_posix()
+    for f in sorted((ROOT / SCENARIO_DIR).glob("*.yaml")):
+        rel = f.relative_to(ROOT).as_posix()
+        if not (_yaml(repo, rel).get("run") or {}).get("name"):
+            continue  # overlays without their own run name (e.g. the solver overlay) describe no run
         cfg = _deep_update(_deep_update(_yaml(repo, "config.default.yaml"), _yaml(repo, SETUP_CONFIG)), _yaml(repo, rel))
         setups[cfg["run"]["name"]] = setup_from_config(repo, cfg, f"{SETUP_CONFIG} + {rel}")
     return setups
@@ -518,11 +521,11 @@ def run_setups(repo):
 def setup_for_run(setups, run):
     if run in setups:
         return setups[run]
-    # Diagnostic runs (one-off overlays, see pypsa_tw/log.md) extend a config's run name.
+    # Diagnostic runs (one-off overlays, see notes/log.md) extend a config's run name.
     base = max((r for r in setups if run.startswith(r)), key=len, default=None)
     if base is None:
         return None
-    return {**setups[base], "config": setups[base]["config"] + " + one-off overlay (see pypsa_tw/log.md)"}
+    return {**setups[base], "config": setups[base]["config"] + " + one-off overlay (see notes/log.md)"}
 
 
 def model_setup(repo):
@@ -561,7 +564,7 @@ def build_scenarios(repo, index, details):
 
 def export_catalog(repo, out):
     """Key facts and data-source catalogue for the "Taiwan energy data" page."""
-    data = repo / "pypsa_tw" / "data"
+    data = ROOT / "data"
     facts = pd.read_csv(data / "taiwan_key_facts.csv", dtype=str).fillna("")
     catalog = pd.read_csv(data / "taiwan_energy_catalog.csv", dtype=str).fillna("")
     checks = sorted((data / "official").glob("link_check_*.csv"))
@@ -581,7 +584,7 @@ def export_catalog(repo, out):
     (out / "taiwan_catalog.json").write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"wrote taiwan_catalog.json ({len(facts)} facts, {len(catalog)} sources)")
 
-    # History, projections and targets by year (built by pypsa_tw/data/build_timeseries.py).
+    # History, projections and targets by year (built by data/build_timeseries.py).
     ts_file = data / "taiwan_timeseries.csv"
     if ts_file.exists():
         ts = pd.read_csv(ts_file, dtype={"year": str}).fillna("")
@@ -598,7 +601,7 @@ def export_catalog(repo, out):
         print(f"wrote taiwan_timeseries.json/.csv ({len(ts)} rows, {ts.series.nunique()} series)")
 
 
-# ---------- Sandbox scenarios (pypsa_tw/sandbox/) ----------
+# ---------- Sandbox scenarios (sandbox/) ----------
 VRE_CARRIERS = ["solar", "onwind", "offwind-ac", "offwind-dc", "ror"]
 SANDBOX_CAVEAT = ("Exploration tool, not a forecast: 6 buses, 4-hourly time steps, one weather year (2013), "
                   "today's grid, fixed capacities (the model does not choose what to build). Costs are "
@@ -608,7 +611,7 @@ SANDBOX_CAVEAT = ("Exploration tool, not a forecast: 6 buses, 4-hourly time step
 def _sandbox_modules(repo):
     import sys
 
-    sys.path.insert(0, str(repo / "pypsa_tw" / "sandbox"))
+    sys.path.insert(0, str(ROOT / "sandbox"))
     import levers
 
     return levers
@@ -805,14 +808,14 @@ def export_sandbox(repo, out):
                         "base_discount_rate": 0.071},
     }, indent=1, ensure_ascii=False), encoding="utf-8")
     size = sum(f.stat().st_size for f in sb_out.rglob("*.json")) / 1e6
-    print(f"wrote {len(index)} sandbox scenarios to {sb_out.relative_to(repo)} ({size:.1f} MB)")
+    print(f"wrote {len(index)} sandbox scenarios to {sb_out.relative_to(ROOT)} ({size:.1f} MB)")
 
 
 # ---------- Sector-coupled test run (draft page docs/sector-draft.html) ----------
 # (results folder = run.sector_name, label, planning year, overlay)
 SECTOR_DRAFT_RUNS = [
-    ("tw_sector_2025_24h_2013w_6b", "2025 reference, daily steps", 2025, "pypsa_tw/config/scenarios/sector_2025_24h.yaml"),
-    ("tw_sector_test_2013_6b", "2030 test, 6-day steps", 2030, "pypsa_tw/config/scenarios/sector_test.yaml"),
+    ("tw_sector_2025_24h_2013w_6b", "2025 reference, daily steps", 2025, "config/scenarios/sector_2025_24h.yaml"),
+    ("tw_sector_test_2013_6b", "2030 test, 6-day steps", 2030, "config/scenarios/sector_test.yaml"),
 ]
 # Model carriers -> official generation groups (Energy Administration, 發電量年資料)
 MIX_GROUPS = {"CCGT": "gas", "OCGT": "gas", "coal": "coal", "oil": "oil", "nuclear": "nuclear", "solar": "solar",
@@ -888,7 +891,7 @@ def sector_run_payload(repo, run, label, year, overlay):
 
     co2 = n.stores.index[n.stores.carrier == "co2"]
     co2_mt = float(n.stores_t.e[co2].iloc[-1].sum() / 1e6) if len(co2) else None
-    fleet = pd.read_csv(repo / "data" / "custom_powerplants.csv")
+    fleet = pd.read_csv(ROOT / "data" / "fleet" / "custom_powerplants.csv")
     fleet_gw = (fleet.groupby("Fueltype").Capacity.sum() / 1e3).round(2).to_dict()
     mix = {}
     for c, v in supply.items():
@@ -913,7 +916,7 @@ def sector_run_payload(repo, run, label, year, overlay):
 
 def official_mix_2025(repo):
     """Official national generation shares in 2025 (Energy Administration, via taiwan_timeseries.csv)."""
-    ts = pd.read_csv(repo / "pypsa_tw" / "data" / "taiwan_timeseries.csv", dtype={"year": str})
+    ts = pd.read_csv(ROOT / "data" / "taiwan_timeseries.csv", dtype={"year": str})
     g = ts[(ts.year == "2025") & (ts.kind == "history") & ts.series.str.startswith("generation_")]
     v = g.set_index("series").value
     total = v["generation_total"]
@@ -938,10 +941,10 @@ def export_sector_draft(repo, out):
 
 
 # ---------- Sector-coupled pathway 2030 -> 2050 (myopic) ----------
-_PATH = "pypsa_tw/config/scenarios/sector_path_2050"
+_PATH = "config/scenarios/sector_path_2050"
 # (run, id, English label, Chinese label, overlays merged in order)
 SECTOR_PATHWAYS = [
-    # Taiwan's official 2050 pathway (pypsa_tw/TAIWAN_2050_PATHWAY.md); the first entry is the page's default
+    # Taiwan's official 2050 pathway (notes/TAIWAN_2050_PATHWAY.md); the first entry is the page's default
     ("tw_sector_path2050_24h_official_imp", "official_imp", "Official options, all imports (no new nuclear)",
      "官方選項，全部進口選項（不新建核電）",
      [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml", f"{_PATH}_official.yaml", f"{_PATH}_official_imports.yaml"]),
@@ -968,7 +971,7 @@ SECTOR_PATHWAYS = [
     ("tw_sector_path2050_24h_D_float_geothermal", "D", "D: floating offshore wind and geothermal", "D：浮動式離岸風電與地熱",
      [f"{_PATH}.yaml", f"{_PATH}_D_float_geothermal.yaml"]),
 ]
-# Sources behind the pathway assumptions (ids in pypsa_tw/data/sources.csv), listed on the page
+# Sources behind the pathway assumptions (ids in data/sources.csv), listed on the page
 PATHWAY_SOURCES = ["moea_psd_fy2024", "ndc_2050_pathway", "ndc_2050_wind_solar", "ndc_2050_forward_energy",
                    "ndc_2050_geothermal", "ndc_2050_hydrogen", "ndc_2050_grid_storage", "ndc_2050_ccus", "ndc_2050_ev",
                    "netl_baseline_rev4a_capture", "hampp2023_import_options", "aea_co2free_ammonia_cost",
@@ -1127,7 +1130,7 @@ def export_sector_pathway(repo, out):
             continue
         cfg = {}
         for o in overlays:
-            cfg = _deep_merge(cfg, yaml.safe_load((repo / o).read_text(encoding="utf-8")))
+            cfg = _deep_merge(cfg, yaml.safe_load(resolve(o).read_text(encoding="utf-8")))
         budget = cfg.get("co2_budget", {})
         base = float(budget.get("co2base_value", 0))
         years = []
@@ -1163,7 +1166,7 @@ def export_sector_pathway(repo, out):
                       "objective_EUR": y["objective_EUR"], "load_shedding_TWh": y["load_shedding_TWh"],
                       "nuclear_GW": (y["capacity_by_group_GW"].get("nuclear") or {}).get("total_GW", 0.0),
                       "imports_TWh": y["imports_TWh"]})
-    src = pd.read_csv(repo / "pypsa_tw" / "data" / "sources.csv", dtype=str).fillna("").set_index("source_id")
+    src = pd.read_csv(ROOT / "data" / "sources.csv", dtype=str).fillna("").set_index("source_id")
     missing = [i for i in PATHWAY_SOURCES if i not in src.index]
     assert not missing, f"pathway sources not in sources.csv: {missing}"
     keep = ["short_cite", "title", "title_en", "publisher", "published", "landing_url", "file_url", "origin", "evidence", "note"]
@@ -1276,14 +1279,14 @@ def export_security(repo, out):
         "standby_units": levers.STANDBY_UNITS, "nuclear_plants": levers.NUCLEAR_PLANTS, "scenarios": rows,
         "bases": {k: v["label"] for k, v in levers.BASES.items() if any(r["base"] == k for r in rows)},
     }, indent=1, ensure_ascii=False), encoding="utf-8")
-    print(f"wrote {len(rows)} energy-security cases to {sec_out.relative_to(repo)}")
+    print(f"wrote {len(rows)} energy-security cases to {sec_out.relative_to(ROOT)}")
 
 
 def main():
     logging.disable(logging.WARNING)
     warnings.filterwarnings("ignore")
     repo = resolve_repo(Path(__file__).parent)
-    out = repo / "docs" / "data"
+    out = ROOT / "docs" / "data"
     (out / "cases").mkdir(parents=True, exist_ok=True)
 
     index, details = [], {}
@@ -1327,7 +1330,7 @@ def main():
         ),
         encoding="utf-8",
     )
-    print(f"wrote {len(index)} cases to {out.relative_to(repo)}")
+    print(f"wrote {len(index)} cases to {out.relative_to(ROOT)}")
     export_sandbox(repo, out)
     export_sector_draft(repo, out)
     export_sector_pathway(repo, out)
@@ -1338,7 +1341,7 @@ def main():
     # Cache busting: give each CSS/JS link a content hash, so browsers load changed files at once.
     from stamp_assets import stamp
 
-    changed, _ = stamp(repo / "docs")
+    changed, _ = stamp(ROOT / "docs")
     print(f"stamped asset versions in {len(changed)} page(s)")
 
 

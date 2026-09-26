@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-24 21:54 UTC",
+ "generated": "2026-09-26 20:43 UTC",
  "currency": {
   "eur_twd": 36.185,
   "date": "2026-09-24 17:01",
@@ -26,7 +26,7 @@
    "run": "tw_sector_2025_24h_2013w_6b",
    "label": "2025 reference, daily steps",
    "planning_year": 2025,
-   "overlay": "pypsa_tw/config/scenarios/sector_2025_24h.yaml",
+   "overlay": "config/scenarios/sector_2025_24h.yaml",
    "network": "elec_s_6_ec_lv1.0_Co2L-4H_24h_2025_0.071_AB_0export.nc",
    "mix_share": {
     "gas": 0.4161,
@@ -245,7 +245,7 @@
    "run": "tw_sector_test_2013_6b",
    "label": "2030 test, 6-day steps",
    "planning_year": 2030,
-   "overlay": "pypsa_tw/config/scenarios/sector_test.yaml",
+   "overlay": "config/scenarios/sector_test.yaml",
    "network": "elec_s_6_ec_lv1.0_Co2L-4H_144h_2030_0.071_AB_0export.nc",
    "mix_share": {
     "gas": 0.4295,

@@ -1,5 +1,5 @@
 /* PyPSA-Earth Taiwan dashboard.
-   Data comes from docs/data/, written by pypsa_tw/viewer/export_dashboard_data.py. */
+   Data comes from docs/data/, written by viewer/export_dashboard_data.py. */
 
 // Technology groups in stack order, bottom to top. Colours come from CSS tokens.
 const GROUPS = ["coal", "nuclear", "onwind", "storage", "solar", "offwind", "gas", "hydro", "other_re", "other", "unserved"];
@@ -43,7 +43,7 @@ const I18N = {
     cmp_capacity: "Installed capacity", cmp_capacity_sub: "GW per technology",
     cmp_params: "Key inputs", cmp_params_sub: "What changed and why",
     cmp_mix: "Generation mix: model vs reported statistics", cmp_mix_sub: "Share of annual generation (%)",
-    cmp_mix_note: "Model rows: full year, 2013 weather, load shedding allowed. The default-data run used demand scaled to the national total (288.6 TWh). Reported statistics are taken from secondary sources and still to be verified (see pypsa_tw/data/official/taiwan_electricity_statistics.csv).",
+    cmp_mix_note: "Model rows: full year, 2013 weather, load shedding allowed. The default-data run used demand scaled to the national total (288.6 TWh). Reported statistics are taken from secondary sources and still to be verified (see data/official/taiwan_electricity_statistics.csv).",
     src_default: "PyPSA-Earth default", src_taiwan: "Taiwan data (now)", src_reference: "Reported",
     row_model_default: "Model, PyPSA-Earth default data", row_model_taiwan: "Model, Taiwan data",
     p_item: "Input", p_demand: "Annual demand", p_peak: "Peak demand", p_nuclear: "Nuclear capacity",
@@ -78,7 +78,7 @@ const I18N = {
     all_runs: "All runs", inventory: "Run inventory", inventory_sub: "Select a row to view that run",
     compare_mix: "Generation mix by run", compare_mix_sub: "Share of annual generation (%)",
     findings: "Findings", details_in: "Details:",
-    footer: "Generated from local model results by pypsa_tw/viewer/export_dashboard_data.py.",
+    footer: "Generated from local model results by viewer/export_dashboard_data.py.",
     generated: "Data exported", t_demand: "Demand", t_co2: "CO₂ emissions", t_price: "Mean price",
     t_solve: "Solve time", t_solver_only: "solver only", t_rule: "whole step",
     technology_col: "Technology", capacity_col: "Capacity (GW)", energy_col: "Energy (TWh)",
@@ -127,7 +127,7 @@ const I18N = {
     cmp_capacity: "裝置容量", cmp_capacity_sub: "各技術容量（GW）",
     cmp_params: "主要輸入", cmp_params_sub: "改了什麼、為什麼",
     cmp_mix: "發電結構：模型與公開統計", cmp_mix_sub: "年發電量占比（%）",
-    cmp_mix_note: "模型列為全年、2013 年氣象、允許切負載；預設資料的模擬將需求縮放至全國總量（288.6 TWh）。公開統計取自二手來源，仍待查證（見 pypsa_tw/data/official/taiwan_electricity_statistics.csv）。",
+    cmp_mix_note: "模型列為全年、2013 年氣象、允許切負載；預設資料的模擬將需求縮放至全國總量（288.6 TWh）。公開統計取自二手來源，仍待查證（見 data/official/taiwan_electricity_statistics.csv）。",
     src_default: "PyPSA-Earth 預設", src_taiwan: "台灣資料（現在）", src_reference: "公開統計",
     row_model_default: "模型：PyPSA-Earth 預設資料", row_model_taiwan: "模型：台灣資料",
     p_item: "輸入", p_demand: "年需求", p_peak: "尖峰需求", p_nuclear: "核能容量",
@@ -161,7 +161,7 @@ const I18N = {
     all_runs: "所有模擬", inventory: "模擬清單", inventory_sub: "點選一列以查看該模擬",
     compare_mix: "各模擬發電結構", compare_mix_sub: "年發電量占比（%）",
     findings: "發現", details_in: "詳細紀錄：",
-    footer: "由 pypsa_tw/viewer/export_dashboard_data.py 從本機模擬結果產生。",
+    footer: "由 viewer/export_dashboard_data.py 從本機模擬結果產生。",
     generated: "資料匯出時間", t_demand: "電力需求", t_co2: "CO₂ 排放", t_price: "平均電價",
     t_solve: "求解時間", t_solver_only: "僅求解器", t_rule: "整個步驟",
     technology_col: "技術", capacity_col: "容量（GW）", energy_col: "發電量（TWh）",

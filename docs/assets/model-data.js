@@ -1,5 +1,5 @@
 /* Model data page: grid and regions, power plants, renewable potential and technology costs
-   (data: docs/data/model_data.json, written by pypsa_tw/viewer/export_model_data.py). */
+   (data: docs/data/model_data.json, written by viewer/export_model_data.py). */
 
 const MT = {
   en: {
@@ -23,7 +23,7 @@ const MT = {
     mw_cell: "MW", months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     set_density: "Capacity density", set_depth: "Water depth", set_shore: "Distance from shore", set_land: "Land-cover classes allowed (Copernicus)",
     set_natura: "Protected areas", set_natura_yes: "excluded (WDPA)", set_resource: "Resource model", set_corr: "Correction factor",
-    set_note: "Settings from the model config (config.default.yaml, pypsa_tw/config/config_tw_test2_highs.yaml and, for floating wind, sector_path_2050_D_float_geothermal.yaml). The weather is ERA5 for 2013, converted with atlite.",
+    set_note: "Settings from the model config (config.default.yaml, config/config_tw_test2_highs.yaml and, for floating wind, sector_path_2050_D_float_geothermal.yaml). The weather is ERA5 for 2013, converted with atlite.",
     year: "Cost year", group_all: "All groups",
     cgroups: { renewable: "Renewables", thermal: "Thermal", storage: "Storage", hydrogen: "Hydrogen and fuels", carbon: "Carbon capture", heat: "Heat", grid: "Grid" },
     col_techn: "Technology", col_inv: "Investment", col_fom: "FOM (%/yr)", col_vom: "VOM (€/MWh)", col_effn: "Efficiency",
@@ -74,7 +74,7 @@ const MT = {
     mw_cell: "MW", months: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
     set_density: "容量密度", set_depth: "水深", set_shore: "離岸距離", set_land: "允許的土地覆蓋類別（Copernicus）",
     set_natura: "保護區", set_natura_yes: "排除（WDPA）", set_resource: "資源模型", set_corr: "修正係數",
-    set_note: "設定取自模型設定檔（config.default.yaml、pypsa_tw/config/config_tw_test2_highs.yaml，浮動式風電另加 sector_path_2050_D_float_geothermal.yaml）。氣象資料為 2013 年 ERA5，以 atlite 轉換。",
+    set_note: "設定取自模型設定檔（config.default.yaml、config/config_tw_test2_highs.yaml，浮動式風電另加 sector_path_2050_D_float_geothermal.yaml）。氣象資料為 2013 年 ERA5，以 atlite 轉換。",
     year: "成本年份", group_all: "全部類別",
     cgroups: { renewable: "再生能源", thermal: "火力與核能", storage: "儲能", hydrogen: "氫能與燃料", carbon: "碳捕捉", heat: "熱能", grid: "電網" },
     col_techn: "技術", col_inv: "投資成本", col_fom: "固定運維（%／年）", col_vom: "變動運維（歐元/MWh）", col_effn: "效率",
@@ -429,7 +429,7 @@ function renderCosts() {
   $m("md-cost-note").textContent = t.cost_note(nf(Y.discount_rate, 3));
 }
 
-const REPO_BLOB = "https://github.com/BartonChenTW/pypsa-earth/blob/pypsa-taiwan-dev/pypsa_tw/data/";
+const REPO_BLOB = "https://github.com/BartonChenTW/taiwan-energy-model/blob/main/data/";
 const EV_SEV = { downloaded: "good", page_opened: "good", search_summary: "warning", model_input: "neutral" };
 const EV_ICON = { good: "✓", warning: "!", neutral: "◆" };
 const srcRec = (id) => (st.data.sources.records || {})[id];

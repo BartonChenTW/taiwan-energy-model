@@ -26,19 +26,19 @@ BASES = {
         "prepared": "networks/tw_test2_highs_2013_fullyear_4h_6b/elec_s_6_ec_lv1.0_Co2L-4H.nc",
         "solved": "results/tw_test2_highs_2013_fullyear_4h_6b_ls/networks/elec_s_6_ec_lv1.0_Co2L-4H.nc",
         "run": "tw_test2_highs_2013_fullyear_4h_6b_ls",
-        "configs": ["config.default.yaml", "pypsa_tw/config/config_tw_test2_highs.yaml"],
-        # The one-off overlay of the _ls run (see pypsa_tw/log.md).
+        "configs": ["config.default.yaml", "config/config_tw_test2_highs.yaml"],
+        # The one-off overlay of the _ls run (see notes/log.md).
         "overrides": {"solving": {"options": {"load_shedding": True}}},
         "costs": "resources/tw_test2_highs_2013_fullyear_4h_6b/costs_2030_elec.csv",
         "case": "elec_s_6_ec_lv1.0_Co2L-4H",
-        # Same system under other weather years (Snakemake runs of pypsa_tw/config/scenarios/weather_*.yaml),
+        # Same system under other weather years (Snakemake runs of config/scenarios/weather_*.yaml),
         # used for the uncertainty ranges.
         "weather_variants": {
             "2011": "networks/tw_weather2011_highs_fullyear_4h_6b_ls/elec_s_6_ec_lv1.0_Co2L-4H.nc",
             "2018": "networks/tw_weather2018_highs_fullyear_4h_6b_ls/elec_s_6_ec_lv1.0_Co2L-4H.nc",
         },
     },
-    # The planned system in 2034 (pypsa_tw/config/scenarios/future_2034.yaml: MOEA 113年度 thermal
+    # The planned system in 2034 (config/scenarios/future_2034.yaml: MOEA 113年度 thermal
     # schedule and renewable targets, demand +1.7%/yr, 2035 technology costs), used for the
     # energy-security cases of the mid-2030s.
     "plan2034": {
@@ -46,8 +46,8 @@ BASES = {
         "prepared": "networks/tw_future2034_highs_w2013_4h_6b_ls/elec_s_6_ec_lv1.0_Co2L-4H.nc",
         "solved": "results/tw_future2034_highs_w2013_4h_6b_ls/networks/elec_s_6_ec_lv1.0_Co2L-4H.nc",
         "run": "tw_future2034_highs_w2013_4h_6b_ls",
-        "configs": ["config.default.yaml", "pypsa_tw/config/config_tw_test2_highs.yaml",
-                    "pypsa_tw/config/scenarios/future_2034.yaml"],
+        "configs": ["config.default.yaml", "config/config_tw_test2_highs.yaml",
+                    "config/scenarios/future_2034.yaml"],
         "overrides": {},
         "costs": "resources/tw_future2034_highs_w2013_4h_6b_ls/costs_2035_elec.csv",
         "case": "elec_s_6_ec_lv1.0_Co2L-4H",
@@ -105,12 +105,12 @@ LEVERS = {
 
 
 # ---------- Energy security: blockade, damage, restarts ----------
-# Fuel stocks in Taiwan (secondary sources, to verify; see pypsa_tw/data/sources.csv):
+# Fuel stocks in Taiwan (secondary sources, to verify; see data/sources.csv):
 # LNG about 11 days (legal minimum 7 days, 14 days from 2027), coal about 41 days
 # (Taipower, 2022), oil 100+ days (Petroleum Administration Act: 60 days industry + 30 government).
 BLOCKADE_SEASONS = {"summer": "2013-07-01", "winter": "2013-01-07"}
 
-# Plant sites that can be lost (capacity removed at the nearest bus, from data/custom_powerplants.csv).
+# Plant sites that can be lost (capacity removed at the nearest bus, from data/fleet/custom_powerplants.csv).
 DAMAGE_SITES = {
     "tatan": {"name": "Tatan gas plant (大潭)", "lat": 25.0253, "lon": 121.0458, "remove_MW": {"CCGT": 7544.5}},
     "taichung": {"name": "Taichung power plant (台中)", "lat": 24.2152, "lon": 120.4815,

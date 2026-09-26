@@ -1,3 +1,7 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
+from paths import MODEL_DIR, ROOT, resolve  # noqa: E402  (this repository and the model checkout)
 from pathlib import Path
 
 import networkx as nx
@@ -13,6 +17,11 @@ except Exception:  # geopandas is optional for CSV-only inspection
 
 
 def resolve_repo(start=None):
+    """The PyPSA-Earth model checkout (see paths.py); the start argument is kept for callers."""
+    return MODEL_DIR
+
+
+def _resolve_repo_old(start=None):
     """Return the repository root from a notebook or script working directory."""
     path = Path.cwd() if start is None else Path(start).resolve()
     candidates = [path, *path.parents]

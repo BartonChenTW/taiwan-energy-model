@@ -2,7 +2,7 @@
 plant of each fleet, renewable potential (map grid, substations, regions) and technology costs
 by year. Writes docs/data/model_data.json.
 
-Run on its own (python pypsa_tw/viewer/export_model_data.py) or through
+Run on its own (python viewer/export_model_data.py) or through
 export_dashboard_data.py. Everything exported is either an input the model reads from public
 data (Taipower open data, powerplantmatching, technology-data, ERA5-based profiles) or a sum of
 model inputs; no solver output is needed.
@@ -20,6 +20,11 @@ import pandas as pd
 import pypsa
 import xarray as xr
 from shapely.geometry import Point, mapping
+
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
+from paths import MODEL_DIR, ROOT, resolve  # noqa: E402  (this repository and the model checkout)
 
 BASE_RUN = "tw_test2_highs_2013_fullyear_4h_6b"  # today's system, 2013 weather, 6 regions
 FLOAT_RUN = "tw_path2050_D_w2013_6b"  # same grid, adds floating offshore wind profiles
@@ -82,7 +87,7 @@ COST_TECHS = [
     ("HVDC submarine", "grid", "DC submarine cable (per MW·km)", "直流海纜（每 MW·km）"),
 ]
 # Options derived in this fork from the CCGT row (scripts/prepare_sector_network.py,
-# add_taiwan_power_options; factors from pypsa_tw/config/scenarios/sector_path_2050_official*.yaml)
+# add_taiwan_power_options; factors from config/scenarios/sector_path_2050_official*.yaml)
 DERIVED = [
     ("CCGT CC", "thermal", "Gas combined cycle with 95% capture", "燃氣複循環搭配 95% 碳捕捉", 2.041, 0.885,
      "CCGT row × NETL Rev. 4a H-class ratios (investment 1,980/970 $/kW, efficiency 54.0/61.0%)"),
@@ -184,7 +189,7 @@ def _region_of(lon, lat, polys):
     return min(polys, key=lambda t: t[1].distance(pt))[0]
 
 
-# Plants whose capacity comes from news reports (pypsa_tw/data/supplementary_units.csv)
+# Plants whose capacity comes from news reports (data/supplementary_units.csv)
 SUPPLEMENTARY = {"Taichung new CC": ["cna_20260904_taichung_cc"],
                  "Hsinta new CC": ["taipower_units_realtime", "einfo_hsinta_new_cc"]}
 OSM_KIND = {"r": "relation", "w": "way", "n": "node"}
@@ -220,9 +225,9 @@ def _year_source(text):
 
 
 def export_plants(repo):
-    mapping = pd.read_csv(repo / "pypsa_tw" / "data" / "taipower_plant_mapping.csv").drop_duplicates("name").set_index("name")
-    # Chinese plant names (pypsa_tw/data/plant_names_zh.csv); county rows are named by rule
-    names_zh = pd.read_csv(repo / "pypsa_tw" / "data" / "plant_names_zh.csv").set_index("name")["name_zh"].to_dict()
+    mapping = pd.read_csv(ROOT / "data" / "taipower_plant_mapping.csv").drop_duplicates("name").set_index("name")
+    # Chinese plant names (data/plant_names_zh.csv); county rows are named by rule
+    names_zh = pd.read_csv(ROOT / "data" / "plant_names_zh.csv").set_index("name")["name_zh"].to_dict()
 
     def name_zh(name):
         if name in names_zh:
@@ -233,7 +238,7 @@ def export_plants(repo):
             return f"生質能與廢棄物（{name[18:].replace(' (assumed)', '')}，假設）"
         return None
     # planned plants (build_future_powerplants.py): coordinates from the thermal schedule file
-    sched = pd.read_csv(repo / "pypsa_tw" / "data" / "official" / "moea_thermal_schedule_2024_2034.csv")
+    sched = pd.read_csv(ROOT / "data" / "official" / "moea_thermal_schedule_2024_2034.csv")
     sched_coord = sched.dropna(subset=["coord_source"]).drop_duplicates("plant").set_index("plant")["coord_source"].to_dict()
     sched_coord["Geothermal (Yilan, assumed)"] = "OSM w709894062"  # GEOTHERMAL_SITE, Qingshui geothermal plant
     res = repo / "resources" / BASE_RUN / "bus_regions"
@@ -282,10 +287,10 @@ def export_plants(repo):
     return fleets
 
 
-RE_CONFIGS = {BASE_RUN: ["config.default.yaml", "pypsa_tw/config/config_tw_test2_highs.yaml"],
-              FLOAT_RUN: ["config.default.yaml", "pypsa_tw/config/config_tw_test2_highs.yaml",
-                          "pypsa_tw/config/scenarios/sector_path_2050.yaml",
-                          "pypsa_tw/config/scenarios/sector_path_2050_D_float_geothermal.yaml"]}
+RE_CONFIGS = {BASE_RUN: ["config.default.yaml", "config/config_tw_test2_highs.yaml"],
+              FLOAT_RUN: ["config.default.yaml", "config/config_tw_test2_highs.yaml",
+                          "config/scenarios/sector_path_2050.yaml",
+                          "config/scenarios/sector_path_2050_D_float_geothermal.yaml"]}
 RE_KEYS = ["capacity_per_sqkm", "min_depth", "max_depth", "min_shore_distance", "max_shore_distance", "natura",
            "copernicus", "resource", "correction_factor"]
 
@@ -300,7 +305,7 @@ def _merged(repo, files):
         return out
     cfg = {}
     for f in files:
-        cfg = merge(cfg, yaml.safe_load((repo / f).read_text(encoding="utf-8")))
+        cfg = merge(cfg, yaml.safe_load(resolve(f).read_text(encoding="utf-8")))
     return cfg
 
 
@@ -399,7 +404,7 @@ def _crf(r, n):
 
 def export_comparison(repo, potential):
     """Taiwan's official cost figures next to the PyPSA technology-data rows the model uses."""
-    bench = pd.read_csv(repo / "pypsa_tw" / "data" / "taiwan_cost_benchmarks.csv")
+    bench = pd.read_csv(ROOT / "data" / "taiwan_cost_benchmarks.csv")
     proc = pd.read_csv(repo / "resources" / COST_RUN / f"costs_{COMPARE_YEAR}_sec.csv", index_col=0)
     rate = float(proc["discount rate"].dropna().iloc[0])
     fuel = {k: float(proc.at[k, "fuel"]) for k in ("gas", "coal", "oil", "uranium") if k in proc.index}
@@ -459,7 +464,7 @@ SECTION_SOURCES = {
 
 
 def export_sources(repo):
-    src = pd.read_csv(repo / "pypsa_tw" / "data" / "sources.csv", dtype=str).fillna("").set_index("source_id")
+    src = pd.read_csv(ROOT / "data" / "sources.csv", dtype=str).fillna("").set_index("source_id")
     ids = sorted({i for v in SECTION_SOURCES.values() for i in v} | {i for row in INPUT_OVERVIEW for i in row["sources"]})
     missing = [i for i in ids if i not in src.index]
     assert not missing, f"sources not in sources.csv: {missing}"
@@ -530,5 +535,4 @@ def export_model_data(repo, out):
 if __name__ == "__main__":
     logging.disable(logging.WARNING)
     warnings.filterwarnings("ignore")
-    repo = Path(__file__).resolve().parents[2]
-    export_model_data(repo, repo / "docs" / "data")
+    export_model_data(MODEL_DIR, ROOT / "docs" / "data")

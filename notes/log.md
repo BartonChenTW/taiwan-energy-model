@@ -2,7 +2,7 @@
 
 ## how to run?
 1. activate conda venv via `conda activate pypsa-earth`
-2. copy the right config file to `config.yaml`, for example `Copy-Item pypsa_tw/config.tw.fixed.yaml config.yaml`
+2. copy the right config file to `config.yaml`, for example `Copy-Item config.tw.fixed.yaml config.yaml`
 3. for Taiwan, make sure `config.yaml` uses a real Taiwan cutout setup:
    - `tutorial: false`
    - `enable.retrieve_cutout: false`
@@ -32,7 +32,7 @@ key: YOUR_CDS_API_KEY
 
 ## 2026-07-23
  - Completed the Test 1 isolated-bus troubleshooting TODO for the fixed current-system Taiwan configuration.
- - `pypsa_tw/config/config_tw_test1_highs.yaml` already disables candidate expansion through empty `electricity.extendable_carriers` and disables load shedding with `solving.options.load_shedding: false`.
+ - `config/config_tw_test1_highs.yaml` already disables candidate expansion through empty `electricity.extendable_carriers` and disables load shedding with `solving.options.load_shedding: false`.
  - Local solved Test 1 result exists at `results/tw_test1_highs_2013_7d_4h_6b/networks/elec_s_6_ec_lcopt_Co2L-4H.nc`; benchmark solve time is `8.1613 s`.
  - `TW1 0` and `TW2 0` are not caused by the solver. They already exist as isolated singleton subnetworks before final clustering:
    - `elec.nc`: 193 buses, components `[186, 2, 2, 1, 1, 1]`
@@ -49,7 +49,7 @@ key: YOUR_CDS_API_KEY
  - Updated the static GitHub Pages dashboard in `docs/` with the latest local Taiwan run inventory and bilingual English/Traditional Chinese notes.
 
 ## 2026-09-23
- - Added the Test 1 isolated-bus fix (`cluster_options.simplify_network.p_threshold_merge_isolated: false`, `s_threshold_fetch_isolated: 0.05`) to `pypsa_tw/config/config_tw_test2_highs.yaml`. Test 2 now differs from Test 1 only in run name and snapshot range.
+ - Added the Test 1 isolated-bus fix (`cluster_options.simplify_network.p_threshold_merge_isolated: false`, `s_threshold_fetch_isolated: 0.05`) to `config/config_tw_test2_highs.yaml`. Test 2 now differs from Test 1 only in run name and snapshot range.
  - Stale results found: the stored `tw_test1_highs` (2026-07-22) and `tw_test2_highs` (2026-07-17) results predated the current configs. The old Test 1 HiGHS result had 3 subnetworks and 32,490 MWh of load shedding; the old Test 2 result had 15 subnetworks and extendable generators. The old Test 2 result is archived in `results/_archive/tw_test2_highs_2013_fullyear_4h_6b_2026-07-17/`.
  - Reran `tw_test1_highs_2013_7d_4h_6b` with the current config:
    - 6 buses, 1 connected subnetwork, no load shedding, no extendable generators.
@@ -95,16 +95,16 @@ key: YOUR_CDS_API_KEY
    - Run-of-river hydro: capacity factor 2.8%, which looks far too low.
    - Demand: the summer peak looks too high for the 2024 total (peak/mean 1.44).
    - Costs: `costs_2030.csv` (2030 projections), and no coal dispatch constraints.
- - **Dashboard rebuilt** (`docs/`, data from `pypsa_tw/viewer/export_dashboard_data.py`), with automatic sanity warnings per case. Checked in headless Edge screenshots, in English and Traditional Chinese and in light and dark mode.
- - `pypsa_tw/SIMULATION_TABLE.md` was found reverted to its pre-2026-09-23 content at 02:54:55, probably by a stale editor buffer. It was restored from git and updated.
+ - **Dashboard rebuilt** (`docs/`, data from `viewer/export_dashboard_data.py`), with automatic sanity warnings per case. Checked in headless Edge screenshots, in English and Traditional Chinese and in light and dark mode.
+ - `notes/SIMULATION_TABLE.md` was found reverted to its pre-2026-09-23 content at 02:54:55, probably by a stale editor buffer. It was restored from git and updated.
 
 ## 2026-09-24 (afternoon): official power plant data
- - **Sources collected** (details in `pypsa_tw/data/README.md`):
+ - **Sources collected** (details in `data/README.md`):
    - Taipower real-time unit list, including IPPs ([data.gov.tw/dataset/8931](https://data.gov.tw/dataset/8931)), snapshot 2026-09-24 15:10: 215 rows with installed capacity per unit.
    - Energy Administration solar approvals by county, 2015–2025 ([data.gov.tw/dataset/16423](https://data.gov.tw/dataset/16423)): transcribed from PDFs, every yearly sum matches the published total.
    - OpenStreetMap power plants (Overpass) and GADM counties, for coordinates.
    - Taipower annual peak load ([data.gov.tw/dataset/8307](https://data.gov.tw/dataset/8307)): 40,882 MW in 2024, 40,752 MW in 2025.
- - **Draft fleet** `data/custom_powerplants.csv` (97 plants, 60.1 GW), built by `pypsa_tw/data/build_custom_powerplants.py` from `pypsa_tw/data/taipower_plant_mapping.csv`. No nuclear; gas 22.3, coal 11.4, solar 15.4, offshore wind 3.4, pumped hydro 2.6 GW at 6 h, batteries 0.85 GW. Not yet enabled in the Test configs; awaiting review.
+ - **Draft fleet** `data/fleet/custom_powerplants.csv` (97 plants, 60.1 GW), built by `data/build_custom_powerplants.py` from `data/taipower_plant_mapping.csv`. No nuclear; gas 22.3, coal 11.4, solar 15.4, offshore wind 3.4, pumped hydro 2.6 GW at 6 h, batteries 0.85 GW. Not yet enabled in the Test configs; awaiting review.
  - **Pitfalls found while testing it:**
    - custom plants need `DateIn`, or `add_electricity` stops ("Could not fill 'datein'").
    - The default `powerplants_filter` (`DateIn <= 2023`) silently drops newer plants, so use a 2025 filter.
@@ -117,9 +117,9 @@ key: YOUR_CDS_API_KEY
  - **Remaining gap:** units shown as "-" (new gas units in trial: Taichung CC #1–2, Hsinta new CC #3) were generating 3.1 GW at the snapshot but have no published rating.
 
 ## 2026-09-24 (evening): fleet enabled, correction, MOTEL export
-Barton's instructions: keep developing; (1) enable the fleet; (2) research the missing ratings and record them; (3) push, with details here. Items to review later are in `pypsa_tw/REVIEW_CHECKLIST.md`.
+Barton's instructions: keep developing; (1) enable the fleet; (2) research the missing ratings and record them; (3) push, with details here. Items to review later are in `notes/REVIEW_CHECKLIST.md`.
 
- - **New gas units added with sourced ratings** (`pypsa_tw/data/supplementary_units.csv`, read by `build_custom_powerplants.py`):
+ - **New gas units added with sourced ratings** (`data/supplementary_units.csv`, read by `build_custom_powerplants.py`):
    - Taichung new CC #1 and #2: 1,300 MW each. [CNA 2026-09-04](https://www.cna.com.tw/news/afe/202609040200.aspx) gives about 2,600 MW for the pair. Unit 1 has been in dispatch since May 2026, with commercial operation at the end of September 2026. Unit 2 is in test operation, enters dispatch in October 2026, and reaches commercial operation in March 2027.
    - Hsinta new CC #3: 1,300 MW, in trial grid operation ([e-info.org.tw](https://e-info.org.tw/node/243153); unit 1 is listed at 1,300.0 MW).
    - Hsinta new CC #2 is listed but excluded: it was not generating at the snapshot and is due by the end of 2026.
@@ -150,12 +150,12 @@ Barton's instructions: keep developing; (1) enable the fleet; (2) research the m
  - **Pumped hydro unused** (capacity factor 0%) in the full-year runs: coal runs at 100%, so there is no cheap surplus to pump with. Coal constraints are Phase 3 #6.
  - **Archived** superseded diagnostics in `results/_archive/`: old-fleet load shedding with HiGHS and with Gurobi, and the official fleet before the new units.
  - **MOTEL export** (Barton's request: store the collected data with the [MOTEL](https://github.com/uesl-empa/motel-platform) framework):
-   - `pypsa_tw/data/export_motel.py` writes Step 1 staging records (`unmapped_entity`, `unmapped_carrier_data`, schema 0.2.0) to `pypsa_tw/data/motel/`:
+   - `data/export_motel.py` writes Step 1 staging records (`unmapped_entity`, `unmapped_carrier_data`, schema 0.2.0) to `data/motel/`:
      - 12 fleet technology records (installed capacity, every plant with location and commissioning year, pumped-hydro hours, new-unit ratings)
      - 22 county solar-approval records
      - 5 electricity carrier records (peak load and reserve margin 2020–2025, annual generation, generation mix)
    - The records pass MOTEL's own validator (`--strict`: 0 errors, 0 warnings). The validator and schemas are vendored unchanged from MOTEL commit `e3c6a976` (MIT / CC BY 4.0).
-   - Headline statistics (`pypsa_tw/data/official/taiwan_electricity_statistics.csv`) came from search summaries, not pages I opened, so they are marked `evidence: search_summary` and `confidence_level: to be verified`.
+   - Headline statistics (`data/official/taiwan_electricity_statistics.csv`) came from search summaries, not pages I opened, so they are marked `evidence: search_summary` and `confidence_level: to be verified`.
  - **Dashboard:**
    - opens on the full-year diagnostic (`featured` in `docs/data/index.json`)
    - findings rewritten in English and Traditional Chinese
@@ -170,13 +170,13 @@ Barton's instructions: keep developing; (1) enable the fleet; (2) research the m
    - **"Data comparison" section:** PyPSA-Earth default inputs vs Taiwan data vs reported statistics (capacity by technology, key inputs, generation mix). The data is `docs/data/comparison.json`; the default-data side is the archived old-fleet full-year run. The mix colour order (gas, nuclear, coal, renewables, storage, other) passes the palette's adjacent-pair checks in both modes.
 
  - **Taiwan energy data page** (`docs/taiwan-data.html`, Barton's request for a tab with all the Taiwan data, sources and summaries):
-   - Key figures (`pypsa_tw/data/taiwan_key_facts.csv`): 45 figures on capacity, demand, generation, emissions, prices, policy targets and renewable resource. Each has its source, link and evidence. 26 still need checking because they came from search summaries.
+   - Key figures (`data/taiwan_key_facts.csv`): 45 figures on capacity, demand, generation, emissions, prices, policy targets and renewable resource. Each has its source, link and evidence. 26 still need checking because they came from search summaries.
      - new: grid emission factor 0.474 kg CO2e/kWh (2024) and 0.494 (2023)
      - new: average tariffs H1 2025: overall 3.75, residential 2.77, industrial 4.27 NT$/kWh
      - new: electricity use by sector in 2024 (industry 55.2%, residential 18.8%, services 17.6%, energy 6.5%; 283.8 TWh)
      - new: 2025 targets (renewables 20%, solar 20 GW, offshore wind 5.7 GW) and 15.7 GW offshore wind by 2035
      - new: 2050 net-zero pathway (renewables 60-70%, hydrogen 9-12%, thermal with CCUS 20-27%) and forecast demand growth of 2.5%/yr for 2026-2035
-   - Data sources (`pypsa_tw/data/taiwan_energy_catalog.csv`): 35 sources, from Taipower open data, the Energy Administration, MOEA, MOENV, NDC, the Central Weather Administration, OSM, GADM, ERA5, IRENA, GEGIS, technology-data, Ember, EIA, GEM, OWID, thewindpower.net, Bank of Taiwan and MOTEL.
+   - Data sources (`data/taiwan_energy_catalog.csv`): 35 sources, from Taipower open data, the Energy Administration, MOEA, MOENV, NDC, the Central Weather Administration, OSM, GADM, ERA5, IRENA, GEGIS, technology-data, Ember, EIA, GEM, OWID, thewindpower.net, Bank of Taiwan and MOTEL.
      - 11 used in the model or dashboard, the rest marked as candidates or references.
      - Candidates worth adding next: Taipower daily supply-demand (19995) for the demand shape, unit historical generation (37331) and daily solar generation (29938) for validation, electricity use by county (38959) for spatial demand, and the Energy Administration statistics database to replace the search-summary figures.
    - Links: 42/44 reachable by script on 2026-09-24 (`official/link_check_20260924.csv`). Copernicus CDS timed out and IRENA returned 403 (bot protection); both are known sites. data.nat.gov.tw/dataset/157114 returned 502 and was replaced by data.gov.tw/dataset/157114.
@@ -184,7 +184,7 @@ Barton's instructions: keep developing; (1) enable the fleet; (2) research the m
  - **History and projections** (Barton's request: the data should cover history and projections, not only today):
    - Downloaded official annual data (Energy Administration): generation by source (16481), capacity by source (16480) and 33 energy indicators (8308), all for 2005–2025. Also the MOEA National Power Supply-Demand Report PDF (16437, 2025 edition, 28 pages). Text extracted with pypdf installed into the scratchpad only, not into `.venv`.
    - Transcribed from the report: Table 3-2 (night peak 36.9 → 46.0 GW, night capability and reserve margin, 2025–2034; the reserve margins recompute exactly) and Table 3-1 (renewable targets for 2030 and 2032, which sum to the stated totals). Also 1.7%/yr demand growth, gas +25.2 GW with 12.9 GW retired, the 1 GW grid-storage target, and Taipower's capacity-credit rules (solar 25% day / 0% night, offshore wind 11% night).
-   - `pypsa_tw/data/build_timeseries.py` → `taiwan_timeseries.csv`: 826 rows, 45 series (762 history, 46 projection, 18 target). It includes the PyPSA-Earth default GEGIS demand for 2030/2040/2050: 335.7 / 411.2 / 528.9 TWh with 2013 weather. That is about 7% above the official 1.7%/yr path in 2030.
+   - `data/build_timeseries.py` → `taiwan_timeseries.csv`: 826 rows, 45 series (762 history, 46 projection, 18 target). It includes the PyPSA-Earth default GEGIS demand for 2030/2040/2050: 335.7 / 411.2 / 528.9 TWh with 2013 weather. That is about 7% above the official 1.7%/yr path in 2030.
    - Taiwan energy data page: new "History and projections" section with 6 charts (generation by source, capacity by source, peak load and capability, renewable capacity vs targets, renewable share vs targets, grid emission factor) and a filterable series table with CSV download.
    - MOTEL: 15 new technology records (national capacity by year plus targets) and 4 carrier records (generation history, demand and peak outlook, emissions, indicators). All 5 files pass the validator with `--strict`.
    - **Key facts upgraded:** 14 figures that came from search summaries are now marked downloaded after checking them against the official files, so 12 remain to verify (was 26). New figures: emission factor 2025 of 0.467, the 2025–2034 outlook, and the 2030 targets.
@@ -197,11 +197,11 @@ Barton's instructions: keep developing; (1) enable the fleet; (2) research the m
 Barton asked what "2013" means and asked for other years. Chosen: other weather years and future years 2030/2034.
 
  - **What 2013 means:** only the weather (ERA5 cutout) and the shape of the demand profile (GEGIS computed with 2013 temperatures). The fleet is today's (Taipower list 2026-09-24), the annual demand is 2024's Taipower-system level, and the grid is today's. The dashboard now has a "Model setup" panel per run, read from the config that produced it.
- - **Scenario overlays** in `pypsa_tw/config/scenarios/`. Each sits on top of `config_tw_test2_highs.yaml` and allows load shedding, as in the 2013 diagnostic:
+ - **Scenario overlays** in `config/scenarios/`. Each sits on top of `config_tw_test2_highs.yaml` and allows load shedding, as in the 2013 diagnostic:
    - `weather_2011.yaml`, `weather_2018.yaml`: today's system under 2011 or 2018 weather. Demand is rescaled to 251.44 TWh (GEGIS 2030 profile: 334.3 TWh with 2011 weather, scale 0.752; 331.0 TWh with 2018 weather, scale 0.7596).
    - `future_2030.yaml`, `future_2034.yaml`: the planned system under 2013 weather. Demand is 251.44 × 1.017^n (278.2 and 297.6 TWh). Costs are technology-data 2030 and 2035 (the nearest published year to 2034). The grid stays fixed, with nothing investable.
- - **Snakefile:** `build_powerplants` now reads `electricity.custom_powerplants_file` (default `data/custom_powerplants.csv`), so each scenario can use its own fleet file.
- - **Future fleets** (`pypsa_tw/data/build_future_powerplants.py`, details in `pypsa_tw/data/README.md`):
+ - **Snakefile:** `build_powerplants` now reads `electricity.custom_powerplants_file` (default `data/fleet/custom_powerplants.csv`), so each scenario can use its own fleet file.
+ - **Future fleets** (`data/build_future_powerplants.py`, details in `data/README.md`):
    - Figure 3-3 of the MOEA 2025 report (p. 22) transcribed unit by unit into `official/moea_thermal_schedule_2024_2034.csv`. The image was extracted with pypdf and read. The transcription matches the report's totals for 2025–2034 (+25,163 MW, −12,941 MW), and the script asserts both.
    - A unit counts if it is in service on 1 July of the model year.
    - Renewables at the Table 3-1 targets (2032 held for 2034). Geothermal and biomass added.
@@ -243,7 +243,7 @@ Barton asked what "2013" means and asked for other years. Chosen: other weather 
 
 Barton: "in the projection, where is it from? Identifying the source is important."
 
- - **Source registry** `pypsa_tw/data/sources.csv`: one row per source, with original title, publisher, edition, publication date, landing page, direct file URL, local copy and SHA-256, access date, licence and evidence. Every row of `taiwan_timeseries.csv` now has a `source_id` and a `locator`:
+ - **Source registry** `data/sources.csv`: one row per source, with original title, publisher, edition, publication date, landing page, direct file URL, local copy and SHA-256, access date, licence and evidence. Every row of `taiwan_timeseries.csv` now has a `source_id` and a `locator`:
    - projections and targets: table or section, printed page and PDF page;
    - history: the column of the downloaded file.
 
@@ -268,7 +268,7 @@ Barton: "in the projection, where is it from? Identifying the source is importan
 
 Barton's choices: all four lever groups plus nuclear (restart Chinshan, Kuosheng or Maanshan, or new build at the Lungmen site); today's system as the base; fixed additions only (no expansion mode).
 
- - **Code** in `pypsa_tw/sandbox/`:
+ - **Code** in `sandbox/`:
    - `levers.py`: spec format, ranges, validation and hash.
    - `run_scenario.py`: runner. It uses the prepared Test 2 network, applies the levers in memory, and calls `scripts/solve_network.py`'s `prepare_network` and `solve_network` through a stand-in `snakemake` object. HiGHS only.
    - `batch.py`: grid of 33 scenarios.
@@ -308,7 +308,7 @@ Barton asked for a landing page, an About page, a page on the challenges of the 
 
 ## 2026-09-24: first sector-coupled test (draft)
 
-Barton asked to try PyPSA-Earth's sector-coupled model. Overlay: `pypsa_tw/config/scenarios/sector_test.yaml` (overnight, 2030, 6 buses, 144 h steps, no H2 export, load shedding allowed).
+Barton asked to try PyPSA-Earth's sector-coupled model. Overlay: `config/scenarios/sector_test.yaml` (overnight, 2030, 6 buses, 144 h steps, no H2 export, load shedding allowed).
 
  - **Runs end to end** after four small fixes in PyPSA-Earth's scripts (commented in the code):
    1. The UN Energy Statistics Database reports Taiwan as "Other Asia", which was dropped (all Taiwan demand was 0). `build_base_energy_totals.py` and `build_base_industry_totals.py` now map it to Taiwan. Checked: 2019 gross production 274.2 TWh, nuclear 3,872 MW, pumped hydro 2,602 MW.
@@ -330,7 +330,7 @@ Barton asked to try PyPSA-Earth's sector-coupled model. Overlay: `pypsa_tw/confi
 
 ## 2026-09-24: sector-coupled 2025 reference, daily steps
 
- - **Overlay** `pypsa_tw/config/scenarios/sector_2025_24h.yaml`: planning year 2025, `sopts: 24h` (365 steps), 2013 weather, 6 buses. It shares the run name with the test, so the electricity network is reused.
+ - **Overlay** `config/scenarios/sector_2025_24h.yaml`: planning year 2025, `sopts: 24h` (365 steps), 2013 weather, 6 buses. It shares the run name with the test, so the electricity network is reused.
  - **Config:** 2025 needed its own entries for the road-transport fuel-cell and electric shares and the shipping hydrogen share (PyPSA-Earth only defines 2030 and 2050). Set to 0, 0.5% and 0, as assumptions.
  - **Found in the log:** PyPSA-Earth has no growth, efficiency, fuel-share or heating data for TW and uses its defaults.
  - **Solve:**
@@ -353,7 +353,7 @@ Barton asked to try PyPSA-Earth's sector-coupled model. Overlay: `pypsa_tw/confi
  - **Not computed:** when the levers match no computed scenario, the match box is red, with an icon and the heading "Not computed yet". It lists the differences compactly and links to the request form.
  - **Cache busting:**
    - Barton did not see the "today" values after they were pushed. GitHub Pages lets browsers cache assets (`max-age=600`).
-   - `pypsa_tw/viewer/stamp_assets.py` gives every CSS/JS link a content hash (`?v=`); the exporter runs it.
+   - `viewer/stamp_assets.py` gives every CSS/JS link a content hash (`?v=`); the exporter runs it.
 
 ## 2026-09-24: energy security, blockade scenarios
 
@@ -424,11 +424,11 @@ Barton asked for data on sectors other than electricity (heating, transport, ind
 ## 2026-09-25: sector-coupled pathway 2030 → 2040 → 2050 (first pass, daily steps)
 
 Barton asked for sector-coupled runs for 2040/2050.
-- **Setup** (`pypsa_tw/config/scenarios/sector_path_2050.yaml`):
+- **Setup** (`config/scenarios/sector_path_2050.yaml`):
   - myopic chain on a new run `tw_path2050_w2013_6b`;
   - starts from the official 2030 fleet;
   - CO₂ cap on a straight line from the model's 2025 level (258.9 Mt) to 0 in 2050;
-  - Taiwan demand rows: electricity and electronics +2.5%/yr, other demand flat (`pypsa_tw/data/build_sector_growth_tw.py`);
+  - Taiwan demand rows: electricity and electronics +2.5%/yr, other demand flat (`data/build_sector_growth_tw.py`);
   - CO₂ storage 40 Mt/yr; EV shares 5/45/85%;
   - new nuclear at the Lungmen and Maanshan buses.
 - **PyPSA-Earth fixes needed to make the chain meaningful** (each commented "Taiwan fork"):
@@ -522,8 +522,8 @@ The 2050 results are not comparable with Taiwan's official net-zero pathway.
 
 ## 2026-09-26: Taiwan's official 2050 pathway in the model (no new nuclear)
 
-Filling the gaps found on 2026-09-25. Design, sources and results: `pypsa_tw/TAIWAN_2050_PATHWAY.md`.
-- **Official targets verified:** in the approved action plans (2023-04), downloaded to `pypsa_tw/data/official/` and registered in `sources.csv`.
+Filling the gaps found on 2026-09-25. Design, sources and results: `notes/TAIWAN_2050_PATHWAY.md`.
+- **Official targets verified:** in the approved action plans (2023-04), downloaded to `data/official/` and registered in `sources.csv`.
   - Offshore wind 40–55 GW, solar 40–80 GW, geothermal 3–6.2 GW.
   - Power mix 60–70% renewables, 9–12% hydrogen, 20–27% thermal with capture.
   - The 40 Mt/yr CO₂ storage volume is not in the CCUS plan's text; still to verify.
@@ -550,7 +550,7 @@ Filling the gaps found on 2026-09-25. Design, sources and results: `pypsa_tw/TAI
 
 ## 2026-09-26: website "Model data" page
 
-New page `docs/model-data.html`, built from `docs/data/model_data.json` (213 kB) by `pypsa_tw/viewer/export_model_data.py`. It has four sections.
+New page `docs/model-data.html`, built from `docs/data/model_data.json` (213 kB) by `viewer/export_model_data.py`. It has four sections.
 - **Grid and regions:** the full base network (193 substations, 243 lines by voltage) and the 6-region model (demand, peak, substations, links).
 - **Power plants:** every unit of today's fleet and the MOEA 2030 and 2034 plans, on a map with filters and a sortable table, plus capacity by region.
 - **Renewable potential:** for solar, onshore wind, offshore wind (fixed near and far shore, floating):
@@ -569,10 +569,10 @@ New page `docs/model-data.html`, built from `docs/data/model_data.json` (213 kB)
 ## 2026-09-26: sources on the model data page; PyPSA vs Taiwan cost comparison
 
 - **Sources:** every section of `docs/model-data.html` ends with a numbered source list: links to the page, the file and the copy in this repository, plus an evidence chip.
-  - 21 sources were added to `pypsa_tw/data/sources.csv`: OpenStreetMap/earth-osm, GADM, Marine Regions EEZ, ERA5, atlite, Copernicus land cover, WDPA, GEBCO, technology-data, powerplantmatching, PyPSA-Earth, the Taipower and Energy Administration datasets, news reports and the exchange rate.
+  - 21 sources were added to `data/sources.csv`: OpenStreetMap/earth-osm, GADM, Marine Regions EEZ, ERA5, atlite, Copernicus land cover, WDPA, GEBCO, technology-data, powerplantmatching, PyPSA-Earth, the Taipower and Energy Administration datasets, news reports and the exchange rate.
 - **Per-plant sources:** each plant shows its sources for capacity, location (a link to its OpenStreetMap object where there is one) and year.
 - **Cost table:** the technology-data source text is shortened, and its links are clickable, including the Danish Energy Agency catalogues and Lazard.
-- **Cost comparison** (new subsection): `pypsa_tw/data/taiwan_cost_benchmarks.csv` against PyPSA's rows for cost year 2030.
+- **Cost comparison** (new subsection): `data/taiwan_cost_benchmarks.csv` against PyPSA's rows for cost year 2030.
   - Taiwan's data:
     - the MOEA feed-in tariff parameters: 2026, 115年度 review committee, 3rd meeting, Tables 1-2; offshore wind 2023, 112年度, 2nd meeting, Table 2;
     - Taipower's actual cost by source (data.gov.tw 10856).
@@ -596,7 +596,7 @@ New page `docs/model-data.html`, built from `docs/data/model_data.json` (213 kB)
   - every source, cost row, renewable setting and section heading carries an origin tag;
   - the renewable settings are compared with `config.default.yaml`: solar, onshore and fixed offshore wind are unchanged, and floating offshore wind is the fork's.
 - **Sector and Taiwan data pages:** their source lists show the same tags.
-- **New `pypsa_tw/DATA_PROVENANCE.md`:**
+- **New `notes/DATA_PROVENANCE.md`:**
   - inputs by origin;
   - the six tracked files in `data/` that this fork adds or edits;
   - every upstream script the fork modifies (some edits, e.g. the "Other Asia" mapping, had no "Taiwan fork" comment).
