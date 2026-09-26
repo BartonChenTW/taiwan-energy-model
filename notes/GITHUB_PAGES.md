@@ -61,6 +61,8 @@ Results are exported as aggregated numbers. The model data page also publishes m
 - **Plants:** `resources/<run>/powerplants.csv` of today's fleet and the 2030 and 2034 plans. Plants are placed in the base run's regions by location, because each run clusters its own grid.
 - **Renewable potential:** `resources/<run>/renewable_profiles/profile_*.nc` (floating wind from the pathway D run) and the land-eligibility settings from the merged config.
 - **Costs:** `resources/tw_path2050_D_w2013_6b/costs_{2030,2040,2050}{,_sec}.csv`, plus the fork's derived options (gas with capture, hydrogen and ammonia turbines).
+- **PyPSA vs Taiwan costs:** `pypsa_tw/data/taiwan_cost_benchmarks.csv` (feed-in tariff parameters of 2026 and, for offshore wind, 2023; Taipower's actual cost by source), compared with the PyPSA rows of cost year 2030.
+- **Sources:** every section lists its sources from `pypsa_tw/data/sources.csv` (ids in `SECTION_SOURCES`), and each plant carries its own sources for capacity, location and year (Taipower unit list, OpenStreetMap object, powerplantmatching, news reports, the MOEA plan).
 
 ## Taiwan energy data page
 

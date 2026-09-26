@@ -7,10 +7,10 @@
     <meta name="title-en" content="Model Data" />
     <meta name="title-zh" content="模型資料" />
     <meta name="description" content="The detailed inputs of the Taiwan energy system model: grid and regions, every power plant, renewable potential and technology costs." />
-    <link rel="stylesheet" href="assets/site.css?v=e57c528e" />
+    <link rel="stylesheet" href="assets/site.css?v=66d82890" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <script src="assets/pages.js?v=b03ff9c1" defer></script>
-    <script src="assets/model-data.js?v=fa9b8466" defer></script>
+    <script src="assets/model-data.js?v=ddb4a190" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -49,6 +49,7 @@
           <a href="#plants"><span class="t-en">Power plants</span><span class="t-zh">電廠</span></a>
           <a href="#potential"><span class="t-en">Renewable potential</span><span class="t-zh">再生能源潛力</span></a>
           <a href="#costs"><span class="t-en">Technology costs</span><span class="t-zh">技術成本</span></a>
+          <a href="#compare"><span class="t-en">PyPSA vs Taiwan costs</span><span class="t-zh">PyPSA 與台灣成本比較</span></a>
         </nav>
       </section>
 
@@ -74,6 +75,8 @@
             <div id="md-region-lines" class="table-wrap"></div>
           </article>
         </div>
+        <p class="note"><span class="t-en">Demand: the GEGIS hourly profile for 2030 (SSP2-2.6, 2013 weather), scaled by 0.749 so that the year matches Taipower-system generation in 2024 (251.4 TWh; this total is still to confirm, see <code>pypsa_tw/data/README.md</code>), and split between regions by population and GDP (PyPSA-Earth's <code>build_demand_profiles</code>).</span><span class="t-zh">需求：GEGIS 2030 年逐時曲線（SSP2-2.6、2013 年氣象），乘以 0.749 使全年總量符合 2024 年台電系統發電量（251.4 TWh；此總量仍待確認，見 <code>pypsa_tw/data/README.md</code>），並依人口與 GDP 分配至各區（PyPSA-Earth 的 <code>build_demand_profiles</code>）。</span></p>
+        <div class="md-sources" data-section="grid"></div>
       </section>
 
       <!-- Power plants -->
@@ -100,7 +103,8 @@
         </div>
         <article class="panel">
           <div id="md-plant-table" class="table-wrap"></div>
-          <p class="note muted"><span class="t-en">From the model's power plant file (<code>resources/&lt;run&gt;/powerplants.csv</code>): Taipower's unit list (open data) and powerplantmatching for today's fleet, plus the MOEA supply-demand report 113年度 for the 2030 and 2034 plans. Regions are assigned by location.</span><span class="t-zh">資料取自模型的電廠檔（<code>resources/&lt;run&gt;/powerplants.csv</code>）：現有機組取自台電機組清單（政府開放資料）與 powerplantmatching；2030 與 2034 年規劃取自經濟部 113 年度電力資源供需報告。區域依位置指定。</span></p>
+          <div class="md-sources" data-section="plants"></div>
+          <p class="note muted"><span class="t-en">From the model's power plant files, built by <code>pypsa_tw/data/build_custom_powerplants.py</code> (today) and <code>build_future_powerplants.py</code> (plans); method and checks in <a href="https://github.com/BartonChenTW/pypsa-earth/blob/pypsa-taiwan-dev/pypsa_tw/data/README.md" rel="noopener">pypsa_tw/data/README.md</a>. The Sources column gives each plant's sources for capacity, location and commissioning year. Regions are assigned by location.</span><span class="t-zh">資料取自模型的電廠檔，由 <code>pypsa_tw/data/build_custom_powerplants.py</code>（現況）與 <code>build_future_powerplants.py</code>（規劃）產生；方法與檢核見 <a href="https://github.com/BartonChenTW/pypsa-earth/blob/pypsa-taiwan-dev/pypsa_tw/data/README.md" rel="noopener">pypsa_tw/data/README.md</a>。「來源」欄列出每座電廠容量、位置與商轉年的來源。區域依位置指定。</span></p>
         </article>
       </section>
 
@@ -132,6 +136,7 @@
         <article class="panel">
           <h3><span class="t-en">How the potential is computed</span><span class="t-zh">潛力的計算方式</span></h3>
           <div id="md-re-settings"></div>
+          <div class="md-sources" data-section="potential"></div>
         </article>
       </section>
 
@@ -161,6 +166,28 @@
         <article class="panel">
           <div id="md-cost-table" class="table-wrap"></div>
           <p class="note muted" id="md-cost-note"></p>
+          <div class="md-sources" data-section="costs"></div>
+        </article>
+
+        <h3 id="compare"><span class="t-en">PyPSA's cost data compared with Taiwan's</span><span class="t-zh">PyPSA 成本資料與台灣資料比較</span></h3>
+        <p class="note"><span class="t-en">The model uses PyPSA's technology-data, mostly European (Danish Energy Agency) figures. Taiwan publishes its own: the Ministry of Economic Affairs sets feed-in tariffs from an installed cost, an O&amp;M share, an annual output and a cost of capital for each technology, and Taipower reports the actual cost of each source. Below, the Taiwan figures sit next to the PyPSA rows of cost year <span id="md-cmp-year"></span>.</span><span class="t-zh">模型使用 PyPSA 的 technology-data，多為歐洲（丹麥能源署）數據。台灣有自己的資料：經濟部依各技術的期初設置成本、運維比例、年售電量與平均資金成本率訂定躉購費率；台電公布各種發電方式的實際成本。以下將台灣數據與 PyPSA <span id="md-cmp-year-zh"></span> 年成本並列比較。</span></p>
+        <ul id="md-cmp-findings"></ul>
+        <div class="grid two">
+          <article class="panel">
+            <h3><span class="t-en">Installed cost: Taiwan vs PyPSA</span><span class="t-zh">設置成本：台灣與 PyPSA</span></h3>
+            <p class="sub"><span class="t-en">€ per kW. Taiwan: feed-in tariff parameters (2026; offshore wind 2023)</span><span class="t-zh">每 kW 歐元。台灣：躉購費率參數（2026 年；離岸風電 2023 年）</span></p>
+            <div id="md-cmp-capex" class="chart tall"></div>
+          </article>
+          <article class="panel">
+            <h3><span class="t-en">Cost per MWh: three views</span><span class="t-zh">每 MWh 成本：三種觀點</span></h3>
+            <p class="sub" id="md-cmp-lcoe-sub"></p>
+            <div id="md-cmp-lcoe" class="chart tall"></div>
+          </article>
+        </div>
+        <article class="panel">
+          <div id="md-cmp-table" class="table-wrap"></div>
+          <p class="note muted" id="md-cmp-note"></p>
+          <div class="md-sources" data-section="compare"></div>
         </article>
       </section>
       <p class="note muted" id="md-meta"></p>

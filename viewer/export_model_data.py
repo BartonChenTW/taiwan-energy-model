@@ -33,8 +33,8 @@ RE_CARRIERS = [("solar", BASE_RUN), ("onwind", BASE_RUN), ("offwind-ac", BASE_RU
                ("offwind-float", FLOAT_RUN)]
 COST_YEARS = [2030, 2040, 2050]
 
-# County seats (lat, lon), ordered by population (Ministry of the Interior, 2024, rounded):
-# a region is labelled by the first two that fall inside its onshore polygon.
+# County seats (lat, lon), in approximate order of county population; only used to label a
+# region by the first two seats that fall inside its onshore polygon (orientation, not data).
 CITIES = [
     ("New Taipei", "新北", 25.012, 121.465), ("Taichung", "台中", 24.148, 120.674),
     ("Kaohsiung", "高雄", 22.627, 120.301), ("Taipei", "台北", 25.033, 121.565),
@@ -184,25 +184,88 @@ def _region_of(lon, lat, polys):
     return min(polys, key=lambda t: t[1].distance(pt))[0]
 
 
+# Plants whose capacity comes from news reports (pypsa_tw/data/supplementary_units.csv)
+SUPPLEMENTARY = {"Taichung new CC": ["cna_20260904_taichung_cc"],
+                 "Hsinta new CC": ["taipower_units_realtime", "einfo_hsinta_new_cc"]}
+OSM_KIND = {"r": "relation", "w": "way", "n": "node"}
+RE_FUELS = {"Wind", "Solar", "Hydro", "Bioenergy", "Geothermal"}
+
+
+def _location_source(coord):
+    """'OSM r18726493' -> link to the OpenStreetMap object; otherwise the source id."""
+    c = str(coord or "").strip()
+    if c.startswith("OSM "):
+        ref = c.split()[1]
+        kind = OSM_KIND.get(ref[0])
+        if kind and ref[1:].isdigit():
+            return {"id": "osm_power_plants_tw", "url": f"https://www.openstreetmap.org/{kind}/{ref[1:]}", "label": f"OSM {kind} {ref[1:]}"}
+    if c.startswith("powerplantmatching"):
+        return {"id": "powerplantmatching_gotzens2019"}
+    if c.startswith("thewindpower"):
+        return {"id": "thewindpower"}
+    if c:
+        return {"id": None, "label": c}
+    return None
+
+
+def _year_source(text):
+    t = str(text or "")
+    if t.startswith("powerplantmatching"):
+        return {"id": "powerplantmatching_gotzens2019"}
+    if t.startswith("CNA"):
+        return {"id": "cna_20260904_taichung_cc"}
+    if t.startswith("placeholder"):
+        return {"id": None, "label": "placeholder (2025)"}
+    return None
+
+
 def export_plants(repo):
+    mapping = pd.read_csv(repo / "pypsa_tw" / "data" / "taipower_plant_mapping.csv").drop_duplicates("name").set_index("name")
+    # planned plants (build_future_powerplants.py): coordinates from the thermal schedule file
+    sched = pd.read_csv(repo / "pypsa_tw" / "data" / "official" / "moea_thermal_schedule_2024_2034.csv")
+    sched_coord = sched.dropna(subset=["coord_source"]).drop_duplicates("plant").set_index("plant")["coord_source"].to_dict()
+    sched_coord["Geothermal (Yilan, assumed)"] = "OSM w709894062"  # GEOTHERMAL_SITE, Qingshui geothermal plant
     res = repo / "resources" / BASE_RUN / "bus_regions"
     polys = [(r.name, r.geometry) for f in ("regions_onshore_elec_s_6", "regions_offshore_elec_s_6")
              for r in gpd.read_file(res / f"{f}.geojson").itertuples()]
     fleets = []
+    today = None
     for fid, en, zh, run in FLEETS:
         f = repo / "resources" / run / "powerplants.csv"
         if not f.exists():
             continue
         p = pd.read_csv(f, index_col=0)
+        if today is None:
+            today = {(r.Name, round(r.Capacity, 1)) for r in p.itertuples()}
         rows = []
         for r in p.itertuples():
+            if r.Name.startswith("Solar "):  # one row per county
+                cap_src, loc = [{"id": "moeaea_solar_approvals_county"}], {"id": "gadm_41", "label": "county point (GADM 4.1)"}
+                year = None
+            else:
+                m = mapping.loc[r.Name] if r.Name in mapping.index else None
+                cap_src = [{"id": i} for i in SUPPLEMENTARY.get(r.Name, ["taipower_units_realtime"])]
+                loc = _location_source(m["coord_source"]) if m is not None else None
+                year = _year_source(m["datein_source"]) if m is not None else None
+                if m is None and r.Name in sched_coord:
+                    loc = _location_source(sched_coord[r.Name])
+                    if loc and "assum" in r.Name.lower():
+                        loc["label"] = loc.get("label", "") + " (assumed site)"
+                if m is None and r.Name.startswith("Biomass and waste"):
+                    loc = {"id": "gadm_41", "label": "county point, assumed site"}
+                if m is None:  # planned unit: the year is the plan's commissioning year
+                    year = {"id": "moea_psd_fy2024", "label": "Figure 3-3"} if r.Fueltype not in RE_FUELS else None
+            if fid != "today" and (r.Name, round(r.Capacity, 1)) not in today:
+                where = "Table 3-1 (renewable targets; existing rows scaled)" if r.Fueltype in RE_FUELS else "Figure 3-3 (thermal schedule)"
+                cap_src = [{"id": "moea_psd_fy2024", "label": where}]
             rows.append({"name": r.Name, "fuel": r.Fueltype, "group": FUEL_GROUP.get(r.Fueltype, "other"),
                          "technology": r.Technology if isinstance(r.Technology, str) else "",
                          "MW": _r(r.Capacity, 1), "efficiency": _r(r.Efficiency, 3),
                          "year_in": int(r.DateIn) if pd.notna(r.DateIn) else None,
                          "year_out": int(r.DateOut) if pd.notna(r.DateOut) else None,
                          "lat": _r(r.lat, 4), "lon": _r(r.lon, 4),
-                         "region": _region_of(r.lon, r.lat, polys) if pd.notna(r.lat) else None})
+                         "region": _region_of(r.lon, r.lat, polys) if pd.notna(r.lat) else None,
+                         "src": {"capacity": cap_src, "location": loc, "year": year}})
         fleets.append({"id": fid, "label": en, "label_zh": zh, "run": run, "plants": rows,
                        "total_GW": _r(p.Capacity.sum() / 1e3, 1)})
     return fleets
@@ -310,10 +373,90 @@ def export_costs(repo):
     return {"run": COST_RUN, "years": years}
 
 
+FX_TWD_EUR = 36.185  # Bank of Taiwan, 2026-09-24 (CURRENCY in export_dashboard_data.py)
+COMPARE_YEAR = 2030  # PyPSA cost year nearest to Taiwan's 2026 figures
+
+
+def _crf(r, n):
+    return r / (1 - (1 + r) ** -n)
+
+
+def export_comparison(repo, potential):
+    """Taiwan's official cost figures next to the PyPSA technology-data rows the model uses."""
+    bench = pd.read_csv(repo / "pypsa_tw" / "data" / "taiwan_cost_benchmarks.csv")
+    proc = pd.read_csv(repo / "resources" / COST_RUN / f"costs_{COMPARE_YEAR}_sec.csv", index_col=0)
+    rate = float(proc["discount rate"].dropna().iloc[0])
+    fuel = {k: float(proc.at[k, "fuel"]) for k in ("gas", "coal", "oil", "uranium") if k in proc.index}
+    fuel_of = {"CCGT": "gas", "OCGT": "gas", "coal": "coal", "oil": "oil", "nuclear": "uranium"}
+    def mean_cf(carriers):  # potential-weighted mean capacity factor of the model's regions
+        regs = [r for pot in potential if pot["carrier"] in carriers for r in pot["regions"] if r["cf"] and r["p_nom_max_GW"]]
+        w = sum(r["p_nom_max_GW"] for r in regs)
+        return sum(r["p_nom_max_GW"] * r["cf"] for r in regs) / w if w else None
+    cf_of = {"solar-utility": mean_cf(["solar"]), "solar-rooftop": mean_cf(["solar"]), "onwind": mean_cf(["onwind"]),
+             "offwind": mean_cf(["offwind-ac", "offwind-dc"])}
+
+    def pypsa_cost(row, cf):
+        """EUR/MWh from the model's annualised fixed cost at capacity factor cf, plus VOM and fuel."""
+        pr = proc.loc[row]
+        fixed = float(pr["fixed"]) / 1e3  # EUR/kW/yr
+        eff = float(pr["efficiency"]) if pd.notna(pr["efficiency"]) and pr["efficiency"] > 0 else 1.0
+        fuel_cost = fuel.get(fuel_of.get(row), 0.0) / eff
+        return fixed * 1e3 / (cf * 8760) + float(pr["VOM"] if pd.notna(pr["VOM"]) else 0) + fuel_cost
+
+    rows = []
+    for b in bench.itertuples():
+        pr = proc.loc[b.pypsa_row] if b.pypsa_row in proc.index else None
+        entry = {"key": b.key, "pypsa_row": b.pypsa_row, "en": b.label_en, "zh": b.label_zh, "kind": b.kind, "year": int(b.year),
+                 "source_id": b.source_id, "locator": b.locator, "note": b.note if isinstance(b.note, str) else ""}
+        if pr is not None:
+            entry.update({"pypsa_investment_EUR_kW": _r(pr["investment"] / 1e3, 0), "pypsa_FOM_pct": _r(pr["FOM"], 2),
+                          "pypsa_lifetime": _r(pr["lifetime"], 0)})
+        if b.kind == "fit":
+            cf = b.kWh_per_kW / 8760
+            tw_cost_twd = b.capex_TWD_kW * (_crf(b.wacc_pct / 100, b.years) + b.om_pct / 100) / b.kWh_per_kW
+            entry.update({"capex_TWD_kW": int(b.capex_TWD_kW), "capex_EUR_kW": _r(b.capex_TWD_kW / FX_TWD_EUR, 0),
+                          "om_pct": _r(b.om_pct, 2), "cf": _r(cf, 3), "wacc_pct": _r(b.wacc_pct, 2), "years": int(b.years),
+                          "taiwan_EUR_MWh": _r(tw_cost_twd * 1e3 / FX_TWD_EUR, 1), "taiwan_TWD_kWh": _r(tw_cost_twd, 3),
+                          "model_cf": _r(cf_of.get(b.pypsa_row), 3)})
+            if pr is not None:
+                entry["pypsa_EUR_MWh_at_taiwan_cf"] = _r(pypsa_cost(b.pypsa_row, cf), 1)
+                entry["capex_ratio"] = _r(entry["capex_EUR_kW"] / entry["pypsa_investment_EUR_kW"], 2)
+        else:
+            entry.update({"actual_TWD_kWh": _r(b.cost_TWD_kWh, 2), "actual_EUR_MWh": _r(b.cost_TWD_kWh * 1e3 / FX_TWD_EUR, 1)})
+            if pr is not None and b.pypsa_row in fuel_of:
+                entry["pypsa_EUR_MWh_at_60pct"] = _r(pypsa_cost(b.pypsa_row, 0.6), 1)
+        rows.append(entry)
+    return {"pypsa_year": COMPARE_YEAR, "discount_rate": _r(rate, 3), "fx_TWD_EUR": FX_TWD_EUR, "fuel_EUR_MWh": {k: _r(v, 2) for k, v in fuel.items()},
+            "rows": rows}
+
+
+SECTION_SOURCES = {
+    "grid": ["osm_grid_earth_osm", "gadm_41", "marineregions_eez_v11", "gegis_ssp2_26", "pypsa_earth_parzen2023"],
+    "plants": ["taipower_units_realtime", "moeaea_solar_approvals_county", "osm_power_plants_tw", "powerplantmatching_gotzens2019",
+               "thewindpower", "cna_20260904_taichung_cc", "einfo_hsinta_new_cc", "gadm_41", "moea_psd_fy2024"],
+    "potential": ["era5_hersbach2020", "atlite_hofmann2021", "copernicus_lc100_2019", "wdpa", "gebco_2025", "gadm_41",
+                  "marineregions_eez_v11"],
+    "costs": ["technology_data_v0132", "irena_rpgc_2023_geothermal", "netl_baseline_rev4a_capture", "aea_ammonia_gas_turbines"],
+    "compare": ["moeaea_fit_2026_params", "moeaea_fit_2023_params", "taipower_gen_cost_by_source", "technology_data_v0132",
+                "bot_fx_20260924"],
+}
+
+
+def export_sources(repo):
+    src = pd.read_csv(repo / "pypsa_tw" / "data" / "sources.csv", dtype=str).fillna("").set_index("source_id")
+    ids = sorted({i for v in SECTION_SOURCES.values() for i in v})
+    missing = [i for i in ids if i not in src.index]
+    assert not missing, f"sources not in sources.csv: {missing}"
+    keep = ["short_cite", "title", "title_en", "publisher", "edition", "published", "landing_url", "file_url", "local_file",
+            "accessed", "license", "evidence", "note"]
+    return {"records": {i: src.loc[i, keep].to_dict() for i in ids}, "sections": SECTION_SOURCES}
+
+
 def export_model_data(repo, out):
     payload = {"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
                "network": export_network(repo), "fleets": export_plants(repo),
-               "potential": export_potential(repo), "costs": export_costs(repo)}
+               "potential": export_potential(repo), "costs": export_costs(repo), "sources": export_sources(repo)}
+    payload["comparison"] = export_comparison(repo, payload["potential"])
     (out / "model_data.json").write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     size = (out / "model_data.json").stat().st_size / 1e3
     print(f"wrote model_data.json ({len(payload['fleets'])} fleets, {len(payload['potential'])} renewable carriers, "

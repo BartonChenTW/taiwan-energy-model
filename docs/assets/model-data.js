@@ -33,6 +33,21 @@ const MT = {
     cf_label: (v) => `Capacity factor of dispatchable plants: ${v}%`, co2_label: (v) => `CO₂ price: ${v} €/t`,
     capital: "Capital and fixed O&M", running: "Fuel and variable O&M", carbon: "CO₂ (incl. storage for capture)",
     meta: (g) => `Exported ${g}. Base run: today's system with 2013 weather, 6 regions.`,
+    src_title: "Sources", src_page: "page", src_file: "file", src_copy: "copy in this repository",
+    ev: { downloaded: "Downloaded", page_opened: "Page checked", search_summary: "To verify", model_input: "Model input" },
+    col_src_plant: "Sources", src_cap: "Capacity", src_loc: "Location", src_year: "Year",
+    cmp_capex_tw: "Taiwan (official)", cmp_capex_py: "PyPSA",
+    cmp_tw: "Taiwan: new build (tariff formula)", cmp_py: "PyPSA at Taiwan's output", cmp_act: "Taipower: actual 2025",
+    cmp_py60: "PyPSA new build at 60%",
+    cmp_lcoe_sub: "€ per MWh. New-build renewables: Taiwan's tariff formula (its installed cost, O&M, output and 5.25% cost of capital; offshore wind 5.70%) and PyPSA's rows at the same output with the model's 7% rate. Taipower: actual cost in 2025 of the power it bought (renewables) or generated (thermal), whatever the plants' age.",
+    cmp_cols: ["Technology and source", "Taiwan installed cost", "PyPSA installed cost", "Ratio", "O&M (%/yr) Taiwan / PyPSA", "Output (capacity factor)", "Taiwan cost (€/MWh)", "PyPSA cost at Taiwan's output (€/MWh)"],
+    cmp_cols_act: ["Taipower source and data", "Actual cost 2025", "PyPSA new build at 60% (€/MWh)", "Note"],
+    cmp_find: (c) => [
+      `Taiwan's official installed cost is ${c.solar}× PyPSA's for ground-mounted solar, ${c.off}× for offshore wind and ${c.geo}× for geothermal, but about the same for onshore wind (${c.on}×).`,
+      `At Taiwan's own output per kW, new ground-mounted solar costs about ${c.solarTW} €/MWh by Taiwan's figures against ${c.solarPY} €/MWh with PyPSA's; offshore wind ${c.offTW} against ${c.offPY} €/MWh. With PyPSA's costs the model therefore finds solar and offshore wind much cheaper than Taiwan's tariffs imply.`,
+      `Taipower's actual costs in 2025: own gas plants ${c.gas} €/MWh, coal ${c.coal}, nuclear ${c.nuc}; purchased wind ${c.wind} and solar ${c.solarAct} €/MWh (older, higher tariffs).`,
+    ],
+    cmp_note: (fx, y) => `NT$ converted at ${fx} TWD per EUR (Bank of Taiwan, 2026-09-24). PyPSA figures are cost year ${y} in technology-data's currency year (mostly EUR 2020); Taiwan's are nominal NT$ of 2026 (offshore wind 2023). No inflation adjustment, so part of the gap is price level. Tariff costs include grid connection to the tariff boundary and developer margins; PyPSA's are equipment and installation. The tariff formula reproduces the published tariffs (e.g. onshore wind 2.130 NT$/kWh vs 2.1299, offshore wind 2023 4.508 vs 4.5085).`,
   },
   zh: {
     grid_full: (b, l) => `基礎電網（OpenStreetMap）的 ${b} 座變電所與 ${l} 條線路，依區域著色；線寬代表電壓等級。`,
@@ -65,6 +80,21 @@ const MT = {
     cf_label: (v) => `可調度電廠容量因數：${v}%`, co2_label: (v) => `碳價：每公噸 ${v} 歐元`,
     capital: "資本與固定運維", running: "燃料與變動運維", carbon: "CO₂（含捕捉後封存）",
     meta: (g) => `匯出時間 ${g}。基準模擬：現況系統、2013 年氣象、6 個區域。`,
+    src_title: "資料來源", src_page: "頁面", src_file: "檔案", src_copy: "本專案副本",
+    ev: { downloaded: "已下載", page_opened: "已查頁面", search_summary: "待查證", model_input: "模型輸入" },
+    col_src_plant: "來源", src_cap: "容量", src_loc: "位置", src_year: "年份",
+    cmp_capex_tw: "台灣（官方）", cmp_capex_py: "PyPSA",
+    cmp_tw: "台灣：新建（躉購費率公式）", cmp_py: "PyPSA（採台灣年發電量）", cmp_act: "台電：2025 年實際成本",
+    cmp_py60: "PyPSA 新建（容量因數 60%）",
+    cmp_lcoe_sub: "每 MWh 歐元。新建再生能源：台灣躉購費率公式（其期初設置成本、運維、年售電量與 5.25% 平均資金成本率；離岸風電 5.70%），以及 PyPSA 數據在相同年發電量、模型 7% 折現率下的成本。台電：2025 年購入（再生能源）或自發（火力）電力的實際成本，不論電廠年齡。",
+    cmp_cols: ["技術與來源", "台灣設置成本", "PyPSA 設置成本", "倍數", "運維（%／年）台灣／PyPSA", "年發電量（容量因數）", "台灣成本（歐元/MWh）", "PyPSA 成本，台灣年發電量（歐元/MWh）"],
+    cmp_cols_act: ["台電發電方式與資料", "2025 年實際成本", "PyPSA 新建，容量因數 60%（歐元/MWh）", "說明"],
+    cmp_find: (c) => [
+      `台灣官方設置成本為 PyPSA 的：地面型太陽光電 ${c.solar} 倍、離岸風電 ${c.off} 倍、地熱 ${c.geo} 倍；陸域風電則相近（${c.on} 倍）。`,
+      `以台灣本身的每瓩年發電量計算，新建地面型太陽光電依台灣數據約每 MWh ${c.solarTW} 歐元，依 PyPSA 數據為 ${c.solarPY} 歐元；離岸風電為 ${c.offTW} 對 ${c.offPY} 歐元。因此模型採用 PyPSA 成本時，太陽光電與離岸風電比台灣躉購費率所隱含的便宜許多。`,
+      `台電 2025 年實際成本：自有燃氣電廠每 MWh ${c.gas} 歐元、燃煤 ${c.coal}、核能 ${c.nuc}；購入風電 ${c.wind}、太陽光電 ${c.solarAct} 歐元（早期較高的躉購費率）。`,
+    ],
+    cmp_note: (fx, y) => `新台幣以每歐元 ${fx} 元換算（臺灣銀行，2026-09-24）。PyPSA 為 ${y} 年成本，幣值為 technology-data 的幣值年（多為 2020 年歐元）；台灣為 2026 年名目新台幣（離岸風電為 2023 年）。未調整通膨，差距有部分來自物價水準。躉購費率成本包含至責任分界點的併網費用與開發商合理利潤；PyPSA 為設備與安裝成本。躉購費率公式可重現公告費率（例如陸域風電 2.130 對 2.1299 元/度、2023 年離岸風電 4.508 對 4.5085 元/度）。`,
   },
 };
 
@@ -242,12 +272,12 @@ function renderPlants() {
   });
   const hasEff = fleet.plants.some((p) => p.efficiency), hasOut = fleet.plants.some((p) => p.year_out);
   const cols = [[t.col_name, 0, "name"], [t.col_type, 0, "group"], [t.col_tech, 0, "technology"], [t.col_mw, 1, "MW"],
-    ...(hasEff ? [[t.col_eff, 1, "efficiency"]] : []), [t.col_in, 1, "year_in"], ...(hasOut ? [[t.col_out, 1, "year_out"]] : []), [t.region, 0, "region"]];
+    ...(hasEff ? [[t.col_eff, 1, "efficiency"]] : []), [t.col_in, 1, "year_in"], ...(hasOut ? [[t.col_out, 1, "year_out"]] : []), [t.region, 0, "region"], [t.col_src_plant]];
   $m("md-plant-table").innerHTML = table(cols,
     sorted.map((p) => [[esc(p.name)], [`<span class="swatch" style="background:${cv(GROUP_COLOR[p.group])}"></span>${esc(t.groups[p.group] || p.fuel)}`],
       [esc(p.technology && p.technology !== p.fuel ? p.technology : "")], [nf(p.MW, 1), 1],
       ...(hasEff ? [[p.efficiency ? nf(p.efficiency * 100, 0) + "%" : "–", 1]] : []),
-      [p.year_in ?? "–", 1], ...(hasOut ? [[p.year_out ?? "–", 1]] : []), [esc(regionName(p.region))]]), true);
+      [p.year_in ?? "–", 1], ...(hasOut ? [[p.year_out ?? "–", 1]] : []), [esc(regionName(p.region))], [plantSources(p)]]), true);
   $m("md-plant-table").querySelectorAll("th[data-sort]").forEach((th) => {
     const go = () => { const key = th.dataset.sort; st.sort = { key, dir: st.sort.key === key ? -st.sort.dir : (key === "MW" ? -1 : 1) }; renderPlants(); };
     th.addEventListener("click", go);
@@ -383,8 +413,115 @@ function renderCosts() {
       [`${nf(r.investment, r.investment < 10 ? 2 : 0)} <span class="muted">${esc(unitLabel(r.unit))}</span>`, 1], [nf(r.FOM_pct, 2), 1], [nf(r.VOM_EUR_MWh, 2), 1],
       [r.efficiency && r.efficiency !== 1 ? nf(r.efficiency * 100, 1) + "%" : "–", 1], [nf(r.lifetime), 1],
       [`${nf(r.fixed_per_unit_yr, r.fixed_per_unit_yr < 10 ? 2 : 1)} <span class="muted">${esc(unitLabel(r.unit))}</span>`, 1],
-      [`<span class="src" title="${esc(r.source)}">${esc(r.source.length > 60 ? r.source.slice(0, 58) + "…" : r.source)}${r.currency_year ? ` (${r.currency_year})` : ""}</span>`]]));
+      [`<span class="src">${costSource(r.source)}${r.currency_year ? ` (${r.currency_year})` : ""}</span>`]]));
   $m("md-cost-note").textContent = t.cost_note(nf(Y.discount_rate, 3));
+}
+
+const REPO_BLOB = "https://github.com/BartonChenTW/pypsa-earth/blob/pypsa-taiwan-dev/pypsa_tw/data/";
+const EV_SEV = { downloaded: "good", page_opened: "good", search_summary: "warning", model_input: "neutral" };
+const EV_ICON = { good: "✓", warning: "!", neutral: "◆" };
+const srcRec = (id) => (st.data.sources.records || {})[id];
+const chip = (ev) => { const sev = EV_SEV[ev] || "neutral";
+  return `<span class="chip ${sev}"><span class="chip-icon" aria-hidden="true">${EV_ICON[sev]}</span>${esc(T().ev[ev] || ev)}</span>`; };
+const a = (url, text) => (url ? `<a href="${esc(url)}" rel="noopener">${esc(text)}</a>` : esc(text));
+// URLs inside free text (technology-data source strings) become links
+const linkify = (text) => esc(text).replace(/https?:\/\/[^\s,;)]+[^\s,;.)]/g, (u) => `<a href="${u}" rel="noopener">${u.length > 50 ? u.slice(0, 48) + "…" : u}</a>`);
+
+// technology-data source strings can be long: a short text plus every link in it
+function costSource(text) {
+  const urls = String(text || "").match(/https?:\/\/[^\s,;)]+[^\s,;.)]/g) || [];
+  const head = String(text || "").replace(/https?:\/\/\S+/g, "").replace(/\s+/g, " ").trim();
+  const short = head.length > 70 ? head.slice(0, 68) + "…" : head;
+  // publishers named without a URL in technology-data
+  const known = [[/Danish Energy Agency/i, "https://ens.dk/en/analyses-and-statistics/technology-catalogues"],
+                 [/Lazard/i, "https://www.lazard.com/research-insights/levelized-cost-of-energyplus/"]];
+  known.forEach(([re, u]) => { if (re.test(text) && !urls.includes(u)) urls.unshift(u); });
+  return `<span title="${esc(text)}">${esc(short)}</span>` + urls.map((u, i) => ` ${a(u, `[${i + 1}]`)}`).join("");
+}
+
+function renderSources() {
+  const t = T();
+  document.querySelectorAll(".md-sources").forEach((el) => {
+    const ids = (st.data.sources.sections || {})[el.dataset.section] || [];
+    el.innerHTML = `<p><b>${esc(t.src_title)}</b></p><ol class="refs">` + ids.map((id) => {
+      const r = srcRec(id);
+      if (!r) return "";
+      const title = mlang() === "zh" ? r.title || r.title_en : r.title_en || r.title;
+      const links = [r.landing_url && a(r.landing_url, t.src_page), r.file_url && a(r.file_url, t.src_file),
+                     r.local_file && a(REPO_BLOB + r.local_file, t.src_copy)].filter(Boolean).join(" · ");
+      const meta = [r.publisher, r.edition || r.published, r.license].filter(Boolean).join(" · ");
+      return `<li id="md-src-${esc(id)}"><b>${esc(r.short_cite || title)}</b>${title && title !== r.short_cite ? ` — <i>${esc(title)}</i>` : ""}. ${esc(meta)}. ${links} ${chip(r.evidence)}` +
+        (r.note ? `<br><span class="muted">${linkify(r.note)}</span>` : "") + "</li>";
+    }).join("") + "</ol>";
+  });
+}
+
+const PLANT_SRC_NAME = { taipower_units_realtime: "Taipower unit list", moeaea_solar_approvals_county: "Energy Administration solar approvals",
+  powerplantmatching_gotzens2019: "powerplantmatching", cna_20260904_taichung_cc: "CNA 2026-09-04", einfo_hsinta_new_cc: "e-info.org.tw",
+  thewindpower: "thewindpower.net", gadm_41: "GADM 4.1", moea_psd_fy2024: "MOEA supply-demand report 113年度", osm_power_plants_tw: "OpenStreetMap" };
+// one plant's sources: capacity, location, year
+function plantSources(p) {
+  const t = T(), s = p.src || {};
+  const one = (x) => {
+    if (!x) return null;
+    const r = x.id ? srcRec(x.id) : null;
+    const name = PLANT_SRC_NAME[x.id] || (r ? r.short_cite.split(" (")[0] : "");
+    const label = x.url ? x.label : [name, x.label && !x.label.includes(name) ? x.label : ""].filter(Boolean).join(", ");
+    const url = x.url || (r ? r.landing_url : "");
+    return url ? a(url, label) : esc(label);
+  };
+  const parts = [];
+  if (s.capacity && s.capacity.length) parts.push(`${esc(t.src_cap)}: ${s.capacity.map(one).filter(Boolean).join(", ")}`);
+  if (s.location) parts.push(`${esc(t.src_loc)}: ${one(s.location)}`);
+  if (s.year) parts.push(`${esc(t.src_year)}: ${one(s.year)}`);
+  return `<span class="src">${parts.join("<br>")}</span>`;
+}
+
+// ---------- PyPSA vs Taiwan costs ----------
+function renderCompare() {
+  const t = T(), C = st.data.comparison;
+  if (!C) return;
+  $m("md-cmp-year").textContent = C.pypsa_year;
+  $m("md-cmp-year-zh").textContent = C.pypsa_year;
+  const fit = C.rows.filter((r) => r.kind === "fit"), act = C.rows.filter((r) => r.kind === "actual");
+  const k = (key) => C.rows.find((r) => r.key === key) || {};
+  $m("md-cmp-findings").innerHTML = t.cmp_find({
+    solar: nf(k("fit_solar_ground").capex_ratio, 1), off: nf(k("fit_offwind").capex_ratio, 1), geo: nf(k("fit_geothermal").capex_ratio, 1),
+    on: nf(k("fit_onwind").capex_ratio, 1), solarTW: nf(k("fit_solar_ground").taiwan_EUR_MWh), solarPY: nf(k("fit_solar_ground").pypsa_EUR_MWh_at_taiwan_cf),
+    offTW: nf(k("fit_offwind").taiwan_EUR_MWh), offPY: nf(k("fit_offwind").pypsa_EUR_MWh_at_taiwan_cf),
+    gas: nf(k("act_gas").actual_EUR_MWh), coal: nf(k("act_coal").actual_EUR_MWh), nuc: nf(k("act_nuclear").actual_EUR_MWh),
+    wind: nf(k("act_wind").actual_EUR_MWh), solarAct: nf(k("act_solar").actual_EUR_MWh),
+  }).map((x) => `<li>${esc(x)}</li>`).join("");
+  const name = (r) => (mlang() === "zh" ? r.zh : r.en);
+  const bar = (label, rows, val, i, fmt) => ({ type: "bar", orientation: "h", name: label, y: rows.map(name), x: rows.map(val),
+    marker: { color: cv(`--k-${i}`), line: { color: cv("--surface"), width: 1.5 } }, hovertemplate: `${esc(label)}: %{x:,.0f} ${fmt}<extra>%{y}</extra>` });
+  const lg = { orientation: "h", x: 0, y: 1.02, yanchor: "bottom", traceorder: "normal", font: { color: cv("--ink-2"), size: 11 } };
+  Plotly.react("md-cmp-capex", [bar(t.cmp_capex_tw, fit, (r) => r.capex_EUR_kW, 1, "€/kW"), bar(t.cmp_capex_py, fit, (r) => r.pypsa_investment_EUR_kW, 2, "€/kW")],
+    layout({ barmode: "group", barcornerradius: 3, yaxis: { autorange: "reversed" }, xaxis: { title: { text: "€/kW", font: { size: 11 } }, rangemode: "tozero" },
+             legend: lg, margin: { l: 8, r: 12, t: 8, b: 30 } }), cfg);
+  // cost per MWh: per technology up to three views
+  const techs = [["fit_solar_ground", "act_solar"], ["fit_solar_roof_large", null], ["fit_onwind", null], ["fit_offwind", "act_wind"],
+                 ["fit_geothermal", "act_geothermal"], ["fit_small_hydro", null], [null, "act_gas"], [null, "act_coal"], [null, "act_nuclear"]];
+  const labels = techs.map(([f, x]) => name(k(f || x)));
+  const series = [[t.cmp_tw, techs.map(([f]) => (f ? k(f).taiwan_EUR_MWh : null)), 1], [t.cmp_py, techs.map(([f, x]) => (f ? k(f).pypsa_EUR_MWh_at_taiwan_cf : k(x).pypsa_EUR_MWh_at_60pct)), 2],
+                  [t.cmp_act, techs.map(([, x]) => (x ? k(x).actual_EUR_MWh : null)), 3]];
+  Plotly.react("md-cmp-lcoe", series.map(([label, xs, i]) => ({ type: "bar", orientation: "h", name: label, y: labels, x: xs,
+    marker: { color: cv(`--k-${i}`), line: { color: cv("--surface"), width: 1.5 } }, hovertemplate: `${esc(label)}: %{x:.0f} €/MWh<extra>%{y}</extra>` })),
+    layout({ barmode: "group", barcornerradius: 3, yaxis: { autorange: "reversed" }, xaxis: { title: { text: "€/MWh", font: { size: 11 } }, rangemode: "tozero" },
+             legend: lg, margin: { l: 8, r: 12, t: 8, b: 30 } }), cfg);
+  $m("md-cmp-lcoe-sub").textContent = t.cmp_lcoe_sub;
+  const srcLink = (r) => { const rec = srcRec(r.source_id); return rec ? `${a(rec.file_url || rec.landing_url, rec.short_cite.split(":")[0])}, ${esc(r.locator)}` : ""; };
+  $m("md-cmp-table").innerHTML = table(t.cmp_cols.map((h, i) => [h, i > 0 && i < 8]),
+    fit.map((r) => [[`${esc(name(r))} <span class="muted">(${esc(r.year)})</span><br><span class="src">${srcLink(r)}</span>`],
+      [`${nf(r.capex_EUR_kW)} €/kW<br><span class="muted">${nf(r.capex_TWD_kW)} NT$/kW</span>`, 1], [`${nf(r.pypsa_investment_EUR_kW)} €/kW`, 1],
+      [`${nf(r.capex_ratio, 2)}×`, 1], [`${nf(r.om_pct, 2)} / ${nf(r.pypsa_FOM_pct, 2)}`, 1],
+      [`${nf(r.cf * 100, 1)}%${r.model_cf ? `<br><span class="muted">model ${nf(r.model_cf * 100, 1)}%</span>` : ""}`, 1],
+      [`${nf(r.taiwan_EUR_MWh)}<br><span class="muted">${nf(r.taiwan_TWD_kWh, 2)} NT$/kWh</span>`, 1], [nf(r.pypsa_EUR_MWh_at_taiwan_cf), 1]])) +
+    (fit.some((r) => r.note) ? `<p class="note muted">${fit.filter((r) => r.note).map((r) => `${esc(name(r))}: ${esc(r.note)}`).join(" ")}</p>` : "") +
+    table(t.cmp_cols_act.map((h, i) => [h, i === 1 || i === 2]),
+      act.map((r) => [[`${esc(name(r))}<br><span class="src">${srcLink(r)}</span>`], [`${nf(r.actual_EUR_MWh)} €/MWh<br><span class="muted">${nf(r.actual_TWD_kWh, 2)} NT$/kWh</span>`, 1],
+        [nf(r.pypsa_EUR_MWh_at_60pct), 1], [`<span class="muted">${esc(r.note)}</span>`]]));
+  $m("md-cmp-note").textContent = t.cmp_note(nf(C.fx_TWD_EUR, 3), C.pypsa_year);
 }
 
 function renderAll() {
@@ -393,6 +530,8 @@ function renderAll() {
   renderPlants();
   renderPotential();
   renderCosts();
+  renderCompare();
+  renderSources();
   $m("md-meta").textContent = T().meta(st.data.generated);
 }
 

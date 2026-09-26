@@ -1,0 +1,16 @@
+key,pypsa_row,label_en,label_zh,kind,year,capex_TWD_kW,om_pct,kWh_per_kW,wacc_pct,years,cost_TWD_kWh,source_id,locator,note
+fit_solar_ground,solar-utility,"Solar PV, ground-mounted",太陽光電（地面型）,fit,2026,38100,3.23,1250,5.25,20,,moeaea_fit_2026_params,"Table 1, PDF p. 6 (period 1, 1 kW and above)",
+fit_solar_roof_large,solar-rooftop,"Solar PV, rooftop 500 kW and above",太陽光電（屋頂型 500 瓩以上）,fit,2026,36400,4.13,1250,5.25,20,,moeaea_fit_2026_params,"Table 1, PDF p. 6 (period 1)",
+fit_solar_roof_small,solar-rooftop,"Solar PV, rooftop 1-10 kW",太陽光電（屋頂型 1–10 瓩）,fit,2026,51700,4.75,1250,5.25,20,,moeaea_fit_2026_params,"Table 1, PDF p. 6 (period 1)",
+fit_onwind,onwind,"Onshore wind, 30 kW and above (LVRT/HVRT)",陸域風電（30 瓩以上，具 LVRT/HVRT）,fit,2026,40600,4.92,2500,5.25,20,,moeaea_fit_2026_params,"Table 2, PDF p. 6",
+fit_offwind,offwind,Offshore wind,離岸風電,fit,2023,148600,2.87,3750,5.70,20,,moeaea_fit_2023_params,"Table 2, PDF p. 10",Last year with an offshore wind tariff; from 2026 offshore wind is sold under corporate PPAs.
+fit_geothermal,geothermal,"Geothermal, conventional, 5 MW and above","地熱（傳統型，5,000 瓩以上）",fit,2026,240900,5.50,6700,5.25,20,,moeaea_fit_2026_params,"Table 2, PDF p. 7",
+fit_small_hydro,ror,"Small hydro, 500 kW to 20 MW","小水力（500 瓩以上不及 20,000 瓩）",fit,2026,164400,1.45,4000,5.25,20,,moeaea_fit_2026_params,"Table 2, PDF pp. 6-7",
+fit_biomass,biomass,"Biomass, solid fuels and agricultural residues",生質能（固態生質燃料及農業剩餘資源）,fit,2026,108000,18.55,5600,5.25,20,,moeaea_fit_2026_params,"Table 2, PDF p. 6","The operating share includes fuel, so it is not comparable with a fixed O&M share."
+act_gas,CCGT,"Taipower's own gas plants",台電自有燃氣電廠,actual,2025,,,,,,2.76,taipower_gen_cost_by_source,"Row 燃氣 (own generation), column 114年 自編決算",2024 audited: 2.94. Includes fuel at actual prices and the fleet's actual running hours.
+act_coal,coal,"Taipower's own coal plants",台電自有燃煤電廠,actual,2025,,,,,,2.20,taipower_gen_cost_by_source,"Row 燃煤 (own generation), column 114年 自編決算",2024 audited: 2.50.
+act_nuclear,nuclear,Taipower's nuclear plants,台電核能電廠,actual,2025,,,,,,1.98,taipower_gen_cost_by_source,"Row 核能發電, column 114年 自編決算","2024 audited: 1.41. Existing, largely depreciated plants (Maanshan shut down in May 2025)."
+act_oil,oil,"Taipower's own oil plants",台電自有燃油電廠,actual,2025,,,,,,6.69,taipower_gen_cost_by_source,"Row 燃油 (own generation), column 114年 自編決算",2024 audited: 7.29.
+act_wind,offwind,Wind power bought by Taipower,台電購入風力發電,actual,2025,,,,,,6.60,taipower_gen_cost_by_source,"Row 風力發電 (purchased power), column 114年 自編決算","2024 audited: 6.59. Mostly offshore wind under the feed-in tariffs of earlier years."
+act_solar,solar-utility,Solar power bought by Taipower,台電購入太陽光電,actual,2025,,,,,,4.90,taipower_gen_cost_by_source,"Row 太陽光電 (purchased power), column 114年 自編決算","2024 audited: 4.87. Feed-in tariffs of all vintages since 2011."
+act_geothermal,geothermal,Geothermal power bought by Taipower,台電購入地熱發電,actual,2025,,,,,,6.52,taipower_gen_cost_by_source,"Row 地熱 (purchased power), column 114年 自編決算",2024 audited: 6.59.

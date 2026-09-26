@@ -566,5 +566,21 @@ New page `docs/model-data.html`, built from `docs/data/model_data.json` (213 kB)
 - **Plant regions:** plants are placed by location in the base run's regions. Region ids differ between runs, because each run clusters its own grid; the 2030 and 2034 fleets had been mislabelled by their own busmaps.
 - **Screenshot check:** a phone-width test needs 500 px or more in headless Edge on Windows. Below that it crops the layout.
 
+## 2026-09-26: sources on the model data page; PyPSA vs Taiwan cost comparison
+
+- **Sources:** every section of `docs/model-data.html` ends with a numbered source list: links to the page, the file and the copy in this repository, plus an evidence chip.
+  - 21 sources were added to `pypsa_tw/data/sources.csv`: OpenStreetMap/earth-osm, GADM, Marine Regions EEZ, ERA5, atlite, Copernicus land cover, WDPA, GEBCO, technology-data, powerplantmatching, PyPSA-Earth, the Taipower and Energy Administration datasets, news reports and the exchange rate.
+- **Per-plant sources:** each plant shows its sources for capacity, location (a link to its OpenStreetMap object where there is one) and year.
+- **Cost table:** the technology-data source text is shortened, and its links are clickable, including the Danish Energy Agency catalogues and Lazard.
+- **Cost comparison** (new subsection): `pypsa_tw/data/taiwan_cost_benchmarks.csv` against PyPSA's rows for cost year 2030.
+  - Taiwan's data:
+    - the MOEA feed-in tariff parameters: 2026, 115年度 review committee, 3rd meeting, Tables 1-2; offshore wind 2023, 112年度, 2nd meeting, Table 2;
+    - Taipower's actual cost by source (data.gov.tw 10856).
+  - The tariff formula reproduces the published tariffs: onshore wind 2.130 vs 2.1299 NT$/kWh, offshore wind 2023 4.508 vs 4.5085, ground-mounted solar 3.48 vs 3.5037.
+  - Taiwan's installed cost against PyPSA's: ground-mounted solar 2.7×, offshore wind 2.4×, geothermal 1.6×, small hydro 1.3×, onshore wind 1.0×.
+  - Cost per MWh at Taiwan's output: solar 96 vs 31 €/MWh, offshore wind 125 vs 47.
+  - So the model, with PyPSA costs, sees solar and offshore wind as much cheaper than Taiwan's own figures. A Taiwan-cost sensitivity is worth running.
+  - Caveats: no inflation adjustment (EUR 2020 vs NT$ 2026); tariff costs include grid connection and developer margins.
+
 TODO:
  - to run PyPSA-Earth Taiwan!

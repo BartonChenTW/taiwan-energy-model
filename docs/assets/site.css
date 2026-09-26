@@ -433,3 +433,8 @@ th[data-sort]:focus-visible { outline: 2px solid var(--accent); outline-offset: 
 @media (max-width: 640px) { dl.kv { grid-template-columns: 1fr; } .filters input[type=range] { width: 100%; } }
 #md-plant-table { max-height: 560px; overflow: auto; }
 #md-plant-table thead th { position: sticky; top: 0; background: var(--surface); z-index: 1; }
+#md-cmp-table table + table { margin-top: 18px; }
+#md-cmp-table td:first-child, #md-cost-table td:first-child { white-space: normal; min-width: 240px; max-width: 340px; }
+#md-cmp-table td:last-child { min-width: 200px; }
+#md-cmp-table th { white-space: normal; min-width: 70px; }
+#md-plant-table td:last-child { min-width: 240px; }
