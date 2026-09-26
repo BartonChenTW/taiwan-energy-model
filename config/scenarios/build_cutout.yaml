@@ -1,0 +1,10 @@
+# One-off overlay: build Taiwan's 2013 weather cutout (cutouts/cutout-2013-era5-tw.nc in the model
+# folder, about 370 MB) from ERA5 through the Copernicus Climate Data Store. Needs a free CDS
+# account and its API key in ~/.cdsapirc:
+#   url: https://cds.climate.copernicus.eu/api
+#   key: <your key>
+# Use it once, on top of a Taiwan config, then leave it out: all Taiwan configs expect the cutout
+# to exist (enable.build_cutout: false).
+enable:
+  build_cutout: true
+  retrieve_cutout: false

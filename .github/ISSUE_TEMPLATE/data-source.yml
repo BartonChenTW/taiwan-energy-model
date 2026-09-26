@@ -1,0 +1,44 @@
+name: Data source or correction / 資料來源或更正
+description: Suggest a Taiwan data source, report a wrong figure, or confirm a figure marked "to verify". 建議資料來源、回報錯誤數字，或查證「待查證」數字。
+labels: [data]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is it? / 類型
+      options:
+        - New source or dataset / 新資料來源
+        - Wrong or outdated figure / 數字錯誤或過時
+        - Verification of a "to verify" figure / 查證「待查證」數字
+        - Other / 其他
+    validations:
+      required: true
+  - type: input
+    id: figure
+    attributes:
+      label: Figure or table concerned / 相關數字或表格
+      description: e.g. "Solar PV capacity 2025" on the Taiwan energy data page, or a row of data/sources.csv
+  - type: input
+    id: link
+    attributes:
+      label: Link to the source / 來源連結
+      description: Official page or file (data.gov.tw, ministry, Taipower). 官方網頁或檔案。
+    validations:
+      required: true
+  - type: input
+    id: locator
+    attributes:
+      label: Where in the source / 出處位置
+      description: Page, table, sheet or column, e.g. "Table 3-1, p. 19". 頁碼、表號、工作表或欄位。
+  - type: textarea
+    id: details
+    attributes:
+      label: Details / 說明
+      description: The value, its unit and year, the scope (whole country or Taipower system), the licence if known.
+  - type: checkboxes
+    id: public
+    attributes:
+      label: Public data / 公開資料
+      options:
+        - label: The source is public and contains no personal data. 此來源為公開資料，且不含個人資料。
+          required: true

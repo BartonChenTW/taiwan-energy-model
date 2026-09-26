@@ -103,4 +103,5 @@ $PY -m pytest sandbox/test_levers.py -q
 - **Shared workstation:** run one Snakemake job at a time (`-j 1`), and give a heads-up before any batch over about 15 minutes.
 - **Solver:** use HiGHS for anything a web service could trigger. Gurobi is for local research only (`solver_gurobi_local.yaml`).
 - **Credentials:** keep them out of the repository.
-- **Sources:** register new sources in `data/sources.csv`, with evidence and origin.
+- **Sources:** register new sources in `data/sources.csv`, with evidence and origin, then run `$PY data/check_data.py` (it also runs on every pull request).
+- **Guides:** `GETTING_STARTED.md` is for people who run the model, and `CONTRIBUTING.md` for people who add data or code. Keep both in step when the layout or the workflow changes.
