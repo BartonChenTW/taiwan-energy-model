@@ -601,5 +601,19 @@ New page `docs/model-data.html`, built from `docs/data/model_data.json` (213 kB)
   - the six tracked files in `data/` that this fork adds or edits;
   - every upstream script the fork modifies (some edits, e.g. the "Other Asia" mapping, had no "Taiwan fork" comment).
 
+## 2026-09-26: split into taiwan-energy-model (this repository) and the model fork
+
+- **This repository:** the Taiwan study, data, sandbox, exporter, website and notes moved here from BartonChenTW/pypsa-earth, with their history (110 commits; the state before is tagged `pre-split-2026-09` on `pypsa-taiwan-dev`).
+  - New layout: `config/`, `data/` (plus `data/fleet/`), `sandbox/`, `viewer/`, `docs/`, `notes/`.
+  - `paths.py` finds the model checkout (`../pypsa-earth`, or `PYPSA_EARTH_DIR`); `model.lock` pins the fork commit.
+- **Model fork:** branch `taiwan` keeps PyPSA-Earth plus the Taiwan-specific options. `data/custom_powerplants.csv` is back to upstream. Its `docs/` only redirects to the new site.
+- **Website:** https://bartonchentw.github.io/taiwan-energy-model/ (Pages from `main`, `/docs`). The old address redirects, keeping the query and anchor.
+- **Checks:**
+  - the Snakemake dry-run is identical to the old layout;
+  - the sandbox tests pass (33), and the base case re-solves to the same objective with the same cache key;
+  - the exporter output matches the published data apart from path labels;
+  - fixed on the way: a scenario overlay without its own run name (the solver overlay) overwrote Test 2's setup label.
+- **Postponed:** upstream pull requests and updating the fork to current upstream (`notes/REPO_SPLIT_PLAN.md`, steps 6-7).
+
 TODO:
  - to run PyPSA-Earth Taiwan!

@@ -34,7 +34,7 @@ The text pages hold both languages in the HTML (`.t-en` / `.t-zh`), and `pages.j
 
 GitHub's official Pages documentation says branch publishing can use either the repository root `/` or `/docs` folder as the publishing source.
 
-The live site is https://bartonchentw.github.io/taiwan-energy-model/ (built from `/docs` on `pypsa-taiwan-dev`).
+The live site is https://bartonchentw.github.io/taiwan-energy-model/ (built from `/docs` on `main` of BartonChenTW/taiwan-energy-model; the old address https://bartonchentw.github.io/pypsa-earth/ redirects here).
 
 ## Refresh the data after new runs
 
@@ -139,7 +139,7 @@ python viewer/stamp_assets.py
 ```powershell
 git add docs data
 git commit -m "Refresh Taiwan dashboard data"
-git push origin pypsa-taiwan-dev
+git push origin main
 ```
 
 GitHub Pages rebuilds within a minute or two of the push.

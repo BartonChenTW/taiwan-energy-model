@@ -1,6 +1,6 @@
 # Plan: separate the Taiwan work from the PyPSA-Earth fork
 
-Status: proposal, 2026-09-26. Nothing has been moved yet.
+Status: steps 1-5 done on 2026-09-26 (repository BartonChenTW/taiwan-energy-model, fork branch `taiwan`, old site redirects). Steps 6-7 (upstream pull requests, updating the fork) are postponed. The plan below is kept as written; the repository name chosen is `taiwan-energy-model`.
 
 ## Why
 
