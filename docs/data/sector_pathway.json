@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-26 15:43 UTC",
+ "generated": "2026-09-26 17:29 UTC",
  "currency": {
   "eur_twd": 36.185,
   "date": "2026-09-24 17:01",
@@ -5620,6 +5620,7 @@
    "published": "2025 (the text cites data of 2025-08-15); open-data file updated 2026-06-09",
    "landing_url": "https://data.gov.tw/dataset/16437",
    "file_url": "https://www.moeaea.gov.tw/ECW/populace/opendata/wHandOpenData_File.ashx?set_id=365",
+   "origin": "taiwan",
    "evidence": "downloaded",
    "note": "Required by Article 91 of the Electricity Act. 28 PDF pages; printed page = PDF page - 4. Dataset identifier 313210000G-000048."
   },
@@ -5632,6 +5633,7 @@
    "published": "2022-03",
    "landing_url": "https://ncsd.ndc.gov.tw/Fore/nsdn/about0/2050Path",
    "file_url": "https://ncsd.ndc.gov.tw/_ofu/download/about0/2050Path/%E8%87%BA%E7%81%A32050%E6%B7%A8%E9%9B%B6%E6%8E%92%E6%94%BE%E8%B7%AF%E5%BE%91%E5%8F%8A%E7%AD%96%E7%95%A5%E7%B8%BD%E8%AA%AA%E6%98%8E.pdf",
+   "origin": "taiwan",
    "evidence": "search_summary",
    "note": "The 2050 power mix (renewables 60-70%, hydrogen 9-12%, thermal with carbon capture 20-27%) is quoted from this document in the power-system action plan (ndc_2050_grid_storage, PDF p. 3). The PDF itself could not be downloaded by script (HTTP 403, bot protection, 2026-09-24): to verify by hand."
   },
@@ -5644,6 +5646,7 @@
    "published": "2023-04",
    "landing_url": "https://ncsd.ndc.gov.tw/Fore/nsdn/about0/2050Path",
    "file_url": "https://www.ey.gov.tw/File/E5C4540E618F7DB5?A=C",
+   "origin": "taiwan",
    "evidence": "downloaded",
    "note": "Offshore wind 40-55 GW in 2050, moving toward floating (PDF p. 10). Solar 40-80 GW in 2050, 50-100 TWh/yr (PDF p. 15). Used as the 2050 capacity ranges in sector_path_2050_official.yaml."
   },
@@ -5656,6 +5659,7 @@
    "published": "2023-04",
    "landing_url": "https://ncsd.ndc.gov.tw/Fore/nsdn/about0/2050Path",
    "file_url": "https://www.ey.gov.tw/File/51312B3FC3677102?A=C",
+   "origin": "taiwan",
    "evidence": "downloaded",
    "note": "2050 targets: geothermal 3-6.2 GW, biomass 1.4-1.8 GW, ocean 1.3-7.5 GW (PDF p. 6). Geothermal range used in sector_path_2050_official.yaml; biomass and ocean are not bounded in the model."
   },
@@ -5668,6 +5672,7 @@
    "published": "",
    "landing_url": "https://www.ey.gov.tw/File/8500DD8BB3DBF629?A=C",
    "file_url": "",
+   "origin": "taiwan",
    "evidence": "downloaded",
    "note": "Vision of 200 MW (2030), 2 GW (2040) and 6 GW (2050) (PDF p. 1). The forward-energy action plan gives 3-6.2 GW for 2050 (see ndc_2050_forward_energy). Used as the 6 GW cap in sensitivity D and the 3-6.2 GW range in the official pathway."
   },
@@ -5680,6 +5685,7 @@
    "published": "2023-04",
    "landing_url": "https://ncsd.ndc.gov.tw/Fore/nsdn/about0/2050Path",
    "file_url": "https://ws.ndc.gov.tw/Download.ashx?u=LzAwMS9hZG1pbmlzdHJhdG9yLzEwL3JlbGZpbGUvMC8xNTQ1Ni81ODQzOGM1Ny1kYmE5LTQxODQtOTc5MS01MTZlMjlkZTEzMTQucGRm&n=MDJf5rCr6IO96Zec6Y215oiw55Wl6KGM5YuV6KiI55WrKOaguOWumuacrCkucGRm&icon=.pdf",
+   "origin": "taiwan",
    "evidence": "downloaded",
    "note": "Hydrogen 9-12% of power in 2050 (PDF pp. 6, 8). Domestic renewable hydrogen may be insufficient; imports through international cooperation, including liquid hydrogen (PDF pp. 5, 8). 2030 KPIs: 91 MW gas-hydrogen co-firing, 800 MW coal-ammonia co-firing (PDF p. 6)."
   },
@@ -5692,6 +5698,7 @@
    "published": "2023-04",
    "landing_url": "https://ncsd.ndc.gov.tw/Fore/nsdn/about0/2050Path",
    "file_url": "https://www.ey.gov.tw/File/16D2A0935341E23?A=C",
+   "origin": "taiwan",
    "evidence": "downloaded",
    "note": "Quotes the NDC pathway (2022-03): in 2050 renewables 60-70%, hydrogen 9-12%, thermal with carbon capture 20-27% (PDF p. 3). Battery storage 1.5 GW in 2025 and 5.5 GW in 2030; 2031-2050 targets to be set later; new pumped hydro at Guangming and Shimen (PDF p. 15). Used for sector_path_2050_official_mix.yaml."
   },
@@ -5704,6 +5711,7 @@
    "published": "2023-04",
    "landing_url": "https://www.cca.gov.tw/climatetalks/net-zero-roadmap/1891.html",
    "file_url": "https://service.cca.gov.tw/File/Get/climatetalks/zh-tw/m0gTgrggnuRJTOc",
+   "origin": "taiwan",
    "evidence": "downloaded",
    "note": "Downloaded 2026-09-26. The plan gives 2030 CCUS targets of 1.74-4.6 Mt CO2/yr (PDF p. 19) but no 2050 storage volume in its text: the 40.2 Mt CO2/yr of negative emissions in 2050 (search summary) is still to verify, probably in the NDC pathway document itself. Used for sector.co2_sequestration_potential = 40 in sector_path_2050.yaml."
   },
@@ -5716,6 +5724,7 @@
    "published": "2023-04",
    "landing_url": "https://ncsd.ndc.gov.tw/Fore/nsdn/about0/2050Path",
    "file_url": "https://www.ey.gov.tw/File/D2A731DDD7EC55EC?A=C",
+   "origin": "taiwan",
    "evidence": "downloaded",
    "note": "Table 3 (PDF p. 22): electric share of new passenger cars 30% (2030), 60% (2035), 100% (2040); of new motorcycles 35%, 70%, 100%; stock 3.03 million electric cars (43.2%) and 8.86 million electric motorcycles (63.3%) in 2040; totals 7.2 million cars and 14.38 million motorcycles in 2022. All motorcycles electric before 2050 (PDF p. 29). The road energy shares in sector_path_2050.yaml (5/45/85% electric in 2030/2040/2050) are derived from these, not published."
   },
@@ -5728,6 +5737,7 @@
    "published": "2023-02",
    "landing_url": "https://netl.doe.gov/NETLVol1BaselineTool",
    "file_url": "https://netl.doe.gov/projects/files/netlsupdatedperformanceandcostestimatespowergenerationfacilitiesequippedwithcarboncapture_020223.pdf",
+   "origin": "fork",
    "evidence": "downloaded",
    "note": "H-class NGCC: total overnight cost 970 $/kW without capture (B32A) and 1,980 $/kW with 95% capture (B32B.95) (PDF p. 17, 2018$); LHV net efficiency 61.0% and 54.0% (PDF p. 36). Used as factors 2.041 and 0.885 on the CCGT row for 'CCGT CC' in sector_path_2050_official.yaml."
   },
@@ -5740,6 +5750,7 @@
    "published": "2023-02",
    "landing_url": "https://doi.org/10.1371/journal.pone.0281380",
    "file_url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0281380&type=printable",
+   "origin": "fork",
    "evidence": "downloaded",
    "note": "2050 delivered costs to Germany: ammonia 242-330 EUR/t at 5% p.a. WACC and 360-492 EUR/t at 10% (PDF p. 25); FT fuels by ship 90-256 EUR/MWh at 5% WACC; every carrier from every exporter at 100 EUR/MWh or less at 5% WACC (PDF pp. 26-27); shipped CH4(l) from Morocco in 2030 82 (5%) to 120 (10%) EUR/MWh (PDF p. 25). Basis for the import prices in sector_path_2050_official_imports.yaml."
   },
@@ -5752,6 +5763,7 @@
    "published": "",
    "landing_url": "https://ammoniaenergy.org/articles/the-cost-of-co2-free-ammonia/",
    "file_url": "",
+   "origin": "fork",
    "evidence": "search_summary",
    "note": "Renewable ammonia from Australia delivered to Japan, about US$4.4/kg-H2 (about US$700/t NH3). Upper end of the price basis for sensitivity C; to verify."
   },
@@ -5764,6 +5776,7 @@
    "published": "",
    "landing_url": "https://ammoniaenergy.org/articles/ammonia-fueled-gas-turbines-a-technology-and-deployment-update/",
    "file_url": "",
+   "origin": "fork",
    "evidence": "search_summary",
    "note": "Ammonia-fired combined cycles at 60% (LHV) or more against 63% or more for natural gas at the 1,650 C class (search summary; to verify). Used as efficiency factor 0.95 for NH3 CCGT in sector_path_2050_official_imports.yaml."
   },
@@ -5776,6 +5789,7 @@
    "published": "2024-09",
    "landing_url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2024/Sep/IRENA_Renewable_power_generation_costs_in_2023_executive_summary.pdf",
    "file_url": "",
+   "origin": "fork",
    "evidence": "search_summary",
    "note": "Geothermal global weighted-average total installed cost 4,589 USD/kW in 2023 (range 3,413-6,595). Used as 4.22 million EUR/MW (at 0.92 EUR/USD) in sensitivity D; to verify."
   }

@@ -96,6 +96,10 @@ Myopic (brownfield) chain from the official 2030 system to net zero in 2050. It 
 - The exporter writes `docs/data/sector_pathway.json` for the draft page.
 - Taiwan's official 2050 pathway (no new nuclear; gas with carbon capture; hydrogen and ammonia imports; the action plans' 2050 ranges) layers `sector_path_2050_D_float_geothermal.yaml` and `sector_path_2050_official.yaml` on top, plus `sector_path_2050_official_mix.yaml` for the official power mix. The design, sources and commands are in `pypsa_tw/TAIWAN_2050_PATHWAY.md`.
 
+## Data provenance
+
+Which inputs are PyPSA-Earth defaults and which this fork adds (Taiwan data, other sources, code changes): `pypsa_tw/DATA_PROVENANCE.md`. New sources go into `pypsa_tw/data/sources.csv` with an `origin` (`pypsa-earth`, `taiwan` or `fork`).
+
 ## Sandbox (what-if scenarios)
 
 `pypsa_tw/sandbox/` solves "what if" scenarios without Snakemake:

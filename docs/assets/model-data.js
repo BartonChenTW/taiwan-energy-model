@@ -33,6 +33,10 @@ const MT = {
     cf_label: (v) => `Capacity factor of dispatchable plants: ${v}%`, co2_label: (v) => `CO₂ price: ${v} €/t`,
     capital: "Capital and fixed O&M", running: "Fuel and variable O&M", carbon: "CO₂ (incl. storage for capture)",
     meta: (g) => `Exported ${g}. Base run: today's system with 2013 weather, 6 regions.`,
+    origin: { "pypsa-earth": "PyPSA-Earth default", taiwan: "Taiwan data", fork: "Added in this fork" },
+    ov_cols: ["Input", "Origin", "What is used", "What this fork changes", "Sources"],
+    set_default: "All settings are PyPSA-Earth's defaults.", set_changed: "Set in this fork:",
+    set_fork_carrier: "This technology is added in this fork (PyPSA-Earth's default has no floating offshore wind); all settings below are this fork's.",
     src_title: "Sources", src_page: "page", src_file: "file", src_copy: "copy in this repository",
     ev: { downloaded: "Downloaded", page_opened: "Page checked", search_summary: "To verify", model_input: "Model input" },
     col_src_plant: "Sources", src_cap: "Capacity", src_loc: "Location", src_year: "Year",
@@ -80,6 +84,10 @@ const MT = {
     cf_label: (v) => `可調度電廠容量因數：${v}%`, co2_label: (v) => `碳價：每公噸 ${v} 歐元`,
     capital: "資本與固定運維", running: "燃料與變動運維", carbon: "CO₂（含捕捉後封存）",
     meta: (g) => `匯出時間 ${g}。基準模擬：現況系統、2013 年氣象、6 個區域。`,
+    origin: { "pypsa-earth": "PyPSA-Earth 預設", taiwan: "台灣資料", fork: "本分支新增" },
+    ov_cols: ["輸入", "來源類別", "採用資料", "本分支的修改", "來源"],
+    set_default: "所有設定皆為 PyPSA-Earth 預設值。", set_changed: "本分支設定：",
+    set_fork_carrier: "此技術為本分支新增（PyPSA-Earth 預設沒有浮動式離岸風電）；以下設定皆為本分支所設。",
     src_title: "資料來源", src_page: "頁面", src_file: "檔案", src_copy: "本專案副本",
     ev: { downloaded: "已下載", page_opened: "已查頁面", search_summary: "待查證", model_input: "模型輸入" },
     col_src_plant: "來源", src_cap: "容量", src_loc: "位置", src_year: "年份",
@@ -354,7 +362,9 @@ function renderPotential() {
   if (s.natura) items.push([t.set_natura, t.set_natura_yes]);
   if (s.resource) items.push([t.set_resource, Object.entries(s.resource).map(([k, v]) => `${k}: ${v}`).join(" · ")]);
   if (s.correction_factor !== undefined) items.push([t.set_corr, nf(s.correction_factor, 3)]);
-  $m("md-re-settings").innerHTML = `<dl class="kv">${items.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl><p class="note muted">${esc(t.set_note)}</p>`;
+  const head = P.fork_carrier ? `${originTag("fork")} ${esc(t.set_fork_carrier)}`
+    : (P.changed_settings && P.changed_settings.length ? `${originTag("fork")} ${esc(t.set_changed)} ${esc(P.changed_settings.join(", "))}` : `${originTag("pypsa-earth")} ${esc(t.set_default)}`);
+  $m("md-re-settings").innerHTML = `<p class="note">${head}</p><dl class="kv">${items.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl><p class="note muted">${esc(t.set_note)}</p>`;
 }
 
 // ---------- Technology costs ----------
@@ -411,7 +421,7 @@ function renderCosts() {
   const shown = Y.rows.filter((r) => !st.group || r.group === st.group);
   $m("md-cost-table").innerHTML = table(
     [[t.col_techn], [t.col_inv, 1], [t.col_fom, 1], [t.col_vom, 1], [t.col_effn, 1], [t.col_life, 1], [t.col_fixed, 1], [t.col_src]],
-    shown.map((r) => [[`${esc(name(r))}<br><span class="muted">${esc(t.cgroups[r.group] || r.group)}</span>`],
+    shown.map((r) => [[`${esc(name(r))}<br><span class="muted">${esc(t.cgroups[r.group] || r.group)}</span> ${originTag(r.origin)}`],
       [`${nf(r.investment, r.investment < 10 ? 2 : 0)} <span class="muted">${esc(unitLabel(r.unit))}</span>`, 1], [nf(r.FOM_pct, 2), 1], [nf(r.VOM_EUR_MWh, 2), 1],
       [r.efficiency && r.efficiency !== 1 ? nf(r.efficiency * 100, 1) + "%" : "–", 1], [nf(r.lifetime), 1],
       [`${nf(r.fixed_per_unit_yr, r.fixed_per_unit_yr < 10 ? 2 : 1)} <span class="muted">${esc(unitLabel(r.unit))}</span>`, 1],
@@ -441,6 +451,17 @@ function costSource(text) {
   return `<span title="${esc(text)}">${esc(short)}</span>` + urls.map((u, i) => ` ${a(u, `[${i + 1}]`)}`).join("");
 }
 
+const originTag = (o) => `<span class="origin o-${esc(o)}">${esc(T().origin[o] || o)}</span>`;
+
+function renderOverview() {
+  const t = T(), zh = mlang() === "zh" ? 1 : 0;
+  $m("md-origin-legend").innerHTML = ["pypsa-earth", "taiwan", "fork"].map(originTag).join("");
+  const short = (id) => { const r = srcRec(id); return r ? a(r.landing_url || r.file_url, r.short_cite.split(" (")[0].split(":")[0]) : esc(id); };
+  $m("md-overview").innerHTML = table(t.ov_cols.map((h) => [h]),
+    (st.data.overview || []).map((r) => [[`<b>${esc(r.input[zh])}</b>`], [r.origin.map(originTag).join(" ")], [esc(r.used[zh])], [esc(r.change[zh])],
+      [`<span class="src">${r.sources.map(short).join("<br>")}</span>`]]));
+}
+
 function renderSources() {
   const t = T();
   document.querySelectorAll(".md-sources").forEach((el) => {
@@ -452,7 +473,7 @@ function renderSources() {
       const links = [r.landing_url && a(r.landing_url, t.src_page), r.file_url && a(r.file_url, t.src_file),
                      r.local_file && a(REPO_BLOB + r.local_file, t.src_copy)].filter(Boolean).join(" · ");
       const meta = [r.publisher, r.edition || r.published, r.license].filter(Boolean).join(" · ");
-      return `<li id="md-src-${esc(id)}"><b>${esc(r.short_cite || title)}</b>${title && title !== r.short_cite ? ` — <i>${esc(title)}</i>` : ""}. ${esc(meta)}. ${links} ${chip(r.evidence)}` +
+      return `<li id="md-src-${esc(id)}"><b>${esc(r.short_cite || title)}</b>${title && title !== r.short_cite ? ` — <i>${esc(title)}</i>` : ""}. ${esc(meta)}. ${links} ${originTag(r.origin)} ${chip(r.evidence)}` +
         (r.note ? `<br><span class="muted">${linkify(r.note)}</span>` : "") + "</li>";
     }).join("") + "</ol>";
   });
@@ -541,6 +562,7 @@ function renderCompare() {
 
 function renderAll() {
   if (!st.data) return;
+  renderOverview();
   renderGrid();
   renderPlants();
   renderPotential();

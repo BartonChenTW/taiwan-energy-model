@@ -588,5 +588,18 @@ New page `docs/model-data.html`, built from `docs/data/model_data.json` (213 kB)
 - **Model-gaps table:** the "This model (central)" column is replaced by "This fork: official runs": no new nuclear, gas with capture added, fuel imports added.
 - **Default view:** the official runs come first in the scenario menu, so the page opens on "Official options, all imports (no new nuclear)". The early test sits at the bottom of the results table.
 
+## 2026-09-26: data provenance made explicit (PyPSA-Earth default / Taiwan data / added in this fork)
+
+- **Registry:** `sources.csv` has a new `origin` column for all 53 sources: `pypsa-earth` 12, `taiwan` 30, `fork` 11.
+- **Model data page:**
+  - it opens with "Where the inputs come from": for each input, what PyPSA-Earth uses and what this fork changes;
+  - every source, cost row, renewable setting and section heading carries an origin tag;
+  - the renewable settings are compared with `config.default.yaml`: solar, onshore and fixed offshore wind are unchanged, and floating offshore wind is the fork's.
+- **Sector and Taiwan data pages:** their source lists show the same tags.
+- **New `pypsa_tw/DATA_PROVENANCE.md`:**
+  - inputs by origin;
+  - the six tracked files in `data/` that this fork adds or edits;
+  - every upstream script the fork modifies (some edits, e.g. the "Other Asia" mapping, had no "Taiwan fork" comment).
+
 TODO:
  - to run PyPSA-Earth Taiwan!

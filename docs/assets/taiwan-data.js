@@ -19,6 +19,7 @@ const I18N = {
     h_refs: "References for history and projections",
     h_refs_sub: "Every series points to one of these sources (pypsa_tw/data/sources.csv). Projections and targets also give the table or page; history gives the column of the downloaded file. A checksum identifies the exact file used.",
     col_title: "Title", col_publisher: "Publisher", col_edition: "Edition / coverage", col_published: "Published",
+    col_origin: "Origin", origin_pypsa_earth: "PyPSA-Earth default", origin_taiwan: "Taiwan data", origin_fork: "Added in this fork",
     col_file: "File", col_local: "Local copy (SHA-256)", col_accessed: "Accessed", col_locator: "Where in the source",
     link_page: "page", link_file: "file",
     h_table: "All series", filter_series: "Series", filter_kind: "Kind", download_csv: "Download CSV",
@@ -97,6 +98,7 @@ const I18N = {
     h_refs: "歷史與預測資料的參考來源",
     h_refs_sub: "每個數列都對應下列其中一個來源（pypsa_tw/data/sources.csv）。預測與目標另註明表號或頁碼；歷史資料註明下載檔案中的欄位。檢查碼可辨識所用的確切檔案。",
     col_title: "標題", col_publisher: "發布機關", col_edition: "版次／涵蓋範圍", col_published: "發布時間",
+    col_origin: "來源類別", origin_pypsa_earth: "PyPSA-Earth 預設", origin_taiwan: "台灣資料", origin_fork: "本分支新增",
     col_file: "檔案", col_local: "本地副本（SHA-256）", col_accessed: "取得日期", col_locator: "出處位置",
     link_page: "頁面", link_file: "檔案",
     h_table: "所有數列", filter_series: "數列", filter_kind: "類型", download_csv: "下載 CSV",
@@ -559,10 +561,10 @@ const hostOf = (url) => { try { return new URL(url).hostname.replace(/^www\./, "
 function renderRefs() {
   const used = new Set(state.ts.map((r) => r.source_id));
   const refs = Object.values(state.src).filter((r) => used.has(r.source_id));
-  const head = [t("col_title"), t("col_publisher"), t("col_edition"), t("col_published"), t("col_evidence"), t("col_link"), t("col_local"), t("col_accessed"), t("col_note")];
+  const head = [t("col_title"), t("col_publisher"), t("col_edition"), t("col_published"), t("col_origin"), t("col_evidence"), t("col_link"), t("col_local"), t("col_accessed"), t("col_note")];
   $("table-refs").innerHTML = `<table><thead><tr>${head.map((x) => `<th>${esc(x)}</th>`).join("")}</tr></thead><tbody>` +
     refs.map((r) => `<tr id="ref-${esc(r.source_id)}"><td><b>${esc(r.title || r.title_en)}</b>${r.title && r.title_en && r.title_en !== r.title ? `<br><span class="muted">${esc(r.title_en)}</span>` : ""}<br><code>${esc(r.source_id)}</code></td>
-      <td>${esc(r.publisher)}</td><td>${esc(r.edition)}</td><td>${esc(r.published)}</td><td>${evidenceBadge(r.evidence)}</td>
+      <td>${esc(r.publisher)}</td><td>${esc(r.edition)}</td><td>${esc(r.published)}</td><td>${r.origin ? `<span class="origin o-${esc(r.origin)}">${esc(t(`origin_${r.origin.replace("-", "_")}`))}</span>` : "–"}</td><td>${evidenceBadge(r.evidence)}</td>
       <td>${r.landing_url ? `<a href="${esc(r.landing_url)}" rel="noopener">${esc(t("link_page"))}</a>` : "–"}${r.file_url ? ` · <a href="${esc(r.file_url)}" rel="noopener">${esc(t("link_file"))}</a>` : ""}</td>
       <td>${r.local_file ? `<code>${esc(r.local_file)}</code>${r.sha256 ? `<br><span class="muted" title="${esc(r.sha256)}">${esc(r.sha256.slice(0, 12))}…</span>` : ""}` : "–"}</td>
       <td>${esc(r.accessed || "–")}</td><td class="note-cell">${esc(r.note)}</td></tr>`).join("") + "</tbody></table>";

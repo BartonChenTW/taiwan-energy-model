@@ -307,6 +307,7 @@ def _merged(repo, files):
 def export_potential(repo):
     out = []
     cfgs = {run: _merged(repo, files) for run, files in RE_CONFIGS.items()}
+    default_re = _merged(repo, ["config.default.yaml"])["renewable"]
     for carrier, run in RE_CARRIERS:
         pf = repo / "resources" / run / "renewable_profiles" / f"profile_{carrier}.nc"
         if not pf.exists():
@@ -339,7 +340,10 @@ def export_potential(repo):
                             "monthly_cf": [_r(v, 3) for v in monthly[gid].tolist()] if gid in monthly else []})
         rc = cfgs[run]["renewable"].get(carrier, {})
         settings = {k: rc[k] for k in RE_KEYS if k in rc}
-        out.append({"carrier": carrier, "run": run, "settings": settings, "cell_deg": _r(float(abs(pot.x.values[1] - pot.x.values[0])), 2),
+        dflt = default_re.get(carrier)
+        changed = sorted(settings) if dflt is None else sorted(k for k in settings if dflt.get(k) != settings[k])
+        out.append({"carrier": carrier, "run": run, "settings": settings, "fork_carrier": dflt is None,
+                    "changed_settings": changed, "cell_deg": _r(float(abs(pot.x.values[1] - pot.x.values[0])), 2),
                     "cells": cells, "substations": subs, "regions": regions,
                     "total_GW": _r(float(pmax.sum()) / 1e3, 1)})
     return out
@@ -369,6 +373,7 @@ def export_costs(repo):
                          "efficiency": _r(p.get("efficiency") * eff_factor, 3), "lifetime": _r(p.get("lifetime"), 0),
                          "fuel_EUR_MWh": _r(p.get("fuel"), 2),
                          "fixed_per_unit_yr": _r(p.get("fixed") * inv_factor / scale, 1),
+                         "origin": "fork" if note else "pypsa-earth",
                          "source": (inv.at[tech, "source"] if tech in inv.index and not note else note) or "",
                          "currency_year": int(inv.at[tech, "currency_year"]) if tech in inv.index and pd.notna(inv.at[tech, "currency_year"]) and not note else None})
 
@@ -455,18 +460,66 @@ SECTION_SOURCES = {
 
 def export_sources(repo):
     src = pd.read_csv(repo / "pypsa_tw" / "data" / "sources.csv", dtype=str).fillna("").set_index("source_id")
-    ids = sorted({i for v in SECTION_SOURCES.values() for i in v})
+    ids = sorted({i for v in SECTION_SOURCES.values() for i in v} | {i for row in INPUT_OVERVIEW for i in row["sources"]})
     missing = [i for i in ids if i not in src.index]
     assert not missing, f"sources not in sources.csv: {missing}"
     keep = ["short_cite", "title", "title_en", "publisher", "edition", "published", "landing_url", "file_url", "local_file",
-            "accessed", "license", "evidence", "note"]
+            "accessed", "license", "origin", "evidence", "note"]
     return {"records": {i: src.loc[i, keep].to_dict() for i in ids}, "sections": SECTION_SOURCES}
+
+
+# Where each model input comes from. origin: "pypsa-earth" (the standard PyPSA-Earth workflow and
+# its data), "taiwan" (Taiwanese data added in this fork), "fork" (other data or settings added in
+# this fork), or a list when an input combines them. change: what this fork does differently.
+INPUT_OVERVIEW = [
+    {"input": ["Grid: substations and lines", "電網：變電所與線路"], "origin": ["pypsa-earth"],
+     "used": ["OpenStreetMap via earth-osm", "OpenStreetMap（earth-osm）"],
+     "change": ["Lines from 35 kV instead of 51 kV, so Taiwan's 69 kV grid is included", "納入 35 kV 以上線路（預設 51 kV），以包含台灣的 69 kV 電網"],
+     "sources": ["osm_grid_earth_osm"]},
+    {"input": ["Regions", "區域"], "origin": ["pypsa-earth"],
+     "used": ["GADM 4.1 and Marine Regions EEZ, substations clustered", "GADM 4.1 與 Marine Regions EEZ，變電所分群"],
+     "change": ["6 regions (default 10); isolated substations joined to the main grid", "6 個區域（預設 10）；孤立變電所併入主電網"],
+     "sources": ["gadm_41", "marineregions_eez_v11"]},
+    {"input": ["Electricity demand", "電力需求"], "origin": ["pypsa-earth", "fork"],
+     "used": ["GEGIS hourly profile for 2030 (SSP2-2.6), 2013 weather", "GEGIS 2030 年逐時曲線（SSP2-2.6），2013 年氣象"],
+     "change": ["Scaled by 0.749 to Taipower-system generation in 2024 (default: unscaled)", "乘以 0.749，符合 2024 年台電系統發電量（預設不縮放）"],
+     "sources": ["gegis_ssp2_26", "taipower_peak_annual"]},
+    {"input": ["Power plants today", "現有電廠"], "origin": ["taiwan"],
+     "used": ["Taipower unit list, Energy Administration solar approvals, news reports for new gas units", "台電機組清單、能源署太陽光電同意備案、新燃氣機組新聞"],
+     "change": ["Replaces PyPSA-Earth's powerplantmatching fleet and its IRENA top-up of renewables; powerplantmatching kept only for some years and coordinates",
+                "取代 PyPSA-Earth 的 powerplantmatching 機組與 IRENA 再生能源補足；powerplantmatching 僅用於部分商轉年與座標"],
+     "sources": ["taipower_units_realtime", "moeaea_solar_approvals_county", "osm_power_plants_tw", "powerplantmatching_gotzens2019"]},
+    {"input": ["Power plants 2030 and 2034", "2030 與 2034 年電廠"], "origin": ["taiwan"],
+     "used": ["MOEA supply-demand report 113年度 (Figure 3-3, Table 3-1)", "經濟部 113 年度電力資源供需報告（圖 3-3、表 3-1）"],
+     "change": ["Added in this fork (PyPSA-Earth has no Taiwan plan)", "本分支新增（PyPSA-Earth 無台灣規劃）"], "sources": ["moea_psd_fy2024"]},
+    {"input": ["Weather", "氣象"], "origin": ["pypsa-earth"],
+     "used": ["ERA5 for 2013, converted with atlite", "2013 年 ERA5，以 atlite 轉換"],
+     "change": ["A Taiwan cutout for 2013 built locally (same method)", "於本機建立 2013 年台灣氣象資料（方法相同）"],
+     "sources": ["era5_hersbach2020", "atlite_hofmann2021"]},
+    {"input": ["Renewable potential", "再生能源潛力"], "origin": ["pypsa-earth", "fork"],
+     "used": ["Copernicus land cover, WDPA protected areas, GEBCO depths; PyPSA-Earth's densities and limits", "Copernicus 土地覆蓋、WDPA 保護區、GEBCO 水深；PyPSA-Earth 的密度與限制"],
+     "change": ["Settings unchanged for solar, onshore and fixed offshore wind; floating offshore wind added (pathway runs)", "太陽光電、陸域與固定式離岸風電設定未改；新增浮動式離岸風電（路徑模擬）"],
+     "sources": ["copernicus_lc100_2019", "wdpa", "gebco_2025"]},
+    {"input": ["Technology costs", "技術成本"], "origin": ["pypsa-earth", "fork"],
+     "used": ["PyPSA technology-data v0.13.2 (mostly Danish Energy Agency)", "PyPSA technology-data v0.13.2（多為丹麥能源署）"],
+     "change": ["Overrides: geothermal investment (IRENA); gas with carbon capture (NETL ratios); hydrogen and ammonia turbines", "覆寫：地熱投資（IRENA）；燃氣碳捕捉（NETL 比例）；氫能與氨渦輪機"],
+     "sources": ["technology_data_v0132", "irena_rpgc_2023_geothermal", "netl_baseline_rev4a_capture", "aea_ammonia_gas_turbines"]},
+    {"input": ["Fuel and import prices", "燃料與進口價格"], "origin": ["pypsa-earth", "fork"],
+     "used": ["technology-data fuel prices (gas, coal, oil, uranium)", "technology-data 燃料價格（天然氣、煤、油、鈾）"],
+     "change": ["Import prices for hydrogen, ammonia and synthetic fuels added (Hampp et al., official pathway runs)", "新增氫氣、氨與合成燃料進口價格（Hampp 等人，官方路徑模擬）"],
+     "sources": ["technology_data_v0132", "hampp2023_import_options"]},
+    {"input": ["Taiwan cost benchmarks", "台灣成本參考"], "origin": ["taiwan"],
+     "used": ["MOEA feed-in tariff parameters, Taipower cost by source", "經濟部躉購費率參數、台電各種發電方式成本"],
+     "change": ["For comparison only; not used by the model", "僅供比較，模型未使用"],
+     "sources": ["moeaea_fit_2026_params", "moeaea_fit_2023_params", "taipower_gen_cost_by_source"]},
+]
 
 
 def export_model_data(repo, out):
     payload = {"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
                "network": export_network(repo), "fleets": export_plants(repo),
-               "potential": export_potential(repo), "costs": export_costs(repo), "sources": export_sources(repo)}
+               "potential": export_potential(repo), "costs": export_costs(repo), "sources": export_sources(repo),
+               "overview": INPUT_OVERVIEW}
     payload["comparison"] = export_comparison(repo, payload["potential"])
     (out / "model_data.json").write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     size = (out / "model_data.json").stat().st_size / 1e3

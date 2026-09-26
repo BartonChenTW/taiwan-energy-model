@@ -1166,7 +1166,7 @@ def export_sector_pathway(repo, out):
     src = pd.read_csv(repo / "pypsa_tw" / "data" / "sources.csv", dtype=str).fillna("").set_index("source_id")
     missing = [i for i in PATHWAY_SOURCES if i not in src.index]
     assert not missing, f"pathway sources not in sources.csv: {missing}"
-    keep = ["short_cite", "title", "title_en", "publisher", "published", "landing_url", "file_url", "evidence", "note"]
+    keep = ["short_cite", "title", "title_en", "publisher", "published", "landing_url", "file_url", "origin", "evidence", "note"]
     sources = [{"source_id": i, **src.loc[i, keep].to_dict()} for i in PATHWAY_SOURCES]
     (out / "sector_pathway.json").write_text(json.dumps({"generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
                                                          "currency": CURRENCY, "pathways": payload,

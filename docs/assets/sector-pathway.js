@@ -175,6 +175,10 @@ function renderSweep(t) {
 const EV_SEV = { downloaded: "good", page_opened: "good", search_summary: "warning" };
 const EV_ICON = { good: "✓", warning: "!", neutral: "◆" };
 
+const ORIGIN = { en: { "pypsa-earth": "PyPSA-Earth default", taiwan: "Taiwan data", fork: "Added in this fork" },
+                 zh: { "pypsa-earth": "PyPSA-Earth 預設", taiwan: "台灣資料", fork: "本分支新增" } };
+const originTag = (o) => (o ? `<span class="origin o-${pesc(o)}">${pesc(ORIGIN[plang()][o] || o)}</span>` : "");
+
 function renderSources(t) {
   const el = $p("sp-sources");
   const src = (pw && pw.sources) || [];
@@ -188,7 +192,7 @@ function renderSources(t) {
     const title = plang() === "zh" ? r.title || r.title_en : r.title_en || r.title;
     const links = [link(r.landing_url, t.link_page), link(r.file_url, t.link_file)].filter(Boolean).join(" · ");
     return `<li id="src-${pesc(r.source_id)}"><b>${pesc(r.short_cite || title)}</b>${r.short_cite && title && title !== r.short_cite ? ` — <i>${pesc(title)}</i>` : ""}. ` +
-      `${pesc(r.publisher)}${r.published ? `, ${pesc(r.published)}` : ""}. ${links} ${chip(r.evidence)}<br><span class="muted">${pesc(r.note)}</span></li>`;
+      `${pesc(r.publisher)}${r.published ? `, ${pesc(r.published)}` : ""}. ${links} ${originTag(r.origin)} ${chip(r.evidence)}<br><span class="muted">${pesc(r.note)}</span></li>`;
   }).join("") + `</ol><p class="note muted">${pesc(t.src_note)}</p>`;
 }
 

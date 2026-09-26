@@ -7,10 +7,10 @@
     <meta name="title-en" content="Model Data" />
     <meta name="title-zh" content="模型資料" />
     <meta name="description" content="The detailed inputs of the Taiwan energy system model: grid and regions, every power plant, renewable potential and technology costs." />
-    <link rel="stylesheet" href="assets/site.css?v=66d82890" />
+    <link rel="stylesheet" href="assets/site.css?v=91cd1540" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <script src="assets/pages.js?v=b03ff9c1" defer></script>
-    <script src="assets/model-data.js?v=8caa18a2" defer></script>
+    <script src="assets/model-data.js?v=d0553639" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -44,7 +44,15 @@
     <main class="shell">
       <section class="section">
         <p class="note"><span class="t-en">What the model is built from, in full detail: the grid and its six regions, every power plant, where renewables can go and how much they could produce, and what each technology costs. These are the inputs of today's system (2013 weather) and of the MOEA 2030 and 2034 plans; results are on the <a href="dashboard.html">model dashboard</a>.</span><span class="t-zh">模型的完整輸入資料：電網與六個區域、每座電廠、再生能源可設置的位置與可發電量，以及各技術的成本。資料涵蓋現況系統（2013 年氣象）與經濟部 2030、2034 年規劃；模擬結果請見<a href="dashboard.html">模型儀表板</a>。</span></p>
+        <article class="panel" id="origin">
+          <h2><span class="t-en">Where the inputs come from</span><span class="t-zh">輸入資料的來源</span></h2>
+          <p class="sub"><span class="t-en">This fork runs PyPSA-Earth, an open model with its own global data. Some inputs are PyPSA-Earth's defaults, some are Taiwan data this fork adds, and some are other sources or settings added here. Every source, cost row and setting on this page carries one of these tags:</span><span class="t-zh">本分支執行開源模型 PyPSA-Earth，它有自己的全球資料。部分輸入沿用 PyPSA-Earth 預設，部分為本分支加入的台灣資料，另有部分為本分支加入的其他來源或設定。本頁每個來源、成本項目與設定都標示以下其中一種：</span></p>
+          <div class="origin-legend" id="md-origin-legend"></div>
+          <div id="md-overview" class="table-wrap"></div>
+          <p class="note muted"><span class="t-en">Changes to PyPSA-Earth itself (code and data files) are listed in <a href="https://github.com/BartonChenTW/pypsa-earth/blob/pypsa-taiwan-dev/pypsa_tw/DATA_PROVENANCE.md" rel="noopener">pypsa_tw/DATA_PROVENANCE.md</a>.</span><span class="t-zh">對 PyPSA-Earth 本身（程式與資料檔）的修改列於 <a href="https://github.com/BartonChenTW/pypsa-earth/blob/pypsa-taiwan-dev/pypsa_tw/DATA_PROVENANCE.md" rel="noopener">pypsa_tw/DATA_PROVENANCE.md</a>。</span></p>
+        </article>
         <nav class="tabs inline" aria-label="Sections">
+          <a href="#origin"><span class="t-en">Data origin</span><span class="t-zh">資料來源</span></a>
           <a href="#grid"><span class="t-en">Grid and regions</span><span class="t-zh">電網與區域</span></a>
           <a href="#plants"><span class="t-en">Power plants</span><span class="t-zh">電廠</span></a>
           <a href="#potential"><span class="t-en">Renewable potential</span><span class="t-zh">再生能源潛力</span></a>
@@ -55,7 +63,7 @@
 
       <!-- Grid and regions -->
       <section id="grid" class="section">
-        <h2><span class="t-en">Grid and regions</span><span class="t-zh">電網與區域</span></h2>
+        <h2><span class="t-en">Grid and regions</span><span class="t-zh">電網與區域</span> <span class="origin-head"><span class="origin o-pypsa-earth"><span class="t-en">PyPSA-Earth default</span><span class="t-zh">PyPSA-Earth 預設</span></span></span></h2>
         <div class="grid two">
           <article class="panel">
             <div class="filters">
@@ -81,7 +89,7 @@
 
       <!-- Power plants -->
       <section id="plants" class="section">
-        <h2><span class="t-en">Power plants</span><span class="t-zh">電廠</span></h2>
+        <h2><span class="t-en">Power plants</span><span class="t-zh">電廠</span> <span class="origin-head"><span class="origin o-taiwan"><span class="t-en">Taiwan data</span><span class="t-zh">台灣資料</span></span></span></h2>
         <div class="filters">
           <label><span class="t-en">Fleet</span><span class="t-zh">機組</span><select id="md-fleet"></select></label>
           <label><span class="t-en">Type</span><span class="t-zh">類型</span><select id="md-fuel"></select></label>
@@ -110,7 +118,7 @@
 
       <!-- Renewable potential -->
       <section id="potential" class="section">
-        <h2><span class="t-en">Renewable potential</span><span class="t-zh">再生能源潛力</span></h2>
+        <h2><span class="t-en">Renewable potential</span><span class="t-zh">再生能源潛力</span> <span class="origin-head"><span class="origin o-pypsa-earth"><span class="t-en">PyPSA-Earth default</span><span class="t-zh">PyPSA-Earth 預設</span></span> <span class="origin o-fork"><span class="t-en">Added in this fork</span><span class="t-zh">本分支新增</span></span></span></h2>
         <div class="filters">
           <label><span class="t-en">Technology</span><span class="t-zh">技術</span><select id="md-re"></select></label>
           <div class="segmented" role="group" aria-label="Map layer" id="md-re-layer">
@@ -142,7 +150,7 @@
 
       <!-- Technology costs -->
       <section id="costs" class="section">
-        <h2><span class="t-en">Technology costs</span><span class="t-zh">技術成本</span></h2>
+        <h2><span class="t-en">Technology costs</span><span class="t-zh">技術成本</span> <span class="origin-head"><span class="origin o-pypsa-earth"><span class="t-en">PyPSA-Earth default</span><span class="t-zh">PyPSA-Earth 預設</span></span> <span class="origin o-fork"><span class="t-en">Added in this fork</span><span class="t-zh">本分支新增</span></span></span></h2>
         <div class="filters">
           <label><span class="t-en">Cost year</span><span class="t-zh">成本年份</span><select id="md-year"></select></label>
           <label><span class="t-en">Group</span><span class="t-zh">類別</span><select id="md-group"></select></label>
@@ -169,7 +177,7 @@
           <div class="md-sources" data-section="costs"></div>
         </article>
 
-        <h3 id="compare"><span class="t-en">PyPSA's cost data compared with Taiwan's</span><span class="t-zh">PyPSA 成本資料與台灣資料比較</span></h3>
+        <h3 id="compare"><span class="t-en">PyPSA's cost data compared with Taiwan's</span><span class="t-zh">PyPSA 成本資料與台灣資料比較</span> <span class="origin-head"><span class="origin o-pypsa-earth"><span class="t-en">PyPSA-Earth default</span><span class="t-zh">PyPSA-Earth 預設</span></span> <span class="origin o-taiwan"><span class="t-en">Taiwan data</span><span class="t-zh">台灣資料</span></span></span></h3>
         <p class="note"><span class="t-en">The model uses PyPSA's technology-data, mostly European (Danish Energy Agency) figures. Taiwan publishes its own: the Ministry of Economic Affairs sets feed-in tariffs from an installed cost, an O&amp;M share, an annual output and a cost of capital for each technology, and Taipower reports the actual cost of each source. Below, the Taiwan figures sit next to the PyPSA rows of cost year <span id="md-cmp-year"></span>.</span><span class="t-zh">模型使用 PyPSA 的 technology-data，多為歐洲（丹麥能源署）數據。台灣有自己的資料：經濟部依各技術的期初設置成本、運維比例、年售電量與平均資金成本率訂定躉購費率；台電公布各種發電方式的實際成本。以下將台灣數據與 PyPSA <span id="md-cmp-year-zh"></span> 年成本並列比較。</span></p>
         <ul id="md-cmp-findings"></ul>
         <div class="grid two">

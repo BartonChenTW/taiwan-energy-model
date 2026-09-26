@@ -438,3 +438,14 @@ th[data-sort]:focus-visible { outline: 2px solid var(--accent); outline-offset: 
 #md-cmp-table td:last-child { min-width: 200px; }
 #md-cmp-table th { white-space: normal; min-width: 70px; }
 #md-plant-table td:last-child { min-width: 240px; }
+
+/* Data origin tags: PyPSA-Earth default / Taiwan data / added in this fork (text always shown) */
+.origin { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; font-size: 12px; line-height: 1.4;
+  color: var(--ink-2); border: 1px solid var(--border); border-radius: 999px; padding: 1px 8px; margin: 1px 2px 1px 0; }
+.origin::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+.origin.o-pypsa-earth::before { background: var(--k-1); }
+.origin.o-taiwan::before { background: var(--k-3); }
+.origin.o-fork::before { background: var(--k-4); }
+.origin-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; margin: 6px 0 10px; font-size: 13px; color: var(--ink-2); }
+.origin-head { font-size: 0; vertical-align: middle; margin-left: 6px; }
+.origin-head .origin { font-weight: 400; }
