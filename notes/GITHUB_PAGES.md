@@ -14,6 +14,7 @@ The site entry point is `docs/index.html`, the landing page. The pages are:
 | Taiwan's energy challenges | `docs/challenges.html` | `assets/pages.js` |
 | Sandbox | `docs/sandbox.html` | `assets/sandbox.js` |
 | Model dashboard | `docs/dashboard.html` (was `index.html`; old `index.html?case=...` links redirect) | `assets/app.js` |
+| Model data (grid, plants, renewable potential, costs) | `docs/model-data.html` | `assets/model-data.js` |
 | Taiwan energy data | `docs/taiwan-data.html` | `assets/taiwan-data.js` |
 | Request a simulation | `docs/request.html` | `assets/request.js` |
 | About | `docs/about.html` | `assets/pages.js` |
@@ -50,7 +51,16 @@ This reads every `results/<run>/networks/*.nc` (skipping `results/_archive`) and
 
 The console prints each case with its warnings, so it doubles as a quick check of the runs. The warnings cover disconnected subnetworks, load shedding, implausible renewable capacity factors, renewable availability stuck at 1.0 (a weather-data gap), and extendable generators or lines.
 
-Only aggregated numbers are exported, and the repository is public, so everything in `docs/data/` is public too.
+Results are exported as aggregated numbers. The model data page also publishes model inputs in full detail (substations, lines, each power plant, renewable potential per weather cell, cost rows); all of them come from public data (OpenStreetMap, Taipower open data, powerplantmatching, ERA5, technology-data). The repository is public, so everything in `docs/data/` is public too.
+
+## Model data page
+
+`docs/model-data.html` reads `docs/data/model_data.json`, written by `pypsa_tw/viewer/export_model_data.py` (run on its own or through `export_dashboard_data.py`). It covers:
+
+- **Grid:** the base network of the Test 2 run (`networks/<run>/elec.nc`) and its 6 regions (`elec_s_6_ec.nc`, region shapes from `resources/<run>/bus_regions/`). Regions are named after the two most populous county seats inside them.
+- **Plants:** `resources/<run>/powerplants.csv` of today's fleet and the 2030 and 2034 plans. Plants are placed in the base run's regions by location, because each run clusters its own grid.
+- **Renewable potential:** `resources/<run>/renewable_profiles/profile_*.nc` (floating wind from the pathway D run) and the land-eligibility settings from the merged config.
+- **Costs:** `resources/tw_path2050_D_w2013_6b/costs_{2030,2040,2050}{,_sec}.csv`, plus the fork's derived options (gas with capture, hydrogen and ammonia turbines).
 
 ## Taiwan energy data page
 

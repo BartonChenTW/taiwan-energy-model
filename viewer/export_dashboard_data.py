@@ -1330,6 +1330,9 @@ def main():
     export_sector_draft(repo, out)
     export_sector_pathway(repo, out)
     export_security(repo, out)
+    from export_model_data import export_model_data  # docs/model-data.html
+
+    export_model_data(repo, out)
     # Cache busting: give each CSS/JS link a content hash, so browsers load changed files at once.
     from stamp_assets import stamp
 

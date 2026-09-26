@@ -419,3 +419,17 @@ html[lang="zh-Hant"] .t-en { display: none; }
 ol.refs { padding-left: 1.4em; }
 ol.refs li { margin: 0 0 10px; overflow-wrap: anywhere; }
 ol.refs .chip { margin-left: 4px; }
+
+/* Model data page */
+.tabs.inline { padding-top: 4px; border-bottom: 1px solid var(--border); margin-bottom: 4px; }
+.filters input[type=range] { width: 220px; accent-color: var(--accent); min-height: 24px; }
+.filters input[type=search] { font: inherit; color: var(--ink); background: var(--page); border: 1px solid var(--border);
+  border-radius: 8px; padding: 6px 10px; min-height: 34px; }
+dl.kv { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; margin: 0; font-size: 14px; }
+dl.kv dt { color: var(--ink-2); }
+dl.kv dd { margin: 0; overflow-wrap: anywhere; }
+th[data-sort] { cursor: pointer; user-select: none; }
+th[data-sort]:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+@media (max-width: 640px) { dl.kv { grid-template-columns: 1fr; } .filters input[type=range] { width: 100%; } }
+#md-plant-table { max-height: 560px; overflow: auto; }
+#md-plant-table thead th { position: sticky; top: 0; background: var(--surface); z-index: 1; }

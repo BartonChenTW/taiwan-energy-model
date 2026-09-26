@@ -548,5 +548,23 @@ Filling the gaps found on 2026-09-25. Design, sources and results: `pypsa_tw/TAI
 - **Conclusion:** the "hydrogen imports" result was an artefact of hydrogen being the only importable carrier. The robust result is about 300 TWh a year of imported energy without nuclear. Nuclear's case is energy security, not cost.
 - **Process note:** scratch scripts had been written to the system temp folder, and one (`html.py`) shadowed the standard library for scripts run from there. They were moved to the session scratchpad.
 
+## 2026-09-26: website "Model data" page
+
+New page `docs/model-data.html`, built from `docs/data/model_data.json` (213 kB) by `pypsa_tw/viewer/export_model_data.py`. It has four sections.
+- **Grid and regions:** the full base network (193 substations, 243 lines by voltage) and the 6-region model (demand, peak, substations, links).
+- **Power plants:** every unit of today's fleet and the MOEA 2030 and 2034 plans, on a map with filters and a sortable table, plus capacity by region.
+- **Renewable potential:** for solar, onshore wind, offshore wind (fixed near and far shore, floating):
+  - potential per 0.3° weather cell;
+  - capacity factor per substation;
+  - a table by region;
+  - monthly capacity factors;
+  - the land-eligibility settings.
+- **Technology costs:** 2030, 2040 and 2050 rows as the model uses them (investment, FOM, VOM, efficiency, lifetime, annualised fixed cost, source), including the fork's derived options. Also:
+  - an indicative cost-of-electricity chart (capacity factor and CO₂ price sliders);
+  - an investment trend.
+- **Region labels:** the two most populous county seats in each region.
+- **Plant regions:** plants are placed by location in the base run's regions. Region ids differ between runs, because each run clusters its own grid; the 2030 and 2034 fleets had been mislabelled by their own busmaps.
+- **Screenshot check:** a phone-width test needs 500 px or more in headless Edge on Windows. Below that it crops the layout.
+
 TODO:
  - to run PyPSA-Earth Taiwan!
