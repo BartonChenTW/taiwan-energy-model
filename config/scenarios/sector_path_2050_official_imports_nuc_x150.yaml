@@ -1,0 +1,18 @@
+# Import-price sweep of the official pathway: all import prices x 1.5, and new nuclear allowed (no cap) to price the nuclear option.
+# Layer on top of sector_path_2050_official_imports.yaml.
+
+run:
+  sector_name: "tw_sector_path2050_24h_official_imp_nuc_x150"
+
+sector:
+  hydrogen_import:
+    price_EUR_per_MWh: 135
+  taiwan_power:
+    ammonia_import_price_EUR_per_MWh: 120
+    efuel_import_price_EUR_per_MWh:
+      oil: 180
+      gas: 135
+
+solving:
+  options:
+    nuclear_max_total_MW: null

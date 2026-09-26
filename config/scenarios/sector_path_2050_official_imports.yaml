@@ -1,0 +1,35 @@
+# Taiwan's 2050 net-zero pathway, "official options" plus imports of every carrier a
+# net-zero Taiwan could buy, priced on one basis: Hampp et al. (2023), PLOS ONE 18(2) e0281380,
+# delivered costs to Germany by ship in 2050 (Taiwan has no pipeline option).
+# - Ammonia 80 EUR/MWh (LHV): about 410 EUR/t, inside the paper's 360-492 EUR/t at 10% p.a.
+#   WACC (242-330 EUR/t at 5%).
+# - Synthetic oil (Fischer-Tropsch) 120 EUR/MWh: the paper's 90-256 EUR/MWh at 5% WACC, the
+#   most expensive carrier.
+# - Synthetic methane 90 EUR/MWh: shipped CH4(l) from Morocco in 2030 costs 82 (5% WACC) to
+#   120 (10%) EUR/MWh in the paper; 2050 costs are lower.
+# - Hydrogen stays at 90 EUR/MWh (the paper: every carrier from every exporter is available
+#   at 100 EUR/MWh or less at 5% WACC).
+# Ammonia can also be burned in combined cycles (the hydrogen action plan's co-firing route):
+# CCGT cost, efficiency x 0.95 (ammonia-fired 60% vs natural gas 63% LHV, Ammonia Energy
+# Association technology update; search summary, to verify).
+# Layer on top of sector_path_2050_official.yaml.
+
+run:
+  sector_name: "tw_sector_path2050_24h_official_imp"
+
+sector:
+  hydrogen_import:
+    price_EUR_per_MWh: 90
+  taiwan_power:
+    ammonia_import_price_EUR_per_MWh: 80
+    efuel_import_price_EUR_per_MWh:
+      oil: 120
+      gas: 90
+    ammonia_ccgt:
+      efficiency_factor: 0.95
+
+plotting:
+  tech_colors:
+    NH3 CCGT: "#6a4c9c"
+    synthetic oil import: "#7a5c3c"
+    synthetic gas import: "#c98a5a"
