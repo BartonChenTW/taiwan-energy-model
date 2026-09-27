@@ -1,0 +1,8 @@
+# 4-hour time steps (sopts 4h instead of 24h) for the pathway run "Taiwan renewable costs".
+# Daily steps average out the solar day-night cycle, so batteries and short-term storage are
+# undervalued; this rerun checks whether the conclusions hold. Layer last, after the overlays
+# of that run. Its outputs go to their own folder.
+scenario:
+  sopts: ["4h"]
+run:
+  sector_name: "tw_sector_path2050_4h_official_imp_twcost"
