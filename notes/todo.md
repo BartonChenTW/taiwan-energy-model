@@ -7,7 +7,7 @@ aim:
  - stage 4: run/test future scenarios
 
 Framework:
- - test the model with predefined config files (under pypsa_tw/confg), from simple to complicated
+ - test the model with predefined config files (under config/), from simple to complicated
  - a review ipynb (`viewer/simulation_viewer.ipynb`) is defined
  - a raw input viewer ipynb (`viewer/raw_input_viewer.ipynb`) is defined
 
@@ -16,6 +16,52 @@ Simulation runs: see SIMULATION_TABLE.md
 Rule:
  - new finding or key changes are logged in 'log.md'
 
+
+
+## Future work (open items, collected 2026-09-27)
+
+Everything still open, in one place. Details are in the linked notes; the phase lists below keep the history.
+
+### Model and scenarios
+1. [ ] **2050 blockade exposure:** designed in `notes/BLOCKADE_2050_DESIGN.md`, not built. It needs four decisions:
+   - stocks for the new fuels (proposed: synthetic methane 14 days, synthetic oil 90 days, ammonia 14/30/60 days);
+   - one shortage price, or protect electricity and heat first;
+   - which 2050 systems to test;
+   - daily or 4-hour networks (the 4-hour runs now exist).
+   Then build `sandbox/blockade_2050.py`, its tests, the exporter block and a "2050" choice on `docs/energy-security.html` (about one working day).
+2. [ ] **Import prices for Taiwan:** Hampp et al. (2023) price delivery to Germany. Find or estimate delivery to Taiwan (shipping distance, terminals).
+3. [ ] **Capture retrofits:** only new gas combined cycle with capture is offered; existing gas and coal plants cannot be retrofitted.
+4. [ ] **Methanol:** the model has no methanol bus for Taiwan's demand.
+5. [ ] **Combined sensitivity:** Taiwan costs together with the high import price and the official mix, rather than one change at a time.
+6. [ ] **More regions:** 6 buses aggregate the Taipei corridor into one line (Phase 1 #12, Phase 3 #9). Try 20 buses or the OSM 345 kV corridors.
+7. [ ] **CO₂ price check:** every 2050 official run reports the same CO₂ price (467 €/t). Check which constraint's dual the exporter reads.
+8. [ ] **Other weather years:** the 2011 and 2018 cutouts (Phase 4 #3).
+9. [ ] **Today's system:** hydro inflow, fuel costs and coal constraints, battery hours, pumped-hydro use (Phase 3 #4, #6, #8, #10).
+10. [ ] **2025 reference rerun** with the current fleet and the fork options.
+11. [ ] **Future years:** the 2026 outlook (Phase 4 #4) and letting the model invest in 2030/2034 (Phase 4 #5).
+
+### Data to verify (evidence `search_summary` in `data/sources.csv`)
+12. [ ] **CO₂ storage:** the 2050 volume of 40 Mt/yr. It is not in the CCUS action plan's text; check the NDC pathway PDF by hand.
+13. [ ] **2050 demand:** the official 2050 electricity demand. The model uses its own +2.5%/yr.
+14. [ ] **Taipower total:** Taipower's 2024 system generation of 251.4 TWh (the key fact has no link).
+15. [ ] **Ammonia turbines:** their efficiency (Ammonia Energy Association).
+16. [ ] **Geothermal cost:** IRENA's geothermal cost.
+17. [ ] **Ammonia cost:** the Ammonia Energy Association's CO₂-free ammonia cost.
+18. [ ] **Japan hydrogen target:** Japan's hydrogen cost target.
+19. [ ] **Fuel stocks:** the stock figures behind the blockade cases (LNG safety stock page, news and think-tank sources).
+20. [ ] **Registry:** register the eight transcribed files in `data/official/` that `data/check_data.py` warns about, and keep a local copy of the household-appliance dataset.
+
+### Website
+21. [ ] **Visitor counts:** use GoatCounter or similar; this needs an account by Barton.
+22. [ ] **Scenario request form:** the form service key.
+23. [ ] **Repository size:** `docs/data/sandbox` is 12.5 MB and grows with each scenario; consider trimming time series or moving them to release assets.
+24. [ ] **Live solving (Phase 2):** designed in `sandbox/PHASE2_LIVE_SOLVING.md`, not built.
+
+### Repositories
+25. [ ] **Upstream pull requests** for the bug fixes in the fork's `FORK_CHANGES.md`, section 2 (`notes/REPO_SPLIT_PLAN.md`, step 6; postponed).
+26. [ ] **Update the fork** to current upstream (step 7; about 73 commits behind as of 2026-09-26).
+27. [ ] **Old branch:** delete `pypsa-taiwan-dev` in the fork once nobody needs it (the tag `pre-split-2026-09` keeps its state).
+28. [ ] **`model.lock`:** update it after the next fork change (it matches fork commit `82cfd1a2` now).
 
 
 ## Phase 1: baseline model (today's 2025 energy system runs, results make sense)

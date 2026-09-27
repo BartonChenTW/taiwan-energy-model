@@ -195,15 +195,38 @@ The model's 7% discount rate is kept. The electricity network is rebuilt with th
 - **Caveat:** Taiwan's tariffs also include grid connection and developer margins, and are nominal
   NT$ of 2026 (EUR 2020 for PyPSA), so this is an upper estimate of the cost gap.
 
+## 4-hour time steps (2026-09-27)
+
+Daily steps average out the solar day, so they undervalue batteries and overstate what solar can
+do. The three import runs were rerun with 4-hour steps: `sopts: ["4h"]`, with the overlays
+`sector_4h_official_imp.yaml`, `_twcost.yaml` and `_twcost_nuc.yaml`. Each run layers last on its
+daily-step overlays and writes to `tw_sector_path2050_4h_<id>`. The three runs took about 21 minutes each with Gurobi.
+
+| 2050 | Official, all imports | Taiwan costs | Taiwan costs, nuclear allowed |
+| --- | --- | --- | --- |
+| System cost (bn €/yr), daily → 4-hour | 49.1 → 48.7 | 64.3 → 64.5 | 64.0 → 64.3 |
+| New nuclear (GW) | 0 → 0 | 0 → 0 | 6.7 → 5.5 |
+| Imports (TWh) | 310 → 318 | 379 → 384 | 315 → 331 |
+| Battery (GWh) | 5 → 50 | 5 → 33 | 5 → 36 |
+
+- **Main result:** the conclusions hold. Costs change by less than 1% and imports by 2-5%.
+- **Batteries:** they grow about tenfold, carrying solar power into the night.
+- **Nuclear:** allowed nuclear shrinks a little (5.5 GW), so it is still near break-even.
+- **Earlier years cost more with 4-hour steps:** for official_imp, 2030 costs 11.1 instead of
+  10.4 bn € (+6%), and 2040 costs 14.1 instead of 12.1 bn € (+16%). The 4-hour steps see the evening
+  peak after sunset, which daily steps average away. The effect is largest in 2040, when solar is
+  large but storage is still small. By 2050 batteries close the gap.
+
 ## Still open
 
 - The 2050 CO₂ storage volume: 40 Mt/yr comes from a search summary and is not in the CCUS plan's
   text.
 - The 2050 electricity demand of the official pathway. The model uses its own demand
   (+2.5%/yr for electricity and electronics).
-- Import prices for hydrogen and ammonia, which should be run at a low and a high value.
+- Import prices: the sweep (×0.75 to ×1.5) is done, but the Hampp et al. prices are for delivery to
+  Germany; prices for delivery to Taiwan are still needed.
 - Retrofitting existing gas and coal plants with capture. Only new CCGT CC is offered.
 - Energy security of the import-based route. Imported hydrogen and ammonia raise blockade
-  exposure; this should be compared with the nuclear route on the energy-security page.
+  exposure; this should be compared with the nuclear route on the energy-security page. The method
+  is designed in `notes/BLOCKADE_2050_DESIGN.md` and waits for four decisions.
 - Methanol imports: the model has no methanol bus for Taiwan's demand.
-- A 4-hour rerun: daily steps undervalue batteries and overstate what solar can do.

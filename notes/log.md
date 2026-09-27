@@ -628,5 +628,17 @@ New page `docs/model-data.html`, built from `docs/data/model_data.json` (213 kB)
 - **Conclusion:** nuclear is near break-even, so the question stays import dependence.
 - **Where:** results are on the sector page (results table and findings) and in the scenario menu, and in `notes/TAIWAN_2050_PATHWAY.md`.
 
+## 2026-09-27: 4-hour reruns and the 2050 blockade design
+
+- **4-hour reruns:** the three import runs (official all imports; Taiwan costs; Taiwan costs with nuclear) were rerun with `sopts: ["4h"]`, about 21 minutes each with Gurobi.
+  - 2050 costs change by less than 1%: 48.7, 64.5 and 64.3 bn €, against 49.1, 64.3 and 64.0.
+  - Imports rise by 2-5%; batteries grow from 5 to 33-50 GWh; allowed nuclear falls from 6.7 to 5.5 GW.
+  - 2030 and 2040 cost more (+6% and +16% for official_imp): daily steps hide the evening peak.
+  - Conclusion: the daily-step results hold.
+  - Where: on the sector page (results table, a finding, the scenario menu) and in `notes/TAIWAN_2050_PATHWAY.md`.
+- **2050 blockade:** the method is designed in `notes/BLOCKADE_2050_DESIGN.md`, not built. It waits for four decisions: stocks of new fuels, priorities, which systems, time step.
+- **Exporter:** the earlier GEGIS registry fix (no local file) reached `docs/data/` with this export.
+- **Wrap-up:** all open work is collected in `notes/todo.md`, section "Future work".
+
 TODO:
  - to run PyPSA-Earth Taiwan!

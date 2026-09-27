@@ -46,7 +46,7 @@ The same approach as today's blockade cases (`sandbox/run_scenario.py`, `apply_s
    and make nothing extendable. A blockade tests the system that was built; nothing new can be
    built in a few weeks.
 2. **Solve only the window:** 14, 30 or 60 days, starting 1 July or 7 January (`BLOCKADE_SEASONS`),
-   at the network's own time step (daily, or 4-hourly once those runs exist).
+   at the network's own time step (daily or 4-hourly; both exist for the import runs).
 3. **Cut imports:** set the import generators and links, and the fossil supply generators, to a
    share of normal. 0% is a full blockade; the partial cases are 25% and 50%. Normal is their use in
    the same window of the annual solution.
@@ -107,5 +107,6 @@ About one working day; the solves themselves take minutes.
    before industry and transport fuels?
 3. **Which 2050 systems:** the three in the table, or also the official power mix and the
    high-import-price run?
-4. **Time step:** start on the daily-step networks now, and switch to the 4-hour networks when those
-   runs finish (they are running)?
+4. **Time step:** the 4-hour networks now exist for the three import runs (their 2050 results are within
+   1% of the daily ones in cost). Use them (recommended: they resolve day and night, and nights matter
+   when stocks are short), or the daily networks, which also cover the early test?
