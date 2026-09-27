@@ -615,5 +615,18 @@ New page `docs/model-data.html`, built from `docs/data/model_data.json` (213 kB)
   - fixed on the way: a scenario overlay without its own run name (the solver overlay) overwrote Test 2's setup label.
 - **Postponed:** upstream pull requests and updating the fork to current upstream (`notes/REPO_SPLIT_PLAN.md`, steps 6-7).
 
+## 2026-09-27: 2050 pathway with Taiwan's renewable costs
+
+- **New fork option:** `costs.investment_factor` (fork commit `82cfd1a2`).
+- **New overlays:** `sector_path_2050_taiwan_costs.yaml` and `_nuc.yaml` scale PyPSA's investment by Taiwan/PyPSA from the feed-in tariff parameters and set Taiwan's O&M shares.
+- **Runs:**
+  - two runs, about 25 minutes;
+  - the electricity network was rebuilt as `tw_path2050_D_twcost_w2013_6b`, with regions and grid identical to D.
+- **Results for 2050:**
+  - €64.3 bn a year against €49.1 bn with PyPSA's costs; imports 379 TWh against 310.
+  - With nuclear allowed: 6.7 GW built, €64.0 bn, imports 315 TWh.
+- **Conclusion:** nuclear is near break-even, so the question stays import dependence.
+- **Where:** results are on the sector page (results table and findings) and in the scenario menu, and in `notes/TAIWAN_2050_PATHWAY.md`.
+
 TODO:
  - to run PyPSA-Earth Taiwan!

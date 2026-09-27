@@ -154,6 +154,47 @@ official run's sector resources.
   to Taiwan are shorter than Argentina to Germany, but the study's exporters and costs of capital
   are European assumptions.
 
+## Taiwan's renewable costs (2026-09-27)
+
+The runs so far priced technologies with PyPSA's technology-data, mostly European figures.
+Taiwan's official figures are far higher: the MOEA feed-in tariff parameters in
+`data/taiwan_cost_benchmarks.csv`, compared on the website's Model data page.
+
+`config/scenarios/sector_path_2050_taiwan_costs.yaml` scales PyPSA's investment rows by
+Taiwan/PyPSA (cost year 2030). A new fork option, `costs.investment_factor`, does the scaling and
+keeps technology-data's decline to 2050. The overlay also sets Taiwan's O&M shares.
+
+| Technology | Investment factor |
+| --- | --- |
+| Utility-scale solar | ×2.74 |
+| Rooftop solar | ×1.43 |
+| Onshore wind | ×1.02 |
+| Offshore wind | ×2.44 |
+| Floating offshore wind (assumed like fixed) | ×2.44 |
+| Geothermal | ×1.58 |
+| Small hydro | ×1.33 |
+
+The model's 7% discount rate is kept. The electricity network is rebuilt with these costs
+(run `tw_path2050_D_twcost_w2013_6b`); its regions and grid are identical to pathway D.
+
+| 2050, official options, all imports | PyPSA costs | Taiwan costs | Taiwan costs, nuclear allowed |
+| --- | --- | --- | --- |
+| System cost (bn €/yr) | 49.1 | 64.3 | 64.0 |
+| New nuclear (GW) | 0 | 0 | 6.7 |
+| Wind / solar (GW) | 61 / 80 | 57 / 80 | 57 / 80 |
+| Imports (TWh) | 310 | 379 | 315 |
+| of which ammonia (TWh) | 93 | 125 | 63 |
+
+- **Cost:** Taiwan's cost level raises the 2050 system cost by 31%.
+- **Mix:** wind falls slightly. Solar stays at the plan's 80 GW maximum. More ammonia and synthetic
+  methane is imported.
+- **Nuclear:** it now enters when allowed, but only just: 6.7 GW for a saving of €0.3 bn a year
+  (0.5%). It mostly replaces imported ammonia burned for power.
+- **Conclusion:** nuclear remains close to break-even, and the main difference between the routes is
+  still import dependence.
+- **Caveat:** Taiwan's tariffs also include grid connection and developer margins, and are nominal
+  NT$ of 2026 (EUR 2020 for PyPSA), so this is an upper estimate of the cost gap.
+
 ## Still open
 
 - The 2050 CO₂ storage volume: 40 Mt/yr comes from a search summary and is not in the CCUS plan's

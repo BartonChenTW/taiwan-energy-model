@@ -1,0 +1,9 @@
+# As sector_path_2050_taiwan_costs.yaml, with new nuclear allowed (no cap), to see whether nuclear
+# enters when renewables cost what they cost in Taiwan. Layer after sector_path_2050_taiwan_costs.yaml.
+
+run:
+  sector_name: "tw_sector_path2050_24h_official_imp_twcost_nuc"
+
+solving:
+  options:
+    nuclear_max_total_MW: null

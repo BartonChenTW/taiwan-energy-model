@@ -1,0 +1,35 @@
+# Taiwan's cost level for renewables, on top of the official pathway with all imports
+# (sector_path_2050_official_imports.yaml). Source: data/taiwan_cost_benchmarks.csv.
+# - Installed cost: PyPSA's technology-data rows are scaled by Taiwan / PyPSA (cost year 2030).
+#   Taiwan: MOEA feed-in tariff parameters, 2026 (115年度 review committee, 3rd meeting,
+#   Tables 1-2); offshore wind 2023 (112年度, 2nd meeting, Table 2). NT$ at 36.185 TWD/EUR.
+#   Scaling keeps technology-data's decline to 2050; an absolute overwrite would hold 2026 costs flat.
+# - O&M (FOM, % of investment per year): Taiwan's operating shares from the same tables.
+# - Floating offshore wind has no Taiwan figure: scaled like fixed offshore wind (assumption).
+# - The discount rate stays the model's 7% (Taiwan's tariffs use 5.25%, offshore wind 5.70%).
+# The electricity network is rebuilt with these costs, so this has its own run name.
+# Layer after sector_path_2050_official_imports.yaml.
+
+run:
+  name: "tw_path2050_D_twcost_w2013_6b"
+  sector_name: "tw_sector_path2050_24h_official_imp_twcost"
+
+costs:
+  investment_factor:            # Taiwan (EUR/kW) / PyPSA 2030 (EUR/kW)
+    solar: 1.938                # ground-mounted 38,100 NT$/kW = 1,053 EUR/kW vs 543
+    solar-utility: 2.744        # same Taiwan figure vs 384
+    solar-rooftop: 1.431        # rooftop 500 kW and above 36,400 NT$/kW = 1,006 vs 703
+    onwind: 1.024               # 40,600 NT$/kW = 1,122 vs 1,096
+    offwind: 2.441              # 148,600 NT$/kW = 4,107 vs 1,682
+    offwind-float: 2.441        # assumption: same ratio as fixed offshore wind
+    geothermal: 1.578           # 240,900 NT$/kW = 6,657 vs 4,220 (the IRENA figure of pathway D)
+    ror: 1.331                  # small hydro 500 kW-20 MW, 164,400 NT$/kW = 4,543 vs 3,412
+  FOM:                          # Taiwan operating share, % of investment per year
+    solar: 3.23
+    solar-utility: 3.23
+    solar-rooftop: 4.13
+    onwind: 4.92
+    offwind: 2.87
+    offwind-float: 2.87
+    geothermal: 5.50
+    ror: 1.45
