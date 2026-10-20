@@ -67,7 +67,7 @@ async function submit(e, levers) {
   if ($("f-website").value) { status("good", t("sent")); return; } // bot filled the trap field
 
   const payload = {
-    subject: "Taiwan energy system model: simulation request",
+    subject: "Taiwan Energy System Platform: simulation request",
     question, email, name: $("f-name").value.trim(), organisation: $("f-org").value.trim(),
     scenario: JSON.stringify({ base: "today", levers }), sandbox_link: new URL($("scenario-link").href, location.href).href,
     page_language: document.documentElement.lang,
@@ -82,7 +82,7 @@ async function submit(e, levers) {
                                          body: JSON.stringify({ ...payload, _replyto: email }) });
     } else {
       res = await fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
-                                                              body: JSON.stringify({ ...payload, access_key: FORM.accessKey, from_name: "Taiwan energy system model" }) });
+                                                              body: JSON.stringify({ ...payload, access_key: FORM.accessKey, from_name: "Taiwan Energy System Platform" }) });
     }
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     status("good", t("sent"));

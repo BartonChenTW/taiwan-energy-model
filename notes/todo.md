@@ -52,7 +52,7 @@ Everything still open, in one place. Details are in the linked notes; the phase 
 20. [ ] **Registry:** register the eight transcribed files in `data/official/` that `data/check_data.py` warns about, and keep a local copy of the household-appliance dataset.
 
 ### Website
-21. [ ] **Visitor counts:** use GoatCounter or similar; this needs an account by Barton.
+21. [x] **Visitor counts:** GoatCounter on every page (https://taiwan-energy-system-platform.goatcounter.com/).
 22. [ ] **Scenario request form:** the form service key.
 23. [ ] **Repository size:** `docs/data/sandbox` is 12.5 MB and grows with each scenario; consider trimming time series or moving them to release assets.
 24. [ ] **Live solving (Phase 2):** designed in `sandbox/PHASE2_LIVE_SOLVING.md`, not built.
