@@ -424,6 +424,8 @@ ol.refs .chip { margin-left: 4px; }
 
 /* Model data page */
 .tabs.inline { padding-top: 4px; border-bottom: 1px solid var(--border); margin-bottom: 4px; }
+.topbar .tabs.inline { border-top: 1px solid var(--grid); border-bottom: 0; margin-bottom: 0; padding-top: 6px; }
+.topbar .tabs.inline a { font-size: 13px; padding: 2px 0 7px; }
 .filters input[type=range] { width: 220px; accent-color: var(--accent); min-height: 24px; }
 .filters input[type=search] { font: inherit; color: var(--ink); background: var(--page); border: 1px solid var(--border);
   border-radius: 8px; padding: 6px 10px; min-height: 34px; }

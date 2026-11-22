@@ -7,7 +7,7 @@
     <meta name="title-en" content="Model Data" />
     <meta name="title-zh" content="模型資料" />
     <meta name="description" content="The detailed inputs of the Taiwan energy system model: grid and regions, every power plant, renewable potential and technology costs." />
-    <link rel="stylesheet" href="assets/site.css?v=da68285e" />
+    <link rel="stylesheet" href="assets/site.css?v=4cf2dc7e" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <script src="assets/pages.js?v=3dee9410" defer></script>
     <script src="assets/model-data.js?v=ff5206aa" defer></script>
@@ -41,6 +41,14 @@
         <a href="request.html"><span class="t-en">Request a run</span><span class="t-zh">申請模擬</span></a>
         <a href="about.html"><span class="t-en">About</span><span class="t-zh">關於</span></a>
       </nav>
+      <nav class="shell tabs inline" aria-label="Sections">
+        <a href="#origin"><span class="t-en">Data origin</span><span class="t-zh">資料來源</span></a>
+        <a href="#grid"><span class="t-en">Grid and regions</span><span class="t-zh">電網與區域</span></a>
+        <a href="#plants"><span class="t-en">Power plants</span><span class="t-zh">電廠</span></a>
+        <a href="#potential"><span class="t-en">Renewable potential</span><span class="t-zh">再生能源潛力</span></a>
+        <a href="#costs"><span class="t-en">Technology costs</span><span class="t-zh">技術成本</span></a>
+        <a href="#compare"><span class="t-en">PyPSA vs Taiwan costs</span><span class="t-zh">PyPSA 與台灣成本比較</span></a>
+      </nav>
     </header>
 
     <main class="shell">
@@ -53,14 +61,6 @@
           <div id="md-overview" class="table-wrap"></div>
           <p class="note muted"><span class="t-en">Changes to PyPSA-Earth itself (code and data files) are listed in <a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/notes/DATA_PROVENANCE.md" rel="noopener">notes/DATA_PROVENANCE.md</a>.</span><span class="t-zh">對 PyPSA-Earth 本身（程式與資料檔）的修改列於 <a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/notes/DATA_PROVENANCE.md" rel="noopener">notes/DATA_PROVENANCE.md</a>。</span></p>
         </article>
-        <nav class="tabs inline" aria-label="Sections">
-          <a href="#origin"><span class="t-en">Data origin</span><span class="t-zh">資料來源</span></a>
-          <a href="#grid"><span class="t-en">Grid and regions</span><span class="t-zh">電網與區域</span></a>
-          <a href="#plants"><span class="t-en">Power plants</span><span class="t-zh">電廠</span></a>
-          <a href="#potential"><span class="t-en">Renewable potential</span><span class="t-zh">再生能源潛力</span></a>
-          <a href="#costs"><span class="t-en">Technology costs</span><span class="t-zh">技術成本</span></a>
-          <a href="#compare"><span class="t-en">PyPSA vs Taiwan costs</span><span class="t-zh">PyPSA 與台灣成本比較</span></a>
-        </nav>
       </section>
 
       <!-- Grid and regions -->
