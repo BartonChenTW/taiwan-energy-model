@@ -83,7 +83,7 @@
     const bus91 = d.pypsa.buses.find((b) => (b.v_nom_kv || 0) > 345);
     const way690 = d.osm.lines.find((l) => l.v_max_kv === 690);
     $("grid-alerts").innerHTML = `
-      <div class="status info">
+      <div class="status note">
         <span class="icon" aria-hidden="true">i</span>
         <span>${pick(
           `<strong>OSM vs. Taipower completeness:</strong> Taipower reports <strong>${fmtNum(off.substations_total)}</strong> substations and <strong>${fmtNum(off.transmission_ckt_km)} ckt-km</strong> of transmission lines, whereas the open OSM extract captures <strong>${fmtNum(osm.raw_substations)}</strong> raw polygon/node features (${fmtNum(osm.named_substations)} named) and <strong>${fmtNum(osm.raw_lines + osm.raw_cables)}</strong> ways; many OSM lines omit <code>circuits</code> tags or underground detail, and distribution feeders (11/22.8 kV) are excluded.`,
@@ -106,7 +106,7 @@
     const m = d.bottlenecks_and_upgrades.transfer_margins_2022;
     const tiles = [
       {
-        val: `${fmtNum(off.transmission_ckt_km)} <small>${pick("ckt-km", "回線公里")}</small>`,
+        val: `${fmtNum(off.transmission_ckt_km)} <span class="unit">${pick("ckt-km", "回線公里")}</span>`,
         lbl: pick("Transmission lines (search summary)", "輸電線路總長（待查原始年報）"),
         sub: pick(
           `Incl. ${fmtNum(off.underground_cable_ckt_km.total, 0)} ckt-km underground; dist. ${fmtNum(off.distribution_ckt_km)} ckt-km`,
@@ -114,12 +114,12 @@
         ),
       },
       {
-        val: `${fmtNum(off.substations_total)} <small>${pick("sites", "座")}</small>`,
+        val: `${fmtNum(off.substations_total)} <span class="unit">${pick("sites", "座")}</span>`,
         lbl: pick("Taipower substations (E/S–S/S)", "全台各級變電所總數"),
         sub: "37 E/S · 53 P/S · 257 D/S · 280 S/S",
       },
       {
-        val: `${fmtNum(latest.line_loss_pct, 2)}%`,
+        val: `${fmtNum(latest.line_loss_pct, 2)}<span class="unit">%</span>`,
         lbl: pick(`Line loss rate (${latest.year || 2025})`, `線路損失率 (${latest.year || 2025})`),
         sub: pick(
           `Down from 4.76% in 2005; load factor ${fmtNum(latest.load_factor_pct, 2)}%`,
@@ -127,26 +127,26 @@
         ),
       },
       {
-        val: `${fmtNum(m.central_to_north_MW)} / ${fmtNum(m.south_to_central_MW)} MW`,
+        val: `${fmtNum(m.central_to_north_MW)} / ${fmtNum(m.south_to_central_MW)} <span class="unit">MW</span>`,
         lbl: pick("2022 Central→North / South→Central margin", "2022 中送北／南送中輸電裕度"),
         sub: pick("Expanding Trunk Lines 1–3 to 3,000 MW each by 2030", "超一至超三路目標 2030 年擴至各 3,000 MW"),
       },
       {
-        val: `NT$${fmtNum(d.resilience_plan.total_billion_ntd, 1)}B`,
+        val: `${fmtNum(d.resilience_plan.total_billion_ntd, 1)} <span class="unit">${pick("B NT$", "十億元")}</span>`,
         lbl: pick("10-Year Grid Resilience Plan", "十年強化電網韌性建設計畫"),
         sub: pick("1.42 GW battery built (Jul 2025); 5.5 GW target (2030)", "併網儲能已達 1.42 GW (2025.07)；2030 目標 5.5 GW"),
       },
       {
-        val: `${d.lng_terminals.length} <small>LNG</small>`,
+        val: `${d.lng_terminals.length} <span class="unit">LNG</span>`,
         lbl: pick("LNG terminals & figure-8 gas network", "LNG 接收站與 8 字海陸輸氣網"),
         sub: pick("Statutory stock 8 d → 11 d (2025) → 14 d (2027)", "法定安全存量：8 天 → 11 天 (2025) → 14 天 (2027)"),
       },
     ];
     $("grid-tiles").innerHTML = tiles.map((t) => `
       <div class="tile">
-        <div class="tile-label">${esc(t.lbl)}</div>
-        <div class="tile-value">${t.val}</div>
-        <div class="tile-sub">${esc(t.sub)}</div>
+        <div class="label">${esc(t.lbl)}</div>
+        <div class="value">${t.val}</div>
+        <div class="note">${esc(t.sub)}</div>
       </div>
     `).join("");
   }

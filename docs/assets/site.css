@@ -190,6 +190,8 @@ select {
 .status.good .icon { background: var(--good); }
 .status.warning .icon { background: var(--warning); color: #0b0b0b; }
 .status.critical .icon { background: var(--critical); }
+.status.note { margin: 0; color: var(--ink); font-size: 14px; line-height: 1.5; }
+.status.note .icon { background: var(--accent); }
 .status b { font-weight: 600; }
 
 .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin-bottom: 26px; }
