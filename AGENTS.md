@@ -11,8 +11,10 @@ Notes for working with this repository on Windows (DDM06479).
 
 - `paths.py` finds the model folder: `PYPSA_EARTH_DIR`, or `../pypsa-earth` by default.
 - `model.lock` records the model commit this study was last run with.
+- `CHANGELOG.md` and annotated git tags (`tem-vX.Y.Z`, distinct from inherited upstream `v0.x.y` tags) track releases of this repository.
 - `notes/log.md` records the project and run log; `notes/todo.md` tracks open work and next steps.
 - `notes/TAIWAN_GRID_DATA.md` documents Taiwan's electrical grid, OSM topology, 6-region aggregation, and gas/fuel networks (`docs/grid.html`).
+- `notes/TAIWAN_WEATHER_RE_DATA.md` documents ERA5 2013/2018 weather fields, Dunkelflaute/typhoon extremes, and 5-carrier RE technical potential (`docs/weather-re.html`).
 - `notes/DATA_PROVENANCE.md` says which inputs are PyPSA-Earth defaults and which this study adds.
 
 ## Environment

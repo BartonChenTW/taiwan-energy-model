@@ -16,6 +16,7 @@ The site entry point is `docs/index.html`, the landing page. The pages are:
 | Model dashboard | `docs/dashboard.html` (was `index.html`; old `index.html?case=...` links redirect) | `assets/app.js` |
 | Model data (grid, plants, renewable potential, costs) | `docs/model-data.html` | `assets/model-data.js` |
 | Energy networks (Taiwan electrical grid, substations, LNG & fuel supply) | `docs/grid.html` | `assets/grid.js` |
+| Weather & RE potential (ERA5 2013/2018, wind roses, Dunkelflaute, 5-carrier potential) | `docs/weather-re.html` | `assets/weather-re.js` |
 | Taiwan energy data | `docs/taiwan-data.html` | `assets/taiwan-data.js` |
 | Request a simulation | `docs/request.html` | `assets/request.js` |
 | About | `docs/about.html` | `assets/pages.js` |

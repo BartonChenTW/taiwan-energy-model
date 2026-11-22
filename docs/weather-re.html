@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Taiwan Weather &amp; Renewable Energy Potential</title>
+    <meta name="title-en" content="Taiwan Weather & Renewable Energy Potential" />
+    <meta name="title-zh" content="台灣氣象資料與再生能源技術潛力" />
+    <meta
+      name="description"
+      content="Detailed ERA5 2013 vs 2018 weather maps, monsoon wind roses, Dunkelflaute lulls, typhoon cut-out hours, 5-carrier RE technical potential (fixed &amp; floating offshore wind, solar, onshore wind, hydro), exclusion rules, and 22-county solar approvals."
+    />
+    <link rel="stylesheet" href="assets/site.css?v=88484efc" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <script src="assets/pages.js?v=3dee9410" defer></script>
+    <script src="assets/weather-re.js?v=1588a33f" defer></script>
+    <script data-goatcounter="https://taiwan-energy-system-platform.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <div>
+          <div class="eyebrow"><span class="t-en">Taiwan Energy System Platform</span><span class="t-zh">台灣能源系統平台</span></div>
+          <h1>
+            <span class="t-en">Weather &amp; renewable energy potential</span>
+            <span class="t-zh">氣象資料與再生能源潛力</span>
+          </h1>
+        </div>
+        <div class="toolbar">
+          <div class="segmented" role="group" aria-label="Language">
+            <button type="button" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" data-lang="zh" aria-pressed="false">繁中</button>
+          </div>
+          <button type="button" id="theme-toggle" class="ghost" aria-label="Toggle dark mode">◐</button>
+        </div>
+      </div>
+      <nav class="shell tabs" aria-label="Pages">
+        <a href="index.html"><span class="t-en">Home</span><span class="t-zh">首頁</span></a>
+        <a href="challenges.html"><span class="t-en">Challenges</span><span class="t-zh">挑戰</span></a>
+        <a href="sandbox.html"><span class="t-en">Sandbox</span><span class="t-zh">情境沙盒</span></a>
+        <a href="energy-security.html"><span class="t-en">Energy security</span><span class="t-zh">能源安全</span></a>
+        <a href="dashboard.html"><span class="t-en">Model dashboard</span><span class="t-zh">模型儀表板</span></a>
+        <a href="model-data.html"><span class="t-en">Model data</span><span class="t-zh">模型資料</span></a>
+        <a href="grid.html"><span class="t-en">Energy networks</span><span class="t-zh">能源網路</span></a>
+        <a href="weather-re.html" aria-current="page"><span class="t-en">Weather &amp; RE</span><span class="t-zh">氣象與再生能源</span></a>
+        <a href="taiwan-data.html"><span class="t-en">Taiwan energy data</span><span class="t-zh">台灣能源資料</span></a>
+        <a href="sector-draft.html"><span class="t-en">Sector model (draft)</span><span class="t-zh">部門耦合（草稿）</span></a>
+        <a href="request.html"><span class="t-en">Request a run</span><span class="t-zh">申請模擬</span></a>
+        <a href="about.html"><span class="t-en">About</span><span class="t-zh">關於</span></a>
+      </nav>
+      <nav class="shell tabs inline" aria-label="Sections">
+        <a href="#sec-weather-maps"><span class="t-en">ERA5 weather maps</span><span class="t-zh">ERA5 氣象空間分布</span></a>
+        <a href="#sec-variability"><span class="t-en">Seasonality &amp; diurnal</span><span class="t-zh">季節與日夜互補</span></a>
+        <a href="#sec-extremes"><span class="t-en">Lulls &amp; typhoons</span><span class="t-zh">低風光期與強風</span></a>
+        <a href="#sec-potential"><span class="t-en">RE technical potential</span><span class="t-zh">再生能源技術潛力</span></a>
+        <a href="#sec-exclusions"><span class="t-en">Exclusion rules</span><span class="t-zh">土地與海域排除條件</span></a>
+        <a href="#sec-county-policy"><span class="t-en">County solar &amp; 2050 targets</span><span class="t-zh">各縣市光電與 2050 目標</span></a>
+        <a href="#sec-sources"><span class="t-en">Sources</span><span class="t-zh">資料來源</span></a>
+      </nav>
+    </header>
+
+    <main class="shell">
+      <p class="intro sub">
+        <span class="t-en">
+          Hourly ERA5 reanalysis weather (2013 and 2018, 0.3° resolution) drives every renewable profile in the model through Atlite, combined with Copernicus 100 m land cover, WDPA protected areas, GEBCO 2025 ocean bathymetry, and HydroBASINS level-6 catchments. Explore the spatial climate fields, monsoon wind roses, extreme lull periods (Dunkelflaute), and full technical potential across Taiwan and its Exclusive Economic Zone.
+        </span>
+        <span class="t-zh">
+          本模型以逐時 ERA5 再分析氣象資料（2013 與 2018 年、0.3° 解析度）透過 Atlite 轉換為各類再生能源出力曲線，並結合 Copernicus 100 公尺土地利用、WDPA 保護區、GEBCO 2025 海底水深及 HydroBASINS 第 6 級流域圖資。本頁完整呈現氣象空間分布、季風風花圖、極端低風光期與全台及專屬經濟區（EEZ）技術潛力。
+        </span>
+      </p>
+
+      <section class="status-list" id="wr-alerts" aria-label="Weather and resource notices"></section>
+      <section class="tiles" id="wr-tiles" aria-label="Weather and RE summary"></section>
+
+      <section id="sec-weather-maps" class="section">
+        <h2>
+          <span class="t-en">ERA5 spatial weather fields &amp; monsoon wind roses</span>
+          <span class="t-zh">ERA5 氣象空間分布與區域風花圖</span>
+        </h2>
+        <div class="filters">
+          <label>
+            <span><span class="t-en">Weather year</span><span class="t-zh">氣象年份</span></span>
+            <select id="wr-year">
+              <option value="2013">2013 (base model year)</option>
+              <option value="2018">2018 (warmer / sunnier / weaker wind)</option>
+            </select>
+          </label>
+          <label>
+            <span><span class="t-en">Weather variable</span><span class="t-zh">氣象變數</span></span>
+            <select id="wr-var"></select>
+          </label>
+          <label>
+            <span><span class="t-en">Wind rose site</span><span class="t-zh">風花圖測點</span></span>
+            <select id="wr-rose-site"></select>
+          </label>
+        </div>
+        <div class="grid two">
+          <article class="panel">
+            <h3 id="wr-map-title"></h3>
+            <p class="sub" id="wr-map-sub"></p>
+            <div id="chart-weather-map" class="chart" style="height: 460px"></div>
+          </article>
+          <article class="panel">
+            <h3>
+              <span class="t-en">100 m wind rose &amp; monthly climate</span>
+              <span class="t-zh">100 公尺高度風花圖與逐月氣候</span>
+            </h3>
+            <div id="chart-wind-rose" class="chart" style="height: 250px"></div>
+            <div id="chart-monthly-climate" class="chart" style="height: 230px"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sec-variability" class="section">
+        <h2>
+          <span class="t-en">Seasonality, diurnal cycles &amp; solar–wind complementarity (2013 vs. 2018)</span>
+          <span class="t-zh">季節變化、日夜出力曲線與風光互補效應（2013 vs. 2018）</span>
+        </h2>
+        <div class="grid two">
+          <article class="panel">
+            <h3>
+              <span class="t-en">Monthly capacity factors (2013 solid vs. 2018 dashed)</span>
+              <span class="t-zh">逐月容量因數（實線 2013 vs. 虛線 2018）</span>
+            </h3>
+            <div id="chart-monthly-cf" class="chart"></div>
+            <div id="table-complementarity" class="table-wrap"></div>
+          </article>
+          <article class="panel">
+            <h3>
+              <span class="t-en">Diurnal profile (Taiwan local time, UTC+8): Summer vs. Winter</span>
+              <span class="t-zh">台灣時間（UTC+8）24 小時日夜曲線：夏月 vs. 冬月</span>
+            </h3>
+            <div id="chart-diurnal" class="chart"></div>
+            <h3>
+              <span class="t-en">Monthly hydro inflow across 30 plants (GWh/month)</span>
+              <span class="t-zh">全台 30 座水力電廠逐月入流量（GWh/月）</span>
+            </h3>
+            <div id="chart-hydro-inflow" class="chart" style="height: 210px"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sec-extremes" class="section">
+        <h2>
+          <span class="t-en">Extreme weather: Dunkelflaute (wind + solar lulls) &amp; typhoon high-wind events</span>
+          <span class="t-zh">極端氣象：低風光期（Dunkelflaute）與颱風級強風切出時數</span>
+        </h2>
+        <article class="panel">
+          <p class="sub" id="wr-extremes-sub"></p>
+          <div id="table-extremes" class="table-wrap"></div>
+        </article>
+      </section>
+
+      <section id="sec-potential" class="section">
+        <h2>
+          <span class="t-en">Renewable energy technical potential by carrier &amp; region</span>
+          <span class="t-zh">各技術別與六大區域再生能源技術潛力</span>
+        </h2>
+        <div class="filters">
+          <label>
+            <span><span class="t-en">Technology carrier</span><span class="t-zh">再生能源類別</span></span>
+            <select id="wr-carrier"></select>
+          </label>
+        </div>
+        <div class="grid two">
+          <article class="panel">
+            <h3 id="wr-pot-map-title"></h3>
+            <p class="sub" id="wr-pot-map-sub"></p>
+            <div id="chart-potential-map" class="chart" style="height: 440px"></div>
+          </article>
+          <article class="panel">
+            <h3>
+              <span class="t-en">Regional technical potential &amp; 2013 vs. 2018 CF</span>
+              <span class="t-zh">六區技術潛力與 2013 / 2018 年容量因數</span>
+            </h3>
+            <div id="table-potential-regions" class="table-wrap"></div>
+            <div id="chart-potential-bars" class="chart" style="height: 240px"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sec-exclusions" class="section">
+        <h2>
+          <span class="t-en">Spatial exclusion rules, land-cover classes &amp; resource assumptions</span>
+          <span class="t-zh">土地利用排除規則、水深條件與機組參數</span>
+        </h2>
+        <article class="panel">
+          <div id="table-exclusions" class="table-wrap"></div>
+        </article>
+      </section>
+
+      <section id="sec-county-policy" class="section">
+        <h2>
+          <span class="t-en">Official county solar approvals (2015–2025) &amp; 2050 policy targets vs. model potential</span>
+          <span class="t-zh">官方各縣市光電同意備案實績（2015–2025）與 2050 目標對照</span>
+        </h2>
+        <div class="grid two">
+          <article class="panel">
+            <h3>
+              <span class="t-en">Cumulative solar PV approvals by county (MW, 2015–2025)</span>
+              <span class="t-zh">各縣市累計太陽光電同意備案容量（MW，2015–2025）</span>
+            </h3>
+            <div id="chart-county-solar" class="chart tall"></div>
+          </article>
+          <article class="panel">
+            <h3>
+              <span class="t-en">Model technical potential vs. official 2030 / 2050 targets</span>
+              <span class="t-zh">模型技術潛力 vs. 官方 2030 / 2050 政策目標</span>
+            </h3>
+            <div id="table-policy-potential" class="table-wrap"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sec-sources" class="section">
+        <h2>
+          <span class="t-en">Data sources &amp; evidence levels</span>
+          <span class="t-zh">資料來源與證據層級</span>
+        </h2>
+        <article class="panel">
+          <ol class="refs" id="wr-sources"></ol>
+        </article>
+      </section>
+    </main>
+
+    <footer class="shell footer">
+      <p>
+        <span class="t-en">Exported by <code>viewer/export_weather_re_data.py</code> to <code>docs/data/weather_re_data.json</code> from ERA5 reanalysis cutouts, PyPSA-Earth/Atlite renewable profiles, and official Energy Administration open data.</span>
+        <span class="t-zh">本頁資料由 <code>viewer/export_weather_re_data.py</code> 匯出至 <code>docs/data/weather_re_data.json</code>，整合 ERA5 再分析氣象資料、PyPSA-Earth/Atlite 再生能源潛力及經濟部能源署公開統計。</span>
+      </p>
+    </footer>
+  </body>
+</html>

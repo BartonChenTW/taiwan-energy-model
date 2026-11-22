@@ -660,5 +660,18 @@ Added comprehensive Taiwan electrical grid, OpenStreetMap/PyPSA-Earth topology, 
 - **Documentation & roadmap:**
   - Added technical note `notes/TAIWAN_GRID_DATA.md`, updated `notes/todo.md` with grid follow-ups (`#25`–`#29`), and cross-linked `notes/log.md`, `notes/todo.md`, `notes/TAIWAN_GRID_DATA.md`, and `docs/grid.html` in `README.md`, `AGENTS.md`, `GETTING_STARTED.md`, and `notes/GITHUB_PAGES.md`.
 
+---
+
+## 2026-11-22 — Release tagging (`tem-v0.1.0`/`tem-v0.2.0`), unified nav, and Weather & RE Potential data
+
+- **Release governance & navigation polish (`tem-v0.1.0`):**
+  - Fixed `.status.info` CSS collision with the `17px` `.info` tooltip icon and aligned `.tile` classes on `docs/grid.html` (`28be8be`).
+  - Unified the two-row header navigation across all site pages (`7f6acff`): identical Row 1 (`Pages`) tabs everywhere + Row 2 (`Sections`) inside `.topbar`.
+  - Added `CHANGELOG.md` and created annotated release tag `tem-v0.1.0` on `7f6acff` (distinct from inherited upstream PyPSA-Earth `v0.x.y` tags), documented in `README.md` and `AGENTS.md`.
+- **Weather & RE potential data (`tem-v0.2.0`):**
+  - Registered `moea_tw_re_potential` in `data/sources.csv`, added `8` `resource` key figures to `data/taiwan_key_facts.csv`, and added `2` entries to `data/taiwan_energy_catalog.csv`.
+  - Built `viewer/export_weather_re_data.py` (hooked into `viewer/export_dashboard_data.py`) exporting `docs/data/weather_re_data.json` (`129.6 KB`): ERA5 2013 vs. 2018 spatial fields (`6.93` vs. `6.62 m/s` 100 m wind; `1,617.3` vs. `1,644.3 kWh/m²/yr` GHI; `509.5` vs. `461.1 mm/yr` runoff; `87` vs. `31` high-wind `>=25 m/s` hours), 4-site wind roses (Changhua offshore `9.52 m/s` / P90 `17.82 m/s` in 2013), solar–wind monthly complementarity (`r = -0.502` / `-0.573`), Dunkelflaute 24h/72h/168h worst lulls, 30-plant hydro inflow (`4.36 TWh/yr`), 5-carrier technical potential (`solar 39.44 GW`, `onwind 42.45 GW`, `offwind-ac 12.38 GW`, `offwind-dc 37.94 GW`, `offwind-float 230.61 GW` = `1,010.1 TWh/yr`), Copernicus/GEBCO/WDPA exclusion rules, and 22-county official solar approvals (`20,989.2 MW` cumulative 2015–2025).
+  - Created `docs/weather-re.html`, `docs/assets/weather-re.js`, and `notes/TAIWAN_WEATHER_RE_DATA.md`, and added `Weather & RE` / `氣象與再生能源` to all `12` site pages.
+
 TODO:
  - to run PyPSA-Earth Taiwan!

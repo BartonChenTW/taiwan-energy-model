@@ -64,11 +64,17 @@ Everything still open, in one place. Details are in the linked notes; the phase 
 28. [ ] **Ingest Taipower open feeder & HV hosting capacity datasets** (`data.gov.tw` / `taipower.com.tw` 11/22.8 kV feeders and 69/161 kV substation remaining capacity) and reconcile missing OSM multi-circuit line tags against real 345 kV North–Central transfer margins (`104 MW` C→N, `1,608 MW` S→C).
 29. [ ] **Model sub-national LNG terminal & gas pipeline bottlenecks** alongside multi-node grid representation for energy-security and blockade stress tests.
 
+### Weather and renewable potential
+30. [x] **Detailed Taiwan weather & RE potential dataset and website tab:** exported ERA5 2013 vs. 2018 spatial weather fields, wind roses, diurnal/seasonal complementarity, 30-plant hydro inflow, Dunkelflaute & typhoon cut-out analysis, 5-carrier technical potential (`solar`, `onwind`, `offwind-ac`, `offwind-dc`, `offwind-float`), Copernicus/GEBCO/WDPA exclusion rules, and 22-county official solar approvals into `notes/TAIWAN_WEATHER_RE_DATA.md`, `viewer/export_weather_re_data.py`, `docs/data/weather_re_data.json`, and `docs/weather-re.html`.
+31. [ ] **Multi-year ERA5 weather climatology (e.g. 2011–2024):** extend beyond 2013 and 2018 cutouts to quantify multi-year typhoon, drought (2021 hydro drought), and Dunkelflaute tail risks.
+32. [ ] **Bias-correct ERA5 onshore wind/solar against CWA ground stations** (`opendata.cwa.gov.tw`) and Taipower real-time solar/wind output to tighten Central Mountain Range and urban rooftop accuracy.
+33. [ ] **Overlay MOEA offshore wind block-development zones (區塊開發) and rooftop-solar building footprints** on the model's `0.3°` potential cells.
+
 ### Repositories
-30. [ ] **Upstream pull requests** for the bug fixes in the fork's `FORK_CHANGES.md`, section 2 (`notes/REPO_SPLIT_PLAN.md`, step 6; postponed).
-31. [ ] **Update the fork** to current upstream (step 7; about 73 commits behind as of 2026-09-26).
-32. [ ] **Old branch:** delete `pypsa-taiwan-dev` in the fork once nobody needs it (the tag `pre-split-2026-09` keeps its state).
-33. [ ] **`model.lock`:** update it after the next fork change (it matches fork commit `82cfd1a2` now).
+34. [ ] **Upstream pull requests** for the bug fixes in the fork's `FORK_CHANGES.md`, section 2 (`notes/REPO_SPLIT_PLAN.md`, step 6; postponed).
+35. [ ] **Update the fork** to current upstream (step 7; about 73 commits behind as of 2026-09-26).
+36. [ ] **Old branch:** delete `pypsa-taiwan-dev` in the fork once nobody needs it (the tag `pre-split-2026-09` keeps its state).
+37. [ ] **`model.lock`:** update it after the next fork change (it matches fork commit `82cfd1a2` now).
 
 
 ## Phase 1: baseline model (today's 2025 energy system runs, results make sense)

@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-21 00:24 UTC",
+ "generated": "2026-11-22 12:22 UTC",
  "links_checked": "2026-09-24",
  "link_status": {
   "https://cds.climate.copernicus.eu/": "0",
@@ -1066,6 +1066,110 @@
    "link": "https://www.taipower.com.tw/",
    "evidence": "search_summary",
    "note": "Decentralisation ~437.9B NT$, hardware/indoor ~125.0B NT$, defence-in-depth ~1.69B NT$"
+  },
+  {
+   "topic": "resource",
+   "indicator_en": "ERA5 Taiwan-box mean 100 m wind speed (2013 / 2018)",
+   "indicator_zh": "ERA5 台灣區域 100 公尺平均風速（2013 年）",
+   "value": "6.93",
+   "unit": "m/s",
+   "year": "2013",
+   "scope": "Taiwan & adjacent strait (0.3 deg ERA5)",
+   "source_name": "Copernicus ERA5 reanalysis via Atlite cutout",
+   "link": "https://doi.org/10.1002/qj.3803",
+   "evidence": "model_input",
+   "note": "Cutout 2013 mean 6.93 m/s (max 42.13 m/s) vs. 2018 mean 6.62 m/s (max 37.33 m/s) over 119.3-122.3E, 21.7-25.5N"
+  },
+  {
+   "topic": "resource",
+   "indicator_en": "ERA5 Taiwan-box mean solar GHI (2013 / 2018)",
+   "indicator_zh": "ERA5 台灣區域年平均太陽水平日射量（2013 年）",
+   "value": "1617.3",
+   "unit": "kWh/m2/yr",
+   "year": "2013",
+   "scope": "Taiwan & adjacent strait (0.3 deg ERA5)",
+   "source_name": "Copernicus ERA5 reanalysis via Atlite cutout",
+   "link": "https://doi.org/10.1002/qj.3803",
+   "evidence": "model_input",
+   "note": "184.6 W/m2 (63.2% direct) in 2013 vs. 1,644.3 kWh/m2/yr (187.7 W/m2, 64.5% direct) in 2018"
+  },
+  {
+   "topic": "resource",
+   "indicator_en": "Model solar PV technical potential (PyPSA-Earth)",
+   "indicator_zh": "PyPSA-Earth 模型太陽光電技術潛力",
+   "value": "39.44",
+   "unit": "GW",
+   "year": "2013 weather",
+   "scope": "Taiwan eligible Copernicus land (excl. WDPA)",
+   "source_name": "PyPSA-Earth + Atlite (CSi, 4.6 MW/km2)",
+   "link": "https://doi.org/10.1016/j.apenergy.2023.121096",
+   "evidence": "model_output",
+   "note": "Weighted mean CF 13.2% (45.5 TWh/yr in 2013; 13.3% / 45.8 TWh/yr in 2018); official 2050 target 40-80 GW"
+  },
+  {
+   "topic": "resource",
+   "indicator_en": "Model onshore wind technical potential (PyPSA-Earth)",
+   "indicator_zh": "PyPSA-Earth 模型陸域風電技術潛力",
+   "value": "42.45",
+   "unit": "GW",
+   "year": "2013 weather",
+   "scope": "Taiwan eligible Copernicus land (1 km urban buffer)",
+   "source_name": "PyPSA-Earth + Atlite (Vestas V112 3MW, 3 MW/km2)",
+   "link": "https://doi.org/10.1016/j.apenergy.2023.121096",
+   "evidence": "model_output",
+   "note": "Weighted mean CF 11.6% (43.3 TWh/yr in 2013; 10.9% / 40.6 TWh/yr in 2018)"
+  },
+  {
+   "topic": "resource",
+   "indicator_en": "Model fixed-bottom offshore wind potential (AC + DC)",
+   "indicator_zh": "PyPSA-Earth 模型固定式離岸風電技術潛力（水深 <=50 m）",
+   "value": "50.32",
+   "unit": "GW",
+   "year": "2013 weather",
+   "scope": "Taiwan EEZ water depth <=50 m (GEBCO 2025)",
+   "source_name": "PyPSA-Earth + Atlite (NREL 5MW offshore)",
+   "link": "https://doi.org/10.1016/j.apenergy.2023.121096",
+   "evidence": "model_output",
+   "note": "12.38 GW AC (<30 km, CF 36.3%, 39.4 TWh) + 37.94 GW DC (>=30 km, CF 52.9%, 175.8 TWh) = 215.2 TWh/yr in 2013 (199.3 TWh in 2018)"
+  },
+  {
+   "topic": "resource",
+   "indicator_en": "Model floating offshore wind potential (50-1000 m depth)",
+   "indicator_zh": "PyPSA-Earth 模型浮動式離岸風電技術潛力（水深 50-1000 m）",
+   "value": "230.61",
+   "unit": "GW",
+   "year": "2013 weather",
+   "scope": "Taiwan EEZ water depth 50-1000 m (GEBCO 2025)",
+   "source_name": "PyPSA-Earth Taiwan fork + Atlite (2 MW/km2)",
+   "link": "https://doi.org/10.1016/j.apenergy.2023.121096",
+   "evidence": "model_output",
+   "note": "Weighted mean CF 50.0% = 1,010.6 TWh/yr in 2013 (tw_path2050_D_w2013_6b)"
+  },
+  {
+   "topic": "resource",
+   "indicator_en": "Taiwan onshore geothermal theoretical potential",
+   "indicator_zh": "台灣陸域地熱發電理論潛能",
+   "value": "35.0",
+   "unit": "GW (range 30-40 GW)",
+   "year": "recent",
+   "scope": "Taiwan onshore geothermal basins",
+   "source_name": "MOEA / ITRI (via search summary)",
+   "link": "https://www.moeaea.gov.tw/",
+   "evidence": "search_summary",
+   "note": "Reported range 30-40 GW theoretical onshore potential; official 2050 net-zero pathway targets 3.0-6.2 GW (ndc_2050_forward_energy)"
+  },
+  {
+   "topic": "resource",
+   "indicator_en": "Taiwan Strait offshore 100 m mean wind speed",
+   "indicator_zh": "台灣海峽彰化外海 100 公尺年平均風速",
+   "value": "9.5",
+   "unit": "m/s (9-10+ m/s)",
+   "year": "recent",
+   "scope": "Changhua / western Taiwan Strait offshore",
+   "source_name": "MOEA / ITRI (via search summary)",
+   "link": "https://www.moeaea.gov.tw/",
+   "evidence": "search_summary",
+   "note": "Strong NE monsoon (Oct-Mar) creates 9-10+ m/s hub-height mean wind speeds in prime western Strait zones"
   }
  ],
  "catalog": [
@@ -1731,6 +1835,32 @@
    "link": "https://www.cpc.com.tw/",
    "model_use": "used",
    "note": "Documented in docs/grid.html and moea_power_supply_demand_report_20260609.pdf (p. 15)"
+  },
+  {
+   "category": "weather",
+   "name_en": "ERA5 Taiwan hourly weather cutouts (2013 and 2018)",
+   "name_zh": "ERA5 台灣逐時氣象資料（2013 與 2018 年）",
+   "provider": "Copernicus C3S / Atlite",
+   "content": "0.3-degree hourly 100 m wind speed & direction, direct/diffuse solar irradiance, 2 m temperature, soil temperature, runoff, and surface elevation (8,760 h/yr)",
+   "format": "NetCDF",
+   "update": "reanalysis",
+   "license": "Copernicus licence",
+   "link": "https://cds.climate.copernicus.eu/",
+   "model_use": "used",
+   "note": "Drives solar, wind, and hydro capacity factors; spatial/seasonal/Dunkelflaute analysis published on docs/weather-re.html"
+  },
+  {
+   "category": "geography",
+   "name_en": "Renewable energy spatial exclusion & resource profiles",
+   "name_zh": "再生能源空間排除圖層與技術潛力曲線",
+   "provider": "Copernicus LC100 / GEBCO 2025 / WDPA / HydroBASINS",
+   "content": "Eligible land & EEZ cells, fixed vs. floating bathymetry (0-50 m / 50-1,000 m), 30-plant hydro inflow, and 5-carrier technical potential (solar, onwind, offwind-ac/dc/float)",
+   "format": "NetCDF / GeoTIFF",
+   "update": "static / per-run",
+   "license": "CC BY 4.0 / public domain",
+   "link": "https://www.gebco.net/",
+   "model_use": "used",
+   "note": "Computed by PyPSA-Earth build_renewable_profiles; published in detail on docs/weather-re.html"
   }
  ]
 }
