@@ -57,11 +57,18 @@ Everything still open, in one place. Details are in the linked notes; the phase 
 23. [ ] **Repository size:** `docs/data/sandbox` is 12.5 MB and grows with each scenario; consider trimming time series or moving them to release assets.
 24. [ ] **Live solving (Phase 2):** designed in `sandbox/PHASE2_LIVE_SOLVING.md`, not built.
 
+### Grid and energy networks
+25. [x] **Detailed Taiwan electrical grid & energy network data:** compiled Taipower transmission/substation stats (`18,782 ckt-km`, `627` substations), MOEA historical line losses & load factors, 10-Year Grid Resilience Plan (`NT$564.5B`), 345 kV trunk bottlenecks/upgrades, OpenStreetMap (`734` substations, `1,876` lines, `253` cables) vs. PyPSA `elec.nc`/`elec_s_6_ec.nc` analysis, and all 7 LNG terminals & figure-8 gas pipelines into `notes/TAIWAN_GRID_DATA.md`, `data/sources.csv`, `data/taiwan_key_facts.csv`, `viewer/export_grid_data.py`, and the dedicated `docs/grid.html` tab.
+26. [ ] **Verify and replace `search_summary` grid/gas statistics** with direct official files/links (Taipower `18,782 ckt-km` / `627` substations sustainability report table, `NT$564.5B` resilience plan breakdown, CPC LNG tank & pipeline data).
+27. [ ] **Fix Hualien 690 kV OSM tagging artifact (`way/1331526157`, `初英分歧線`):** override `690000` -> `69000` in the fork's clean-OSM / network script (and fix upstream in OpenStreetMap) so `elec.nc` Bus `91` is modeled at `69 kV` without an artificial `2,000 MVA` step transformer.
+28. [ ] **Ingest Taipower open feeder & HV hosting capacity datasets** (`data.gov.tw` / `taipower.com.tw` 11/22.8 kV feeders and 69/161 kV substation remaining capacity) and reconcile missing OSM multi-circuit line tags against real 345 kV North–Central transfer margins (`104 MW` C→N, `1,608 MW` S→C).
+29. [ ] **Model sub-national LNG terminal & gas pipeline bottlenecks** alongside multi-node grid representation for energy-security and blockade stress tests.
+
 ### Repositories
-25. [ ] **Upstream pull requests** for the bug fixes in the fork's `FORK_CHANGES.md`, section 2 (`notes/REPO_SPLIT_PLAN.md`, step 6; postponed).
-26. [ ] **Update the fork** to current upstream (step 7; about 73 commits behind as of 2026-09-26).
-27. [ ] **Old branch:** delete `pypsa-taiwan-dev` in the fork once nobody needs it (the tag `pre-split-2026-09` keeps its state).
-28. [ ] **`model.lock`:** update it after the next fork change (it matches fork commit `82cfd1a2` now).
+30. [ ] **Upstream pull requests** for the bug fixes in the fork's `FORK_CHANGES.md`, section 2 (`notes/REPO_SPLIT_PLAN.md`, step 6; postponed).
+31. [ ] **Update the fork** to current upstream (step 7; about 73 commits behind as of 2026-09-26).
+32. [ ] **Old branch:** delete `pypsa-taiwan-dev` in the fork once nobody needs it (the tag `pre-split-2026-09` keeps its state).
+33. [ ] **`model.lock`:** update it after the next fork change (it matches fork commit `82cfd1a2` now).
 
 
 ## Phase 1: baseline model (today's 2025 energy system runs, results make sense)

@@ -640,5 +640,25 @@ New page `docs/model-data.html`, built from `docs/data/model_data.json` (213 kB)
 - **Exporter:** the earlier GEGIS registry fix (no local file) reached `docs/data/` with this export.
 - **Wrap-up:** all open work is collected in `notes/todo.md`, section "Future work".
 
+---
+
+## 2026-11-21 — Taiwan electrical grid & energy networks data, exporter and website tab
+
+Added comprehensive Taiwan electrical grid, OpenStreetMap/PyPSA-Earth topology, resilience/storage, and natural gas/fuel network documentation and published a dedicated tab on the website.
+
+- **Data registry & key figures:**
+  - Updated `ndc_2050_grid_storage` note in `data/sources.csv` with Strategy 5 grid transfer margin, 345 kV trunk, offshore wind/solar corridor, STATCOM, and smart-grid KPIs; registered four new sources (`taipower_transmission_stats`, `taipower_grid_resilience_2022`, `taipower_feeder_capacity`, `cpc_lng_network`).
+  - Added `15` `grid` indicators to `data/taiwan_key_facts.csv` (from `moeaea_indicators_annual`, `ndc_2050_grid_storage`, `moea_psd_fy2024`, and `search_summary` Taipower stats) plus `4` entries in `data/taiwan_energy_catalog.csv` and `topic_grid` labels in `docs/assets/taiwan-data.js`.
+  - Validated with `$PY data/check_data.py` (`57 sources checked: 0 errors, 10 warnings`).
+- **OSM vs. PyPSA-Earth analysis (`tw_test2_highs_2013_fullyear_4h_6b`):**
+  - Inspected `734` raw OSM substations (`594` named; `31 E/S, 56 P/S, 203 D/S, 181 S/S, 263 Other`), `1,876` overhead lines (`345 kV: 2,227.1 km`, `161 kV: 2,250.1 km`, `69 kV: 1,308.5 km`), and `253` cables (`247` underground + `6` subsea incl. `台澎海纜`). Fixed LV (`750 V`/`220 V`) tag parsing in `viewer/export_grid_data.py` so railway traction tags are not classified as extra-high voltage.
+  - Traced `elec.nc` Hualien `690 kV` Bus `91` anomaly directly to OSM `way/1331526157` (`初英分歧線`, `tags.voltage=690000`, typo for `69000`).
+  - Reconciled `elec.nc` (`193` buses, `243` lines, `69` transformers; graph components `[186, 2, 2, 1, 1, 1]` with transformers) through `elec_s.nc` (`79` buses, `130` lines via `linemap_elec_s_6.csv`) to the `6` corridors of `elec_s_6_ec.nc`, highlighting `TW0 1 <-> TW0 4` (`13,926.7 MVA` / `9,748.7 MW` usable) vs. Taipower's 2022 operational Central->North margin (`104 MW`).
+- **Exporter & separate website tab:**
+  - Created `viewer/export_grid_data.py` (hooked into `viewer/export_dashboard_data.py`), exporting `docs/data/grid_data.json` (`922.8 KB`) covering official grid stats, 2005–2025 line-loss & load-factor series, OSM substations/lines, PyPSA 6-region corridors, 10-Year Grid Resilience Plan (`NT$564.5B`), `7站7線` / `9站10線`, `1.42 GW` -> `5.5 GW` storage, all `7` LNG terminals, schematic figure-8 subsea/onshore gas pipelines, and coal/oil ports & stockpiles.
+  - Built `docs/grid.html` + `docs/assets/grid.js` (bilingual EN/繁中, light/dark theme, layer-toggle Plotly map, charts, searchable/sortable substation & line tables linking to OSM) and added the `Energy networks` / `能源網路` tab to all `10` existing `docs/*.html` pages.
+- **Documentation & roadmap:**
+  - Added technical note `notes/TAIWAN_GRID_DATA.md`, updated `notes/todo.md` with grid follow-ups (`#25`–`#29`), and cross-linked `notes/log.md`, `notes/todo.md`, `notes/TAIWAN_GRID_DATA.md`, and `docs/grid.html` in `README.md`, `AGENTS.md`, `GETTING_STARTED.md`, and `notes/GITHUB_PAGES.md`.
+
 TODO:
  - to run PyPSA-Earth Taiwan!

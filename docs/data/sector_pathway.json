@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-27 12:52 UTC",
+ "generated": "2026-11-21 00:25 UTC",
  "currency": {
   "eur_twd": 36.185,
   "date": "2026-09-24 17:01",
@@ -8675,7 +8675,7 @@
    "file_url": "https://www.ey.gov.tw/File/16D2A0935341E23?A=C",
    "origin": "taiwan",
    "evidence": "downloaded",
-   "note": "Quotes the NDC pathway (2022-03): in 2050 renewables 60-70%, hydrogen 9-12%, thermal with carbon capture 20-27% (PDF p. 3). Battery storage 1.5 GW in 2025 and 5.5 GW in 2030; 2031-2050 targets to be set later; new pumped hydro at Guangming and Shimen (PDF p. 15). Used for sector_path_2050_official_mix.yaml."
+   "note": "Quotes the NDC pathway (2022-03): in 2050 renewables 60-70%, hydrogen 9-12%, thermal with carbon capture 20-27% (PDF p. 3). Battery storage 1.5 GW in 2025 and 5.5 GW in 2030; 2031-2050 targets to be set later; new pumped hydro at Guangming and Shimen (PDF p. 15). Also details 2022 regional transfer margins (1,608 MW S-C, 104 MW C-N, PDF p. 22), 345 kV trunk upgrades to 3,000 MW (PDF p. 25), offshore wind 7 stations / 7 lines +11 GW and solar 9 stations / 10 lines +6.5 GW (PDF pp. 23-25), STATCOMs (PDF p. 26), and smart-grid/AMI/IEC-61850 KPIs (PDF pp. 30-35). Used for sector_path_2050_official_mix.yaml and docs/grid.html."
   },
   {
    "source_id": "ndc_2050_ccus",

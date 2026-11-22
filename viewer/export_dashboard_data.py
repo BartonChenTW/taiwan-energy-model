@@ -1358,8 +1358,10 @@ def main():
     export_sector_pathway(repo, out)
     export_security(repo, out)
     from export_model_data import export_model_data  # docs/model-data.html
+    from export_grid_data import export_grid_data  # docs/grid.html
 
     export_model_data(repo, out)
+    export_grid_data(repo, out)
     # Cache busting: give each CSS/JS link a content hash, so browsers load changed files at once.
     from stamp_assets import stamp
 

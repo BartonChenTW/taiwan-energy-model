@@ -15,6 +15,7 @@ The site entry point is `docs/index.html`, the landing page. The pages are:
 | Sandbox | `docs/sandbox.html` | `assets/sandbox.js` |
 | Model dashboard | `docs/dashboard.html` (was `index.html`; old `index.html?case=...` links redirect) | `assets/app.js` |
 | Model data (grid, plants, renewable potential, costs) | `docs/model-data.html` | `assets/model-data.js` |
+| Energy networks (Taiwan electrical grid, substations, LNG & fuel supply) | `docs/grid.html` | `assets/grid.js` |
 | Taiwan energy data | `docs/taiwan-data.html` | `assets/taiwan-data.js` |
 | Request a simulation | `docs/request.html` | `assets/request.js` |
 | About | `docs/about.html` | `assets/pages.js` |
@@ -52,6 +53,10 @@ This reads every `results/<run>/networks/*.nc` (skipping `results/_archive`) and
 The console prints each case with its warnings, so it doubles as a quick check of the runs. The warnings cover disconnected subnetworks, load shedding, implausible renewable capacity factors, renewable availability stuck at 1.0 (a weather-data gap), and extendable generators or lines.
 
 Results are exported as aggregated numbers. The model data page also publishes model inputs in full detail (substations, lines, each power plant, renewable potential per weather cell, cost rows); all of them come from public data (OpenStreetMap, Taipower open data, powerplantmatching, ERA5, technology-data). The repository is public, so everything in `docs/data/` is public too.
+
+## Energy networks page
+
+`docs/grid.html` reads `docs/data/grid_data.json`, written by `viewer/export_grid_data.py` (run on its own or through `export_dashboard_data.py`). It documents Taiwan's electrical grid (Taipower stats, 2005–2025 line losses & load factors, OpenStreetMap 734 substations and 2,129 lines/cables, PyPSA-Earth `elec.nc`/`elec_s_6_ec.nc` topology, 10-Year Grid Resilience Plan) and LNG/fuel supply networks.
 
 ## Model data page
 

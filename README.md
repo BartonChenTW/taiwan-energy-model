@@ -10,6 +10,7 @@ An open model of Taiwan's energy system: Taiwan data and sources, scenarios and 
 - **Use the model:** [GETTING_STARTED.md](GETTING_STARTED.md)
 - **Contribute data or code:** [CONTRIBUTING.md](CONTRIBUTING.md). Taiwan data and verified sources are the most useful contributions.
 - **Where each input comes from:** [notes/DATA_PROVENANCE.md](notes/DATA_PROVENANCE.md). What the fork changes in PyPSA-Earth: [FORK_CHANGES.md](https://github.com/BartonChenTW/pypsa-earth/blob/taiwan/FORK_CHANGES.md).
+- **Project log, roadmap & grid notes:** [notes/log.md](notes/log.md) | [notes/todo.md](notes/todo.md) | [notes/TAIWAN_GRID_DATA.md](notes/TAIWAN_GRID_DATA.md)
 
 | Folder | Content |
 | --- | --- |
@@ -18,7 +19,7 @@ An open model of Taiwan's energy system: Taiwan data and sources, scenarios and 
 | `sandbox/` | What-if scenarios on today's system, solved in seconds |
 | `viewer/` | Exporter from model results to the website data |
 | `docs/` | The website (GitHub Pages) |
-| `notes/` | Project log, the 2050 pathway, provenance, plans |
+| `notes/` | [Project log](notes/log.md), [todo list](notes/todo.md), [grid & gas network data](notes/TAIWAN_GRID_DATA.md), 2050 pathway, provenance, plans |
 
 The model itself runs in a PyPSA-Earth checkout next to this folder (`../pypsa-earth`, or set
 `PYPSA_EARTH_DIR`); `model.lock` pins its commit.

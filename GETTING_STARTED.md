@@ -121,6 +121,8 @@ cd docs && python -m http.server 8000       # then open http://localhost:8000
 | Topic | File |
 | --- | --- |
 | Which inputs come from PyPSA-Earth and which from Taiwan sources | `notes/DATA_PROVENANCE.md` |
+| Taiwan electrical grid, OSM vs. PyPSA topology & LNG networks | `notes/TAIWAN_GRID_DATA.md` |
+| Project log and open tasks (roadmap) | `notes/log.md` and `notes/todo.md` |
 | What the model fork changes in PyPSA-Earth | [FORK_CHANGES.md](https://github.com/BartonChenTW/pypsa-earth/blob/taiwan/FORK_CHANGES.md) |
 | The 2050 net-zero pathway | `notes/TAIWAN_2050_PATHWAY.md` |
 | Every data source, with links and checksums | `data/sources.csv`, and the Model data page of the website |
