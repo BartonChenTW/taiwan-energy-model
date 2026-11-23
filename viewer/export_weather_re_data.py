@@ -527,6 +527,148 @@ def build_policy_vs_potential(carriers: list[dict]) -> list[dict]:
     ]
 
 
+def build_taiwan_local_benchmarks(carriers: list[dict]) -> dict:
+    """Compute empirical Taiwan RE capacity factors (2016–2025) from official MOEA CSVs,
+    load official FiT full-load-hour benchmarks, and bundle Taiwan-origin resource surveys."""
+    gen = pd.read_csv(ROOT / "data" / "official" / "moeaea_generation_by_source_annual.csv", encoding="utf-8-sig").set_index("西元年")
+    cap = pd.read_csv(ROOT / "data" / "official" / "moeaea_capacity_by_source_annual.csv", encoding="utf-8-sig").set_index("西元年")
+    col_map = {
+        "solar": "再生能源_太陽光電_全國(統計數值)",
+        "wind": "再生能源_風力_全國(統計數值)",
+        "hydro": "再生能源_慣常水力_全國(統計數值)",
+        "geothermal": "再生能源_地熱_全國(統計數值)",
+        "biomass": "再生能源_生質能_全國(統計數值)",
+    }
+    empirical = []
+    for yr in range(2016, 2026):
+        row = {"year": yr}
+        for k, col in col_map.items():
+            g_gwh = float(gen.loc[yr, col])
+            c_mid_mw = 0.5 * (float(cap.loc[yr - 1, col]) + float(cap.loc[yr, col]))
+            cf = (g_gwh * 1000.0) / (c_mid_mw * 8760.0) if c_mid_mw > 0 else None
+            row[f"{k}_cf"] = _r(cf, 3) if cf is not None else None
+            row[f"{k}_gwh"] = _r(g_gwh, 1)
+            row[f"{k}_mw"] = _r(c_mid_mw, 1)
+        empirical.append(row)
+
+    # Read MOEA FiT benchmark kWh/kW/yr from data/taiwan_cost_benchmarks.csv
+    cb = pd.read_csv(ROOT / "data" / "taiwan_cost_benchmarks.csv", encoding="utf-8-sig").set_index("key")
+    fit_flh = {k: float(cb.loc[k, "kWh_per_kW"]) for k in ["fit_solar_ground", "fit_onwind", "fit_offwind", "fit_geothermal", "fit_small_hydro", "fit_biomass"] if k in cb.index}
+
+    by_c = {c["carrier"]: c for c in carriers}
+    sol_cfs = [r["solar_cf"] for r in empirical if r["solar_cf"] is not None]
+    wnd_on_cfs = [r["wind_cf"] for r in empirical if r["year"] <= 2018 and r["wind_cf"] is not None]
+    wnd_recent = [r["wind_cf"] for r in empirical if r["year"] >= 2024 and r["wind_cf"] is not None]
+    hyd_cfs = [r["hydro_cf"] for r in empirical if r["hydro_cf"] is not None]
+    bio_cfs = [r["biomass_cf"] for r in empirical if r["biomass_cf"] is not None]
+
+    comparison = [
+        {
+            "tech_en": "Solar PV",
+            "tech_zh": "太陽光電",
+            "era5_cf": f"{_r((by_c.get('solar', {}).get('cf_2013') or 0)*100, 1)}% (2013) / {_r((by_c.get('solar', {}).get('cf_2018') or 0)*100, 1)}% (2018)",
+            "fit_benchmark": f"{int(fit_flh.get('fit_solar_ground', 1250)):,} h/yr ({_r(fit_flh.get('fit_solar_ground', 1250)/87.6, 1)}% CF, 2026 FiT)",
+            "actual_taiwan": f"{_r(min(sol_cfs)*100, 1)}–{_r(max(sol_cfs)*100, 1)}% (2024: {_r(empirical[-2]['solar_cf']*100, 1)}%, 2025: {_r(empirical[-1]['solar_cf']*100, 1)}%)",
+            "finding_en": "ERA5 closely matches Taiwan's national fleet average (~13%), though CWA stations show a ~2× north–south gap (2.2–2.6 vs. 3.9–4.7 kWh/m²/day).",
+            "finding_zh": "ERA5 與全台實績（約 13%）高度吻合；惟氣象署測站顯示南北日射量差距近一倍（2.2–2.6 vs. 3.9–4.7 kWh/m²/日）。",
+        },
+        {
+            "tech_en": "Onshore wind",
+            "tech_zh": "陸域風電",
+            "era5_cf": f"{_r((by_c.get('onwind', {}).get('cf_2013') or 0)*100, 1)}% (2013) / {_r((by_c.get('onwind', {}).get('cf_2018') or 0)*100, 1)}% (2018)",
+            "fit_benchmark": f"{int(fit_flh.get('fit_onwind', 2500)):,} h/yr ({_r(fit_flh.get('fit_onwind', 2500)/87.6, 1)}% CF, 2026 FiT)",
+            "actual_taiwan": f"{_r(min(wnd_on_cfs)*100, 1)}–{_r(max(wnd_on_cfs)*100, 1)}% (2016–2018 onshore-only fleet)",
+            "finding_en": "Key ERA5 bias: 0.3° grid averages coastal wind strips with inland mountains, understating real coastal onshore CF (~25–29%) by >2×.",
+            "finding_zh": "ERA5 主要偏差：0.3° 網格將西部海岸與山區平均，低估台灣實際沿海陸域風機容量因數（25–29%）逾兩倍。",
+        },
+        {
+            "tech_en": "Offshore wind",
+            "tech_zh": "離岸風電",
+            "era5_cf": f"AC {_r((by_c.get('offwind-ac', {}).get('cf_2013') or 0)*100, 1)}% / DC {_r((by_c.get('offwind-dc', {}).get('cf_2013') or 0)*100, 1)}% / Float {_r((by_c.get('offwind-float', {}).get('cf_2013') or 0)*100, 1)}%",
+            "fit_benchmark": f"{int(fit_flh.get('fit_offwind', 3750)):,} h/yr ({_r(fit_flh.get('fit_offwind', 3750)/87.6, 1)}% CF, 2023 FiT)",
+            "actual_taiwan": f"Combined wind {_r(wnd_recent[0]*100, 1)}% (2024) / {_r(wnd_recent[-1]*100, 1)}% (2025); Strait parks ~35–45%",
+            "finding_en": "ERA5 AC (34–36%) and DC/Float (49–53%) bracket MOEA's 42.8% FiT benchmark and operational Strait parks (3,500–4,000 h/yr).",
+            "finding_zh": "ERA5 近岸 AC（34–36%）與遠岸 DC／浮動（49–53%）涵蓋能源署 42.8% 躉購基準與實務風場（3,500–4,000 小時/年）。",
+        },
+        {
+            "tech_en": "Conventional hydro",
+            "tech_zh": "慣常水力",
+            "era5_cf": "Normalized 4.36 TWh/yr (~23.4% CF, HydroBASINS L6)",
+            "fit_benchmark": f"Small hydro {int(fit_flh.get('fit_small_hydro', 4000)):,} h/yr ({_r(fit_flh.get('fit_small_hydro', 4000)/87.6, 1)}% CF, 2026 FiT)",
+            "actual_taiwan": f"{_r(min(hyd_cfs)*100, 1)}% (2020 drought) – {_r(max(hyd_cfs)*100, 1)}% (2016); 2025: {_r(empirical[-1]['hydro_cf']*100, 1)}%",
+            "finding_en": "Actual Taiwan hydro output swings >2× between drought years (3.0 TWh in 2020) and wet typhoon years (6.6 TWh in 2016).",
+            "finding_zh": "台灣實際水力發電隨枯水年（2020 年 3.0 TWh）與豐水年（2016 年 6.6 TWh）劇烈擺盪逾兩倍。",
+        },
+        {
+            "tech_en": "Geothermal",
+            "tech_zh": "地熱發電",
+            "era5_cf": "Not weather-driven (dispatchable baseload in Sensitivity D)",
+            "fit_benchmark": f"{int(fit_flh.get('fit_geothermal', 6700)):,} h/yr ({_r(fit_flh.get('fit_geothermal', 6700)/87.6, 1)}% CF, 2026 FiT)",
+            "actual_taiwan": "39–60% on early pilot plants (7.5 MW installed in 2025)",
+            "finding_en": "GSMMA GeoTEX estimates ~989 MW shallow (1–3 km) and ~40 GW deep (3–6 km) potential, 80% in Tatun, Yilan, Hualien & Taitung.",
+            "finding_zh": "經濟部地礦中心評估淺層約 989 MW、深層約 40 GW，八成集中於大屯、宜蘭、花蓮與台東。",
+        },
+        {
+            "tech_en": "Biomass (solid / ag.)",
+            "tech_zh": "生質能",
+            "era5_cf": "Not weather-driven",
+            "fit_benchmark": f"{int(fit_flh.get('fit_biomass', 5600)):,} h/yr ({_r(fit_flh.get('fit_biomass', 5600)/87.6, 1)}% CF, 2026 FiT)",
+            "actual_taiwan": f"{_r(min(bio_cfs)*100, 1)}–{_r(max(bio_cfs)*100, 1)}% (2025: {_r(empirical[-1]['biomass_cf']*100, 1)}%)",
+            "finding_en": "Real biomass fleet operates mainly as industrial cogeneration and biogas (~84 MW in 2025).",
+            "finding_zh": "實務多為工業汽電共生與沼氣發電（2025 年裝置約 84 MW）。",
+        },
+    ]
+
+    surveys = [
+        {
+            "agency_en": "CWA (Central Weather Administration)",
+            "agency_zh": "交通部中央氣象署 (CODiS / OpenData)",
+            "resource_en": "Ground-station solar radiation (O-A0091-001) & wind",
+            "resource_zh": "全測站實測日射量與風速風向",
+            "figures_en": "North/NE 2.2–2.6 vs. South/Hengchun 3.9–4.7 kWh/m²/day (~2× north–south gap)",
+            "figures_zh": "北部／東北部 2.2–2.6 vs. 南部／恆春 3.9–4.7 kWh/m²/日（南北差距近一倍）",
+            "evidence": "search_summary",
+            "url": "https://codis.cwa.gov.tw/",
+        },
+        {
+            "agency_en": "MOEA Energy Administration",
+            "agency_zh": "經濟部能源署（統計與躉購費率基準）",
+            "resource_en": "Annual generation/capacity (2005–2025), 22-county solar approvals & FiT FLH",
+            "resource_zh": "全國歷年發電／裝置統計、22 縣市光電同意備案與躉購年發電時數",
+            "figures_en": "20,989 MW county solar (2015–2025); FiT FLH: solar 1,250, onwind 2,500, offwind 3,750, geothermal 6,700 h/yr",
+            "figures_zh": "累計光電備案 20,989 MW；躉購基準：光電 1,250、陸風 2,500、離岸 3,750、地熱 6,700 小時/年",
+            "evidence": "downloaded",
+            "url": "https://data.gov.tw/dataset/16481",
+        },
+        {
+            "agency_en": "MOEA Energy Administration / ITRI",
+            "agency_zh": "經濟部能源署／工研院（海域潛力盤點）",
+            "resource_en": "36 Offshore Wind Potential Zones & Phase 3 Block Development",
+            "resource_zh": "離岸風電 36 處潛力場址與第三階段區塊開發",
+            "figures_en": "Phase 2: 5.5 GW (36 western-coast zones); Phase 3 (2026–2039): +15–18 GW planned; 3,500–4,000 h/yr (35–45% CF)",
+            "figures_zh": "二階段潛力場址 5.5 GW；三階段區塊開發（2026–2039）規劃新增 15–18 GW；實績約 3,500–4,000 小時/年",
+            "evidence": "search_summary",
+            "url": "https://www.moeaea.gov.tw/",
+        },
+        {
+            "agency_en": "MOEA GSMMA (GeoTEX Platform)",
+            "agency_zh": "經濟部地質調查及礦業管理中心 (GeoTEX)",
+            "resource_en": "National shallow & deep geothermal 3D exploration (405 wells)",
+            "resource_zh": "全台淺層與深層地熱潛能區立體探勘（405 口井）",
+            "figures_en": "Shallow (1–3 km) ~989 MW; Deep (3–6 km) ~40 GW theoretical. Drilled temps: Tatun 245 °C, Hualien Ruisui 184 °C, Taitung 140–174 °C, Yilan >4,000 m well",
+            "figures_zh": "淺層約 989 MW、深層理論潛能約 40 GW；實鑽溫度：大屯馬槽 245°C、花蓮瑞穗 184°C、台東 140–174°C、宜蘭員山逾 4,000 m 深井",
+            "evidence": "search_summary",
+            "url": "https://www.gsmma.gov.tw/",
+        },
+    ]
+
+    return {
+        "empirical_cf_2016_2025": empirical,
+        "era5_vs_taiwan_benchmarks": comparison,
+        "taiwan_resource_surveys": surveys,
+    }
+
+
 def load_weather_re_sources() -> list[dict]:
     wanted = [
         "era5_hersbach2020",
@@ -536,12 +678,19 @@ def load_weather_re_sources() -> list[dict]:
         "gebco_2025",
         "marineregions_eez_v11",
         "gadm_41",
+        "moeaea_generation_annual",
+        "moeaea_capacity_annual",
+        "moeaea_fit_2026_params",
+        "moeaea_fit_2023_params",
         "moeaea_solar_approvals_county",
         "ndc_2050_wind_solar",
         "ndc_2050_geothermal",
         "ndc_2050_forward_energy",
         "moea_psd_fy2024",
         "moea_tw_re_potential",
+        "cwa_codis_opendata",
+        "gsmma_geotex_geothermal",
+        "moea_offshore_36_zones",
     ]
     src_df = pd.read_csv(ROOT / "data" / "sources.csv", dtype=str, keep_default_na=False)
     by_id = src_df.set_index("source_id").to_dict("index")
@@ -585,6 +734,7 @@ def export_weather_re_data(repo: Path, out: Path) -> Path:
         "potential": potential,
         "regions": simplify_region_shapes(reg6, labels),
         "county_solar": build_county_solar(),
+        "taiwan_local": build_taiwan_local_benchmarks(potential),
         "policy_vs_potential": build_policy_vs_potential(potential),
         "sources": load_weather_re_sources(),
     }

@@ -79,3 +79,19 @@ From `data/official/moeaea_solar_approvals_by_county_kW.csv` (`moeaea_solar_appr
 5. **Chiayi County (嘉義縣):** `1,996.7 MW` (`9.5%`)
 
 Official 2050 Net-Zero targets (`ndc_2050_wind_solar`, `ndc_2050_geothermal`, `ndc_2050_forward_energy`): **Solar PV 40–80 GW** (`50–100 TWh/yr`), **Offshore Wind 40–55 GW** (fixed + floating), **Geothermal 3.0–6.2 GW** (against `30–40 GW` MOEA/ITRI theoretical onshore potential), **Biomass 1.4–1.8 GW**, and **Ocean Energy 1.3–7.5 GW**.
+
+---
+
+## 5. Taiwan-Origin Resource Data & Empirical Validation (vs. ERA5)
+
+Beyond global ERA5 reanalysis, Taiwan-origin official datasets provide direct ground-truth validation:
+
+| Technology | ERA5 / Atlite Model CF | MOEA FiT Official Benchmark (`taiwan_cost_benchmarks.csv`) | Actual Taiwan National Fleet (`2016–2025`, MOEA CSVs) | Key Takeaway |
+| --- | --- | --- | --- | --- |
+| **Solar PV** | 13.2% (2013) / 13.3% (2018) | `1,250 h/yr` (`14.3%`, 2026 FiT) | **11.9–14.3%** (`13.3%` in 2024, `12.8%` in 2025) | ERA5 matches national fleet average closely; CWA ground stations show ~2× north–south gap (`2.2–2.6` vs. `3.9–4.7 kWh/m²/day`). |
+| **Onshore Wind** | 11.6% (2013) / 10.9% (2018) | `2,500 h/yr` (`28.5%`, 2026 FiT) | **25.0–28.6%** (`2016–2018` onshore-only fleet) | **Major ERA5 bias:** 0.3° grid smooths coastal plains with mountains, understating real coastal onshore CF by >2×. |
+| **Offshore Wind** | AC `36.3%` / DC `52.9%` / Float `50.0%` | `3,750 h/yr` (`42.8%`, 2023 FiT) | Combined wind **36.5%** (2024) / **33.1%** (2025); Strait parks **35–45%** (`3,500–4,000 h/yr`) | ERA5 brackets MOEA's `42.8%` FiT benchmark and operational Strait parks. |
+| **Conventional Hydro** | Normalized `4.36 TWh/yr` (~23.4% CF) | Small hydro `4,000 h/yr` (`45.7%`, 2026 FiT) | **16.5%** (2020 drought, `3.0 TWh`) – **35.9%** (2016, `6.6 TWh`); `29.6%` in 2025 | Real hydro swings >2× between drought and typhoon years. |
+| **Geothermal** | Dispatchable (Sensitivity D, 6 GW cap) | `6,700 h/yr` (`76.5%`, 2026 FiT) | 39–60% on early pilot plants (`7.5 MW` in 2025) | **MOEA GSMMA GeoTEX** (405 wells): `~989 MW` shallow (1–3 km) & `~40 GW` deep (3–6 km); 80% in Tatun (`245 °C`), Yilan (`>4,000 m` well), Hualien Ruisui (`184 °C`), Taitung (`140–174 °C`). |
+
+Key Taiwan-origin open/official portals registered in `data/sources.csv`: **CWA CODiS & OpenData** (`cwa_codis_opendata`, `O-A0091-001`), **MOEA GSMMA GeoTEX** (`gsmma_geotex_geothermal`), and **MOEA 36 Offshore Wind Potential Sites & Phase 3 Block Development** (`moea_offshore_36_zones`).

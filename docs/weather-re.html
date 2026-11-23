@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="assets/site.css?v=ed30ade6" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <script src="assets/pages.js?v=3dee9410" defer></script>
-    <script src="assets/weather-re.js?v=1588a33f" defer></script>
+    <script src="assets/weather-re.js?v=2344accc" defer></script>
     <script data-goatcounter="https://taiwan-energy-system-platform.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
   </head>
   <body>
@@ -54,6 +54,7 @@
         <a href="#sec-extremes"><span class="t-en">Lulls &amp; typhoons</span><span class="t-zh">低風光期與強風</span></a>
         <a href="#sec-potential"><span class="t-en">RE technical potential</span><span class="t-zh">再生能源技術潛力</span></a>
         <a href="#sec-exclusions"><span class="t-en">Exclusion rules</span><span class="t-zh">土地與海域排除條件</span></a>
+        <a href="#sec-taiwan-local"><span class="t-en">Taiwan data vs. ERA5</span><span class="t-zh">台灣實測 vs. ERA5</span></a>
         <a href="#sec-county-policy"><span class="t-en">County solar &amp; 2050 targets</span><span class="t-zh">各縣市光電與 2050 目標</span></a>
         <a href="#sec-sources"><span class="t-en">Sources</span><span class="t-zh">資料來源</span></a>
       </nav>
@@ -186,6 +187,44 @@
         </h2>
         <article class="panel">
           <div id="table-exclusions" class="table-wrap"></div>
+        </article>
+      </section>
+
+      <section id="sec-taiwan-local" class="section">
+        <h2>
+          <span class="t-en">Taiwan official &amp; measured resource data (vs. ERA5)</span>
+          <span class="t-zh">台灣本土實測與官方潛力調查（對照 ERA5 模型）</span>
+        </h2>
+        <p class="sub">
+          <span class="t-en">
+            Beyond global ERA5 reanalysis, Taiwan publishes empirical national generation/capacity statistics (2016–2025), MOEA Feed-in Tariff full-load-hour benchmarks, CWA ground-station radiation/wind data (CODiS), MOEA's 36 offshore wind potential zones &amp; Phase 3 block development, and GSMMA's GeoTEX 405-well geothermal survey. Comparing them directly highlights where ERA5 matches reality (solar ~13%, offshore wind 36–53%) and where ERA5 diverges (onshore wind smoothed by 0.3° terrain; hydro drought swings).
+          </span>
+          <span class="t-zh">
+            除了全球 ERA5 再分析資料外，台灣本土亦有多項權威實測與官方調查：能源署歷年實際發電與裝置容量（可反推 2016–2025 實際容量因數）、躉購費率年發電時數基準、中央氣象署測站日射與風速（CODiS）、能源署 36 處離岸風電潛力場址與區塊開發，以及地礦中心 405 口井地熱潛能調查（GeoTEX）。直接比對可清楚看出 ERA5 與實務吻合處（光電約 13%、離岸風電 36–53%）與偏差處（陸域風電受 0.3° 地形平滑低估、水力枯豐水年劇烈波動）。
+          </span>
+        </p>
+        <div class="grid two">
+          <article class="panel">
+            <h3>
+              <span class="t-en">Actual Taiwan empirical RE capacity factors (2016–2025, MOEA)</span>
+              <span class="t-zh">台灣歷年各再生能源實際容量因數（2016–2025，能源署統計）</span>
+            </h3>
+            <div id="chart-tw-empirical-cf" class="chart"></div>
+          </article>
+          <article class="panel">
+            <h3>
+              <span class="t-en">Taiwan-origin weather &amp; resource surveys (CWA, MOEA, GSMMA)</span>
+              <span class="t-zh">台灣本土氣象與能源資源調查摘要（氣象署、能源署、地礦中心）</span>
+            </h3>
+            <div id="table-tw-surveys" class="table-wrap"></div>
+          </article>
+        </div>
+        <article class="panel">
+          <h3>
+            <span class="t-en">Cross-check: ERA5/Atlite Model vs. MOEA FiT Benchmark vs. Actual Taiwan Fleet</span>
+            <span class="t-zh">交叉比對：ERA5 模型 vs. 經濟部躉購基準 vs. 台灣實際電廠容量因數</span>
+          </h3>
+          <div id="table-era5-vs-tw" class="table-wrap"></div>
         </article>
       </section>
 

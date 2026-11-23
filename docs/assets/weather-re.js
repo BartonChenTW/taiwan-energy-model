@@ -460,6 +460,62 @@
     `;
   }
 
+  function renderTaiwanLocal(d) {
+    const tl = d.taiwan_local;
+    if (!tl) return;
+    const emp = tl.empirical_cf_2016_2025 || [];
+    const yrs = emp.map((r) => r.year);
+    Plotly.newPlot("chart-tw-empirical-cf", [
+      { type: "scatter", mode: "lines+markers", name: pick("Solar PV (actual)", "太陽光電（實績）"), x: yrs, y: emp.map((r) => +(r.solar_cf * 100).toFixed(1)), line: { color: "#ea580c", width: 2.3 } },
+      { type: "scatter", mode: "lines+markers", name: pick("Wind fleet (on+offshore actual)", "風力整體（陸＋離岸實績）"), x: yrs, y: emp.map((r) => +(r.wind_cf * 100).toFixed(1)), line: { color: "#2563eb", width: 2.5 } },
+      { type: "scatter", mode: "lines+markers", name: pick("Conventional hydro (actual)", "慣常水力（實績）"), x: yrs, y: emp.map((r) => +(r.hydro_cf * 100).toFixed(1)), line: { color: "#0891b2", width: 2.2 } },
+      { type: "scatter", mode: "lines+markers", name: pick("Biomass (actual)", "生質能（實績）"), x: yrs, y: emp.map((r) => +(r.biomass_cf * 100).toFixed(1)), line: { color: "#16a34a", width: 1.8, dash: "dot" } },
+    ], plotLayout({
+      yaxis: { title: pick("Empirical CF (%)", "實際容量因數 (%)"), rangemode: "tozero", gridcolor: css("--grid") },
+      xaxis: { dtick: 1 },
+    }), { responsive: true });
+
+    $("table-tw-surveys").innerHTML = `
+      <table>
+        <thead><tr>
+          <th>${pick("Taiwan Agency", "台灣主管／調查機構")}</th>
+          <th>${pick("Dataset / Survey", "資料集與調查項目")}</th>
+          <th>${pick("Key Taiwan Findings", "核心本土數據")}</th>
+          <th>${pick("Evidence", "證據")}</th>
+        </tr></thead>
+        <tbody>
+          ${(tl.taiwan_resource_surveys || []).map((s) => `<tr>
+            <td><strong><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(pick(s.agency_en, s.agency_zh))}</a></strong></td>
+            <td>${esc(pick(s.resource_en, s.resource_zh))}</td>
+            <td><small>${esc(pick(s.figures_en, s.figures_zh))}</small></td>
+            <td>${evidenceChip(s.evidence)}</td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    `;
+
+    $("table-era5-vs-tw").innerHTML = `
+      <table>
+        <thead><tr>
+          <th>${pick("Technology", "技術別")}</th>
+          <th>${pick("ERA5 / Atlite Model", "ERA5 模型結果")}</th>
+          <th>${pick("MOEA FiT Benchmark", "經濟部躉購基準")}</th>
+          <th>${pick("Actual Taiwan Fleet (MOEA)", "台灣全國實績 (2016–2025)")}</th>
+          <th>${pick("Key Takeaway", "比對重點")}</th>
+        </tr></thead>
+        <tbody>
+          ${(tl.era5_vs_taiwan_benchmarks || []).map((r) => `<tr>
+            <td><strong>${esc(pick(r.tech_en, r.tech_zh))}</strong></td>
+            <td>${esc(r.era5_cf)}</td>
+            <td>${esc(r.fit_benchmark)}</td>
+            <td><strong>${esc(r.actual_taiwan)}</strong></td>
+            <td><small>${esc(pick(r.finding_en, r.finding_zh))}</small></td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    `;
+  }
+
   function renderCountyAndPolicy(d) {
     const cs = d.county_solar;
     const top = cs.counties.slice(0, 15).reverse();
@@ -515,6 +571,7 @@
     renderExtremes(state.data);
     renderPotential(state.data);
     renderExclusions(state.data);
+    renderTaiwanLocal(state.data);
     renderCountyAndPolicy(state.data);
     renderSources(state.data);
   }

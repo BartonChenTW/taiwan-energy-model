@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-22 12:22 UTC",
+ "generated": "2026-11-23 09:41 UTC",
  "links_checked": "2026-09-24",
  "link_status": {
   "https://cds.climate.copernicus.eu/": "0",
@@ -1861,6 +1861,32 @@
    "link": "https://www.gebco.net/",
    "model_use": "used",
    "note": "Computed by PyPSA-Earth build_renewable_profiles; published in detail on docs/weather-re.html"
+  },
+  {
+   "category": "weather",
+   "name_en": "CWA CODiS and Meteorological OpenData (ground-station solar & wind)",
+   "name_zh": "中央氣象署 CODiS 與氣象開放資料（日射量與風速測站）",
+   "provider": "Central Weather Administration (CWA)",
+   "content": "Hourly and daily station measurements of global solar radiation (O-A0091-001), wind speed/gust, temperature and rainfall across Taiwan",
+   "format": "CSV / JSON / API",
+   "update": "hourly / daily",
+   "license": "Government Open Data License v1",
+   "link": "https://codis.cwa.gov.tw/",
+   "model_use": "candidate",
+   "note": "Provides ground-truth Taiwan north-south solar gradient (2.2-2.6 vs 3.9-4.7 kWh/m2/day) for ERA5 bias correction"
+  },
+  {
+   "category": "geography",
+   "name_en": "GSMMA GeoTEX Taiwan Geothermal Exploration Platform",
+   "name_zh": "經濟部地礦中心地熱探勘資訊平台 (GeoTEX)",
+   "provider": "MOEA Geological Survey and Mining Management Agency (GSMMA)",
+   "content": "3D geological models, well logs (405 wells), temperature profiles, and 10 priority geothermal potential zones (~989 MW shallow, ~40 GW deep)",
+   "format": "GIS / reports",
+   "update": "periodic",
+   "license": "",
+   "link": "https://www.gsmma.gov.tw/",
+   "model_use": "used",
+   "note": "Summarised on docs/weather-re.html alongside model geothermal cap"
   }
  ]
 }
