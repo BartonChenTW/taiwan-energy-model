@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-23 09:41 UTC",
+ "generated": "2026-11-24 18:00 UTC",
  "links_checked": "2026-09-24",
  "link_status": {
   "https://cds.climate.copernicus.eu/": "0",
@@ -400,7 +400,7 @@
    "year": "2024",
    "scope": "Taipower system",
    "source_name": "Taipower (via search summary)",
-   "link": "",
+   "link": "https://www.taipower.com.tw/",
    "evidence": "search_summary",
    "note": "Excluding wheeling; gas 47.2%, coal 31.1%, oil 1.4%, nuclear 8.2%, renewables 11.9%"
   },

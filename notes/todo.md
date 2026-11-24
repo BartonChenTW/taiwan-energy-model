@@ -33,9 +33,9 @@ Everything still open, in one place. Details are in the linked notes; the phase 
 3. [ ] **Capture retrofits:** only new gas combined cycle with capture is offered; existing gas and coal plants cannot be retrofitted.
 4. [ ] **Methanol:** the model has no methanol bus for Taiwan's demand.
 5. [ ] **Combined sensitivity:** Taiwan costs together with the high import price and the official mix, rather than one change at a time.
-6. [ ] **More regions:** 6 buses aggregate the Taipei corridor into one line (Phase 1 #12, Phase 3 #9). Try 20 buses or the OSM 345 kV corridors.
-7. [ ] **CO₂ price check:** every 2050 official run reports the same CO₂ price (467 €/t). Check which constraint's dual the exporter reads.
-8. [ ] **Other weather years:** the 2011 and 2018 cutouts (Phase 4 #3).
+6. [x] **More regions (12-bus overlay & 345 kV cutset diagnostics):** added `config/scenarios/clusters_12.yaml` (`[12]` subregions) and exported latitudinal 345/161/69 kV cutsets across `elec.nc`, 12-cluster `elec_s.nc`, and 6-cluster `elec_s_6_ec.nc` into `docs/grid.html` (solving a full 12-node sector chain remains optional future work).
+7. [x] **CO₂ price check:** verified that `-n.global_constraints.mu["CO2Limit"]` (`467 €/t`) across 2050 ×1 import runs is analytically pinned by marginal carbon-neutral synthetic oil imports (`120 €/MWh ÷ 0.2571 tCO₂/MWh = 466.7 €/t`); exported `co2_stored_price_EUR_t` (`392–470 €/t`) and load-weighted `elec_price_EUR_MWh` (`100.9–180.3 €/MWh`) in `viewer/export_dashboard_data.py`.
+8. [ ] **Other weather years:** the 2011 and 2018 cutouts (Phase 4 #3). *(Partially done: 2013 vs. 2018 cutouts, severe hydro drought `-50%` inflow & calibrated onshore wind stress tests exported to `docs/weather-re.html`; `2011` ERA5 cutout still to download if needed.)*
 9. [ ] **Today's system:** hydro inflow, fuel costs and coal constraints, battery hours, pumped-hydro use (Phase 3 #4, #6, #8, #10).
 10. [ ] **2025 reference rerun** with the current fleet and the fork options.
 11. [ ] **Future years:** the 2026 outlook (Phase 4 #4) and letting the model invest in 2030/2034 (Phase 4 #5).
@@ -49,7 +49,7 @@ Everything still open, in one place. Details are in the linked notes; the phase 
 17. [ ] **Ammonia cost:** the Ammonia Energy Association's CO₂-free ammonia cost.
 18. [ ] **Japan hydrogen target:** Japan's hydrogen cost target.
 19. [ ] **Fuel stocks:** the stock figures behind the blockade cases (LNG safety stock page, news and think-tank sources).
-20. [ ] **Registry:** register the eight transcribed files in `data/official/` that `data/check_data.py` warns about, and keep a local copy of the household-appliance dataset.
+20. [x] **Registry:** registered all 8 transcribed/archived files in `data/official/`, linked `moeaea_household_appliances_2024` to its transcribed CSV, and added the missing link to `taiwan_key_facts.csv` (`data/check_data.py`: `68 sources checked: 0 errors, 0 warnings`).
 
 ### Website
 21. [x] **Visitor counts:** GoatCounter on every page (https://taiwan-energy-system-platform.goatcounter.com/).
@@ -60,9 +60,9 @@ Everything still open, in one place. Details are in the linked notes; the phase 
 ### Grid and energy networks
 25. [x] **Detailed Taiwan electrical grid & energy network data:** compiled Taipower transmission/substation stats (`18,782 ckt-km`, `627` substations), MOEA historical line losses & load factors, 10-Year Grid Resilience Plan (`NT$564.5B`), 345 kV trunk bottlenecks/upgrades, OpenStreetMap (`734` substations, `1,876` lines, `253` cables) vs. PyPSA `elec.nc`/`elec_s_6_ec.nc` analysis, and all 7 LNG terminals & figure-8 gas pipelines into `notes/TAIWAN_GRID_DATA.md`, `data/sources.csv`, `data/taiwan_key_facts.csv`, `viewer/export_grid_data.py`, and the dedicated `docs/grid.html` tab.
 26. [ ] **Verify and replace `search_summary` grid/gas statistics** with direct official files/links (Taipower `18,782 ckt-km` / `627` substations sustainability report table, `NT$564.5B` resilience plan breakdown, CPC LNG tank & pipeline data).
-27. [ ] **Fix Hualien 690 kV OSM tagging artifact (`way/1331526157`, `初英分歧線`):** override `690000` -> `69000` in the fork's clean-OSM / network script (and fix upstream in OpenStreetMap) so `elec.nc` Bus `91` is modeled at `69 kV` without an artificial `2,000 MVA` step transformer.
+27. [x] **Fix Hualien 690 kV OSM tagging artifact (`way/1331526157`, `初英分歧線`):** overrode `"690000": "69000"` in the fork's `scripts/clean_osm_data.py` (documented in `FORK_CHANGES.md` and pinned in `model.lock`). *(Existing pre-built `elec.nc` in `tw_test2` retains the snapshot until `clean_osm_data` is rerun.)*
 28. [ ] **Ingest Taipower open feeder & HV hosting capacity datasets** (`data.gov.tw` / `taipower.com.tw` 11/22.8 kV feeders and 69/161 kV substation remaining capacity) and reconcile missing OSM multi-circuit line tags against real 345 kV North–Central transfer margins (`104 MW` C→N, `1,608 MW` S→C).
-29. [ ] **Model sub-national LNG terminal & gas pipeline bottlenecks** alongside multi-node grid representation for energy-security and blockade stress tests.
+29. [x] **Model sub-national LNG terminal & gas pipeline bottlenecks** in `sandbox/levers.py` & `sandbox/run_scenario.py` (`yongan_lng`, `taichung_lng`, `guantang_lng`, `subsea_gas_pipeline`) and export 30-day blockade stress tests to `docs/grid.html`.
 
 ### Weather and renewable potential
 30. [x] **Detailed Taiwan weather & RE potential dataset and website tab:** exported ERA5 2013 vs. 2018 spatial weather fields, wind roses, diurnal/seasonal complementarity, 30-plant hydro inflow, Dunkelflaute & typhoon cut-out analysis, 5-carrier technical potential (`solar`, `onwind`, `offwind-ac`, `offwind-dc`, `offwind-float`), Copernicus/GEBCO/WDPA exclusion rules, and 22-county official solar approvals into `notes/TAIWAN_WEATHER_RE_DATA.md`, `viewer/export_weather_re_data.py`, `docs/data/weather_re_data.json`, and `docs/weather-re.html`.

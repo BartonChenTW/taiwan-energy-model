@@ -95,3 +95,16 @@ Beyond global ERA5 reanalysis, Taiwan-origin official datasets provide direct gr
 | **Geothermal** | Dispatchable (Sensitivity D, 6 GW cap) | `6,700 h/yr` (`76.5%`, 2026 FiT) | 39–60% on early pilot plants (`7.5 MW` in 2025) | **MOEA GSMMA GeoTEX** (405 wells): `~989 MW` shallow (1–3 km) & `~40 GW` deep (3–6 km); 80% in Tatun (`245 °C`), Yilan (`>4,000 m` well), Hualien Ruisui (`184 °C`), Taitung (`140–174 °C`). |
 
 Key Taiwan-origin open/official portals registered in `data/sources.csv`: **CWA CODiS & OpenData** (`cwa_codis_opendata`, `O-A0091-001`), **MOEA GSMMA GeoTEX** (`gsmma_geotex_geothermal`), and **MOEA 36 Offshore Wind Potential Sites & Phase 3 Block Development** (`moea_offshore_36_zones`).
+
+---
+
+## 6. Weather, Drought & Calibrated Onshore Wind Stress Tests (Added `tem-v0.3.0`)
+
+Solved full-year `"today"` system comparisons (`sandbox/levers.py` variants `drought` and `tw_wind` plus `config/scenarios/calibrated_onwind.yaml`):
+
+| Case | Hydro+RoR (TWh) | Onshore Wind (TWh) | Offwind + Solar (TWh) | Total RE (TWh) | Fossil (TWh) | Unserved (TWh) | CO₂ (Mt) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| **2013 Base (`central`)** | 2.71 | 1.59 | 30.41 | 34.71 | 215.89 | 0.83 | 134.14 |
+| **2018 Weather (`w2018`)** | 2.87 | 1.50 | 29.99 | 34.36 | 216.98 | 0.05 | 134.44 |
+| **Severe Hydro Drought (`drought`, `-50%` inflow)** | 1.39 | 1.59 | 30.41 | 33.39 | 217.18 | 0.87 | 134.59 |
+| **Calibrated Onshore Wind (`tw_wind`, `28.5%` CF)** | 2.71 | 2.00 | 30.41 | 35.13 | 215.48 | 0.83 | 134.00 |

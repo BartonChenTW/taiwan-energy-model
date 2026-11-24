@@ -64,6 +64,10 @@ VARIANTS = {
     "w2018": {"weather": "2018"},
     "low": {"mult": 1 - FUEL_DEMAND_SPREAD},
     "high": {"mult": 1 + FUEL_DEMAND_SPREAD},
+    # Severe hydro drought (-50% hydro/RoR inflow below 2013 base ~16.1% CF -> ~8.1% CF)
+    "drought": {"hydro_cf_scale": 0.50},
+    # Taiwan empirical coastal onshore wind CF (~28.5% MOEA FiT vs 22.5% clustered base fleet)
+    "tw_wind": {"onwind_cf_scale": 1.27},
 }
 # Technology-cost uncertainty, applied to the annualised investment of added capacity
 # without extra solves: investment +-30%, discount rate 5-10% (base 7.1%).
@@ -119,6 +123,13 @@ DAMAGE_SITES = {
                "remove_MW": {"coal": 550.0, "CCGT": 4826.0}},
     # Half the capacity of every line into the Taipei bus.
     "taipei_corridor": {"name": "Taipei transmission corridor, half lost", "lat": 25.04, "lon": 121.70, "line_factor": 0.5},
+    # Regional LNG terminals and northbound subsea pipeline (figure-8 gas network).
+    # Shares reflect regional terminal sendout/storage weighting: South Yongan 58%, Central Taichung 28%, North Guantang 14%.
+    "yongan_lng": {"name": "Yongan LNG terminal lost (South, 58% stock/imports)", "lng_region_outage": "south"},
+    "taichung_lng": {"name": "Taichung LNG terminal lost (Central, 28% stock/imports)", "lng_region_outage": "central"},
+    "guantang_lng": {"name": "Guantang LNG terminal lost (North, 14% stock/imports)", "lng_region_outage": "north"},
+    "subsea_gas_pipeline": {"name": "Yongan-Taichung-Tatan subsea/trunk pipeline cut (isolates North gas)",
+                            "gas_corridor_cut": "north"},
 }
 
 # Mothballed or recently retired coal units that could be brought back.

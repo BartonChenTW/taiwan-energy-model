@@ -129,3 +129,16 @@ Sources: `moea_psd_fy2024` (p. 15 / PDF p. 19, `downloaded`), `cpc_lng_network`,
 - **Gas pipeline network:** Paired **western subsea spine** (`Yongan–Tongxiao #1/#2`, `Taichung–Tongxiao`, `Tongxiao–Datan #1/#2`) and **western onshore trunk**, plus southern power-plant onshore ring (`Intercontinental–Talin–Nanpu–Hsinta–Yongan`), forming mutual north–south redundancy ("figure-8" network).
 - **LNG statutory reserves (`moea_psd_fy2024` p. 15, `moeaea_lng_safety_stock`):** Safety stock rises from **7 d (2019)** → **8 d (2022)** → **11 d (2025)** → **14 d (2027)**; minimum tank volume capacity rises **16 d (2022–24)** → **20 d (2025–26)** → **24 d (2027+)**.
 - **Coal & Oil:** Major coal import ports serve `Linkou` (2,400 MW), `Taichung` (5,500 MW + indoor coal domes), `Mailiao`, `Kaohsiung Talin/Hsinta`, and east-coast `Ho-Ping` (1,308.6 MW). Taipower coal stockpiles sit around **~41 days** (`taipeitimes_2022_coal_stock`, `search_summary`). Petroleum reserves operate via CPC Taoyuan, CPC Dalin, and FPCC Mailiao refineries under the Petroleum Administration Act (`>=60 d` industry + `>=30 d` government = `>=90 d` statutory; reported `>100–146 d`).
+
+---
+
+## 6. High-Resolution 12-Node Cutsets & Regional LNG Blockade Results (Added `tem-v0.3.0`)
+
+- **Latitudinal 345/161/69 kV cutsets & 12-subregion clustering (`config/scenarios/clusters_12.yaml`, `viewer/export_grid_data.py`):**
+  - *Taipei Basin (`24.95°N`):* Raw `elec.nc` carries `12` crossing lines (`17,627 MVA`, incl. `5 × 345 kV` `15,417 MVA`). Clustering to `6` nodes collapses this into `2,137 MW` usable (`3,053 MVA × 0.7`), causing artificial load shedding, whereas clustering `79`-bus `elec_s.nc` to `12` subregions restores `3` lines (`9,250 MVA` / `6,475 MW` usable) while explicitly separating Taipei-Keelung, Xizhi-Yilan, and Taoyuan-Hsinchu (`Tatan`).
+  - *Central→North (`24.65°N`):* `7` lines (`13,413 MVA`, incl. `4 × 345 kV` `12,334 MVA`) in `elec.nc`; `4` lines (`9,970 MVA` / `6,979 MW` usable) at `12` nodes vs. Taipower's `104 MW` 2022 operational transfer margin.
+  - *South→Central (`23.50°N`):* `19` lines (`12,539 MVA`) in `elec.nc`; `7` lines (`10,843 MVA` / `7,590 MW` usable) at `12` nodes vs. Taipower's `1,608 MW` 2022 operational transfer margin.
+- **Sub-national LNG terminal & pipeline blockade stress tests (30-day summer blockade, `50%` LNG imports, `sandbox/levers.py`):**
+  - *Baseline (intact national pool):* `3,126.7 GWh` unserved (`10,090 GWh` gas, incl. `6,879 GWh` in North `TW0 1`/`TW0 4`).
+  - *Northbound subsea gas pipeline cut (`subsea_gas_pipeline`):* Total unserved stays `3,126.7 GWh` because the intact `345 kV` AC grid substitutes electricity transmission from South/Central plants while North gas dispatch drops from `6,879` -> `1,413 GWh`.
+  - *Terminal outages:* `guantang_lng` (`-14%`) raises unserved energy to `4,539.3 GWh`; `taichung_lng` (`-28%`) to `5,951.9 GWh`; `yongan_lng` (`-58%`) to `8,978.9 GWh` (`2.87×` baseline).

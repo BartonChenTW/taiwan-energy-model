@@ -13,21 +13,21 @@
     <link rel="stylesheet" href="assets/site.css?v=722914cf" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <script src="assets/pages.js?v=3dee9410" defer></script>
-    <script src="assets/weather-re.js?v=2344accc" defer></script>
+    <script src="assets/weather-re.js?v=5c0c003b" defer></script>
     <script data-goatcounter="https://taiwan-energy-system-platform.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
   </head>
   <body>
     <header class="topbar">
       <div class="shell topbar-inner">
         <div>
-          <div class="eyebrow"><span class="t-en">Taiwan Energy System Platform</span><span class="t-zh">台灣能源系統平台</span> <a class="ver-badge" href="https://github.com/BartonChenTW/taiwan-energy-model/releases/tag/tem-v0.2.0" rel="noopener" title="Website release version (tem-v0.2.0)"><span class="t-en">Version</span><span class="t-zh">版本</span> v0.2.0</a></div>
+          <div class="eyebrow"><span class="t-en">Taiwan Energy System Platform</span><span class="t-zh">台灣能源系統平台</span> <a class="ver-badge" href="https://github.com/BartonChenTW/taiwan-energy-model/releases/tag/tem-v0.3.0" rel="noopener" title="Website release version (tem-v0.3.0)"><span class="t-en">Version</span><span class="t-zh">版本</span> v0.3.0</a></div>
           <h1>
             <span class="t-en">Weather &amp; renewable energy potential</span>
             <span class="t-zh">氣象資料與再生能源潛力</span>
           </h1>
         </div>
         <div class="toolbar">
-          <a class="ghost ver-toolbar" href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/CHANGELOG.md" rel="noopener" title="Version &amp; Changelog">v0.2.0</a>
+          <a class="ghost ver-toolbar" href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/CHANGELOG.md" rel="noopener" title="Version &amp; Changelog">v0.3.0</a>
           <a class="ghost ver-toolbar" href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/notes/log.md" rel="noopener" title="Project log"><span class="t-en">Log</span><span class="t-zh">日誌</span></a>
           <div class="segmented" role="group" aria-label="Language">
             <button type="button" data-lang="en" aria-pressed="true">EN</button>
@@ -228,6 +228,17 @@
           </h3>
           <div id="table-era5-vs-tw" class="table-wrap"></div>
         </article>
+        <article class="panel" id="interannual-stress">
+          <h3>
+            <span class="t-en">Solved full-year weather, drought &amp; calibrated onshore wind stress tests (Today's system)</span>
+            <span class="t-zh">極端枯水、2018 弱風年與陸域風電校正之全年模擬壓力測試（現行系統）</span>
+          </h3>
+          <p class="sub">
+            <span class="t-en">Full-year PyPSA dispatch comparisons isolating 2018 weather variability, -50% hydro drought inflow (CF ~8.1%), and bias-correcting onshore wind CF to Taiwan's 28.5% MOEA FiT benchmark. Config overlay for full Re-run: <code>config/scenarios/calibrated_onwind.yaml</code>.</span>
+            <span class="t-zh">全年 4 小時步長電力調度壓力測試：量化 2018 氣象年變異、極端枯水期水力入流減半，以及將陸域風電容量因數校正至經濟部 28.5% 基準對發電結構與碳排之影響（對應設定檔 <code>config/scenarios/calibrated_onwind.yaml</code>）。</span>
+          </p>
+          <div id="table-weather-stress" class="table-wrap"></div>
+        </article>
       </section>
 
       <section id="sec-county-policy" class="section">
@@ -270,7 +281,7 @@
         <span class="t-zh">本頁資料由 <code>viewer/export_weather_re_data.py</code> 匯出至 <code>docs/data/weather_re_data.json</code>，整合 ERA5 再分析氣象資料、PyPSA-Earth/Atlite 再生能源潛力及經濟部能源署公開統計。</span>
       </p>
     
-      <div class="footer-meta"><span class="t-en">Version:</span><span class="t-zh">網站版本：</span><a class="ver-badge" href="https://github.com/BartonChenTW/taiwan-energy-model/releases/tag/tem-v0.2.0" rel="noopener">v0.2.0 (tem-v0.2.0)</a><a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/CHANGELOG.md" rel="noopener"><span class="t-en">Changelog</span><span class="t-zh">更新紀錄</span></a><a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/notes/log.md" rel="noopener"><span class="t-en">Project log</span><span class="t-zh">專案日誌</span></a><a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/notes/todo.md" rel="noopener"><span class="t-en">Todo / Roadmap</span><span class="t-zh">待辦與規劃</span></a><a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/model.lock" rel="noopener">model.lock</a></div>
+      <div class="footer-meta"><span class="t-en">Version:</span><span class="t-zh">網站版本：</span><a class="ver-badge" href="https://github.com/BartonChenTW/taiwan-energy-model/releases/tag/tem-v0.3.0" rel="noopener">v0.3.0 (tem-v0.3.0)</a><a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/CHANGELOG.md" rel="noopener"><span class="t-en">Changelog</span><span class="t-zh">更新紀錄</span></a><a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/notes/log.md" rel="noopener"><span class="t-en">Project log</span><span class="t-zh">專案日誌</span></a><a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/notes/todo.md" rel="noopener"><span class="t-en">Todo / Roadmap</span><span class="t-zh">待辦與規劃</span></a><a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/model.lock" rel="noopener">model.lock</a></div>
     </footer>
   </body>
 </html>

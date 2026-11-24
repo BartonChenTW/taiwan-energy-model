@@ -669,6 +669,59 @@ def build_taiwan_local_benchmarks(carriers: list[dict]) -> dict:
     }
 
 
+def build_stress_tests(repo: Path) -> list[dict]:
+    """Compare solved full-year Today systems under 2013, 2018, severe drought, and calibrated onshore wind."""
+    sys.path.insert(0, str(ROOT / "sandbox"))
+    from levers import spec_hash  # noqa: E402
+    from run_scenario import emissions_t  # noqa: E402
+
+    cases = [
+        ("central", "2013 Base Weather (ERA5)", "2013 基準氣象（ERA5）", None),
+        ("w2018", "2018 Weather Variant (Low Wind/Flatter Peak)", "2018 氣象年變異（弱風年／較平緩尖峰）", "w2018"),
+        ("drought", "Severe Hydro Drought (-50% Inflow, 8.1% CF)", "極端枯水乾旱壓力測試（水力入流減半，CF 8.1%）", "drought"),
+        ("tw_wind", "Calibrated Onshore Wind (28.5% CF, MOEA FiT)", "陸域風電實績校正（CF 28.5%，對齊經濟部基準）", "tw_wind"),
+    ]
+    out = []
+    for cid, en, zh, variant in cases:
+        if variant is None:
+            key = spec_hash({"base": "today", "variant": "central"})
+            nc = repo / "results" / f"{RUN_2013}_ls" / "networks" / "elec_s_6_ec_lv1.0_Co2L-4H.nc"
+        else:
+            key = spec_hash({"base": "today", "variant": variant})
+            nc = repo / "results" / "sandbox" / key / "networks" / "elec_s_6_ec_lv1.0_Co2L-4H.nc"
+        if not nc.exists():
+            continue
+        m = pypsa.Network(str(nc))
+        w = m.snapshot_weightings.generators
+        def _e(carriers):
+            gi = m.generators.index[m.generators.carrier.isin(carriers)]
+            si = m.storage_units.index[m.storage_units.carrier.isin(carriers)]
+            return float(
+                (m.generators_t.p[gi].mul(w, axis=0).sum().sum() if len(gi) else 0.0)
+                + (m.storage_units_t.p[si].clip(lower=0).mul(w, axis=0).sum().sum() if len(si) else 0.0)
+            ) / 1e6
+        hydro = _e(["hydro", "ror"])
+        onw = _e(["onwind"])
+        offw = _e(["offwind-ac", "offwind-dc"])
+        sol = _e(["solar"])
+        out.append({
+            "id": cid,
+            "hash": key,
+            "name_en": en,
+            "name_zh": zh,
+            "hydro_twh": _r(hydro, 2),
+            "onwind_twh": _r(onw, 2),
+            "offwind_twh": _r(offw, 2),
+            "solar_twh": _r(sol, 2),
+            "re_total_twh": _r(hydro + onw + offw + sol, 2),
+            "fossil_twh": _r(_e(["coal", "CCGT", "OCGT", "oil"]), 2),
+            "unserved_twh": _r(_e(["load shedding"]), 2),
+            "co2_mt": _r(emissions_t(m) / 1e6, 2),
+            "objective_bn_eur": _r(m.objective / 1e9, 2),
+        })
+    return out
+
+
 def load_weather_re_sources() -> list[dict]:
     wanted = [
         "era5_hersbach2020",
@@ -735,6 +788,7 @@ def export_weather_re_data(repo: Path, out: Path) -> Path:
         "regions": simplify_region_shapes(reg6, labels),
         "county_solar": build_county_solar(),
         "taiwan_local": build_taiwan_local_benchmarks(potential),
+        "stress_tests": build_stress_tests(repo),
         "policy_vs_potential": build_policy_vs_potential(potential),
         "sources": load_weather_re_sources(),
     }
@@ -742,7 +796,7 @@ def export_weather_re_data(repo: Path, out: Path) -> Path:
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(payload, separators=(",", ":"), ensure_ascii=False), encoding="utf-8")
     size_kb = round(target.stat().st_size / 1024.0, 1)
-    print(f"wrote {target.relative_to(ROOT)} ({size_kb} KB): "
+    print(f"wrote {target.resolve().relative_to(ROOT)} ({size_kb} KB): "
           f"2 ERA5 cutouts (2013 & 2018), {len(potential)} RE carriers, "
           f"{len(payload['county_solar']['counties'])} counties")
     return target

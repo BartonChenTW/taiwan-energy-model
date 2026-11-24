@@ -247,6 +247,10 @@ def apply_security(n, spec, base_solved, costs):
 
     for site in sec["damage"]:
         d = DAMAGE_SITES[site]
+        if "lng_region_outage" in d or "gas_corridor_cut" in d:
+            # Applied inside the blockade fuel network builder below (requires regional LNG topology).
+            applied[f"damage {site}"] = {k: v for k, v in d.items() if k in ("lng_region_outage", "gas_corridor_cut")}
+            continue
         bus = _nearest_bus(n, d["lat"], d["lon"])
         if "line_factor" in d:
             i = n.lines.index[(n.lines.bus0 == bus) | (n.lines.bus1 == bus)]
@@ -285,6 +289,19 @@ def apply_security(n, spec, base_solved, costs):
 
     vom = costs["VOM"]
     stocks = {}
+    reg_gas_outages = {DAMAGE_SITES[s]["lng_region_outage"]
+                       for s in sec["damage"] if "lng_region_outage" in DAMAGE_SITES[s]}
+    cut_north_gas = any("gas_corridor_cut" in DAMAGE_SITES[s] for s in sec["damage"])
+    regional_gas = (bool(reg_gas_outages) or cut_north_gas)
+
+    def _gas_region(bus_name):
+        y = float(n.buses.at[bus_name, "y"])
+        if y >= 24.65:
+            return "north"
+        if y >= 23.50:
+            return "central"
+        return "south"
+
     for fuel, carriers in FUELS.items():
         gens = n.generators[n.generators.carrier.isin(carriers)]
         if gens.empty:
@@ -292,6 +309,44 @@ def apply_security(n, spec, base_solved, costs):
         days_key, import_key = STOCK_KEYS[fuel]
         # Fuel price per MWh of fuel, as in the generators' marginal cost (after any price levers).
         fuel_price = float(((gens.marginal_cost - gens.carrier.map(vom)) * gens.efficiency).mean())
+        stock = sec[days_key] * year_use[fuel]
+        imp = sec[import_key] * window_use[fuel] / 24
+
+        if fuel == "gas" and regional_gas:
+            # Regional LNG model: Yongan (South 58%), Taichung (Central 28%), Guantang (North 14%).
+            shares = {"south": 0.58, "central": 0.28, "north": 0.14}
+            for c in ("gas fuel", "gas stock"):
+                if c not in n.carriers.index:
+                    n.add("Carrier", c)
+            for reg in ("south", "central", "north"):
+                fbus, sbus = f"TW gas_{reg} fuel", f"TW gas_{reg} stock"
+                n.add("Bus", fbus, carrier="gas fuel", x=n.buses.x.mean(), y=n.buses.y.mean())
+                n.add("Bus", sbus, carrier="gas stock", x=n.buses.x.mean(), y=n.buses.y.mean())
+                avail_sh = 0.0 if reg in reg_gas_outages else shares[reg]
+                r_stock = stock * avail_sh
+                r_imp = imp * avail_sh
+                n.add("Store", sbus, bus=sbus, carrier="gas stock", e_nom=r_stock, e_initial=r_stock, e_cyclic=False)
+                n.add("Link", f"{sbus} withdrawal", bus0=sbus, bus1=fbus, carrier="gas stock",
+                      p_nom=max(r_stock, 0.0), marginal_cost=fuel_price)
+                n.add("Generator", f"TW gas_{reg} imports", bus=fbus, carrier="gas fuel", p_nom=max(r_imp, 0.0),
+                      marginal_cost=fuel_price)
+                stocks[f"gas_{reg}"] = {"share": shares[reg], "available": avail_sh > 0,
+                                        "stock_MWh": round(r_stock), "imports_MW": round(r_imp, 1)}
+            # North-South figure-8 gas trunk pipeline (South <-> Central always intact; Central <-> North cut if damaged).
+            pipe_cap = max(float(year_use["gas"] / 24.0 * 1.5), 1.0)
+            for a, b, cap in (("south", "central", pipe_cap), ("central", "south", pipe_cap),
+                              ("central", "north", 0.0 if cut_north_gas else pipe_cap),
+                              ("north", "central", 0.0 if cut_north_gas else pipe_cap)):
+                n.add("Link", f"TW gas pipe {a}->{b}", bus0=f"TW gas_{a} fuel", bus1=f"TW gas_{b} fuel",
+                      carrier="gas fuel", p_nom=cap, efficiency=1.0, marginal_cost=0.0)
+            for g, r in gens.iterrows():
+                reg = _gas_region(r.bus)
+                n.add("Link", f"{g} (fuel)", bus0=f"TW gas_{reg} fuel", bus1=r.bus, carrier=r.carrier,
+                      p_nom=r.p_nom / r.efficiency, efficiency=r.efficiency,
+                      marginal_cost=vom.get(r.carrier, 0) * r.efficiency)
+            n.mremove("Generator", gens.index)
+            continue
+
         fbus, sbus = f"TW {fuel} fuel", f"TW {fuel} stock"
         for b, c in ((fbus, f"{fuel} fuel"), (sbus, f"{fuel} stock")):
             if c not in n.carriers.index:
@@ -303,13 +358,11 @@ def apply_security(n, spec, base_solved, costs):
                   efficiency=r.efficiency, marginal_cost=vom.get(r.carrier, 0) * r.efficiency)
         n.mremove("Generator", gens.index)
         # Stock: a store that can only be drawn down (one-way link to the fuel bus).
-        stock = sec[days_key] * year_use[fuel]
         n.add("Store", f"TW {fuel} stock", bus=sbus, carrier=f"{fuel} stock", e_nom=stock, e_initial=stock,
               e_cyclic=False)
         n.add("Link", f"TW {fuel} stock withdrawal", bus0=sbus, bus1=fbus, carrier=f"{fuel} stock",
               p_nom=max(stock, 1.0), marginal_cost=fuel_price)
         # Imports: a share of the normal fuel use in this window, spread evenly.
-        imp = sec[import_key] * window_use[fuel] / 24
         n.add("Generator", f"TW {fuel} imports", bus=fbus, carrier=f"{fuel} fuel", p_nom=max(imp, 0.0),
               marginal_cost=fuel_price)
         stocks[fuel] = {"stock_MWh": round(stock), "imports_MW": round(imp, 1), "fuel_price": round(fuel_price, 2),
@@ -358,6 +411,19 @@ def run(spec, force=False):
     if "mult" in variant:  # fuel prices and demand scaled on top of the scenario's own levers
         effective = {**norm, "levers": {**norm["levers"], **{
             k: norm["levers"][k] * variant["mult"] for k in ("gas_price_mult", "coal_price_mult", "demand_scale")}}}
+    if "hydro_cf_scale" in variant:
+        sc = float(variant["hydro_cf_scale"])
+        ror_i = n.generators.index[n.generators.carrier == "ror"].intersection(n.generators_t.p_max_pu.columns)
+        if len(ror_i):
+            n.generators_t.p_max_pu.loc[:, ror_i] = (n.generators_t.p_max_pu[ror_i] * sc).clip(upper=1.0)
+        hy_i = n.storage_units.index[n.storage_units.carrier == "hydro"].intersection(n.storage_units_t.inflow.columns)
+        if len(hy_i):
+            n.storage_units_t.inflow.loc[:, hy_i] *= sc
+    if "onwind_cf_scale" in variant:
+        sc = float(variant["onwind_cf_scale"])
+        onw_i = n.generators.index[n.generators.carrier == "onwind"].intersection(n.generators_t.p_max_pu.columns)
+        if len(onw_i):
+            n.generators_t.p_max_pu.loc[:, onw_i] = (n.generators_t.p_max_pu[onw_i] * sc).clip(upper=1.0)
     applied = apply_levers(n, effective, base_emissions)
     applied.update(apply_security(n, effective, base_solved, pd.read_csv(REPO / b["costs"], index_col=0)))
 

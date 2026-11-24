@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-25 20:24 UTC",
+ "generated": "2026-11-24 18:02 UTC",
  "levers": {
   "blockade_days": {
    "default": 0,
@@ -69,7 +69,7 @@
    "min": null,
    "max": null,
    "unit": "sites",
-   "description": "Plant sites or grid links lost: tatan, taichung, hsinta, taipei_corridor"
+   "description": "Plant sites or grid links lost: tatan, taichung, hsinta, taipei_corridor, yongan_lng, taichung_lng, guantang_lng, subsea_gas_pipeline"
   },
   "standby_restart": {
    "default": [],
@@ -115,6 +115,22 @@
    "lat": 25.04,
    "lon": 121.7,
    "line_factor": 0.5
+  },
+  "yongan_lng": {
+   "name": "Yongan LNG terminal lost (South, 58% stock/imports)",
+   "lng_region_outage": "south"
+  },
+  "taichung_lng": {
+   "name": "Taichung LNG terminal lost (Central, 28% stock/imports)",
+   "lng_region_outage": "central"
+  },
+  "guantang_lng": {
+   "name": "Guantang LNG terminal lost (North, 14% stock/imports)",
+   "lng_region_outage": "north"
+  },
+  "subsea_gas_pipeline": {
+   "name": "Yongan-Taichung-Tatan subsea/trunk pipeline cut (isolates North gas)",
+   "gas_corridor_cut": "north"
   }
  },
  "standby_units": {
@@ -839,6 +855,126 @@
    "reference": "ff5cac11f7c8",
    "extra_unserved_GWh": 0.0,
    "extra_short_GWh": 0.0
+  },
+  {
+   "hash": "1d915121feb8",
+   "label": "blockade 30 days, LNG imports 50%, lost yongan_lng",
+   "base": "today",
+   "levers": {
+    "add_solar_GW": 0.0,
+    "add_onwind_GW": 0.0,
+    "add_offwind_GW": 0.0,
+    "add_battery_GW": 0.0,
+    "add_ccgt_GW": 0.0,
+    "nuclear_restart": [],
+    "add_nuclear_new_GW": 0.0,
+    "coal_retire_frac": 0.0,
+    "co2_cap_frac": null,
+    "demand_scale": 1.0,
+    "gas_price_mult": 1.0,
+    "coal_price_mult": 1.0,
+    "line_rating": 0.7,
+    "blockade_days": 30.0,
+    "lng_import_frac": 0.5,
+    "damage": [
+     "yongan_lng"
+    ]
+   },
+   "security": {
+    "blockade_days": 30.0,
+    "blockade_season": "summer",
+    "lng_import_frac": 0.5,
+    "coal_import_frac": 1.0,
+    "oil_import_frac": 1.0,
+    "lng_stock_days": 11.0,
+    "coal_stock_days": 41.0,
+    "oil_stock_days": 100.0,
+    "rationing_frac": 0.0,
+    "damage": [
+     "yongan_lng"
+    ],
+    "standby_restart": []
+   },
+   "changed": {
+    "blockade_days": 30.0,
+    "lng_import_frac": 0.5,
+    "damage": [
+     "yongan_lng"
+    ]
+   },
+   "metrics": {
+    "demand_GWh": 24377.0,
+    "unserved_GWh": 8979.0,
+    "unserved_share": 0.3683,
+    "rationed_GWh": 0.0,
+    "normal_demand_GWh": 24377.0,
+    "short_GWh": 8979.0,
+    "short_share": 0.3683,
+    "worst_day_share": 0.434,
+    "stock_left_pct": {
+     "gas_south": 0.0,
+     "gas_central": -0.0,
+     "gas_north": -0.0,
+     "coal": 100.0,
+     "oil": -0.0
+    },
+    "peak_shortfall_GW": 20.82,
+    "days_until_empty": {
+     "gas_south": 1,
+     "gas_central": 30,
+     "gas_north": 27,
+     "coal": null,
+     "oil": 30
+    }
+   },
+   "applied": {
+    "added_MW": {},
+    "damage yongan_lng": {
+     "lng_region_outage": "south"
+    },
+    "blockade": {
+     "days": 30.0,
+     "start": "2013-07-01",
+     "snapshots": 180,
+     "fuels": {
+      "gas_south": {
+       "share": 0.58,
+       "available": false,
+       "stock_MWh": 0,
+       "imports_MW": 0.0
+      },
+      "gas_central": {
+       "share": 0.28,
+       "available": true,
+       "stock_MWh": 1676047,
+       "imports_MW": 4437.4
+      },
+      "gas_north": {
+       "share": 0.14,
+       "available": true,
+       "stock_MWh": 838023,
+       "imports_MW": 2218.7
+      },
+      "coal": {
+       "stock_MWh": 31395681,
+       "imports_MW": 31906.2,
+       "fuel_price": 9.55,
+       "normal_use_MWh_per_day": 765748,
+       "window_use_MWh_per_day": 765748
+      },
+      "oil": {
+       "stock_MWh": 931818,
+       "imports_MW": 1423.3,
+       "fuel_price": 52.91,
+       "normal_use_MWh_per_day": 9318,
+       "window_use_MWh_per_day": 34160
+      }
+     }
+    }
+   },
+   "reference": "781e8a91b65b",
+   "extra_unserved_GWh": 8673.0,
+   "extra_short_GWh": 8673.0
   },
   {
    "hash": "1e18134d8e81",
@@ -2497,6 +2633,100 @@
    "extra_short_GWh": 8765.0
   },
   {
+   "hash": "672ee42e714c",
+   "label": "blockade 30 days, LNG imports 50%",
+   "base": "today",
+   "levers": {
+    "add_solar_GW": 0.0,
+    "add_onwind_GW": 0.0,
+    "add_offwind_GW": 0.0,
+    "add_battery_GW": 0.0,
+    "add_ccgt_GW": 0.0,
+    "nuclear_restart": [],
+    "add_nuclear_new_GW": 0.0,
+    "coal_retire_frac": 0.0,
+    "co2_cap_frac": null,
+    "demand_scale": 1.0,
+    "gas_price_mult": 1.0,
+    "coal_price_mult": 1.0,
+    "line_rating": 0.7,
+    "blockade_days": 30.0,
+    "lng_import_frac": 0.5
+   },
+   "security": {
+    "blockade_days": 30.0,
+    "blockade_season": "summer",
+    "lng_import_frac": 0.5,
+    "coal_import_frac": 1.0,
+    "oil_import_frac": 1.0,
+    "lng_stock_days": 11.0,
+    "coal_stock_days": 41.0,
+    "oil_stock_days": 100.0,
+    "rationing_frac": 0.0,
+    "damage": [],
+    "standby_restart": []
+   },
+   "changed": {
+    "blockade_days": 30.0,
+    "lng_import_frac": 0.5
+   },
+   "metrics": {
+    "demand_GWh": 24377.0,
+    "unserved_GWh": 3127.0,
+    "unserved_share": 0.1283,
+    "rationed_GWh": 0.0,
+    "normal_demand_GWh": 24377.0,
+    "short_GWh": 3127.0,
+    "short_share": 0.1283,
+    "worst_day_share": 0.2086,
+    "stock_left_pct": {
+     "gas": -0.0,
+     "coal": 100.0,
+     "oil": -0.0
+    },
+    "peak_shortfall_GW": 11.78,
+    "days_until_empty": {
+     "gas": 30,
+     "coal": null,
+     "oil": 30
+    }
+   },
+   "applied": {
+    "added_MW": {},
+    "blockade": {
+     "days": 30.0,
+     "start": "2013-07-01",
+     "snapshots": 180,
+     "fuels": {
+      "gas": {
+       "stock_MWh": 5985881,
+       "imports_MW": 15848.0,
+       "fuel_price": 24.57,
+       "normal_use_MWh_per_day": 544171,
+       "window_use_MWh_per_day": 760702
+      },
+      "coal": {
+       "stock_MWh": 31395681,
+       "imports_MW": 31906.2,
+       "fuel_price": 9.55,
+       "normal_use_MWh_per_day": 765748,
+       "window_use_MWh_per_day": 765748
+      },
+      "oil": {
+       "stock_MWh": 931818,
+       "imports_MW": 1423.3,
+       "fuel_price": 52.91,
+       "normal_use_MWh_per_day": 9318,
+       "window_use_MWh_per_day": 34160
+      }
+     }
+    }
+   },
+   "reference": "781e8a91b65b",
+   "extra_unserved_GWh": 2821.0,
+   "extra_short_GWh": 2821.0
+  },
+  {
    "hash": "687f6772081a",
    "label": "blockade 30 days, LNG imports 0%, coal imports 0%, oil imports 0%",
    "base": "plan2034",
@@ -2685,6 +2915,126 @@
    "reference": "69d29eeafa64",
    "extra_unserved_GWh": 0.0,
    "extra_short_GWh": 0.0
+  },
+  {
+   "hash": "6f03e2763024",
+   "label": "blockade 30 days, LNG imports 50%, lost subsea_gas_pipeline",
+   "base": "today",
+   "levers": {
+    "add_solar_GW": 0.0,
+    "add_onwind_GW": 0.0,
+    "add_offwind_GW": 0.0,
+    "add_battery_GW": 0.0,
+    "add_ccgt_GW": 0.0,
+    "nuclear_restart": [],
+    "add_nuclear_new_GW": 0.0,
+    "coal_retire_frac": 0.0,
+    "co2_cap_frac": null,
+    "demand_scale": 1.0,
+    "gas_price_mult": 1.0,
+    "coal_price_mult": 1.0,
+    "line_rating": 0.7,
+    "blockade_days": 30.0,
+    "lng_import_frac": 0.5,
+    "damage": [
+     "subsea_gas_pipeline"
+    ]
+   },
+   "security": {
+    "blockade_days": 30.0,
+    "blockade_season": "summer",
+    "lng_import_frac": 0.5,
+    "coal_import_frac": 1.0,
+    "oil_import_frac": 1.0,
+    "lng_stock_days": 11.0,
+    "coal_stock_days": 41.0,
+    "oil_stock_days": 100.0,
+    "rationing_frac": 0.0,
+    "damage": [
+     "subsea_gas_pipeline"
+    ],
+    "standby_restart": []
+   },
+   "changed": {
+    "blockade_days": 30.0,
+    "lng_import_frac": 0.5,
+    "damage": [
+     "subsea_gas_pipeline"
+    ]
+   },
+   "metrics": {
+    "demand_GWh": 24377.0,
+    "unserved_GWh": 3127.0,
+    "unserved_share": 0.1283,
+    "rationed_GWh": 0.0,
+    "normal_demand_GWh": 24377.0,
+    "short_GWh": 3127.0,
+    "short_share": 0.1283,
+    "worst_day_share": 0.1981,
+    "stock_left_pct": {
+     "gas_south": -0.0,
+     "gas_central": -0.0,
+     "gas_north": -0.0,
+     "coal": 100.0,
+     "oil": -0.0
+    },
+    "peak_shortfall_GW": 10.65,
+    "days_until_empty": {
+     "gas_south": 30,
+     "gas_central": 30,
+     "gas_north": 30,
+     "coal": null,
+     "oil": 30
+    }
+   },
+   "applied": {
+    "added_MW": {},
+    "damage subsea_gas_pipeline": {
+     "gas_corridor_cut": "north"
+    },
+    "blockade": {
+     "days": 30.0,
+     "start": "2013-07-01",
+     "snapshots": 180,
+     "fuels": {
+      "gas_south": {
+       "share": 0.58,
+       "available": true,
+       "stock_MWh": 3471811,
+       "imports_MW": 9191.8
+      },
+      "gas_central": {
+       "share": 0.28,
+       "available": true,
+       "stock_MWh": 1676047,
+       "imports_MW": 4437.4
+      },
+      "gas_north": {
+       "share": 0.14,
+       "available": true,
+       "stock_MWh": 838023,
+       "imports_MW": 2218.7
+      },
+      "coal": {
+       "stock_MWh": 31395681,
+       "imports_MW": 31906.2,
+       "fuel_price": 9.55,
+       "normal_use_MWh_per_day": 765748,
+       "window_use_MWh_per_day": 765748
+      },
+      "oil": {
+       "stock_MWh": 931818,
+       "imports_MW": 1423.3,
+       "fuel_price": 52.91,
+       "normal_use_MWh_per_day": 9318,
+       "window_use_MWh_per_day": 34160
+      }
+     }
+    }
+   },
+   "reference": "781e8a91b65b",
+   "extra_unserved_GWh": 2821.0,
+   "extra_short_GWh": 2821.0
   },
   {
    "hash": "781e8a91b65b",
@@ -4221,6 +4571,126 @@
    "extra_short_GWh": 4455.0
   },
   {
+   "hash": "b96716756abd",
+   "label": "blockade 30 days, LNG imports 50%, lost guantang_lng",
+   "base": "today",
+   "levers": {
+    "add_solar_GW": 0.0,
+    "add_onwind_GW": 0.0,
+    "add_offwind_GW": 0.0,
+    "add_battery_GW": 0.0,
+    "add_ccgt_GW": 0.0,
+    "nuclear_restart": [],
+    "add_nuclear_new_GW": 0.0,
+    "coal_retire_frac": 0.0,
+    "co2_cap_frac": null,
+    "demand_scale": 1.0,
+    "gas_price_mult": 1.0,
+    "coal_price_mult": 1.0,
+    "line_rating": 0.7,
+    "blockade_days": 30.0,
+    "lng_import_frac": 0.5,
+    "damage": [
+     "guantang_lng"
+    ]
+   },
+   "security": {
+    "blockade_days": 30.0,
+    "blockade_season": "summer",
+    "lng_import_frac": 0.5,
+    "coal_import_frac": 1.0,
+    "oil_import_frac": 1.0,
+    "lng_stock_days": 11.0,
+    "coal_stock_days": 41.0,
+    "oil_stock_days": 100.0,
+    "rationing_frac": 0.0,
+    "damage": [
+     "guantang_lng"
+    ],
+    "standby_restart": []
+   },
+   "changed": {
+    "blockade_days": 30.0,
+    "lng_import_frac": 0.5,
+    "damage": [
+     "guantang_lng"
+    ]
+   },
+   "metrics": {
+    "demand_GWh": 24377.0,
+    "unserved_GWh": 4539.0,
+    "unserved_share": 0.1862,
+    "rationed_GWh": 0.0,
+    "normal_demand_GWh": 24377.0,
+    "short_GWh": 4539.0,
+    "short_share": 0.1862,
+    "worst_day_share": 0.2447,
+    "stock_left_pct": {
+     "gas_south": -0.0,
+     "gas_central": -0.0,
+     "gas_north": 0.0,
+     "coal": 100.0,
+     "oil": -0.0
+    },
+    "peak_shortfall_GW": 13.02,
+    "days_until_empty": {
+     "gas_south": 30,
+     "gas_central": 30,
+     "gas_north": 1,
+     "coal": null,
+     "oil": 30
+    }
+   },
+   "applied": {
+    "added_MW": {},
+    "damage guantang_lng": {
+     "lng_region_outage": "north"
+    },
+    "blockade": {
+     "days": 30.0,
+     "start": "2013-07-01",
+     "snapshots": 180,
+     "fuels": {
+      "gas_south": {
+       "share": 0.58,
+       "available": true,
+       "stock_MWh": 3471811,
+       "imports_MW": 9191.8
+      },
+      "gas_central": {
+       "share": 0.28,
+       "available": true,
+       "stock_MWh": 1676047,
+       "imports_MW": 4437.4
+      },
+      "gas_north": {
+       "share": 0.14,
+       "available": false,
+       "stock_MWh": 0,
+       "imports_MW": 0.0
+      },
+      "coal": {
+       "stock_MWh": 31395681,
+       "imports_MW": 31906.2,
+       "fuel_price": 9.55,
+       "normal_use_MWh_per_day": 765748,
+       "window_use_MWh_per_day": 765748
+      },
+      "oil": {
+       "stock_MWh": 931818,
+       "imports_MW": 1423.3,
+       "fuel_price": 52.91,
+       "normal_use_MWh_per_day": 9318,
+       "window_use_MWh_per_day": 34160
+      }
+     }
+    }
+   },
+   "reference": "781e8a91b65b",
+   "extra_unserved_GWh": 4233.0,
+   "extra_short_GWh": 4233.0
+  },
+  {
    "hash": "bf30eb123c7b",
    "label": "blockade 14 days, LNG imports 0%, coal imports 0%, oil imports 0%",
    "base": "plan2034",
@@ -5264,6 +5734,126 @@
    "reference": "80f184a784c6",
    "extra_unserved_GWh": 7652.0,
    "extra_short_GWh": 7652.0
+  },
+  {
+   "hash": "e21842a5c425",
+   "label": "blockade 30 days, LNG imports 50%, lost taichung_lng",
+   "base": "today",
+   "levers": {
+    "add_solar_GW": 0.0,
+    "add_onwind_GW": 0.0,
+    "add_offwind_GW": 0.0,
+    "add_battery_GW": 0.0,
+    "add_ccgt_GW": 0.0,
+    "nuclear_restart": [],
+    "add_nuclear_new_GW": 0.0,
+    "coal_retire_frac": 0.0,
+    "co2_cap_frac": null,
+    "demand_scale": 1.0,
+    "gas_price_mult": 1.0,
+    "coal_price_mult": 1.0,
+    "line_rating": 0.7,
+    "blockade_days": 30.0,
+    "lng_import_frac": 0.5,
+    "damage": [
+     "taichung_lng"
+    ]
+   },
+   "security": {
+    "blockade_days": 30.0,
+    "blockade_season": "summer",
+    "lng_import_frac": 0.5,
+    "coal_import_frac": 1.0,
+    "oil_import_frac": 1.0,
+    "lng_stock_days": 11.0,
+    "coal_stock_days": 41.0,
+    "oil_stock_days": 100.0,
+    "rationing_frac": 0.0,
+    "damage": [
+     "taichung_lng"
+    ],
+    "standby_restart": []
+   },
+   "changed": {
+    "blockade_days": 30.0,
+    "lng_import_frac": 0.5,
+    "damage": [
+     "taichung_lng"
+    ]
+   },
+   "metrics": {
+    "demand_GWh": 24377.0,
+    "unserved_GWh": 5952.0,
+    "unserved_share": 0.2442,
+    "rationed_GWh": 0.0,
+    "normal_demand_GWh": 24377.0,
+    "short_GWh": 5952.0,
+    "short_share": 0.2442,
+    "worst_day_share": 0.2981,
+    "stock_left_pct": {
+     "gas_south": -0.0,
+     "gas_central": 0.0,
+     "gas_north": -0.0,
+     "coal": 100.0,
+     "oil": -0.0
+    },
+    "peak_shortfall_GW": 13.91,
+    "days_until_empty": {
+     "gas_south": 30,
+     "gas_central": 1,
+     "gas_north": 30,
+     "coal": null,
+     "oil": 30
+    }
+   },
+   "applied": {
+    "added_MW": {},
+    "damage taichung_lng": {
+     "lng_region_outage": "central"
+    },
+    "blockade": {
+     "days": 30.0,
+     "start": "2013-07-01",
+     "snapshots": 180,
+     "fuels": {
+      "gas_south": {
+       "share": 0.58,
+       "available": true,
+       "stock_MWh": 3471811,
+       "imports_MW": 9191.8
+      },
+      "gas_central": {
+       "share": 0.28,
+       "available": false,
+       "stock_MWh": 0,
+       "imports_MW": 0.0
+      },
+      "gas_north": {
+       "share": 0.14,
+       "available": true,
+       "stock_MWh": 838023,
+       "imports_MW": 2218.7
+      },
+      "coal": {
+       "stock_MWh": 31395681,
+       "imports_MW": 31906.2,
+       "fuel_price": 9.55,
+       "normal_use_MWh_per_day": 765748,
+       "window_use_MWh_per_day": 765748
+      },
+      "oil": {
+       "stock_MWh": 931818,
+       "imports_MW": 1423.3,
+       "fuel_price": 52.91,
+       "normal_use_MWh_per_day": 9318,
+       "window_use_MWh_per_day": 34160
+      }
+     }
+    }
+   },
+   "reference": "781e8a91b65b",
+   "extra_unserved_GWh": 5646.0,
+   "extra_short_GWh": 5646.0
   },
   {
    "hash": "e67284c6849d",

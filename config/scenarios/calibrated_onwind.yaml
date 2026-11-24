@@ -1,0 +1,17 @@
+# Scenario overlay: calibrate onshore wind CF against Taiwan empirical fleet (25-28.6%)
+# ERA5 0.3-degree cells smooth coastal wind gradients over Taiwan's terrain, yielding 11.6% CF
+# for 2013 vs. 27.6% empirical 2016-2018 onshore-only fleet mean (28.54% MOEA FiT benchmark).
+# Layer on top of config_tw_test2_highs.yaml:
+#   snakemake -j 1 solve_all_networks --configfile config/config_tw_test2_highs.yaml config/scenarios/calibrated_onwind.yaml
+
+run:
+  name: "tw_test2_highs_2013_fullyear_4h_6b_tw_wind"
+  sector_name: "tw_test2_highs_2013_fullyear_4h_6b_tw_wind"
+
+renewable:
+  onwind:
+    correction_factor: 2.38
+
+solving:
+  options:
+    load_shedding: true

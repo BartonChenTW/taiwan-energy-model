@@ -514,6 +514,36 @@
         </tbody>
       </table>
     `;
+
+    const st = d.stress_tests || [];
+    if (st.length) {
+      $("table-weather-stress").innerHTML = `
+        <table>
+          <thead><tr>
+            <th>${pick("Full-Year Weather / Calibration Case", "全年氣象／校正情境")}</th>
+            <th class="num">${pick("Hydro+RoR", "水力")}</th>
+            <th class="num">${pick("Onwind", "陸域風電")}</th>
+            <th class="num">${pick("Offwind+Solar", "離岸＋光電")}</th>
+            <th class="num">${pick("Total RE", "再生總發電")}</th>
+            <th class="num">${pick("Fossil", "火力發電")}</th>
+            <th class="num">${pick("Unserved", "限電缺電")}</th>
+            <th class="num">${pick("CO₂ (Mt)", "碳排 (Mt)")}</th>
+          </tr></thead>
+          <tbody>
+            ${st.map((r) => `<tr>
+              <td><strong>${esc(pick(r.name_en, r.name_zh))}</strong><br><small class="muted"><code>${esc(r.hash)}</code></small></td>
+              <td class="num">${fmt(r.hydro_twh, 2)} TWh</td>
+              <td class="num">${fmt(r.onwind_twh, 2)} TWh</td>
+              <td class="num">${fmt(r.offwind_twh + r.solar_twh, 2)} TWh</td>
+              <td class="num"><strong>${fmt(r.re_total_twh, 2)} TWh</strong></td>
+              <td class="num">${fmt(r.fossil_twh, 2)} TWh</td>
+              <td class="num">${fmt(r.unserved_twh, 2)} TWh</td>
+              <td class="num">${fmt(r.co2_mt, 2)}</td>
+            </tr>`).join("")}
+          </tbody>
+        </table>
+      `;
+    }
   }
 
   function renderCountyAndPolicy(d) {

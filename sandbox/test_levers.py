@@ -263,5 +263,25 @@ def test_taichung_damage_removes_coal():
     assert shed(n) > shed(full)
 
 
+def test_drought_variant_reduces_hydro():
+    d, b = solved_variant("drought"), solved()
+    assert energy(d, ["hydro", "ror"]) < 0.7 * energy(b, ["hydro", "ror"])
+    assert shed(d) >= shed(b)
+
+
+def test_tw_wind_variant_raises_onwind():
+    w, b = solved_variant("tw_wind"), solved()
+    assert energy(w, ["onwind"]) > 1.15 * energy(b, ["onwind"])
+    assert emissions_t(w) < emissions_t(b)
+
+
+def test_regional_lng_pipeline_damage_in_blockade():
+    pipe_cut = solved(blockade_days=30, lng_import_frac=0.5, damage=("subsea_gas_pipeline",))
+    ref_half = solved(blockade_days=30, lng_import_frac=0.5)
+    assert "TW gas_north stock" in pipe_cut.stores.index
+    assert float(pipe_cut.links.at["TW gas pipe central->north", "p_nom"]) == 0.0
+    assert pipe_cut.objective >= ref_half.objective
+
+
 if __name__ == "__main__":
     sys.exit(pytest.main([__file__, "-q"]))

@@ -673,5 +673,18 @@ Added comprehensive Taiwan electrical grid, OpenStreetMap/PyPSA-Earth topology, 
   - Built `viewer/export_weather_re_data.py` (hooked into `viewer/export_dashboard_data.py`) exporting `docs/data/weather_re_data.json` (`129.6 KB`): ERA5 2013 vs. 2018 spatial fields (`6.93` vs. `6.62 m/s` 100 m wind; `1,617.3` vs. `1,644.3 kWh/m²/yr` GHI; `509.5` vs. `461.1 mm/yr` runoff; `87` vs. `31` high-wind `>=25 m/s` hours), 4-site wind roses (Changhua offshore `9.52 m/s` / P90 `17.82 m/s` in 2013), solar–wind monthly complementarity (`r = -0.502` / `-0.573`), Dunkelflaute 24h/72h/168h worst lulls, 30-plant hydro inflow (`4.36 TWh/yr`), 5-carrier technical potential (`solar 39.44 GW`, `onwind 42.45 GW`, `offwind-ac 12.38 GW`, `offwind-dc 37.94 GW`, `offwind-float 230.61 GW` = `1,010.1 TWh/yr`), Copernicus/GEBCO/WDPA exclusion rules, and 22-county official solar approvals (`20,989.2 MW` cumulative 2015–2025).
   - Created `docs/weather-re.html`, `docs/assets/weather-re.js`, and `notes/TAIWAN_WEATHER_RE_DATA.md`, and added `Weather & RE` / `氣象與再生能源` to all `12` site pages.
 
+---
+
+## 2026-11-24 — Track A (data/model hygiene & CO₂ duals) and Track B (12-bus cutsets, drought/wind variants & regional LNG blockades, `tem-v0.3.0`)
+
+Executed Track A and Track B across `taiwan-energy-model` and `../pypsa-earth`:
+
+- **Track A1 (`data/check_data.py` cleanup):** Linked `moeaea_household_appliances_2024` to its transcribed CSV, registered all 7 remaining unregistered files in `data/official/` with SHA-256 checksums in `data/sources.csv`, and added Taipower URL to `taiwan_key_facts.csv`. Verified `check_data.py`: `68 sources checked: 0 errors, 0 warnings`.
+- **Track A2 (Model fork `scripts/clean_osm_data.py` & `scripts/build_renewable_profiles.py`):** Overrode `690000 -> 69000` (Hualien `way/1331526157`) in `repl_voltage`, clipped `correction_factor` CF outputs at `<= 1.0`, documented both in `FORK_CHANGES.md`, updated `model.lock`, and added `config/scenarios/calibrated_onwind.yaml` (`correction_factor: 2.38`).
+- **Track A3 (2050 CO₂ shadow price diagnostic):** Verified `CO2Limit.mu = -467 €/t` across 2050 ×1 import runs is analytically fixed by marginal carbon-neutral `synthetic oil import` (`120 €/MWh ÷ 0.2571 tCO₂/MWh`). Added `co2_stored_price_EUR_t` and demand-weighted `elec_price_EUR_MWh` (`100.9–180.3 €/MWh`) to `viewer/export_dashboard_data.py` and `docs/assets/sector-pathway.js`.
+- **Track B1 (12-subregion & 345 kV cutset diagnostics):** Added `config/scenarios/clusters_12.yaml` and exported cutset comparisons (`Taipei Basin 24.95°N`, `Central→North 24.65°N`, `South→Central 23.50°N`) plus 12-cluster `elec_s.nc` preview to `docs/data/grid_data.json` and `docs/grid.html`.
+- **Track B2 (Weather, drought & wind stress tests):** Added `"drought"` (`-50%` hydro inflow) and `"tw_wind"` (`28.5%` onwind CF) variants in `sandbox/levers.py`/`run_scenario.py`, solved both full-year cases (`RE 33.39` vs `35.13 TWh`), and exported the 4-way comparison to `docs/weather-re.html`.
+- **Track B3 (Regional LNG terminals & subsea pipeline blockades):** Added `yongan_lng`, `taichung_lng`, `guantang_lng`, and `subsea_gas_pipeline` to `DAMAGE_SITES` in `sandbox/levers.py` & 3-region gas dispatching in `sandbox/run_scenario.py`, solved 5 blockade stress tests (`3,126.7 -> 8,978.9 GWh` unserved), passed `36` unit tests in `sandbox/test_levers.py`, and exported results to `docs/grid.html`.
+
 TODO:
  - to run PyPSA-Earth Taiwan!

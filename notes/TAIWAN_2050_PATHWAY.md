@@ -217,6 +217,13 @@ daily-step overlays and writes to `tw_sector_path2050_4h_<id>`. The three runs t
   peak after sunset, which daily steps average away. The effect is largest in 2040, when solar is
   large but storage is still small. By 2050 batteries close the gap.
 
+## 2050 CO₂ & Electricity Shadow Price Diagnostics (2026-11-24)
+
+Every 2050 `×1` import-price run (`official_imp`, `official_imp_nuc`, `official_imp_twcost`, and 4-hour steps) reports `-CO2Limit.mu = 467 €/tCO₂`. Inspecting `postnetworks/*2050*.nc` confirms this is a structural linear-program dual identity rather than an exporter bug:
+- Carbon-neutral `synthetic oil import` links draw from `co2 atmosphere` to `oil` at `120 €/MWh` with `0.2571 tCO₂/MWh`, displacing fossil oil (`~0.01 €/MWh`) on the margin and pinning the economy-wide CO₂ price at `(120 - 0.01) / 0.2571 = 466.7 €/tCO₂`.
+- At `0.75×` import prices (`90 €/MWh` oil), the dual drops proportionally to `350 €/t`; at `1.5×` (`180 €/MWh`), it rises to `700 €/t`; in H₂/NH₃-only `official` (`647 €/t`) and `official_hi` (`987 €/t`), domestic Fischer-Tropsch sets a higher marginal abatement cost.
+- `viewer/export_dashboard_data.py` now also exports `co2_stored_price_EUR_t` (`392–470 €/tCO₂`, showing the `~75 €/t` geological storage rent when the 40 Mt/yr limit binds) and demand-weighted `elec_price_EUR_MWh` (`100.9 €/MWh` in `official_imp` vs. `116.9 €/MWh` with Taiwan RE costs vs. `106.2 €/MWh` when nuclear is allowed).
+
 ## Still open
 
 - The 2050 CO₂ storage volume: 40 Mt/yr comes from a search summary and is not in the CCUS plan's

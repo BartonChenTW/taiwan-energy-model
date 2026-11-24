@@ -1101,6 +1101,24 @@ def sector_pathway_year(n, year, cap_Mt):
     batt = n.stores[n.stores.carrier.isin(["battery", "home battery"])]
     h2s = n.stores[n.stores.carrier.str.startswith("H2")]
     ely = n.links[n.links.carrier == "H2 Electrolysis"]
+    co2_stored_buses = [b for b in n.buses.index if "co2 stored" in str(b)]
+    co2_stored_price = (float((n.buses_t.marginal_price[co2_stored_buses].mean(axis=1) * w).sum() / w.sum())
+                        if co2_stored_buses and not n.buses_t.marginal_price.empty else None)
+    ac_buses = [b for b in n.buses.index if n.buses.loc[b, "carrier"] == "AC"]
+    if ac_buses and not n.buses_t.marginal_price.empty:
+        mp_ac = n.buses_t.marginal_price[ac_buses]
+        # Map nodal electricity loads (on AC or low-voltage buses prefixed with the node name, e.g. 'TW0 0')
+        elec_loads = n.loads.index[n.loads.carrier == "electricity"]
+        if len(elec_loads) and hasattr(n.loads_t, "p") and not n.loads_t.p.empty:
+            lp = n.loads_t.p[elec_loads.intersection(n.loads_t.p.columns)].copy()
+            nodes = n.loads.loc[lp.columns, "bus"].map(lambda b: next((ab for ab in ac_buses if str(b).startswith(ab)), None))
+            lp = lp.T.groupby(nodes).sum().T.reindex(columns=ac_buses, fill_value=0.0)
+            tot_ac = float(lp.mul(w, axis=0).sum().sum())
+            elec_price = float((mp_ac * lp).mul(w, axis=0).sum().sum() / tot_ac) if tot_ac > 0 else float(mp_ac.mul(w, axis=0).sum().mean() / w.sum())
+        else:
+            elec_price = float(mp_ac.mul(w, axis=0).sum().mean() / w.sum())
+    else:
+        elec_price = None
     return {
         "year": year, "snapshots": int(len(n.snapshots)), "step_h": _r(float(w.iloc[0]), 1),
         "objective_EUR": _r(n.objective, 0),
@@ -1125,6 +1143,8 @@ def sector_pathway_year(n, year, cap_Mt):
                            for i in [n.links.index[n.links.carrier == c].intersection(n.links_t.p1.columns)] if len(i)}},
         "co2_price_EUR_t": _r(float(-n.global_constraints.mu["CO2Limit"]), 0)
                            if "CO2Limit" in n.global_constraints.index and "mu" in n.global_constraints else None,
+        "co2_stored_price_EUR_t": _r(abs(co2_stored_price), 0) if co2_stored_price is not None else None,
+        "elec_price_EUR_MWh": _r(elec_price, 1) if elec_price is not None else None,
         "battery_GWh": _r(float(batt.e_nom_opt.sum() / 1e3), 1) if len(batt) else 0.0,
         "h2_storage_GWh": _r(float(h2s.e_nom_opt.sum() / 1e3), 1) if len(h2s) else 0.0,
         "demand_by_use_TWh": {k: _r(v, 1) for k, v in sorted(use.items(), key=lambda x: -x[1])},

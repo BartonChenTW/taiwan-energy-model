@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-25 13:37 UTC",
+ "generated": "2026-11-24 18:01 UTC",
  "base": "d161cb737b89",
  "base_run": "tw_test2_highs_2013_fullyear_4h_6b_ls",
  "caveat": "Exploration tool, not a forecast: 6 buses, 4-hourly time steps, one weather year (2013), today's grid, fixed capacities (the model does not choose what to build). Costs are technology-data 2030 projections in EUR.",
@@ -6956,8 +6956,10 @@
     ]
    },
    "variants": [
+    "drought",
     "high",
     "low",
+    "tw_wind",
     "w2018"
    ],
    "warnings": [
@@ -7673,6 +7675,12 @@
    },
    "high": {
     "mult": 1.1
+   },
+   "drought": {
+    "hydro_cf_scale": 0.5
+   },
+   "tw_wind": {
+    "onwind_cf_scale": 1.27
    }
   },
   "fuel_demand_spread": 0.1,

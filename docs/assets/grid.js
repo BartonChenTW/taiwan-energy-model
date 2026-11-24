@@ -586,6 +586,58 @@
 
     renderSubstationTable();
     renderLineTable();
+    renderHighResCutsets(d);
+  }
+
+  function renderHighResCutsets(d) {
+    const hr = d.high_res_analysis;
+    if (!hr) return;
+    $("cutsets-sub").textContent = pick(
+      "Comparing the 3 key latitudinal transmission cutsets across raw OSM circuits (elec.nc), a 12-subregion network (separating Taipei Basin, Taoyuan/Hsinchu, Taichung, Changhua, Tainan & Kaohsiung), and the 6-region sandbox grid. Config overlay: config/scenarios/clusters_12.yaml.",
+      "跨區南北輸電瓶頸於三種空間解析度之比較：OSM 原始路網（elec.nc）、12 分區高解析度網路（明確區分大台北、桃竹、中苗、彰投、南科與高雄）及 6 區基準模型；對應設定檔為 config/scenarios/clusters_12.yaml。"
+    );
+    $("table-cutsets").innerHTML = `
+      <table>
+        <thead><tr>
+          <th>${pick("Cutset Border", "跨區斷面界線")}</th>
+          <th class="num">${pick("OSM elec.nc Total", "OSM 全電路容量")}</th>
+          <th class="num">${pick("345 kV Share", "345 kV 主幹線")}</th>
+          <th class="num">${pick("12-Node Usable (0.7×)", "12 區可用容量 (0.7×)")}</th>
+          <th class="num">${pick("6-Node Usable (0.7×)", "6 區可用容量 (0.7×)")}</th>
+          <th>${pick("Operational Bottleneck", "系統運轉與瓶頸說明")}</th>
+        </tr></thead>
+        <tbody>
+          ${hr.cutsets.map((c) => `<tr>
+            <td><strong>${esc(pick(c.name_en, c.name_zh))}</strong></td>
+            <td class="num">${c.elec_lines} lines · ${fmtNum(c.elec_mva)} MVA</td>
+            <td class="num">${c.elec_345_lines} lines · ${fmtNum(c.elec_345_mva)} MVA</td>
+            <td class="num"><strong>${fmtNum(c.clusters_12_usable_mw)} MW</strong><br><small class="muted">${c.clusters_12_lines} lines (${fmtNum(c.clusters_12_mva)} MVA)</small></td>
+            <td class="num">${fmtNum(c.clusters_6_usable_mw)} MW<br><small class="muted">${c.clusters_6_lines} lines (${fmtNum(c.clusters_6_mva)} MVA)</small></td>
+            <td><small>${esc(c.note_en)}</small></td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    `;
+    $("table-clusters-12").innerHTML = `
+      <table>
+        <thead><tr>
+          <th>#</th>
+          <th>${pick("12-Node Subregion (N -> S)", "12 分區名稱（由北至南）")}</th>
+          <th class="num">${pick("79-Bus Substations", "含 79 節點變電所數")}</th>
+          <th class="num">${pick("Avg Load (MW)", "平均負載 (MW)")}</th>
+          <th class="num">${pick("Installed Gen (MW)", "裝置容量 (MW)")}</th>
+        </tr></thead>
+        <tbody>
+          ${hr.clusters_12.map((r) => `<tr>
+            <td>${r.rank}</td>
+            <td><strong>${esc(pick(r.name_en, r.name_zh))}</strong></td>
+            <td class="num">${r.substations}</td>
+            <td class="num">${fmtNum(r.avg_load_MW)}</td>
+            <td class="num">${fmtNum(r.gen_capacity_MW)}</td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    `;
   }
 
   function sortItems(arr, sortSpec) {
@@ -839,6 +891,37 @@
         </tbody>
       </table>
     `;
+
+    const lb = d.regional_lng_blockade || [];
+    if (lb.length) {
+      $("table-lng-blockade").innerHTML = `
+        <table>
+          <thead><tr>
+            <th>${pick("Disruption Scenario (30-day Summer, 50% Imports)", "破壞情境（夏季 30 天封鎖、進口減半）")}</th>
+            <th class="num">${pick("Unserved Energy", "缺電／限電量")}</th>
+            <th class="num">${pick("Total Gas Gen", "全國燃氣發電")}</th>
+            <th class="num">${pick("North Gas Gen", "北部燃氣發電")}</th>
+            <th class="num">${pick("System Cost (bn €)", "30 天總成本")}</th>
+            <th>${pick("End LNG Stock by Terminal", "期末分區儲槽存量比")}</th>
+          </tr></thead>
+          <tbody>
+            ${lb.map((r) => {
+              const stStr = r.stock_remaining_pct.national !== undefined
+                ? `${pick("National", "全國均池")}: ${r.stock_remaining_pct.national}%`
+                : `S:${r.stock_remaining_pct.south ?? "—"}% · C:${r.stock_remaining_pct.central ?? "—"}% · N:${r.stock_remaining_pct.north ?? "—"}%`;
+              return `<tr>
+                <td><strong>${esc(pick(r.name_en, r.name_zh))}</strong><br><small class="muted"><code>${esc(r.hash)}</code></small></td>
+                <td class="num"><strong>${fmtNum(r.unserved_GWh, 1)} GWh</strong></td>
+                <td class="num">${fmtNum(r.gas_gen_GWh, 0)} GWh</td>
+                <td class="num">${fmtNum(r.north_gas_gen_GWh, 0)} GWh</td>
+                <td class="num">${fmtNum(r.objective_bn_eur, 3)}</td>
+                <td><small>${esc(stStr)}</small></td>
+              </tr>`;
+            }).join("")}
+          </tbody>
+        </table>
+      `;
+    }
   }
 
   function renderSources(d) {

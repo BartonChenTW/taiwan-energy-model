@@ -23,6 +23,7 @@ for p in (str(ROOT), str(ROOT / "viewer")):
 import geopandas as gpd  # noqa: E402
 import pandas as pd  # noqa: E402
 import pypsa  # noqa: E402
+from sklearn.cluster import KMeans  # noqa: E402
 
 from export_model_data import BASE_RUN, _r, busmaps, region_labels  # noqa: E402
 from paths import MODEL_DIR  # noqa: E402
@@ -880,6 +881,146 @@ def build_pypsa_networks(repo: Path, run: str, osm_subs: list[dict], labels: dic
     }
 
 
+def build_high_res_and_lng_blockade(repo: Path, ne: pypsa.Network, ns: pypsa.Network, n6: pypsa.Network) -> tuple[dict, list[dict]]:
+    """Compute 345/161/69 kV cutsets across elec.nc, 12-cluster elec_s.nc & 6-cluster n6,
+    plus regional LNG terminal / subsea pipeline blockade stress tests from cached sandbox solves."""
+    load_by_bus = ns.loads_t.p_set.mean().groupby(ns.loads.bus).sum().reindex(ns.buses.index, fill_value=0.0)
+    gen_by_bus = ns.generators.groupby("bus")["p_nom"].sum().reindex(ns.buses.index, fill_value=0.0)
+    km = KMeans(n_clusters=12, random_state=42, n_init=20).fit(
+        ns.buses[["x", "y"]].values, sample_weight=(load_by_bus + 0.1).values
+    )
+    ns_c12 = pd.Series(km.labels_, index=ns.buses.index)
+    c_df = ns.buses.groupby(ns_c12).agg(buses=("country", "count"), lon=("x", "mean"), lat=("y", "mean"))
+    c_df["load_MW"] = load_by_bus.groupby(ns_c12).sum()
+    c_df["gen_MW"] = gen_by_bus.groupby(ns_c12).sum()
+    c_df = c_df.sort_values("lat", ascending=False)
+
+    # Human labels for the 12 sorted subregions (North -> South)
+    labels_12 = [
+        ("Taipei–Keelung North", "北北基（核心都會）"),
+        ("Xizhi–Yilan Corridor", "汐止—宜蘭廊道"),
+        ("Taoyuan–Hsinchu (Tatan)", "桃竹（大潭與竹科）"),
+        ("Taichung–Miaoli (Tunghsiao)", "中苗（中火與通霄）"),
+        ("Changhua–Nantou (Pumped Hydro)", "彰投（離岸併網與明潭）"),
+        ("Hualien East", "花蓮東部"),
+        ("Yunlin–Chiayi Coast", "雲嘉沿海（麥寮）"),
+        ("Central Range East (Yushan)", "中央山脈東側（高山通道）"),
+        ("Tainan Science Park (Hsinta N.)", "南科—台南（興達北）"),
+        ("Taitung Coast", "台東海岸"),
+        ("Kaohsiung Metro (Hsinta / Yongan)", "高雄都會（興達／永安）"),
+        ("Pingtung South (Maanshan)", "屏東（大林／核三南端）"),
+    ]
+    clusters_12 = []
+    for idx, (cid, row) in enumerate(c_df.iterrows()):
+        en, zh = labels_12[idx] if idx < len(labels_12) else (f"Cluster {cid}", f"分區 {cid}")
+        clusters_12.append({
+            "rank": idx + 1,
+            "id": int(cid),
+            "name_en": en,
+            "name_zh": zh,
+            "substations": int(row["buses"]),
+            "lon": _r(float(row["lon"]), 3),
+            "lat": _r(float(row["lat"]), 3),
+            "avg_load_MW": _r(float(row["load_MW"]), 0),
+            "gen_capacity_MW": _r(float(row["gen_MW"]), 0),
+        })
+
+    cutset_defs = [
+        ("taipei_basin", 24.95, "Taipei Basin Import (24.95°N)", "大台北盆地匯入斷面 (24.95°N)",
+         "Lumped into a single 3,053 MVA bottleneck at 6 nodes; resolves to 9,250 MVA across 3 lines at 12 nodes."),
+        ("central_north", 24.65, "Central -> North Trunk (24.65°N)", "中電北送主幹線 (24.65°N, 苗竹界)",
+         "Taipower 2022 operational transfer margin: 104 MW; planned upgrade of 345 kV Trunks 1–3 to 3,000 MW each by 2030."),
+        ("south_central", 23.50, "South -> Central Trunk (23.50°N)", "南電中送主幹線 (23.50°N, 嘉雲界)",
+         "Taipower 2022 operational transfer margin: 1,608 MW across Chiayi–Yunlin 345 kV corridors."),
+    ]
+    cutsets = []
+    ne_y = ne.buses["y"]
+    n6_y = n6.buses["y"]
+    for key, lat, name_en, name_zh, note_en in cutset_defs:
+        ne_cross = ne.lines[(ne.lines["bus0"].map(ne_y) - lat) * (ne.lines["bus1"].map(ne_y) - lat) < 0]
+        by_v = ne_cross.groupby("v_nom")["s_nom"].sum().to_dict()
+        cnt_v = ne_cross.groupby("v_nom")["s_nom"].count().to_dict()
+        c0 = ns.lines["bus0"].map(ns_c12)
+        c1 = ns.lines["bus1"].map(ns_c12)
+        ns_cross = ns.lines[(c0 != c1) & ((c0.map(c_df["lat"]) - lat) * (c1.map(c_df["lat"]) - lat) < 0)]
+        n6_cross = n6.lines[(n6.lines["bus0"].map(n6_y) - lat) * (n6.lines["bus1"].map(n6_y) - lat) < 0]
+        cutsets.append({
+            "key": key,
+            "lat": lat,
+            "name_en": name_en,
+            "name_zh": name_zh,
+            "note_en": note_en,
+            "elec_lines": int(len(ne_cross)),
+            "elec_mva": _r(float(ne_cross["s_nom"].sum()), 0),
+            "elec_345_mva": _r(float(by_v.get(345.0, 0.0)), 0),
+            "elec_345_lines": int(cnt_v.get(345.0, 0)),
+            "elec_161_69_mva": _r(float(by_v.get(161.0, 0.0) + by_v.get(69.0, 0.0)), 0),
+            "clusters_12_lines": int(len(ns_cross)),
+            "clusters_12_mva": _r(float(ns_cross["s_nom"].sum()), 0),
+            "clusters_12_usable_mw": _r(0.7 * float(ns_cross["s_nom"].sum()), 0),
+            "clusters_6_lines": int(len(n6_cross)),
+            "clusters_6_mva": _r(float(n6_cross["s_nom"].sum()), 0),
+            "clusters_6_usable_mw": _r(0.7 * float(n6_cross["s_nom"].sum()), 0),
+        })
+
+    high_res = {"cutsets": cutsets, "clusters_12": clusters_12}
+
+    # Regional LNG blockade stress tests (30-day summer blockade, 50% LNG imports)
+    sys.path.insert(0, str(ROOT / "sandbox"))
+    from levers import spec_hash  # noqa: E402
+
+    lng_specs = [
+        ("ref", "Baseline 30d blockade (50% LNG imports, intact grid)", "基準 30 天封鎖（LNG 進口 50%，接收站與管網完好）",
+         {"base": "today", "levers": {"blockade_days": 30, "lng_import_frac": 0.5}}),
+        ("guantang_lng", "North: Guantang LNG outage (-14% supply)", "北部觀塘（三接）中斷（-14% 全國氣源，海管未斷）",
+         {"base": "today", "levers": {"blockade_days": 30, "lng_import_frac": 0.5, "damage": ["guantang_lng"]}}),
+        ("taichung_lng", "Central: Taichung LNG outage (-28% supply)", "中部台中（二接）中斷（-28% 全國氣源）",
+         {"base": "today", "levers": {"blockade_days": 30, "lng_import_frac": 0.5, "damage": ["taichung_lng"]}}),
+        ("yongan_lng", "South: Yongan LNG outage (-58% supply)", "南部永安（一接）中斷（-58% 全國氣源）",
+         {"base": "today", "levers": {"blockade_days": 30, "lng_import_frac": 0.5, "damage": ["yongan_lng"]}}),
+        ("subsea_gas_pipeline", "Northbound Subsea Gas Pipeline cut (N isolated)", "永安—台中—大潭北送海管切斷（北部天然氣孤島化）",
+         {"base": "today", "levers": {"blockade_days": 30, "lng_import_frac": 0.5, "damage": ["subsea_gas_pipeline"]}}),
+    ]
+    lng_cases = []
+    for cid, en, zh, spec in lng_specs:
+        key = spec_hash(spec)
+        nc = repo / "results" / "sandbox" / key / "networks" / "elec_s_6_ec_lv1.0_Co2L-4H.nc"
+        if not nc.exists():
+            continue
+        m = pypsa.Network(str(nc))
+        w = m.snapshot_weightings.generators
+        shed_idx = m.generators.index[m.generators.carrier == "load shedding"]
+        shed_gwh = float(m.generators_t.p[shed_idx].mul(w, axis=0).sum().sum() / 1e3) if len(shed_idx) else 0.0
+        gas_links = m.links[m.links.carrier.isin(["CCGT", "OCGT"])]
+        gas_gwh = float((-m.links_t.p1[gas_links.index]).mul(w, axis=0).sum().sum() / 1e3) if len(gas_links) else 0.0
+        north_links = gas_links[gas_links.bus1.isin(["TW0 1", "TW0 4"])]
+        north_gas_gwh = float((-m.links_t.p1[north_links.index]).mul(w, axis=0).sum().sum() / 1e3) if len(north_links) else 0.0
+        rem_pct = {}
+        for reg in ("south", "central", "north"):
+            st = f"TW gas_{reg} stock"
+            if st in m.stores.index:
+                e0 = float(m.stores.at[st, "e_initial"])
+                e1 = float(m.stores_t.e[st].iloc[-1])
+                rem_pct[reg] = _r(100.0 * e1 / e0, 1) if e0 > 0 else 0.0
+        if "TW gas stock" in m.stores.index:
+            e0 = float(m.stores.at["TW gas stock", "e_initial"])
+            e1 = float(m.stores_t.e["TW gas stock"].iloc[-1])
+            rem_pct["national"] = _r(100.0 * e1 / e0, 1) if e0 > 0 else 0.0
+        lng_cases.append({
+            "id": cid,
+            "hash": key,
+            "name_en": en,
+            "name_zh": zh,
+            "objective_bn_eur": _r(m.objective / 1e9, 3),
+            "gas_gen_GWh": _r(gas_gwh, 0),
+            "north_gas_gen_GWh": _r(north_gas_gwh, 0),
+            "unserved_GWh": _r(shed_gwh, 1),
+            "stock_remaining_pct": rem_pct,
+        })
+
+    return high_res, lng_cases
+
+
 def load_grid_sources() -> list[dict]:
     wanted = [
         "ndc_2050_grid_storage",
@@ -925,6 +1066,10 @@ def export_grid_data(repo: Path, out: Path) -> Path:
     labels = region_labels(reg6)
     osm = build_osm_grid(res, reg6, labels)
     pypsa_net = build_pypsa_networks(repo, BASE_RUN, osm["substations"], labels)
+    ne = pypsa.Network(str(repo / "networks" / BASE_RUN / "elec.nc"))
+    ns = pypsa.Network(str(repo / "networks" / BASE_RUN / "elec_s.nc"))
+    n6 = pypsa.Network(str(repo / "networks" / BASE_RUN / "elec_s_6_ec.nc"))
+    high_res, lng_blockade = build_high_res_and_lng_blockade(repo, ne, ns, n6)
 
     payload = {
         "generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
@@ -936,8 +1081,10 @@ def export_grid_data(repo: Path, out: Path) -> Path:
         "regions": simplify_region_shapes(reg6, labels),
         "osm": osm,
         "pypsa": pypsa_net,
+        "high_res_analysis": high_res,
         "lng_terminals": LNG_TERMINALS,
         "gas_pipelines": GAS_PIPELINE_CORRIDORS,
+        "regional_lng_blockade": lng_blockade,
         "fuel_ports_and_stocks": FUEL_PORTS_AND_STOCKS,
         "sources": load_grid_sources(),
     }
@@ -945,7 +1092,7 @@ def export_grid_data(repo: Path, out: Path) -> Path:
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(payload, separators=(",", ":"), ensure_ascii=False), encoding="utf-8")
     size_kb = round(target.stat().st_size / 1024.0, 1)
-    print(f"wrote {target.relative_to(ROOT)} ({size_kb} KB): "
+    print(f"wrote {target.resolve().relative_to(ROOT)} ({size_kb} KB): "
           f"{osm['counts']['raw_substations']} OSM substations, "
           f"{osm['counts']['raw_lines']}+{osm['counts']['raw_cables']} lines/cables, "
           f"{pypsa_net['summary']['elec_buses']} elec.nc buses, {len(LNG_TERMINALS)} LNG terminals")

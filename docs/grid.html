@@ -13,21 +13,21 @@
     <link rel="stylesheet" href="assets/site.css?v=722914cf" />
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <script src="assets/pages.js?v=3dee9410" defer></script>
-    <script src="assets/grid.js?v=4caa2610" defer></script>
+    <script src="assets/grid.js?v=3586c6a4" defer></script>
     <script data-goatcounter="https://taiwan-energy-system-platform.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
   </head>
   <body>
     <header class="topbar">
       <div class="shell topbar-inner">
         <div>
-          <div class="eyebrow"><span class="t-en">Taiwan Energy System Platform</span><span class="t-zh">台灣能源系統平台</span> <a class="ver-badge" href="https://github.com/BartonChenTW/taiwan-energy-model/releases/tag/tem-v0.2.0" rel="noopener" title="Website release version (tem-v0.2.0)"><span class="t-en">Version</span><span class="t-zh">版本</span> v0.2.0</a></div>
+          <div class="eyebrow"><span class="t-en">Taiwan Energy System Platform</span><span class="t-zh">台灣能源系統平台</span> <a class="ver-badge" href="https://github.com/BartonChenTW/taiwan-energy-model/releases/tag/tem-v0.3.0" rel="noopener" title="Website release version (tem-v0.3.0)"><span class="t-en">Version</span><span class="t-zh">版本</span> v0.3.0</a></div>
           <h1>
             <span class="t-en">Taiwan energy networks: grid, gas and supply</span>
             <span class="t-zh">台灣能源網路：輸配電網與燃料管網</span>
           </h1>
         </div>
         <div class="toolbar">
-          <a class="ghost ver-toolbar" href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/CHANGELOG.md" rel="noopener" title="Version &amp; Changelog">v0.2.0</a>
+          <a class="ghost ver-toolbar" href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/CHANGELOG.md" rel="noopener" title="Version &amp; Changelog">v0.3.0</a>
           <a class="ghost ver-toolbar" href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/notes/log.md" rel="noopener" title="Project log"><span class="t-en">Log</span><span class="t-zh">日誌</span></a>
           <div class="segmented" role="group" aria-label="Language">
             <button type="button" data-lang="en" aria-pressed="true">EN</button>
@@ -199,6 +199,19 @@
           <p class="note muted" id="line-count"></p>
           <div id="table-lines" class="table-wrap" style="max-height: 460px; overflow: auto"></div>
         </article>
+
+        <article class="panel" id="high-res-cutsets">
+          <h3>
+            <span class="t-en">345 kV latitudinal bottlenecks &amp; 12-subregion clustering preview (vs. 6 nodes)</span>
+            <span class="t-zh">345 kV 南北跨區斷面與 12 分區高解析度電網對照（vs. 6 區模型）</span>
+          </h3>
+          <p class="sub" id="cutsets-sub"></p>
+          <div id="table-cutsets" class="table-wrap"></div>
+          <details style="margin-top: 12px">
+            <summary><span class="t-en">Show 12-subregion clustering breakdown (79 substations in elec_s.nc)</span><span class="t-zh">顯示 12 分區整併明細（由 79 節點 elec_s.nc 分群）</span></summary>
+            <div id="table-clusters-12" class="table-wrap" style="margin-top: 8px"></div>
+          </details>
+        </article>
       </section>
 
       <section id="sec-upgrades" class="section">
@@ -253,6 +266,17 @@
             <div id="table-fuel-stocks" class="table-wrap"></div>
           </article>
         </div>
+        <article class="panel" id="regional-lng-blockade">
+          <h3>
+            <span class="t-en">Sub-national LNG terminal &amp; northbound pipeline disruption stress tests (30-day summer blockade, 50% imports)</span>
+            <span class="t-zh">分區 LNG 接收站與北送海管中斷壓力測試（夏季 30 天封鎖、進口減半情境）</span>
+          </h3>
+          <p class="sub">
+            <span class="t-en">Replacing the single national LNG pool with South (Yongan 58%), Central (Taichung 28%), and North (Guantang 14%) gas pools connected by the northbound figure-8 trunk reveals how cutting the northbound subsea pipeline isolates North Taiwan's 9.6 GW of gas plants even when Taichung/Yongan still hold reserves.</span>
+            <span class="t-zh">將單一全國天然氣池拆分為南（永安 58%）、中（台中 28%）、北（觀塘 14%）三區並連結海陸北送幹線後，若切斷北送海管，即便中南部仍有餘裕氣源，北部 9.6 GW 燃氣機組仍將面臨斷氣孤島化與大量缺電。</span>
+          </p>
+          <div id="table-lng-blockade" class="table-wrap"></div>
+        </article>
       </section>
 
       <section id="sec-sources" class="section">
@@ -273,7 +297,7 @@
         <span class="t-zh">本頁資料由 <code>viewer/export_grid_data.py</code> 匯出至 <code>docs/data/grid_data.json</code>；電力拓樸取自 OpenStreetMap 與 PyPSA-Earth 開源模型，並整合經濟部、台電公開報告及中油／能源署天然氣管網公開資訊。</span>
       </p>
     
-      <div class="footer-meta"><span class="t-en">Version:</span><span class="t-zh">網站版本：</span><a class="ver-badge" href="https://github.com/BartonChenTW/taiwan-energy-model/releases/tag/tem-v0.2.0" rel="noopener">v0.2.0 (tem-v0.2.0)</a><a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/CHANGELOG.md" rel="noopener"><span class="t-en">Changelog</span><span class="t-zh">更新紀錄</span></a><a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/notes/log.md" rel="noopener"><span class="t-en">Project log</span><span class="t-zh">專案日誌</span></a><a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/notes/todo.md" rel="noopener"><span class="t-en">Todo / Roadmap</span><span class="t-zh">待辦與規劃</span></a><a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/model.lock" rel="noopener">model.lock</a></div>
+      <div class="footer-meta"><span class="t-en">Version:</span><span class="t-zh">網站版本：</span><a class="ver-badge" href="https://github.com/BartonChenTW/taiwan-energy-model/releases/tag/tem-v0.3.0" rel="noopener">v0.3.0 (tem-v0.3.0)</a><a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/CHANGELOG.md" rel="noopener"><span class="t-en">Changelog</span><span class="t-zh">更新紀錄</span></a><a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/notes/log.md" rel="noopener"><span class="t-en">Project log</span><span class="t-zh">專案日誌</span></a><a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/notes/todo.md" rel="noopener"><span class="t-en">Todo / Roadmap</span><span class="t-zh">待辦與規劃</span></a><a href="https://github.com/BartonChenTW/taiwan-energy-model/blob/main/model.lock" rel="noopener">model.lock</a></div>
     </footer>
   </body>
 </html>

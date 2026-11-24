@@ -1,0 +1,17 @@
+# Scenario overlay: 12-region spatial resolution for Taiwan's power grid.
+# Splits science-park load pockets (Hsinchu, Taichung, Tainan), coastal generation hubs
+# (Tatan, Tunghsiao, Changhua, Mailiao, Hsinta), pumped hydro (Nantou) and East Coast (Hualien-Taitung)
+# so Central->North and South->Central 345 kV bottlenecks are resolved instead of lumped into 6 buses.
+# Layer on top of config_tw_test2_highs.yaml:
+#   snakemake -j 1 solve_all_networks --configfile config/config_tw_test2_highs.yaml config/scenarios/clusters_12.yaml
+
+run:
+  name: "tw_test2_highs_2013_fullyear_4h_12b_ls"
+  sector_name: "tw_test2_highs_2013_fullyear_4h_12b_ls"
+
+scenario:
+  clusters: [12]
+
+solving:
+  options:
+    load_shedding: true

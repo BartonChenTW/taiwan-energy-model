@@ -7,6 +7,7 @@ const PT = {
     col_item: "", year: (y) => String(y),
     rows: {
       net: "Net CO₂ emissions (Mt)", cap: "CO₂ cap (Mt)", stored: "CO₂ captured, stored or used (Mt)", dac: "of which from the air (DAC, Mt)", price: "CO₂ price in the model (€/t)",
+      elec_price: "Wholesale electricity shadow price (€/MWh)",
       elec: "Electricity generated (TWh)", h2: "Hydrogen produced (TWh)", ely: "Electrolysers (GW)", batt: "Batteries (GWh)",
       cost: "System cost (bn € per year)", shed: "Demand not met (TWh)", h2imp: "Hydrogen imported (TWh)",
       nuc: "New nuclear (GW)", gascc: "Gas with carbon capture (GW)", nh3imp: "Ammonia imported (TWh)", efimp: "Synthetic fuels imported (TWh)", dac2: "CO₂ taken from the air (DAC, Mt)", wind: "Wind (GW)", solar: "Solar PV (GW)",
@@ -30,7 +31,7 @@ const PT = {
     meta: (g, p) => `Run ${p.run} (${p.overlay}); exported ${g}.`,
     findings: (l, p, q) => {
       const g = (k, d = 0) => pnf((l.capacity_by_group_GW[k] || {}).total_GW || 0, d);
-      const out = [`System cost rises from ${pnf(p.objective_EUR / 1e9, 1)} to ${pnf(l.objective_EUR / 1e9, 1)} bn € per year (${p.year} → ${l.year}); the CO₂ price in the model reaches about ${pnf(l.co2_price_EUR_t)} €/t.`,
+      const out = [`System cost rises from ${pnf(p.objective_EUR / 1e9, 1)} to ${pnf(l.objective_EUR / 1e9, 1)} bn € per year (${p.year} → ${l.year}); the CO₂ price in the model reaches about ${pnf(l.co2_price_EUR_t)} €/t${efimp(l) > 1 ? " (pinned across ×1 import runs by the marginal synthetic-oil import cost: 120 €/MWh ÷ 0.2571 tCO₂/MWh = 467 €/t)" : ""}, and the load-weighted electricity price is ${pnf(l.elec_price_EUR_MWh, 1)} €/MWh.`,
         isOfficial(q)
           ? `In ${l.year}: solar ${g("solar")} GW and offshore plus onshore wind ${g("wind")} GW (within the action plans' 2050 ranges), hydrogen and ammonia turbines ${g("hydrogen")} GW, gas with carbon capture ${g("gas_cc", 1)} GW; no new nuclear.`
           : `In ${l.year}: solar ${g("solar")} GW (its land-use potential, incl. rooftops), wind ${g("wind")} GW${hasFloat(q) ? " incl. floating" : ""}, new nuclear ${g("nuclear", 1)} GW${q.id === "A" ? " (capped at 6.75 GW)" : " (no limit per site)"}${hasFloat(q) ? "" : "; floating offshore wind is not included"}.`];
@@ -46,6 +47,7 @@ const PT = {
     col_item: "", year: (y) => `${y} 年`,
     rows: {
       net: "淨 CO₂ 排放（Mt）", cap: "CO₂ 上限（Mt）", stored: "捕捉的 CO₂（封存或利用，Mt）", dac: "其中直接空氣捕捉（DAC，Mt）", price: "模型中的碳價（歐元/公噸）",
+      elec_price: "系統邊際電價（歐元/MWh）",
       elec: "發電量（TWh）", h2: "氫氣產量（TWh）", ely: "電解槽（GW）", batt: "電池（GWh）",
       cost: "系統成本（每年十億歐元）", shed: "未能供應的需求（TWh）", h2imp: "進口氫氣（TWh）",
       nuc: "新核電（GW）", gascc: "燃氣搭配碳捕捉（GW）", nh3imp: "進口氨（TWh）", efimp: "進口合成燃料（TWh）", dac2: "直接空氣捕捉 CO₂（DAC，Mt）", wind: "風電（GW）", solar: "太陽光電（GW）",
@@ -69,7 +71,7 @@ const PT = {
     meta: (g, p) => `模擬 ${p.run}（${p.overlay}）；匯出時間 ${g}。`,
     findings: (l, p, q) => {
       const g = (k, d = 0) => pnf((l.capacity_by_group_GW[k] || {}).total_GW || 0, d);
-      const out = [`系統成本自每年 ${pnf(p.objective_EUR / 1e9, 1)} 升至 ${pnf(l.objective_EUR / 1e9, 1)} 十億歐元（${p.year} → ${l.year} 年）；模型中的碳價約達每公噸 ${pnf(l.co2_price_EUR_t)} 歐元。`,
+      const out = [`系統成本自每年 ${pnf(p.objective_EUR / 1e9, 1)} 升至 ${pnf(l.objective_EUR / 1e9, 1)} 十億歐元（${p.year} → ${l.year} 年）；模型中的碳價約達每公噸 ${pnf(l.co2_price_EUR_t)} 歐元${efimp(l) > 1 ? "（於 ×1 進口情境由邊際合成燃油進口成本鎖定：120 €/MWh ÷ 0.2571 tCO₂/MWh = 467 €/t）" : ""}，系統平均邊際電價為 ${pnf(l.elec_price_EUR_MWh, 1)} €/MWh。`,
         isOfficial(q)
           ? `${l.year} 年：太陽光電 ${g("solar")} GW、離岸與陸域風電 ${g("wind")} GW（皆在行動計畫的 2050 年範圍內），氫能與氨渦輪機 ${g("hydrogen")} GW，燃氣搭配碳捕捉 ${g("gas_cc", 1)} GW；不新建核電。`
           : `${l.year} 年：太陽光電 ${g("solar")} GW（達土地利用潛力上限，含屋頂型）、風電 ${g("wind")} GW${hasFloat(q) ? "（含浮動式）" : ""}、新核電 ${g("nuclear", 1)} GW${q.id === "A" ? "（上限 6.75 GW）" : "（未設各廠址上限）"}${hasFloat(q) ? "" : "；未納入浮動式離岸風電"}。`];
@@ -214,7 +216,7 @@ function renderPathway() {
 
   const rows = [
     ["net", (y) => pnf(zero(y.co2.net_Mt))], ["cap", (y) => pnf(y.co2.cap_Mt)], ["stored", (y) => pnf(y.co2.captured_Mt)],
-    ["dac", (y) => pnf(y.co2.dac_Mt)], ["price", (y) => pnf(y.co2_price_EUR_t)],
+    ["dac", (y) => pnf(y.co2.dac_Mt)], ["price", (y) => pnf(y.co2_price_EUR_t)], ["elec_price", (y) => pnf(y.elec_price_EUR_MWh, 1)],
     ["elec", (y) => pnf(Object.values(y.generation_TWh).reduce((a, b) => a + b, 0))],
     ["h2", (y) => pnf(Object.values(y.hydrogen_TWh).reduce((a, b) => a + b, 0))], ["ely", (y) => pnf(y.electrolysis_GW, 1)],
     ["h2imp", (y) => pnf(h2imp(y))], ["batt", (y) => pnf(y.battery_GWh)], ["cost", (y) => pnf(y.objective_EUR / 1e9, 1)],
