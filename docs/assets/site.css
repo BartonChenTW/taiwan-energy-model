@@ -125,8 +125,9 @@ a { color: var(--accent); }
 }
 .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 14px; }
 .eyebrow { color: var(--muted); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
-.ver-badge { display: inline-block; text-transform: none; letter-spacing: 0; font-size: 11px; line-height: 1.4; padding: 1px 7px; border: 1px solid var(--border); border-radius: 999px; color: var(--ink-2); text-decoration: none; background: var(--surface); }
-.ver-badge:hover { border-color: var(--accent); color: var(--accent); }
+.ver-badge { display: inline-block; text-transform: none; letter-spacing: 0; font-size: 11px; font-weight: 600; line-height: 1.4; padding: 1px 8px; border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border)); border-radius: 999px; color: var(--accent); text-decoration: none; background: var(--surface); }
+.ver-badge:hover { border-color: var(--accent); background: var(--wash); }
+.ver-toolbar { text-decoration: none; font-weight: 600; white-space: nowrap; }
 .footer-meta { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
 h1 { margin: 2px 0 0; font-size: 22px; line-height: 1.25; }
 h2 { margin: 0 0 12px; font-size: 19px; }

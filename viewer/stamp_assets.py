@@ -1,7 +1,7 @@
 """
 Stamp the website's CSS/JS links with a hash of their content (cache busting),
-and inject/update the repository release tag (tem-vX.Y.Z) and project log/todo
-links in every page's eyebrow and footer.
+and inject/update the website version number (vX.Y.Z / tem-vX.Y.Z) and project
+log/todo links in every page's eyebrow, top toolbar, and footer.
 
 Run before publishing (the exporter runs it too):
 
@@ -18,7 +18,9 @@ DOCS = ROOT / "docs"
 REPO_URL = "https://github.com/BartonChenTW/taiwan-energy-model"
 REF = re.compile(r'(["\'])(assets/[\w.-]+\.(?:js|css))(?:\?v=[0-9a-f]+)?\1')
 VER_BADGE_RE = re.compile(r'\s*<a class="ver-badge"[^>]*>.*?</a>')
+VER_TOOLBAR_RE = re.compile(r'\s*<a class="ghost ver-toolbar"[^>]*>.*?</a>')
 EYEBROW_RE = re.compile(r'(<div class="eyebrow">)(.*?)(</div>)', re.S)
+TOOLBAR_RE = re.compile(r'([ \t]*)(<div class="toolbar">)')
 FOOTER_META_RE = re.compile(r'\s*<div class="footer-meta">.*?</div>', re.S)
 
 
@@ -49,11 +51,18 @@ def stamp(docs=DOCS):
     changed = []
     versions = {}
     ver = repo_version()
+    ver_num = ver[4:] if ver.startswith("tem-v") else ver
     tag_url = f"{REPO_URL}/releases/tag/{ver}" if ver.startswith("tem-v") else f"{REPO_URL}/tags"
-    badge_html = f' <a class="ver-badge" href="{tag_url}" rel="noopener" title="Repository release tag">{ver}</a>'
+    ver_display = f"{ver_num} ({ver})" if ver_num != ver else ver
+
+    badge_html = (
+        f' <a class="ver-badge" href="{tag_url}" rel="noopener" title="Website release version ({ver})">'
+        f'<span class="t-en">Version</span><span class="t-zh">版本</span> {ver_num}</a>'
+    )
     footer_meta_html = (
         f'\n      <div class="footer-meta">'
-        f'<a class="ver-badge" href="{tag_url}" rel="noopener">{ver}</a>'
+        f'<span class="t-en">Version:</span><span class="t-zh">網站版本：</span>'
+        f'<a class="ver-badge" href="{tag_url}" rel="noopener">{ver_display}</a>'
         f'<a href="{REPO_URL}/blob/main/CHANGELOG.md" rel="noopener"><span class="t-en">Changelog</span><span class="t-zh">更新紀錄</span></a>'
         f'<a href="{REPO_URL}/blob/main/notes/log.md" rel="noopener"><span class="t-en">Project log</span><span class="t-zh">專案日誌</span></a>'
         f'<a href="{REPO_URL}/blob/main/notes/todo.md" rel="noopener"><span class="t-en">Todo / Roadmap</span><span class="t-zh">待辦與規劃</span></a>'
@@ -80,6 +89,19 @@ def stamp(docs=DOCS):
             return f"{m.group(1)}{inner}{badge_html}{m.group(3)}"
 
         new = EYEBROW_RE.sub(eb_repl, new, count=1)
+
+        # Inject/update version + Log buttons inside top-right .toolbar
+        new = VER_TOOLBAR_RE.sub("", new)
+
+        def tb_repl(m):
+            indent = m.group(1) + "  "
+            return (
+                f"{m.group(1)}{m.group(2)}\n"
+                f'{indent}<a class="ghost ver-toolbar" href="{REPO_URL}/blob/main/CHANGELOG.md" rel="noopener" title="Version &amp; Changelog">{ver_num}</a>\n'
+                f'{indent}<a class="ghost ver-toolbar" href="{REPO_URL}/blob/main/notes/log.md" rel="noopener" title="Project log"><span class="t-en">Log</span><span class="t-zh">日誌</span></a>'
+            )
+
+        new = TOOLBAR_RE.sub(tb_repl, new, count=1)
 
         # Inject/update version + log/todo links inside <footer>
         new = FOOTER_META_RE.sub("", new)
