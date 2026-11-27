@@ -1,2 +1,6 @@
-# Shell scripts must keep LF line endings, or bash fails on Windows checkouts
+# Downloaded official files are kept byte for byte (their SHA-256 is in data/sources.csv),
+# so Git must not convert their line endings on checkout.
+data/official/** -text
+
+# Shell scripts keep LF line endings, or bash fails on them (CRLF from Windows editors).
 *.sh text eol=lf
