@@ -5,3 +5,4 @@ __pycache__/
 # scratch and local outputs (model outputs live in the model checkout)
 *.log
 .vscode/
+.tem-env.sh

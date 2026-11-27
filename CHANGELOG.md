@@ -3,6 +3,19 @@
 All notable milestones of the **Taiwan Energy System Model (`taiwan-energy-model`)** are documented here.
 Release tags for this repository use the `tem-vX.Y.Z` prefix (to remain distinct from inherited upstream PyPSA-Earth `v0.x.y` tags), while `model.lock` pins the companion `BartonChenTW/pypsa-earth` fork commit.
 
+## [Unreleased]
+
+### Added
+- **`setup.sh`:** one-command setup for a new machine. It clones the model fork next to this
+  repository at the `model.lock` commit, creates the conda environment from the matching lock file,
+  checks the Copernicus key and disk space, writes `.tem-env.sh` (`$PY`, `$M`, `$C`), and dry-runs
+  Test 1; `--run-test` also runs it.
+
+### Changed
+- **README:** opens with "What do you want to do?" (see results, use the Taiwan data, run the model,
+  sandbox, contribute) and a short "run the model" section. GETTING_STARTED, CONTRIBUTING and
+  AGENTS point to `setup.sh`.
+
 ## [tem-v0.3.0] - 2026-11-24
 
 ### Added

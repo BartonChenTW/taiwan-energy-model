@@ -138,6 +138,9 @@ Never mark a figure `downloaded` or `page_opened` unless you have seen it in the
     [pypsa-meets-earth/pypsa-earth](https://github.com/pypsa-meets-earth/pypsa-earth).
 - **Study code:** the sandbox (`sandbox/`), exporter (`viewer/`) and data builders (`data/*.py`)
   are here. Keep `python -m pytest sandbox/test_levers.py` passing.
+- **Setting up to run the model:** `bash setup.sh` (see [GETTING_STARTED.md](GETTING_STARTED.md)).
+  If you change the layout, the configs' relative paths or `model.lock`, check that `setup.sh` still
+  works.
 
 ## 5. Website
 

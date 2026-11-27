@@ -10,6 +10,30 @@ model, together with the Taiwan data and settings in this repository (TEM, taiwa
 To look at results without running anything, see the website:
 https://bartonchentw.github.io/taiwan-energy-model/.
 
+## Quick setup
+
+`setup.sh` does sections 2 to 4 for you, and checks that a run works. Run it in Git Bash on Windows,
+or in a terminal on Linux or macOS. You still need Git, conda (section 1) and, for the first run, a
+Copernicus key (section 4).
+
+```bash
+git clone https://github.com/BartonChenTW/taiwan-energy-model.git
+cd taiwan-energy-model
+bash setup.sh              # clone ../pypsa-earth at model.lock, create the environment, dry-run Test 1
+bash setup.sh --run-test   # the same, then run Test 1 (first run: downloads, one to several hours)
+source .tem-env.sh         # sets $PY, $M (model folder) and $C (configs) for the commands below
+```
+
+- **Safe to run again:** every step is skipped when it is already done. An existing model checkout is
+  left at the commit it is on; the script only warns if that differs from `model.lock`.
+- **Options:** `bash setup.sh --help` (other model folder, environment name or prefix, latest model
+  instead of `model.lock`).
+- **Environment:** `setup.sh` runs Python from the environment directly and sets the GDAL/PROJ
+  variables itself, so `conda activate` is not needed. With `.tem-env.sh` sourced, use `$PY` where
+  this guide writes `python`.
+
+The sections below explain each step by hand.
+
 ## 1. What you need
 
 | Item | Notes |

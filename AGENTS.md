@@ -10,6 +10,9 @@ Notes for working with this repository on Windows (DDM06479).
 | `F:\Barton\Repositories\pypsa-earth` | [BartonChenTW/pypsa-earth](https://github.com/BartonChenTW/pypsa-earth) (model fork) | the PyPSA-Earth workflow, its Python environment `.venv`, data bundle, cutouts and all outputs (`resources/`, `networks/`, `results/`, `logs/`) |
 
 - `paths.py` finds the model folder: `PYPSA_EARTH_DIR`, or `../pypsa-earth` by default.
+- `setup.sh` sets up a new machine (clones the fork at `model.lock`, creates the environment, dry-runs
+  Test 1) and writes `.tem-env.sh` (not committed), which sets `$PY`, `$M` and `$C`. On DDM06479 it
+  reuses `pypsa-earth/.venv` and changes nothing; `bash setup.sh` only checks and dry-runs.
 - `model.lock` records the model commit this study was last run with.
 - `CHANGELOG.md` and annotated git tags (`tem-vX.Y.Z`, distinct from inherited upstream `v0.x.y` tags) track releases of this repository.
 - `notes/log.md` records the project and run log; `notes/todo.md` tracks open work and next steps.
